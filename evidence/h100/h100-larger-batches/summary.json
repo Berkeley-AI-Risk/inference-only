@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "source_sha256": {
+    "README.md": "8dea141d283cf78fe1811eef8747e3cfdd4cebe75ce8ba769677d2102768dad6",
+    "benchmark.py": "c217a5df2ef47249e777b34bc358650430d1afe61b6c350fa3d65fbca3266b9b",
+    "model_snapshot.py": "d2cc59c26929ee15f9aa060cf00356dd371aa9ede8ad81e7971ab84476b6f71c",
+    "requirements.txt": "5f2e24cf9e35782bf4d533e44694cea38439e987d55f9b5ab9fa4e0e18109474",
+    "test_benchmark.py": "afc07fb27e55229deed31ea94a706f45b4cca40bf42962874d7051aa52cc2db8"
+  },
+  "model_revision": "c4b3a4bb81297f5316697098e1d4b65c1249daf8",
+  "device": "cuda",
+  "cases": [
+    {
+      "context": 128,
+      "batch": 2048,
+      "mode": "graph",
+      "status": "pass",
+      "result": "ctx128-batch2048-float16-graph.json",
+      "timing": {
+        "aggregate_tokens_per_second": 510280.6343563256,
+        "tokens_per_second_per_sequence": 249.1604659942996,
+        "milliseconds_per_decode_step": 4.013477804391642,
+        "aggregate_tps_min": 510105.7330511134,
+        "aggregate_tps_max": 510648.23335009516,
+        "tokens_counted_per_trial": 1026048,
+        "samples": [
+          {
+            "wall_seconds": 2.0093049050001355,
+            "cuda_event_seconds": 2.00929638671875
+          },
+          {
+            "wall_seconds": 2.0098010940000677,
+            "cuda_event_seconds": 2.009799560546875
+          },
+          {
+            "wall_seconds": 2.0111124830000335,
+            "cuda_event_seconds": 2.0111075439453123
+          },
+          {
+            "wall_seconds": 2.0114418120001574,
+            "cuda_event_seconds": 2.011438720703125
+          },
+          {
+            "wall_seconds": 2.0107523800002127,
+            "cuda_event_seconds": 2.010749267578125
+          }
+        ]
+      }
+    },
+    {
+      "context": 128,
+      "batch": 4096,
+      "mode": "graph",
+      "status": "pass",
+      "result": "ctx128-batch4096-float16-graph.json",
+      "timing": {
+        "aggregate_tokens_per_second": 566394.3873375345,
+        "tokens_per_second_per_sequence": 138.27987972107775,
+        "milliseconds_per_decode_step": 7.231710079709969,
+        "aggregate_tps_min": 565907.8785794881,
+        "aggregate_tps_max": 568273.420349462,
+        "tokens_counted_per_trial": 1130496,
+        "samples": [
+          {
+            "wall_seconds": 1.9976678940001875,
+            "cuda_event_seconds": 1.997656005859375
+          },
+          {
+            "wall_seconds": 1.9974989050001568,
+            "cuda_event_seconds": 1.9974874267578124
+          },
+          {
+            "wall_seconds": 1.9959519819999514,
+            "cuda_event_seconds": 1.99593896484375
+          },
+          {
+            "wall_seconds": 1.9893522370002756,
+            "cuda_event_seconds": 1.989343505859375
+          },
+          {
+            "wall_seconds": 1.9894871800001965,
+            "cuda_event_seconds": 1.9894810791015625
+          }
+        ]
+      }
+    },
+    {
+      "context": 128,
+      "batch": 8192,
+      "mode": "graph",
+      "status": "pass",
+      "result": "ctx128-batch8192-float16-graph.json",
+      "timing": {
+        "aggregate_tokens_per_second": 594785.8681336064,
+        "tokens_per_second_per_sequence": 72.60569679365312,
+        "milliseconds_per_decode_step": 13.773023938355973,
+        "aggregate_tps_min": 594763.8837205012,
+        "aggregate_tps_max": 594797.7773317711,
+        "tokens_counted_per_trial": 1196032,
+        "samples": [
+          {
+            "wall_seconds": 2.0108809009998367,
+            "cuda_event_seconds": 2.0108712158203126
+          },
+          {
+            "wall_seconds": 2.010861494999972,
+            "cuda_event_seconds": 2.010854248046875
+          },
+          {
+            "wall_seconds": 2.010935822999727,
+            "cuda_event_seconds": 2.01093359375
+          },
+          {
+            "wall_seconds": 2.010831681000127,
+            "cuda_event_seconds": 2.01082470703125
+          },
+          {
+            "wall_seconds": 2.010821233000115,
+            "cuda_event_seconds": 2.0108140869140625
+          }
+        ]
+      }
+    },
+    {
+      "context": 128,
+      "batch": 16384,
+      "mode": "graph",
+      "status": "pass",
+      "result": "ctx128-batch16384-float16-graph.json",
+      "timing": {
+        "aggregate_tokens_per_second": 608881.0887208419,
+        "tokens_per_second_per_sequence": 37.1631523877467,
+        "milliseconds_per_decode_step": 26.90837390666881,
+        "aggregate_tps_min": 608840.7119891453,
+        "aggregate_tps_max": 608882.7825024014,
+        "tokens_counted_per_trial": 1228800,
+        "samples": [
+          {
+            "wall_seconds": 2.0181280430001607,
+            "cuda_event_seconds": 2.018116455078125
+          },
+          {
+            "wall_seconds": 2.018122428999959,
+            "cuda_event_seconds": 2.0181156005859373
+          },
+          {
+            "wall_seconds": 2.018123987999843,
+            "cuda_event_seconds": 2.0181165771484375
+          },
+          {
+            "wall_seconds": 2.0182618800004093,
+            "cuda_event_seconds": 2.018253662109375
+          },
+          {
+            "wall_seconds": 2.018260948000261,
+            "cuda_event_seconds": 2.0182510986328124
+          }
+        ]
+      }
+    }
+  ]
+}

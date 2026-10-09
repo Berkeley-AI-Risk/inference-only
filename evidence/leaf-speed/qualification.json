@@ -1,0 +1,50 @@
+{
+  "additional_protected_steps": 34,
+  "attention_audited_queries": 72,
+  "attention_safety_assertions": 34,
+  "baseline_long_prompt_tokens": 128,
+  "baseline_model_fault_clear_cases": 40,
+  "passed": true,
+  "protected_model_fault_clear_cases": 48,
+  "records": {
+    "attention-replay0": {
+      "passed": true,
+      "receipt_sha256": "e5f5070142dc903fb4046bbfdc9bcb2239ee1f4a6a32a4ac344d45c445d126c0"
+    },
+    "caller-bounds0": {
+      "passed": true,
+      "receipt_sha256": "c3751c35517404a007cb82651f3756156138a0804e4dc3a9e6288de436392fbe"
+    },
+    "campaign0": {
+      "passed": true,
+      "receipt_sha256": "4a1ad836ea239381c2d25c8f0b3118930cb52885968a24a0ca8028aae1214389"
+    },
+    "divider-decomposed0": {
+      "passed": true,
+      "receipt_sha256": "8f60541032f85fa81e5a9e0788ee9526d0a67cfc11ff17d0c1628337621be58b"
+    },
+    "long128-0": {
+      "passed": true,
+      "receipt_sha256": "f589ef5e4dc0f266667ebcbaa02216c8b272c9d69d91f782e7dc9511d75a99d5"
+    },
+    "models-audit0": {
+      "passed": true,
+      "receipt_sha256": "6660bf0c9626454846c5160105fa9e37501352c12e668dbedd875fd0d054cd04"
+    },
+    "normalizer-replay0": {
+      "passed": true,
+      "receipt_sha256": "671983b66a12f8177388703735ddb4e4c15c8bee8a4829e03f46e05a75314520"
+    },
+    "protected-campaign0": {
+      "passed": true,
+      "receipt_sha256": "496501e0d32bdd2c01059afb66d34beff892d1247987dcb8c9f5fc2457c3ad32"
+    },
+    "protected-context32-0": {
+      "passed": true,
+      "receipt_sha256": "67e3f561ca3fcc600a63c09cf416026afb4cec68ab0b56c57e0f93908acfcf30"
+    }
+  },
+  "scope": "Source-bound private campaign summaries. Arithmetic proofs and finite numerical simulations are distinct from the separate attention safety proof. Packaged proof/model replays are separately runnable.",
+  "short_numerical_cases": 20,
+  "whole_machine_refinement": false
+}

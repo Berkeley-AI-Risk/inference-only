@@ -1,0 +1,282 @@
+{
+  "assertions": 134,
+  "generated_sources": {
+    "candidate.sv": {
+      "bytes": 3957,
+      "sha256": "1516bdd7cdf13e0070ef853ba5d68423326649d9d64db3bd661a32416ba4a3e2"
+    },
+    "composition.sv": {
+      "bytes": 11804,
+      "sha256": "3baebcce4e405d244ed5ce604f67f257fc79157e44f6699f32ef1ade876395d0"
+    },
+    "connection_monitor.inc.sv": {
+      "bytes": 700,
+      "sha256": "1cb7629ad9a8334c78d2d2dfc815fd66b588cb2043516dfa8dae51304f0308aa"
+    },
+    "core_monitor.inc.sv": {
+      "bytes": 1769,
+      "sha256": "773d6a69eda28119d113e051f19facc6dc9592f474656c26d9061d777b2f87fc"
+    },
+    "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+      "bytes": 3954,
+      "sha256": "d2425f7b9aacf97685b482c109e210937347247f1eb1aec8eea2e8081628ac3b"
+    },
+    "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": {
+      "bytes": 5925,
+      "sha256": "eb9f2e3846e695421cff3d0d81c27a0a5e4faef66f590db7be674d9ebe8bf840"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": {
+      "bytes": 26402,
+      "sha256": "74322a9cf8ec0ccd82df156271223b0dd3366b142ac145299e59424c7933fa27"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+      "bytes": 57160,
+      "sha256": "8a05a7a27f9a8e26a54830c3dab44c4d2bc7cd144ac0a6989d2ae12c1a81c55f"
+    },
+    "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": {
+      "bytes": 4162,
+      "sha256": "f95f5f07e92d6289a9bb97c9c89ce0a001e3f8d074489788a4a5bb1da59ee349"
+    },
+    "fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": {
+      "bytes": 2587,
+      "sha256": "d8c64ebb46922f3f05ce7710514649f8e19b43f5da4a53f365bfc5e48c66d84f"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+      "bytes": 8066,
+      "sha256": "3b2d76080927e8bf6ee644e8da2d4140ea4b2e9e05178ac0d902eb3d4a57cefe"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": {
+      "bytes": 30287,
+      "sha256": "0f931fb4ce37939e3019922bfdd19995dfe08ed640918ba649468cc9bd58c432"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+      "bytes": 10521,
+      "sha256": "799d3c16a60bf01f5c86402553055cdc4bded41723a41595253bb5443989b378"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+      "bytes": 3774,
+      "sha256": "f5b30c5a6d59fd3297e0b18784f949de4fc9739781cd24083c420a980c8c1d16"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": {
+      "bytes": 16291,
+      "sha256": "ca1f8466f54d6eafeea9997f89378fb535b416666da15267725b14f79452c9c9"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": {
+      "bytes": 11183,
+      "sha256": "3d0848118ba7d1e55cae3e21af3dd1f0a772931955b37ce9891d75b966e78799"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": {
+      "bytes": 17685,
+      "sha256": "8a3ad2d3147d08f9bde42e72424a77c38c23d55bbf1b20ca621d549dec29da5d"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh": {
+      "bytes": 33280,
+      "sha256": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+      "bytes": 8070,
+      "sha256": "724b58c0c968ad3dce49591d9c5e0aac72d036ce036f909f040c6a5c5146e7ea"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+      "bytes": 1367,
+      "sha256": "58c2dae272a6fecdf7f99a862a721c9820e9ecbc52d91580da0bc923383ea88a"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+      "bytes": 25473,
+      "sha256": "e9e36945457f33056eecbddd69b68bf00c15edc5b320c85ae7912298aa97a51b"
+    },
+    "fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": {
+      "bytes": 3047,
+      "sha256": "ad061aab9d131f8bfb06bc1a636bdda826b43c01d354a939d118aa8b52e61b76"
+    },
+    "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": {
+      "bytes": 3085,
+      "sha256": "60d949c2b838cb0739c7e5f7222f7b1bff630eb37d3f71628ac238d7d9f6ba07"
+    },
+    "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": {
+      "bytes": 1516,
+      "sha256": "260ab8839486660c61eb29543a85323aeb19f726429912c08e892ae37c042cf8"
+    },
+    "fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": {
+      "bytes": 22277,
+      "sha256": "490bb9c8f614719de175080c1681da876536c46fc1ff1d8cbd7442c28ea5bfd4"
+    },
+    "normalizer_pipeline.sv": {
+      "bytes": 57565,
+      "sha256": "16eba29f07b24b8cdcc4c8968a15f8e312dd64812b1d6309a9ad47cbf50da61c"
+    },
+    "production_core.sv": {
+      "bytes": 23103,
+      "sha256": "0e4a38023c711abae1bdf1173444601723dc90a25b1f414c5618bf908432d4da"
+    },
+    "production_layer.sv": {
+      "bytes": 13704,
+      "sha256": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6"
+    },
+    "production_shared.sv": {
+      "bytes": 16579,
+      "sha256": "81108218101431351a8eb8815e4cf953b5356416767621b7469f663c7b67af17"
+    },
+    "production_uart.sv": {
+      "bytes": 3225,
+      "sha256": "315f5d20fa93a5f974eeef1b26220952c6f9ab4264cd6309a1de7cb35ea1832a"
+    },
+    "prove.ys": {
+      "bytes": 2174,
+      "sha256": "bf99676052b957b0f7c774e53d824299d8b6f9b685ea638fd3e259afb4151022"
+    },
+    "shell_monitor.inc.sv": {
+      "bytes": 9027,
+      "sha256": "d17f58f09a0686efcb86090e0aacb3472c730eabf4965d1b98614bccdfa9f478"
+    }
+  },
+  "historical_second_solver_base": true,
+  "historical_second_solver_conclusions": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133
+  ],
+  "historical_unresolved_conclusions": [
+    39
+  ],
+  "proof_artifacts": {
+    "base.smt2": "447248e52357952c0829ce27dec226d2d8cd100fa77514b75bd6e618bb287e1f",
+    "design.smt2": "0ad4f36e65d899f390e919ad9a885a6380f1d1ee9fb73d917c57a6f2994f79e1",
+    "elaborated.il": "f329064d1c0ca41fe1d707fbd64d1deaa25b2efc13e0116ae2f87bb023799aad",
+    "elaborated.json": "8b519fb89caeb5d9a3e75940d314430e7b53f12647b3dc15ead0ad5b861b3916",
+    "induction.smt2": "e80bf28cc771b27c4b936b88232f34e55618c7ec11a528ee0a10cbf1684dd6c3"
+  },
+  "scope": "September 24 selected-source proof/query identities after fresh primary, secondary, serial and source/observer/cut audits. Secondary arrays strategy with 300-second limits plus 900-second supplements establishes 133 conclusions and base; CRC assertion 39 remains unresolved. Not whole-machine or mapped equivalence.",
+  "source_revision": "2026-09-24 exact leaf arithmetic; only image/inventory pins changed in the proof driver",
+  "testbench_body_sha256": "c54935014f0333943961527ab207165396f6b32500fab633939c6ca59971ade6"
+}

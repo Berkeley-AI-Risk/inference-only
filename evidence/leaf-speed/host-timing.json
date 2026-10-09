@@ -1,0 +1,61 @@
+{
+  "approximate_reply_interval_seconds": 0.017,
+  "firmware_cause_established": false,
+  "fixed_delay_correction_applied": false,
+  "full_context": {
+    "baseline": {
+      "cached_step_seconds": 1.3258352909997484,
+      "extra_interval_seconds": 0.01659083400025163,
+      "includes_rejected_append": true,
+      "raw_log_sha256": "bacc00b02956a141f4911ed49fe04ae28068c6bca492b20302cebf5a5074a7b1",
+      "step_only_tokens_per_second": 0.7542415010283429,
+      "streaming_seconds": 1.342426125,
+      "streaming_tokens_per_second": 0.7449199485744513
+    },
+    "kv-protected": {
+      "cached_step_seconds": 3.0432874170001014,
+      "extra_interval_seconds": 0.01664616599989799,
+      "includes_rejected_append": true,
+      "raw_log_sha256": "a7734a9e18b0ced21d2928ac2071726c27c300bd251cebc8eeea44a2b7e3f0cc",
+      "step_only_tokens_per_second": 0.3285920332118163,
+      "streaming_seconds": 3.0599335829999994,
+      "streaming_tokens_per_second": 0.3268044788800895
+    }
+  },
+  "latency_setting_experiment": {
+    "image_is_preceding_protected_build": true,
+    "image_sha256": "f51dfaa1f84be585db990f1037f5ae9d328b9064f2e26fc514ae41f9a7bcb324",
+    "ioctl_argument_units_not_assumed": true,
+    "latency_improved": false,
+    "phases": [
+      {
+        "append_count": 32,
+        "label": "default-before",
+        "median_append_ms": 16.9380415
+      },
+      {
+        "append_count": 32,
+        "label": "raw-argument-1",
+        "median_append_ms": 16.951874999999998
+      },
+      {
+        "append_count": 32,
+        "label": "restored-raw-16",
+        "median_append_ms": 16.962937499999995
+      }
+    ],
+    "raw_log_bundled": false,
+    "raw_log_sha256": "a56cdb6c98831d0b56635605931fdeeda0c8f7e9002a87eb6382ca22dbd5fdee",
+    "receipt_sha256": "b313575feecee11fe48824a3437cf060a4179b9d19296bfcaf2d8919aa0f01a3"
+  },
+  "schema": "leaf-speed-host-timing-v1",
+  "scope": "Curated private-record summaries. STEP and streaming intervals include host/serial overhead, not compute-only timing. No raw-log replay or guaranteed transport period.",
+  "simulated_short_step": {
+    "after_core_cycles": 3309125,
+    "before_core_cycles": 3511002,
+    "fractional_cycle_reduction": 0.05749840074144076,
+    "harness_and_logs_bundled": false,
+    "receipt_sha256": "6660bf0c9626454846c5160105fa9e37501352c12e668dbedd875fd0d054cd04",
+    "scope": "Private zero-stall comparison, first STEP from token 378 to token 200. This cycle reduction is not a host-time speedup measurement."
+  }
+}

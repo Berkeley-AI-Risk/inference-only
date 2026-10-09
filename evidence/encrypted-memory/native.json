@@ -1,0 +1,44 @@
+{
+  "image_sha256": "32970712a318f605d5822bb7ac2234f080df15341103e0a78bad8863b5c9361e",
+  "inference_hold": {
+    "capture_clock": "inference_clk25:[R]",
+    "clock_skew_ns": -0.004,
+    "data_delay_ns": 0.24,
+    "destination": "u_memory/u_boot/u_readback_cdc/memory_q_memory_q_0_36_s/DI[0]",
+    "launch_clock": "inference_clk25:[R]",
+    "number": 29,
+    "relation_ns": 0.0,
+    "slack_ns": 0.186,
+    "source": "u_memory/u_boot/u_locked_boundary/u_fixed_boot_lock/readback_data_q_144_s0/Q"
+  },
+  "inference_setup": {
+    "capture_clock": "inference_clk25:[R]",
+    "clock_skew_ns": -0.01,
+    "data_delay_ns": 39.666,
+    "destination": "u_uart_core/u_machine/u_shared/u_kv_admission/count_q_0_s1/D",
+    "launch_clock": "inference_clk25:[R]",
+    "number": 41,
+    "relation_ns": 40.0,
+    "slack_ns": 0.28,
+    "source": "u_uart_core/u_fixed_uart/clear_command_q_s0/Q"
+  },
+  "original_receipt_sha256": "88321bc890dc7eb39fd0ec2c14ce76f0e276e805002d117a75a7987e46b5c05b",
+  "passed": true,
+  "phy_reset_contract_qualified": false,
+  "physical_secrecy_qualified": false,
+  "reported_summary": {
+    "hold_violated_endpoints": 2,
+    "inference_fmax_mhz": 25.176,
+    "setup_violated_endpoints": 145
+  },
+  "schema": "encrypted-memory-native-summary-v1",
+  "scope": "Saved routed report summary; positive inference-clock margin does not qualify global DDR/clock/reset timing.",
+  "source_correspondence": {
+    "enabled_physical_rtl": 88,
+    "input_files": 98,
+    "only_changed_input": "project/bank.sv",
+    "tested_core_sources": 71,
+    "unchanged_clocks_pins_and_recipe": true
+  },
+  "timing_qualified": false
+}

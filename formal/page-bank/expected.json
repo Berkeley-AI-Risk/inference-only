@@ -1,0 +1,25 @@
+{
+  "assertions": 42,
+  "generated_sources": {
+    "bank.sv": "6df9c1c2f82c854d207d5d8f1bac66537cb3657d946c9c94217ae0908e1668a2",
+    "monitor.inc.sv": "f6d7302e046d4d74c7e849c6e425b2491d62f5ede91fcaf90d67f57b28cb7c9a",
+    "production-sha-not-elaborated.sv": "7e4992bdf5c7a6e6405979a01a351254d4a84fb8c0e2e47afcbe3fc4ff7d3610",
+    "production.sv": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1",
+    "prove.ys": "64034dae755535416b5b13a8ac93f87abc5d3b8b27172708ee40bbc9f5cfce2e",
+    "sha_boundary.sv": "256c5c168a96ce25359705f8e8f2cbdd52010fcd82597f8e07419efce133aa7b"
+  },
+  "induction_length": 2,
+  "production_sources": {
+    "hardware/project/bank.sv": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1",
+    "hardware/project/sha.sv": "7e4992bdf5c7a6e6405979a01a351254d4a84fb8c0e2e47afcbe3fc4ff7d3610"
+  },
+  "proof_artifacts": {
+    "base.smt2": "e8f7799435f26811b66fe5aa9757001440c4caa023443b51735d9de867c8cc2c",
+    "design.smt2": "61cf057c36fe4f43a2d36b8a164b80908218d17bee96ed68e93c552b99fdf063",
+    "elaborated.il": "0693b200370a60f97c3607f274bf6887d468e62aa17e9a4a7037589d41ce706d",
+    "elaborated.json": "89853c24384aaad676f4855ae1a79001095cb3d867e166132a372fdf6d749d6b",
+    "induction.smt2": "4333113965f2ec9f60027b8e6039613303b625bfbc49e69877e76f281ab9b2ae"
+  },
+  "scope": "Source-bound 42-property component proof including next-block prefetch. SHA replies remain arbitrary; no whole-machine theorem.",
+  "testbench_sha256": "e063f3a6f2f6fbd7dc586b1ebe253cae3d8f1ad13234a931e9a200316e163a54"
+}

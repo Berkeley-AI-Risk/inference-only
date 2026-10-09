@@ -1,0 +1,389 @@
+{
+  "actual_browser_interaction": false,
+  "added_host_sources": [
+    "host-app/test_persistent_uart.py"
+  ],
+  "cases": [
+    {
+      "commands": 26,
+      "final_clear_acknowledged": true,
+      "first_token_seconds": 2.271907167509198,
+      "generated_tokens": [
+        385,
+        317,
+        229,
+        32,
+        963,
+        696,
+        15,
+        85,
+        696,
+        858,
+        240,
+        85,
+        404,
+        15,
+        317,
+        1021
+      ],
+      "label": "cold",
+      "raw_log_sha256": "75b94e7ddc124c07c894d491864dbbd34a503f5212a0c6a297e6288e61ef6463",
+      "reused": false,
+      "streaming_tokens_per_second": 5.69275040098051
+    },
+    {
+      "commands": 26,
+      "final_clear_acknowledged": true,
+      "first_token_seconds": 1.3223052071407437,
+      "generated_tokens": [
+        385,
+        317,
+        229,
+        32,
+        963,
+        696,
+        15,
+        85,
+        696,
+        858,
+        240,
+        85,
+        404,
+        15,
+        317,
+        1021
+      ],
+      "label": "warm-1",
+      "raw_log_sha256": "2dec2731a889c3a4647a31171292ff6fcea83bd0106079bd58d07e82eea0fa85",
+      "reused": true,
+      "streaming_tokens_per_second": 5.69296582835382
+    },
+    {
+      "commands": 26,
+      "final_clear_acknowledged": true,
+      "first_token_seconds": 1.2551294583827257,
+      "generated_tokens": [
+        385,
+        317,
+        229,
+        32,
+        963,
+        696,
+        15,
+        85,
+        696,
+        858,
+        240,
+        85,
+        404,
+        15,
+        317,
+        1021
+      ],
+      "label": "warm-2",
+      "raw_log_sha256": "03ec838aad22137c50ce3b8eaea5d304557c61247d907bab8422ab4c1bcde05d",
+      "reused": true,
+      "streaming_tokens_per_second": 5.692618344803543
+    },
+    {
+      "commands": 26,
+      "final_clear_acknowledged": true,
+      "first_token_seconds": 2.271360249258578,
+      "generated_tokens": [
+        385,
+        317,
+        229,
+        32,
+        963,
+        696,
+        15,
+        85,
+        696,
+        858,
+        240,
+        85,
+        404,
+        15,
+        317,
+        1021
+      ],
+      "label": "reopened",
+      "raw_log_sha256": "d85ff7a9009d94bbd228a01b992f4a101a332f87496248cdd083ccacebf09f17",
+      "reused": false,
+      "streaming_tokens_per_second": 5.7299607955845415
+    }
+  ],
+  "changes": {
+    "host-app/fpga_backend.py": {
+      "after_sha256": "b2875f25ee7dc3a789aa16961033cf7f28d1c361319947ff05740de1a10f76a8",
+      "before_sha256": "152f88a678de1d0da2e58efaa63d6792201547cfa6c935e92002db1270bd018c",
+      "reverse_edits": [
+        {
+          "after": [
+            "import atexit\n",
+            "from contextlib import contextmanager\n"
+          ],
+          "before": [],
+          "end": 5,
+          "start": 3
+        },
+        {
+          "after": [
+            "import select\n"
+          ],
+          "before": [],
+          "end": 14,
+          "start": 13
+        },
+        {
+          "after": [
+            "        self.profile = None\n"
+          ],
+          "before": [],
+          "end": 84,
+          "start": 83
+        },
+        {
+          "after": [
+            "        self.profile = profile\n"
+          ],
+          "before": [],
+          "end": 108,
+          "start": 107
+        },
+        {
+          "after": [
+            "\n",
+            "    def resume(self, observe):\n",
+            "        \"\"\"Reuse only an unchanged, idle connection after acknowledged CLEAR.\n",
+            "\n",
+            "        Do not flush or silently consume late bytes. Even a partial frame or\n",
+            "        disconnected descriptor makes this session unusable. The controller\n",
+            "        closes it and latches an error instead of retrying a command.\n",
+            "        \"\"\"\n",
+            "        self.observe = observe\n",
+            "        self.channel.observe = observe\n",
+            "        try:\n",
+            "            profile = self._deployment()\n",
+            "            if profile != self.profile:\n",
+            "                raise BoardError('The board profile changed while the USB connection was retained.')\n",
+            "            runtime_profile.check_open_device(self.session.fd, profile['device'])\n",
+            "            ready, _, _ = select.select((self.session.fd,), (), (), 0)\n",
+            "            if self.channel.pending or ready:\n",
+            "                raise BoardError('Unexpected idle UART data or disconnect. No command was sent.')\n",
+            "            observe({'event': 'connection_reused', 'image_sha256': profile['image_sha256'],\n",
+            "                'variant': profile.get('variant', 'baseline'),\n",
+            "                'previous_run_ended_with_acknowledged_clear': True,\n",
+            "                'hardware_configuration_not_independently_attested': True})\n",
+            "        except Exception as error:\n",
+            "            raise BoardError('FPGA connection reuse failed; have the board checked. ' + str(error)) from error\n"
+          ],
+          "before": [],
+          "end": 133,
+          "start": 109
+        },
+        {
+          "after": [
+            "    def __init__(self, tokenizer=None, link_factory=LiveUART, logs=APP / 'logs',\n",
+            "                 keep_connection=None):\n"
+          ],
+          "before": [
+            "    def __init__(self, tokenizer=None, link_factory=LiveUART, logs=APP / 'logs'):\n"
+          ],
+          "end": 190,
+          "start": 188
+        },
+        {
+          "after": [
+            "        # Existing injected fixtures retain their per-run context behaviour.\n",
+            "        # Real hardware has one exclusive session for this cached controller.\n",
+            "        self.keep_connection = (link_factory is LiveUART if keep_connection is None\n",
+            "                                else bool(keep_connection))\n",
+            "        self._retained_link = None\n",
+            "        if self.keep_connection:\n",
+            "            atexit.register(self._close_retained)\n",
+            "\n",
+            "    def connection_retained(self) -> bool:\n",
+            "        with self.lock:\n",
+            "            return self._retained_link is not None\n",
+            "\n",
+            "    def _close_retained(self):\n",
+            "        with self.lock:\n",
+            "            link, self._retained_link = self._retained_link, None\n",
+            "            if link is not None:\n",
+            "                link.__exit__(None, None, None)\n",
+            "\n",
+            "    def disconnect(self):\n",
+            "        \"\"\"Release idle USB ownership; never interrupt or clear a live command.\"\"\"\n",
+            "        with self.lock:\n",
+            "            if self.busy():\n",
+            "                raise RuntimeError('Finish or stop the active run before disconnecting USB.')\n",
+            "            self._close_retained()\n",
+            "\n",
+            "    @contextmanager\n",
+            "    def _run_link(self, observe):\n",
+            "        with self.lock:\n",
+            "            link, self._retained_link = self._retained_link, None\n",
+            "        if link is None:\n",
+            "            link = self.link_factory(observe)\n",
+            "            # __enter__ owns cleanup if opening or its startup check fails.\n",
+            "            link.__enter__()\n",
+            "        else:\n",
+            "            try:\n",
+            "                link.resume(observe)\n",
+            "            except BaseException:\n",
+            "                link.__exit__(None, None, None)\n",
+            "                raise\n",
+            "        try:\n",
+            "            yield link\n",
+            "        except BaseException as error:\n",
+            "            link.__exit__(type(error), error, error.__traceback__)\n",
+            "            raise\n",
+            "        else:\n",
+            "            with self.lock:\n",
+            "                if self.keep_connection and self.result.clear_acknowledged and not self.stop_event.is_set():\n",
+            "                    self._retained_link = link\n",
+            "                else:\n",
+            "                    link.__exit__(None, None, None)\n"
+          ],
+          "before": [],
+          "end": 248,
+          "start": 198
+        },
+        {
+          "after": [
+            "            # Covers Stop arriving just after the worker parks a cleared link.\n",
+            "            # An in-flight link is never in this slot, so it is not interrupted.\n",
+            "            self._close_retained()\n"
+          ],
+          "before": [],
+          "end": 285,
+          "start": 282
+        },
+        {
+          "after": [
+            "                    with self._run_link(observe) as link:\n"
+          ],
+          "before": [
+            "                    with self.link_factory(observe) as link:\n"
+          ],
+          "end": 309,
+          "start": 308
+        },
+        {
+          "after": [
+            "            self._close_retained()\n"
+          ],
+          "before": [],
+          "end": 355,
+          "start": 354
+        }
+      ]
+    },
+    "host-app/streamlit_app.py": {
+      "after_sha256": "1ff164ede091671ac340647208b463099d39682787b867e4e4b5b49cef898bf1",
+      "before_sha256": "f5dc3954f28f8963b94ced13c7d83536ba259eb1475a3abe56798daa5e89f3e4",
+      "reverse_edits": [
+        {
+          "after": [
+            "        if st.button('Disconnect USB', icon=':material/usb_off:',\n",
+            "                     disabled=busy or not board.connection_retained(),\n",
+            "                     help='Release the idle connection before another program uses or programs the board.'):\n",
+            "            try:\n",
+            "                board.disconnect()\n",
+            "            except RuntimeError as error:\n",
+            "                st.session_state.input_error = str(error)\n"
+          ],
+          "before": [],
+          "end": 73,
+          "start": 66
+        },
+        {
+          "after": [
+            "            suffix = (' \u00b7 Tape cleared; USB connection retained' if board.connection_retained()\n",
+            "                      else ' \u00b7 Tape cleared; board released') if result.clear_acknowledged else ''\n",
+            "            st.caption(result.stop_reason + suffix)\n"
+          ],
+          "before": [
+            "            st.caption(result.stop_reason + (' \u00b7 Tape cleared; board released' if result.clear_acknowledged else ''))\n"
+          ],
+          "end": 89,
+          "start": 86
+        },
+        {
+          "after": [
+            "            help='From starting this run, including connection checks, prompt upload and first inference. A newly opened connection has a one-second startup check; a healthy retained connection does not repeat it.')\n"
+          ],
+          "before": [
+            "            help='From starting this run, including the one-second connection/fault check, prompt upload and first inference.')\n"
+          ],
+          "end": 96,
+          "start": 95
+        },
+        {
+          "after": [
+            "    st.write('This computer only converts between text and token IDs, sends APPEND / STEP / CLEAR, and measures the replies. All inference runs on the FPGA. Each Generate starts with CLEAR; successful completion or Stop clears the tape again. A successful run retains the exclusive USB connection for the next run. Stop or Disconnect USB releases it. No weights, tensors or arithmetic commands are sent.')\n"
+          ],
+          "before": [
+            "    st.write('This computer only converts between text and token IDs, sends APPEND / STEP / CLEAR, and measures the replies. All inference runs on the FPGA. Each Generate starts with CLEAR; successful completion or Stop clears the tape again. No weights, tensors or arithmetic commands are sent.')\n"
+          ],
+          "end": 128,
+          "start": 127
+        }
+      ]
+    }
+  },
+  "cold_mean_seconds": 2.271633708383888,
+  "configuration_independently_attested": false,
+  "connection_released": true,
+  "current_host_sources": {
+    "host-app/.streamlit/config.toml": "85703c45c372948241fcfaa1a9411e9aa31159a74f6ddedcfecad8d47bc94c6c",
+    "host-app/assets/tokenizer.json": "01b6553da99789d461cec48eed624684a803f259a5177616a67f7391700acf51",
+    "host-app/build_hardware.py": "1341526a50a4f86e1739cef4fe442a4fd18822369a3d327b7596cfd497671205",
+    "host-app/fetch_tokenizer.py": "4edb9935684f971909c2ef26140b8d17e15773ff045f73f793e65df4acab7819",
+    "host-app/fpga_backend.py": "b2875f25ee7dc3a789aa16961033cf7f28d1c361319947ff05740de1a10f76a8",
+    "host-app/hardware-inputs-kv-protected.json": "bf7ed4f054808b2605bdfa6ca838a33453a976be6c976c85c6a81bf708bebe1d",
+    "host-app/hardware-inputs.json": "8e14ee96d3381c31e5ce8e215cb1f26af52e5697c2a7a2c2236f670ac51c0126",
+    "host-app/qualify_board.py": "f55cffeaae2964ceb6526e0d019b6e498ea6735e50ef0a79096c7d723c8a3193",
+    "host-app/requirements.txt": "f22d07d97ecfc2ddfa1031acb721944f63d983e56cc665b3845c4e49418daebd",
+    "host-app/runtime_profile.py": "c2aa266e07ab03e39a13cdf93e489ee35f742f49e2dff40b2733efddff6ee9b0",
+    "host-app/start_local_server.py": "33e2e8002d7bc62873a9ed850f4c9018037deae78dd2412dd8f1aacfbf5b5dbe",
+    "host-app/streamlit_app.py": "1ff164ede091671ac340647208b463099d39682787b867e4e4b5b49cef898bf1",
+    "host-app/test_build_hardware.py": "d2a108c186b15da51d1630892b390ade9bcd34557c1141ab0e3f14466f60433b",
+    "host-app/test_fpga_backend.py": "a8f80772f0ca670217452a25d307a7558b054bfe204e3232ee0924902862e3b5",
+    "host-app/test_persistent_uart.py": "fba29fb6ae36b743802ff9bdefe9c7fb1d8099dc677faacb295bd6df50e64011",
+    "host-app/test_release_target.py": "c9aec1e2f7f7325e221ceb6b301d512eff1cbc7783f792be3dff496c711b6338",
+    "host-app/test_runtime_profile.py": "3109c3176f7783140f542b8ea2aa045b0321a625441ab29ffcf5d945f168abac",
+    "host-app/test_streamlit_app.py": "23d17965bbe34a1ef9888fb6a04434ea67e6fe0a007642126d52428fe2540c90",
+    "host-app/test_uart_channel.py": "561d8fbcb78978e4680b13a4eca1bd77d03691e5742324af0bc89195145ec158",
+    "host-app/token_machine_uart.py": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf",
+    "host-app/uart_channel.py": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
+  },
+  "date": "2026-09-23",
+  "final_clear_acknowledged": true,
+  "flash_modified": false,
+  "fpga_reprogrammed": false,
+  "generated_tokens_checked": 64,
+  "headless_ui_interaction": true,
+  "image_sha256": "f51dfaa1f84be585db990f1037f5ae9d328b9064f2e26fc514ae41f9a7bcb324",
+  "mocked_controller_or_transport": false,
+  "passed": true,
+  "physical_uart": true,
+  "previous_host_revision_sha256": "381ae479fdc5cd38986f5f9fdc4f388601a412f2f83eaff906d5b1e02419d0a2",
+  "prompt_tokens": [
+    762,
+    1310,
+    32,
+    398,
+    13,
+    32,
+    611,
+    1143
+  ],
+  "schema": "host-connection-reuse-v1",
+  "scope": "Same protected image and model; healthy exclusive connection reuse saves repeated startup checking, not FPGA compute time. Fresh/reopened sessions retain the startup wait. Prior two-image rehearsal remains historical. Raw private logs are not bundled.",
+  "source_physical_receipt_sha256": "de850b6578a7f2afb9487dc81c697605cf305575423aa075a767146af053d1ef",
+  "tested_variant": "kv-protected",
+  "timing_qualified": false,
+  "warm_mean_seconds": 1.2887173327617347
+}

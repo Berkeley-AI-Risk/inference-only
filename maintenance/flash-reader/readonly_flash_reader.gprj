@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5AST-138C" pn="GW5AST-LV138PG484AC1/I0">gw5ast138c-007</Device>
+    <FileList>
+        <File path="rtl/fixed_uart_rx.sv" type="file.verilog" enable="1"/>
+        <File path="rtl/fixed_uart_tx.sv" type="file.verilog" enable="1"/>
+        <File path="rtl/readonly_flash_reader.sv" type="file.verilog" enable="1"/>
+        <File path="constraints/readonly_flash_reader.cst" type="file.cst" enable="1"/>
+        <File path="constraints/readonly_flash_reader.sdc" type="file.sdc" enable="1"/>
+    </FileList>
+</Project>

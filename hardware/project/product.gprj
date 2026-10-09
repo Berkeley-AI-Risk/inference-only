@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+<Template>FPGA</Template>
+<Version>5</Version>
+<Device name="GW5AST-138C" pn="GW5AST-LV138PG484AC1/I0">gw5ast138c-007</Device>
+<FileList>
+    <File path="defines.v" type="file.verilog" enable="1"/>
+    <File path="official/ddr3_memory_interface.v" type="file.verilog" enable="1"/>
+    <File path="official/gowin_pll.v" type="file.verilog" enable="1"/>
+    <File path="official/gowin_pll_mod.v" type="file.verilog" enable="1"/>
+    <File path="official/pll_init.v" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_private_issue_guard.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_unified_dsp64.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_scratch_ram.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector128_ram.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector256_ram.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_rope_raw_ram.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv" type="file.verilog" enable="1"/>
+    <File path="normalizer_pipeline.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_vector_normalize0/rtl/board1_fixed_vector_rne_shift_iterative.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/shared_projection_scale0/rtl/board1_shared_projection_scale_engine.sv" type="file.verilog" enable="1"/>
+    <File path="cluster-adapter.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/unified_dsp0/rtl/board1_unified_projection_head_mul_exact.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv" type="file.verilog" enable="1"/>
+    <File path="fifo.sv" type="file.verilog" enable="1"/>
+    <File path="mapper_portable.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_lookup.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv" type="file.verilog" enable="1"/>
+    <File path="shared_token_probe.sv" type="file.verilog" enable="1"/>
+    <File path="sha.sv" type="file.verilog" enable="1"/>
+    <File path="bank.sv" type="file.verilog" enable="1"/>
+    <File path="service.sv" type="file.verilog" enable="1"/>
+    <File path="cluster-mul.sv" type="file.verilog" enable="1"/>
+    <File path="cluster-tile.sv" type="file.verilog" enable="1"/>
+    <File path="cluster-engine.sv" type="file.verilog" enable="1"/>
+    <File path="candidate.sv" type="file.verilog" enable="1"/>
+    <File path="arbiter.sv" type="file.verilog" enable="1"/>
+    <File path="cdc.sv" type="file.verilog" enable="1"/>
+    <File path="adapter.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_private_ddr_lock_bridge.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_ddr_preboard_locked_boundary.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_semantic_image_auth_compact.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_ddr_locked_auth_watchdog_cdc.sv" type="file.verilog" enable="1"/>
+    <File path="handoff.sv" type="file.verilog" enable="1"/>
+    <File path="booted_memory.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_qspi_read03_master.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_qspi_async_word_fifo4.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_qspi_image_stream.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_endpoint_fault_cdc.sv" type="file.verilog" enable="1"/>
+    <File path="fpga/token_only_model0_ddr_board1/product8_timing_successor1/rtl/board1_gowin_ddr3_raw_controller_shell.sv" type="file.verilog" enable="1"/>
+    <File path="reset.sv" type="file.verilog" enable="1"/>
+    <File path="uart_core.sv" type="file.verilog" enable="1"/>
+    <File path="thin_transport.sv" type="file.verilog" enable="1"/>
+    <File path="top.sv" type="file.verilog" enable="1"/>
+    <File path="constraints/board1_fixed_product.cst" type="file.cst" enable="1"/>
+    <File path="constraints/product.sdc" type="file.sdc" enable="1"/>
+</FileList>
+</Project>

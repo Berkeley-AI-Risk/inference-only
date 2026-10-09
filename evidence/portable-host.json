@@ -1,0 +1,81 @@
+{
+  "actual_browser_interaction_tested": false,
+  "checker_fault_controls_detected": 6,
+  "controller_workload_tokens": 32,
+  "full_context_qualified": false,
+  "generated_tokens": 36,
+  "image_sha256": "344fcaca1ebd40a3bda35c02d8d3fe79e840200f532b6397c01730c9b75604fe",
+  "passed": true,
+  "qualification_tokens": 4,
+  "raw_frames_and_crc_rechecked": true,
+  "scope": "Actual exported controller/tokenizer/UART and source-built image on the FPGA; seven-command qualification plus two 16-output workloads. Not full-context, timing, browser end-to-end or physical-security certification.",
+  "software_inference": false,
+  "source_result_sha256": "7a475db9a41339278ee8b833142a75f1c03f61c5edc7ab19a442239244ad3906",
+  "timing_qualified": false,
+  "unchanged_host_executable_sources": true,
+  "workloads": {
+    "around16": {
+      "commands": 19,
+      "final_clear_acknowledged": true,
+      "generated_tokens": [
+        200,
+        15,
+        103,
+        157,
+        32,
+        1429,
+        115,
+        789,
+        15,
+        103,
+        165,
+        93,
+        320,
+        85,
+        393,
+        867
+      ],
+      "prompt_tokens": [
+        378
+      ],
+      "raw_transcript_sha256": "65826749bdb500b6f310f3f91024265c7bbebeaf4af61dd0b92de32a5d43ac41",
+      "streaming_tokens_per_second": 6.5361689064094115,
+      "time_to_first_token_seconds": 1.236077083274722
+    },
+    "fox16": {
+      "commands": 26,
+      "final_clear_acknowledged": true,
+      "generated_tokens": [
+        385,
+        317,
+        229,
+        32,
+        963,
+        696,
+        15,
+        85,
+        696,
+        858,
+        240,
+        85,
+        404,
+        15,
+        317,
+        1021
+      ],
+      "prompt_tokens": [
+        762,
+        1310,
+        32,
+        398,
+        13,
+        32,
+        611,
+        1143
+      ],
+      "raw_transcript_sha256": "049ac5c633d13af1483a597f2897cbf6d63a09550fd23fac1864641dce249fed",
+      "streaming_tokens_per_second": 6.215219372620763,
+      "time_to_first_token_seconds": 2.2192900418303907
+    }
+  }
+}

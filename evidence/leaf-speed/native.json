@@ -1,0 +1,291 @@
+{
+  "complete_vendor_reports_bundled": false,
+  "protected_new_negative_rloadn_pins": 4,
+  "schema": "leaf-speed-native-v1",
+  "scope": "Complete endpoint census under recorded constraints. Protected RLOADN and HOLD/CALIB regress versus the previous selected protected image; no timing exception or waiver.",
+  "timing_qualified": false,
+  "variants": {
+    "baseline": {
+      "clocks": {
+        "app_clk100": {
+          "actual_fmax_mhz": 203.925,
+          "constraint_mhz": 100.0
+        },
+        "board_clk50": {
+          "actual_fmax_mhz": 198.142,
+          "constraint_mhz": 50.0
+        },
+        "inference_clk25": {
+          "actual_fmax_mhz": 26.065,
+          "constraint_mhz": 25.0
+        },
+        "memory_clk400": {
+          "actual_fmax_mhz": 2016.13,
+          "constraint_mhz": 400.0
+        },
+        "trusted_clk12p5": {
+          "actual_fmax_mhz": 65.695,
+          "constraint_mhz": 12.5
+        }
+      },
+      "endpoint_census_complete": true,
+      "family_counts": {
+        "hold / app_clk100:[R] -> board_clk50:[R] / D": 2,
+        "hold / memory_clk400:[R] -> app_clk100:[R] / D": 8,
+        "recovery / board_clk50:[R] -> app_clk100:[F] / CLEAR": 8,
+        "recovery / board_clk50:[R] -> memory_clk400:[F] / RESET": 69,
+        "recovery / board_clk50:[R] -> memory_clk400:[R] / RESET": 141,
+        "setup / app_clk100:[R] -> memory_clk400:[F] / HOLD": 4,
+        "setup / app_clk100:[R] -> memory_clk400:[R] / CALIB": 32
+      },
+      "global_violated_endpoints": {
+        "hold": 10,
+        "setup": 145
+      },
+      "image_sha256": "44a7fb18131e07bdb39ccdead1083f8224822a44a2ec36f1455e2d12acb566ed",
+      "mapped_multiplier_primitives": {
+        "MULT12X12": 3,
+        "MULTALU27X18": 73
+      },
+      "mapped_netlist_sha256": "33a4dfc3a5b4a949d38707b3e7cdaa5b3f98f74ac20c9297264807ad3fab363d",
+      "nominal_inference_clock_hz": 25000000,
+      "nonvendor_screen_clear": true,
+      "original_review_sha256": "fe0298103beaec4de3e87dc10598672a25dbae5bc752ac5070b67080b73b49f1",
+      "production_sha256": {
+        "adapter.sv": "dd45423f8cc645a04bef821130faa5c0a7e4d9a81333c571db23c0139b8314e9",
+        "arbiter.sv": "287e2354477d6fe01254616d1b2b8b5a4937eb3ff8b6aa5dd40a8ada26b66ae6",
+        "bank.sv": "a4b627ff3c0669e87146efea48db0b4ac96e78bb0e7fa1418623ef756b3537b5",
+        "booted_memory.sv": "7ddd3d2bb5fcab13fbaeae6b1947ddea2c39f5ec9d13ab2736a918d11562c1d8",
+        "candidate.sv": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374",
+        "cdc.sv": "46cac96fb496d1679b8df1f594b277300f567b00d2479ce98ac2787f52b7bf40",
+        "cluster-adapter.sv": "0b8d09a0fded73d93f5fddb6bc790b552968f2d8c38cf0e90d20eb5d49b9744b",
+        "cluster-engine.sv": "97a3edaccef6dba1f095f82706c260cb0520fae49751ba34d76dda0ad314ec88",
+        "cluster-mul.sv": "93e12f47a8651a1c131609d132f7b50810ac1124200e583164fad3b83e589417",
+        "cluster-tile.sv": "19bcb21499706281f7f1505b905e56656c833901d7978d7ae94b3bc2ad361908",
+        "fifo.sv": "2a611238702b8378ee5c45dae7289c23017526042b42ce3b251d4e7ee82ad3e5",
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a",
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193",
+        "fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_private_issue_guard.sv": "95a555560d3b9f3c7e4d22bbabe1bdabc602364ce392e5a2da573e889f59499a",
+        "fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_unified_dsp64.sv": "e99f1e5049af79b53e42f681a4082451158c9912a43eb35397fd76f9acb15560",
+        "fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv": "87fddc7e6e4c99c1eb85e130c7557523d3a3b08d4985da23001750039184be1a",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv": "5b8267c4da1a5b7be33e8f37be29d084f53394e45082e5f8dad7b685d0bf9a73",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv": "922a5777c17a967fde39a2b8336ad819fcb6709d2b9a8b3552675188d32d1c34",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": "486e6a329028c90310bde2d35d5f373006816a2c8bc1e50543d6a1dd5113b45b",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_lookup.sv": "92d8043230d9df3ab917427c4c619a5b57f918c2669abec310fe805d440034ef",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv": "f7ebce15ce1d3ee97d968014d17051ddd942d3dd2d582368e4aa81b6e0e52205",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": "0e4a38023c711abae1bdf1173444601723dc90a25b1f414c5618bf908432d4da",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": "55d56d5a4add9afa81b5622303ff0c81c27734fe23ac7ffa5b849d3944d8fe62",
+        "fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv": "9cabbcc0bb892ac385edf0024cba2fd7502ee3fd088466248bc1ea77743a4c0b",
+        "fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv": "123f22a7bcf258329e531ee79764c6d8fb4a1cf89663f4fd89dd8f33aa72a904",
+        "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc",
+        "fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f",
+        "fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv": "e47bf421e10435e6bffa10e0219415630d57ef00ccdc4040ca7d8d9f720e9477",
+        "fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv": "c09e6e1f864a9827a372d7486b22d20d3e6db700df6aff410d982c7b93a84e2d",
+        "fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv": "7dece06c509b57f15859ec33cc758bc1734de572c5b3e55efa37774678f64854",
+        "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a",
+        "fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv": "8d753b5e0e28b5f8bbbbdfdfe3b8894808e068068f44f57fa1b77cdec8a743eb",
+        "fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv": "1c60a777659e7dea8ba1e13ed9d76ac0e6df544a9c70ccc7327d0e20c0fba5a9",
+        "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359",
+        "fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv": "653a0eebffff3724312847baf64c5eb188afdaea50ca3b2acb6d4e6e1e888339",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44",
+        "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc",
+        "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_rope_raw_ram.sv": "d8b9f6c8229af472f8d69858f9412cbcd58991f58b4f4fb2feb508fd5d0b0e21",
+        "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_scratch_ram.sv": "dbf09b83baf263397db18970535e41c8c3ab487e9f8926ca8a8740b58f65f901",
+        "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector128_ram.sv": "9282e788fc641f15f225986738a8a9d605c892b210e060763622026a5b05310a",
+        "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector256_ram.sv": "0767c4a1c69432f9537385223101d2e6d69a86259313ed9a27cff10cb9ccff57",
+        "fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9",
+        "fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv": "9e033db09b614f43999a94692d0f19a7ec58845dc65963d2e37a0e9d134bf7af",
+        "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_normalize0/rtl/board1_fixed_vector_rne_shift_iterative.sv": "22159952c558c41366eee3abc6f0932867e482a94bfde16d7f26f0a3228fd05b",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae",
+        "fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_ddr_locked_auth_watchdog_cdc.sv": "e253fc0c68b00e09c5ec38b8a356b3b84a509d018dd8229f44988f1282d41d29",
+        "fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_private_ddr_lock_bridge.sv": "71ecc05bad160b500ec2564dcbed62de196972d1b10673a1452af7049325b818",
+        "fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_ddr_preboard_locked_boundary.sv": "58760e39d6d82070f595b2b9d93d7116bc8864d4b0abc572cb2e2fc5fceaa8e9",
+        "fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_semantic_image_auth_compact.sv": "0b35dc658c3d87a09777a257c994d9f5273bf287a73eb669f9de4132138c6e98",
+        "fpga/token_only_model0_ddr_board1/shared_projection_scale0/rtl/board1_shared_projection_scale_engine.sv": "443d16724abe6999af5af35c3685c8d5ef45b707cc1af6dd4514a5beefac209f",
+        "fpga/token_only_model0_ddr_board1/unified_dsp0/rtl/board1_unified_projection_head_mul_exact.sv": "ccf15c1ad0f5bef293a44e89ae56fb9fd6bf8382205d7b12bac472ad2fa295d2",
+        "fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv": "21c3ebc878f36c7260bf203f78174584d0c3e0ce18546966707ead45a0631b83",
+        "handoff.sv": "25f6455dd70ccf92107184fa7f166b9ff1dc33018aa867d4a0275ace72e34366",
+        "mapper_portable.sv": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc",
+        "normalizer_pipeline.sv": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40",
+        "service.sv": "f9c0dc77430a1d08d85e2f2ebd8dfb38f13e09e4659bdc053976a3f321048cd6",
+        "sha.sv": "3b381d022fee20550a7f0fc3a33655361cb30e566bcee1d84ef10b0be15a1e48",
+        "shared_token_probe.sv": "81108218101431351a8eb8815e4cf953b5356416767621b7469f663c7b67af17",
+        "thin_transport.sv": "b85e08fa0dfe0aefdc37aa0343175f8ea614025392bce0e112d11f12172eb84e"
+      },
+      "resources": {
+        "BSRAM": {
+          "available": 340.0,
+          "used": 196.0
+        },
+        "CLS": {
+          "available": 69120.0,
+          "used": 56538.0
+        },
+        "DSP": {
+          "available": 298.0,
+          "used": 74.5
+        },
+        "Logic": {
+          "available": 138240.0,
+          "used": 80443.0
+        },
+        "Register": {
+          "available": 139095.0,
+          "used": 49523.0
+        }
+      },
+      "route_completed": true,
+      "route_completion_basis": "Vendor stdout marker: Placement and routing completed. Not an independent net-connectivity audit or timing signoff.",
+      "timing_qualified": false,
+      "timing_report_sha256": "4de533a7cb6f2d06c007586cd41f9304731cf62362d1c115a574fd1fae187d23"
+    },
+    "kv-protected": {
+      "clocks": {
+        "app_clk100": {
+          "actual_fmax_mhz": 137.599,
+          "constraint_mhz": 100.0
+        },
+        "board_clk50": {
+          "actual_fmax_mhz": 194.01,
+          "constraint_mhz": 50.0
+        },
+        "inference_clk25": {
+          "actual_fmax_mhz": 26.668,
+          "constraint_mhz": 25.0
+        },
+        "memory_clk400": {
+          "actual_fmax_mhz": 2016.13,
+          "constraint_mhz": 400.0
+        },
+        "trusted_clk12p5": {
+          "actual_fmax_mhz": 66.397,
+          "constraint_mhz": 12.5
+        }
+      },
+      "endpoint_census_complete": true,
+      "family_counts": {
+        "hold / app_clk100:[R] -> board_clk50:[R] / D": 2,
+        "recovery / board_clk50:[R] -> app_clk100:[F] / CLEAR": 8,
+        "recovery / board_clk50:[R] -> app_clk100:[R] / CLEAR": 28,
+        "recovery / board_clk50:[R] -> app_clk100:[R] / PRESET": 1,
+        "recovery / board_clk50:[R] -> memory_clk400:[F] / RESET": 69,
+        "recovery / board_clk50:[R] -> memory_clk400:[R] / RESET": 141,
+        "setup / app_clk100:[R] -> memory_clk400:[F] / HOLD": 4,
+        "setup / app_clk100:[R] -> memory_clk400:[R] / CALIB": 32,
+        "setup / board_clk50:[R] -> app_clk100:[R] / RLOADN": 4
+      },
+      "global_violated_endpoints": {
+        "hold": 2,
+        "setup": 178
+      },
+      "image_sha256": "e22079c855cdf6cfb983c73850db15b1b5010f0511fa62f98f3d040ae0654ea2",
+      "mapped_multiplier_primitives": {
+        "MULT12X12": 3,
+        "MULTALU27X18": 73
+      },
+      "mapped_netlist_sha256": "fc17406f7d95cd7695e4e6d25a49d4fd6aed2912758128be8729e4a864a2b1f0",
+      "nominal_inference_clock_hz": 25000000,
+      "nonvendor_screen_clear": true,
+      "original_review_sha256": "fe0298103beaec4de3e87dc10598672a25dbae5bc752ac5070b67080b73b49f1",
+      "production_sha256": {
+        "adapter.sv": "dd45423f8cc645a04bef821130faa5c0a7e4d9a81333c571db23c0139b8314e9",
+        "arbiter.sv": "287e2354477d6fe01254616d1b2b8b5a4937eb3ff8b6aa5dd40a8ada26b66ae6",
+        "bank.sv": "a4b627ff3c0669e87146efea48db0b4ac96e78bb0e7fa1418623ef756b3537b5",
+        "booted_memory.sv": "7ddd3d2bb5fcab13fbaeae6b1947ddea2c39f5ec9d13ab2736a918d11562c1d8",
+        "candidate.sv": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374",
+        "cdc.sv": "46cac96fb496d1679b8df1f594b277300f567b00d2479ce98ac2787f52b7bf40",
+        "cluster-adapter.sv": "0b8d09a0fded73d93f5fddb6bc790b552968f2d8c38cf0e90d20eb5d49b9744b",
+        "cluster-engine.sv": "97a3edaccef6dba1f095f82706c260cb0520fae49751ba34d76dda0ad314ec88",
+        "cluster-mul.sv": "93e12f47a8651a1c131609d132f7b50810ac1124200e583164fad3b83e589417",
+        "cluster-tile.sv": "19bcb21499706281f7f1505b905e56656c833901d7978d7ae94b3bc2ad361908",
+        "fifo.sv": "2a611238702b8378ee5c45dae7289c23017526042b42ce3b251d4e7ee82ad3e5",
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a",
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193",
+        "fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_private_issue_guard.sv": "95a555560d3b9f3c7e4d22bbabe1bdabc602364ce392e5a2da573e889f59499a",
+        "fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_unified_dsp64.sv": "e99f1e5049af79b53e42f681a4082451158c9912a43eb35397fd76f9acb15560",
+        "fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv": "87fddc7e6e4c99c1eb85e130c7557523d3a3b08d4985da23001750039184be1a",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv": "5b8267c4da1a5b7be33e8f37be29d084f53394e45082e5f8dad7b685d0bf9a73",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv": "922a5777c17a967fde39a2b8336ad819fcb6709d2b9a8b3552675188d32d1c34",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": "486e6a329028c90310bde2d35d5f373006816a2c8bc1e50543d6a1dd5113b45b",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_lookup.sv": "92d8043230d9df3ab917427c4c619a5b57f918c2669abec310fe805d440034ef",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv": "f7ebce15ce1d3ee97d968014d17051ddd942d3dd2d582368e4aa81b6e0e52205",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": "0e4a38023c711abae1bdf1173444601723dc90a25b1f414c5618bf908432d4da",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": "55d56d5a4add9afa81b5622303ff0c81c27734fe23ac7ffa5b849d3944d8fe62",
+        "fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv": "9cabbcc0bb892ac385edf0024cba2fd7502ee3fd088466248bc1ea77743a4c0b",
+        "fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv": "123f22a7bcf258329e531ee79764c6d8fb4a1cf89663f4fd89dd8f33aa72a904",
+        "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc",
+        "fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f",
+        "fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv": "e47bf421e10435e6bffa10e0219415630d57ef00ccdc4040ca7d8d9f720e9477",
+        "fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv": "c09e6e1f864a9827a372d7486b22d20d3e6db700df6aff410d982c7b93a84e2d",
+        "fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv": "7dece06c509b57f15859ec33cc758bc1734de572c5b3e55efa37774678f64854",
+        "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a",
+        "fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv": "8d753b5e0e28b5f8bbbbdfdfe3b8894808e068068f44f57fa1b77cdec8a743eb",
+        "fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv": "1c60a777659e7dea8ba1e13ed9d76ac0e6df544a9c70ccc7327d0e20c0fba5a9",
+        "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359",
+        "fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv": "653a0eebffff3724312847baf64c5eb188afdaea50ca3b2acb6d4e6e1e888339",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44",
+        "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc",
+        "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_rope_raw_ram.sv": "d8b9f6c8229af472f8d69858f9412cbcd58991f58b4f4fb2feb508fd5d0b0e21",
+        "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_scratch_ram.sv": "dbf09b83baf263397db18970535e41c8c3ab487e9f8926ca8a8740b58f65f901",
+        "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector128_ram.sv": "9282e788fc641f15f225986738a8a9d605c892b210e060763622026a5b05310a",
+        "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector256_ram.sv": "0767c4a1c69432f9537385223101d2e6d69a86259313ed9a27cff10cb9ccff57",
+        "fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9",
+        "fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv": "9e033db09b614f43999a94692d0f19a7ec58845dc65963d2e37a0e9d134bf7af",
+        "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_normalize0/rtl/board1_fixed_vector_rne_shift_iterative.sv": "22159952c558c41366eee3abc6f0932867e482a94bfde16d7f26f0a3228fd05b",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae",
+        "fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_ddr_locked_auth_watchdog_cdc.sv": "e253fc0c68b00e09c5ec38b8a356b3b84a509d018dd8229f44988f1282d41d29",
+        "fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_private_ddr_lock_bridge.sv": "71ecc05bad160b500ec2564dcbed62de196972d1b10673a1452af7049325b818",
+        "fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_ddr_preboard_locked_boundary.sv": "58760e39d6d82070f595b2b9d93d7116bc8864d4b0abc572cb2e2fc5fceaa8e9",
+        "fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_semantic_image_auth_compact.sv": "0b35dc658c3d87a09777a257c994d9f5273bf287a73eb669f9de4132138c6e98",
+        "fpga/token_only_model0_ddr_board1/shared_projection_scale0/rtl/board1_shared_projection_scale_engine.sv": "443d16724abe6999af5af35c3685c8d5ef45b707cc1af6dd4514a5beefac209f",
+        "fpga/token_only_model0_ddr_board1/unified_dsp0/rtl/board1_unified_projection_head_mul_exact.sv": "ccf15c1ad0f5bef293a44e89ae56fb9fd6bf8382205d7b12bac472ad2fa295d2",
+        "fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv": "21c3ebc878f36c7260bf203f78174584d0c3e0ce18546966707ead45a0631b83",
+        "handoff.sv": "25f6455dd70ccf92107184fa7f166b9ff1dc33018aa867d4a0275ace72e34366",
+        "kv_integrity_guard.sv": "4a90d4233f628c3ca69e42266c0a9064c5ffd766b45e2e403389696a0a2d2299",
+        "kv_page_hash.sv": "3ee9a8a716916dcaba6d3434f722b301b3e4fb6b258ee429a457bb246191faba",
+        "mapper_portable.sv": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc",
+        "normalizer_pipeline.sv": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40",
+        "service.sv": "f9c0dc77430a1d08d85e2f2ebd8dfb38f13e09e4659bdc053976a3f321048cd6",
+        "sha.sv": "3b381d022fee20550a7f0fc3a33655361cb30e566bcee1d84ef10b0be15a1e48",
+        "shared_token_probe.sv": "3cc083d9927ca1193434eab51d79a1186f7ee3001df9f289ad344fae2bde3c8c",
+        "thin_transport.sv": "fa978314c8e07921ccdd8335d67c8e2b7413881dc19eb2d5b09d41e185060314"
+      },
+      "resources": {
+        "BSRAM": {
+          "available": 340.0,
+          "used": 278.0
+        },
+        "CLS": {
+          "available": 69120.0,
+          "used": 59554.0
+        },
+        "DSP": {
+          "available": 298.0,
+          "used": 74.5
+        },
+        "Logic": {
+          "available": 138240.0,
+          "used": 85518.0
+        },
+        "Register": {
+          "available": 139095.0,
+          "used": 53092.0
+        }
+      },
+      "route_completed": true,
+      "route_completion_basis": "Vendor stdout marker: Placement and routing completed. Not an independent net-connectivity audit or timing signoff.",
+      "timing_qualified": false,
+      "timing_report_sha256": "5212ec233a7aa8aa32e5ee0ea333a96a3238bc703f93daff1d6e8fdd8c7f482e"
+    }
+  }
+}

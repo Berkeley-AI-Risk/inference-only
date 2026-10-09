@@ -1,0 +1,51 @@
+{
+  "status": "pass",
+  "time_utc": "2026-09-17T05:54:17.171838+00:00",
+  "mode": "compile-graph",
+  "batch": 16,
+  "context": 128,
+  "gpu": {
+    "name": "NVIDIA H100 80GB HBM3",
+    "total_memory_bytes": 85017624576,
+    "compute_capability": [
+      9,
+      0
+    ],
+    "multiprocessor_count": 132,
+    "nvidia_smi": "name, driver_version, memory.total [MiB], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz], mig.mode.current\nNVIDIA H100 80GB HBM3, 580.105.08, 81559 MiB, 700.00 W, 1980 MHz, 2619 MHz, Disabled\nNVIDIA H100 80GB HBM3, 580.105.08, 81559 MiB, 700.00 W, 345 MHz, 2619 MHz, Disabled"
+  },
+  "cuda_visible_devices": "0",
+  "source_sha256": {
+    "benchmark.py": "c217a5df2ef47249e777b34bc358650430d1afe61b6c350fa3d65fbca3266b9b",
+    "model_snapshot.py": "d2cc59c26929ee15f9aa060cf00356dd371aa9ede8ad81e7971ab84476b6f71c",
+    "check_gpu_replay.py": "3d5aaed8c13f6280fbaebb2ffab104dd89b42133351164f1620fd44d15cbf710"
+  },
+  "checks": {
+    "initial_optimized_vs_eager": {
+      "mode": "compile-graph",
+      "comparison": {
+        "max_absolute_logit_error": 0.0234375,
+        "rms_logit_error": 0.0034012601245194674,
+        "argmax_agreement_fraction": 1.0
+      }
+    },
+    "baseline_vs_uncached": {
+      "max_absolute_logit_error": 0.0234375,
+      "rms_logit_error": 0.003893788903951645,
+      "argmax_agreement_fraction": 1.0
+    },
+    "changed_token_vs_uncached": {
+      "max_absolute_logit_error": 0.0235595703125,
+      "rms_logit_error": 0.004061882384121418,
+      "argmax_agreement_fraction": 1.0
+    },
+    "changed_prompt_vs_uncached": {
+      "max_absolute_logit_error": 0.01953125,
+      "rms_logit_error": 0.003743466455489397,
+      "argmax_agreement_fraction": 1.0
+    },
+    "key_and_value_prefix_unchanged": true,
+    "repeated_and_restored_outputs_exact": true
+  },
+  "scope": "GPU replay correctness on changed tokens and two prompts; not a speed measurement or FPGA-bit-exact equivalence."
+}

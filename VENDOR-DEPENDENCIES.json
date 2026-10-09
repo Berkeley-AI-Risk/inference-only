@@ -1,0 +1,38 @@
+{
+  "build_dependency_status": "Exact unauthenticated official Sipeed downloads verified; optional source rebuild only.",
+  "downloads": {
+    "ddr3_memory_interface.v": {
+      "bytes": 2238123,
+      "sha256": "d7cae5a16467ca35ee3f95411537344ae3702e1dba86a06571530e3dd0180c57",
+      "url": "https://raw.githubusercontent.com/sipeed/TangMega-138K-example/06e7d8b118d345915ab6f257b7c22226f81575cd/ddr_memory/ddr_memory_test_uart/src/ddr3_memory_interface/ddr3_memory_interface.v"
+    },
+    "gowin_pll.v": {
+      "bytes": 992,
+      "sha256": "982ca6387f42086e88b4c858490eb00954a80a3284e0f07d959311d0975d7536",
+      "url": "https://raw.githubusercontent.com/sipeed/TangMega-138K-example/06e7d8b118d345915ab6f257b7c22226f81575cd/ddr_memory/ddr_memory_test_uart/src/gowin_pll/gowin_pll.v"
+    },
+    "gowin_pll_mod.v": {
+      "bytes": 6081,
+      "sha256": "07398632b56749dbe52f6e5d739a526c7ca5e71c4060c7d062a64dada6e1a953",
+      "url": "https://raw.githubusercontent.com/sipeed/TangMega-138K-example/06e7d8b118d345915ab6f257b7c22226f81575cd/ddr_memory/ddr_memory_test_uart/src/gowin_pll/gowin_pll_mod.v"
+    },
+    "pll_init.v": {
+      "bytes": 6458,
+      "sha256": "502436115e507453e2c139a073f5b56484421311ef57088ce1a16140347957f5",
+      "url": "https://raw.githubusercontent.com/sipeed/TangMega-138K-example/06e7d8b118d345915ab6f257b7c22226f81575cd/ddr_memory/ddr_memory_test_uart/src/pll_init.v"
+    }
+  },
+  "flattened_netlist_included": false,
+  "generator_header": "DDR IP 6.0; GOWIN V1.9.12.02_SP1",
+  "inference_bitstream_included": true,
+  "not_included": {
+    "official/ddr3_memory_interface.v": "d7cae5a16467ca35ee3f95411537344ae3702e1dba86a06571530e3dd0180c57",
+    "official/gowin_pll.v": "982ca6387f42086e88b4c858490eb00954a80a3284e0f07d959311d0975d7536",
+    "official/gowin_pll_mod.v": "07398632b56749dbe52f6e5d739a526c7ca5e71c4060c7d062a64dada6e1a953",
+    "official/pll_init.v": "502436115e507453e2c139a073f5b56484421311ef57088ce1a16140347957f5"
+  },
+  "policy": "Fetch directly under applicable upstream terms; hashes are identities, not a separate IP license.",
+  "required_for_prebuilt_run": false,
+  "revision": "06e7d8b118d345915ab6f257b7c22226f81575cd",
+  "source_files_bundled": false
+}

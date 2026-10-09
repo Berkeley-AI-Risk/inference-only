@@ -1,0 +1,25 @@
+# Keep local user data and generated tool output out of a public checkout.
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+.venv-*/
+.lake/
+host-app/local/
+host-app/runtime/
+host-app/logs/
+local/
+backups/
+recovery/
+build/
+vendor/
+*.partial
+.pytest_cache/
+hardware/project/impl/
+hardware/project/official/
+variants/*/hardware/project/impl/
+variants/*/hardware/project/official/
+*.safetensors
+
+# The selected prebuilt .fs files and fixed model .bin ARE release assets.
+# Do not add a blanket *.fs or *.bin exclusion.

@@ -1,0 +1,11 @@
+read_verilog -formal -sv -D SYNTHESIS fixed_uart_rx.sv fixed_uart_tx.sv token_only_model0_uart_bridge.sv
+chparam -set CLKS_PER_BIT 217 token_only_model0_uart_bridge
+prep -top token_only_model0_uart_bridge -flatten
+async2sync
+chformal -lower
+dffunmap
+select -assert-count 15 t:$assert
+select -assert-none t:$assume
+write_json elaborated.json
+sat -seq 3 -prove-asserts -verify -set-at 1 rst_n 0 -set-at 2 rst_n 0
+sat -tempinduct -seq 3 -maxsteps 30 -timeout 120 -prove-asserts -verify -set-at 1 rst_n 0 -set-at 2 rst_n 0

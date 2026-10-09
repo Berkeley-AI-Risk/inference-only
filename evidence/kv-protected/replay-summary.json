@@ -1,0 +1,59 @@
+{
+  "full_model_replayed": false,
+  "hardware_access": false,
+  "passed": true,
+  "runs": {
+    "geometry-replay0": {
+      "commands": 275913,
+      "deliberately_faulty_control": false,
+      "passed": true,
+      "result_sha256": "b0f54f0c1265df092685b976f797381be30432e3e607b44616e56ef9ea8dbf58",
+      "scope": "Component RTL simulation passed",
+      "stdout_sha256": "f509271e0d570d4a22e696a4e507534ffb91e09aa6187f1b9e092ef26dfbdc76"
+    },
+    "guard-replay0": {
+      "commands": 5407,
+      "deliberately_faulty_control": false,
+      "passed": true,
+      "result_sha256": "e743cd440a5c18e2114ea56c6190646fcf2fe279ca51dc54724729487b1b01ef",
+      "scope": "Component RTL simulation passed",
+      "stdout_sha256": "ce0a2be4cd3f5b998e334af1892e398cd39e2902ff019e619b8a37fdea9b1a4b"
+    },
+    "mutant-accept-bad-digest-0": {
+      "commands": null,
+      "deliberately_faulty_control": true,
+      "passed": true,
+      "result_sha256": "d0a2c61c6a975fb0624f3ec2998300d77900c2d5ac1d9685a937449b2060104c",
+      "scope": "Expected simulation failure detected",
+      "stdout_sha256": "c93468ec7031553d34baeaf368cdf7c97e0c33ae170e705e71056d0e86d361c8"
+    },
+    "mutant-ignore-cache-role-0": {
+      "commands": null,
+      "deliberately_faulty_control": true,
+      "passed": true,
+      "result_sha256": "3bba2ce3759d5521edb3c095f28b856e79f791c9fe28b0d1d9215faab16ad362",
+      "scope": "Expected simulation failure detected",
+      "stdout_sha256": "835c31ea9580b1684de2c8d2a23d5f27d1408f933b6e21102803eda19a1735dd"
+    },
+    "mutant-publish-first-tag-0": {
+      "commands": null,
+      "deliberately_faulty_control": true,
+      "passed": true,
+      "result_sha256": "b61c96f21c0f08fc4fbb41fbc502264c9ba2a1502d309ad3aa947451e2f26e81",
+      "scope": "Expected simulation failure detected",
+      "stdout_sha256": "08579a33bccc28b657ca69f8edd21ecf730372f2fba8d3939d99f23be88b396c"
+    }
+  },
+  "scope": "Fresh portable component replays with production guard/hash/SHA identity; raw generated work directories are not bundled.",
+  "sources": {
+    "simulation/kv-protected/kv_integrity_model.py": "7bfc6552528c7e56cb03918b770264c63d20cd1db6021ccbb6f75ea9ec3e1151",
+    "simulation/kv-protected/role-pages/guard_tb.sv": "dde852835c37fa896c3c81621368de88c0c38dcdfb47795ad8cb69427679947d",
+    "simulation/kv-protected/role-pages/model.py": "4753746aaabb31652316ecc2944eb16d0af5548411bbdb275f33c9e97d18441c",
+    "simulation/kv-protected/role-pages/run_guard.py": "7ee7624e4badf69edbcab26197d402b4b2b7034db3b291cc38395f57615eef22",
+    "simulation/kv-protected/test_kv_integrity_model.py": "08b27b3b2c5b58c67fed5f3a5adeb388b4964bc7ea9205306a1ae23f50800c68",
+    "variants/kv-protected/hardware/project/kv_integrity_guard.sv": "4a90d4233f628c3ca69e42266c0a9064c5ffd766b45e2e403389696a0a2d2299",
+    "variants/kv-protected/hardware/project/kv_page_hash.sv": "3ee9a8a716916dcaba6d3434f722b301b3e4fb6b258ee429a457bb246191faba",
+    "variants/kv-protected/hardware/project/sha.sv": "3b381d022fee20550a7f0fc3a33655361cb30e566bcee1d84ef10b0be15a1e48"
+  },
+  "unbounded_proof": false
+}

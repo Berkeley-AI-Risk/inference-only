@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "status": "pass",
+  "source_sha256": {
+    "README.md": "2ae59af876d2a71c9ef4b22385c8f170f0ab1eee1d50cf4000ba57e22488fa4f",
+    "benchmark.py": "c745ea91ca9baa6f1aea2b8e34acf64f473e13f0301a81cee8febd1336eede60",
+    "check_gpu_replay.py": "3d5aaed8c13f6280fbaebb2ffab104dd89b42133351164f1620fd44d15cbf710",
+    "inspect_compiled_rounding.py": "551054cbc7e795f18d02aa9b7e4653399b70b6bf5d13920c6af201547a83c39c",
+    "model_snapshot.py": "d2cc59c26929ee15f9aa060cf00356dd371aa9ede8ad81e7971ab84476b6f71c",
+    "requirements.txt": "5f2e24cf9e35782bf4d533e44694cea38439e987d55f9b5ab9fa4e0e18109474",
+    "test_benchmark.py": "d930ff546db09312d6e0b461153cbfbe28ddfc52deb6f862b17fb124feb13deb"
+  },
+  "allow_greedy_rounding": true,
+  "model_revision": "c4b3a4bb81297f5316697098e1d4b65c1249daf8",
+  "device": "cuda",
+  "cases": [
+    {
+      "context": 128,
+      "batch": 1024,
+      "mode": "compile-graph",
+      "status": "pass",
+      "result": "ctx128-batch1024-float16-compile-graph.json",
+      "timing": {
+        "aggregate_tokens_per_second": 820700.1168123191,
+        "tokens_per_second_per_sequence": 801.4649578245304,
+        "milliseconds_per_decode_step": 1.2477151873418975,
+        "aggregate_tps_min": 819656.4170643983,
+        "aggregate_tps_max": 820796.9754271773,
+        "tokens_counted_per_trial": 1617920,
+        "samples": [
+          {
+            "wall_seconds": 1.9739002419996723,
+            "cuda_event_seconds": 1.973896484375
+          },
+          {
+            "wall_seconds": 1.9711573610002233,
+            "cuda_event_seconds": 1.9711572265625
+          },
+          {
+            "wall_seconds": 1.9713815360000808,
+            "cuda_event_seconds": 1.971381103515625
+          },
+          {
+            "wall_seconds": 1.9713899960001982,
+            "cuda_event_seconds": 1.9713887939453125
+          },
+          {
+            "wall_seconds": 1.9713970759999029,
+            "cuda_event_seconds": 1.97139306640625
+          }
+        ]
+      }
+    },
+    {
+      "context": 128,
+      "batch": 8192,
+      "mode": "compile-graph",
+      "status": "pass",
+      "result": "ctx128-batch8192-float16-compile-graph.json",
+      "timing": {
+        "aggregate_tokens_per_second": 996875.4685366846,
+        "tokens_per_second_per_sequence": 121.68889996785701,
+        "milliseconds_per_decode_step": 8.217676388430997,
+        "aggregate_tps_min": 996767.2649205428,
+        "aggregate_tps_max": 996990.7160812446,
+        "tokens_counted_per_trial": 1982464,
+        "samples": [
+          {
+            "wall_seconds": 1.9888935660001152,
+            "cuda_event_seconds": 1.988889892578125
+          },
+          {
+            "wall_seconds": 1.9884478039998612,
+            "cuda_event_seconds": 1.9884366455078124
+          },
+          {
+            "wall_seconds": 1.9885204799998064,
+            "cuda_event_seconds": 1.98851611328125
+          },
+          {
+            "wall_seconds": 1.9886818019999737,
+            "cuda_event_seconds": 1.9886759033203125
+          },
+          {
+            "wall_seconds": 1.988677686000301,
+            "cuda_event_seconds": 1.9886729736328126
+          }
+        ]
+      }
+    },
+    {
+      "context": 128,
+      "batch": 32768,
+      "mode": "compile-graph",
+      "status": "pass",
+      "result": "ctx128-batch32768-float16-compile-graph.json",
+      "timing": {
+        "aggregate_tokens_per_second": 1017924.918055112,
+        "tokens_per_second_per_sequence": 31.064603212131104,
+        "milliseconds_per_decode_step": 32.190979333336145,
+        "aggregate_tps_min": 1017897.7815654026,
+        "aggregate_tps_max": 1017987.0900928517,
+        "tokens_counted_per_trial": 2064384,
+        "samples": [
+          {
+            "wall_seconds": 2.0279078389999086,
+            "cuda_event_seconds": 2.027902099609375
+          },
+          {
+            "wall_seconds": 2.028085764000025,
+            "cuda_event_seconds": 2.028082275390625
+          },
+          {
+            "wall_seconds": 2.028032858000188,
+            "cuda_event_seconds": 2.0280281982421875
+          },
+          {
+            "wall_seconds": 2.028031698000177,
+            "cuda_event_seconds": 2.0280263671875
+          },
+          {
+            "wall_seconds": 2.027976084999864,
+            "cuda_event_seconds": 2.02797216796875
+          }
+        ]
+      }
+    }
+  ]
+}

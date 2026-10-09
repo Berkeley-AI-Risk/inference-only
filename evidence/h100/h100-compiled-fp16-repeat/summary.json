@@ -1,0 +1,92 @@
+{
+  "schema_version": 2,
+  "status": "pass",
+  "source_sha256": {
+    "README.md": "2ae59af876d2a71c9ef4b22385c8f170f0ab1eee1d50cf4000ba57e22488fa4f",
+    "benchmark.py": "c745ea91ca9baa6f1aea2b8e34acf64f473e13f0301a81cee8febd1336eede60",
+    "check_gpu_replay.py": "3d5aaed8c13f6280fbaebb2ffab104dd89b42133351164f1620fd44d15cbf710",
+    "inspect_compiled_rounding.py": "551054cbc7e795f18d02aa9b7e4653399b70b6bf5d13920c6af201547a83c39c",
+    "model_snapshot.py": "d2cc59c26929ee15f9aa060cf00356dd371aa9ede8ad81e7971ab84476b6f71c",
+    "requirements.txt": "5f2e24cf9e35782bf4d533e44694cea38439e987d55f9b5ab9fa4e0e18109474",
+    "test_benchmark.py": "d930ff546db09312d6e0b461153cbfbe28ddfc52deb6f862b17fb124feb13deb"
+  },
+  "allow_greedy_rounding": true,
+  "model_revision": "c4b3a4bb81297f5316697098e1d4b65c1249daf8",
+  "device": "cuda",
+  "cases": [
+    {
+      "context": 128,
+      "batch": 1,
+      "mode": "compile-graph",
+      "status": "pass",
+      "result": "ctx128-batch1-float16-compile-graph.json",
+      "timing": {
+        "aggregate_tokens_per_second": 6512.74602819189,
+        "tokens_per_second_per_sequence": 6512.74602819189,
+        "milliseconds_per_decode_step": 0.1535450631225714,
+        "aggregate_tps_min": 6506.988882513185,
+        "aggregate_tps_max": 6512.7825490889245,
+        "tokens_counted_per_trial": 19074,
+        "samples": [
+          {
+            "wall_seconds": 2.931309756999781,
+            "cuda_event_seconds": 2.931315673828125
+          },
+          {
+            "wall_seconds": 2.928702110999893,
+            "cuda_event_seconds": 2.928705078125
+          },
+          {
+            "wall_seconds": 2.9287093580001056,
+            "cuda_event_seconds": 2.928714111328125
+          },
+          {
+            "wall_seconds": 2.9287553840003966,
+            "cuda_event_seconds": 2.92876123046875
+          },
+          {
+            "wall_seconds": 2.928718533999927,
+            "cuda_event_seconds": 2.92872412109375
+          }
+        ]
+      }
+    },
+    {
+      "context": 128,
+      "batch": 32768,
+      "mode": "compile-graph",
+      "status": "pass",
+      "result": "ctx128-batch32768-float16-compile-graph.json",
+      "timing": {
+        "aggregate_tokens_per_second": 1018047.5450472439,
+        "tokens_per_second_per_sequence": 31.068345490943724,
+        "milliseconds_per_decode_step": 32.1871018297867,
+        "aggregate_tps_min": 1018035.4104030307,
+        "aggregate_tps_max": 1018144.6457420648,
+        "tokens_counted_per_trial": 3080192,
+        "samples": [
+          {
+            "wall_seconds": 3.025299021000137,
+            "cuda_event_seconds": 3.025301025390625
+          },
+          {
+            "wall_seconds": 3.0253387160000784,
+            "cuda_event_seconds": 3.0253408203125
+          },
+          {
+            "wall_seconds": 3.0256236359996365,
+            "cuda_event_seconds": 3.025623779296875
+          },
+          {
+            "wall_seconds": 3.0255885130000024,
+            "cuda_event_seconds": 3.02558447265625
+          },
+          {
+            "wall_seconds": 3.0255875719999494,
+            "cuda_event_seconds": 3.025583984375
+          }
+        ]
+      }
+    }
+  ]
+}

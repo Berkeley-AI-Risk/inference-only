@@ -1,0 +1,13 @@
+{
+  "equal_parts": {
+    "command_transactions": "84cc99653f4f789b060dbf2e5114bb09a995210c9d02cadc4a329742f40e9c45",
+    "controller_except_deployment_log_label": "c9e56c8b124264d41d573ef54b176faafc15fb7dd4b18bb695e6ba9147faf5ac",
+    "result_and_metrics": "45b7a71128f5d3da865c0f96acda9fdc48375e935a5ec4dcd39fbf7a372b108b",
+    "tokenizer": "3e015a4f6d3bf192394ffa4fcb787be8d992b322c9d5a9cdfd40a50452668839"
+  },
+  "historical_tested_image_sha256": "5a5b6788ea0d5b07d25614e91f2950c0c3a7b3cf49f8e225f2dcaf9e76ac8c2a",
+  "original_tested_backend_sha256": "3e124cd9663a1cad6ac3c6a2fa10a6e156c2c41cd8449f2664d912abf52f3f5e",
+  "physical_test_of_portable_adaptation": false,
+  "portable_backend_sha256": "9acabbd05cdf3f162e13d21cf0b1180541e08544cf19e6bc495b6310d219fb95",
+  "scope": "Exact source comparisons of tokenizer, result/metrics, command transactions and worker (one deployment-log label changed). Portable build/profile guards are new and separately offline-tested; no claim that a rebuilt image inherits the physical campaign. Faster target changes only the historical image identity in this backend, not worker/transactions."
+}

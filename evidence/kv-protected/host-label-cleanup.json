@@ -1,0 +1,53 @@
+{
+  "board_protocol_changed": false,
+  "changes": {
+    "host-app/runtime_profile.py": {
+      "after_sha256": "c2aa266e07ab03e39a13cdf93e489ee35f742f49e2dff40b2733efddff6ee9b0",
+      "before_sha256": "45ca755b3712d64c8e40594fd4e0a5aefc49005cf43fd54132dd79018db808a3",
+      "new_text": "K/V integrity protection",
+      "old_text": "Optimized K/V integrity protection"
+    },
+    "host-app/streamlit_app.py": {
+      "after_sha256": "f5dc3954f28f8963b94ced13c7d83536ba259eb1475a3abe56798daa5e89f3e4",
+      "before_sha256": "11f581d4de10c6a7b2f435daa3044f9e071f3fe640fb8b6ca01cc0fd1007741f",
+      "new_text": "and the protected build",
+      "old_text": "and the optimized protected build"
+    },
+    "host-app/test_runtime_profile.py": {
+      "after_sha256": "3109c3176f7783140f542b8ea2aa045b0321a625441ab29ffcf5d945f168abac",
+      "before_sha256": "fb8221227068e8976575f73bafba369f61890c4f41848bb5ef7939b0743385c8",
+      "new_text": "K/V integrity protection",
+      "old_text": "Optimized K/V integrity protection"
+    }
+  },
+  "current_host_sources": {
+    "host-app/.streamlit/config.toml": "85703c45c372948241fcfaa1a9411e9aa31159a74f6ddedcfecad8d47bc94c6c",
+    "host-app/assets/tokenizer.json": "01b6553da99789d461cec48eed624684a803f259a5177616a67f7391700acf51",
+    "host-app/build_hardware.py": "1341526a50a4f86e1739cef4fe442a4fd18822369a3d327b7596cfd497671205",
+    "host-app/fetch_tokenizer.py": "4edb9935684f971909c2ef26140b8d17e15773ff045f73f793e65df4acab7819",
+    "host-app/fpga_backend.py": "152f88a678de1d0da2e58efaa63d6792201547cfa6c935e92002db1270bd018c",
+    "host-app/hardware-inputs-kv-protected.json": "bf7ed4f054808b2605bdfa6ca838a33453a976be6c976c85c6a81bf708bebe1d",
+    "host-app/hardware-inputs.json": "8e14ee96d3381c31e5ce8e215cb1f26af52e5697c2a7a2c2236f670ac51c0126",
+    "host-app/qualify_board.py": "f55cffeaae2964ceb6526e0d019b6e498ea6735e50ef0a79096c7d723c8a3193",
+    "host-app/requirements.txt": "f22d07d97ecfc2ddfa1031acb721944f63d983e56cc665b3845c4e49418daebd",
+    "host-app/runtime_profile.py": "c2aa266e07ab03e39a13cdf93e489ee35f742f49e2dff40b2733efddff6ee9b0",
+    "host-app/start_local_server.py": "33e2e8002d7bc62873a9ed850f4c9018037deae78dd2412dd8f1aacfbf5b5dbe",
+    "host-app/streamlit_app.py": "f5dc3954f28f8963b94ced13c7d83536ba259eb1475a3abe56798daa5e89f3e4",
+    "host-app/test_build_hardware.py": "d2a108c186b15da51d1630892b390ade9bcd34557c1141ab0e3f14466f60433b",
+    "host-app/test_fpga_backend.py": "a8f80772f0ca670217452a25d307a7558b054bfe204e3232ee0924902862e3b5",
+    "host-app/test_release_target.py": "c9aec1e2f7f7325e221ceb6b301d512eff1cbc7783f792be3dff496c711b6338",
+    "host-app/test_runtime_profile.py": "3109c3176f7783140f542b8ea2aa045b0321a625441ab29ffcf5d945f168abac",
+    "host-app/test_streamlit_app.py": "23d17965bbe34a1ef9888fb6a04434ea67e6fe0a007642126d52428fe2540c90",
+    "host-app/test_uart_channel.py": "561d8fbcb78978e4680b13a4eca1bd77d03691e5742324af0bc89195145ec158",
+    "host-app/token_machine_uart.py": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf",
+    "host-app/uart_channel.py": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
+  },
+  "date": "2026-09-22",
+  "hardware_access": false,
+  "new_physical_test": false,
+  "offline_host_log_sha256": "16d52a00e02afe95669bb336f854cfc24b0834994ea397583a22a7d777e89ae0",
+  "offline_host_tests": 47,
+  "original_rehearsal_sha256": "a4eaa31357caeb47b000c3010cc917d0dfc618ebedfc7d68063c96ae4b406141",
+  "passed": true,
+  "scope": "Only the three listed display-label/test substitutions follow the board-tested revision. Exact reverse substitutions recover its source hashes; all other host code is identical. The updated host passed offline tests using synthetic board fixtures. No new physical trial is claimed."
+}

@@ -1,0 +1,13 @@
+{
+  "added_host_inventory": "host-app/hardware-inputs-encrypted-memory.json",
+  "after_sha256": "62d9e257c0ed96773a817c5e1ba97293ad44a885dd2b9f4ead6081c75f9cb6fb",
+  "before_sha256": "8deb6ba53fbdbee046fe98c0572e5fc261366457bf89f24d903f6174c41a3fc4",
+  "insertion": "    'encrypted-memory': {\n        'label': 'Encrypted external memory (public test keys)',\n        'inventory': 'hardware-inputs-encrypted-memory.json',\n        'hardware_root': 'variants/encrypted-memory/hardware',\n        'inputs_sha256': 'd2f75e9b1425bc82b712569b7ea754c3fdc9116fa2460ebffac6d6dc1ad26ba6', 'input_files': 98,\n    },\n",
+  "inventory_sha256": "6347644707b7d9e444af4ffb8131f4d20e46cfe9d87d9bb297663518cfd8a92c",
+  "new_error": "choose baseline, kv-protected or encrypted-memory.",
+  "new_physical_app_test": false,
+  "old_error": "choose baseline or kv-protected.",
+  "original_host_sources_unchanged_except_catalog": true,
+  "schema": "encrypted-memory-catalog-revision-v1",
+  "source": "host-app/runtime_profile.py"
+}

@@ -1,0 +1,63 @@
+{
+  "inference_clock_mhz": 25,
+  "raw_vendor_reports_bundled": false,
+  "schema": "tang-speed-release-native-summary-v1",
+  "scope": "Exact completed build identities and curated native resource/timing reports; not DDR timing or physical-security signoff.",
+  "variants": {
+    "encrypted-memory": {
+      "complete_endpoint_census_in_this_summary": false,
+      "global_violated_endpoints": {
+        "hold": 2,
+        "setup": 161
+      },
+      "hardware_inputs": 100,
+      "image_sha256": "865e74e692d5978815fe921f11e4fa1b8e2c080401a8be05508dd9775823aecc",
+      "inference_hold_slack_ns": 0.144,
+      "inference_setup_slack_ns": 0.084,
+      "native_receipt_sha256": "f39ca0acd9ece3ec7b4f76dd656827362218544bf600a00bd5f3b3ca77885d99",
+      "native_seconds": 2679.766534333001,
+      "physical_security_qualified": false,
+      "resource_report_sha256": "761766a526a8b05b3307f4bb8dd2c9deb561adfe2cd9cc9a8c35d0ca3d84c072",
+      "resources": {
+        "BSRAM": 308,
+        "CLS": 60682,
+        "Logic": 96781,
+        "MULT12X12": 3,
+        "MULTALU27X18": 65,
+        "Register": 48622
+      },
+      "route_completed": true,
+      "source_inputs_unchanged": true,
+      "timing_qualified": false,
+      "timing_receipt_sha256": "855c9dad98519762c2a2fb40d9edddb5373f4fafca9e44de0746e20a7bcc9bbb",
+      "tool_sha256": "1a2497e6752a4561b64f620e0aa68ae5da599b118f8d723ca70c491f6688678e"
+    },
+    "kv-protected": {
+      "complete_endpoint_census_in_this_summary": true,
+      "global_violated_endpoints": {
+        "hold": 10,
+        "setup": 152
+      },
+      "hardware_inputs": 93,
+      "image_sha256": "72d5a54e06ed2017e653122f3daecf073f239a917b79f24d1e7b886d68a21a2f",
+      "inference_hold_slack_ns": 0.116,
+      "inference_setup_slack_ns": 0.228,
+      "native_receipt_sha256": "8dca30bff2e02aaa6568ab55843941f2f7981aa9e6ed10d56fa4c7ae0330562f",
+      "native_seconds": 3367.5068308750633,
+      "physical_security_qualified": false,
+      "resource_report_sha256": "fbc1832df9af0e8a7509bcedc5f8ec3a84a1ab5e96528b8d0673dc1a42bea29e",
+      "resources": {
+        "BSRAM": 278,
+        "CLS": 59946,
+        "Logic": 87905,
+        "MULT12X12": 3,
+        "MULTALU27X18": 73,
+        "Register": 52068
+      },
+      "route_completed": true,
+      "source_inputs_unchanged": true,
+      "timing_qualified": false,
+      "timing_receipt_sha256": "914a8dc0c0f872805fb3868f213ea2d4c6b82d1a10498cb6fc9330b4e4b95b54"
+    }
+  }
+}

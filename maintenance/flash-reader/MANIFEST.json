@@ -1,0 +1,74 @@
+{
+  "bitstream_included": true,
+  "files": {
+    "README.md": {
+      "bytes": 4905,
+      "sha256": "32ac1008568a1cfa4db618a664a9f43b4043ff5db09bba03e15d62af16512942"
+    },
+    "build.py": {
+      "bytes": 7813,
+      "sha256": "f685616196a8b00e8f9c5a77f16c3b8e4df829a3607021b393a7ac2e096228d6"
+    },
+    "build.tcl": {
+      "bytes": 363,
+      "sha256": "dde0322f4fce77b0f161425aa3e52c872893ad564a8df9a789cec7c8197440d7"
+    },
+    "constraints/readonly_flash_reader.cst": {
+      "bytes": 887,
+      "sha256": "70af90bb32a84a2d689203b4026a82dc9a05f05c13f5cd657d722dae6b0ee690"
+    },
+    "constraints/readonly_flash_reader.sdc": {
+      "bytes": 299,
+      "sha256": "2728bf316ec1233e9f5241254d79933bea382a5e2df1b740aebe346ed70efa12"
+    },
+    "host/read_factory_flash.py": {
+      "bytes": 7338,
+      "sha256": "e4ff0907724a86fa4466c274c59b47da99bd23eef64ed70d2c5b71aa95decf6d"
+    },
+    "host/test_read_factory_flash.py": {
+      "bytes": 8191,
+      "sha256": "5941aa89222345177ad15a198dcc70987b5eaaeb20421452710ffe8bd687d12c"
+    },
+    "readonly_flash_reader.gprj": {
+      "bytes": 669,
+      "sha256": "3cd34008d95759e2f6484884a6d40817d08bb5e1899ee175279bf4830d9db1ef"
+    },
+    "replay.py": {
+      "bytes": 6629,
+      "sha256": "02ea4788dca5fa10121f6e4903918a567a880009ddba63f61bc811c979ab211a"
+    },
+    "rtl/fixed_uart_rx.sv": {
+      "bytes": 3071,
+      "sha256": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f"
+    },
+    "rtl/fixed_uart_tx.sv": {
+      "bytes": 1502,
+      "sha256": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e"
+    },
+    "rtl/readonly_flash_reader.sv": {
+      "bytes": 10865,
+      "sha256": "8a03f9d2bace0349b048abe3ed3b9dbb2227dae7437c78d85f8d925744663f6b"
+    },
+    "tb/tb_readonly_flash_reader.sv": {
+      "bytes": 9567,
+      "sha256": "41112186baa3742cc043ffd359da4b58bfda45ab4f23b8c8675eb5c028c3f884"
+    }
+  },
+  "historical_image_timestamp_normalized_sha256": "87695140b41954641c6eaf585b4b25fac13a20b0e62838156a8afc21dc48ee85",
+  "historical_reader_image_sha256": "f9655a8e23a56a79e210b345fc00f3c49e25ef5423d70ad9d2cc18865f8d9b48",
+  "packaged_bitstream": "prebuilt/flash-reader/readonly_flash_reader.fs",
+  "part_of_inference_image": false,
+  "status": "SEPARATE_MAINTENANCE_READER",
+  "unchanged_original_source_files": {
+    "build.tcl": "dde0322f4fce77b0f161425aa3e52c872893ad564a8df9a789cec7c8197440d7",
+    "constraints/readonly_flash_reader.cst": "70af90bb32a84a2d689203b4026a82dc9a05f05c13f5cd657d722dae6b0ee690",
+    "constraints/readonly_flash_reader.sdc": "2728bf316ec1233e9f5241254d79933bea382a5e2df1b740aebe346ed70efa12",
+    "host/read_factory_flash.py": "e4ff0907724a86fa4466c274c59b47da99bd23eef64ed70d2c5b71aa95decf6d",
+    "host/test_read_factory_flash.py": "5941aa89222345177ad15a198dcc70987b5eaaeb20421452710ffe8bd687d12c",
+    "readonly_flash_reader.gprj": "3cd34008d95759e2f6484884a6d40817d08bb5e1899ee175279bf4830d9db1ef",
+    "rtl/fixed_uart_rx.sv": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f",
+    "rtl/fixed_uart_tx.sv": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e",
+    "rtl/readonly_flash_reader.sv": "8a03f9d2bace0349b048abe3ed3b9dbb2227dae7437c78d85f8d925744663f6b",
+    "tb/tb_readonly_flash_reader.sv": "41112186baa3742cc043ffd359da4b58bfda45ab4f23b8c8675eb5c028c3f884"
+  }
+}

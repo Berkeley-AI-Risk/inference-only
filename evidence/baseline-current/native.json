@@ -1,0 +1,51 @@
+{
+  "complete_nonvendor_screen_clear": true,
+  "global_violated_endpoints": {
+    "hold": 10,
+    "setup": 145
+  },
+  "hardware_inputs_sha256": "8955cde51f78b582612ca4ee61d146b6128a85a535b3d492d325a4168f77e334",
+  "image_sha256": "6ba3caa4f88ac58dd30336c3ff4478f836779db0d04309ff457ca065ec1f7f09",
+  "inference_clock_mhz": 25,
+  "inference_hold_slack_ns": 0.144,
+  "inference_setup_slack_ns": 0.018,
+  "input_files": 90,
+  "kv_integrity": false,
+  "mapped_multiplier_primitives": {
+    "MULT12X12": 3,
+    "MULTALU27X18": 73
+  },
+  "model_input_positions": 2048,
+  "native_elapsed_seconds": 3378.992311374983,
+  "native_receipt_sha256": "fe5ac361558800016a305fd7116aab495c8e0d6faadf99e3285ff80f30b31245",
+  "physical_security_qualified": false,
+  "raw_vendor_reports_bundled": false,
+  "resource_report_sha256": "0dfba4a6d8f0e6838736064b61bd05162ae1a16a2557e29986fc551959768b84",
+  "resources": {
+    "BSRAM": {
+      "available": 340.0,
+      "used": 196.0
+    },
+    "CLS": {
+      "available": 69120.0,
+      "used": 58233.0
+    },
+    "DSP": {
+      "available": 298.0,
+      "used": 74.5
+    },
+    "Logic": {
+      "available": 138240.0,
+      "used": 86667.0
+    },
+    "Register": {
+      "available": 139095.0,
+      "used": 46925.0
+    }
+  },
+  "route_completed": true,
+  "source_inputs_unchanged": true,
+  "timing_qualified": false,
+  "timing_receipt_sha256": "9698f6034cd759ebdb14c539fd5df060d0c8e6e7eaa6073cea9e2fdc5a9d4d28",
+  "weight_encryption": false
+}

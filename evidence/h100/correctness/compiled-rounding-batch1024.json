@@ -1,0 +1,162 @@
+{
+  "status": "diagnostic_only",
+  "time_utc": "2026-09-17T05:54:23.110233+00:00",
+  "batch": 1024,
+  "context": 128,
+  "seed": 20260916,
+  "gpu": {
+    "name": "NVIDIA H100 80GB HBM3",
+    "total_memory_bytes": 85017624576,
+    "compute_capability": [
+      9,
+      0
+    ],
+    "multiprocessor_count": 132,
+    "nvidia_smi": "name, driver_version, memory.total [MiB], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz], mig.mode.current\nNVIDIA H100 80GB HBM3, 580.105.08, 81559 MiB, 700.00 W, 540 MHz, 2619 MHz, Disabled\nNVIDIA H100 80GB HBM3, 580.105.08, 81559 MiB, 700.00 W, 345 MHz, 2619 MHz, Disabled"
+  },
+  "cuda_visible_devices": "0",
+  "source_sha256": {
+    "benchmark.py": "c217a5df2ef47249e777b34bc358650430d1afe61b6c350fa3d65fbca3266b9b",
+    "model_snapshot.py": "d2cc59c26929ee15f9aa060cf00356dd371aa9ede8ad81e7971ab84476b6f71c",
+    "inspect_compiled_rounding.py": "551054cbc7e795f18d02aa9b7e4653399b70b6bf5d13920c6af201547a83c39c"
+  },
+  "compiled_vs_eager": {
+    "max_absolute_logit_error": 0.03125,
+    "rms_logit_error": 0.003585819387808442,
+    "argmax_agreement_fraction": 0.99609375
+  },
+  "original_logit_tolerance_passed": true,
+  "greedy_mismatch_count": 4,
+  "mismatching_rows_fp32_comparison": {
+    "sampled_rows": 4,
+    "eager_fp16_vs_uncached_fp32": {
+      "max_absolute_logit_error": 0.024817466735839844,
+      "rms_logit_error": 0.005197375081479549,
+      "argmax_agreement_fraction": 0.25
+    },
+    "compiled_fp16_vs_uncached_fp32": {
+      "max_absolute_logit_error": 0.020487308502197266,
+      "rms_logit_error": 0.004276894498616457,
+      "argmax_agreement_fraction": 0.75
+    }
+  },
+  "mismatching_rows": [
+    {
+      "batch_row": 135,
+      "eager_token": 305,
+      "compiled_token": 108,
+      "fp32_token": 108,
+      "eager_top2_gap": 0.0078125,
+      "compiled_top2_gap": 0.0078125,
+      "row_max_absolute_logit_error": 0.015625,
+      "candidate_logits": [
+        {
+          "token": 108,
+          "eager_fp16": 8.046875,
+          "compiled_fp16": 8.0625,
+          "uncached_fp32": 8.050994873046875
+        },
+        {
+          "token": 305,
+          "eager_fp16": 8.0546875,
+          "compiled_fp16": 8.0546875,
+          "uncached_fp32": 8.04494857788086
+        },
+        {
+          "token": 324,
+          "eager_fp16": 7.4765625,
+          "compiled_fp16": 7.47265625,
+          "uncached_fp32": 7.469826698303223
+        }
+      ]
+    },
+    {
+      "batch_row": 372,
+      "eager_token": 166,
+      "compiled_token": 1853,
+      "fp32_token": 1853,
+      "eager_top2_gap": 0.0,
+      "compiled_top2_gap": 0.015625,
+      "row_max_absolute_logit_error": 0.015625,
+      "candidate_logits": [
+        {
+          "token": 166,
+          "eager_fp16": 11.5078125,
+          "compiled_fp16": 11.5078125,
+          "uncached_fp32": 11.512201309204102
+        },
+        {
+          "token": 235,
+          "eager_fp16": 10.875,
+          "compiled_fp16": 10.875,
+          "uncached_fp32": 10.872697830200195
+        },
+        {
+          "token": 1853,
+          "eager_fp16": 11.5078125,
+          "compiled_fp16": 11.5234375,
+          "uncached_fp32": 11.516545295715332
+        }
+      ]
+    },
+    {
+      "batch_row": 483,
+      "eager_token": 15,
+      "compiled_token": 115,
+      "fp32_token": 115,
+      "eager_top2_gap": 0.0,
+      "compiled_top2_gap": 0.0078125,
+      "row_max_absolute_logit_error": 0.01025390625,
+      "candidate_logits": [
+        {
+          "token": 15,
+          "eager_fp16": 9.84375,
+          "compiled_fp16": 9.84375,
+          "uncached_fp32": 9.843107223510742
+        },
+        {
+          "token": 108,
+          "eager_fp16": 7.40625,
+          "compiled_fp16": 7.40234375,
+          "uncached_fp32": 7.3989973068237305
+        },
+        {
+          "token": 115,
+          "eager_fp16": 9.84375,
+          "compiled_fp16": 9.8515625,
+          "uncached_fp32": 9.851566314697266
+        }
+      ]
+    },
+    {
+      "batch_row": 689,
+      "eager_token": 85,
+      "compiled_token": 364,
+      "fp32_token": 85,
+      "eager_top2_gap": 0.0,
+      "compiled_top2_gap": 0.00390625,
+      "row_max_absolute_logit_error": 0.015625,
+      "candidate_logits": [
+        {
+          "token": 85,
+          "eager_fp16": 7.43359375,
+          "compiled_fp16": 7.4296875,
+          "uncached_fp32": 7.431342601776123
+        },
+        {
+          "token": 139,
+          "eager_fp16": 6.83203125,
+          "compiled_fp16": 6.8359375,
+          "uncached_fp32": 6.832996845245361
+        },
+        {
+          "token": 364,
+          "eager_fp16": 7.43359375,
+          "compiled_fp16": 7.43359375,
+          "uncached_fp32": 7.430920124053955
+        }
+      ]
+    }
+  ],
+  "scope": "Numerical diagnosis only; original strict-greedy benchmark failures remain failures."
+}

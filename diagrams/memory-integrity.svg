@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="824" viewBox="0 0 1000 824" role="img" aria-labelledby="title desc">
+  <title id="title">What the two Tang Mega versions verify</title>
+  <desc id="desc">Three read paths compare the released configurations. Both versions copy each weight page from external DDR to on-chip memory and verify its hash against a fixed model digest. Only that checked copy reaches model arithmetic. The baseline cache path has no content-integrity check. The K/V-protected path stages cache data on chip and verifies it against a private expected digest saved when the circuit wrote the data. Only that checked copy reaches attention. K/V digests bind location and logical context. Expected digests stay on chip, with no secret key. A failed check stops inference. All external bytes remain plaintext. The integrity argument assumes the on-chip circuitry and its trusted state remain intact.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#48647a"/></marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #183047; }
+      .title { font-size: 28px; font-weight: 700; }
+      .heading { font-size: 21px; font-weight: 700; }
+      .body { font-size: 17px; }
+      .small { font-size: 16px; }
+      .muted { fill: #476075; }
+      .label { font-size: 16px; font-weight: 700; letter-spacing: 1px; }
+      .node { fill: #ffffff; stroke: #a7b9c7; stroke-width: 1.5; }
+      .private { fill: #eef4f8; stroke: #9bb1c1; stroke-width: 1.5; }
+      .checked { fill: #edf7f4; stroke: #8eafa4; stroke-width: 1.5; }
+      .pending { fill: #fff8e9; stroke: #a28a52; stroke-width: 1.5; stroke-dasharray: 6 4; }
+      .flow { fill: none; stroke: #48647a; stroke-width: 2; marker-end: url(#arrow); }
+      .both { marker-start: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1000" height="824" fill="#ffffff"/>
+  <text class="title" x="32" y="45">What the two Tang Mega versions verify</text>
+  <text class="body muted" x="32" y="77">Read paths only: checking data is different from keeping it secret.</text>
+  <text class="label" x="32" y="124">EXTERNAL DDR</text>
+  <text class="label" x="310" y="124">INSIDE THE FPGA</text>
+  <rect x="286" y="143" width="682" height="522" rx="14" fill="#f8fafc" stroke="#668297" stroke-width="2"/>
+  <text class="body" x="32" y="180">Weights · both versions</text>
+  <rect class="node" x="32" y="201" width="196" height="100" rx="10"/>
+  <text class="heading" x="130" y="240" text-anchor="middle">Weight page</text>
+  <text class="body" x="130" y="271" text-anchor="middle">Plaintext</text>
+  <path class="flow" d="M228 251 H310"/>
+  <rect class="checked" x="310" y="176" width="416" height="143" rx="10"/>
+  <text class="heading" x="518" y="211" text-anchor="middle">Fixed-weight check</text>
+  <text class="body" x="518" y="244" text-anchor="middle">Hash the private on-chip copy</text>
+  <text class="body" x="518" y="272" text-anchor="middle">Match a fixed model digest</text>
+  <text class="small" x="518" y="300" text-anchor="middle">Release that same copy only after a match</text>
+  <path class="flow" d="M726 251 H796"/>
+  <rect class="node" x="796" y="201" width="148" height="100" rx="10"/>
+  <text class="heading" x="870" y="240" text-anchor="middle">Model</text>
+  <text class="body" x="870" y="271" text-anchor="middle">arithmetic</text>
+  <text class="body" x="32" y="356">K/V cache · baseline</text>
+  <rect class="node" x="32" y="377" width="196" height="100" rx="10"/>
+  <text class="heading" x="130" y="416" text-anchor="middle">Cached K/V</text>
+  <text class="body" x="130" y="447" text-anchor="middle">Plaintext</text>
+  <path class="flow" d="M228 427 H310"/>
+  <rect class="node" x="310" y="377" width="416" height="100" rx="10"/>
+  <text class="heading" x="518" y="416" text-anchor="middle">Private cache controller</text>
+  <text class="body" x="518" y="447" text-anchor="middle">No content-integrity check</text>
+  <path class="flow" d="M726 427 H796"/>
+  <rect class="node" x="796" y="377" width="148" height="100" rx="10"/>
+  <text class="heading" x="870" y="435" text-anchor="middle">Attention</text>
+  <text class="body" x="32" y="532">K/V cache · protected</text>
+  <rect class="node" x="32" y="553" width="196" height="100" rx="10"/>
+  <text class="heading" x="130" y="592" text-anchor="middle">Cached K/V</text>
+  <text class="body" x="130" y="623" text-anchor="middle">Plaintext</text>
+  <path class="flow" d="M228 603 H310"/>
+  <rect class="checked" x="310" y="510" width="416" height="143" rx="10"/>
+  <text class="heading" x="518" y="545" text-anchor="middle">K/V-integrity check</text>
+  <text class="body" x="518" y="578" text-anchor="middle">Hash the private on-chip copy</text>
+  <text class="body" x="518" y="606" text-anchor="middle">Match a digest saved by the circuit on writes</text>
+  <text class="small" x="518" y="634" text-anchor="middle">Release that same copy only after a match</text>
+  <path class="flow" d="M726 603 H796"/>
+  <rect class="node" x="796" y="553" width="148" height="100" rx="10"/>
+  <text class="heading" x="870" y="611" text-anchor="middle">Attention</text>
+  <path d="M32 699 H968" fill="none" stroke="#d5dfe6" stroke-width="1.5"/>
+  <text class="heading" x="32" y="733">Integrity checks do not hide the external bytes.</text>
+  <text class="body" x="32" y="764">Expected digests stay on chip. K/V digests bind the data’s location and logical context.</text>
+  <text class="body" x="32" y="792">No secret key. A failed check stops inference. Assumes intact on-chip circuitry.</text>
+</svg>

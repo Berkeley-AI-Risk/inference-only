@@ -1,0 +1,60 @@
+name: Offline release checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: offline-checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  offline:
+    name: File integrity and Python helper tests (not hardware signoff)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Check the clean release inventory
+        run: python -I -S -B tools/verify_release.py --strict
+      - name: Check encrypted-memory source bindings and reproduce the public-key ciphertext
+        run: |
+          python -I -S -B tools/check_encrypted_memory.py
+          python -I -S -B tools/encrypt_model_image.py
+          python -I -S -B tools/check_encrypted_board_evidence.py
+      - name: Check the photograph for embedded metadata
+        run: python -I -S -B tools/check_photo_metadata.py
+      - name: Check protected-variant source bindings and measured comparisons
+        run: python -I -S -B tools/check_kv_protected.py
+      - name: Check historical speed revision and measurement arithmetic
+        run: python -I -S -B tools/check_leaf_speed.py
+      - name: Check current protected and encrypted speed measurements
+        run: python -I -S -B tools/check_speed_release.py
+      - name: Check current baseline speed measurements and recorded replay
+        run: python -I -S -B tools/check_baseline_speed.py
+      - name: Check recorded protected-KV proof bindings (not a solver replay)
+        run: python -I -S -B tools/check_kv_integrity.py --package . --recorded-only
+      - name: Recompute conditional training-capacity estimates
+        run: python -I -S -B tools/estimate_training_capacity.py --check
+      - name: Check architecture work counts and recorded-workload comparisons
+        run: python -I -S -B tools/architecture_work_counts.py --check
+      - name: Check the recorded H100 evidence
+        run: python -I -S -B tools/check_h100_reference.py
+      - name: Run the offline helper tests
+        run: python -I -S -B -m unittest discover -s tools -p 'test_*.py' -v
+      - name: Check proof-log and constraint validators (no formal tools)
+        run: python -I -S -B -m unittest discover -s formal/kv-integrity -p test_contract_auditor.py -v
+      - name: Confirm that the checks left the release unchanged
+        run: python -I -S -B tools/verify_release.py --strict

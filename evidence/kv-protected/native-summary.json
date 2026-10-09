@@ -1,0 +1,64 @@
+{
+  "clocks": {
+    "app_clk100": {
+      "actual_fmax_mhz": 161.943,
+      "constraint_mhz": 100.0
+    },
+    "board_clk50": {
+      "actual_fmax_mhz": 203.472,
+      "constraint_mhz": 50.0
+    },
+    "inference_clk25": {
+      "actual_fmax_mhz": 25.125,
+      "constraint_mhz": 25.0
+    },
+    "memory_clk400": {
+      "actual_fmax_mhz": 2016.13,
+      "constraint_mhz": 400.0
+    },
+    "trusted_clk12p5": {
+      "actual_fmax_mhz": 66.116,
+      "constraint_mhz": 12.5
+    }
+  },
+  "endpoint_census_complete": true,
+  "global_violated_endpoints": {
+    "hold": 8,
+    "setup": 163
+  },
+  "image_sha256": "f51dfaa1f84be585db990f1037f5ae9d328b9064f2e26fc514ae41f9a7bcb324",
+  "matched_production_source_count": 66,
+  "nonvendor_screen_clear": true,
+  "resource_change_from_baseline": {
+    "BSRAM": 82.0,
+    "CLS": 2775.0,
+    "DSP": 0.0,
+    "Logic": 5136.0,
+    "Register": 3568.0
+  },
+  "resources": {
+    "BSRAM": {
+      "available": 340.0,
+      "used": 278.0
+    },
+    "CLS": {
+      "available": 69120.0,
+      "used": 59511.0
+    },
+    "DSP": {
+      "available": 298.0,
+      "used": 74.5
+    },
+    "Logic": {
+      "available": 138240.0,
+      "used": 85868.0
+    },
+    "Register": {
+      "available": 139095.0,
+      "used": 53442.0
+    }
+  },
+  "scope": "Whole-product costs versus the baseline, including transport/reset changes and physical packing; not isolated hash-unit cost.",
+  "timing_qualified": false,
+  "timing_report_sha256": "c6c910f99fde396a9c4bb56bbc2dbfc0768ba454bf629674804b52825dcffe6a"
+}

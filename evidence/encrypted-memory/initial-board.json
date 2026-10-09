@@ -1,0 +1,91 @@
+{
+  "ciphertext_sha256": "88da38f3eb64bacc21aa472666b0cc8ea1e516cb04c80e0678f768425e6390eb",
+  "clear_replay": true,
+  "complete_flash_readback_and_restoration": true,
+  "configuration_independently_attested": false,
+  "encrypted_image_sha256": "32970712a318f605d5822bb7ac2234f080df15341103e0a78bad8863b5c9361e",
+  "encrypted_step_seconds": [
+    0.373824666,
+    0.373858625,
+    0.374145666,
+    0.391234042,
+    0.374341291,
+    0.373392791
+  ],
+  "full_context_board_test": false,
+  "generated_tokens": [
+    200,
+    15,
+    103,
+    157,
+    200,
+    15
+  ],
+  "matched_timing": {
+    "all_six_short_kat_steps": {
+      "count": 6,
+      "encrypted_seconds": 2.260797081,
+      "encrypted_tokens_per_second": 2.6539312397493315,
+      "indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "latency_ratio": 2.553767289600421,
+      "restored_seconds": 0.885279207,
+      "restored_tokens_per_second": 6.777522788920535,
+      "retained_throughput_fraction": 0.39157835722630246
+    },
+    "first_step_after_append_including_prefill": {
+      "count": 2,
+      "encrypted_seconds": 0.7481659570000001,
+      "encrypted_tokens_per_second": 2.6732036940301467,
+      "indices": [
+        0,
+        4
+      ],
+      "latency_ratio": 2.735770432103484,
+      "restored_seconds": 0.273475416,
+      "restored_tokens_per_second": 7.313271625117483,
+      "retained_throughput_fraction": 0.36552774613881556
+    },
+    "subsequent_short_context_steps": {
+      "count": 4,
+      "encrypted_seconds": 1.5126311239999999,
+      "encrypted_tokens_per_second": 2.6443988468400708,
+      "indices": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "latency_ratio": 2.4724121462660236,
+      "restored_seconds": 0.611803791,
+      "restored_tokens_per_second": 6.538043828499258,
+      "retained_throughput_fraction": 0.40446330985319595
+    }
+  },
+  "new_catalog_or_browser_test": false,
+  "original_receipt_sha256": "91c562c72ded33b93f8f5e9a5867f49f1a259b91af49f94c2b1a431b0de85424",
+  "passed": true,
+  "physical_secrecy_qualified": false,
+  "prompt_tokens": [
+    378
+  ],
+  "public_test_keys_only": true,
+  "restored_image_sha256": "e22079c855cdf6cfb983c73850db15b1b5010f0511fa62f98f3d040ae0654ea2",
+  "restored_step_seconds": [
+    0.137064833,
+    0.152235125,
+    0.153304833,
+    0.152821833,
+    0.136410583,
+    0.153442
+  ],
+  "schema": "encrypted-memory-initial-board-v1",
+  "scope": "Sanitized summary of completed physical short-KAT/CLEAR/replay and complete flash restoration; not a raw hardware replay or full-context/stream benchmark.",
+  "timing_qualified": false
+}

@@ -1,0 +1,337 @@
+{
+  "baseline_image_sha256": "344fcaca1ebd40a3bda35c02d8d3fe79e840200f532b6397c01730c9b75604fe",
+  "cases": [
+    {
+      "all_generated_tokens": 20,
+      "baseline_cached_tokens_per_second": 6.543510773393476,
+      "cached_decode_seconds": [
+        0.15279954206198454,
+        0.1529652075842023,
+        0.15240791626274586,
+        0.15326587483286858,
+        0.1698479587212205,
+        0.16993929166346788,
+        0.16996358335018158
+      ],
+      "cached_latency_ratio": 1.0480735358431987,
+      "case": "known1",
+      "clear_acknowledgments": 5,
+      "commands": 32,
+      "expected_rejections": 3,
+      "final_clear_acknowledged": true,
+      "first_step_latency_ratio": 1.001082126415304,
+      "first_step_seconds": 0.15337541699409485,
+      "generated_tokens": [
+        200,
+        15,
+        103,
+        157,
+        32,
+        1429,
+        115,
+        789
+      ],
+      "host_deadline_adjustments": [
+        {
+          "baseline_seconds": 3600,
+          "label": "long-step-0",
+          "protected_seconds": 14400
+        }
+      ],
+      "maximum_occupied_tape": 9,
+      "original_audit_sha256": "d7d9a052ca6795ca4a8e1e1001916f7679115bed9b7407e3772284f162abbbc4",
+      "original_comparison_sha256": "4407fc2ac0efcfb16d1a5aa8fe11b51ed7e61a0706cf89a6f18f677c959804a5",
+      "original_receipt_sha256": "146a756c56ef28af70793b17990251ab9af70392788509b8c7fe9e9d5ea33b03",
+      "plan_sha256": "54de1796e4bb13aaf1434676b0095e12b654126098c965b89a9c3fe60646dcf0",
+      "prompt_tokens": 1,
+      "protected_cached_tokens_per_second": 6.243369906415083,
+      "raw_log_sha256": "c62e393a0d96082b80f6da83cfd136222ca44a8067cd09cb2584e8975535d707",
+      "steps": [
+        {
+          "baseline_seconds": 0.15320962481200695,
+          "latency_increase_percent": 0.108212641530403,
+          "latency_ratio": 1.001082126415304,
+          "ordinal": 1,
+          "protected_seconds": 0.15337541699409485
+        },
+        {
+          "baseline_seconds": 0.15280933398753405,
+          "latency_increase_percent": -0.006407936802022007,
+          "latency_ratio": 0.9999359206319798,
+          "ordinal": 2,
+          "protected_seconds": 0.15279954206198454
+        },
+        {
+          "baseline_seconds": 0.15248054219409823,
+          "latency_increase_percent": 0.3178539262321811,
+          "latency_ratio": 1.0031785392623218,
+          "ordinal": 3,
+          "protected_seconds": 0.1529652075842023
+        },
+        {
+          "baseline_seconds": 0.15297200018540025,
+          "latency_increase_percent": -0.3687497855625388,
+          "latency_ratio": 0.9963125021443746,
+          "ordinal": 4,
+          "protected_seconds": 0.15240791626274586
+        },
+        {
+          "baseline_seconds": 0.15300599997863173,
+          "latency_increase_percent": 0.16984618529543027,
+          "latency_ratio": 1.0016984618529543,
+          "ordinal": 5,
+          "protected_seconds": 0.15326587483286858
+        },
+        {
+          "baseline_seconds": 0.1527774170972407,
+          "latency_increase_percent": 11.173471805139013,
+          "latency_ratio": 1.1117347180513901,
+          "ordinal": 6,
+          "protected_seconds": 0.1698479587212205
+        },
+        {
+          "baseline_seconds": 0.1527350409887731,
+          "latency_increase_percent": 11.264115008133203,
+          "latency_ratio": 1.112641150081332,
+          "ordinal": 7,
+          "protected_seconds": 0.16993929166346788
+        },
+        {
+          "baseline_seconds": 0.15298179211094975,
+          "latency_increase_percent": 11.100530987972611,
+          "latency_ratio": 1.1110053098797261,
+          "ordinal": 8,
+          "protected_seconds": 0.16996358335018158
+        }
+      ]
+    },
+    {
+      "all_generated_tokens": 20,
+      "baseline_cached_tokens_per_second": 6.540033447976138,
+      "cached_decode_seconds": [
+        0.16981433238834143,
+        0.17011379171162844,
+        0.16962475050240755,
+        0.1697390004992485,
+        0.17027495801448822,
+        0.16982737462967634,
+        0.1699183341115713
+      ],
+      "cached_latency_ratio": 1.1111634005492381,
+      "case": "known8",
+      "clear_acknowledgments": 5,
+      "commands": 39,
+      "expected_rejections": 3,
+      "final_clear_acknowledged": true,
+      "first_step_latency_ratio": 1.0497587352333164,
+      "first_step_seconds": 1.0710854157805443,
+      "generated_tokens": [
+        789,
+        15,
+        103,
+        165,
+        93,
+        320,
+        85,
+        393
+      ],
+      "host_deadline_adjustments": [
+        {
+          "baseline_seconds": 3600,
+          "label": "long-step-0",
+          "protected_seconds": 14400
+        }
+      ],
+      "maximum_occupied_tape": 16,
+      "original_audit_sha256": "2eabee9dc8fc51f24fc47f0f144d65b1e14993d51b5d3a4d478522a89aa022d2",
+      "original_comparison_sha256": "73e67acd9bd83c0f7b610238704f2b4fa8ba1135e1fa4380ca7bbcd5609d5af4",
+      "original_receipt_sha256": "ac4f60f64cd7ba1644c603b750b494fbe2340a522438ed1ad14f00aeb020383b",
+      "plan_sha256": "c79953a9b9f248dd79781aff5772769f0f2ed44bec8983cd8a4be6c7ffc711a8",
+      "prompt_tokens": 8,
+      "protected_cached_tokens_per_second": 5.885753116727439,
+      "raw_log_sha256": "9102b819ccac3b2d304c795e7e04e2992480865871fe5e6c16636cf2b0296b5b",
+      "steps": [
+        {
+          "baseline_seconds": 1.0203157924115658,
+          "latency_increase_percent": 4.975873523331642,
+          "latency_ratio": 1.0497587352333164,
+          "ordinal": 1,
+          "protected_seconds": 1.0710854157805443
+        },
+        {
+          "baseline_seconds": 0.15405120933428407,
+          "latency_increase_percent": 10.232391632740834,
+          "latency_ratio": 1.1023239163274083,
+          "ordinal": 2,
+          "protected_seconds": 0.16981433238834143
+        },
+        {
+          "baseline_seconds": 0.15170249994844198,
+          "latency_increase_percent": 12.136445852536216,
+          "latency_ratio": 1.1213644585253622,
+          "ordinal": 3,
+          "protected_seconds": 0.17011379171162844
+        },
+        {
+          "baseline_seconds": 0.15292991697788239,
+          "latency_increase_percent": 10.916656370734623,
+          "latency_ratio": 1.1091665637073462,
+          "ordinal": 4,
+          "protected_seconds": 0.16962475050240755
+        },
+        {
+          "baseline_seconds": 0.15302291698753834,
+          "latency_increase_percent": 10.923908549639961,
+          "latency_ratio": 1.1092390854963996,
+          "ordinal": 5,
+          "protected_seconds": 0.1697390004992485
+        },
+        {
+          "baseline_seconds": 0.15284287463873625,
+          "latency_increase_percent": 11.405231298452701,
+          "latency_ratio": 1.114052312984527,
+          "ordinal": 6,
+          "protected_seconds": 0.17027495801448822
+        },
+        {
+          "baseline_seconds": 0.1527276667766273,
+          "latency_increase_percent": 11.196208397564478,
+          "latency_ratio": 1.1119620839756448,
+          "ordinal": 7,
+          "protected_seconds": 0.16982737462967634
+        },
+        {
+          "baseline_seconds": 0.15305383270606399,
+          "latency_increase_percent": 11.01867304289934,
+          "latency_ratio": 1.1101867304289934,
+          "ordinal": 8,
+          "protected_seconds": 0.1699183341115713
+        }
+      ]
+    },
+    {
+      "all_generated_tokens": 16,
+      "baseline_cached_tokens_per_second": 2.179088642672024,
+      "cached_decode_seconds": [
+        0.8838694170117378,
+        0.8836753750219941,
+        0.884168915450573
+      ],
+      "cached_latency_ratio": 1.9261064078655916,
+      "case": "prefix512",
+      "clear_acknowledgments": 5,
+      "commands": 539,
+      "expected_rejections": 3,
+      "final_clear_acknowledged": true,
+      "first_step_latency_ratio": 1.7947098052663093,
+      "first_step_seconds": 251.4501381246373,
+      "generated_tokens": [
+        15,
+        111,
+        157,
+        599
+      ],
+      "host_deadline_adjustments": [
+        {
+          "baseline_seconds": 3600,
+          "label": "long-step-0",
+          "protected_seconds": 14400
+        }
+      ],
+      "maximum_occupied_tape": 516,
+      "original_audit_sha256": "54daca548f26a18169cdacea9ec8ef832ff0db246711f1e89fff1cacd82a837b",
+      "original_comparison_sha256": "76f5ed1b0f855500a8a4bdde1e91ec7c87b7a028fbd11fddd0b9afbb89082aa8",
+      "original_receipt_sha256": "91a633952b3828811b35bc5d82a056d57b104e2b83192b4e9e3029016b787554",
+      "plan_sha256": "8f8e70135ed04249bda60a68fffb2e43a2b6350b89dd51a254dc139d1a4738ed",
+      "prompt_tokens": 512,
+      "protected_cached_tokens_per_second": 1.1313438519145855,
+      "raw_log_sha256": "40d6b1183d6273e1131163af922d3cc1acb38171b39cdc20315832ebe44c0b23",
+      "steps": [
+        {
+          "baseline_seconds": 140.10629316605628,
+          "latency_increase_percent": 79.47098052663092,
+          "latency_ratio": 1.7947098052663093,
+          "ordinal": 1,
+          "protected_seconds": 251.4501381246373
+        },
+        {
+          "baseline_seconds": 0.45873491698876023,
+          "latency_increase_percent": 92.67541760580525,
+          "latency_ratio": 1.9267541760580524,
+          "ordinal": 2,
+          "protected_seconds": 0.8838694170117378
+        },
+        {
+          "baseline_seconds": 0.45897008292376995,
+          "latency_increase_percent": 92.53441736174408,
+          "latency_ratio": 1.9253441736174408,
+          "ordinal": 3,
+          "protected_seconds": 0.8836753750219941
+        },
+        {
+          "baseline_seconds": 0.4590173331089318,
+          "latency_increase_percent": 92.62211940060796,
+          "latency_ratio": 1.9262211940060796,
+          "ordinal": 4,
+          "protected_seconds": 0.884168915450573
+        }
+      ]
+    },
+    {
+      "all_generated_tokens": 14,
+      "baseline_cached_tokens_per_second": 0.7353192591507172,
+      "cached_decode_seconds": [
+        3.0937908748164773
+      ],
+      "cached_latency_ratio": 2.274924014037301,
+      "case": "prefix2047",
+      "clear_acknowledgments": 5,
+      "commands": 2075,
+      "expected_rejections": 6,
+      "final_clear_acknowledged": true,
+      "first_step_latency_ratio": 2.1823106813581177,
+      "first_step_seconds": 3257.1715179998428,
+      "generated_tokens": [
+        15,
+        15
+      ],
+      "host_deadline_adjustments": [
+        {
+          "baseline_seconds": 3600,
+          "label": "long-step-0",
+          "protected_seconds": 14400
+        }
+      ],
+      "maximum_occupied_tape": 2049,
+      "original_audit_sha256": "08815ef707508f129038b59f6fe6bd3898104a04caf4ebec77e2f4c727a303b2",
+      "original_comparison_sha256": "2ee6ef9dbbf1c46594a6a1e098a0596e74a6d1bc8a404835133b74da7a4932d0",
+      "original_receipt_sha256": "cefd56ddc300f699cb83e86fa4d5e6c65c73592debf6ef475850e3daaf7b1af1",
+      "plan_sha256": "e41a47c20878c97dec39bcccd82c7da4bb162ba81d4ed59519adfdfb1ec3147e",
+      "prompt_tokens": 2047,
+      "protected_cached_tokens_per_second": 0.32322805272328553,
+      "raw_log_sha256": "7d49fb72536fcca3276bda60a48ce19ca91c66147eda2ffdb2138367560de813",
+      "steps": [
+        {
+          "baseline_seconds": 1492.533371083904,
+          "latency_increase_percent": 118.23106813581177,
+          "latency_ratio": 2.1823106813581177,
+          "ordinal": 1,
+          "protected_seconds": 3257.1715179998428
+        },
+        {
+          "baseline_seconds": 1.3599534998647869,
+          "latency_increase_percent": 127.4924014037301,
+          "latency_ratio": 2.274924014037301,
+          "ordinal": 2,
+          "protected_seconds": 3.0937908748164773
+        }
+      ]
+    }
+  ],
+  "configuration_independently_attested": false,
+  "flash_modified": false,
+  "image_sha256": "f51dfaa1f84be585db990f1037f5ae9d328b9064f2e26fc514ae41f9a7bcb324",
+  "physical_corruption_injection_tested": false,
+  "scope": "Matched individual physical trials, not repeated-run statistics. The full-window cached rate uses one STEP. Summaries of audited private raw logs, not an included raw-log replay.",
+  "timing_qualified": false
+}

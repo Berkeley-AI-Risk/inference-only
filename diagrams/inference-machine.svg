@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="950" viewBox="0 0 880 950" role="img" aria-labelledby="title desc">
+  <title id="title">The inference-only machine</title>
+  <desc id="desc">The host converts text to tokens and displays replies; the FPGA runs the model. APPEND, STEP and CLEAR reach a token controller that owns the tape and fixed inference sequence. All six transformer layers run through shared hardware, with greedy next-token selection. One external DDR memory contains separate weight and attention-cache regions. Weight pages are copied into private on-chip buffers and verified against fixed model digests before use. The K/V-protected version also verifies cache data. No host command exposes memory addresses or arithmetic units. The assessment assumes a frozen configuration; private does not mean immune to physical tampering. The flash boot path and fixed coefficient ROMs are omitted.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#48647a"/></marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #183047; }
+      .title { font-size: 28px; font-weight: 700; }
+      .heading { font-size: 21px; font-weight: 700; }
+      .body { font-size: 17px; }
+      .small { font-size: 16px; }
+      .muted { fill: #476075; }
+      .label { font-size: 16px; font-weight: 700; letter-spacing: 1px; }
+      .node { fill: #ffffff; stroke: #a7b9c7; stroke-width: 1.5; }
+      .private { fill: #eef4f8; stroke: #9bb1c1; stroke-width: 1.5; }
+      .checked { fill: #edf7f4; stroke: #8eafa4; stroke-width: 1.5; }
+      .pending { fill: #fff8e9; stroke: #a28a52; stroke-width: 1.5; stroke-dasharray: 6 4; }
+      .flow { fill: none; stroke: #48647a; stroke-width: 2; marker-end: url(#arrow); }
+      .both { marker-start: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="880" height="950" fill="#ffffff"/>
+  <text class="title" x="32" y="44">The inference-only machine</text>
+  <text class="body muted" x="32" y="74">Runtime overview of the baseline and K/V-protected designs</text>
+  <rect class="node" x="130" y="108" width="620" height="88" rx="10"/>
+  <text class="heading" x="440" y="143" text-anchor="middle">Host application</text>
+  <text class="body" x="440" y="172" text-anchor="middle">Converts text to tokens and displays replies; does not run the model</text>
+  <rect x="32" y="286" width="816" height="406" rx="14" fill="#f8fafc" stroke="#668297" stroke-width="2"/>
+  <text class="label" x="810" y="316" text-anchor="end">INSIDE THE FPGA</text>
+  <path class="flow" d="M196 196 V342"/>
+  <text class="body" x="179" y="229" text-anchor="end">APPEND(token)</text>
+  <text class="body" x="179" y="253" text-anchor="end">STEP</text>
+  <text class="body" x="179" y="277" text-anchor="end">CLEAR</text>
+  <path class="flow" d="M326 342 V196"/>
+  <text class="body" x="346" y="240">Generated token</text>
+  <text class="body" x="346" y="265">and status replies</text>
+  <rect class="private" x="70" y="342" width="300" height="104" rx="10"/>
+  <text class="heading" x="220" y="375" text-anchor="middle">Token controller</text>
+  <text class="body" x="220" y="404" text-anchor="middle">Owns the tape and</text>
+  <text class="body" x="220" y="428" text-anchor="middle">fixed inference sequence</text>
+  <rect class="private" x="470" y="342" width="340" height="104" rx="10"/>
+  <text class="heading" x="640" y="375" text-anchor="middle">Fixed story model</text>
+  <text class="body" x="640" y="404" text-anchor="middle">All six layers, using shared hardware</text>
+  <text class="body" x="640" y="428" text-anchor="middle">Greedy next-token selection</text>
+  <path class="flow" d="M370 379 H470"/>
+  <path class="flow" d="M470 413 H370"/>
+  <path class="flow" d="M234 520 V482 H544 V446"/>
+  <path class="flow both" d="M674 446 V520"/>
+  <rect class="checked" x="88" y="520" width="292" height="119" rx="10"/>
+  <text class="heading" x="234" y="553" text-anchor="middle">Verified weight buffer</text>
+  <text class="body" x="234" y="584" text-anchor="middle">Copy → check → use</text>
+  <text class="body" x="234" y="613" text-anchor="middle">Fixed model digests on chip</text>
+  <rect class="private" x="500" y="520" width="292" height="119" rx="10"/>
+  <text class="heading" x="646" y="553" text-anchor="middle">Private K/V controller</text>
+  <text class="body" x="646" y="584" text-anchor="middle">Extra integrity check</text>
+  <text class="body" x="646" y="613" text-anchor="middle">in the K/V-protected version</text>
+  <path class="flow" d="M234 758 V639"/>
+  <path class="flow both" d="M674 639 V758"/>
+  <rect class="node" x="70" y="758" width="740" height="108" rx="10"/>
+  <path d="M440 774 V850" fill="none" stroke="#c6d2db" stroke-width="1.5"/>
+  <rect x="303" y="716" width="274" height="25" fill="#ffffff"/>
+  <text class="label" x="440" y="734" text-anchor="middle">ONE EXTERNAL DDR MEMORY</text>
+  <text class="heading" x="255" y="795" text-anchor="middle">Weight region</text>
+  <text class="body" x="255" y="827" text-anchor="middle">Fixed model parameters</text>
+  <text class="heading" x="625" y="795" text-anchor="middle">K/V-cache region</text>
+  <text class="body" x="625" y="827" text-anchor="middle">Attention’s saved keys and values</text>
+  <text class="small muted" x="440" y="901" text-anchor="middle">Frozen configuration assumed. “Private” means no host access, not physical immunity.</text>
+  <text class="small muted" x="440" y="923" text-anchor="middle">No host command exposes memory addresses or arithmetic units.</text>
+</svg>

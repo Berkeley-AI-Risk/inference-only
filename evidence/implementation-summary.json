@@ -1,0 +1,39 @@
+{
+  "extract_sha256": "4a21f80b53f1f9477d8b0a8a79a9ce306a038289c36c27d948d6c88914f6e34a",
+  "global_violated_endpoints": {
+    "hold": 10,
+    "setup": 145
+  },
+  "historical_image_sha256": "5a5b6788ea0d5b07d25614e91f2950c0c3a7b3cf49f8e225f2dcaf9e76ac8c2a",
+  "mapped_multiplier_primitives": {
+    "MULT12X12": 3,
+    "MULTALU27X18": 73
+  },
+  "nominal_inference_clock_hz": 25000000,
+  "reported_inference_fmax_mhz": 25.224,
+  "reported_negative_path_rows": {
+    "hold": 10,
+    "recovery": 218,
+    "setup": 36
+  },
+  "resources": {
+    "BSRAM": [
+      196,
+      340
+    ],
+    "CLS": [
+      56736,
+      69120
+    ],
+    "DSP": [
+      74.5,
+      298
+    ]
+  },
+  "scope": "Extracted reports for the physically tested image. Capped negative rows are all within vendor DDR on cross-clock paths; not proof that unreported paths close or that these exceptions are safe.",
+  "source_report_sha256": {
+    "shared_product.rpt.txt": "dc2c5b1079f46f5d32571bad499a6a3becd50ffccfc59b1e558abca6a5ea9059",
+    "shared_product.tr": "8f0f3aeebed21876822b9e0971f5e76cb46140964052209f40c96eb8efd768d6"
+  },
+  "timing_signoff_complete": false
+}

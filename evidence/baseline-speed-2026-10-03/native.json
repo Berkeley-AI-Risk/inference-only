@@ -1,0 +1,61 @@
+{
+  "changed_native_inputs": [
+    "project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv",
+    "project/sha.sv"
+  ],
+  "ddr_limitations": [
+    "21 additional DDR FIFO-reset recovery endpoints; no new setup/hold/removal endpoint groups",
+    "worst DDR setup/hold/recovery: -6.325/-1.067/-9.819 ns",
+    "paired DDR setup/hold/recovery slack worsens by up to 1.768/0.406/0.795 ns",
+    "positive inference-core setup/hold does not qualify DDR electrical/startup timing"
+  ],
+  "fixed_model_and_three_operation_interface_unchanged": true,
+  "global_violated_endpoints": {
+    "hold": 10,
+    "setup": 166
+  },
+  "hardware_inputs_sha256": "a984310dd93bd4b39788182dddadfc881f16c3b7940a44ac9a7a8026aa31336e",
+  "image_sha256": "7a060dca5be62c969530c4d7e1605c1c961f02eccb83dffe0f4c767745df97e9",
+  "inference_clock_mhz": 25,
+  "inference_hold_slack_ns": 0.119,
+  "inference_setup_slack_ns": 0.399,
+  "input_files": 90,
+  "kv_integrity": false,
+  "mapped_multiplier_primitives": {
+    "MULT12X12": 3,
+    "MULTALU27X18": 73
+  },
+  "model_input_positions": 2048,
+  "native_elapsed_seconds": 2167.715183415974,
+  "native_receipt_sha256": "746477314868547b9683ac7421c26c0da6fee3fbe55fc0eb86f625f7ff5c7a55",
+  "physical_security_qualified": false,
+  "previous_image_sha256": "44a7fb18131e07bdb39ccdead1083f8224822a44a2ec36f1455e2d12acb566ed",
+  "raw_vendor_reports_bundled": false,
+  "resource_report_sha256": "82b89ab39ae219a2caee1848ea980f50ba7e471a03e06de1ab51cd4ae29e6b26",
+  "resources": {
+    "BSRAM": {
+      "available": 340.0,
+      "used": 196.0
+    },
+    "CLS": {
+      "available": 69120.0,
+      "used": 56751.0
+    },
+    "DSP": {
+      "available": 298.0,
+      "used": 74.5
+    },
+    "Logic": {
+      "available": 138240.0,
+      "used": 82870.0
+    },
+    "Register": {
+      "available": 139095.0,
+      "used": 48496.0
+    }
+  },
+  "schema": "tang-baseline-speed-native-v1",
+  "timing_qualified": false,
+  "weight_encryption": false,
+  "whole_machine_refinement": false
+}

@@ -1,0 +1,84 @@
+{
+  "commands": 1197,
+  "complete_timing_signoff": false,
+  "full_context_qualified": false,
+  "image_sha256": "5a5b6788ea0d5b07d25614e91f2950c0c3a7b3cf49f8e225f2dcaf9e76ac8c2a",
+  "maximum_occupied_tape": 513,
+  "metrics": {
+    "around128": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 0.15302475,
+      "generated_tokens": 128,
+      "last_step_seconds": 0.220909792,
+      "occupied_tape": 129,
+      "prompt_tokens": 1,
+      "streaming_tokens_per_second_excluding_first": 5.287332045816814
+    },
+    "fox128": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 1.020126125,
+      "generated_tokens": 128,
+      "last_step_seconds": 0.238086042,
+      "occupied_tape": 136,
+      "prompt_tokens": 8,
+      "streaming_tokens_per_second_excluding_first": 5.180999641696998
+    },
+    "help64": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 0.901314625,
+      "generated_tokens": 64,
+      "last_step_seconds": 0.186946833,
+      "occupied_tape": 71,
+      "prompt_tokens": 7,
+      "streaming_tokens_per_second_excluding_first": 5.7547991085242565
+    },
+    "known-after-long-clear": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 0.153275458,
+      "generated_tokens": 4,
+      "last_step_seconds": 0.152947375,
+      "occupied_tape": 5,
+      "prompt_tokens": 1,
+      "streaming_tokens_per_second_excluding_first": 6.536119769214991
+    },
+    "known-before": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 0.153034375,
+      "generated_tokens": 4,
+      "last_step_seconds": 0.148223792,
+      "occupied_tape": 5,
+      "prompt_tokens": 1,
+      "streaming_tokens_per_second_excluding_first": 6.536489456869139
+    },
+    "moon64": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 1.156188083,
+      "generated_tokens": 64,
+      "last_step_seconds": 0.186923125,
+      "occupied_tape": 73,
+      "prompt_tokens": 9,
+      "streaming_tokens_per_second_excluding_first": 5.728099808621742
+    },
+    "prefix128": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 20.467108417,
+      "generated_tokens": 128,
+      "last_step_seconds": 0.305878542,
+      "occupied_tape": 256,
+      "prompt_tokens": 128,
+      "streaming_tokens_per_second_excluding_first": 3.780872052923826
+    },
+    "prefix512": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 140.106342167,
+      "generated_tokens": 1,
+      "last_step_seconds": 140.106342167,
+      "occupied_tape": 513,
+      "prompt_tokens": 512,
+      "streaming_tokens_per_second_excluding_first": null
+    }
+  },
+  "portable_host_physically_qualified": false,
+  "scope": "Guarded physical campaign with exact integer-reference comparisons. Finite workload measurements; not full-context, timing, security or rebuilt-image qualification.",
+  "tokens": 521
+}

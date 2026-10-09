@@ -1,0 +1,7 @@
+# GOWIN configuration images, not F# source. Preserve their exact bytes.
+*.fs binary linguist-detectable=false
+*.bin binary
+*.jpeg binary
+
+# Generated ROM and initialization data, not hand-written source code.
+*.memh linguist-generated=true

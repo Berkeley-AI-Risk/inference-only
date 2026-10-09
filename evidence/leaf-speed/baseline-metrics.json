@@ -1,0 +1,61 @@
+{
+  "image_sha256": "44a7fb18131e07bdb39ccdead1083f8224822a44a2ec36f1455e2d12acb566ed",
+  "metrics": {
+    "around128": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 0.1356055420001212,
+      "generated_tokens": 128,
+      "last_step_seconds": 0.2201811249997263,
+      "occupied_tape": 129,
+      "prompt_tokens": 1,
+      "streaming_tokens_per_second_excluding_first": 5.530095485568749
+    },
+    "known1": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 0.13585950000015146,
+      "generated_tokens": 8,
+      "last_step_seconds": 0.15301091599940264,
+      "occupied_tape": 9,
+      "prompt_tokens": 1,
+      "streaming_tokens_per_second_excluding_first": 6.640002579052887
+    },
+    "known8": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 0.9692607919987495,
+      "generated_tokens": 8,
+      "last_step_seconds": 0.15261891699992702,
+      "occupied_tape": 16,
+      "prompt_tokens": 8,
+      "streaming_tokens_per_second_excluding_first": 6.537014832786425
+    },
+    "prefix128": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 19.344862208999984,
+      "generated_tokens": 128,
+      "last_step_seconds": 0.28912583400051517,
+      "occupied_tape": 256,
+      "prompt_tokens": 128,
+      "streaming_tokens_per_second_excluding_first": 3.9466582616875496
+    },
+    "prefix2047": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 1441.6865898329997,
+      "generated_tokens": 2,
+      "last_step_seconds": 1.3258352909997484,
+      "occupied_tape": 2049,
+      "prompt_tokens": 2047,
+      "streaming_tokens_per_second_excluding_first": 0.7449199485744513
+    },
+    "prefix512": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 133.91852358299911,
+      "generated_tokens": 4,
+      "last_step_seconds": 0.44141345800017007,
+      "occupied_tape": 516,
+      "prompt_tokens": 512,
+      "streaming_tokens_per_second_excluding_first": 2.262481616158493
+    }
+  },
+  "scope": "Selected baseline individual host-timed measurements for conditional analytical comparisons, not peak licensed inference.",
+  "source_physical_sha256": "46b54109574bfe053f7b880f6a4fb425506376d513e3c88552e2f406ba5755b8"
+}

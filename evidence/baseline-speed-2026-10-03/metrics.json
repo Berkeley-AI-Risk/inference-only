@@ -1,0 +1,43 @@
+{
+  "image_sha256": "7a060dca5be62c969530c4d7e1605c1c961f02eccb83dffe0f4c767745df97e9",
+  "metrics": {
+    "around128": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 0.10213495895732194,
+      "generated_tokens": 128,
+      "last_step_seconds": 0.18687195802340284,
+      "occupied_tape": 129,
+      "prompt_tokens": 1,
+      "streaming_tokens_per_second_excluding_first": 6.904830349507629
+    },
+    "prefix128": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 15.62206874997355,
+      "generated_tokens": 128,
+      "last_step_seconds": 0.2544139579986222,
+      "occupied_tape": 256,
+      "prompt_tokens": 128,
+      "streaming_tokens_per_second_excluding_first": 4.580580478479412
+    },
+    "prefix2047": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 1381.2556681670249,
+      "generated_tokens": 2,
+      "last_step_seconds": 1.2919228749815375,
+      "occupied_tape": 2049,
+      "prompt_tokens": 2047,
+      "streaming_tokens_per_second_excluding_first": 0.7640620849435678
+    },
+    "prefix512": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 119.06136445899028,
+      "generated_tokens": 4,
+      "last_step_seconds": 0.40768566698534414,
+      "occupied_tape": 516,
+      "prompt_tokens": 512,
+      "streaming_tokens_per_second_excluding_first": 2.45044969562364
+    }
+  },
+  "scope": "Selected baseline individual host-timed measurements for conditional analytical comparisons, not peak licensed inference.",
+  "source_physical_sha256": "84163dcefb4a1d3a4b57af03ac6811f4275151801a9410eec450936ea00097b7"
+}

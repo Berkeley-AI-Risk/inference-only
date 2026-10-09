@@ -1,0 +1,18 @@
+{
+  "actual_assertions": 15,
+  "actual_assumptions_in_rtl": 0,
+  "expected_bounded_counterexamples": [
+    "mutant_clear_always",
+    "mutant_illegal_label",
+    "mutant_invalid_reset_token"
+  ],
+  "expected_passing": [
+    "actual"
+  ],
+  "initial_reset_steps": [
+    1,
+    2
+  ],
+  "scope": "Serial command-domain and registered CLEAR correspondence. Not complete frame/tape refinement or physical security.",
+  "two_state_semantics": true
+}

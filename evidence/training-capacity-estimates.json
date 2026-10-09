@@ -1,0 +1,298 @@
+{
+  "certified_residual_training_factor": null,
+  "combined_wire_token_rate_ceiling": 5760.3686635944705,
+  "h100_inference_benchmark_measured": true,
+  "hardware_access": false,
+  "inputs": {
+    "core_clock_hz": 25000000,
+    "credited_operations_per_multiply": 2,
+    "dynamic_multiplier_instances": 5,
+    "fpga_context_positions": 128,
+    "fpga_inference_rate_proxy": 6.538955417866351,
+    "fpga_rate_scope": "Reciprocal of one measured last STEP, including host overhead; not sustained peak or a licensed rating.",
+    "h100_dense_flops_per_second": 989000000000000.0,
+    "h100_memory_bytes_per_second": 3350000000000.0,
+    "illustrative_paper_targets_not_certification_thresholds": [
+      0.01,
+      0.001,
+      0.0001
+    ],
+    "mapped_multiplier_primitives": {
+      "MULT12X12": 3,
+      "MULTALU27X18": 73
+    },
+    "measured_single_step_seconds": 0.15292962500825524,
+    "model_geometry": {
+      "head_dim": 64,
+      "hidden_size": 256,
+      "intermediate_size": 682,
+      "num_attention_heads": 4,
+      "num_hidden_layers": 6,
+      "num_key_value_heads": 2,
+      "vocab_size": 4019
+    },
+    "reference_tps_are_sensitivity_inputs_not_measurements": false,
+    "tape_slots": 2049,
+    "uart_clocks_per_bit": 217,
+    "uart_data_bits_per_byte_credited": 8,
+    "uart_directions_credited": 2,
+    "uart_frame_bytes": 5,
+    "uart_framing_bits_omitted": true
+  },
+  "measured_reference": {
+    "aggregate_tokens_per_second": 1018047.5450472439,
+    "batch": 32768,
+    "context_positions": 128,
+    "file": "evidence/h100/h100-compiled-fp16-repeat/ctx128-batch32768-float16-compile-graph.json",
+    "fpga_bit_exact": false,
+    "fpga_integer_model_agreement_measured": false,
+    "greedy_agreement_with_eager_fp16": 0.99835205078125,
+    "kind": "Repeated fixed-context cached-decode evaluation; not an autoregressive stream or certified peak rating.",
+    "mode": "compile-graph",
+    "model_revision": "c4b3a4bb81297f5316697098e1d4b65c1249daf8",
+    "numerical_acceptance": "Original logit tolerances with explicitly reported FP16 greedy rounding differences.",
+    "precision": "float16",
+    "rounding_diagnostic": {
+      "batch": 1024,
+      "covers_selected_reference_disagreements": false,
+      "file": "evidence/h100/correctness/compiled-rounding-batch1024.json",
+      "mismatching_rows_investigated": 4,
+      "seed": 20260916
+    },
+    "strict_alternative_mode": "uncompiled_cuda_graph",
+    "strict_alternative_tps": 609284.8305763772,
+    "timing_scope": "Median host-wall time, launches and synchronization included; model/prefill/compile/warmup/host-token-transfer/text/network excluded."
+  },
+  "model_work_counts": {
+    "attention_macs": 393216,
+    "context_positions": 128,
+    "dominant_matrix_operations_per_decode": 11488768,
+    "gate_products": 4092,
+    "minimum_fp16_kv_bytes_per_decode": 393216,
+    "normalization_squares": 3328,
+    "projection_and_head_macs": 5351168,
+    "scheduled_dynamic_mac_equivalent_operations_per_decode": 801272,
+    "scope": "Logical model work for one cached decode; not a complete RTL execution count. Matrix count omits nonlinearities, normalization, rotary operations, padding and implementation overhead. Dynamic count grants a full MAC to each gate product and square."
+  },
+  "network_access": false,
+  "reference_performance_models": {
+    "all_mapped_proxy_equals_one_at_multiple_of_measured": 1.6716794757437565,
+    "all_mapped_proxy_equals_one_at_reference_tps": 1701849.186386795,
+    "arithmetic_only_roof": {
+      "kind": "Ideal dense matrix-work roof ignoring memory and all other operations.",
+      "measured": false,
+      "multiple_of_measured_reference": 84.55801338890817,
+      "reference_tps": 86084077.94464993,
+      "scenario_proxy_residual_training_factors": {
+        "all_mapped_multipliers_full_credit": 50.58267126913607,
+        "five_dynamic_lanes_full_credit": 3.3278073203378993,
+        "fixed_schedule_dynamic_work_allowance": 0.06974394469450511,
+        "token_channel_wire_ceiling": 0.0013359417920235839,
+        "weight_enforcement_failure_fixed_schedule": 0.9999999999999999
+      }
+    },
+    "combined_ideal_roof_reference_tps": 8519490.559895834,
+    "combined_roof_rule": "min(arithmetic rate, bandwidth rate), equivalently max of their per-step time floors; no assumption that these times add.",
+    "fractions_are_profiled_hardware_utilization": false,
+    "hardware_specification": "https://www.nvidia.com/en-us/data-center/h100/",
+    "measured_minimum_kv_bytes_fraction_of_peak_bandwidth": 0.11949629357411852,
+    "measured_useful_matrix_flops_fraction_of_dense_peak": 0.011826200260887092,
+    "minimum_kv_traffic_only_roof": {
+      "kind": "Ideal KV-bandwidth roof: each FP16 K/V element read from HBM once; no extra copies, writes, weights or other traffic.",
+      "measured": false,
+      "multiple_of_measured_reference": 8.368460393959769,
+      "reference_tps": 8519490.559895834,
+      "scenario_proxy_residual_training_factors": {
+        "all_mapped_multipliers_full_credit": 5.006019703769175,
+        "five_dynamic_lanes_full_credit": 0.32934340156376146,
+        "fixed_schedule_dynamic_work_allowance": 0.006902355146520581,
+        "token_channel_wire_ceiling": 0.0001322142695543921,
+        "weight_enforcement_failure_fixed_schedule": 0.09896708849427031
+      }
+    },
+    "scope": "Idealized models for this independent-cache FP16 workload, not achieved rates, forecasts or a standardized peak rating. Assume the stated useful-work count and no cross-row cache sharing; omit overhead.",
+    "unmeasured_speedup_sensitivities_not_forecasts": [
+      {
+        "kind": "Unmeasured sensitivity example, not a predicted kernel speedup.",
+        "measured": false,
+        "multiple_of_measured_reference": 3.0,
+        "reference_tps": 3054142.6351417317,
+        "scenario_proxy_residual_training_factors": {
+          "all_mapped_multipliers_full_credit": 1.7946024004782692,
+          "five_dynamic_lanes_full_credit": 0.11806594739988613,
+          "fixed_schedule_dynamic_work_allowance": 0.0024744175708243535,
+          "token_channel_wire_ceiling": 4.739734550807784e-05,
+          "weight_enforcement_failure_fixed_schedule": 0.035478600782661275
+        }
+      },
+      {
+        "kind": "Unmeasured sensitivity example, not a predicted kernel speedup.",
+        "measured": false,
+        "multiple_of_measured_reference": 6.0,
+        "reference_tps": 6108285.270283463,
+        "scenario_proxy_residual_training_factors": {
+          "all_mapped_multipliers_full_credit": 3.5892048009565385,
+          "five_dynamic_lanes_full_credit": 0.23613189479977226,
+          "fixed_schedule_dynamic_work_allowance": 0.004948835141648707,
+          "token_channel_wire_ceiling": 9.479469101615567e-05,
+          "weight_enforcement_failure_fixed_schedule": 0.07095720156532255
+        }
+      }
+    ]
+  },
+  "scenarios": {
+    "all_mapped_multipliers_full_credit": {
+      "access_assumption": "Hypothetical defeat of operand, readout and scheduling restrictions; no concrete all-unit access method established.",
+      "access_model": "internal_circuit_full_access_stress",
+      "kind": "Stress proxy crediting every mapped multiplier, including fixed-operand and small units; not a whole-chip tamper bound.",
+      "operation_rate_proxy": 3800000000.0,
+      "ratios": [
+        {
+          "illustrative_target_comparisons": [
+            {
+              "proxy_over_target": 59.82008001594231,
+              "target": 0.01
+            },
+            {
+              "proxy_over_target": 598.2008001594231,
+              "target": 0.001
+            },
+            {
+              "proxy_over_target": 5982.008001594231,
+              "target": 0.0001
+            }
+          ],
+          "proxy_residual_training_factor": 0.5982008001594231,
+          "reference_kind": "measured_fp16_parent_model",
+          "reference_tps": 1018047.5450472439
+        }
+      ]
+    },
+    "five_dynamic_lanes_full_credit": {
+      "access_assumption": "Accepted weights remain fixed; useful access to every named dynamic unit is granted, not software-exposed or established by DDR access alone.",
+      "access_model": "physical_dynamic_unit_stress",
+      "kind": "MAC-equivalent over-credit of five internal integer multipliers at nominal clock; not demonstrated GEMM access.",
+      "operation_rate_proxy": 250000000.0,
+      "ratios": [
+        {
+          "illustrative_target_comparisons": [
+            {
+              "proxy_over_target": 3.935531579996204,
+              "target": 0.01
+            },
+            {
+              "proxy_over_target": 39.35531579996204,
+              "target": 0.001
+            },
+            {
+              "proxy_over_target": 393.5531579996204,
+              "target": 0.0001
+            }
+          ],
+          "proxy_residual_training_factor": 0.03935531579996204,
+          "reference_kind": "measured_fp16_parent_model",
+          "reference_tps": 1018047.5450472439
+        }
+      ]
+    },
+    "fixed_schedule_dynamic_work_allowance": {
+      "access_assumption": "Physical-memory access plus assumed complete immutable execution/rate bound; not a certified consequence of interface proofs.",
+      "access_model": "physical_fixed_schedule_stress",
+      "fixed_operation_count_premise_certified": false,
+      "kind": "Conditional model-operation allowance if a verified, unaccelerated schedule limits the named dynamic work; that premise and useful result recovery are not established.",
+      "operation_rate_proxy": 5239481.885584607,
+      "operations_per_decode_credited": 801272,
+      "ratios": [
+        {
+          "illustrative_target_comparisons": [
+            {
+              "proxy_over_target": 0.08248058569414513,
+              "target": 0.01
+            },
+            {
+              "proxy_over_target": 0.8248058569414513,
+              "target": 0.001
+            },
+            {
+              "proxy_over_target": 8.248058569414512,
+              "target": 0.0001
+            }
+          ],
+          "proxy_residual_training_factor": 0.0008248058569414512,
+          "reference_kind": "measured_fp16_parent_model",
+          "reference_tps": 1018047.5450472439
+        }
+      ]
+    },
+    "token_channel_wire_ceiling": {
+      "access_assumption": "Host software and token interface; unchanged implementation, protocol and nominal clock. Only explicit matrix I/O is counted.",
+      "access_model": "software_token_interface",
+      "kind": "Conditional communication ceiling for explicit dense matrix I/O through tokens only.",
+      "operation_rate_proxy": 100362.01494141304,
+      "ratios": [
+        {
+          "illustrative_target_comparisons": [
+            {
+              "proxy_over_target": 0.0015799115169359277,
+              "target": 0.01
+            },
+            {
+              "proxy_over_target": 0.01579911516935928,
+              "target": 0.001
+            },
+            {
+              "proxy_over_target": 0.15799115169359276,
+              "target": 0.0001
+            }
+          ],
+          "proxy_residual_training_factor": 1.5799115169359278e-05,
+          "reference_kind": "measured_fp16_parent_model",
+          "reference_tps": 1018047.5450472439
+        }
+      ]
+    },
+    "weight_enforcement_failure_fixed_schedule": {
+      "access_assumption": "Hypothetical compromise of hardware weight acceptance by an unspecified cause; not a public weight-update command.",
+      "access_model": "weight_enforcement_compromise",
+      "kind": "Counterfactual changeable, usable weights at unchanged decode rate: credits dominant matrix work, ignoring replacement/restart costs. No enforcement failure or usable generic-model service demonstrated; not a whole-device bound.",
+      "operation_rate_proxy": 75124541.75820956,
+      "operations_per_decode_credited": 11488768,
+      "ratios": [
+        {
+          "illustrative_target_comparisons": [
+            {
+              "proxy_over_target": 1.1826200260887092,
+              "target": 0.01
+            },
+            {
+              "proxy_over_target": 11.826200260887092,
+              "target": 0.001
+            },
+            {
+              "proxy_over_target": 118.26200260887092,
+              "target": 0.0001
+            }
+          ],
+          "proxy_residual_training_factor": 0.011826200260887092,
+          "reference_kind": "measured_fp16_parent_model",
+          "reference_tps": 1018047.5450472439
+        }
+      ],
+      "weight_enforcement_failure_demonstrated": false
+    }
+  },
+  "schema": "conditional-training-capacity-v4",
+  "scope": "Conditional arithmetic scenarios using a measured FP16 parent-model reference by default; not exact FPGA-model inference, a measured training attack or a certified residual training factor.",
+  "source_sha256": {
+    "evidence/baseline-current/implementation.json": "c4dfcef81a9f511f104348a9a3d15a75a1ba4f826359acaea62da50cb1601104",
+    "evidence/baseline-current/metrics.json": "7cce454a3da673e5f1111e20665824a3df1fc1d9ecae2b7a298f3cabb076bc50",
+    "evidence/h100/IMPORT.json": "cde9e645b29d191e5d25ad29aee73ed6f4b5bf39bc7715edd62ff69276cfa9fd",
+    "evidence/h100/correctness/compiled-rounding-batch1024.json": "2ab6d71fb5fb8aef13cedd51032f36e84aac2ceed509087ee667676830598af2",
+    "evidence/h100/h100-compiled-fp16-repeat/ctx128-batch32768-float16-compile-graph.json": "1ee780a017f63fca95e377a4cbe67b0817dbb2f25eabaafc750a4b22e3d32808",
+    "hardware/project/uart_core.sv": "315f5d20fa93a5f974eeef1b26220952c6f9ab4264cd6309a1de7cb35ea1832a",
+    "reference/reference/model.py": "58d0d8d6d858a74d9bb11a7103b1574b3a0be8eccd0d149363bd10380ffac049",
+    "tools/estimate_training_capacity.py": "46d1c97380ecf55ae1285578d89246ff55021cc5978317f72eef0ff118a94bee"
+  },
+  "training_attack_demonstrated": false,
+  "uart_baud": 115207.3732718894
+}

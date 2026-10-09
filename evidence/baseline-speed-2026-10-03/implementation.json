@@ -1,0 +1,33 @@
+{
+  "image_sha256": "7a060dca5be62c969530c4d7e1605c1c961f02eccb83dffe0f4c767745df97e9",
+  "mapped_multiplier_primitives": {
+    "MULT12X12": 3,
+    "MULTALU27X18": 73
+  },
+  "nominal_inference_clock_hz": 25000000,
+  "resources": {
+    "BSRAM": {
+      "available": 340.0,
+      "used": 196.0
+    },
+    "CLS": {
+      "available": 69120.0,
+      "used": 56751.0
+    },
+    "DSP": {
+      "available": 298.0,
+      "used": 74.5
+    },
+    "Logic": {
+      "available": 138240.0,
+      "used": 82870.0
+    },
+    "Register": {
+      "available": 139095.0,
+      "used": 48496.0
+    }
+  },
+  "scope": "Selected baseline mapped-resource census; not useful attacker access or timing signoff.",
+  "source_native_sha256": "bdc0136f8cd24a2b0969acce274243edc576dada32ea7a6846cfab8d62b8eb7d",
+  "timing_signoff_complete": false
+}

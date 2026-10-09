@@ -1,0 +1,123 @@
+{
+  "assertions": {
+    "attention": 34,
+    "history": 221,
+    "parent": 325
+  },
+  "audit_regression_tests": 44,
+  "both_solvers_complete": true,
+  "encrypted_variant_formally_verified": false,
+  "expectation_change_after_replay": "Recorded per-stage receipt, elapsed-time and solver-result metadata only.",
+  "fault_audit_regression_tests": 8,
+  "guard_attention_joint_theorem": false,
+  "guard_full_geometry": {
+    "cancellation_cases": {
+      "read": 13,
+      "tag_groups": 4,
+      "write": 10
+    },
+    "collision": true,
+    "commands": 275913,
+    "engine": "verilator",
+    "original_receipt_sha256": "5f694eb558605f28120829d89383513b047711d32383841b1f653a9dbbf7bbb5",
+    "passed": true,
+    "simulation_stdout_sha256": "9a6448d1e2e5ed4f4875a96027504aac585854d67106ae4e82995f30f73e2025",
+    "source_sha256": {
+      "simulation/kv-protected/kv_integrity_model.py": "7bfc6552528c7e56cb03918b770264c63d20cd1db6021ccbb6f75ea9ec3e1151",
+      "simulation/kv-protected/role-pages/guard_tb.sv": "dde852835c37fa896c3c81621368de88c0c38dcdfb47795ad8cb69427679947d",
+      "simulation/kv-protected/role-pages/model.py": "4753746aaabb31652316ecc2944eb16d0af5548411bbdb275f33c9e97d18441c",
+      "simulation/kv-protected/role-pages/run_guard.py": "7ee7624e4badf69edbcab26197d402b4b2b7034db3b291cc38395f57615eef22",
+      "simulation/kv-protected/test_kv_integrity_model.py": "08b27b3b2c5b58c67fed5f3a5adeb388b4964bc7ea9205306a1ae23f50800c68",
+      "variants/kv-protected/hardware/project/kv_integrity_guard.sv": "4a90d4233f628c3ca69e42266c0a9064c5ffd766b45e2e403389696a0a2d2299",
+      "variants/kv-protected/hardware/project/kv_page_hash.sv": "3ee9a8a716916dcaba6d3434f722b301b3e4fb6b258ee429a457bb246191faba",
+      "variants/kv-protected/hardware/project/sha.sv": "db60d6be50a62cd0d7911f4d9edc12f736d0e9a808d661df1133e9cb50f75ac0"
+    },
+    "watchdog": true
+  },
+  "hardware_access": false,
+  "induction_fault_controls_detected": 23,
+  "negative_controls_detected": 4,
+  "network_access": false,
+  "original_replay_receipt_sha256": "baa94348e37acfee7b07f3db436ff993806395a6792af2c55ff4c9df87956368",
+  "passed": true,
+  "proof_sources": {
+    "formal/kv-epoch/epoch_monitor.inc.sv": "8efd16d62e4135dd7243bb38bd14f66b641ce9a61794821f8f33ae23a6c6cace",
+    "formal/kv-integrity/attention_model.py": "c25a1233a97acca95b66079b72e4034f34fbffbf4075f65b17e91352be8854a9",
+    "formal/kv-integrity/attention_monitor.inc.sv": "11117dfcc3f65c08bc19457bd08e421b16707b74807f7ff3a18022a55150fbfd",
+    "formal/kv-integrity/audit_attention.py": "32ffa86ff168dfcd04e083474fc769797946dda0730a6b142267836568be6cab",
+    "formal/kv-integrity/audit_contract.py": "e97e88fd9b5b13589c9ac4fe644e3a82ff877d8f22a9943a9751d98e06885c9d",
+    "formal/kv-integrity/audit_control.py": "513758b2ec2f0f5b0eda89d2699764fedfc717a97fe670b546a2a24f5e5b0d0f",
+    "formal/kv-integrity/audit_fault_controls.py": "7c929e48c0f487bd2779a7536f018a6282853d20dbbd6f53dae4b57dc260a83f",
+    "formal/kv-integrity/audit_hash.py": "488912e00e15d4e1ee92bdf4c4768261ae8b24bdddf036725676f3ee70f5502d",
+    "formal/kv-integrity/audit_history.py": "16e4be683271abaa9d4e085483c5eb2bdb86dce2fb01afc6f88c3e2a1c448037",
+    "formal/kv-integrity/audit_parent.py": "bf5c2a472386a320c90683ccfc3492fc53b5a0f1c851fbd753f97a08c3963891",
+    "formal/kv-integrity/check_fault_controls.py": "2128b9247204b892f377a1889159ce401874d44c4afa1b913d80cc52dd12e513",
+    "formal/kv-integrity/compress_boundary.sv": "82ee37da7ef95c49eedc799a8230a2c9e9d00ed94c2fab754e0a112484f16722",
+    "formal/kv-integrity/control_monitor.inc.sv": "b8919842740844660c46a4e50080823e084a1c7d9e0c4d6c47c0773e16a5308b",
+    "formal/kv-integrity/hash_boundary.sv": "0570d2258b88eabc6b723ce952bb94738f1c24f43e465e9bbe3cadf5d7f2bed8",
+    "formal/kv-integrity/hash_connection_monitor.inc.sv": "512b4e9c58a1b98c254d0976f5109ecb43f35f121a2ce65a0662ef4812f8ba59",
+    "formal/kv-integrity/hash_monitor.inc.sv": "a27fdfb26cef9dd76f12435a77b9503c3e458752b1b924f95ac05d308338e01a",
+    "formal/kv-integrity/parent_model.py": "b01f86aaada6bfa3b31fcf98af7fb7f68e9aa69c32052d83b7bc7c49aa9e5bd6",
+    "formal/kv-integrity/parent_monitor.inc.sv": "f0f4403e2ed9347578b1715ca7e69489b7a01402082664ee0a68101aa26af974",
+    "formal/kv-integrity/partial_history_monitor.inc.sv": "996ddb0261c33240e71f64809c97dd14a3d23e20b7d9834f1b4e367c7acac550",
+    "formal/kv-integrity/run_attention.py": "f88d3cbfd666a7e93a7688eb6d87b261ae2bb558a8097d407680c5d4c72b02ee",
+    "formal/kv-integrity/run_control.py": "e073370f117a317cb544c6ec6dda4fa7ee0943f0ba36be4fdd44b762bbc23342",
+    "formal/kv-integrity/run_parent.py": "4f8a031008321064c4ebe6a1b532472f2d91782dbdfd592ceae6eca0277c0717",
+    "formal/kv-integrity/staging_monitor.inc.sv": "fb1f49245e2181001c1481c958a6186c3daf993ad5699a0a91d6c4759305ed2b",
+    "formal/kv-integrity/tag_history_monitor.inc.sv": "849f641e80448fc8afd203e0079ea9ec7c0c16dfe7ddbce1e7bd3a8bfa0bf337",
+    "formal/kv-integrity/test_attention_auditor.py": "050853068a4a24bd929e223a105fa01db7887b954f74f212ab0833500d8d8065",
+    "formal/kv-integrity/test_contract_auditor.py": "e887112ac0968212bd0a04c97a9581e42145e7c8008ee4c437e8ea91fc44b7d4",
+    "formal/kv-integrity/test_fault_controls_audit.py": "8d46d3decd66c06fceddd0b97bc8993aa8bac7c82b2395c47ae95315b569f261",
+    "formal/kv-integrity/test_history_auditor.py": "f8d40b3135e5b29a7d05a0c12e082895d2f49d4bc2c893ef0bc86df992807fab",
+    "formal/kv-integrity/test_parent_auditor.py": "46fe3661ce7471fa96153d1881711a5b43f4ea368cb2c536856735d76004b50a",
+    "formal/kv-integrity/write_hash_connection_monitor.inc.sv": "21b756da05224729aad574147ded3d6819f09af7be8ca2f4f2a133cf65a50b68",
+    "formal/kv-integrity/write_history_monitor.inc.sv": "d91a2c08806ea3f39ca9d62adb15511ebc51f3df41831a5833548036fabbd150",
+    "tools/check_kv_integrity.py": "55c2ae63b8f2ac5b2f1409c3719a015d6207d25b7714e1c02faad66411e20b73",
+    "tools/test_kv_integrity_runner.py": "e2fe6bd99f937c2f00b3178200edf0895d53807d3dbe16c9582221fd14acef07",
+    "variants/kv-protected/hardware/project/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv": "87fddc7e6e4c99c1eb85e130c7557523d3a3b08d4985da23001750039184be1a",
+    "variants/kv-protected/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv": "65ed4fe49d0f3af4bbe4363fb08ce0f93776e665c1331ecf29cb68de773ea254",
+    "variants/kv-protected/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv": "922a5777c17a967fde39a2b8336ad819fcb6709d2b9a8b3552675188d32d1c34",
+    "variants/kv-protected/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": "4c1e2e2eeef7eeb0736be32545336d49acce752088f5339a2e3ca6621e304dcc",
+    "variants/kv-protected/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6",
+    "variants/kv-protected/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": "0e4a38023c711abae1bdf1173444601723dc90a25b1f414c5618bf908432d4da",
+    "variants/kv-protected/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": "55d56d5a4add9afa81b5622303ff0c81c27734fe23ac7ffa5b849d3944d8fe62",
+    "variants/kv-protected/hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv": "e47bf421e10435e6bffa10e0219415630d57ef00ccdc4040ca7d8d9f720e9477",
+    "variants/kv-protected/hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv": "c09e6e1f864a9827a372d7486b22d20d3e6db700df6aff410d982c7b93a84e2d",
+    "variants/kv-protected/hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv": "7dece06c509b57f15859ec33cc758bc1734de572c5b3e55efa37774678f64854",
+    "variants/kv-protected/hardware/project/fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv": "21c3ebc878f36c7260bf203f78174584d0c3e0ce18546966707ead45a0631b83",
+    "variants/kv-protected/hardware/project/kv_integrity_guard.sv": "4a90d4233f628c3ca69e42266c0a9064c5ffd766b45e2e403389696a0a2d2299",
+    "variants/kv-protected/hardware/project/kv_page_hash.sv": "3ee9a8a716916dcaba6d3434f722b301b3e4fb6b258ee429a457bb246191faba",
+    "variants/kv-protected/hardware/project/mapper_portable.sv": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc",
+    "variants/kv-protected/hardware/project/shared_token_probe.sv": "3cc083d9927ca1193434eab51d79a1186f7ee3001df9f289ad344fae2bde3c8c"
+  },
+  "protected_hardware_inputs_sha256": "cfff67c4559b290287ea0c024f4782154fc0c27aa62bb3b264b2e5bf472ed7b2",
+  "protected_image_sha256": "72d5a54e06ed2017e653122f3daecf073f239a917b79f24d1e7b886d68a21a2f",
+  "published_expected_sha256": "705f20332b56f135dcd73c2c50277c29e8034ac1f16a19376e0c1ea304aa8df3",
+  "replayed_expected_sha256": "197652cf4c879700e8b477bda9a4be01bf946111265a7d7a796104a60585cfea",
+  "schema": "tang-speed-release-replay-v1",
+  "scope": "Fresh source-bound protected proofs and controls. Full-geometry guard simulation retained for identical sources. Not encrypted-variant formal verification.",
+  "sha_compression_correctness_proved": false,
+  "solver_queries": {
+    "attention": 72,
+    "history": 446,
+    "parent": 672
+  },
+  "stages": {
+    "attention": {
+      "assertions": 34,
+      "finished_receipt_sha256": "9596cf13fa8207d0fc07a6cc54505eb62197ab115baa2e0ee7a9f12f75c79c97",
+      "solver_queries": 72
+    },
+    "history": {
+      "assertions": 221,
+      "finished_receipt_sha256": "435734ba478eb3130a211bcabeccc51142d8cabb51c22eea5de6ff3776858111",
+      "solver_queries": 446
+    },
+    "parent": {
+      "assertions": 325,
+      "finished_receipt_sha256": "160bf445005975905b40a8e34d7f8ab2f4433fb1f986e0d8792a6bcf5083578f",
+      "solver_queries": 672
+    }
+  },
+  "whole_machine_refinement": false
+}

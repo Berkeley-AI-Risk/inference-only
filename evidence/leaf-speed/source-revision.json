@@ -1,0 +1,722 @@
+{
+  "changes": {
+    "hardware/project/candidate.sv": {
+      "after_sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374",
+      "before_sha256": "ef9529dbc514bcc1f401a1694bd33ecd5435c6a277527fa483e93495b74e6f05",
+      "reverse_edits": [
+        {
+          "after": [
+            "// predecessor; three clocks after acceptance produce one held response.\n"
+          ],
+          "before": [
+            "// predecessor; four clocks after acceptance produce one held response.\n"
+          ],
+          "end": 5,
+          "start": 4
+        },
+        {
+          "after": [
+            "    localparam [2:0] IDLE=0,LOW=1,HIGH=2,ROUND=3,HOLD=5;\n"
+          ],
+          "before": [
+            "    localparam [2:0] IDLE=0,LOW=1,HIGH=2,ROUND=3,SIGN=4,HOLD=5;\n"
+          ],
+          "end": 19,
+          "start": 18
+        },
+        {
+          "after": [],
+          "before": [
+            "    logic [63:0] rounded_q;\n",
+            "    logic rounded_fault_q;\n"
+          ],
+          "end": 29,
+          "start": 29
+        },
+        {
+          "after": [
+            "    // Merge sign and RNE increment into one modular two's-complement adder.\n",
+            "    wire [63:0] signed_right = (shifted_q[127:64] ^ {64{negative_q}}) +\n",
+            "        {63'd0, (right_round_up ^ negative_q)};\n",
+            "    wire result_fault = bad_count_q || (left_q && left_overflow);\n"
+          ],
+          "before": [],
+          "end": 41,
+          "start": 37
+        },
+        {
+          "after": [],
+          "before": [
+            "        if(state_q==ROUND) begin\n",
+            "            rounded_q<=left_q ? left_result[63:0] : shifted_q[127:64]+64'(right_round_up);\n",
+            "            rounded_fault_q<=bad_count_q || (left_q && left_overflow);\n",
+            "        end\n"
+          ],
+          "end": 54,
+          "start": 54
+        },
+        {
+          "after": [
+            "            ROUND: begin\n",
+            "                state_q<=HOLD;response_valid_o<=1;response_fault_o<=result_fault;\n",
+            "                response_result_o<=(result_fault || force_zero_q) ? 64'sd0 :\n",
+            "                    (left_q ? $signed(left_result[63:0]) : $signed(signed_right));\n"
+          ],
+          "before": [
+            "            ROUND: state_q<=SIGN;\n",
+            "            SIGN: begin\n",
+            "                state_q<=HOLD;response_valid_o<=1;response_fault_o<=rounded_fault_q;\n",
+            "                response_result_o<=(rounded_fault_q || force_zero_q) ? 64'sd0 :\n",
+            "                    ((negative_q && !left_q) ? -$signed(rounded_q) : $signed(rounded_q));\n"
+          ],
+          "end": 68,
+          "start": 64
+        }
+      ]
+    },
+    "hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv": {
+      "after_sha256": "c09e6e1f864a9827a372d7486b22d20d3e6db700df6aff410d982c7b93a84e2d",
+      "before_sha256": "39378bc823bd66614ddedee038e8b42374d8bdf6cfb4480363760c8fcbb5f43b",
+      "reverse_edits": [
+        {
+          "after": [
+            "// PRIVATE caller bound: abs(numerator) < 2^46. Probability operands\n",
+            "// are zero-extended 46-bit values; value operands are signed 38-bit.\n",
+            "// The first 18 zero iterations are omitted. One bit retires per clock.  There is deliberately\n"
+          ],
+          "before": [
+            "// One restoring-division bit is retired per clock.  There is deliberately\n"
+          ],
+          "end": 7,
+          "start": 4
+        },
+        {
+          "after": [
+            "                iteration_q <= 6'd18;\n"
+          ],
+          "before": [
+            "                iteration_q <= 6'd0;\n"
+          ],
+          "end": 91,
+          "start": 90
+        },
+        {
+          "after": [
+            "                dividend_shift_q <= (request_numerator_i[63]\n"
+          ],
+          "before": [
+            "                dividend_shift_q <= request_numerator_i[63]\n"
+          ],
+          "end": 95,
+          "start": 94
+        },
+        {
+          "after": [
+            "                    : $unsigned(request_numerator_i)) << 18;\n"
+          ],
+          "before": [
+            "                    : $unsigned(request_numerator_i);\n"
+          ],
+          "end": 97,
+          "start": 96
+        }
+      ]
+    },
+    "hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+      "after_sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5",
+      "before_sha256": "c1a9adf7f97700aecb8fdba05df31303c73fa73f7725498ab930993d180f35b7",
+      "reverse_edits": [
+        {
+          "after": [
+            "// Private fixed-model arithmetic. The sqrt remains a frozen Board0 wrapper.\n",
+            "// RMSNorm division uses the exact bounded helper defined below.\n"
+          ],
+          "before": [
+            "// Namespace-only wrappers around the source-authenticated Board0 arithmetic.\n",
+            "// The runner hashes the frozen predecessor sources before and after every run.\n"
+          ],
+          "end": 6,
+          "start": 4
+        },
+        {
+          "after": [
+            "    board1_rmsnorm_bounded28_divider u_exact_bounded_divider (\n"
+          ],
+          "before": [
+            "    board0_exact_rne_div_signed64_iterative u_exact_board0_divider (\n"
+          ],
+          "end": 35,
+          "start": 34
+        },
+        {
+          "after": [
+            "\n",
+            "`timescale 1ns/1ps\n",
+            "`default_nettype none\n",
+            "\n",
+            "// Exact, single-client replacement for the combinational\n",
+            "// rne_div_signed64 helper used by the fixed model.  The magnitude quotient\n",
+            "// and remainder are formed with one restoring-division bit per clock; no\n",
+            "// synthesizable / or % operator is present.  A non-cancelled request always\n",
+            "// produces a held response exactly 28 clocks after its acceptance.\n",
+            "// PRIVATE caller bound: abs(numerator) < 2^28. RMSNorm supplies\n",
+            "// sign-extended int16 << 12, including -2^27. Not a general divider.\n",
+            "module board1_rmsnorm_bounded28_divider (\n",
+            "    input  wire                    clk,\n",
+            "    input  wire                    rst_n,\n",
+            "    input  wire                    cancel_i,\n",
+            "\n",
+            "    input  wire                    request_valid_i,\n",
+            "    output logic                   request_ready_o,\n",
+            "    input  wire signed [63:0]      request_numerator_i,\n",
+            "    input  wire [63:0]             request_denominator_i,\n",
+            "\n",
+            "    output logic                   response_valid_o,\n",
+            "    input  wire                    response_ready_i,\n",
+            "    output logic signed [63:0]     response_result_o,\n",
+            "    output logic                   response_fault_o\n",
+            ");\n",
+            "    logic                          busy_q;\n",
+            "    logic [5:0]                    iteration_q;\n",
+            "    logic                          negative_q;\n",
+            "    logic                          divide_by_zero_q;\n",
+            "    logic [63:0]                   divisor_q;\n",
+            "    logic [63:0]                   dividend_shift_q;\n",
+            "    logic [63:0]                   quotient_q;\n",
+            "    logic [64:0]                   remainder_q;\n",
+            "\n",
+            "    logic [64:0]                   shifted_remainder;\n",
+            "    logic [64:0]                   reduced_remainder;\n",
+            "    logic [63:0]                   shifted_quotient;\n",
+            "    logic [63:0]                   rounded_magnitude;\n",
+            "    logic                          quotient_bit;\n",
+            "    logic                          round_up;\n",
+            "\n",
+            "    // A response is deliberately retired before another request is admitted.\n",
+            "    // This makes the one-outstanding-request ownership unambiguous and costs\n",
+            "    // only one idle clock between independent operations.\n",
+            "    always_comb begin\n",
+            "        request_ready_o = rst_n && !cancel_i && !busy_q && !response_valid_o;\n",
+            "\n",
+            "        shifted_remainder = {remainder_q[63:0], dividend_shift_q[63]};\n",
+            "        if (shifted_remainder >= {1'b0, divisor_q}) begin\n",
+            "            reduced_remainder = shifted_remainder - {1'b0, divisor_q};\n",
+            "            quotient_bit = 1'b1;\n",
+            "        end else begin\n",
+            "            reduced_remainder = shifted_remainder;\n",
+            "            quotient_bit = 1'b0;\n",
+            "        end\n",
+            "        shifted_quotient = {quotient_q[62:0], quotient_bit};\n",
+            "\n",
+            "        // reduced_remainder is the final mathematical remainder during the\n",
+            "        // last iteration.  The 65-bit comparison cannot overflow at 2*r.\n",
+            "        round_up = ({reduced_remainder[63:0], 1'b0} >\n",
+            "                    {1'b0, divisor_q}) ||\n",
+            "                   (({reduced_remainder[63:0], 1'b0} ==\n",
+            "                     {1'b0, divisor_q}) && shifted_quotient[0]);\n",
+            "        rounded_magnitude = shifted_quotient +\n",
+            "                            {{63{1'b0}}, round_up};\n",
+            "    end\n",
+            "\n",
+            "    always_ff @(posedge clk or negedge rst_n) begin\n",
+            "        if (!rst_n) begin\n",
+            "            busy_q <= 1'b0;\n",
+            "            iteration_q <= 6'd0;\n",
+            "            negative_q <= 1'b0;\n",
+            "            divide_by_zero_q <= 1'b0;\n",
+            "            divisor_q <= 64'd0;\n",
+            "            dividend_shift_q <= 64'd0;\n",
+            "            quotient_q <= 64'd0;\n",
+            "            remainder_q <= 65'd0;\n",
+            "            response_valid_o <= 1'b0;\n",
+            "            response_result_o <= 64'sd0;\n",
+            "            response_fault_o <= 1'b0;\n",
+            "        end else if (cancel_i) begin\n",
+            "            busy_q <= 1'b0;\n",
+            "            iteration_q <= 6'd0;\n",
+            "            negative_q <= 1'b0;\n",
+            "            divide_by_zero_q <= 1'b0;\n",
+            "            divisor_q <= 64'd0;\n",
+            "            dividend_shift_q <= 64'd0;\n",
+            "            quotient_q <= 64'd0;\n",
+            "            remainder_q <= 65'd0;\n",
+            "            response_valid_o <= 1'b0;\n",
+            "            response_result_o <= 64'sd0;\n",
+            "            response_fault_o <= 1'b0;\n",
+            "        end else begin\n",
+            "            if (response_valid_o && response_ready_i) begin\n",
+            "                response_valid_o <= 1'b0;\n",
+            "                response_result_o <= 64'sd0;\n",
+            "                response_fault_o <= 1'b0;\n",
+            "            end\n",
+            "\n",
+            "            if (request_valid_i && request_ready_o) begin\n",
+            "                busy_q <= 1'b1;\n",
+            "                iteration_q <= 6'd36;\n",
+            "                negative_q <= request_numerator_i[63];\n",
+            "                divide_by_zero_q <= (request_denominator_i == 64'd0);\n",
+            "                divisor_q <= request_denominator_i;\n",
+            "                // Unary negation intentionally occurs at 64-bit width.  Its\n",
+            "                // bit pattern is also the correct magnitude for INT64_MIN.\n",
+            "                dividend_shift_q <= (request_numerator_i[63]\n",
+            "                    ? $unsigned(-request_numerator_i)\n",
+            "                    : $unsigned(request_numerator_i)) << 36;\n",
+            "                quotient_q <= 64'd0;\n",
+            "                remainder_q <= 65'd0;\n",
+            "                response_result_o <= 64'sd0;\n",
+            "                response_fault_o <= 1'b0;\n",
+            "            end else if (busy_q) begin\n",
+            "                dividend_shift_q <= {dividend_shift_q[62:0], 1'b0};\n",
+            "                quotient_q <= shifted_quotient;\n",
+            "                remainder_q <= reduced_remainder;\n",
+            "\n",
+            "                if (iteration_q == 6'd63) begin\n",
+            "                    busy_q <= 1'b0;\n",
+            "                    response_valid_o <= 1'b1;\n",
+            "                    if (divide_by_zero_q) begin\n",
+            "                        // Preserve the legacy result while making the invalid\n",
+            "                        // divisor explicit to its fixed-model caller.\n",
+            "                        response_result_o <= 64'sd0;\n",
+            "                        response_fault_o <= 1'b1;\n",
+            "                    end else begin\n",
+            "                        response_result_o <= negative_q\n",
+            "                            ? $signed(~rounded_magnitude + 64'd1)\n",
+            "                            : $signed(rounded_magnitude);\n",
+            "                        response_fault_o <= 1'b0;\n",
+            "                    end\n",
+            "                end else begin\n",
+            "                    iteration_q <= iteration_q + 6'd1;\n",
+            "                end\n",
+            "            end\n",
+            "        end\n",
+            "    end\n",
+            "endmodule\n",
+            "\n",
+            "`default_nettype wire\n"
+          ],
+          "before": [],
+          "end": 193,
+          "start": 50
+        }
+      ]
+    },
+    "host-app/hardware-inputs-kv-protected.json": {
+      "after_sha256": "95a3d3a240505776a80e382af9ed1ecb5babba6634759bce04951415a7e783be",
+      "before_sha256": "bf7ed4f054808b2605bdfa6ca838a33453a976be6c976c85c6a81bf708bebe1d",
+      "reverse_edits": [
+        {
+          "after": [
+            "  \"project/candidate.sv\": \"dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374\",\n"
+          ],
+          "before": [
+            "  \"project/candidate.sv\": \"ef9529dbc514bcc1f401a1694bd33ecd5435c6a277527fa483e93495b74e6f05\",\n"
+          ],
+          "end": 6,
+          "start": 5
+        },
+        {
+          "after": [
+            "  \"project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv\": \"c09e6e1f864a9827a372d7486b22d20d3e6db700df6aff410d982c7b93a84e2d\",\n"
+          ],
+          "before": [
+            "  \"project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv\": \"39378bc823bd66614ddedee038e8b42374d8bdf6cfb4480363760c8fcbb5f43b\",\n"
+          ],
+          "end": 36,
+          "start": 35
+        },
+        {
+          "after": [
+            "  \"project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv\": \"d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5\",\n"
+          ],
+          "before": [
+            "  \"project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv\": \"c1a9adf7f97700aecb8fdba05df31303c73fa73f7725498ab930993d180f35b7\",\n"
+          ],
+          "end": 55,
+          "start": 54
+        }
+      ]
+    },
+    "host-app/hardware-inputs.json": {
+      "after_sha256": "2e96a098adc80fe9484f5acc62ba77ab1c90c87ffb43b848b14b3eb586a94f79",
+      "before_sha256": "8e14ee96d3381c31e5ce8e215cb1f26af52e5697c2a7a2c2236f670ac51c0126",
+      "reverse_edits": [
+        {
+          "after": [
+            "  \"project/candidate.sv\": \"dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374\",\n"
+          ],
+          "before": [
+            "  \"project/candidate.sv\": \"ef9529dbc514bcc1f401a1694bd33ecd5435c6a277527fa483e93495b74e6f05\",\n"
+          ],
+          "end": 6,
+          "start": 5
+        },
+        {
+          "after": [
+            "  \"project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv\": \"c09e6e1f864a9827a372d7486b22d20d3e6db700df6aff410d982c7b93a84e2d\",\n"
+          ],
+          "before": [
+            "  \"project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv\": \"39378bc823bd66614ddedee038e8b42374d8bdf6cfb4480363760c8fcbb5f43b\",\n"
+          ],
+          "end": 35,
+          "start": 34
+        },
+        {
+          "after": [
+            "  \"project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv\": \"d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5\",\n"
+          ],
+          "before": [
+            "  \"project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv\": \"c1a9adf7f97700aecb8fdba05df31303c73fa73f7725498ab930993d180f35b7\",\n"
+          ],
+          "end": 54,
+          "start": 53
+        }
+      ]
+    },
+    "host-app/runtime_profile.py": {
+      "after_sha256": "8deb6ba53fbdbee046fe98c0572e5fc261366457bf89f24d903f6174c41a3fc4",
+      "before_sha256": "c2aa266e07ab03e39a13cdf93e489ee35f742f49e2dff40b2733efddff6ee9b0",
+      "reverse_edits": [
+        {
+          "after": [
+            "HARDWARE_INPUTS_SHA256 = '0144bfd48a6f043d195699e299f5ce0a63e4161613d54ccd6babcd560603a4d0'\n"
+          ],
+          "before": [
+            "HARDWARE_INPUTS_SHA256 = '3e57e249d4ff7ed898a7fe02ccbb8b8e96eb099370dd9e3ead5bbfb86e6c58e1'\n"
+          ],
+          "end": 17,
+          "start": 16
+        },
+        {
+          "after": [
+            "        'inputs_sha256': 'e007805f03d172167df1b669929730382a8c0d1a9e8a9f097c2c20426dbff2e9',\n"
+          ],
+          "before": [
+            "        'inputs_sha256': '5d46b50e85ec39b7ab9044585af84f17760a72c831764658908d8376ea3bedc0',\n"
+          ],
+          "end": 28,
+          "start": 27
+        }
+      ]
+    },
+    "host-app/test_release_target.py": {
+      "after_sha256": "5593edffcf29e0a4a716623fa85b65096062412dc264ce721e939a81dfc9d128",
+      "before_sha256": "c9aec1e2f7f7325e221ceb6b301d512eff1cbc7783f792be3dff496c711b6338",
+      "reverse_edits": [
+        {
+          "after": [
+            "        self.assertEqual(profile.HARDWARE_INPUTS_SHA256, \"0144bfd48a6f043d195699e299f5ce0a63e4161613d54ccd6babcd560603a4d0\")\n"
+          ],
+          "before": [
+            "        self.assertEqual(profile.HARDWARE_INPUTS_SHA256, \"3e57e249d4ff7ed898a7fe02ccbb8b8e96eb099370dd9e3ead5bbfb86e6c58e1\")\n"
+          ],
+          "end": 11,
+          "start": 10
+        }
+      ]
+    },
+    "variants/kv-protected/hardware/project/candidate.sv": {
+      "after_sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374",
+      "before_sha256": "ef9529dbc514bcc1f401a1694bd33ecd5435c6a277527fa483e93495b74e6f05",
+      "reverse_edits": [
+        {
+          "after": [
+            "// predecessor; three clocks after acceptance produce one held response.\n"
+          ],
+          "before": [
+            "// predecessor; four clocks after acceptance produce one held response.\n"
+          ],
+          "end": 5,
+          "start": 4
+        },
+        {
+          "after": [
+            "    localparam [2:0] IDLE=0,LOW=1,HIGH=2,ROUND=3,HOLD=5;\n"
+          ],
+          "before": [
+            "    localparam [2:0] IDLE=0,LOW=1,HIGH=2,ROUND=3,SIGN=4,HOLD=5;\n"
+          ],
+          "end": 19,
+          "start": 18
+        },
+        {
+          "after": [],
+          "before": [
+            "    logic [63:0] rounded_q;\n",
+            "    logic rounded_fault_q;\n"
+          ],
+          "end": 29,
+          "start": 29
+        },
+        {
+          "after": [
+            "    // Merge sign and RNE increment into one modular two's-complement adder.\n",
+            "    wire [63:0] signed_right = (shifted_q[127:64] ^ {64{negative_q}}) +\n",
+            "        {63'd0, (right_round_up ^ negative_q)};\n",
+            "    wire result_fault = bad_count_q || (left_q && left_overflow);\n"
+          ],
+          "before": [],
+          "end": 41,
+          "start": 37
+        },
+        {
+          "after": [],
+          "before": [
+            "        if(state_q==ROUND) begin\n",
+            "            rounded_q<=left_q ? left_result[63:0] : shifted_q[127:64]+64'(right_round_up);\n",
+            "            rounded_fault_q<=bad_count_q || (left_q && left_overflow);\n",
+            "        end\n"
+          ],
+          "end": 54,
+          "start": 54
+        },
+        {
+          "after": [
+            "            ROUND: begin\n",
+            "                state_q<=HOLD;response_valid_o<=1;response_fault_o<=result_fault;\n",
+            "                response_result_o<=(result_fault || force_zero_q) ? 64'sd0 :\n",
+            "                    (left_q ? $signed(left_result[63:0]) : $signed(signed_right));\n"
+          ],
+          "before": [
+            "            ROUND: state_q<=SIGN;\n",
+            "            SIGN: begin\n",
+            "                state_q<=HOLD;response_valid_o<=1;response_fault_o<=rounded_fault_q;\n",
+            "                response_result_o<=(rounded_fault_q || force_zero_q) ? 64'sd0 :\n",
+            "                    ((negative_q && !left_q) ? -$signed(rounded_q) : $signed(rounded_q));\n"
+          ],
+          "end": 68,
+          "start": 64
+        }
+      ]
+    },
+    "variants/kv-protected/hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv": {
+      "after_sha256": "c09e6e1f864a9827a372d7486b22d20d3e6db700df6aff410d982c7b93a84e2d",
+      "before_sha256": "39378bc823bd66614ddedee038e8b42374d8bdf6cfb4480363760c8fcbb5f43b",
+      "reverse_edits": [
+        {
+          "after": [
+            "// PRIVATE caller bound: abs(numerator) < 2^46. Probability operands\n",
+            "// are zero-extended 46-bit values; value operands are signed 38-bit.\n",
+            "// The first 18 zero iterations are omitted. One bit retires per clock.  There is deliberately\n"
+          ],
+          "before": [
+            "// One restoring-division bit is retired per clock.  There is deliberately\n"
+          ],
+          "end": 7,
+          "start": 4
+        },
+        {
+          "after": [
+            "                iteration_q <= 6'd18;\n"
+          ],
+          "before": [
+            "                iteration_q <= 6'd0;\n"
+          ],
+          "end": 91,
+          "start": 90
+        },
+        {
+          "after": [
+            "                dividend_shift_q <= (request_numerator_i[63]\n"
+          ],
+          "before": [
+            "                dividend_shift_q <= request_numerator_i[63]\n"
+          ],
+          "end": 95,
+          "start": 94
+        },
+        {
+          "after": [
+            "                    : $unsigned(request_numerator_i)) << 18;\n"
+          ],
+          "before": [
+            "                    : $unsigned(request_numerator_i);\n"
+          ],
+          "end": 97,
+          "start": 96
+        }
+      ]
+    },
+    "variants/kv-protected/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+      "after_sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5",
+      "before_sha256": "c1a9adf7f97700aecb8fdba05df31303c73fa73f7725498ab930993d180f35b7",
+      "reverse_edits": [
+        {
+          "after": [
+            "// Private fixed-model arithmetic. The sqrt remains a frozen Board0 wrapper.\n",
+            "// RMSNorm division uses the exact bounded helper defined below.\n"
+          ],
+          "before": [
+            "// Namespace-only wrappers around the source-authenticated Board0 arithmetic.\n",
+            "// The runner hashes the frozen predecessor sources before and after every run.\n"
+          ],
+          "end": 6,
+          "start": 4
+        },
+        {
+          "after": [
+            "    board1_rmsnorm_bounded28_divider u_exact_bounded_divider (\n"
+          ],
+          "before": [
+            "    board0_exact_rne_div_signed64_iterative u_exact_board0_divider (\n"
+          ],
+          "end": 35,
+          "start": 34
+        },
+        {
+          "after": [
+            "\n",
+            "`timescale 1ns/1ps\n",
+            "`default_nettype none\n",
+            "\n",
+            "// Exact, single-client replacement for the combinational\n",
+            "// rne_div_signed64 helper used by the fixed model.  The magnitude quotient\n",
+            "// and remainder are formed with one restoring-division bit per clock; no\n",
+            "// synthesizable / or % operator is present.  A non-cancelled request always\n",
+            "// produces a held response exactly 28 clocks after its acceptance.\n",
+            "// PRIVATE caller bound: abs(numerator) < 2^28. RMSNorm supplies\n",
+            "// sign-extended int16 << 12, including -2^27. Not a general divider.\n",
+            "module board1_rmsnorm_bounded28_divider (\n",
+            "    input  wire                    clk,\n",
+            "    input  wire                    rst_n,\n",
+            "    input  wire                    cancel_i,\n",
+            "\n",
+            "    input  wire                    request_valid_i,\n",
+            "    output logic                   request_ready_o,\n",
+            "    input  wire signed [63:0]      request_numerator_i,\n",
+            "    input  wire [63:0]             request_denominator_i,\n",
+            "\n",
+            "    output logic                   response_valid_o,\n",
+            "    input  wire                    response_ready_i,\n",
+            "    output logic signed [63:0]     response_result_o,\n",
+            "    output logic                   response_fault_o\n",
+            ");\n",
+            "    logic                          busy_q;\n",
+            "    logic [5:0]                    iteration_q;\n",
+            "    logic                          negative_q;\n",
+            "    logic                          divide_by_zero_q;\n",
+            "    logic [63:0]                   divisor_q;\n",
+            "    logic [63:0]                   dividend_shift_q;\n",
+            "    logic [63:0]                   quotient_q;\n",
+            "    logic [64:0]                   remainder_q;\n",
+            "\n",
+            "    logic [64:0]                   shifted_remainder;\n",
+            "    logic [64:0]                   reduced_remainder;\n",
+            "    logic [63:0]                   shifted_quotient;\n",
+            "    logic [63:0]                   rounded_magnitude;\n",
+            "    logic                          quotient_bit;\n",
+            "    logic                          round_up;\n",
+            "\n",
+            "    // A response is deliberately retired before another request is admitted.\n",
+            "    // This makes the one-outstanding-request ownership unambiguous and costs\n",
+            "    // only one idle clock between independent operations.\n",
+            "    always_comb begin\n",
+            "        request_ready_o = rst_n && !cancel_i && !busy_q && !response_valid_o;\n",
+            "\n",
+            "        shifted_remainder = {remainder_q[63:0], dividend_shift_q[63]};\n",
+            "        if (shifted_remainder >= {1'b0, divisor_q}) begin\n",
+            "            reduced_remainder = shifted_remainder - {1'b0, divisor_q};\n",
+            "            quotient_bit = 1'b1;\n",
+            "        end else begin\n",
+            "            reduced_remainder = shifted_remainder;\n",
+            "            quotient_bit = 1'b0;\n",
+            "        end\n",
+            "        shifted_quotient = {quotient_q[62:0], quotient_bit};\n",
+            "\n",
+            "        // reduced_remainder is the final mathematical remainder during the\n",
+            "        // last iteration.  The 65-bit comparison cannot overflow at 2*r.\n",
+            "        round_up = ({reduced_remainder[63:0], 1'b0} >\n",
+            "                    {1'b0, divisor_q}) ||\n",
+            "                   (({reduced_remainder[63:0], 1'b0} ==\n",
+            "                     {1'b0, divisor_q}) && shifted_quotient[0]);\n",
+            "        rounded_magnitude = shifted_quotient +\n",
+            "                            {{63{1'b0}}, round_up};\n",
+            "    end\n",
+            "\n",
+            "    always_ff @(posedge clk or negedge rst_n) begin\n",
+            "        if (!rst_n) begin\n",
+            "            busy_q <= 1'b0;\n",
+            "            iteration_q <= 6'd0;\n",
+            "            negative_q <= 1'b0;\n",
+            "            divide_by_zero_q <= 1'b0;\n",
+            "            divisor_q <= 64'd0;\n",
+            "            dividend_shift_q <= 64'd0;\n",
+            "            quotient_q <= 64'd0;\n",
+            "            remainder_q <= 65'd0;\n",
+            "            response_valid_o <= 1'b0;\n",
+            "            response_result_o <= 64'sd0;\n",
+            "            response_fault_o <= 1'b0;\n",
+            "        end else if (cancel_i) begin\n",
+            "            busy_q <= 1'b0;\n",
+            "            iteration_q <= 6'd0;\n",
+            "            negative_q <= 1'b0;\n",
+            "            divide_by_zero_q <= 1'b0;\n",
+            "            divisor_q <= 64'd0;\n",
+            "            dividend_shift_q <= 64'd0;\n",
+            "            quotient_q <= 64'd0;\n",
+            "            remainder_q <= 65'd0;\n",
+            "            response_valid_o <= 1'b0;\n",
+            "            response_result_o <= 64'sd0;\n",
+            "            response_fault_o <= 1'b0;\n",
+            "        end else begin\n",
+            "            if (response_valid_o && response_ready_i) begin\n",
+            "                response_valid_o <= 1'b0;\n",
+            "                response_result_o <= 64'sd0;\n",
+            "                response_fault_o <= 1'b0;\n",
+            "            end\n",
+            "\n",
+            "            if (request_valid_i && request_ready_o) begin\n",
+            "                busy_q <= 1'b1;\n",
+            "                iteration_q <= 6'd36;\n",
+            "                negative_q <= request_numerator_i[63];\n",
+            "                divide_by_zero_q <= (request_denominator_i == 64'd0);\n",
+            "                divisor_q <= request_denominator_i;\n",
+            "                // Unary negation intentionally occurs at 64-bit width.  Its\n",
+            "                // bit pattern is also the correct magnitude for INT64_MIN.\n",
+            "                dividend_shift_q <= (request_numerator_i[63]\n",
+            "                    ? $unsigned(-request_numerator_i)\n",
+            "                    : $unsigned(request_numerator_i)) << 36;\n",
+            "                quotient_q <= 64'd0;\n",
+            "                remainder_q <= 65'd0;\n",
+            "                response_result_o <= 64'sd0;\n",
+            "                response_fault_o <= 1'b0;\n",
+            "            end else if (busy_q) begin\n",
+            "                dividend_shift_q <= {dividend_shift_q[62:0], 1'b0};\n",
+            "                quotient_q <= shifted_quotient;\n",
+            "                remainder_q <= reduced_remainder;\n",
+            "\n",
+            "                if (iteration_q == 6'd63) begin\n",
+            "                    busy_q <= 1'b0;\n",
+            "                    response_valid_o <= 1'b1;\n",
+            "                    if (divide_by_zero_q) begin\n",
+            "                        // Preserve the legacy result while making the invalid\n",
+            "                        // divisor explicit to its fixed-model caller.\n",
+            "                        response_result_o <= 64'sd0;\n",
+            "                        response_fault_o <= 1'b1;\n",
+            "                    end else begin\n",
+            "                        response_result_o <= negative_q\n",
+            "                            ? $signed(~rounded_magnitude + 64'd1)\n",
+            "                            : $signed(rounded_magnitude);\n",
+            "                        response_fault_o <= 1'b0;\n",
+            "                    end\n",
+            "                end else begin\n",
+            "                    iteration_q <= iteration_q + 6'd1;\n",
+            "                end\n",
+            "            end\n",
+            "        end\n",
+            "    end\n",
+            "endmodule\n",
+            "\n",
+            "`default_nettype wire\n"
+          ],
+          "before": [],
+          "end": 193,
+          "start": 50
+        }
+      ]
+    }
+  },
+  "date": "2026-09-24",
+  "previous_package_manifest_sha256": "a46ef2cd36d5d648989f7f1fbea19f856bae90735b71a06ee314196953d28933",
+  "schema": "leaf-speed-source-revision-v1",
+  "scope": "Exact old-source reconstruction for historical evidence, not a claim that old trials used new hardware."
+}

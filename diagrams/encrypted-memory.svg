@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="826" viewBox="0 0 1100 826" role="img" aria-labelledby="title desc">
+  <title id="title">Encrypted memory, the same three-operation machine</title>
+  <desc id="desc">The host sends APPEND, STEP and CLEAR to a fixed inference circuit. On the weight read path, external ciphertext is decrypted in private on-chip memory and the same plaintext copy is checked against an immutable model digest before use. On the attention-cache read path, AES-SIV decryption and tag verification precede the private SHA expected-digest freshness check. Cache writes are encrypted before leaving the chip. Weight and cache regions share one external DDR chip; ciphertext weights also reside in external flash. The supplied test keys are public, so this demonstration does not claim model secrecy from someone with the package or physical-security certification.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#48647a"/></marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #183047; }
+      .title { font-size: 28px; font-weight: 700; }
+      .heading { font-size: 21px; font-weight: 700; }
+      .body { font-size: 18px; }
+      .small { font-size: 16px; }
+      .muted { fill: #476075; }
+      .label { font-size: 16px; font-weight: 700; letter-spacing: 1px; }
+      .node { fill: #fff; stroke: #a7b9c7; stroke-width: 1.5; }
+      .checked { fill: #edf7f4; stroke: #8eafa4; stroke-width: 1.5; }
+      .flow { fill: none; stroke: #48647a; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1100" height="826" fill="#fff"/>
+  <text class="title" x="32" y="45">Encrypted memory, the same three-operation machine</text>
+  <text class="body muted" x="32" y="78">Experimental Tang Mega version · public test keys · fixed model and architecture</text>
+  <rect x="286" y="96" width="782" height="572" rx="14" fill="#f8fafc" stroke="#668297" stroke-width="2"/>
+  <rect class="node" x="32" y="114" width="222" height="80" rx="10"/>
+  <text class="heading" x="143" y="147" text-anchor="middle">Host computer</text>
+  <text class="small" x="143" y="176" text-anchor="middle">Text ↔ token IDs</text>
+  <path class="flow" d="M254 145 H489"/>
+  <text class="small" x="386" y="134" text-anchor="middle">APPEND · STEP · CLEAR</text>
+  <path class="flow" d="M489 181 H254"/>
+  <text class="small" x="370" y="206" text-anchor="middle">Token replies / status</text>
+  <text class="label" x="310" y="264">PRIVATE CIRCUIT INSIDE THE FPGA</text>
+  <rect class="node" x="489" y="114" width="579" height="100" rx="10"/>
+  <text class="heading" x="778" y="149" text-anchor="middle">Fixed inference and token controller</text>
+  <text class="body" x="778" y="179" text-anchor="middle">Shared hardware executes all six model layers</text>
+  <path class="flow" d="M958 321 V214"/>
+  <path class="flow" d="M991 509 V214"/>
+  <text class="label" x="32" y="264">EXTERNAL MEMORY</text>
+  <rect class="node" x="32" y="311" width="222" height="113" rx="10"/>
+  <text class="heading" x="143" y="347" text-anchor="middle">Weight ciphertext</text>
+  <text class="body" x="143" y="377" text-anchor="middle">Flash → DDR at boot</text>
+  <text class="small" x="143" y="404" text-anchor="middle">Fixed ciphertext hash</text>
+  <path class="flow" d="M254 365 H310"/>
+  <rect class="checked" x="310" y="300" width="590" height="143" rx="10"/>
+  <text class="heading" x="605" y="335" text-anchor="middle">Decrypt + check the same private page</text>
+  <text class="body" x="605" y="370" text-anchor="middle">AES-256-CTR → immutable plaintext SHA-256 digest</text>
+  <text class="small" x="605" y="403" text-anchor="middle">Decryption and hashing overlap; no use before the full match</text>
+  <path class="flow" d="M900 365 H958 V321"/>
+  <rect class="node" x="32" y="490" width="222" height="113" rx="10"/>
+  <text class="heading" x="143" y="528" text-anchor="middle">K/V ciphertext</text>
+  <text class="body" x="143" y="559" text-anchor="middle">DDR cache + tags</text>
+  <text class="small" x="143" y="587" text-anchor="middle">Same physical DDR chip</text>
+  <path class="flow" d="M254 545 H310"/>
+  <rect class="checked" x="310" y="479" width="590" height="143" rx="10"/>
+  <text class="heading" x="605" y="514" text-anchor="middle">Decrypt + verify tag + check current contents</text>
+  <text class="body" x="605" y="549" text-anchor="middle">AES-SIV → private expected SHA-256 digest</text>
+  <text class="small" x="605" y="582" text-anchor="middle">Only accepted plaintext reaches attention; a mismatch stops use</text>
+  <path class="flow" d="M900 545 H991 V509"/>
+  <text class="small muted" x="310" y="648">Read paths shown. Internally generated K/V is encrypted before every external write.</text>
+  <path d="M32 699 H1068" stroke="#d5dfe6" stroke-width="1.5"/>
+  <text class="heading" x="32" y="736">The mechanism is implemented; the demonstration keys are not secret.</text>
+  <text class="body" x="32" y="768">Published demo keys and an unprotected configuration do not provide production weight secrecy.</text>
+  <text class="body" x="32" y="799">Trusted on-chip state, protected key provisioning and physical security require separate work.</text>
+</svg>

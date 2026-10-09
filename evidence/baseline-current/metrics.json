@@ -1,0 +1,61 @@
+{
+  "image_sha256": "6ba3caa4f88ac58dd30336c3ff4478f836779db0d04309ff457ca065ec1f7f09",
+  "metrics": {
+    "around128": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 0.06794054189231247,
+      "generated_tokens": 128,
+      "last_step_seconds": 0.15292962500825524,
+      "occupied_tape": 129,
+      "prompt_tokens": 1,
+      "streaming_tokens_per_second_excluding_first": 8.75824904271931
+    },
+    "around128-repeat": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 0.06810862489510328,
+      "generated_tokens": 128,
+      "last_step_seconds": 0.15289616596419364,
+      "occupied_tape": 129,
+      "prompt_tokens": 1,
+      "streaming_tokens_per_second_excluding_first": 8.758490520365026
+    },
+    "prefix128": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 12.358556292019784,
+      "generated_tokens": 128,
+      "last_step_seconds": 0.22050779196433723,
+      "occupied_tape": 256,
+      "prompt_tokens": 128,
+      "streaming_tokens_per_second_excluding_first": 5.351816362502152
+    },
+    "prefix2047": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 1329.1044865410076,
+      "generated_tokens": 2,
+      "last_step_seconds": 1.258269082987681,
+      "occupied_tape": 2049,
+      "prompt_tokens": 2047,
+      "streaming_tokens_per_second_excluding_first": 0.7843205180134587
+    },
+    "prefix2048": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 1330.3451255420223,
+      "generated_tokens": 1,
+      "last_step_seconds": null,
+      "occupied_tape": 2049,
+      "prompt_tokens": 2048,
+      "streaming_tokens_per_second_excluding_first": null
+    },
+    "prefix512": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 106.07435816596262,
+      "generated_tokens": 4,
+      "last_step_seconds": 0.3739505830453709,
+      "occupied_tape": 516,
+      "prompt_tokens": 512,
+      "streaming_tokens_per_second_excluding_first": 2.674449314170904
+    }
+  },
+  "scope": "Host-timed individual workloads, including one repeat. A single full-window cached STEP is not a sustained rate.",
+  "source_physical_sha256": "e4e37d5fdea5f18ee57e114086fd67dc16a21b5f361f6386d9cf4c49c5926103"
+}
