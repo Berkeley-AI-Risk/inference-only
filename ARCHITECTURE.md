@@ -258,6 +258,90 @@ a raw cache-access command, but a physical memory/bus attacker is a separate
 threat. Establishing a practical GEMM-laundering throughput bound remains
 additional work.
 
+### Measuring the cost of weight authentication
+
+We measured the effect of skipping runtime weight-page checking on the physical
+Tang Mega. The comparison uses the baseline, without K/V integrity or
+encryption, and the same fixed model, integer arithmetic, four 4 KiB page banks
+and 25 MHz inference clock. Startup authentication is retained in both builds.
+The diagnostic makes filled banks readable without hashing them; its unused
+runtime SHA-start signal is tied low. No application command selects this
+behavior: the diagnostic is a separately compiled circuit. It lacks the
+baseline's protection against changing weights in external memory after boot.
+
+Each sustained test generates 128 tokens. The rate is 127 divided by the sum
+of the subsequent 127 STEP durations; it excludes the first output, includes
+host/UART reply overhead, and excludes gaps between commands. The extra time
+fraction is `time_on / time_off - 1`, equivalently `rate_off / rate_on - 1`.
+It is not the same percentage as the reduction in throughput. Each pair used
+separate SRAM loads, with a boot interval before testing; the second pair
+reversed the loading order. All repetitions are shown:
+
+| Load pair | Prompt tokens | Authentication on, tokens/s | Runtime checking off, tokens/s | Extra time/token |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 1 | 8.7330 | 9.7844 | 12.0% |
+| 2 | 1 | 7.7250 | 9.7987 | 26.8% |
+| 3 | 1 | 8.7669 | 9.7409 | 11.1% |
+| 1 | 128 | 5.3387 | 5.7124 | 7.0% |
+| 2 | 128 | 5.3512 | 5.7071 | 6.7% |
+| 3 | 128 | 5.3588 | 5.7169 | 6.7% |
+
+The second short-prompt baseline has a cluster of delayed STEP replies
+(indices 49–61), adding approximately 1.90 seconds relative to the first
+baseline. Its cause is unknown; the median STEP time was nearly unchanged,
+and the third fresh-load pair returned to the earlier range. We retain the
+run and do not attribute its entire difference to authentication. The other
+short-prompt pairs show about 11–12% extra time/token, and all three
+128-token-prompt pairs about 7%. These are workload-specific observations,
+not a statistical confidence interval or a guarantee for another platform.
+
+Prompt latency is separate. In pair 3, a 128-token prompt took 14.5344 seconds
+from the first APPEND to the first reply with checking, versus 13.2764 seconds
+without it. The first STEP alone took 12.3587 versus 11.1006 seconds. Pair 1
+also checked 512-token and 2,047-token prompts: cached rates were respectively
+2.6748 versus 2.8020 and 0.7948 versus 0.7975 tokens/s. With only three and one
+cached samples, those are correctness/latency checks, not sustained-rate estimates.
+
+The experiment shows that removing runtime authentication alone does not
+produce a many-fold speedup in this circuit. It does not measure the best
+possible unauthenticated design: the memory traffic, cache size, scheduling
+and arithmetic organization are retained. Nor does it measure encryption or
+K/V-integrity overhead. Both images retain unresolved vendor-DDR timing;
+successful finite board tests are not timing or physical-security signoff.
+
+Supporting files in [the evidence directory](evidence/weight-authentication-cost/board.json) include:
+
+- `board.json` and `transcripts/`: all 17 cases, including the restored
+  K/V-protected image's final check, with 1,676 main outputs and 204 auxiliary
+  CLEAR/replay outputs. UTC timestamps and device identifiers are removed;
+  monotonic timestamps start at zero per transcript. UART bytes, durations,
+  event order and relative timing differences are unchanged.
+- `bank-diagnostic.sv` and `native.json`: the exact diagnostic bank and its
+  source/image associations. Only that bank's RTL changes. Build/report
+  inputs are distinguished from design inputs. The unchecked bitstream is
+  not included or offered as an installation option.
+- `uart_replay.py`: the recorded command-plan and raw-frame replay routines.
+  References are the existing [integer-reference cases](evidence/read-window/references.json).
+  `provenance.json` identifies the original private records by hash; those
+  hashes are provenance, not independent attestation.
+
+From the repository root, recompute the measurements and check the recorded
+frames, reference answers, CLEAR/replay, trial census and source delta:
+
+```sh
+python -I -S -B tools/check_weight_authentication_cost.py
+python -I -S -B -m unittest discover -s tools -p test_weight_authentication_cost.py -v
+```
+
+These commands are offline and do not touch a board. They do not rerun the
+numerical model, synthesize the diagnostic, or attest what a physical chip is
+running. For an independent implementation experiment, the diagnostic bank
+replaces `hardware/project/bank.sv` in a separate build using the baseline's
+remaining sources and constraints; the existing [build guide](VENDOR-SETUP.md#optional-rebuild-the-hardware-from-source)
+describes the tool and vendor dependencies. Such a new build needs its own
+source inventory, timing review, board backups, correct-image checks and
+restoration; the normal release installer is not an unchecked-mode selector.
+
 ## Prompt processing and time to first token
 
 The baseline and protected builds use three exact-arithmetic optimizations: a

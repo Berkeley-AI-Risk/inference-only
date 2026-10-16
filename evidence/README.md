@@ -50,6 +50,13 @@ overlapping reference cases match the established reference set exactly.
 
 ## Other supporting evidence
 
+- `weight-authentication-cost/` contains the matched runtime-checking on/off
+  board experiment, all repetitions, sanitized UART transcripts and the exact
+  diagnostic bank source. `tools/check_weight_authentication_cost.py` replays
+  the recorded protocol, compares answers with the supplied reference cases,
+  and recomputes the rates. The diagnostic retains startup authentication but
+  provides no runtime weight integrity; it is not another protected release.
+  See [method and interpretation](../ARCHITECTURE.md#measuring-the-cost-of-weight-authentication).
 - `leaf-speed/qualification.json` summarizes exact-arithmetic equivalence,
   caller-bound checks and numerical tests. It includes receipt hashes, not
   the private proof/model harnesses or raw logs. The public full-model replay

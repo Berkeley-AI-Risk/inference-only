@@ -44,6 +44,8 @@ jobs:
         run: python -I -S -B tools/check_speed_release.py
       - name: Check current baseline speed measurements and recorded replay
         run: python -I -S -B tools/check_baseline_speed.py
+      - name: Replay the runtime weight-authentication cost experiment
+        run: python -I -S -B tools/check_weight_authentication_cost.py
       - name: Check recorded protected-KV proof bindings (not a solver replay)
         run: python -I -S -B tools/check_kv_integrity.py --package . --recorded-only
       - name: Recompute conditional training-capacity estimates

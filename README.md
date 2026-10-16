@@ -315,6 +315,28 @@ See the [baseline and protected measurements](evidence/read-window/board.json), 
 [encrypted measurements](evidence/speed-2026-10-02/board.json), the
 [technical guide](ARCHITECTURE.md), and the [host guide](host-app/README.md).
 
+### Performance cost of weight authentication
+
+A matched physical-board experiment compared the baseline with a diagnostic
+build that skips **runtime** weight-page authentication. Both retained startup
+authentication, the same model, arithmetic, 25 MHz clock and cache organization;
+neither included K/V protection or encryption.
+
+| Prompt / generated tokens | Authentication on | Runtime checking off | Extra time per cached token with authentication |
+| --- | ---: | ---: | ---: |
+| 1 / 128 | 8.77 tokens/s | 9.74 tokens/s | 11.1% |
+| 128 / 128 | 5.36 tokens/s | 5.72 tokens/s | 6.7% |
+
+These are the final matched repetition's command rates, excluding the first
+output. Other repetitions broadly agree, except for one short-prompt baseline
+run with unexplained delays; the [complete results and method](ARCHITECTURE.md#measuring-the-cost-of-weight-authentication)
+retain that run. Authentication therefore has a modest measured cost on these
+workloads: removing it alone does not make this circuit dramatically faster.
+This is not a universal overhead or the speed limit of a redesigned,
+unauthenticated accelerator. The diagnostic is a comparison experiment, not a
+fourth protected configuration. Sanitized UART transcripts, the source change
+and an offline checker are included.
+
 ## AI design experiment and attribution
 
 **All custom RTL and implementation code for this project were written

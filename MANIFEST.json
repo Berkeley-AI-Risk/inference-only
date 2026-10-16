@@ -1,6 +1,6 @@
 {
   "conditional_training_capacity_analysis": true,
-  "documentation_revision": "2026-10-09-release-review-polish",
+  "documentation_revision": "2026-10-16-runtime-weight-authentication-cost",
   "encrypted_memory_broader_board_tests_complete": true,
   "encrypted_memory_experimental": true,
   "excluded_vendor_files": 4,
@@ -10,8 +10,8 @@
       "sha256": "797c5975a20a3b09d5101f84f7e3343261916da1a7f0a70baf92922591895055"
     },
     ".github/workflows/offline-checks.yml": {
-      "bytes": 2742,
-      "sha256": "7b94bb8043d2723ce7e177e663226748f7abccd3c06533007dd143ae75e7352d"
+      "bytes": 2884,
+      "sha256": "0b1e68b4783b05d60743d20fa2968c6591f80c03f4ef46ffc3843cf8ad595945"
     },
     ".gitignore": {
       "bytes": 502,
@@ -22,8 +22,8 @@
       "sha256": "bfcf342619a1f1ea107e22cadd846aeb230a7ad380730a511cb392798b7ebbbf"
     },
     "ARCHITECTURE.md": {
-      "bytes": 22451,
-      "sha256": "3dd030be50d14c008669544530d7fb2213a9d83b5b1440227d9ad91cb5eec52b"
+      "bytes": 27514,
+      "sha256": "dfa2217d4c501fc27672ea3e9bb94eb9da9adbbfd62ef2df9e2290b3b35f4271"
     },
     "ENCRYPTED-MEMORY.md": {
       "bytes": 17325,
@@ -82,8 +82,8 @@
       "sha256": "4ad6ae1ea1476ce6fd6ae53e30ec1fc58269c36cbc6e6fe1c14befd978f60373"
     },
     "README.md": {
-      "bytes": 23636,
-      "sha256": "2f9b195f75f0d8066b485ddfc7a99c898ee230697cbbdb4dfc6de1b0a3da109d"
+      "bytes": 24921,
+      "sha256": "bdab892cb77254b9e5ddcc0f3c3ad05f527b4f7f209926085c65b945264275eb"
     },
     "REPRODUCE.md": {
       "bytes": 19546,
@@ -214,8 +214,8 @@
       "sha256": "83c22bfcf3da688be75faa42f2d24cf7cee2b85a5db7d4c1a9add11a44781e2d"
     },
     "evidence/README.md": {
-      "bytes": 4522,
-      "sha256": "03da0bee450c3bd1a04370749aa724e28d7f26ab90cf716ec63f781890e31750"
+      "bytes": 5086,
+      "sha256": "dcef59ea6ec08d5e868d764dc3c5b45c1b9135b636d8afd4964370b6d8be8586"
     },
     "evidence/baseline-current/board.json": {
       "bytes": 30973,
@@ -682,12 +682,108 @@
       "sha256": "c4af0b8f93fa22eceea1edd619ca03ae8bfe8c27722582e7eec3a607e1ed6636"
     },
     "evidence/speed-2026-10-02/source-revision.json": {
-      "bytes": 1285253,
-      "sha256": "26eb527c80183178d2808d8dd3a917f69217a7c7c13cf1ae85eaa4dca16175b5"
+      "bytes": 1294514,
+      "sha256": "651106d46dc002d5abc560e810771d2c3ad5ca9de29350658ce8dc8ddb257b11"
     },
     "evidence/training-capacity-estimates.json": {
       "bytes": 13830,
       "sha256": "d67962be864ed39dace0aa5728c75cfbb1f84e02216bc639e5a2d8d2cadb11ca"
+    },
+    "evidence/weight-authentication-cost/bank-diagnostic.sv": {
+      "bytes": 10230,
+      "sha256": "46015eec480c0549d6f6117e96ec3d59f5849ed257da687bd3f424c910572046"
+    },
+    "evidence/weight-authentication-cost/board.json": {
+      "bytes": 104831,
+      "sha256": "3371c3cd04d3ff68517c24f8f9eaf12fdf6c8478af09790324bdac13a8ddb0d6"
+    },
+    "evidence/weight-authentication-cost/build-record/product.sdc": {
+      "bytes": 2680,
+      "sha256": "95c5d676c6d9a644f33816bff97dacfb690d4a384189745cf1eaf16db1a50226"
+    },
+    "evidence/weight-authentication-cost/build-record/run.tcl": {
+      "bytes": 800,
+      "sha256": "586cfb4c170a2051b308ac1a888113933e41093cef383a00cfaf762fcbcde34c"
+    },
+    "evidence/weight-authentication-cost/native.json": {
+      "bytes": 41825,
+      "sha256": "ff6d1d313622305b073970b7183beeb3a8bd4483a501ad162c0f4e46b142cdd8"
+    },
+    "evidence/weight-authentication-cost/provenance.json": {
+      "bytes": 1511,
+      "sha256": "110af3fa77d1bd1508ecc26ce11935f7aa34dbf746ed36bb0beda34895b434bc"
+    },
+    "evidence/weight-authentication-cost/transcripts/baseline-1/around128.jsonl": {
+      "bytes": 99037,
+      "sha256": "952d2800a71202e2bf87d531fb8d33329d9699827ab1eee0a9f831bd7afce247"
+    },
+    "evidence/weight-authentication-cost/transcripts/baseline-1/prefix128.jsonl": {
+      "bytes": 180878,
+      "sha256": "0053143516e1e5513061b0b72e2d3b086865e7b6621454b2b30c3bcbabfd1bbf"
+    },
+    "evidence/weight-authentication-cost/transcripts/baseline-1/prefix2047.jsonl": {
+      "bytes": 1349396,
+      "sha256": "ee3abe23d7d66d7c81f9bd840c56bc04ed86e6d5582548a6ab5f21ef9292b27a"
+    },
+    "evidence/weight-authentication-cost/transcripts/baseline-1/prefix512.jsonl": {
+      "bytes": 347364,
+      "sha256": "764fc975fe501627d71995730b879008b2455fe8c14a5d0f7eb05bea87524261"
+    },
+    "evidence/weight-authentication-cost/transcripts/baseline-2/around128.jsonl": {
+      "bytes": 99102,
+      "sha256": "86dbab236a2c580d0bb0a9b3246eb231b4987f8580cfcf88cdf5c151d2cf5c31"
+    },
+    "evidence/weight-authentication-cost/transcripts/baseline-2/prefix128.jsonl": {
+      "bytes": 180880,
+      "sha256": "26ead6cf447a24759870348e094d8fe0ad457795a2c98d3bfb7a1376201a9166"
+    },
+    "evidence/weight-authentication-cost/transcripts/baseline-3/around128.jsonl": {
+      "bytes": 99044,
+      "sha256": "024082a30b3af9fdc56492ba554f85f0a6b7d84109cd7925ef2eae117149b38d"
+    },
+    "evidence/weight-authentication-cost/transcripts/baseline-3/prefix128.jsonl": {
+      "bytes": 180861,
+      "sha256": "6afe1fe367a60900d03a4f4c303573bde370bb480bd76fc6178c3db4e41207b9"
+    },
+    "evidence/weight-authentication-cost/transcripts/candidate-1/around128.jsonl": {
+      "bytes": 98995,
+      "sha256": "3a73697a6da1801193c4d137b792a5902b7e7f2d47a07ccdf8401506aedb9786"
+    },
+    "evidence/weight-authentication-cost/transcripts/candidate-1/prefix128.jsonl": {
+      "bytes": 180857,
+      "sha256": "1fa26b73fac912209d5d3da8536d4b321e3abd7923d40068d59964ce535ad479"
+    },
+    "evidence/weight-authentication-cost/transcripts/candidate-1/prefix2047.jsonl": {
+      "bytes": 1349296,
+      "sha256": "4833b132bcf3ab28f9f4e896a8ac1bd7da74d3ba2c71ccf63b32977e6a56881d"
+    },
+    "evidence/weight-authentication-cost/transcripts/candidate-1/prefix512.jsonl": {
+      "bytes": 347303,
+      "sha256": "f65c7910acce451919463a2d50d1ec025df08bb21c93347716fb4e9d0856c6ea"
+    },
+    "evidence/weight-authentication-cost/transcripts/candidate-2/around128.jsonl": {
+      "bytes": 99004,
+      "sha256": "156fbe2cab8a2946437f703d119ee6be6bb756d94d60c17896550ab3d09c8673"
+    },
+    "evidence/weight-authentication-cost/transcripts/candidate-2/prefix128.jsonl": {
+      "bytes": 180887,
+      "sha256": "ba67044a66e3cb3852cd8a90ee916f333bc8a6eb9f494c1aee9a083f8d7b387a"
+    },
+    "evidence/weight-authentication-cost/transcripts/candidate-3/around128.jsonl": {
+      "bytes": 99003,
+      "sha256": "d653361fda6a5671871964104e3c08f7ca40ff414e3b7bdfc3375837f49d6d5c"
+    },
+    "evidence/weight-authentication-cost/transcripts/candidate-3/prefix128.jsonl": {
+      "bytes": 180878,
+      "sha256": "8b723d3c9c465fdb42637d5b50d1bd07598d781a83ea345bd5f509c8aa6fb7d4"
+    },
+    "evidence/weight-authentication-cost/transcripts/restore-1/around128.jsonl": {
+      "bytes": 99154,
+      "sha256": "895ed7d38c98474d1e5b24c1eabc4514954caa2fc566c1b00749e10b0b9c0b31"
+    },
+    "evidence/weight-authentication-cost/uart_replay.py": {
+      "bytes": 8051,
+      "sha256": "0cf1434d92c25ad3ae6c80ca3045395fc775ca200188d0e9a7e9645278ee7b4c"
     },
     "formal/abstract/Board1PublicSurface.lean": {
       "bytes": 9245,
@@ -1829,6 +1925,10 @@
       "bytes": 5789,
       "sha256": "e93b4bb5df1c33942db123f95b905e8adb820148887e1b4049e9a5ad84805c75"
     },
+    "tools/check_weight_authentication_cost.py": {
+      "bytes": 11546,
+      "sha256": "9e8ce1fafd3515dd7ad2796f66636c5432f76e50b49a335568f0bbda42cb39a5"
+    },
     "tools/encrypt_model_image.py": {
       "bytes": 2826,
       "sha256": "89bb36e60cde4a5c4538f9385ab6d675d4c926bc10e0db43f52fabd442e243fa"
@@ -1924,6 +2024,10 @@
     "tools/test_verify_release.py": {
       "bytes": 1798,
       "sha256": "94e2738a412a6e0a5b422445c08dd06cdf48f2adfae49d3b76aa52fcc349f850"
+    },
+    "tools/test_weight_authentication_cost.py": {
+      "bytes": 3658,
+      "sha256": "3c9c0e8dadc2d033a666b85bb4a277ab467d0728fae5a347eecb6922a5830d16"
     },
     "tools/verify_host.py": {
       "bytes": 4735,

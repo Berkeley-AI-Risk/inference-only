@@ -1,16 +1,18 @@
 {
   "changes": {
     ".github/workflows/offline-checks.yml": {
-      "after_sha256": "7b94bb8043d2723ce7e177e663226748f7abccd3c06533007dd143ae75e7352d",
+      "after_sha256": "0b1e68b4783b05d60743d20fa2968c6591f80c03f4ef46ffc3843cf8ad595945",
       "before_sha256": "b6db015ad4d6bda2c87598fa86b7cc27c2b7802bbb882daea7ebe13c0eb9692f",
       "reverse_edits": [
         {
           "after": [
             "      - name: Check current baseline speed measurements and recorded replay\n",
-            "        run: python -I -S -B tools/check_baseline_speed.py\n"
+            "        run: python -I -S -B tools/check_baseline_speed.py\n",
+            "      - name: Replay the runtime weight-authentication cost experiment\n",
+            "        run: python -I -S -B tools/check_weight_authentication_cost.py\n"
           ],
           "before": [],
-          "end": 46,
+          "end": 48,
           "start": 44
         }
       ]
@@ -92,7 +94,7 @@
       ]
     },
     "ARCHITECTURE.md": {
-      "after_sha256": "3dd030be50d14c008669544530d7fb2213a9d83b5b1440227d9ad91cb5eec52b",
+      "after_sha256": "dfa2217d4c501fc27672ea3e9bb94eb9da9adbbfd62ef2df9e2290b3b35f4271",
       "before_sha256": "3bd5cd42e22df73f439980373d50d4f1d9603c58528531f678ea9ee6d9ed9102",
       "reverse_edits": [
         {
@@ -187,13 +189,104 @@
         },
         {
           "after": [
+            "### Measuring the cost of weight authentication\n",
+            "\n",
+            "We measured the effect of skipping runtime weight-page checking on the physical\n",
+            "Tang Mega. The comparison uses the baseline, without K/V integrity or\n",
+            "encryption, and the same fixed model, integer arithmetic, four 4 KiB page banks\n",
+            "and 25 MHz inference clock. Startup authentication is retained in both builds.\n",
+            "The diagnostic makes filled banks readable without hashing them; its unused\n",
+            "runtime SHA-start signal is tied low. No application command selects this\n",
+            "behavior: the diagnostic is a separately compiled circuit. It lacks the\n",
+            "baseline's protection against changing weights in external memory after boot.\n",
+            "\n",
+            "Each sustained test generates 128 tokens. The rate is 127 divided by the sum\n",
+            "of the subsequent 127 STEP durations; it excludes the first output, includes\n",
+            "host/UART reply overhead, and excludes gaps between commands. The extra time\n",
+            "fraction is `time_on / time_off - 1`, equivalently `rate_off / rate_on - 1`.\n",
+            "It is not the same percentage as the reduction in throughput. Each pair used\n",
+            "separate SRAM loads, with a boot interval before testing; the second pair\n",
+            "reversed the loading order. All repetitions are shown:\n",
+            "\n",
+            "| Load pair | Prompt tokens | Authentication on, tokens/s | Runtime checking off, tokens/s | Extra time/token |\n",
+            "| --- | ---: | ---: | ---: | ---: |\n",
+            "| 1 | 1 | 8.7330 | 9.7844 | 12.0% |\n",
+            "| 2 | 1 | 7.7250 | 9.7987 | 26.8% |\n",
+            "| 3 | 1 | 8.7669 | 9.7409 | 11.1% |\n",
+            "| 1 | 128 | 5.3387 | 5.7124 | 7.0% |\n",
+            "| 2 | 128 | 5.3512 | 5.7071 | 6.7% |\n",
+            "| 3 | 128 | 5.3588 | 5.7169 | 6.7% |\n",
+            "\n",
+            "The second short-prompt baseline has a cluster of delayed STEP replies\n",
+            "(indices 49\u201361), adding approximately 1.90 seconds relative to the first\n",
+            "baseline. Its cause is unknown; the median STEP time was nearly unchanged,\n",
+            "and the third fresh-load pair returned to the earlier range. We retain the\n",
+            "run and do not attribute its entire difference to authentication. The other\n",
+            "short-prompt pairs show about 11\u201312% extra time/token, and all three\n",
+            "128-token-prompt pairs about 7%. These are workload-specific observations,\n",
+            "not a statistical confidence interval or a guarantee for another platform.\n",
+            "\n",
+            "Prompt latency is separate. In pair 3, a 128-token prompt took 14.5344 seconds\n",
+            "from the first APPEND to the first reply with checking, versus 13.2764 seconds\n",
+            "without it. The first STEP alone took 12.3587 versus 11.1006 seconds. Pair 1\n",
+            "also checked 512-token and 2,047-token prompts: cached rates were respectively\n",
+            "2.6748 versus 2.8020 and 0.7948 versus 0.7975 tokens/s. With only three and one\n",
+            "cached samples, those are correctness/latency checks, not sustained-rate estimates.\n",
+            "\n",
+            "The experiment shows that removing runtime authentication alone does not\n",
+            "produce a many-fold speedup in this circuit. It does not measure the best\n",
+            "possible unauthenticated design: the memory traffic, cache size, scheduling\n",
+            "and arithmetic organization are retained. Nor does it measure encryption or\n",
+            "K/V-integrity overhead. Both images retain unresolved vendor-DDR timing;\n",
+            "successful finite board tests are not timing or physical-security signoff.\n",
+            "\n",
+            "Supporting files in [the evidence directory](evidence/weight-authentication-cost/board.json) include:\n",
+            "\n",
+            "- `board.json` and `transcripts/`: all 17 cases, including the restored\n",
+            "  K/V-protected image's final check, with 1,676 main outputs and 204 auxiliary\n",
+            "  CLEAR/replay outputs. UTC timestamps and device identifiers are removed;\n",
+            "  monotonic timestamps start at zero per transcript. UART bytes, durations,\n",
+            "  event order and relative timing differences are unchanged.\n",
+            "- `bank-diagnostic.sv` and `native.json`: the exact diagnostic bank and its\n",
+            "  source/image associations. Only that bank's RTL changes. Build/report\n",
+            "  inputs are distinguished from design inputs. The unchecked bitstream is\n",
+            "  not included or offered as an installation option.\n",
+            "- `uart_replay.py`: the recorded command-plan and raw-frame replay routines.\n",
+            "  References are the existing [integer-reference cases](evidence/read-window/references.json).\n",
+            "  `provenance.json` identifies the original private records by hash; those\n",
+            "  hashes are provenance, not independent attestation.\n",
+            "\n",
+            "From the repository root, recompute the measurements and check the recorded\n",
+            "frames, reference answers, CLEAR/replay, trial census and source delta:\n",
+            "\n",
+            "```sh\n",
+            "python -I -S -B tools/check_weight_authentication_cost.py\n",
+            "python -I -S -B -m unittest discover -s tools -p test_weight_authentication_cost.py -v\n",
+            "```\n",
+            "\n",
+            "These commands are offline and do not touch a board. They do not rerun the\n",
+            "numerical model, synthesize the diagnostic, or attest what a physical chip is\n",
+            "running. For an independent implementation experiment, the diagnostic bank\n",
+            "replaces `hardware/project/bank.sv` in a separate build using the baseline's\n",
+            "remaining sources and constraints; the existing [build guide](VENDOR-SETUP.md#optional-rebuild-the-hardware-from-source)\n",
+            "describes the tool and vendor dependencies. Such a new build needs its own\n",
+            "source inventory, timing review, board backups, correct-image checks and\n",
+            "restoration; the normal release installer is not an unchecked-mode selector.\n",
+            "\n"
+          ],
+          "before": [],
+          "end": 344,
+          "start": 260
+        },
+        {
+          "after": [
             "The baseline and protected builds use three exact-arithmetic optimizations: a\n"
           ],
           "before": [
             "The selected builds include three small exact-arithmetic speedups: a\n"
           ],
-          "end": 263,
-          "start": 262
+          "end": 347,
+          "start": 346
         },
         {
           "after": [
@@ -202,8 +295,8 @@
           "before": [
             "add public controls, change clocks or bypass weight/K/V checks. Source-bound\n"
           ],
-          "end": 268,
-          "start": 267
+          "end": 352,
+          "start": 351
         },
         {
           "after": [
@@ -212,8 +305,8 @@
           "before": [
             "their receipt hashes. Public model replays exercise the changed RTL but do\n"
           ],
-          "end": 272,
-          "start": 271
+          "end": 356,
+          "start": 355
         },
         {
           "after": [
@@ -225,8 +318,8 @@
             "| 128 tokens | 19.34 s |\n",
             "| 512 tokens | 133.92 s |\n"
           ],
-          "end": 288,
-          "start": 285
+          "end": 372,
+          "start": 369
         },
         {
           "after": [
@@ -243,8 +336,8 @@
           "before": [
             "four outputs, averaging 2.26 cached tokens/s after the first.\n"
           ],
-          "end": 301,
-          "start": 292
+          "end": 385,
+          "start": 376
         },
         {
           "after": [
@@ -258,8 +351,8 @@
             "violated endpoints**. Its reported inference-clock Fmax is 26.065 MHz against\n",
             "a 25 MHz target. A complete census of the reported negative endpoints places\n"
           ],
-          "end": 333,
-          "start": 329
+          "end": 417,
+          "start": 413
         },
         {
           "after": [
@@ -269,8 +362,8 @@
           "before": [
             "qualified. The current protected route has 211 setup/recovery and three hold\n"
           ],
-          "end": 339,
-          "start": 337
+          "end": 423,
+          "start": 421
         },
         {
           "after": [
@@ -283,8 +376,8 @@
             "setup/hold margins are +1.080/+0.138 ns, not complete product signoff.\n",
             "See [baseline native results](evidence/leaf-speed/native.json),\n"
           ],
-          "end": 343,
-          "start": 340
+          "end": 427,
+          "start": 424
         },
         {
           "after": [
@@ -293,8 +386,8 @@
           "before": [
             "The selected baseline uses 56,538/69,120 CLS, 196/340 BSRAM, and\n"
           ],
-          "end": 347,
-          "start": 346
+          "end": 431,
+          "start": 430
         },
         {
           "after": [
@@ -308,8 +401,8 @@
             "- Selected encrypted configuration SHA-256: `7ab1d1c35d79da3e3341e81947353d337b981ee916628dc9fda79cfcec79d46b`.\n",
             "- Historical baseline campaign configuration SHA-256: `5a5b6788ea0d5b07d25614e91f2950c0c3a7b3cf49f8e225f2dcaf9e76ac8c2a`.\n"
           ],
-          "end": 367,
-          "start": 364
+          "end": 451,
+          "start": 448
         },
         {
           "after": [
@@ -320,8 +413,8 @@
             "and [portable test](evidence/portable-host.json) describe previous images, not\n",
             "the selected arithmetic revision. See [the evidence chronology](evidence/README.md)\n"
           ],
-          "end": 373,
-          "start": 372
+          "end": 457,
+          "start": 456
         }
       ]
     },
@@ -1271,7 +1364,7 @@
       ]
     },
     "README.md": {
-      "after_sha256": "2f9b195f75f0d8066b485ddfc7a99c898ee230697cbbdb4dfc6de1b0a3da109d",
+      "after_sha256": "bdab892cb77254b9e5ddcc0f3c3ad05f527b4f7f209926085c65b945264275eb",
       "before_sha256": "a5857c8782de407acf15e929b7ae4d5927e0372779df1b48414f8ed4bb85d8a1",
       "reverse_edits": [
         {
@@ -1562,13 +1655,42 @@
         },
         {
           "after": [
+            "\n",
+            "### Performance cost of weight authentication\n",
+            "\n",
+            "A matched physical-board experiment compared the baseline with a diagnostic\n",
+            "build that skips **runtime** weight-page authentication. Both retained startup\n",
+            "authentication, the same model, arithmetic, 25 MHz clock and cache organization;\n",
+            "neither included K/V protection or encryption.\n",
+            "\n",
+            "| Prompt / generated tokens | Authentication on | Runtime checking off | Extra time per cached token with authentication |\n",
+            "| --- | ---: | ---: | ---: |\n",
+            "| 1 / 128 | 8.77 tokens/s | 9.74 tokens/s | 11.1% |\n",
+            "| 128 / 128 | 5.36 tokens/s | 5.72 tokens/s | 6.7% |\n",
+            "\n",
+            "These are the final matched repetition's command rates, excluding the first\n",
+            "output. Other repetitions broadly agree, except for one short-prompt baseline\n",
+            "run with unexplained delays; the [complete results and method](ARCHITECTURE.md#measuring-the-cost-of-weight-authentication)\n",
+            "retain that run. Authentication therefore has a modest measured cost on these\n",
+            "workloads: removing it alone does not make this circuit dramatically faster.\n",
+            "This is not a universal overhead or the speed limit of a redesigned,\n",
+            "unauthenticated accelerator. The diagnostic is a comparison experiment, not a\n",
+            "fourth protected configuration. Sanitized UART transcripts, the source change\n",
+            "and an offline checker are included.\n"
+          ],
+          "before": [],
+          "end": 338,
+          "start": 316
+        },
+        {
+          "after": [
             "**Opus 5.5 also provided review feedback.**\n"
           ],
           "before": [
             "**Opus 5.5 also provided feedback in later reviews of the project.**\n"
           ],
-          "end": 333,
-          "start": 332
+          "end": 355,
+          "start": 354
         },
         {
           "after": [
@@ -1577,8 +1699,8 @@
           "before": [
             "its flash payload is not interchangeable with the original plaintext image.\n"
           ],
-          "end": 366,
-          "start": 365
+          "end": 388,
+          "start": 387
         },
         {
           "after": [
@@ -1587,8 +1709,8 @@
           "before": [
             "- [ARCHITECTURE.md](ARCHITECTURE.md): detailed original RTL, memory and clock organization.\n"
           ],
-          "end": 383,
-          "start": 382
+          "end": 405,
+          "start": 404
         },
         {
           "after": [
@@ -1597,8 +1719,8 @@
           "before": [
             "  for the scope and chronology of the records.\n"
           ],
-          "end": 395,
-          "start": 394
+          "end": 417,
+          "start": 416
         }
       ]
     },
@@ -2408,7 +2530,7 @@
       ]
     },
     "evidence/README.md": {
-      "after_sha256": "03da0bee450c3bd1a04370749aa724e28d7f26ab90cf716ec63f781890e31750",
+      "after_sha256": "dcef59ea6ec08d5e868d764dc3c5b45c1b9135b636d8afd4964370b6d8be8586",
       "before_sha256": "33d50c5622d80ce26dd778c5e946da1e819c52d38f4792faeb272163101069ce",
       "reverse_edits": [
         {
@@ -2596,6 +2718,13 @@
         },
         {
           "after": [
+            "- `weight-authentication-cost/` contains the matched runtime-checking on/off\n",
+            "  board experiment, all repetitions, sanitized UART transcripts and the exact\n",
+            "  diagnostic bank source. `tools/check_weight_authentication_cost.py` replays\n",
+            "  the recorded protocol, compares answers with the supplied reference cases,\n",
+            "  and recomputes the rates. The diagnostic retains startup authentication but\n",
+            "  provides no runtime weight integrity; it is not another protected release.\n",
+            "  See [method and interpretation](../ARCHITECTURE.md#measuring-the-cost-of-weight-authentication).\n",
             "- `leaf-speed/qualification.json` summarizes exact-arithmetic equivalence,\n",
             "  caller-bound checks and numerical tests. It includes receipt hashes, not\n",
             "  the private proof/model harnesses or raw logs. The public full-model replay\n",
@@ -2619,7 +2748,7 @@
             "Its source hashes identify the tested host despite later proof/documentation\n",
             "edits. These records supplement, rather than replace or relabel, older trials.\n"
           ],
-          "end": 67,
+          "end": 74,
           "start": 52
         },
         {
@@ -2633,8 +2762,8 @@
             "The approximately 17 ms delivery pattern is observed, not attributed to a\n",
             "proved firmware or driver cause.\n"
           ],
-          "end": 69,
-          "start": 68
+          "end": 76,
+          "start": 75
         },
         {
           "after": [
@@ -2647,8 +2776,8 @@
           "before": [
             "## Earlier records\n"
           ],
-          "end": 75,
-          "start": 70
+          "end": 82,
+          "start": 77
         },
         {
           "after": [
@@ -2673,8 +2802,8 @@
             "It covers guard/cache history and a separate attention capture/use result,\n",
             "not the whole protected machine.\n"
           ],
-          "end": 80,
-          "start": 76
+          "end": 87,
+          "start": 83
         },
         {
           "after": [
@@ -2735,8 +2864,8 @@
             "Hashes identify the supplied bytes. They are neither signatures from a\n",
             "certification authority nor attestation of a board's current configuration.\n"
           ],
-          "end": 85,
-          "start": 81
+          "end": 92,
+          "start": 88
         }
       ]
     },
