@@ -1,0 +1,81 @@
+{
+  "started_utc": "2026-10-17T21:35:23.214126+00:00",
+  "finished_utc": "2026-10-17T21:37:53.312018+00:00",
+  "passed": true,
+  "fpga_image_global_id": "agfi-026c1333e063cf04f",
+  "shell_version": "0x10212415",
+  "host_binary_sha256": "83e3345d654be6d7e1c4f94eccd04a3f08a9b9ca47f50e287bf2a3f37ef2ccf7",
+  "host_source_sha256": {
+    "qwen_host.cpp": "d891905333e559a6b413be5d87b5c91f4dabbe31777dbbc0fb1c36bb28b55e69",
+    "qwen_host_protocol.h": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9"
+  },
+  "model_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
+  "model_bytes": 2354380800,
+  "fresh_model_upload": true,
+  "empty_status": {
+    "flags": 35,
+    "credits": 256,
+    "received_bytes": 0
+  },
+  "model_upload": {
+    "model_ready": true,
+    "image_bytes": 2354380800,
+    "elapsed_ns": 125774664203
+  },
+  "self_test": [
+    {
+      "index": 0,
+      "token": 25,
+      "step_ns": 177627618,
+      "generation_elapsed_ns": 177646028,
+      "prompt_elapsed_ns": 177658238
+    },
+    {
+      "index": 1,
+      "token": 358,
+      "step_ns": 177750791,
+      "generation_elapsed_ns": 355411900,
+      "prompt_elapsed_ns": 355424100
+    },
+    {
+      "index": 2,
+      "token": 1184,
+      "step_ns": 177776791,
+      "generation_elapsed_ns": 533196362,
+      "prompt_elapsed_ns": 533208532
+    }
+  ],
+  "final_clear": {
+    "id": 6,
+    "status": 0,
+    "token": 0,
+    "elapsed_ns": 13940
+  },
+  "final_status": {
+    "flags": 19,
+    "credits": 0,
+    "received_bytes": 2354380800
+  },
+  "schema": "qwen-public-installation-receipt-v1",
+  "clean_model_rebuild": true,
+  "host_compiler": "GCC 13.3.0",
+  "environment": "Existing Ubuntu 24.04 x86-64 AWS F2 environment with the pinned SDK",
+  "slot_reloaded": true,
+  "fresh_operating_system_install": false,
+  "cross_account_load_tested": false,
+  "physical_attestation": false,
+  "original_private_install_receipt_sha256": "b7350f742238b0f233ae769e77d2f25cbea11f8d1b324b728fa1fdffbd2ce841",
+  "controller_record": "installation-controller.json",
+  "controller_record_sha256": "394269aa6839992418b61870a460b275a61ae5977ebf13dc2185c4291d178331",
+  "controller_compared_tokens": 390,
+  "controller_suite_passed": true,
+  "source_sha256": {
+    "tools/prepare_model.py": "5f76269c1e652f1bf9d159a1c621ffcd68e68a36dccd9c2ec526a1a19cb11b9e",
+    "host/check_hardware.py": "f21d1d869eeea79030882525030daa23de66bceff517ec7fdf0adfd8c9846afe",
+    "host/qwen_backend.py": "cd3cac001b0c5f8f95a4e54116b43ed0f0d3610b0439a71f807230a6270b671f",
+    "host/qwen_text.py": "ffab1cd741cd93f8335cca34d10b5695ede2dcefd210347838536ab4ac90fafb",
+    "host/qwen_host.cpp": "d891905333e559a6b413be5d87b5c91f4dabbe31777dbbc0fb1c36bb28b55e69",
+    "host/qwen_host_protocol.h": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9"
+  },
+  "scope": "Recorded installation and known-answer checks, not a fresh operating-system setup, cross-account load test, whole-machine proof or physical-attack certification. The raw controller record contains no connection configuration; omitted private envelopes are identified by hash, not made publicly inspectable."
+}

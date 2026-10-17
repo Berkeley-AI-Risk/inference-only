@@ -1,7 +1,9 @@
 # In what sense is this design inference-only?
 
-This assessment and its proof/capacity receipts concern the baseline and
-K/V-protected configurations. The [encrypted-memory version](ENCRYPTED-MEMORY.md)
+This assessment and its proof/capacity receipts concern the **Tang Mega** baseline and
+K/V-protected configurations. Its architectural principles also inform the
+[Qwen experiment](demos/qwen3-1.7b/README.md), but the proofs, arithmetic inventory
+and numerical capacity estimates here are not evidence about that circuit. The [encrypted-memory version](ENCRYPTED-MEMORY.md)
 preserves the same public operations, but has separate circuitry and test
 coverage; it has no whole-machine proof or certified training-capacity rating.
 

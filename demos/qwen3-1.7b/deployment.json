@@ -1,0 +1,19 @@
+{
+  "schema": "qwen-public-deployment-v1",
+  "region": "us-east-1",
+  "fpga_image_id": "afi-0dcab1e1ac1a1dade",
+  "fpga_image_global_id": "agfi-026c1333e063cf04f",
+  "image_state": "available",
+  "shell_version": "0x10212415",
+  "public_load_permission_verified": true,
+  "load_permissions": [{"Group": "all"}],
+  "permission_observed_utc": "2026-10-17T21:37:25Z",
+  "permission_observation_method": "AWS describe-fpga-image-attribute and describe-fpga-images through the owner's authenticated CloudShell session",
+  "cross_account_load_tested": false,
+  "core_clock_mhz": 62.5,
+  "aws_input_archive_sha256": "4bc1316642261361809e8a0aa499ba6670571f441d50b7726b772478c6f7e0fe",
+  "routed_checkpoint_sha256": "11d8d9997e6b032f6cd208ac63de03c13a969957fecfcb18d98b2051c03b0b2e",
+  "model_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
+  "model_bytes": 2354380800,
+  "scope": "Public load permission for the tested image; no public access to the owner's instances, credentials, storage buckets or model-update authority. Availability is an observation, not a service guarantee."
+}

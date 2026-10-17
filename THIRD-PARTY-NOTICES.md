@@ -83,10 +83,20 @@ installed separately under their own terms.
 The openFPGALoader utility used for restoring a complete factory backup is
 also installed separately; no copy of its executable or libraries is bundled.
 
-## AI and photographic attribution
+## Qwen3-1.7B / AWS F2
+
+The second demonstration uses the pinned `Qwen/Qwen3-1.7B` checkpoint,
+Berkeley HardFloat modules and AWS-specific integration. Its
+[dependency and license notice](demos/qwen3-1.7b/NOTICES.md) identifies the
+upstream model license, BSD-style arithmetic license, Amazon Software License
+files and separately installed vendor dependencies. In particular, the project's
+Apache-2.0 grant does not override Amazon-platform-use restrictions in AWS files.
+
+## AI and media attribution
 
 The README credits GPT 5.6 Sol and GPT 6 Astra for the custom implementation,
 with review feedback from Fable 5.1 and Opus 5.5. Those credits do not cover
 the pretrained model, FPGA silicon, Sipeed board, vendor IP or tools.
-The owner-supplied board photograph is included in the project's Apache-2.0
-grant; its removal of metadata is not an ownership claim about its subjects.
+The owner-supplied board photograph and demonstration videos are included in
+the project's Apache-2.0 grant; removal of personal metadata is not an
+ownership claim about their subjects or third-party software shown on screen.

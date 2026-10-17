@@ -60,7 +60,7 @@ The paper's “Quantifying training capability” section considers sending matr
 T_token <= (2/3) × sqrt(L/3) × r
 ```
 
-Here `r` counts input and output tokens together. We use **L = 2,049**, including the final output slot beyond the model's 2,048-input limit. The supplied baseline reached that limit on the board; see [the full-window results](README.md#the-demonstrated-design-and-measurements).
+Here `r` counts input and output tokens together. We use **L = 2,049**, including the final output slot beyond the model's 2,048-input limit. The supplied baseline reached that limit on the board; see [the full-window results](demos/simplestories-v2-5m/README.md#the-demonstrated-design-and-measurements).
 
 We then assume tokens can move at the serial link's maximum data rate and ignore the time needed to run the model. The [UART wrapper](hardware/project/uart_core.sv) fixes 217 core cycles per bit; the [protocol](hardware/project/fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv) uses five bytes per token-bearing frame. We count eight data bits per byte, omit start/stop bits and acknowledgements, and let both directions run continuously; that last assumption supplies the factor of two below. At the nominal 25 MHz clock:
 

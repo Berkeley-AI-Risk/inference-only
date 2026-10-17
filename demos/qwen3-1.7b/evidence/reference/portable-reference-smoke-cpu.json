@@ -1,0 +1,93 @@
+{
+  "backend": "cpu",
+  "campaign": "full-smoke",
+  "cases": [
+    {
+      "name": "original_smoke",
+      "prompt_tokens": [
+        9707
+      ],
+      "tokens": [
+        25,
+        358,
+        1184
+      ]
+    },
+    {
+      "name": "raw_story",
+      "prompt_tokens": [
+        12522,
+        5193,
+        264,
+        882
+      ],
+      "tokens": [
+        11,
+        304,
+        264
+      ]
+    },
+    {
+      "name": "raw_geography",
+      "prompt_tokens": [
+        785,
+        6722,
+        315,
+        9625,
+        374
+      ],
+      "tokens": [
+        12095,
+        13,
+        576
+      ]
+    },
+    {
+      "name": "chat_greeting",
+      "prompt_tokens": [
+        151644,
+        872,
+        198,
+        45764,
+        23811,
+        13,
+        151645,
+        198,
+        151644,
+        77091,
+        198,
+        151667,
+        271,
+        151668,
+        271
+      ],
+      "tokens": [
+        9707,
+        0,
+        2585
+      ]
+    },
+    {
+      "name": "original_smoke_replay",
+      "prompt_tokens": [
+        9707
+      ],
+      "tokens": [
+        25,
+        358,
+        1184
+      ]
+    }
+  ],
+  "compared_tokens": 15,
+  "elapsed_seconds": 15.110719833988696,
+  "hardware_access": false,
+  "measurements_sha256": "789f3a545ffbc3e0aa124a68d5761a6049f0013d7ad04750dc6e3127a8c1f83b",
+  "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
+  "numpy": "1.26.4",
+  "passed": true,
+  "schema": "qwen-portable-reference-run-v1",
+  "software_reference_only": true,
+  "threads": 8,
+  "torch": "2.10.0"
+}

@@ -54,9 +54,33 @@ jobs:
         run: python -I -S -B tools/architecture_work_counts.py --check
       - name: Check the recorded H100 evidence
         run: python -I -S -B tools/check_h100_reference.py
+      - name: Replay the recorded Qwen token and timing measurements (no AWS access)
+        run: python -I -S -B tools/check_qwen_measurements.py
+      - name: Check Qwen frozen sources, implementation reports and reference records
+        run: |
+          python -I -S -B tools/check_qwen_package.py
+          python -I -S -B -m unittest discover -s demos/qwen3-1.7b/tools -p 'test_package_checks.py' -v
       - name: Run the offline helper tests
         run: python -I -S -B -m unittest discover -s tools -p 'test_*.py' -v
       - name: Check proof-log and constraint validators (no formal tools)
         run: python -I -S -B -m unittest discover -s formal/kv-integrity -p test_contract_auditor.py -v
       - name: Confirm that the checks left the release unchanged
         run: python -I -S -B tools/verify_release.py --strict
+
+  qwen-app:
+    name: Qwen browser and controller fixtures (no FPGA access)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Install the pinned browser dependencies
+        run: python -m pip install -r demos/qwen3-1.7b/host/requirements-browser.txt
+      - name: Test the browser and runtime with fixture replies
+        run: python -B -m unittest discover -s demos/qwen3-1.7b/host -p 'test_*.py' -v

@@ -1,0 +1,97 @@
+{
+  "files": {
+    "fixed_nonlinear_tables.py": {
+      "loading_or_unused_functions_excluded": [
+        "FixedNonlinearTables.__init__",
+        "verify_tables"
+      ],
+      "original_sha256": "1ccc180896914d6173cda2e3329a614e41fffad7a847cb982c23a5bdc65af042",
+      "public_sha256": "0f5cf11af9fa74765c5edca70484e94226878c4cbd95222532fbf7af06f3414c",
+      "unchanged_function_ast_sha256": {
+        "FixedNonlinearTables._device": "7c19c8bc422e2e8b4f4d74ae999697bd00c37f9a203ed52b289620bd66ff6687",
+        "FixedNonlinearTables.rotary": "30e78ec9ac2388d7338970780959db38967ea11cc104eb5f6b50a94ba35f1f93",
+        "FixedNonlinearTables.silu": "235825a1fbdda2102e3d39c27decf8dff63300637c0d577b6b0538af408f7abb"
+      }
+    },
+    "fixed_qwen_reference.py": {
+      "loading_or_unused_functions_excluded": [
+        "FixedQwenEngine.__init__",
+        "verify_selected_package"
+      ],
+      "original_sha256": "ca589c9c7d8a9a31fb8f5efac15157d1479d17dffd8c9512b8ea48691a97b4a6",
+      "public_sha256": "f2450b8d581283b3f3f07e98b82f64b9ba644506004678f35d0e60497918d841",
+      "unchanged_function_ast_sha256": {
+        "FixedQwenEngine._attention": "1c128e2885719dce152ae2638da61fe01395937dd00fbc4e9dbf20b8ca7537d2",
+        "FixedQwenEngine._evaluate": "917e8d56a07f1f28d018e467c622cb94fbb2ac15b6b31a8b63b9bf651f2c751a",
+        "FixedQwenEngine._norm": "23e9fd286b28c356e5ea59ef8a3ab2fd75f621563747efaf78a5a0206dbd5bb4",
+        "FixedQwenEngine._observe": "c6d7cef2a396db703970b49abcf7f2d2d9dc5b77f4408f9394357501b07282e6",
+        "FixedQwenEngine._project": "c1b350693f46de9ea041aae62abbd6d477570aa47cc6dc6d6407ce067a830977",
+        "FixedQwenEngine._rotary": "9b3312535b4300c066be29db8c575c46e188028f0b0777a4be9b161ba8f67c47",
+        "FixedQwenEngine._silu": "ad1599b31bd7ca72327a6f6088a6ff4b55c10625a8efefdcb251dfe06423adaf",
+        "FixedQwenEngine.clear": "9e268fb6158d7785ca2559d870ad20afb1fc5c6b4c0d625a92138e5fb8bfb0a9",
+        "FixedQwenEngine.consume": "c1766e96bf86181ed958262e40990304c9280179a032f6891f3a1343a29e9efb",
+        "TokenMachine.__init__": "4e8850600f493b8c28845064440fb860f37415aa9d72636303f1fd8eb7df2147",
+        "TokenMachine.append": "3b6cc0a5f4587a6c033e5615108320fda0c9d5e937e3881acbe89955601793df",
+        "TokenMachine.clear": "0facb3c10ac3568c574fc1773ba80133e03d823320830232c219cb534fb992f6",
+        "TokenMachine.step": "02634ba4e10e7d8806bdc5588383ef3385c985160661407cb1ead914decce604",
+        "causal_mask": "86261bd487a03a359de8eb7722bbf305e31f6d975e97d9bcf58a4a5230a8b3fa",
+        "expected_tensors": "cb46a073519a7e85233b5416cc208fd8b1a259e7d77d8ce23ac63c3cad1174cb",
+        "grouped_kv": "0e5a89e5b68364b231e06858ca2f0240f23f295b7082b864c4070f489ffae538",
+        "rms_norm": "157f43100e064bc6024c97815cfe67314086f7060ab5da0db23fd28305e2364f",
+        "rotary": "92303c54aec20d7c663b5a14f3d577813a38021dbd4500e1a2072784eac14140"
+      }
+    },
+    "fixed_softmax.py": {
+      "loading_or_unused_functions_excluded": [
+        "FixedSoftmax.__init__",
+        "verify_softmax_tables"
+      ],
+      "original_sha256": "c1d9471857c6854f427fa6e509f9e272a7ef1c6e54d99dde7464550cafef2b8e",
+      "public_sha256": "ea7eedc163e95205c09371fd09c9378bea417ee3d26dbb92ee11839bc8b356fb",
+      "unchanged_function_ast_sha256": {
+        "FixedSoftmax.__call__": "cbf32db8b4724c31f39e090a301ae21800ce413d734f98694341afb058121b9b",
+        "FixedSoftmax.bits": "423fb62566b25a3886b87cd4d4aa1f8fdc422234b5c3eb7673a6e226c06ea98e",
+        "FixedSoftmax.exp_negative": "7009d19a31e55608223ed71a750a2ffda497c5c9e694d72e63458392c625805b",
+        "exact_sum_fp32_bits": "0d0a5c48abc6a8e82a1de88fbb57a405d2c44bc69f307963e74e1ea53eef0de2"
+      }
+    },
+    "integer_projection.py": {
+      "loading_or_unused_functions_excluded": [
+        "replace_qwen_linears"
+      ],
+      "original_sha256": "19270c03cf6e4195ad7358fffbe67a79faff7e0151bb08be46828c3dbfede699",
+      "public_sha256": "9ccfcb3f3b208d026bbb880bac5578190ded9f6b73dc487f535493f370395c0c",
+      "unchanged_function_ast_sha256": {
+        "IntegerProjection.__init__": "c6574a5f6f3223a88ae12c9cec61c198c2afd072ef4f2c92cbaa7ec06b969952",
+        "IntegerProjection.forward": "7602036cd0600f8be309474dd76ba794cc63624ff03ec946684f1376ab4d52b1",
+        "integer_dots": "2453076ebabfc1ad2cc111476fc57925574b8ea37e2a9ed9ebd6e75b58303a7b",
+        "pack_weight_codes": "abb08358b013055d5c94e39fe106a01579ecf461f2a0ea5b6d1759ab333ca970",
+        "quantize_activation": "bc5b48ab8544a122998f04ccc0e7f63cdcf8b2b0ab2df88200e94fdb3d36ba71"
+      }
+    },
+    "ordered_rms_norm.py": {
+      "loading_or_unused_functions_excluded": [],
+      "original_sha256": "54ee038375ab5e09f3b77198626192672936c2bbd7a6bba90dce7712770a822c",
+      "public_sha256": "54ee038375ab5e09f3b77198626192672936c2bbd7a6bba90dce7712770a822c",
+      "unchanged_function_ast_sha256": {
+        "bf16_from_float": "335aa3c80872818c419370bb1d307e0be95da70d4e6d76274f4e70ad0e0b0897",
+        "float_from_bf16": "97f30a6e97460da5f4f734350fef81e3c1815eca056bf666545c474cd4bc5d0f",
+        "ordered_rms_bits": "4b36466762407133df6ac243be53bed8efdca4ec74a1fa2a8df67f2575504ad2",
+        "ordered_rms_torch": "f9f5b81b7f685dad04cca6142fa89bb1153ef91813663ebcfd9a685b52d2eed7"
+      }
+    },
+    "tree_attention.py": {
+      "loading_or_unused_functions_excluded": [],
+      "original_sha256": "f3223390ac7d4e8cf34c6968b1095f1e33530574fdb59f068ed5f960826656ee",
+      "public_sha256": "f3223390ac7d4e8cf34c6968b1095f1e33530574fdb59f068ed5f960826656ee",
+      "unchanged_function_ast_sha256": {
+        "ordered_av_bits": "f3b630c8d6bdde76886dcbee20f5014bb588f58a6241a79c684a6837f64becf1",
+        "ordered_av_torch": "d4843678230b2cd1c6d5c872b54d92cf3945c848a3f4bf80aced2fdc4d09fcb8",
+        "tree_qk_bits": "d90fabac2cf0db6698927080983e319b2bec136f2259139104141168ca2e3815",
+        "tree_qk_torch": "6a8dad327f7934944b13bbc818cef6bec7194eaf2510a5fa703707eeb131d2a8"
+      }
+    }
+  },
+  "schema": "qwen-portable-reference-source-binding-v1",
+  "scope": "Retained arithmetic/schedule AST identity; data loading is separately tested. Not a whole-machine proof."
+}

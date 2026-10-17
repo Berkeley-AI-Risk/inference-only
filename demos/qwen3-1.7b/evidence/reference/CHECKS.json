@@ -1,0 +1,36 @@
+{
+  "all_tensor_values_equal": true,
+  "matrices": 197,
+  "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
+  "original_logical_tensor_archive_sha256": "95f6fa71254e771c4726e77d61916ed3ff10ccef73da381a7b8922157ab2b34b",
+  "passed": true,
+  "schema": "qwen-portable-reference-verification-v1",
+  "scope": "Loader tensor equality and recorded prompt regeneration; not hardware execution or all-prompt equivalence.",
+  "source_sha256": {
+    "model/rope-cos-sin-bf16.bin": "a75ae922ed520915d07b4f2b01dd26a7c8083fbe96a1419b867403cccb7cf3c5",
+    "reference/SOURCE-BINDING.json": "aeaaa6d358b73ffd88964a9fb908efc8ba354edb8dbaad750869c670cf517422",
+    "reference/fixed_nonlinear_tables.py": "0f5cf11af9fa74765c5edca70484e94226878c4cbd95222532fbf7af06f3414c",
+    "reference/fixed_qwen_reference.py": "f2450b8d581283b3f3f07e98b82f64b9ba644506004678f35d0e60497918d841",
+    "reference/fixed_softmax.py": "ea7eedc163e95205c09371fd09c9378bea417ee3d26dbb92ee11839bc8b356fb",
+    "reference/integer_projection.py": "9ccfcb3f3b208d026bbb880bac5578190ded9f6b73dc487f535493f370395c0c",
+    "reference/model_image.py": "e6d215b81324fd092636a4fbc988405fa19c08265c32b0316684974e5de31bb1",
+    "reference/ordered_rms_norm.py": "54ee038375ab5e09f3b77198626192672936c2bbd7a6bba90dce7712770a822c",
+    "reference/run_reference.py": "3a92d02d917d30934152da284460fa14f58861e004250928021fc7c971b4bcaa",
+    "reference/tables/silu-bf16.bin": "859765e19bdbff036092c2348745f589803006506e6ec78d77be3d4d516fd77a",
+    "reference/tables/softmax-exp2.bin": "7914026720a0167743ba2e68d3aaf0b86255b75d878ad56e5fa1827dad9b77f3",
+    "reference/tree_attention.py": "f3223390ac7d4e8cf34c6968b1095f1e33530574fdb59f068ed5f960826656ee",
+    "tools/fixed_model_layout.py": "bb378b3e4c95f39df4618c995ea3bb2917f07d2ffd0172b1719075a3242f8fc1"
+  },
+  "tensors_compared": 507,
+  "token_runs": {
+    "portable-reference-all-mps.json": {
+      "bytes": 18880,
+      "sha256": "1bff8544ddd31cb68ddea182dbc0d6f6c014b75a48032f0920ba04d1567726d3"
+    },
+    "portable-reference-smoke-cpu.json": {
+      "bytes": 1579,
+      "sha256": "4ff87b164df8c2ef3348565428dd2109c16e27ad29376a1797484729b774c7b1"
+    }
+  },
+  "vectors": 113
+}

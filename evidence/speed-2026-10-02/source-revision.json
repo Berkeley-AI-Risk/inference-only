@@ -1,7 +1,7 @@
 {
   "changes": {
     ".github/workflows/offline-checks.yml": {
-      "after_sha256": "0b1e68b4783b05d60743d20fa2968c6591f80c03f4ef46ffc3843cf8ad595945",
+      "after_sha256": "13a27493a979f10bf375d1b49c76013b20458ae242431a88d064b49be66c9109",
       "before_sha256": "b6db015ad4d6bda2c87598fa86b7cc27c2b7802bbb882daea7ebe13c0eb9692f",
       "reverse_edits": [
         {
@@ -14,6 +14,44 @@
           "before": [],
           "end": 48,
           "start": 44
+        },
+        {
+          "after": [
+            "      - name: Replay the recorded Qwen token and timing measurements (no AWS access)\n",
+            "        run: python -I -S -B tools/check_qwen_measurements.py\n",
+            "      - name: Check Qwen frozen sources, implementation reports and reference records\n",
+            "        run: |\n",
+            "          python -I -S -B tools/check_qwen_package.py\n",
+            "          python -I -S -B -m unittest discover -s demos/qwen3-1.7b/tools -p 'test_package_checks.py' -v\n"
+          ],
+          "before": [],
+          "end": 62,
+          "start": 56
+        },
+        {
+          "after": [
+            "\n",
+            "  qwen-app:\n",
+            "    name: Qwen browser and controller fixtures (no FPGA access)\n",
+            "    runs-on: ubuntu-24.04\n",
+            "    timeout-minutes: 10\n",
+            "    steps:\n",
+            "      - name: Check out the repository\n",
+            "        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1\n",
+            "        with:\n",
+            "          persist-credentials: false\n",
+            "      - name: Set up Python\n",
+            "        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0\n",
+            "        with:\n",
+            "          python-version: '3.12'\n",
+            "      - name: Install the pinned browser dependencies\n",
+            "        run: python -m pip install -r demos/qwen3-1.7b/host/requirements-browser.txt\n",
+            "      - name: Test the browser and runtime with fixture replies\n",
+            "        run: python -B -m unittest discover -s demos/qwen3-1.7b/host -p 'test_*.py' -v\n"
+          ],
+          "before": [],
+          "end": 86,
+          "start": 68
         }
       ]
     },
@@ -939,13 +977,15 @@
       ]
     },
     "INFERENCE-ONLY.md": {
-      "after_sha256": "280e1c76c22a1c8dcfcedc048a79971b200fdf4de96c6d8518ab11eb5c51c594",
+      "after_sha256": "146ae0a0dc0b683200add6794b8e0a250370bb147966913099d81133f10def50",
       "before_sha256": "d79fd84cdde2506defb4faebb546f9dbad7c9bfd8fb80ef001b769eca734e4fd",
       "reverse_edits": [
         {
           "after": [
-            "This assessment and its proof/capacity receipts concern the baseline and\n",
-            "K/V-protected configurations. The [encrypted-memory version](ENCRYPTED-MEMORY.md)\n",
+            "This assessment and its proof/capacity receipts concern the **Tang Mega** baseline and\n",
+            "K/V-protected configurations. Its architectural principles also inform the\n",
+            "[Qwen experiment](demos/qwen3-1.7b/README.md), but the proofs, arithmetic inventory\n",
+            "and numerical capacity estimates here are not evidence about that circuit. The [encrypted-memory version](ENCRYPTED-MEMORY.md)\n",
             "preserves the same public operations, but has separate circuitry and test\n",
             "coverage; it has no whole-machine proof or certified training-capacity rating.\n"
           ],
@@ -955,7 +995,7 @@
             "the same public operations, but its changed circuitry and performance do not\n",
             "inherit a new whole-machine proof or training-capacity rating.\n"
           ],
-          "end": 6,
+          "end": 8,
           "start": 2
         },
         {
@@ -965,8 +1005,8 @@
           "before": [
             "The two original configurations assessed here are: the original **baseline without\n"
           ],
-          "end": 14,
-          "start": 13
+          "end": 16,
+          "start": 15
         },
         {
           "after": [
@@ -981,8 +1021,8 @@
             "is distinct from certifying its residual training factor.\n"
           ],
           "before": [],
-          "end": 73,
-          "start": 64
+          "end": 75,
+          "start": 66
         },
         {
           "after": [
@@ -1018,8 +1058,8 @@
             "in its HNLPU discussion, while requiring further audit. We use the same\n",
             "distinction, not an assumption that external memory is untamperable.\n"
           ],
-          "end": 189,
-          "start": 163
+          "end": 191,
+          "start": 165
         },
         {
           "after": [
@@ -1028,8 +1068,8 @@
           "before": [
             "model. The analysis also compares with the paper's illustrative 0.01 and 0.001\n"
           ],
-          "end": 208,
-          "start": 207
+          "end": 210,
+          "start": 209
         },
         {
           "after": [
@@ -1045,8 +1085,8 @@
             "through the qualification/app path. Earlier series are identified separately\n",
             "in [VALIDATION.md](VALIDATION.md).\n"
           ],
-          "end": 261,
-          "start": 256
+          "end": 263,
+          "start": 258
         }
       ]
     },
@@ -1314,16 +1354,56 @@
       ]
     },
     "LICENSE-SCOPE.md": {
-      "after_sha256": "fb42c49c31b70887903b47efce16a7fb1c57f068bdfeebf4a68a53786ba814dc",
+      "after_sha256": "2c8a4b3719dd613c6d4d256629a1d4785cf2f4edb769ba5c3252c813198411e0",
       "before_sha256": "296774aafe3ac1a2d89885352a0a32e210ebcb5eba312499e6a011f6777ae27c",
       "reverse_edits": [
         {
           "after": [
+            "host applications, tests, proof infrastructure, documentation, supplied board\n",
+            "photograph and demonstration videos are licensed under the\n",
+            "[Apache License, Version 2.0](LICENSE).\n",
+            "Personal metadata was removed from the photograph and videos; their inclusion in the owner's grant is\n"
+          ],
+          "before": [
+            "host application, tests, proof infrastructure, documentation and supplied board\n",
+            "photograph are licensed under the [Apache License, Version 2.0](LICENSE).\n",
+            "The photograph's metadata was removed; its inclusion in the owner's grant is\n"
+          ],
+          "end": 9,
+          "start": 5
+        },
+        {
+          "after": [
+            "- The Qwen checkpoint, tokenizer and model-derived data, under the upstream\n",
+            "  Apache-2.0 license.\n",
+            "- The Qwen demonstration's Berkeley HardFloat arithmetic modules and\n",
+            "  AWS integration files, under their retained BSD-style and AWS terms.\n",
             "- The MIT-licensed BearSSL S-box adapted in the encrypted-memory AES circuits.\n"
           ],
           "before": [],
-          "end": 15,
-          "start": 14
+          "end": 20,
+          "start": 15
+        },
+        {
+          "after": [
+            "[THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) and the\n",
+            "[Qwen notices](demos/qwen3-1.7b/NOTICES.md) identify these distinctions.\n"
+          ],
+          "before": [
+            "[THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) identifies these distinctions.\n"
+          ],
+          "end": 28,
+          "start": 26
+        },
+        {
+          "after": [
+            "cryptographic hashes, or grants rights in independently supplied vendor tools.\n"
+          ],
+          "before": [
+            "cryptographic hashes, or grants rights in GOWIN's independently supplied tools.\n"
+          ],
+          "end": 30,
+          "start": 29
         }
       ]
     },
@@ -1364,198 +1444,473 @@
       ]
     },
     "README.md": {
-      "after_sha256": "bdab892cb77254b9e5ddcc0f3c3ad05f527b4f7f209926085c65b945264275eb",
+      "after_sha256": "469a193641027442eaa2c7d30451ceaaaa76616b3dfdd4b3cdcbf0fbe9e3d763",
       "before_sha256": "a5857c8782de407acf15e929b7ae4d5927e0372779df1b48414f8ed4bb85d8a1",
       "reverse_edits": [
         {
-          "after": [],
+          "after": [
+            "# Inference-only FPGA demonstrations\n"
+          ],
           "before": [
+            "# An inference-only machine: an FPGA proof of concept\n",
             "\n",
             "Research demo\n"
           ],
           "end": 1,
-          "start": 1
+          "start": 0
         },
         {
           "after": [
-            "about 8.8 tokens per second; the K/V-protected version delivers about 5.2,\n",
-            "and an experimental encrypted-memory version about 4.3.\n"
+            "([hardwired-pause.ai](https://hardwired-pause.ai)) introduces inference-only\n",
+            "chips in both an idealized sense and a practical, operational sense.\n",
+            "**This project builds physical FPGA demonstrations of that idea:** fixed\n",
+            "language models behind a restricted hardware interface, rather than a\n",
+            "general-purpose accelerator whose restrictions depend on its host software.\n"
           ],
           "before": [
+            "([hardwired-pause.ai](https://hardwired-pause.ai))\n",
+            "introduces the idea of **inference-only chips** in both an idealized sense\n",
+            "and a practical, operational sense. The idealized machine permits only\n",
+            "fixed-model inference through three user operations. The practical standard\n",
+            "allows limited residual training capacity, but requires a verifiable bound\n",
+            "that remains meaningful even against an adversary with physical possession\n",
+            "of the hardware.\n"
+          ],
+          "end": 8,
+          "start": 3
+        },
+        {
+          "after": [
+            "*Inference* uses an already-trained model to produce outputs without changing\n",
+            "its learned weights. The idealized machine permits models from a fixed set\n",
+            "and only three user operations: add input tokens to a model's tape, generate\n",
+            "another token, and clear the tape. Each demonstration here permits just one\n",
+            "model, so model selection is implicit.\n"
+          ],
+          "before": [
+            "**This repository provides a working conceptual demonstration using a physical\n",
+            "FPGA.** A fixed 5.35-million-parameter story model runs behind a three-operation\n",
+            "hardware interface. In measured 128-token continuations, the baseline streams\n",
             "about 5.5 tokens per second; the K/V-protected version delivers about 5.0,\n",
             "and an experimental encrypted-memory version about 2.6. The latter two\n",
-            "replace their earlier, slower implementations while preserving the checks.\n"
+            "replace their earlier, slower implementations while preserving the checks.\n",
+            "Encrypted memory uses published demonstration keys.\n",
+            "The purpose is to demonstrate the restricted\n",
+            "architecture, not to match commercial accelerators or claim completed\n",
+            "physical-security certification. Small scale is not what makes a design\n",
+            "inference-only: the key restriction is on usable training computation.\n"
           ],
-          "end": 16,
-          "start": 14
+          "end": 14,
+          "start": 9
         },
         {
           "after": [
-            "distinctions in \u00a73.2.1, \u201cInference-only and training-capable accelerators,\u201d\n",
-            "and \u00a74.2, \u201cPractical inference-only accelerators.\u201d\n"
+            "| Inference command | Effect |\n",
+            "| --- | --- |\n",
+            "| `APPEND(token)` | Add one input token to the tape. |\n",
+            "| `STEP` | Generate a token, append it to the tape, and return it. |\n",
+            "| `CLEAR` | Empty the logical tape and invalidate cached inference state. |\n"
           ],
           "before": [
+            "To try it, see [Run it on your board](#run-it-on-your-board). The prebuilt\n",
+            "circuit, model, tokenizer and browser app are included; no hardware compilation\n",
+            "is required. Installation **erases flash**, so the instructions begin with\n",
+            "factory backups. The documented workflow has been tested on Apple Silicon macOS.\n",
+            "\n",
+            "*Inference* means using an already-trained model to produce outputs, without\n",
+            "changing its learned numerical parameters (its weights).\n",
+            "\n",
+            "An **idealized inference-only machine** runs already-trained models from a\n",
+            "fixed permitted set and allows the user to do only three things:\n",
+            "\n",
+            "1. Choose a permitted model and add input tokens to its \u201ctape\u201d\u2014the sequence\n",
+            "   of tokens it is working with.\n",
+            "2. Ask the model to generate new tokens on that tape.\n",
+            "3. Clear the tape and start again.\n"
+          ],
+          "end": 20,
+          "start": 15
+        },
+        {
+          "after": [
+            "hardware provides no application command to change model weights, submit a\n",
+            "matrix multiplication, or read and write intermediate tensors. Hardware\n",
+            "controllers own the inference schedule and memory addresses; the user supplies\n",
+            "tokens, not tensor pointers. Startup loaders, status and transport handling\n",
+            "are described separately in each model's guide.\n"
+          ],
+          "before": [
+            "ideal machine provides no way to change its models' weights, run a training\n",
+            "program, or invoke its internal arithmetic as a general-purpose computing\n",
+            "service. This is a restriction on the hardware's capabilities, not merely\n",
+            "a software policy or a simplified user interface. The paper develops these\n",
             "distinctions in \u201cOperational definitions\u201d and \u201cCertifying inference-only hardware.\u201d\n"
           ],
-          "end": 45,
-          "start": 43
+          "end": 27,
+          "start": 22
         },
         {
           "after": [
-            "In the paper's terminology, all three versions demonstrate the\n",
-            "**Authenticated-Weight Inference-Only Chip (AWIC)** approach: the architecture\n",
-            "and inference function are fixed in circuitry, while hardware authenticates\n",
-            "weights read from memory against fixed cryptographic digests. The FPGA's\n",
-            "frozen-configuration assumption stands in for fixing that circuitry and those\n",
-            "digests at manufacture. By contrast, the paper's **model-specific integrated\n",
-            "circuits (MSICs)** hardwire both architecture and weights; it suggests\n",
-            "**Hardwired-Weight Inference-Only Chips (HWICs)** as a name for inference-only\n",
-            "chips based on that approach. This demo implements the AWIC architecture;\n",
-            "it does not establish a certified bound on residual training capacity.\n",
-            "\n"
-          ],
-          "before": [],
-          "end": 80,
-          "start": 69
-        },
-        {
-          "after": [
-            "*Runtime overview of the baseline and K/V-protected versions. The two DDR regions share one external\n"
+            "## The demonstrated design and measurements\n"
           ],
           "before": [
-            "*Runtime overview of the original baseline and K/V-protected versions. The two DDR regions share one external\n"
+            "The prototype runs on a Sipeed Tang Mega 138K **non-Pro Dock** board package\n",
+            "([AliExpress listing used for this demo](https://www.aliexpress.us/item/3256807078990410.html)).\n",
+            "We used the **\u201c138K Basic Package\u201d**.\n",
+            "Check the selected variant: the supported setup needs the **device-C FPGA\n",
+            "and 128-Mbit / 16-MiB flash**; the model layout does not fit older 8-MiB flash.\n",
+            "Its GOWIN FPGA uses a\n",
+            "[22 nm manufacturing process](https://www.gowinsemi.com/en/about/detail/latest_news/76/).\n",
+            "Its hardware command interface offers only the three\n",
+            "operations above. This demonstration supports one fixed model, so there is\n",
+            "no model-selection command.\n"
           ],
-          "end": 113,
-          "start": 112
+          "end": 29,
+          "start": 28
         },
         {
           "after": [
-            "The baseline streamed **8.76 tokens per second after the first token**\n"
+            "| Model and platform | Measured cached generation | Package status |\n",
+            "| --- | --- | --- |\n",
+            "| **SimpleStories-V2-5M \u2014 Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |\n",
+            "| Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |\n",
+            "| Same model, **encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |\n",
+            "| **Qwen3-1.7B \u2014 AWS F2**, authenticated weights | **5.506\u20135.523 tokens/s** | Runnable release; public AWS FPGA image |\n"
           ],
           "before": [
-            "The baseline streamed **5.53 tokens per second after the first token**\n"
+            "<img src=\"fpga.jpeg\" alt=\"The Sipeed Tang Mega 138K FPGA board used for this inference-only demonstration, connected by USB.\" width=\"720\">\n"
           ],
-          "end": 126,
-          "start": 125
+          "end": 36,
+          "start": 30
         },
         {
           "after": [
-            "**12.36 seconds for 128 prompt tokens** and **106.07 seconds for 512 prompt tokens**,\n"
+            "These are measured rates, not clock-based estimates or peak ratings. Tang\n",
+            "Mega uses a one-token prompt and 128 generated tokens; Qwen uses 4-, 5- and\n",
+            "15-token prompts and two repeated 128-token suites. The models, tokenizers and\n",
+            "workloads differ, so this is **not a head-to-head performance benchmark**.\n",
+            "Both measurements exclude the first token. Tang's figures are cached command\n",
+            "rates; Qwen's also include gaps between replies. Longer prompts take longer\n",
+            "to produce the first token, and growing context slows subsequent generation.\n"
           ],
           "before": [
-            "**1 second for an 8-token prompt** and **19.34 seconds for 128 prompt tokens**,\n"
+            "*The physical board used for the demonstration.*\n"
           ],
-          "end": 128,
-          "start": 127
+          "end": 44,
+          "start": 37
         },
         {
           "after": [
-            "The baseline and K/V-protected versions use the same model and three-operation interface, and both\n"
+            "- **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** board selection,\n",
+            "  all three versions, browser app, installation, measured prompt/decode speeds,\n",
+            "  and links to source, proofs and reproduction instructions.\n",
+            "- **[Qwen3-1.7B / AWS F2 guide](demos/qwen3-1.7b/README.md):** the billion-parameter\n",
+            "  hardware result, measured prompt/decode speeds, frozen-model boundary,\n",
+            "  installation, browser app, hardware sources and numerical reference.\n"
           ],
           "before": [
-            "The original two versions use the same model and three-operation interface, and both\n"
+            "An FPGA is a chip whose digital circuitry can be configured after manufacture.\n",
+            "Here it lets us build and test the proposed circuit without manufacturing a\n",
+            "custom chip. We assess the circuit **as if its configuration were permanently\n",
+            "frozen**, or the design were implemented as a fixed application-specific integrated circuit\n",
+            "(an ASIC). The development FPGA's reprogrammability is outside that assessment.\n",
+            "Resistance to other physical tampering is a separate question, not something\n",
+            "the frozen-configuration assumption establishes.\n"
           ],
-          "end": 139,
-          "start": 138
+          "end": 51,
+          "start": 45
         },
         {
           "after": [
-            "normal inference has also been tested on the FPGA. The protected image\n",
-            "has passed board tests through the full 2,048-input context limit, including\n",
-            "boundary rejection and CLEAR/replay checks.\n"
+            "<img src=\"fpga.jpeg\" alt=\"The Tang Mega 138K board used for the SimpleStories inference-only demonstration, connected by USB.\" width=\"720\">\n"
           ],
           "before": [
+            "The principal goal is the inference-only demonstration. A secondary goal is\n",
+            "an experiment in AI capabilities in chip design: GPT 5.6 Sol and GPT 6 Astra\n",
+            "carried out the custom design and implementation and produced the repository's\n",
+            "documentation, with review feedback from Fable 5.1 and Opus 5.5.\n",
+            "This is a working research prototype, not a\n",
+            "production-qualified or security-certified accelerator.\n"
+          ],
+          "end": 53,
+          "start": 52
+        },
+        {
+          "after": [
+            "*The physical Tang Mega board used for the small-model demo. We used the\n",
+            "[138K Basic Package](https://www.aliexpress.us/item/3256807078990410.html).\n",
+            "Board compatibility and installation details are in its guide.*\n"
+          ],
+          "before": [
+            "## What the demonstration does\n",
+            "\n",
+            "A small application running on the connected Mac provides a browser page\n",
+            "where the user types a prompt, requests generated text, and sees generation\n",
+            "speed. The application converts text to token IDs, sends commands over USB,\n",
+            "and converts returned token IDs back to text. **The FPGA performs the model\n",
+            "inference; the Mac does not run the language model that produces the replies.**\n",
+            "\n",
+            "The application uses this hardware interface:\n",
+            "\n",
+            "| Command | Effect |\n",
+            "| --- | --- |\n",
+            "| `APPEND(token)` | Add one input token to the tape; repeat for a prompt. |\n",
+            "| `STEP` | Generate one token, append it to the tape, and return it. |\n",
+            "| `CLEAR` | Empty the logical tape and invalidate its cached inference state. |\n",
+            "\n",
+            "The restriction is enforced by the FPGA's command decoder and controller,\n",
+            "not by the browser application. Replacing the application does not create\n",
+            "a command for matrix multiplication, direct memory access, or weight updates.\n",
+            "Serial framing, acknowledgements and rejection of invalid commands are\n",
+            "transport details around the three operations. `CLEAR` resets the logical\n",
+            "state; it does not physically overwrite every memory cell with zeros.\n",
+            "\n",
+            "![The host uses three token commands; the FPGA runs the fixed model and privately accesses checked weights and its attention cache.](diagrams/inference-machine.svg)\n",
+            "\n",
+            "*Runtime overview of the original baseline and K/V-protected versions. The two DDR regions share one external\n",
+            "memory chip. At startup, an on-chip boot loader\n",
+            "copies the model from flash into DDR and verifies the boot image; that path\n",
+            "and the fixed on-chip coefficient ROMs are omitted here. \u201cPrivate\u201d means\n",
+            "inaccessible through the host interface, not immune to physical tampering.\n",
+            "The [memory-check diagram](KV-PROTECTION.md#what-kv-protection-adds) shows what\n",
+            "the protected version adds.*\n",
+            "\n",
+            "The model is trained to continue simple stories. For example, after the\n",
+            "prompt \u201conce upon a time, a little fox\u201d, one physical FPGA result began:\n",
+            "\n",
+            "> named leo found a shiny stone. the stone sparkled like the stars. leo picked it up and felt a warm glow in his heart.\n",
+            "\n",
+            "The baseline streamed **5.53 tokens per second after the first token**\n",
+            "in a 128-token continuation from a one-token prompt. The first hardware `STEP` took about\n",
+            "**1 second for an 8-token prompt** and **19.34 seconds for 128 prompt tokens**,\n",
+            "excluding connection setup and prompt upload. Prompt length and later context\n",
+            "length both matter, as detailed below. The quoted story continuation can be\n",
+            "reproduced from `fox128` in [reference cases](tests/reference-cases.json) using\n",
+            "the supplied tokenizer; the installation record separately checks its first\n",
+            "16 generated tokens.\n",
+            "The repository includes the tested configurations, model image and local app.\n",
+            "See [Run it on your board](#run-it-on-your-board).\n",
+            "\n",
+            "## Three runnable versions\n",
+            "\n",
+            "The original two versions use the same model and three-operation interface, and both\n",
+            "authenticate model weights:\n",
+            "\n",
+            "- **Baseline:** without K/V integrity checks; faster on the measured long continuations.\n",
+            "- **K/V-protected:** the prototype that checks externally stored\n",
+            "  attention-cache data before use, including its location and current logical\n",
+            "  context. Expected digests remain in private on-chip memory.\n",
+            "\n",
+            "The protected version assumes intact on-chip circuitry and does not encrypt\n",
+            "the cache. Its purpose is to restrict a possible route to useful training\n",
+            "computation through physical memory tampering, not to prevent every deliberate\n",
+            "malfunction. Its corruption/replay rejection has been tested in simulation;\n",
             "normal inference has also been tested on the FPGA. The latest protected image\n",
             "has been checked with prompts up to 512 tokens; its predecessor was checked\n",
             "through the full context window. The design still supports 2,048 input positions,\n",
-            "but that is not a fresh full-window board test of the new image.\n"
+            "but that is not a fresh full-window board test of the new image.\n",
+            "Neither version has complete vendor-DDR timing signoff. See\n",
+            "[K/V protection and the measured tradeoff](KV-PROTECTION.md) for the mechanism,\n",
+            "current images, performance and evidence boundaries.\n",
+            "\n",
+            "- **Encrypted-memory:** an experimental version that also encrypts the\n",
+            "  external weight image and K/V. Its supplied keys are public, so it\n",
+            "  demonstrates the mechanism rather than protecting secrets from\n",
+            "  someone with this package. It requires a different flash image.\n",
+            "\n",
+            "See [encrypted memory](ENCRYPTED-MEMORY.md) for its diagram, current\n",
+            "test scope, source reproduction, installation and restoration. All\n",
+            "three preserve the same model and public three-operation interface.\n"
           ],
-          "end": 153,
-          "start": 150
+          "end": 57,
+          "start": 54
         },
         {
           "after": [
-            "The formal results summarized here concern the baseline and K/V-protected configurations;\n"
+            "An FPGA is configurable digital circuitry. Here it lets us test a proposed\n",
+            "circuit without manufacturing a custom chip. We assess each design **as if\n",
+            "its configuration were permanently frozen**, or implemented as a fixed\n",
+            "application-specific integrated circuit (ASIC). Reprogramming the development\n",
+            "FPGA is outside that assessment; resistance to other physical tampering is\n",
+            "not established by this assumption.\n"
           ],
           "before": [
-            "The formal results summarized here concern the original two configurations;\n"
+            "Under the frozen-configuration assumption, this is a working approximation\n",
+            "to the paper's idealized machine: the model architecture, accepted weights,\n",
+            "numerical rules and schedule are fixed, and the host has only the three\n",
+            "token operations. No command loads arbitrary weights, invokes matrix\n",
+            "multiplication, or reads/writes intermediate tensors.\n"
           ],
-          "end": 198,
-          "start": 197
+          "end": 66,
+          "start": 60
         },
         {
           "after": [
-            "The paper's GEMM-laundering criterion also covers physical interfaces,\n",
-            "including off-chip memory, inter-chip links, and test/debug ports. A fixed\n",
-            "inference function does not by itself secure those interfaces. An eventual\n",
-            "ASIC would need to eliminate or protect scan/test/debug paths that could\n",
-            "expose useful operands, results, or private state; a multi-chip design would\n",
-            "also need to protect its internal links. The [physical-interface discussion](INFERENCE-ONLY.md#physical-interfaces-and-a-fixed-asic)\n",
-            "explains these remaining obligations.\n",
-            "\n"
-          ],
-          "before": [],
-          "end": 229,
-          "start": 221
-        },
-        {
-          "after": [
-            "The analysis compares with the paper's illustrative 0.01, 0.001 and 0.0001 factors\n"
+            "These designs illustrate the paper's **Authenticated-Weight Inference-Only\n",
+            "Chip (AWIC)** approach: architecture and inference function are fixed in\n",
+            "circuitry, while hardware authenticates the weights read from memory against\n",
+            "fixed cryptographic digests. The checked on-chip copies, not unchecked later\n",
+            "reads from external memory, supply arithmetic. No signing secret or\n",
+            "manufacturer weight-update command is needed. This differs from hardwiring\n",
+            "the weight bits themselves into model-specific silicon.\n"
           ],
           "before": [
-            "The analysis compares with the paper's illustrative 0.01 and 0.001 factors\n"
+            "The weights live in external flash/DDR, but fixed hardware SHA-256 digests\n",
+            "determine which values are accepted. Runtime pages are copied into on-chip\n",
+            "memory and verified before arithmetic uses them. There is no signing secret\n",
+            "or manufacturer-update command. This is hardware-checked external storage,\n",
+            "not physically hardwired weight bits.\n"
           ],
-          "end": 238,
-          "start": 237
+          "end": 74,
+          "start": 67
         },
         {
           "after": [
-            "any of these comparison points.\n"
+            "Internal multiplication is not an exposed general-purpose service. Attention\n",
+            "uses internally produced queries and probabilities, and sends its results to\n",
+            "later model operations. Fixed hardware, not host software, manages the\n",
+            "intermediate memory layout. This avoids exposing a direct matrix-multiplication\n",
+            "interface; it does not establish that every physical or indirect attack is\n",
+            "impossible.\n"
           ],
           "before": [
-            "either comparison point.\n"
+            "**Internal multiplication is not an exposed general-purpose service.**\n",
+            "Attention consumes internally generated queries and probabilities, and its\n",
+            "products feed later model operations. The feed-forward gate product and\n",
+            "normalization squares are likewise private. There is no software interface\n",
+            "for injecting their arbitrary operands or retrieving their products.\n"
           ],
-          "end": 241,
-          "start": 240
+          "end": 81,
+          "start": 75
         },
         {
           "after": [
-            "The baseline and K/V-protected configurations use one fixed-model architecture with\n",
-            "private DDR memory. The measurements below use the supplied\n",
-            "baseline image; the baseline/protected comparison is in\n"
+            "The practical standard concerns **low residual training capacity even against\n",
+            "an adversary with physical possession**. Demonstrating the restricted\n",
+            "architecture is not the same as certifying that standard. External memory,\n",
+            "test/debug/scan paths and any future inter-chip links require their own\n",
+            "assessment. The Qwen experiment also has AWS management and diagnostic\n",
+            "facilities outside its token application interface; the whole cloud platform\n",
+            "is not claimed to be inference-only.\n"
           ],
           "before": [
+            "**Memory management does not require software access to those operands.**\n",
+            "The layout is fixed, and hardware calculates addresses from layer, head and\n",
+            "token-position counters. The host supplies tokens, not pointers; DDR is not\n",
+            "mapped into the host's address space. Private buffers between operations do\n",
+            "not themselves expose a matrix-multiplication interface.\n"
+          ],
+          "end": 89,
+          "start": 82
+        },
+        {
+          "after": [
+            "The [detailed inference-only assessment](INFERENCE-ONLY.md) explains these\n",
+            "distinctions using the Tang Mega designs. Its [formal-verification report](FORMAL-STATUS.md)\n",
+            "covers specific properties of those RTL configurations, not whole-machine\n",
+            "refinement or Qwen. The [conditional training-capacity analysis](TRAINING-CAPACITY.md)\n",
+            "and [architecture-dependent analysis](ARCHITECTURE-DEPENDENT-CAPACITY.md)\n",
+            "make their assumptions explicit; their Tang Mega numerical factors are not\n",
+            "Qwen measurements. **Neither demonstration has a certified, nation-state-resistant\n",
+            "residual training fraction.** Small model size or modest speed is not what\n",
+            "makes the architectural restriction inference-only.\n"
+          ],
+          "before": [
+            "We have also used automated proof tools to verify specific rules in the\n",
+            "hardware description\u2014for example, that token commands come from valid\n",
+            "requests and token replies correspond to accepted `STEP` requests. These\n",
+            "[machine-checked proofs](FORMAL-STATUS.md) cover all possible input sequences\n",
+            "within their stated assumptions, not just selected test prompts.\n",
+            "The formal results summarized here concern the original two configurations;\n",
+            "they have not yet been extended to the encrypted-memory version.\n",
+            "The protected version also has source-bound checks of cache integrity\n",
+            "control, cache assembly and attention's use of accepted cache data. These\n",
+            "remain scoped proofs, not a proof of the whole protected machine or of\n",
+            "resistance to physical circuit modification.\n"
+          ],
+          "end": 99,
+          "start": 90
+        },
+        {
+          "after": [
+            "## Run a demonstration\n"
+          ],
+          "before": [
+            "The remaining qualification concerns evidence and adversarial robustness,\n",
+            "not whether this story model is sufficiently large or fast. The baseline\n",
+            "does not authenticate external K/V data; the protected variant adds the\n",
+            "checks described above. Those two configurations do not encrypt K/V.\n",
+            "The encrypted-memory version adds encryption with public test keys;\n",
+            "none establishes resistance to arbitrary physical modification of the circuit.\n",
+            "These proofs do not yet show that the complete implemented chip obeys the\n",
+            "idealized machine's specification, and no nation-state-resistant\n",
+            "training-capacity rating has been certified.\n"
+          ],
+          "end": 101,
+          "start": 100
+        },
+        {
+          "after": [
+            "For the Tang Mega, follow [its installation guide](demos/simplestories-v2-5m/README.md#run-it-on-your-board).\n",
+            "The prebuilt configurations, model, tokenizer and browser app are included;\n",
+            "running them requires neither hardware compilation nor a paid FPGA design\n",
+            "license. Installing the model erases flash, so preserve the factory backup\n",
+            "first. The tested host workflow uses Apple Silicon macOS.\n"
+          ],
+          "before": [
+            "Software-only misuse and physical tampering are different questions. The\n",
+            "interface proofs just described address how the checked parts of the hardware\n",
+            "description respond to software commands. They do not establish resistance\n",
+            "to physical tampering. Physical access could target external DDR without\n",
+            "modifying the silicon, but would not automatically provide general access to\n",
+            "the multiplier units.\n"
+          ],
+          "end": 107,
+          "start": 102
+        },
+        {
+          "after": [
+            "For Qwen, follow [the AWS F2 installation guide](demos/qwen3-1.7b/INSTALL.md).\n",
+            "Load the publicly available tested FPGA image, reconstruct the fixed model\n",
+            "from the pinned upstream checkpoint, and build the included host client.\n",
+            "No FPGA compilation is needed for that path. You provide your own AWS account\n",
+            "and rental; the browser app can run on your Mac and connect to the F2 host\n",
+            "over SSH. Hardware sources, build instructions and numerical-reference tools\n",
+            "are also included.\n"
+          ],
+          "before": [
+            "We do provide [conditional capacity and residual training factor estimates](TRAINING-CAPACITY.md),\n",
+            "with a reproducible calculator and explicit attack/reference-performance\n",
+            "assumptions. They distinguish a token-interface limit from scenarios that\n",
+            "assume useful access to internal multipliers. We have not worked out practical\n",
+            "ways to obtain that access. These are not measured training attacks or a\n",
+            "single certified factor. Their reference comes from a\n",
+            "[measured single-H100 SXM benchmark](H100-BENCHMARK.md) of the original FP16\n",
+            "model, with the numerical and timing differences stated explicitly.\n",
+            "The analysis compares with the paper's illustrative 0.01 and 0.001 factors\n",
+            "and separates measured performance from idealized GPU headroom and conditional\n",
+            "execution-schedule estimates; it does not claim a certified factor below\n",
+            "either comparison point.\n",
+            "The fuller [inference-only assessment](INFERENCE-ONLY.md)\n",
+            "connects these points to the paper's idealized and operational definitions.\n",
+            "\n",
+            "## The demonstrated design and measurements\n",
+            "\n",
             "The original two configurations use one fixed-model architecture with\n",
             "private DDR memory. The measurements below use the selected September 24\n",
-            "baseline image; the matched baseline/protected comparison is in\n"
-          ],
-          "end": 249,
-          "start": 246
-        },
-        {
-          "after": [
-            "  exact normalizer/divider shortcuts, four-round-per-cycle weight-page hashing,\n",
-            "  packed attention-value storage and overlapping private weight reads.\n",
-            "  The baseline also prepares the next hash block while checking the current one,\n"
-          ],
-          "before": [
-            "  and exact normalizer/divider shortcuts,\n"
-          ],
-          "end": 261,
-          "start": 258
-        },
-        {
-          "after": [
-            "The three supplied images have physical-board tests against the same integer\n",
-            "reference. [VALIDATION.md](VALIDATION.md) records each image's test coverage\n",
-            "and remaining limitations. For a one-token prompt followed by 128 generated\n",
-            "tokens, the cached command rates are **8.77 tokens/s for the baseline,\n",
-            "5.22\u20135.23 for K/V-protected, and 4.27 for encrypted memory**. These rates include\n",
-            "host/UART reply overhead but exclude gaps between commands.\n",
+            "baseline image; the matched baseline/protected comparison is in\n",
+            "[KV-PROTECTION.md](KV-PROTECTION.md#measured-performance).\n",
+            "The [technical architecture guide](ARCHITECTURE.md) explains its datapath,\n",
+            "memory organization, clock domains and implementation details.\n",
             "\n",
-            "The baseline's streaming rates, which also include those gaps, are:\n"
-          ],
-          "before": [
+            "- Board: Tang Mega 138K non-Pro Dock, 16-MiB flash; GOWIN\n",
+            "  `GW5AST-LV138PG484AC1/I0` (the programmer calls this device `GW5AST-138C`).\n",
+            "- Model: `SimpleStories/SimpleStories-V2-5M`, 5,354,496 parameters, six layers;\n",
+            "  fixed numerical approximation with deterministic greedy decoding.\n",
+            "- Selected configuration: private weight prefetch, selective attention reads,\n",
+            "  and exact normalizer/divider shortcuts,\n",
+            "  with no temporary diagnostic output. Exact identities are in the technical guide.\n",
+            "\n",
             "The October 2 protected and encrypted images passed **782 main-case output\n",
             "checks** against the integer reference, plus surrounding CLEAR/replay checks.\n",
             "Their sustained rates for a one-token prompt and 128-token continuation were\n",
@@ -1564,163 +1919,198 @@
             "The [current measurements](evidence/speed-2026-10-02/board.json) identify the\n",
             "exact workloads and images.\n",
             "\n",
-            "The unchanged baseline's September 24 measurements were:\n"
-          ],
-          "end": 271,
-          "start": 263
-        },
-        {
-          "after": [
-            "| Story continuation | 1 / 128 | 8.76 |\n",
-            "| Longer story prefix | 128 / 128 | 5.35 |\n",
-            "| Long prompt | 512 / 4 | 2.67 |\n",
-            "| Full-window check (one cached STEP) | 2,047 / 2 | 0.784 |\n"
-          ],
-          "before": [
+            "The unchanged baseline's September 24 measurements were:\n",
+            "\n",
+            "| Workload | Prompt / output tokens | Tokens per second |\n",
+            "| --- | ---: | ---: |\n",
             "| Story continuation | 1 / 128 | 5.53 |\n",
             "| Longer story prefix | 128 / 128 | 3.95 |\n",
             "| Long prompt | 512 / 4 | 2.26 |\n",
-            "| Full-window check (one cached STEP) | 2,047 / 2 | 0.745 |\n"
-          ],
-          "end": 278,
-          "start": 274
-        },
-        {
-          "after": [
-            "evaluation but excluding connection setup and prompt upload, took **12.36\n",
-            "seconds for 128 prompt tokens** and **106.07 seconds for 512 prompt tokens**.\n",
-            "The one-token-prompt trial was repeated for both plaintext variants; the other\n",
-            "rows are individual trials. These are workload-specific measurements, not\n",
-            "peak ratings or guarantees.\n"
-          ],
-          "before": [
+            "| Full-window check (one cached STEP) | 2,047 / 2 | 0.745 |\n",
+            "\n",
+            "Streaming rate excludes the first token and includes the intervening host,\n",
+            "USB and logging overhead. The first `STEP`, including hardware prompt\n",
             "evaluation but excluding connection setup and prompt upload, took **19.34\n",
             "seconds for 128 prompt tokens** and **133.92 seconds for 512 prompt tokens**.\n",
             "These are individual workload-specific measurements, not repeated-run\n",
-            "statistics, peak ratings or guarantees.\n"
-          ],
-          "end": 286,
-          "start": 281
-        },
-        {
-          "after": [
-            "over-limit APPEND. That cached STEP alone took 1.2589 seconds, or 0.7947\n"
-          ],
-          "before": [
-            "over-limit APPEND. That cached STEP alone took 1.3258 seconds, or 0.7542\n"
-          ],
-          "end": 294,
-          "start": 293
-        },
-        {
-          "after": [
-            "All three supplied images have reached the full 2,048-input limit and final\n",
-            "output slot in board tests, including boundary rejection and CLEAR/replay.\n",
-            "Full-context prompt processing is slow: a 2,048-token prompt took about\n",
-            "22 minutes before the first baseline reply and 52 minutes with K/V protection.\n",
-            "These finite functional\n"
-          ],
-          "before": [
+            "statistics, peak ratings or guarantees.\n",
+            "\n",
+            "Short STEP times cluster near multiples of a **17 ms host reply-delivery\n",
+            "interval** in this setup. Small compute changes can therefore appear as a\n",
+            "one-interval jump or no change; changing the tested host serial-latency setting\n",
+            "did not remove the pattern. Its cause has not been established. See the\n",
+            "[host-timing record](evidence/leaf-speed/host-timing.json).\n",
+            "The full-window row also includes an intervening, deliberately rejected\n",
+            "over-limit APPEND. That cached STEP alone took 1.3258 seconds, or 0.7542\n",
+            "tokens/s, still including host/serial overhead.\n",
+            "\n",
+            "The hardware processes prompt positions one at a time. The technical guide\n",
+            "explains [prompt-processing cost and possible improvements](ARCHITECTURE.md#prompt-processing-and-time-to-first-token).\n",
             "The baseline and the current encrypted image have reached the full\n",
             "2,048-input limit and final output slot in board tests, including boundary\n",
             "rejection and CLEAR/replay checks. The current protected image's three tests\n",
             "cover a one-token prompt, 128-token prompt and 512-token prompt; full-window\n",
-            "protected measurements belong to the preceding image. These finite functional\n"
-          ],
-          "end": 303,
-          "start": 298
-        },
-        {
-          "after": [
-            "The baseline's reported inference-clock setup slack is only +0.018 ns.\n"
-          ],
-          "before": [
+            "protected measurements belong to the preceding image. These finite functional\n",
+            "tests do not establish complete timing signoff or correctness for every prompt.\n",
+            "The host UI limits prompts and outputs to 128 tokens each, 256 in total;\n",
+            "that limit does not establish correctness for every allowed workload.\n",
+            "\n",
+            "The image ran successfully on the physical board, but outstanding timing\n",
+            "paths, including vendor-DDR paths, prevent complete timing signoff.\n",
             "Earlier physical series and installation rehearsals remain separately labelled\n",
-            "historical evidence; their results are not attributed to the new images.\n"
+            "historical evidence; their results are not attributed to the new images.\n",
+            "Neither an image hash nor a successful source rebuild attests what another\n",
+            "board is currently running.\n",
+            "\n",
+            "See the [baseline measurements](evidence/leaf-speed/physical.json), the\n",
+            "[current protected/encrypted measurements](evidence/speed-2026-10-02/board.json), the\n",
+            "[technical guide](ARCHITECTURE.md), and the [host guide](host-app/README.md).\n"
           ],
-          "end": 310,
-          "start": 309
+          "end": 115,
+          "start": 108
         },
         {
           "after": [
-            "See the [baseline and protected measurements](evidence/read-window/board.json), the\n",
-            "[encrypted measurements](evidence/speed-2026-10-02/board.json), the\n"
+            "A secondary goal is an experiment in AI capabilities in chip design.\n",
+            "**GPT 5.6 Sol and GPT 6 Astra wrote the custom RTL, implementation code,\n",
+            "verification and host tools, and the documentation**, under the project owner's\n",
+            "direction. Incorporated review feedback for the Tang Mega work came from\n",
+            "**Fable 5.1 and Opus 5.5**, including Fable's suggestion to separate fast DDR\n",
+            "transport from slower inference control.\n"
           ],
           "before": [
-            "See the [baseline measurements](evidence/leaf-speed/physical.json), the\n",
-            "[current protected/encrypted measurements](evidence/speed-2026-10-02/board.json), the\n"
+            "**All custom RTL and implementation code for this project were written\n",
+            "by GPT 5.6 Sol and GPT 6 Astra**, under the project owner's\n",
+            "direction. They also produced the repository's documentation.\n",
+            "The work includes the inference RTL, fixed command and memory\n",
+            "controllers, numerical references, verification infrastructure, physical\n",
+            "implementation experiments, debugging and host software. Hardware is\n",
+            "primarily SystemVerilog/Verilog; references, tests and host tools use Python;\n",
+            "vendor implementation uses Tcl and timing/pin constraint files.\n"
           ],
-          "end": 315,
-          "start": 313
+          "end": 124,
+          "start": 118
         },
         {
           "after": [
-            "\n",
-            "### Performance cost of weight authentication\n",
-            "\n",
-            "A matched physical-board experiment compared the baseline with a diagnostic\n",
-            "build that skips **runtime** weight-page authentication. Both retained startup\n",
-            "authentication, the same model, arithmetic, 25 MHz clock and cache organization;\n",
-            "neither included K/V protection or encryption.\n",
-            "\n",
-            "| Prompt / generated tokens | Authentication on | Runtime checking off | Extra time per cached token with authentication |\n",
-            "| --- | ---: | ---: | ---: |\n",
-            "| 1 / 128 | 8.77 tokens/s | 9.74 tokens/s | 11.1% |\n",
-            "| 128 / 128 | 5.36 tokens/s | 5.72 tokens/s | 6.7% |\n",
-            "\n",
-            "These are the final matched repetition's command rates, excluding the first\n",
-            "output. Other repetitions broadly agree, except for one short-prompt baseline\n",
-            "run with unexplained delays; the [complete results and method](ARCHITECTURE.md#measuring-the-cost-of-weight-authentication)\n",
-            "retain that run. Authentication therefore has a modest measured cost on these\n",
-            "workloads: removing it alone does not make this circuit dramatically faster.\n",
-            "This is not a universal overhead or the speed limit of a redesigned,\n",
-            "unauthenticated accelerator. The diagnostic is a comparison experiment, not a\n",
-            "fourth protected configuration. Sanitized UART transcripts, the source change\n",
-            "and an offline checker are included.\n"
+            "Hardware is primarily SystemVerilog/Verilog; numerical references and tests\n",
+            "use Python and C++; host software uses Python and C++; implementation flows\n",
+            "use Tcl and constraints. This attribution excludes the FPGA silicon, boards,\n",
+            "vendor IP and tools, pretrained models, and third-party libraries. It is an\n",
+            "engineering experiment with human oversight, not a controlled comparison of\n",
+            "AI and human engineering ability.\n"
           ],
-          "before": [],
-          "end": 338,
-          "start": 316
+          "before": [
+            "**Fable 5.1 contributed review suggestions incorporated into the working\n",
+            "design**, notably the separation of fast DDR transport from slower inference\n",
+            "control.\n"
+          ],
+          "end": 131,
+          "start": 125
         },
         {
           "after": [
-            "**Opus 5.5 also provided review feedback.**\n"
+            "## Technical documentation and licenses\n"
           ],
           "before": [
             "**Opus 5.5 also provided feedback in later reviews of the project.**\n"
           ],
-          "end": 355,
-          "start": 354
+          "end": 133,
+          "start": 132
         },
         {
           "after": [
-            "its flash payload is not interchangeable with the plaintext model image.\n"
+            "Start with a model's guide for its architecture, hardware instructions and\n",
+            "evidence. The root-level architecture, installation, simulation, proof,\n",
+            "H100 benchmark and capacity documents currently describe **Tang Mega** unless\n",
+            "they explicitly say otherwise. Qwen's reported results and limitations live\n",
+            "in its separate guide.\n"
           ],
           "before": [
-            "its flash payload is not interchangeable with the original plaintext image.\n"
+            "\u201cDesigned by AI\u201d refers to this project's custom design, not to the GOWIN\n",
+            "FPGA silicon, Sipeed board, vendor DDR IP, synthesis/router, pretrained model,\n",
+            "or third-party software. The human owner chose the conceptual requirements,\n",
+            "provided the hardware and computing environment, authorized consequential\n",
+            "actions, and connected the board. This is a documented engineering experiment\n",
+            "with substantial tool use and human oversight, not a controlled comparison\n",
+            "of AI and human engineering ability.\n"
           ],
-          "end": 388,
-          "start": 387
+          "end": 139,
+          "start": 134
         },
         {
           "after": [
-            "- [ARCHITECTURE.md](ARCHITECTURE.md): detailed RTL, memory and clock organization.\n"
+            "Project-owned code, documentation and the photograph are Apache-2.0; the\n",
+            "packaged SimpleStories model assets use the upstream MIT declaration.\n",
+            "See [LICENSE](LICENSE), [NOTICE](NOTICE), [LICENSING.md](LICENSING.md) and\n",
+            "[third-party notices](THIRD-PARTY-NOTICES.md). Qwen's upstream model is Apache-2.0;\n",
+            "its [dependency notices](demos/qwen3-1.7b/NOTICES.md) distinguish project-owned\n",
+            "code from AWS, FPGA-vendor and other third-party components. The project license\n",
+            "does not replace those components' terms.\n"
           ],
           "before": [
-            "- [ARCHITECTURE.md](ARCHITECTURE.md): detailed original RTL, memory and clock organization.\n"
+            "## Run it on your board\n",
+            "\n",
+            "The runnable release includes **three prebuilt inference configurations**, a\n",
+            "separate backup-reader configuration, the fixed model image, tokenizer and\n",
+            "browser app. You need the matching Tang Mega 138K non-Pro/device-C board\n",
+            "with 128-Mbit / 16-MiB flash (tested JEDEC ID `0B4018`). Older 64-Mbit /\n",
+            "8-MiB boards cannot hold the model at the required flash offset. The tested\n",
+            "workflow uses Apple Silicon macOS, Python 3.12, GOWIN's separately downloaded\n",
+            "standalone Programmer and openFPGALoader for factory-backup restoration.\n",
+            "Other operating systems are unvalidated; the pinned programmer hashes are\n",
+            "for the macOS builds. The vendor download may require a free account.\n",
+            "**Running the demo does not require compiling the hardware or a\n",
+            "paid FPGA development license.**\n",
+            "\n",
+            "Start with [PROGRAMMING.md](PROGRAMMING.md): check files and board identity,\n",
+            "preserve the factory demo, install the model, verify the complete flash, then\n",
+            "load the inference circuit. The model-install step erases the factory flash;\n",
+            "do not skip its backup/recovery instructions. Configuration is SRAM-only and\n",
+            "must be reloaded after power-off; the model stays in flash. Plan about\n",
+            "1.5 hours for first-time backup, installation and independent verification.\n",
+            "\n",
+            "For the third configuration, follow the variant-specific\n",
+            "[encrypted-memory instructions](ENCRYPTED-MEMORY.md#install-or-restore) instead;\n",
+            "its flash payload is not interchangeable with the original plaintext image.\n",
+            "\n",
+            "Then follow [host-app/README.md](host-app/README.md) to qualify your loaded board\n",
+            "and start the local browser app. The [validation record](VALIDATION.md) states\n",
+            "what was checked and the remaining timing, context and proof limitations.\n",
+            "\n",
+            "For optional source rebuilding, exact vendor dependencies and download steps\n",
+            "are in [VENDOR-SETUP.md](VENDOR-SETUP.md). [REPRODUCE.md](REPRODUCE.md) explains\n",
+            "model reconstruction, numerical references, simulations and scoped proofs.\n",
+            "The vendor installers and encrypted source inputs are separate downloads;\n",
+            "private user logs, factory backups and superseded designs are not included.\n",
+            "\n",
+            "## Source guide\n",
+            "\n",
+            "- [INFERENCE-ONLY.md](INFERENCE-ONLY.md): the paper-facing architectural assessment.\n",
+            "- [TRAINING-CAPACITY.md](TRAINING-CAPACITY.md): conditional quantitative estimates and calculator.\n",
+            "- [ARCHITECTURE-DEPENDENT-CAPACITY.md](ARCHITECTURE-DEPENDENT-CAPACITY.md): how context, batching and model architecture affect those estimates, including Llama 405B.\n",
+            "- [ARCHITECTURE.md](ARCHITECTURE.md): detailed original RTL, memory and clock organization.\n",
+            "- [ENCRYPTED-MEMORY.md](ENCRYPTED-MEMORY.md): third experimental configuration and its distinct evidence/installation scope.\n",
+            "- `prebuilt/`, `assets/`: selected FPGA configurations, build receipts and model image.\n",
+            "- `hardware/`: the selected custom RTL, constraints, ROM data and build recipe.\n",
+            "- `reference/`: pinned upstream asset identities, quantizer and integer model.\n",
+            "- `formal/`: abstract Lean specification and scoped RTL proofs; see\n",
+            "  [FORMAL-STATUS.md](FORMAL-STATUS.md) before interpreting their results.\n",
+            "- `simulation/model/`: [real-model RTL and altered-weight rejection tests](simulation/model/README.md),\n",
+            "  using the unchanged production datapath and real SHA checks.\n",
+            "- `host-app/`: local text interface, fixed serial protocol and offline tests.\n",
+            "- `tools/`, `tests/`, `evidence/`: reproduction checks, reference cases and\n",
+            "  curated identities/measurements; see the [evidence guide](evidence/README.md)\n",
+            "  for the scope and chronology of the records.\n",
+            "- `maintenance/flash-reader/`: a separately loaded read-only backup helper,\n",
+            "  **not part of the inference circuit or a fourth inference command**.\n",
+            "\n",
+            "Project-owned code, documentation and the photograph are Apache-2.0;\n",
+            "model assets use the upstream MIT declaration and third-party notices are\n",
+            "preserved. See [LICENSE](LICENSE), [NOTICE](NOTICE) and [LICENSING.md](LICENSING.md).\n"
           ],
-          "end": 405,
-          "start": 404
-        },
-        {
-          "after": [
-            "  for the scope and source identities of the records.\n"
-          ],
-          "before": [
-            "  for the scope and chronology of the records.\n"
-          ],
-          "end": 417,
-          "start": 416
+          "end": 147,
+          "start": 140
         }
       ]
     },
@@ -1855,7 +2245,7 @@
       ]
     },
     "THIRD-PARTY-NOTICES.md": {
-      "after_sha256": "143d6987cc4dcb77f298a318387dec2a9b37942343c5f5eef7e605b507b4ce89",
+      "after_sha256": "7226994005d00db87a2f8d31b9f94ba0371599c48d49267952c308e5cf6853cd",
       "before_sha256": "18b65ea5a6a162bb6095ca00f851f25dca6ca2c5eb613ab47e5823d2a79bd428",
       "reverse_edits": [
         {
@@ -1886,11 +2276,43 @@
           ],
           "end": 72,
           "start": 71
+        },
+        {
+          "after": [
+            "## Qwen3-1.7B / AWS F2\n",
+            "\n",
+            "The second demonstration uses the pinned `Qwen/Qwen3-1.7B` checkpoint,\n",
+            "Berkeley HardFloat modules and AWS-specific integration. Its\n",
+            "[dependency and license notice](demos/qwen3-1.7b/NOTICES.md) identifies the\n",
+            "upstream model license, BSD-style arithmetic license, Amazon Software License\n",
+            "files and separately installed vendor dependencies. In particular, the project's\n",
+            "Apache-2.0 grant does not override Amazon-platform-use restrictions in AWS files.\n",
+            "\n",
+            "## AI and media attribution\n"
+          ],
+          "before": [
+            "## AI and photographic attribution\n"
+          ],
+          "end": 95,
+          "start": 85
+        },
+        {
+          "after": [
+            "The owner-supplied board photograph and demonstration videos are included in\n",
+            "the project's Apache-2.0 grant; removal of personal metadata is not an\n",
+            "ownership claim about their subjects or third-party software shown on screen.\n"
+          ],
+          "before": [
+            "The owner-supplied board photograph is included in the project's Apache-2.0\n",
+            "grant; its removal of metadata is not an ownership claim about its subjects.\n"
+          ],
+          "end": 102,
+          "start": 99
         }
       ]
     },
     "TRAINING-CAPACITY.md": {
-      "after_sha256": "4377bd25d6a1bacf829fa8e5862f6d2437da625702d309ca5b7745987632ed9f",
+      "after_sha256": "0c931adee4477b81c1c508de8ea384242a65bdbc65c52f8805a4f7daa8b920d6",
       "before_sha256": "53a9190633d504f07ab5cfb44f5051dbcf1968483dcfd1e76a6a837b87a4337d",
       "reverse_edits": [
         {
@@ -1941,7 +2363,7 @@
         },
         {
           "after": [
-            "Here `r` counts input and output tokens together. We use **L = 2,049**, including the final output slot beyond the model's 2,048-input limit. The supplied baseline reached that limit on the board; see [the full-window results](README.md#the-demonstrated-design-and-measurements).\n"
+            "Here `r` counts input and output tokens together. We use **L = 2,049**, including the final output slot beyond the model's 2,048-input limit. The supplied baseline reached that limit on the board; see [the full-window results](demos/simplestories-v2-5m/README.md#the-demonstrated-design-and-measurements).\n"
           ],
           "before": [
             "Here `r` counts input and output tokens together. We use **L = 2,049**, including the final output slot beyond the model's 2,048-input limit. Subsequent matched board trials reach that limit in both variants; see [the full-window results](KV-PROTECTION.md#measured-performance). The calculation is unchanged.\n"
