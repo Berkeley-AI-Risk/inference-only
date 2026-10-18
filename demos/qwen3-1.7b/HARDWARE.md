@@ -25,6 +25,26 @@ number of STEPs issued, not the circuit's greedy numerical rule.
 The [interface assessment](README.md#interface-and-inference-only-scope)
 also discloses status registers and the 16-bit attention-state diagnostic.
 
+### Detailed hardware diagram
+
+This diagram expands the released 62.5 MHz design, using the same colors and
+layout as the [SimpleStories diagram](../../ARCHITECTURE.md#detailed-baseline-diagram).
+Both circuits own the inference schedule, tensor addresses and checked-weight
+path. Qwen uses HBM and substantially more parallel arithmetic. Its released
+baseline does not include K/V integrity protection or weight encryption.
+
+![Detailed Qwen3-1.7B baseline: fixed host and inference controllers, HBM weight verification and caches, selected projection banks, paired-head attention, and mapped DSP resources.](../../diagrams/qwen-hardware-architecture.svg)
+
+[Open the full-size SVG](../../diagrams/qwen-hardware-architecture.svg) ·
+[PNG](../../diagrams/qwen-hardware-architecture.png) ·
+[Sources and regeneration](../../diagrams/README.md)
+
+The 1,000 DSP blocks are mapped FPGA resources, not 1,000 independently usable
+multipliers. Floating-point arithmetic can consume several blocks; some blocks
+implement additions. Only one of the two projection banks is selected at a time.
+The diagram summarizes functional connections, not physical placement or a
+security proof.
+
 ## Source identity and measured implementation
 
 `SOURCE-INPUTS.json` identifies the byte-identical selected RTL, build inputs,

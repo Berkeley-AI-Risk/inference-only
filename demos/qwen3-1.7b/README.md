@@ -183,6 +183,8 @@ accepted model image; its CPU and full distinct-prompt checks are also included.
 experiment.** Use the separate [installation guide](INSTALL.md),
 [browser instructions](BROWSER.md), [source-build guide](HARDWARE.md),
 [numerical reference](reference/README.md) and [dependency notices](NOTICES.md).
+The [detailed hardware diagram](HARDWARE.md#detailed-hardware-diagram) shows the
+controllers, memory paths and arithmetic units alongside the SimpleStories design.
 The [installation receipt](evidence/installation.json) records a fresh slot
 reload, upload of the model rebuilt from this package, the three-token self-test
 and a separate 390-token check using the recipient-built host client. These

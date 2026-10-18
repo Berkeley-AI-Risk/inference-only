@@ -132,7 +132,7 @@
       ]
     },
     "ARCHITECTURE.md": {
-      "after_sha256": "dfa2217d4c501fc27672ea3e9bb94eb9da9adbbfd62ef2df9e2290b3b35f4271",
+      "after_sha256": "a844115620e3f5272c8005d6bbf7dc1fbd7e5aa4ceeb6ebfb5b985bf486a547e",
       "before_sha256": "3bd5cd42e22df73f439980373d50d4f1d9603c58528531f678ea9ee6d9ed9102",
       "reverse_edits": [
         {
@@ -203,13 +203,35 @@
         },
         {
           "after": [
+            "### Detailed baseline diagram\n",
+            "\n",
+            "The diagram below expands the controllers, memory paths and arithmetic units\n",
+            "of the released baseline. Its 76 mapped multiplier instances include the five\n",
+            "dynamic-role units; these are not 76 host-programmable arithmetic lanes.\n",
+            "The encrypted-memory variant has a different projection engine and is not\n",
+            "represented by this resource count.\n",
+            "\n",
+            "![Detailed SimpleStories baseline: fixed token and layer controllers, checked weight buffers, private attention paths, and the 76 mapped multiplier instances.](diagrams/simplestories-hardware-architecture.svg)\n",
+            "\n",
+            "[Open the full-size SVG](diagrams/simplestories-hardware-architecture.svg) \u00b7\n",
+            "[PNG](diagrams/simplestories-hardware-architecture.png) \u00b7\n",
+            "[Sources and regeneration](diagrams/README.md) \u00b7\n",
+            "[Qwen hardware diagram](demos/qwen3-1.7b/HARDWARE.md#detailed-hardware-diagram)\n",
+            "\n"
+          ],
+          "before": [],
+          "end": 91,
+          "start": 76
+        },
+        {
+          "after": [
             "The clock tree also contains the PLL's 50 MHz output. Signal names\n"
           ],
           "before": [
             "The clock tree also contains the PLL's 50 MHz output. Historical signal names\n"
           ],
-          "end": 91,
-          "start": 90
+          "end": 106,
+          "start": 105
         },
         {
           "after": [
@@ -222,8 +244,8 @@
             "reached the full 2,048-input window and final output slot. The new protected\n",
             "image's board tests reached 512-token prompts; see\n"
           ],
-          "end": 128,
-          "start": 126
+          "end": 143,
+          "start": 141
         },
         {
           "after": [
@@ -313,8 +335,8 @@
             "\n"
           ],
           "before": [],
-          "end": 344,
-          "start": 260
+          "end": 359,
+          "start": 275
         },
         {
           "after": [
@@ -323,8 +345,8 @@
           "before": [
             "The selected builds include three small exact-arithmetic speedups: a\n"
           ],
-          "end": 347,
-          "start": 346
+          "end": 362,
+          "start": 361
         },
         {
           "after": [
@@ -333,8 +355,8 @@
           "before": [
             "add public controls, change clocks or bypass weight/K/V checks. Source-bound\n"
           ],
-          "end": 352,
-          "start": 351
+          "end": 367,
+          "start": 366
         },
         {
           "after": [
@@ -343,8 +365,8 @@
           "before": [
             "their receipt hashes. Public model replays exercise the changed RTL but do\n"
           ],
-          "end": 356,
-          "start": 355
+          "end": 371,
+          "start": 370
         },
         {
           "after": [
@@ -356,8 +378,8 @@
             "| 128 tokens | 19.34 s |\n",
             "| 512 tokens | 133.92 s |\n"
           ],
-          "end": 372,
-          "start": 369
+          "end": 387,
+          "start": 384
         },
         {
           "after": [
@@ -374,8 +396,8 @@
           "before": [
             "four outputs, averaging 2.26 cached tokens/s after the first.\n"
           ],
-          "end": 385,
-          "start": 376
+          "end": 400,
+          "start": 391
         },
         {
           "after": [
@@ -389,8 +411,8 @@
             "violated endpoints**. Its reported inference-clock Fmax is 26.065 MHz against\n",
             "a 25 MHz target. A complete census of the reported negative endpoints places\n"
           ],
-          "end": 417,
-          "start": 413
+          "end": 432,
+          "start": 428
         },
         {
           "after": [
@@ -400,8 +422,8 @@
           "before": [
             "qualified. The current protected route has 211 setup/recovery and three hold\n"
           ],
-          "end": 423,
-          "start": 421
+          "end": 438,
+          "start": 436
         },
         {
           "after": [
@@ -414,8 +436,8 @@
             "setup/hold margins are +1.080/+0.138 ns, not complete product signoff.\n",
             "See [baseline native results](evidence/leaf-speed/native.json),\n"
           ],
-          "end": 427,
-          "start": 424
+          "end": 442,
+          "start": 439
         },
         {
           "after": [
@@ -424,8 +446,8 @@
           "before": [
             "The selected baseline uses 56,538/69,120 CLS, 196/340 BSRAM, and\n"
           ],
-          "end": 431,
-          "start": 430
+          "end": 446,
+          "start": 445
         },
         {
           "after": [
@@ -439,8 +461,8 @@
             "- Selected encrypted configuration SHA-256: `7ab1d1c35d79da3e3341e81947353d337b981ee916628dc9fda79cfcec79d46b`.\n",
             "- Historical baseline campaign configuration SHA-256: `5a5b6788ea0d5b07d25614e91f2950c0c3a7b3cf49f8e225f2dcaf9e76ac8c2a`.\n"
           ],
-          "end": 451,
-          "start": 448
+          "end": 466,
+          "start": 463
         },
         {
           "after": [
@@ -451,8 +473,8 @@
             "and [portable test](evidence/portable-host.json) describe previous images, not\n",
             "the selected arithmetic revision. See [the evidence chronology](evidence/README.md)\n"
           ],
-          "end": 457,
-          "start": 456
+          "end": 472,
+          "start": 471
         }
       ]
     },

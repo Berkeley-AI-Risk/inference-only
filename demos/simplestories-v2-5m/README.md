@@ -118,7 +118,8 @@ private DDR memory. The measurements below use the supplied
 baseline image; the baseline/protected comparison is in
 [KV-PROTECTION.md](../../KV-PROTECTION.md#measured-performance).
 The [technical architecture guide](../../ARCHITECTURE.md) explains its datapath,
-memory organization, clock domains and implementation details.
+memory organization, clock domains and implementation details, with a
+[detailed hardware diagram](../../ARCHITECTURE.md#detailed-baseline-diagram).
 
 - Board: Tang Mega 138K non-Pro Dock, 16-MiB flash; GOWIN
   `GW5AST-LV138PG484AC1/I0` (the programmer calls this device `GW5AST-138C`).

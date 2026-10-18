@@ -74,6 +74,21 @@ fixed-weight verification from the additional K/V checks in the protected
 configuration. The two DDR regions in the overview represent address
 regions in one external memory, not separate devices.
 
+### Detailed baseline diagram
+
+The diagram below expands the controllers, memory paths and arithmetic units
+of the released baseline. Its 76 mapped multiplier instances include the five
+dynamic-role units; these are not 76 host-programmable arithmetic lanes.
+The encrypted-memory variant has a different projection engine and is not
+represented by this resource count.
+
+![Detailed SimpleStories baseline: fixed token and layer controllers, checked weight buffers, private attention paths, and the 76 mapped multiplier instances.](diagrams/simplestories-hardware-architecture.svg)
+
+[Open the full-size SVG](diagrams/simplestories-hardware-architecture.svg) ·
+[PNG](diagrams/simplestories-hardware-architecture.png) ·
+[Sources and regeneration](diagrams/README.md) ·
+[Qwen hardware diagram](demos/qwen3-1.7b/HARDWARE.md#detailed-hardware-diagram)
+
 The [physical top](hardware/project/top.sv) connects this path
 to a flash boot loader, private model/KV memory system, thin DDR transport,
 and GOWIN DDR3 controller. Application semantics and memory-access policy

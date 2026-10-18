@@ -19,7 +19,7 @@
       "runnable_package_included": true
     }
   },
-  "documentation_revision": "2026-10-17-runnable-qwen3-1.7b",
+  "documentation_revision": "2026-10-17-detailed-hardware-diagrams",
   "encrypted_memory_broader_board_tests_complete": true,
   "encrypted_memory_experimental": true,
   "excluded_vendor_files": 4,
@@ -41,8 +41,8 @@
       "sha256": "bfcf342619a1f1ea107e22cadd846aeb230a7ad380730a511cb392798b7ebbbf"
     },
     "ARCHITECTURE.md": {
-      "bytes": 27514,
-      "sha256": "dfa2217d4c501fc27672ea3e9bb94eb9da9adbbfd62ef2df9e2290b3b35f4271"
+      "bytes": 28363,
+      "sha256": "a844115620e3f5272c8005d6bbf7dc1fbd7e5aa4ceeb6ebfb5b985bf486a547e"
     },
     "ENCRYPTED-MEMORY.md": {
       "bytes": 17325,
@@ -225,8 +225,8 @@
       "sha256": "85a8e3c8a7b8381071a80366e34440309f5000677b8ce9931b3dafb04a8b74e7"
     },
     "demos/qwen3-1.7b/HARDWARE.md": {
-      "bytes": 6829,
-      "sha256": "f674b70d16951ed091ab5c8d1a9883ee8771dcdc033a89e96cd8a7aa92421c02"
+      "bytes": 8001,
+      "sha256": "02e5b49b1c69e4fcf431c92fce845b0e61058739469979a48a9606046c928dd3"
     },
     "demos/qwen3-1.7b/INSTALL.md": {
       "bytes": 6814,
@@ -237,8 +237,8 @@
       "sha256": "dd3d815d30f34d9b17437a157766d5abad57dff3d20f936863a7444ad0dcfa44"
     },
     "demos/qwen3-1.7b/README.md": {
-      "bytes": 10925,
-      "sha256": "7835b05a82e6cb32f580263e71413c9d2eeaf005458680867bc9f571ca378a6f"
+      "bytes": 11089,
+      "sha256": "6dce92e4c0b7f1048b02d617673e4f832d8c0f2f0ccfd3fc054c2e3449b2a209"
     },
     "demos/qwen3-1.7b/SOURCE-INPUTS.json": {
       "bytes": 17178,
@@ -925,8 +925,8 @@
       "sha256": "4b0345f96acd92de6059a58bf640a2e840008c59813fb8d7f31e0edc400dd2c5"
     },
     "demos/simplestories-v2-5m/README.md": {
-      "bytes": 16757,
-      "sha256": "c06c1d8e73e480fb167f9329ac2ae24ce75a72ac23cbfbcb565ced239b1af1aa"
+      "bytes": 16842,
+      "sha256": "4a77d2c863f3bc984bb6ee341efb7c524df04b9cdbf5c61d091332150e989048"
     },
     "demos/simplestories-v2-5m/media/simplestories-demo.mp4": {
       "bytes": 885024,
@@ -935,6 +935,10 @@
     "demos/simplestories-v2-5m/media/simplestories-demo.png": {
       "bytes": 201880,
       "sha256": "9b79e45e79326cd70a915e099b772b8623b5c57abbbc9ff204460e6d59ab6ddb"
+    },
+    "diagrams/README.md": {
+      "bytes": 3402,
+      "sha256": "59a7c6c74f94a9ccc09003819ea3f38aa724394a583066d1b3c41aeac3767b10"
     },
     "diagrams/encrypted-memory.svg": {
       "bytes": 5366,
@@ -947,6 +951,38 @@
     "diagrams/memory-integrity.svg": {
       "bytes": 5683,
       "sha256": "83c22bfcf3da688be75faa42f2d24cf7cee2b85a5db7d4c1a9add11a44781e2d"
+    },
+    "diagrams/qwen-hardware-architecture.inventory.json": {
+      "bytes": 11962,
+      "sha256": "85bd7585dedba214b005cfec2a817be1c19329c5a04f1a1c1e099e09d5ef45c8"
+    },
+    "diagrams/qwen-hardware-architecture.png": {
+      "bytes": 2052739,
+      "sha256": "93c01f01209661852188705c3883fd8bdbbff280da841f8056226849092820c5"
+    },
+    "diagrams/qwen-hardware-architecture.py": {
+      "bytes": 23756,
+      "sha256": "62cd148f206ae710c82730d2d853008a9d52c634ec4ec628334fef3c52e5ebc4"
+    },
+    "diagrams/qwen-hardware-architecture.svg": {
+      "bytes": 103335,
+      "sha256": "37a58b856493fe27feee16f15348e8f2823a45f81a25252a404f7e94e8f0023d"
+    },
+    "diagrams/simplestories-hardware-architecture.inventory.json": {
+      "bytes": 20093,
+      "sha256": "2a772909d0fa21a67b9bfbd51d13e3040b9c383d4badb82f307efc822d3354f5"
+    },
+    "diagrams/simplestories-hardware-architecture.png": {
+      "bytes": 1815170,
+      "sha256": "8f032adc1e617ab4013d466295922a034b03336bbb350d7b82282167f8978a6c"
+    },
+    "diagrams/simplestories-hardware-architecture.py": {
+      "bytes": 18141,
+      "sha256": "2fa73f23a0570b4d8c454397d6c97b193a28ace5e0d7db8d477273c249c175ad"
+    },
+    "diagrams/simplestories-hardware-architecture.svg": {
+      "bytes": 111179,
+      "sha256": "d2731b16acf90c7ff2daacb1ff29e3ef2b17e52b60e54571d5f0dcb9049fea60"
     },
     "evidence/README.md": {
       "bytes": 5086,
@@ -1417,8 +1453,8 @@
       "sha256": "c4af0b8f93fa22eceea1edd619ca03ae8bfe8c27722582e7eec3a607e1ed6636"
     },
     "evidence/speed-2026-10-02/source-revision.json": {
-      "bytes": 1326248,
-      "sha256": "80811f95ea3212269b53d3ed4b2caaa860328bf09e6d8a3923ae5d161d6ec08b"
+      "bytes": 1327487,
+      "sha256": "0e9912a35f8f437e484520b91179053a51d4744402d60c931207f58eb26d220c"
     },
     "evidence/training-capacity-estimates.json": {
       "bytes": 13830,
