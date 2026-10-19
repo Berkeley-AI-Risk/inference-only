@@ -159,6 +159,12 @@ module qwen_fixed_core #(
         || (state==A_FEED && attention_operating);
     wire feed_advance=tensor_feed_operating && (!sample_valid || consumer_ready);
     wire feed_issue=feed_advance && feed_count<feed_length;
+    // PRIVATE_TENSOR_READ_AHEAD: only the private read-data registers may
+    // refresh on a rejected cycle. The original feed_issue still controls
+    // sample validity/index; all consumption, faults and writes are unchanged.
+    // Hold a valid stalled sample, and never issue an out-of-range fetch.
+    wire private_tensor_read=feed_active && (!sample_valid || consumer_ready)
+        && feed_count<feed_length;
     wire sample_take=feed_active && sample_valid && consumer_ready && operating;
     wire feed_finished=sample_take && sample_index==feed_length-1'b1;
     wire [3:0] read_a_tensor=state==W_FEED ? (feed_count<1024 ? K : V) : source_a;
@@ -170,7 +176,7 @@ module qwen_fixed_core #(
     reg [12:0] tensor_write_index /* verilator public_flat_rd */;
     reg [15:0] tensor_write_data /* verilator public_flat_rd */;
     qwen_private_tensors tensors(
-        .clk(clk),.enable(1'b1),.read_enable(feed_issue),.read_a_tensor(read_a_tensor),
+        .clk(clk),.enable(1'b1),.read_enable(private_tensor_read),.read_a_tensor(read_a_tensor),
         .read_b_tensor(read_b_tensor),.read_index(read_index),.read_a(operand_a),.read_b(operand_b),
         .write_enable(tensor_write),.write_tensor(tensor_write_bank),
         .write_index(tensor_write_index),.write_data(tensor_write_data));

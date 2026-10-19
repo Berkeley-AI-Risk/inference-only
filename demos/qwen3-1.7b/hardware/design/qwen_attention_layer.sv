@@ -61,7 +61,10 @@ module qwen_attention_layer #(
     assign memory_layer=layer;
     assign done_valid=state==DONE && alive && (failed || !(|memory_error));
     assign done_error=failed;
-    wire run_enabled=state==RUN && alive && !fault;
+    // PRIVATE_RUN_GUARD: LOAD-only query validation cannot fire in RUN.
+    // Keep full fault handling unchanged; this is the same Boolean RUN gate.
+    wire run_fault=(|memory_error) || (|child_abort) || (|(child_valid & child_error));
+    wire run_enabled=state==RUN && alive && !run_fault;
     assign key_ready=child_key_ready & {CORES{run_enabled}};
     assign value_ready=child_value_ready & {CORES{run_enabled}};
     wire capture_valid=run_enabled && child_valid[capture_core];

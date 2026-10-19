@@ -76,7 +76,7 @@ module qwen_model_boot_loader #(
          || state==PADDING);
     assign sha_block=state==PADDING ? {8'h80,440'b0,IMAGE_BITS} : data_block;
     assign sha_out_ready=alive && hash_pending;
-    qwen_sha256_pipeline #(.TAG_BITS(1)) checksum(
+    qwen_sha256_pipeline #(.TAG_BITS(1),.RETURN_CREDIT_LOOKAHEAD(1'b0)) checksum(
         .clk(clk),.rst_n(rst_n),.clear(failed),.in_valid(sha_in_valid),.in_ready(sha_in_ready),
         .block_data(sha_block),.initial_state(chain),.in_tag(state==PADDING),
         .out_valid(sha_out_valid),.out_ready(sha_out_ready),.final_state(sha_result),.out_tag(sha_out_tag),.busy());

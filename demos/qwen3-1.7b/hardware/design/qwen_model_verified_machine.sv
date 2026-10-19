@@ -45,14 +45,47 @@ module qwen_model_verified_machine #(
     wire [17:0] model_bytes /* verilator public_flat_rd */;
     wire model_data_valid,model_data_ready,model_data_last,model_error,model_abort,model_quiescent;
     wire [2047:0] model_data;
+    // PRIVATE_VERIFIED_RESPONSE_BOUNDARY: only verified reader handshakes
+    // publish these slots. No downstream READY feeds the upstream credit test.
+    wire reader_data_valid,reader_data_ready,reader_data_last,reader_quiescent;
+    wire [2047:0] reader_data;
+    reg [2048:0] verified_response_words [0:1];
+    reg [1:0] verified_response_count;
+    reg verified_response_read,verified_response_write;
+    wire response_enabled=rst_n && !model_abort;
+    assign reader_data_ready=response_enabled && verified_response_count<2;
+    assign model_data_valid=response_enabled && verified_response_count!=0;
+    assign {model_data_last,model_data}=verified_response_words[verified_response_read];
+    assign model_quiescent=reader_quiescent && verified_response_count==0;
+    wire verified_response_push=reader_data_valid && reader_data_ready;
+    wire verified_response_pop=model_data_valid && model_data_ready;
+    // The write pointer owns an unoccupied slot whenever a credit is free.
+    // Refresh its unpublished payload without the incoming VALID/fault path;
+    // only a verified handshake advances occupancy and publishes that word.
+    // Payload does not need resetting. Occupancy is the only publication bit.
+    always @(posedge clk) begin
+        if(reader_data_ready)
+            verified_response_words[verified_response_write]<={reader_data_last,reader_data};
+        if(!rst_n || model_abort) begin
+            verified_response_count<=0;verified_response_read<=0;verified_response_write<=0;
+        end else begin
+            if(verified_response_push)verified_response_write<=!verified_response_write;
+            if(verified_response_pop)verified_response_read<=!verified_response_read;
+            case({verified_response_push,verified_response_pop})
+                2'b10:verified_response_count<=verified_response_count+1'b1;
+                2'b01:verified_response_count<=verified_response_count-1'b1;
+                default: ;
+            endcase
+        end
+    end
     qwen_token_machine #(.ATTENTION_CORES(ATTENTION_CORES),.SILU_ROM_FILE(SILU_ROM_FILE),
         .EXP_ROM_FILE(EXP_ROM_FILE)) machine(.cmd_clear_valid(cmd_clear_valid),.*);
     qwen_model_reader #(.WEIGHT_PAGES(64),.AUTH_SLOTS(32),.PREFETCH_PAGES(PREFETCH_PAGES),.ROOT_FILE(ROOT_FILE)) model_reader(
         .clk(clk),.rst_n(rst_n),.core_abort(model_abort),
         .request_valid(model_request_valid),.request_ready(model_request_ready),
         .request_address(model_address),.request_bytes(model_bytes),
-        .data_valid(model_data_valid),.data_ready(model_data_ready),.data(model_data),.data_last(model_data_last),
-        .error(model_error),.quiescent(model_quiescent),
+        .data_valid(reader_data_valid),.data_ready(reader_data_ready),.data(reader_data),.data_last(reader_data_last),
+        .error(model_error),.quiescent(reader_quiescent),
         .raw_request_valid(raw_model_request_valid),.raw_request_ready(raw_model_request_ready),.raw_page(raw_model_page),
         .raw_data_valid(raw_model_data_valid),.raw_data_ready(raw_model_data_ready),.raw_data(raw_model_data),
         .raw_last(raw_model_last),.raw_error(raw_model_error),.raw_abort(raw_model_abort),.raw_quiescent(raw_model_quiescent));

@@ -1,18 +1,22 @@
 {
   "schema": "qwen-public-deployment-v1",
   "region": "us-east-1",
-  "fpga_image_id": "afi-0dcab1e1ac1a1dade",
-  "fpga_image_global_id": "agfi-026c1333e063cf04f",
+  "fpga_image_id": "afi-04aa2e77774fbba29",
+  "fpga_image_global_id": "agfi-0d92b2f41b8f8b620",
   "image_state": "available",
   "shell_version": "0x10212415",
   "public_load_permission_verified": true,
-  "load_permissions": [{"Group": "all"}],
-  "permission_observed_utc": "2026-10-17T21:37:25Z",
+  "load_permissions": [
+    {
+      "Group": "all"
+    }
+  ],
+  "permission_observed_utc": "2026-10-19T15:29:52.167047+00:00",
   "permission_observation_method": "AWS describe-fpga-image-attribute and describe-fpga-images through the owner's authenticated CloudShell session",
   "cross_account_load_tested": false,
-  "core_clock_mhz": 62.5,
-  "aws_input_archive_sha256": "4bc1316642261361809e8a0aa499ba6670571f441d50b7726b772478c6f7e0fe",
-  "routed_checkpoint_sha256": "11d8d9997e6b032f6cd208ac63de03c13a969957fecfcb18d98b2051c03b0b2e",
+  "core_clock_mhz": 100,
+  "aws_input_archive_sha256": "34264c6cf143ffb955235c711f944aa2ede71051fc97a19818a505bee9c8dc91",
+  "routed_checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
   "model_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
   "model_bytes": 2354380800,
   "scope": "Public load permission for the tested image; no public access to the owner's instances, credentials, storage buckets or model-update authority. Availability is an observation, not a service guarantee."

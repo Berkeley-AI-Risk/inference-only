@@ -96,7 +96,8 @@ module qwen_model_reader #(
     wire [CACHE_ADDRESS_BITS-1:0] read_address=CACHE_ADDRESS_BITS'({front_slot,address[15:8]});
     wire [2047:0] cache_read;
     assign data_valid=alive && !transport_fault && output_valid;
-    assign data_last=data_valid && output_last;
+    // PRIVATE_LAST_METADATA: the core checks LAST only with data_valid.
+    assign data_last=output_last;
     assign data=output_short
         ? {1024'b0,(output_high_half ? output_word[2047:1024] : output_word[1023:0])} : output_word;
     // A malformed core header is accepted only when no older core response

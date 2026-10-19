@@ -163,7 +163,7 @@ module qwen_aws_host_machine #(
     wire [1:0] app_ocl_rresp;
     wire  app_ocl_rvalid;
     wire  app_ocl_rready;
-    qwen_aws_pcis_adapter id_adapter(.clk(shell_clk),.rst_n(host_reset_n),
+    qwen_aws_pcis_adapter #(.GUARDED_AR_READY(1'b1),.GUARDED_READ_VALID(1'b1)) id_adapter(.clk(shell_clk),.rst_n(host_reset_n),
         .s_awburst(pcis_awburst),.s_awlock(pcis_awlock),
         .s_awaddr(pcis_awaddr),
         .s_awid(pcis_awid),
@@ -219,7 +219,7 @@ module qwen_aws_host_machine #(
         .m_rlast(mid_pcis_rlast),
         .m_rvalid(mid_pcis_rvalid),
         .m_rready(mid_pcis_rready));
-    qwen_aws_pcis_gate provisioning_guard(.clk(shell_clk),.rst_n(host_reset_n),.online(host_guard_ready),
+    qwen_aws_pcis_gate #(.REGISTER_AR_READY(1'b1),.ASYNC_READ_COUNT_VALID(1'b1)) provisioning_guard(.clk(shell_clk),.rst_n(host_reset_n),.online(host_guard_ready),
         .error(pcis_guard_error),.fault_request(pcis_guard_fault),
         .s_awaddr(mid_pcis_awaddr),
         .s_awid(mid_pcis_awid),

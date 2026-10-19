@@ -29,8 +29,8 @@ def check_installation(demo, deployment, installation, controller, measurements)
     need(deployment['public_load_permission_verified'] is True
          and deployment['load_permissions'] == [{'Group': 'all'}]
          and deployment['image_state'] == 'available', 'Public image observation is missing')
-    need(deployment['fpga_image_global_id'] == 'agfi-026c1333e063cf04f'
-         and deployment['fpga_image_id'] == 'afi-0dcab1e1ac1a1dade'
+    need(deployment['fpga_image_global_id'] == 'agfi-0d92b2f41b8f8b620'
+         and deployment['fpga_image_id'] == 'afi-04aa2e77774fbba29'
          and deployment['region'] == 'us-east-1'
          and deployment['shell_version'] == '0x10212415', 'Unexpected deployment image')
     measured = measurements['implementation']
@@ -98,6 +98,8 @@ def check(package=ROOT):
     for name, expected in reference['source_sha256'].items():
         need(sha(builder.checked_path(demo, name)) == expected, 'Changed verified reference source: '+name)
     measurements = json.loads((demo/'measurements.json').read_text())
+    need(reports['routed_checkpoint_sha256'] == measurements['implementation']['checkpoint_sha256'],
+         'Implementation reports and hardware measurements identify different checkpoints')
     cases = {}
     for campaign in measurements['campaigns']:
         for row in campaign['cases']:
@@ -115,8 +117,11 @@ def check(package=ROOT):
         record = json.loads(path.read_text())
         need(record['passed'] is True and record['hardware_access'] is False
              and record['software_reference_only'] is True
-             and record['measurements_sha256'] == sha(demo/'measurements.json'),
+             and record['measurements_sha256'] == reference['recorded_measurements_sha256'],
              'Reference result scope or input mismatch')
+        # Retain the original software-reference runs unchanged. The comparisons
+        # below bind every regenerated token to the current hardware workloads;
+        # changing clock frequency is not a fresh numerical-reference run.
         seen, count = set(), 0
         for row in record['cases']:
             key = tuple(row['prompt_tokens'])

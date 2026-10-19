@@ -61,8 +61,8 @@ to provision. The hash is a public model-identity commitment, not a secret.
 
 ## Install the FPGA image
 
-The tested prebuilt image is **`agfi-026c1333e063cf04f`**, with regional identifier
-`afi-0dcab1e1ac1a1dade` in `us-east-1` and shell `0x10212415`.
+The tested prebuilt image is **`agfi-0d92b2f41b8f8b620`**, with regional identifier
+`afi-04aa2e77774fbba29` in `us-east-1` and shell `0x10212415`.
 Its public load permission is recorded in [deployment.json](deployment.json).
 No hardware source rebuild is needed to run this image.
 
@@ -71,7 +71,7 @@ is still available using your own AWS credentials:
 
 ```sh
 aws ec2 describe-fpga-images --region us-east-1 \
-  --fpga-image-ids afi-0dcab1e1ac1a1dade \
+  --fpga-image-ids afi-04aa2e77774fbba29 \
   --query 'FpgaImages[0].{State:State.Code,Public:Public,GlobalId:FpgaImageGlobalId,Shell:ShellVersion}'
 ```
 
@@ -81,7 +81,7 @@ applications using slot zero and obtain exclusive use before continuing:
 
 ```sh
 sudo fpga-clear-local-image -S 0
-sudo fpga-load-local-image -S 0 -I agfi-026c1333e063cf04f
+sudo fpga-load-local-image -S 0 -I agfi-0d92b2f41b8f8b620
 sudo fpga-describe-local-image -S 0
 ```
 

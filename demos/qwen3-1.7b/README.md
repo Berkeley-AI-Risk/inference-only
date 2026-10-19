@@ -3,7 +3,7 @@
 [Project overview](../../README.md) · [SimpleStories-V2-5M on Tang Mega](../simplestories-v2-5m/README.md)
 
 **A fixed numerical version of Qwen3-1.7B runs on one physical AWS F2 FPGA
-at 5.506–5.523 sustained cached tokens/s in the tested short-prompt workloads.**
+at 8.964–9.001 sustained cached tokens/s in the tested short-prompt workloads.**
 The FPGA performs inference; the host uploads the fixed model, sends token
 commands and records the replies. This is a billion-parameter demonstration
 of the same authenticated-weight, fixed-inference approach as Tang Mega.
@@ -13,22 +13,6 @@ publicly loadable AWS FPGA image. This package includes the frozen hardware
 source, model reconstruction tools, numerical reference, host client, browser
 app and implementation reports. You supply an AWS F2 rental; no FPGA source
 rebuild is needed to use the prebuilt image.
-
-## Watch the demonstration
-
-[Watch a 29-second recording](media/qwen-demo.mp4) of Qwen answering
-“Explain what an FPGA is in two sentences.” on the physical AWS F2 FPGA.
-The browser application sends the prompt and displays the returned tokens;
-the host does not run the language model. The clip plays at its original speed.
-
-<a href="media/qwen-demo.mp4"><img src="media/qwen-demo.png" alt="Video preview: the Qwen FPGA demo answers a prompt, showing 5.55 streaming tokens per second and 3.40 seconds to the first token. Click to watch." width="480"></a>
-
-This run uses 22 prompt tokens, including chat formatting, and generates
-57 tokens, including the end-of-response token. The displayed streaming rate
-is **5.55 tokens/s** and time to first token is **3.40 seconds**. These are
-the measurements for this short demonstration, not a replacement for the
-longer tests below. First-token timing excludes model loading, connection
-setup and browser rendering; the timing definitions are explained below.
 
 ## The fixed model and circuit
 
@@ -44,7 +28,7 @@ claim of bit-for-bit agreement with the upstream floating-point implementation.
 Hardware outputs below were compared with the project's matching numerical
 reference, not a generic Qwen GPU run.
 
-The tested inference core runs at **62.5 MHz**. Weights and the attention
+The tested inference core runs at **100 MHz**. Weights and the attention
 cache are stored in HBM; private on-chip buffers serve the arithmetic.
 A fixed hardware schedule runs all 28 layers. The host does not supply
 operator programs, matrix dimensions or intermediate tensor addresses.
@@ -104,9 +88,9 @@ second run.
 
 | Workload | Prompt tokens | Run 1, cached tokens/s | Run 2, cached tokens/s | Time to first token |
 | --- | ---: | ---: | ---: | ---: |
-| Story continuation | 4 | 5.5234 | 5.5232 | 0.636 s |
-| Geography completion | 5 | 5.5218 | 5.5220 | 0.789 s |
-| Chat-formatted greeting | 15 | 5.5062 | 5.5065 | 2.322 s |
+| Story continuation | 4 | 8.9967 | 9.0012 | 0.389 s |
+| Geography completion | 5 | 9.0004 | 9.0006 | 0.483 s |
+| Chat-formatted greeting | 15 | 8.9649 | 8.9639 | 1.420 s |
 
 The story prompt is “Once upon a time”; the geography prompt is “The capital
 of France is”. The greeting uses “Say hello.” with the pinned single-user,
@@ -117,13 +101,13 @@ Longer prompts were tested separately, with **16 outputs per case**:
 
 | Prompt tokens | Generated tokens | Time to first token | Cached tokens/s |
 | ---: | ---: | ---: | ---: |
-| 64 | 16 | 9.902 s | 5.517 |
-| 256 | 16 | 40.768 s | 5.241 |
-| 512 | 16 | 84.793 s | 4.916 |
+| 64 | 16 | 6.058 s | 8.996 |
+| 256 | 16 | 24.960 s | 8.516 |
+| 512 | 16 | 51.964 s | 7.992 |
 
 The 16-output cases contain only 15 cached intervals each. They characterize
 these longer-prompt workloads, not a sustained 128-output run at those
-contexts. Growing context increases attention work, so neither 5.5 tokens/s
+contexts. Growing context increases attention work, so neither 9 tokens/s
 nor the short-prompt latency should be assumed for arbitrary prompts.
 
 Timing is observed by the host. Time to first token includes prompt APPENDs
@@ -147,8 +131,8 @@ claim: full-context numerical execution has not been demonstrated by these
 tests. Output agreement on selected cases is also not a model-quality
 benchmark or a proof of correctness for every prompt.
 
-The routed implementation's saved report shows setup slack +0.132 ns,
-hold slack +0.010 ns and no failing timing endpoints or routing errors under
+The routed implementation's saved report shows setup slack +0.011 ns,
+hold slack +0.007 ns and no failing timing endpoints or routing errors under
 its declared constraints. That does not resolve every CDC/reset assumption,
 establish production signoff or certify the AWS platform against physical
 attacks. The [hardware guide](HARDWARE.md) links the complete implementation

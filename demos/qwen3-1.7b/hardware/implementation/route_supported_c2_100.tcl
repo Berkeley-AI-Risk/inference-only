@@ -1,4 +1,4 @@
-# Route the new A0 placement with the previously completed internal-parameter policy.
+# Route the completed C2 100 MHz placement with the same timing-driven parameter policy.
 # No new timing exceptions, RTL/clock changes, image creation or device load.
 if {$argc != 3} {error "Expected completed post-phys-opt checkpoint, SHA-256 and fresh output"}
 lassign $argv input digest output
@@ -10,7 +10,7 @@ set_param general.maxThreads 8
 if {[get_param general.maxThreads] != 8} {error "Thread limit was not applied"}
 open_checkpoint $input
 if {[get_property PART [current_design]] ne "xcvu47p-fsvh2892-2-e"} {error "Wrong device"}
-foreach {name period} {clk_out1_clk_mmcm_a 16.0 clk_out1_clk_mmcm_hbm 8.0 clk_main_a0 4.0} {
+foreach {name period} {clk_out2_clk_mmcm_c 10.0 clk_out1_clk_mmcm_hbm 8.0 clk_main_a0 4.0} {
     set clock [get_clocks -quiet $name]
     if {[llength $clock] != 1 || [get_property PERIOD $clock] != $period} {error "Wrong clock $name"}
 }
@@ -54,9 +54,9 @@ if {[get_param route.optimizeLeafClkProgDlys] != 0 || [get_param route.disableLe
     error "Leaf diagnostic parameter or clock modeling mismatch"
 }
 puts "LEAF_CLOCK_PROBE_PARAMETER route.optimizeLeafClkProgDlys=0 clock_modeling_disabled=0"
-puts "HOST_READ_STAGE_A0_ROUTE_BEGIN threads=8 timing_driven=1 timing_exceptions_added=0"
+puts "SUPPORTED_C2_100_ROUTE_BEGIN threads=8 timing_driven=1 timing_exceptions_added=0"
 route_design -directive AggressiveExplore -tns_cleanup
-write_checkpoint $output/host-read-stage-a0.post_route.dcp
+write_checkpoint $output/supported-c2-100.post_route.dcp
 report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 20 -file $output/timing-summary.rpt
 report_route_status -file $output/route-status.rpt
 report_drc -file $output/drc.rpt
@@ -67,4 +67,4 @@ report_exceptions -coverage -file $output/exceptions.rpt
 report_clocks -file $output/clocks.rpt
 close_design
 if {[input_sha $input] ne $digest} {error "Source checkpoint changed"}
-puts "HOST_READ_STAGE_A0_ROUTE_FINISHED source=$digest timing_qualified=0 fpga_programmed=0"
+puts "SUPPORTED_C2_100_ROUTE_FINISHED source=$digest timing_qualified=0 fpga_programmed=0"

@@ -31,7 +31,7 @@ def verify(root=ROOT):
     selected = json.loads((root/'SOURCE-INPUTS.json').read_text())
     implementation = json.loads((root/'hardware/IMPLEMENTATION-INPUTS.json').read_text())
     if (selected['source_bundle_manifest_sha256'] != implementation['source_bundle_manifest_sha256']
-            or implementation['clock_recipes'] != dict(a='A0', b='B0', c='C0', hbm='H1')):
+            or implementation['clock_recipes'] != dict(a='A0', b='B0', c='C2', hbm='H1')):
         raise ValueError('Mismatching measured source/clock selection')
     inputs = dict(selected['source_files'])
     inputs.update({'hardware/implementation/'+name: row for name, row in implementation['files'].items()})

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
-| Date              : Fri Oct 16 20:39:02 2026
+| Date              : Mon Oct 19 04:58:19 2026
 | Host              : [build host omitted]
 | Command           : report_exceptions -coverage -file <build-output>/exceptions.rpt
 | Design            : top
@@ -9,15 +9,15 @@ Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanc
 | Speed File        : -2  PRODUCTION 1.30 05-01-2022
 | Design State      : Routed
 | Temperature Grade : E
----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Exceptions Report
 
 Position  Type                     Setup          Hold     From       Through  To         Endpoints  From (%)  Through (%)  To (%)
 --------  -----------------------  -------------  -------  ---------  -------  ---------  ---------  --------  -----------  ------
 2         False Path               false          false    1024 pins           1332 pins  196        9.18                   14.71
-4         False Path               false          false    1017 pins           1356 pins  196        9.05                   14.45
-5         False Path               false          false    1017 pins           1386 pins  196        9.14                   14.14
+4         False Path               false          false    1024 pins           1363 pins  196        8.59                   14.38
+5         False Path               false          false    1017 pins           1386 pins  196        8.16                   14.14
 8         False Path               false          false               1 pins              1                    100.00        
 9         False Path               false          false               1 pins              1                    100.00        
 10        Max Delay                max=50         -        1 ports             7 clocks   0          0.00                   0.00
@@ -64,10 +64,10 @@ Position  Type                     Setup          Hold     From       Through  T
 70        False Path               false          false                        1 pins     0                                 0.00
 71        False Path               false          false                        2 cells    2                                 33.33
 72        False Path               false          false               1 pins              2                    100.00        
-74        False Path               false          false               1 pins              2                    100.00        
+80        False Path               false          false               1 pins              2                    100.00        
 81        False Path               false          false               1 pins              2                    100.00        
 83        False Path               false          false               1 pins              4                    100.00        
-85        Max Delay Datapath Only  max_dpo=20     -        3 cells             31 cells   3          100.00                 3.23
+85        Max Delay Datapath Only  max_dpo=20     -        3 cells             14 cells   3          100.00                 7.14
 87        Max Delay Datapath Only  max_dpo=20     -        3 cells             36 cells   3          100.00                 2.78
 89        Max Delay Datapath Only  max_dpo=8      -        2 cells             2 cells    2          100.00                 33.33
 91        Max Delay Datapath Only  max_dpo=8      -        34 cells            34 cells   34         100.00                 33.33
@@ -82,13 +82,13 @@ Position  Type                     Setup          Hold     From       Through  T
 101       False Path               false          false                        1 cells    1                                 33.33
 102       False Path               false          false                        1 cells    1                                 33.33
 103       False Path               false          false                        1 cells    1                                 0.00
-104       False Path               false          false                        1 cells    1                                 0.00
+104       False Path               false          false                        1 cells    0                                 0.00
 105       False Path               false          false                        1 cells    0                                 0.00
-106       False Path               false          false                        1 cells    0                                 0.00
-107       Max Delay Datapath Only  max_dpo=4      -        3 pins              3 pins     3          100.00                 100.00
-109       Max Delay Datapath Only  max_dpo=4      -        3 pins              3 pins     3          100.00                 100.00
-111       Max Delay Datapath Only  max_dpo=4      -        3 pins              3 pins     3          100.00                 100.00
-113       Max Delay Datapath Only  max_dpo=4      -        3 pins              3 pins     3          100.00                 100.00
+106       False Path               false          false                        1 cells    1                                 0.00
+107       Max Delay Datapath Only  max_dpo=2.5    -        3 pins              3 pins     3          100.00                 100.00
+109       Max Delay Datapath Only  max_dpo=2.5    -        3 pins              3 pins     3          100.00                 100.00
+111       Max Delay Datapath Only  max_dpo=2.5    -        3 pins              3 pins     3          100.00                 100.00
+113       Max Delay Datapath Only  max_dpo=2.5    -        3 pins              3 pins     3          100.00                 100.00
 115       Max Delay Datapath Only  max_dpo=2.222  -        7 pins              7 pins     7          100.00                 100.00
 117       Max Delay Datapath Only  max_dpo=2.222  -        7 pins              7 pins     7          100.00                 100.00
 119       Max Delay Datapath Only  max_dpo=2.222  -        7 pins              7 pins     7          100.00                 100.00
@@ -101,8 +101,8 @@ Position  Type                     Setup          Hold     From       Through  T
 133       Max Delay Datapath Only  max_dpo=2.222  -        4 pins              4 pins     4          100.00                 100.00
 135       Max Delay Datapath Only  max_dpo=2.222  -        7 pins              7 pins     7          100.00                 100.00
 137       Max Delay Datapath Only  max_dpo=2.222  -        7 pins              7 pins     7          100.00                 100.00
-139       Max Delay Datapath Only  max_dpo=4      -        7 pins              7 pins     7          100.00                 100.00
-141       Max Delay Datapath Only  max_dpo=4      -        7 pins              7 pins     7          100.00                 100.00
+139       Max Delay Datapath Only  max_dpo=2.5    -        7 pins              7 pins     7          100.00                 100.00
+141       Max Delay Datapath Only  max_dpo=2.5    -        7 pins              7 pins     7          100.00                 100.00
 143       Max Delay Datapath Only  max_dpo=2.222  -        7 pins              7 pins     7          100.00                 100.00
 145       Max Delay Datapath Only  max_dpo=2.222  -        7 pins              7 pins     7          100.00                 100.00
 147       Max Delay Datapath Only  max_dpo=2.222  -        7 pins              7 pins     7          100.00                 100.00

@@ -129,7 +129,7 @@ module cl_qwen (
         .m_rvalid(clock_rvalid),
         .m_rready(clock_rready));
     // The instance name is part of the pinned vendor build-script contract.
-    aws_clk_gen #(.CLK_GRP_A_EN(1),.CLK_GRP_B_EN(0),.CLK_GRP_C_EN(0),.CLK_HBM_EN(1)) AWS_CLK_GEN(
+    aws_clk_gen #(.CLK_GRP_A_EN(0),.CLK_GRP_B_EN(0),.CLK_GRP_C_EN(1),.CLK_HBM_EN(1)) AWS_CLK_GEN(
         .i_clk_main_a0(clk_main_a0),.i_clk_hbm_ref(clk_hbm_ref),.i_rst_main_n(clock_control_reset_n),
         .s_axil_ctrl_awaddr(clock_awaddr),
         .s_axil_ctrl_awvalid(clock_awvalid),
@@ -150,23 +150,23 @@ module cl_qwen (
         .s_axil_ctrl_rready(clock_rready),
         .o_clk_hbm_ref(),
         .o_clk_main_a0(),
-        .o_clk_extra_a1(core_clk),
+        .o_clk_extra_a1(),
         .o_clk_extra_a2(),
         .o_clk_extra_a3(),
         .o_clk_extra_b0(),
         .o_clk_extra_b1(),
         .o_clk_extra_c0(),
-        .o_clk_extra_c1(),
+        .o_clk_extra_c1(core_clk),
         .o_clk_hbm_axi(memory_clk),
         .o_cl_rst_hbm_axi_n(generated_memory_reset_n),
         .o_cl_rst_hbm_ref_n(generated_reference_reset_n),
-        .o_cl_rst_c1_n(),
+        .o_cl_rst_c1_n(generated_core_reset_n),
         .o_cl_rst_c0_n(),
         .o_cl_rst_b1_n(),
         .o_cl_rst_b0_n(),
         .o_cl_rst_a3_n(),
         .o_cl_rst_a2_n(),
-        .o_cl_rst_a1_n(generated_core_reset_n),
+        .o_cl_rst_a1_n(),
         .o_cl_rst_main_n());
 
     wire [8*34-1:0] model_axi_araddr;

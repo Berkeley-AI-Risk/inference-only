@@ -24,6 +24,21 @@ module qwen_private_tensors (
     end
     assign read_a = sample_a_tensor < 9 ? samples[sample_a_tensor] : 16'b0;
     assign read_b = sample_b_tensor < 9 ? samples[sample_b_tensor] : 16'b0;
+    // PRIVATE_WRITE_STAGE: accepted writes are private, fixed-bank traffic.
+    // INIT prevents a spurious write before the first enabled clock. No reset
+    // of RAM contents is introduced; the existing engine owns validity.
+    reg pending_write=1'b0;
+    reg [3:0] pending_tensor;
+    reg [12:0] pending_index;
+    reg [15:0] pending_data;
+    always @(posedge clk) if(enable) begin
+        pending_write <= write_enable;
+        if(write_enable) begin
+            pending_tensor <= write_tensor;
+            pending_index <= write_index;
+            pending_data <= write_data;
+        end
+    end
     genvar bank;
     generate for(bank=0; bank<9; bank=bank+1) begin:banks
         localparam integer DEPTH = (bank==3 || bank==4) ? 1024 : (bank>=7 ? 6144 : 2048);
@@ -31,9 +46,11 @@ module qwen_private_tensors (
         (* ram_style="block" *) reg [15:0] memory [0:DEPTH-1];
         reg [15:0] sample;
         always @(posedge clk) if(enable) begin
-            if(write_enable && write_tensor==4'(bank)) memory[write_index[ADDR_BITS-1:0]] <= write_data;
+            if(pending_write && pending_tensor==4'(bank)) memory[pending_index[ADDR_BITS-1:0]] <= pending_data;
             if(read_enable && (read_a_tensor==4'(bank) || read_b_tensor==4'(bank)))
-                sample <= memory[read_index[ADDR_BITS-1:0]];
+                sample <= pending_write && pending_tensor==4'(bank)
+                    && pending_index[ADDR_BITS-1:0]==read_index[ADDR_BITS-1:0]
+                    ? pending_data : memory[read_index[ADDR_BITS-1:0]];
         end
         assign samples[bank] = sample;
     end endgenerate

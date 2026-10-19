@@ -99,7 +99,7 @@ set output [file join [file dirname $CL_DIR] output]
 if {[file exists $output]} {error "Placement output already exists"}
 file mkdir $output
 source $helpers/parallel_core_reset_contract.tcl
-foreach {name period} {clk_out1_clk_mmcm_a 16.0 clk_out1_clk_mmcm_hbm 8.0 clk_main_a0 4.0} {
+foreach {name period} {clk_out2_clk_mmcm_c 10.0 clk_out1_clk_mmcm_hbm 8.0 clk_main_a0 4.0} {
     set clock [pcr_one [get_clocks -quiet $name] "actual clock $name"]
     if {[get_property PERIOD $clock] != $period} {error "Wrong actual clock $name"}
 }
@@ -145,6 +145,23 @@ foreach bank {0 1 2 3 4 5 6 7} {
 }
 close $stream
 puts "HOST_READ_STAGE_FULL_MAPPING_PASSED banks=8"
+
+# Informational full-netlist mapping: inspect survivors, do not infer timing.
+set stream [open $output/projection-av-stage-cells.tsv {WRONLY CREAT EXCL}]
+puts $stream "cell\tprimitive\tkind"
+set observed 0
+foreach cell [get_cells -quiet -hier -filter {REF_NAME =~ FD* || REF_NAME =~ RAMB*}] {
+    set name [get_property NAME $cell]
+    set kind ""
+    if {[regexp {activation_banks\[[0-7]\]\.(even_codes|odd_codes)_reg} $name]} {set kind projection_parity_ram}
+    if {[regexp {(^|[/.])(probability_rec_q|value_rec_q)_reg} $name]} {set kind av_recoded_operand}
+    if {$kind ne ""} {
+        puts $stream [join [list $name [get_property REF_NAME $cell] $kind] "\t"]
+        incr observed
+    }
+}
+close $stream
+puts "PROJECTION_AV_STAGE_MAPPING_OBSERVED cells=$observed timing_qualified=0"
 report_utilization -file $output/post-opt-utilization.rpt
 set contract [pcr_collect $helpers/parallel-reset-chains.tsv $helpers/reset_chain_045_lib.tcl $output WRAPPER/CL/]
 pcr_apply $contract
@@ -161,4 +178,4 @@ report_utilization -file $output/utilization.rpt
 report_clocks -file $output/clocks.rpt
 pcr_retained_timing $contract $output 0
 close_design
-puts "PAYLOAD_PLACEMENT_FINISHED recipe=A0/H1 routing_attempted=0 timing_qualified=0 fpga_programmed=0"
+puts "PAYLOAD_PLACEMENT_FINISHED recipe=C2/H1 routing_attempted=0 timing_qualified=0 fpga_programmed=0"

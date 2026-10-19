@@ -12,7 +12,7 @@ eight weights per accepted beat. Attention remains an internal operation;
 the host cannot supply its tensor addresses, shapes or operands.
 
 The design uses AWS F2's UltraScale+ VU47P FPGA and HBM. The measured image
-uses AWS clock recipes A0/B0/C0/H1: **62.5 MHz inference**, **125 MHz memory**,
+uses AWS clock recipes A0/B0/C2/H1: **100 MHz inference**, **125 MHz memory**,
 and the **250 MHz host clock**. Weights and K/V are in HBM, not host DRAM or
 DDR4. Four private weight-verification workers authenticate pages before
 the inference engine can consume their checked on-chip copies. The mapped
@@ -27,7 +27,7 @@ also discloses status registers and the 16-bit attention-state diagnostic.
 
 ### Detailed hardware diagram
 
-This diagram expands the released 62.5 MHz design, using the same colors and
+This diagram expands the released 100 MHz design, using the same colors and
 layout as the [SimpleStories diagram](../../ARCHITECTURE.md#detailed-baseline-diagram).
 Both circuits own the inference schedule, tensor addresses and checked-weight
 path. Qwen uses HBM and substantially more parallel arithmetic. Its released
@@ -45,6 +45,24 @@ implement additions. Only one of the two projection banks is selected at a time.
 The diagram summarizes functional connections, not physical placement or a
 security proof.
 
+### Parallel memory paths and remaining throughput limits
+
+Weights arrive over eight 256-bit HBM AXI read ports, which assemble a
+2,048-bit (256-byte) word. At the 125 MHz memory-side clock, their ideal
+combined payload ceiling is 32 GB/s. This describes these particular wires,
+not measured sustained bandwidth or the full HBM subsystem's rating.
+Separate ports serve K/V. Four verification workers, prefetching, private
+buffers and pipelined arithmetic overlap some of the work; they do not make
+every inference stage run continuously or every HBM port fully utilized.
+
+The selected projection bank accepts at most one 256-byte weight beat per
+inference cycle, performing 256 integer products. Increasing external-memory
+bandwidth alone cannot increase that acceptance rate. A wider design would
+need matching throughput through the memory transport, authentication,
+checked-weight buffers and arithmetic, while preserving hardware ownership
+of all intermediate data and addresses. Such changes are engineering
+opportunities, not speedups credited to this release.
+
 ## Source identity and measured implementation
 
 `SOURCE-INPUTS.json` identifies the byte-identical selected RTL, build inputs,
@@ -60,12 +78,12 @@ routing scripts and separately installed vendor dependencies:
 | AWS HDK | `b603a81f65666e0cf7a67ee5cf18b148eb6b08c3` |
 | Version-specific AWS IP | `6d32be972e6da854e61a8d3d6ec0466ab491c1b3` |
 | AWS runtime shell | `0x10212415` |
-| Routed checkpoint SHA-256 | `11d8d9997e6b032f6cd208ac63de03c13a969957fecfcb18d98b2051c03b0b2e` |
+| Routed checkpoint SHA-256 | `e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d` |
 
 The complete [timing report](evidence/implementation/timing-summary.rpt) shows
-setup slack **+0.132 ns** and hold slack **+0.010 ns** under the declared
+setup slack **+0.011 ns** and hold slack **+0.007 ns** under the declared
 constraints. The [routing report](evidence/implementation/route-status.rpt)
-shows 1,044,328 routable nets fully routed and zero routing errors.
+shows 1,057,236 routable nets fully routed and zero routing errors.
 The [report inventory](evidence/implementation/REPORTS.json) binds the
 checkpoint to the preserved reports. Only build-host identifiers and private
 filesystem prefixes were removed; warnings and report rows were retained.
@@ -100,8 +118,8 @@ export CL_DIR="$QWEN_BUILD/cl_qwen"
 cd "$CL_DIR/build/scripts"
 python3 aws_build_dcp_from_cl.py --cl cl_qwen --mode small_shell \
   --flow SynthCL --aws_clk_gen --clock_recipe_a A0 --clock_recipe_b B0 \
-  --clock_recipe_c C0 --clock_recipe_hbm H1 --no-encrypt \
-  --tag private_host_read_stage_a0
+  --clock_recipe_c C2 --clock_recipe_hbm H1 --no-encrypt \
+  --tag private_supported_c2_100
 ```
 
 The historical build tag is retained because the frozen implementation scripts
@@ -113,13 +131,13 @@ Next run the exact placement and routing scripts:
 
 ```sh
 export CL=cl_qwen SHELL_MODE=small_shell BUILD_FLOW=ImplCL
-export BUILD_TAG=private_host_read_stage_a0 ENCRYPT=0
+export BUILD_TAG=private_supported_c2_100 ENCRYPT=0
 vivado -mode batch -source "$QWEN_BUILD/build_all_placement.tcl" \
   -log "$QWEN_BUILD/placement.log" -journal "$QWEN_BUILD/placement.jou" \
-  -tclargs SSI_SpreadLogic_high Default AggressiveExplore A0 B0 C0 H1
+  -tclargs SSI_SpreadLogic_high Default AggressiveExplore A0 B0 C2 H1
 export QWEN_ROUTE_INPUT="$QWEN_BUILD/output/payload.reset-contract.post_phys_opt.dcp"
 export QWEN_ROUTE_SHA=$(sha256sum "$QWEN_ROUTE_INPUT" | cut -d ' ' -f 1)
-vivado -mode batch -source "$QWEN_BUILD/route_host_read_stage_a0.tcl" \
+vivado -mode batch -source "$QWEN_BUILD/route_supported_c2_100.tcl" \
   -log "$QWEN_BUILD/route.log" -journal "$QWEN_BUILD/route.jou" \
   -tclargs "$QWEN_ROUTE_INPUT" "$QWEN_ROUTE_SHA" "$QWEN_BUILD/route"
 ```

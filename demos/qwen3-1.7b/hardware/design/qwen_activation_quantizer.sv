@@ -30,6 +30,17 @@ module qwen_activation_quantizer #(
     reg read_done,sample_valid;
     reg [15:0] sample;
     (* ram_style="block" *) reg [15:0] values [0:ELEMENTS-1];
+    // PRIVATE_QUANTIZER_WRITE_CAPTURE: accepted payload and address stay
+    // paired. This pending private write cannot publish an output after CLEAR.
+    reg write_pending;
+    reg [AW-1:0] write_address;
+    reg [15:0] write_data;
+    always @(posedge clk) begin
+        if(!rst_n || clear) write_pending<=0;
+        else write_pending<=load_accept;
+        write_address<=input_index;
+        write_data<=activation;
+    end
     (* ram_style="distributed" *) reg [15:0] result_fifo [0:63];
     reg [5:0] write_pointer,read_pointer;
     reg [6:0] result_count,reserved;
@@ -75,7 +86,7 @@ module qwen_activation_quantizer #(
             $fatal(1,"Quantizer geometry must match a fixed Qwen projection");
     end
     always @(posedge clk) begin
-        if(load_accept) values[input_index]<=activation;
+        if(write_pending) values[write_address]<=write_data;
         if(issue) sample<=values[read_index];
         if(enqueue) result_fifo[write_pointer]<=pipeline_code;
     end

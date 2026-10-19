@@ -1,5 +1,5 @@
-Command: pr_verify -full_check -file <build-output>/static-shell-compatibility.rpt <static-shell-comparison>/attention-divider-reset.routed.dcp <build-output>/host-read-stage-a0.post_route.dcp
-Fri Oct 16 20:45:42 2026
+Command: pr_verify -full_check -file <build-output>/static-shell-compatibility.rpt <static-shell-comparison>/attention-divider-reset.routed.dcp <build-output>/supported-c2-100.post_route.dcp
+Mon Oct 19 05:05:01 2026
 
 INFO: [Constraints 18-1020] PR Verify Summary:
 DCP1: <static-shell-comparison>/attention-divider-reset.routed.dcp
@@ -11,7 +11,7 @@ DCP1: <static-shell-comparison>/attention-divider-reset.routed.dcp
   Number of static routed nodes compared    = 189074
   Number of static routed pips compared     = 176034
 
-DCP2: <build-output>/host-read-stage-a0.post_route.dcp
+DCP2: <build-output>/supported-c2-100.post_route.dcp
   Number of reconfigurable modules compared = 1
   Number of partition pins compared         = 3883
   Number of static tiles compared           = 900014
@@ -20,4 +20,4 @@ DCP2: <build-output>/host-read-stage-a0.post_route.dcp
   Number of static routed nodes compared    = 189074
   Number of static routed pips compared     = 176034
 INFO: [Constraints 18-13353] HDPRVerify-42: All DCPS provided to pr_verify have locked static.
-INFO: [Vivado 12-3253] PR_VERIFY: check points <static-shell-comparison>/attention-divider-reset.routed.dcp and <build-output>/host-read-stage-a0.post_route.dcp are compatible
+INFO: [Vivado 12-3253] PR_VERIFY: check points <static-shell-comparison>/attention-divider-reset.routed.dcp and <build-output>/supported-c2-100.post_route.dcp are compatible

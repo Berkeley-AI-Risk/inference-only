@@ -13,7 +13,10 @@
 // stalled consumer cannot create a chip-wide combinational clock-enable path.
 // Reset/CLEAR invalidate control state, not bulk register/RAM contents.
 module qwen_sha256_pipeline #(
-    parameter integer TAG_BITS=16
+    parameter integer TAG_BITS=16,
+    // Startup chains one block at a time. Other instances keep the original
+    // same-cycle returned-credit lookahead through this compile-time default.
+    parameter bit RETURN_CREDIT_LOOKAHEAD=1'b1
 ) (
     input wire clk,input wire rst_n,input wire clear,
     input wire in_valid,output wire in_ready,
@@ -61,7 +64,7 @@ module qwen_sha256_pipeline #(
     reg [255+TAG_BITS:0] ram_word,buffer_word;
     wire alive=rst_n && !clear;
     wire output_take=out_valid && out_ready;
-    assign in_ready=alive && (outstanding<8'd128 || output_take);
+    assign in_ready=alive && (outstanding<8'd128 || (RETURN_CREDIT_LOOKAHEAD && output_take));
     wire input_take=in_valid && in_ready;
     assign out_valid=alive && output_valid;
     assign final_state=output_word[255:0];

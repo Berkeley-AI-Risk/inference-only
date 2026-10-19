@@ -264,8 +264,8 @@ print "Checking for source code encryption"
 source encrypt.tcl
 
 if {$BUILD_FLOW ne "ImplCL" || $CL ne "cl_qwen" || $SHELL_MODE ne "small_shell" ||
-    $TAG ne "private_host_read_stage_a0" || $ENCRYPT != 0 ||
-    [list $clock_recipe_a $clock_recipe_b $clock_recipe_c $clock_recipe_hbm] ne {A0 B0 C0 H1}} {
+    $TAG ne "private_supported_c2_100" || $ENCRYPT != 0 ||
+    [list $clock_recipe_a $clock_recipe_b $clock_recipe_c $clock_recipe_hbm] ne {A0 B0 C2 H1}} {
     error "Different placement-only flow or clock recipe"
 }
 source [file join [file dirname [info script]] payload_placement_body.tcl]

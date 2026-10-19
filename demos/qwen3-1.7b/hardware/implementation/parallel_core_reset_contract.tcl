@@ -54,7 +54,7 @@ proc pcr_allowlist {text prefix} {
     return $result
 }
 proc pcr_collect {inventory library output prefix} {
-    if {[pcr_sha $inventory] ne "d191f8480c006ca3a8d7b8b83ec23ddaa0e1b93261a0e8d9abf0c11ba596ebc5" ||
+    if {[pcr_sha $inventory] ne "bb17813e84391ab1d4c04496bd0956bae4629a493acb2af8826e13d03a7789c5" ||
         [pcr_sha $library] ne "cb7a6cfca01341a86ce13a9b67d503ba8af49b403ba6c26b07070201c3f30763"} {
         error "Reset contract provenance changed"
     }

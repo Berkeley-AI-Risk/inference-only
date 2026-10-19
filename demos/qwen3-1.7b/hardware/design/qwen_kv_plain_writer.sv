@@ -83,11 +83,17 @@ module qwen_kv_plain_writer #(
     // before emission; no initialized buffer contents or partial strobes needed.
     // Constant slices share a small scalar-index decoder. A variable wide
     // part-select write needlessly synthesized a large data-routing network.
+    // PRIVATE_GATHER_CAPTURE: the current scalar is not accepted yet.
+    // Capture may repeat during stalls or on a fault/CLEAR edge. Only the
+    // unchanged input_take/fault guards advance the index, and a full vector
+    // must be accepted before leaving GATHER. Never capture in SEND or its
+    // surrounding states: the already-complete vector must remain stable.
+    // No acceptance, error, external write or publication guard changes.
     genvar scalar;
     generate for(scalar=0;scalar<128;scalar=scalar+1)begin:vector_scalars
         reg [15:0] data;
         always @(posedge clk)begin
-            if(input_take && !fault && vector_index[6:0]==7'(scalar))data<=write_data;
+            if(state==GATHER && vector_index[6:0]==7'(scalar))data<=write_data;
         end
         assign vector_data[scalar*16+:16]=data;
     end endgenerate

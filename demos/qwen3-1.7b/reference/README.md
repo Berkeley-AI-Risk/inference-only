@@ -43,7 +43,10 @@ the seven distinct prompts at their longest recorded continuations, including
 the 512-token prompt. These are software-reference results, not additional
 FPGA measurements. The per-run records include their library versions and
 the source hashes; `tools/check_qwen_package.py` at the repository root
-checks their association without running the model.
+checks their association without running the model. These original reference
+runs are retained unchanged: the model and expected token IDs have not changed.
+The checker compares their regenerated IDs with the current hardware captures;
+it does not relabel the older reference runs as new computations.
 
 Agreement on these cases is not a proof of all-prompt equivalence, a model-quality
 assessment, or a formal verification of the complete hardware. In particular,

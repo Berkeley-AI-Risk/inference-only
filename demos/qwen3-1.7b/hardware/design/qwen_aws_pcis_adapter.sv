@@ -4,7 +4,13 @@
 // Invalid write burst/lock attributes poison the aperture address, causing the
 // fixed receiver to drain/reject the write and latch its normal startup error.
 // No data, address, credit or boot-permission bypass is introduced.
-module qwen_aws_pcis_adapter (
+module qwen_aws_pcis_adapter #(
+    // Only for a directly connected guard whose ARREADY clears
+    // asynchronously on this same reset. Not a general AXI mode.
+    parameter bit GUARDED_AR_READY=1'b0,
+    // Only with the paired asynchronously reset read guard.
+    parameter bit GUARDED_READ_VALID=1'b0
+) (
     input wire clk,input wire rst_n,
     input wire [1:0] s_awburst,input wire s_awlock,
     input wire [63:0] s_awaddr,
@@ -90,12 +96,12 @@ module qwen_aws_pcis_adapter (
     assign m_arlen=s_arlen;
     assign m_arsize=s_arsize;
     assign m_arvalid=rst_n && read_count<32 && s_arvalid;
-    assign s_arready=rst_n && read_count<32 && m_arready;
+    assign s_arready=(GUARDED_AR_READY || rst_n) && read_count<32 && m_arready;
     assign s_rdata=m_rdata;
     assign s_rid=s_rvalid ? read_ids[read_pop] : 16'b0;
     assign s_rresp=m_rresp;
     assign s_rlast=m_rlast;
-    assign s_rvalid=rst_n && read_count!=0 && m_rvalid;
+    assign s_rvalid=(GUARDED_READ_VALID || rst_n) && read_count!=0 && m_rvalid;
     assign m_rready=rst_n && read_count!=0 && s_rready;
     always @(posedge clk) begin
         if(!rst_n) begin

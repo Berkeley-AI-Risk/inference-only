@@ -1,8 +1,8 @@
 {
   "aws_hdk_revision": "b603a81f65666e0cf7a67ee5cf18b148eb6b08c3",
-  "note": "Byte-identical selected inputs of the tested A0 build; implementation also used post-synthesis constraints. The original qualification host is retained separately; the runnable host adds an end-marker stopping rule. See HARDWARE.md.",
+  "note": "Selected inputs of the tested 100 MHz C2 build. Implementation uses the separately inventoried placement/reset/routing scripts. The qualification client and numerical model are unchanged; see HARDWARE.md.",
   "schema": "qwen-curated-frozen-inputs-v1",
-  "source_bundle_manifest_sha256": "adf4303dd3020ecff692b75db92bd2117d041c08eb521efacbb4e66505d469d6",
+  "source_bundle_manifest_sha256": "98d686aff399bdf89cbec628e683dee8eb983e63a1af5eb3c7093311f7ddf790",
   "source_files": {
     "hardware/build/constraints/small_shell_cl_pnr_user.xdc": {
       "bytes": 235,
@@ -29,8 +29,8 @@
       "sha256": "fc2e186de563e1e7edbfa61bbe4c0fd388142a5b69ad6a1d6dc01b9f6df8f3b9"
     },
     "hardware/build/scripts/qwen_sources.tcl": {
-      "bytes": 2129,
-      "sha256": "9d235173ab006b819d77be282ae929fb0e9c90af34fab9d6cc4a0a3576e200d3"
+      "bytes": 2167,
+      "sha256": "8e809dd5bfc9fe927d7ffb2236c5c1a2f1a08fef94ad3c7f0a0f4762f36d0cae"
     },
     "hardware/build/scripts/synth_cl_qwen.tcl": {
       "bytes": 2139,
@@ -74,7 +74,7 @@
     },
     "hardware/design/cl_qwen.sv": {
       "bytes": 22673,
-      "sha256": "abb1eb8423a8f21c190183d3fdce1f2315e18fac8959137a51be2917982a47e1"
+      "sha256": "f9454da599d51fdc0dd6a5042662f1fd23b568da3be86704037dc9d657a7a2bb"
     },
     "hardware/design/divSqrtRecFN_small.v": {
       "bytes": 15485,
@@ -105,24 +105,24 @@
       "sha256": "34c54219b961976bdd586432c13086cf706dbc6c0763e8842758586a415da493"
     },
     "hardware/design/qwen_activation_quantizer.sv": {
-      "bytes": 6736,
-      "sha256": "0c1769da14f08056137539fe98d90ed76853bc3e49fec80358878a88cf2ddf35"
+      "bytes": 7171,
+      "sha256": "5fb40fce5c1651490dc7ab4b9de5754c767cd30faab5fb2e5e52ec50a294a8ff"
     },
     "hardware/design/qwen_async_stream_fifo.sv": {
       "bytes": 6626,
       "sha256": "0af0a59d5ed03d0a13fc79684064c04396b5bc447f94f6e4a5c724dba8f63291"
     },
     "hardware/design/qwen_attention_layer.sv": {
-      "bytes": 9840,
-      "sha256": "ff5520546383d4c0c96038456b27493d945785815b99173fb823c470ebd10f3c"
+      "bytes": 10083,
+      "sha256": "ea6f53fefd3f3a2cefdefa67f5328dbce70efed01706bd379a1da33c3dbb60cd"
     },
     "hardware/design/qwen_attention_pair.sv": {
-      "bytes": 9467,
-      "sha256": "5619bea8da42453067ddb34d0d4af33665c6b1fde883df7ccc8fba2cbbb00869"
+      "bytes": 9618,
+      "sha256": "b0b2b3c6da4c2362db02150626ff12d371e4469b222664788724df32caf5971a"
     },
     "hardware/design/qwen_av_stream16.sv": {
-      "bytes": 7809,
-      "sha256": "c8669858052c1bd064433f215877a643f2843be3fbaaa28f4e8324c5fc41bc2a"
+      "bytes": 9097,
+      "sha256": "d749188b7324f09681b18a82873cea7f31cfb302862069d030684de432bb1140"
     },
     "hardware/design/qwen_aws_axil_gate.sv": {
       "bytes": 4833,
@@ -130,27 +130,27 @@
     },
     "hardware/design/qwen_aws_clock_startup.sv": {
       "bytes": 6897,
-      "sha256": "2df2636c9d4640b83d764d83de48db3a5450266387cd9d45d5043910a4963644"
+      "sha256": "1c58d86cdede98c0858b2a14eb759eea98e40c782134a8caeb7f5c40c477adfe"
     },
     "hardware/design/qwen_aws_hbm_reset.sv": {
       "bytes": 7267,
       "sha256": "2ba2caca498bb1af11708529dedc65954f511c4e829c0de079b5286bd8e548cc"
     },
     "hardware/design/qwen_aws_host_machine.sv": {
-      "bytes": 18934,
-      "sha256": "7dc5644884963bd321c7147ff1a46d372ea4f3aec8c7121468a276d42a5dd328"
+      "bytes": 19045,
+      "sha256": "287909a9e6aaf72ddeb75d5a15d2c82f1db554b79d5926f855cec0066454a06a"
     },
     "hardware/design/qwen_aws_lifecycle.sv": {
       "bytes": 7394,
       "sha256": "15c5e45c3d4065953aa96fa3ac9f64900edd713a13536c5d546c0dcbdbf78d74"
     },
     "hardware/design/qwen_aws_pcis_adapter.sv": {
-      "bytes": 4861,
-      "sha256": "f444ba240533eaff51f182f6380cc4c2757f5a574ed99872f1b0f17d55c05eec"
+      "bytes": 5186,
+      "sha256": "9c8dff160a745bf7887d42803154765ab06afc7be4b5145068c600a0d55882e0"
     },
     "hardware/design/qwen_aws_pcis_gate.sv": {
-      "bytes": 10201,
-      "sha256": "c4c4bd00bd537f8c9453ea15c52369c26dbba3eaf8325fbe2dcfbb5397b4b9fb"
+      "bytes": 11178,
+      "sha256": "6b3dd4a780db5ba001dee17d22491106dae0358d6721ae27f7aefc5724a876ee"
     },
     "hardware/design/qwen_bf16_elementwise.sv": {
       "bytes": 3558,
@@ -165,8 +165,8 @@
       "sha256": "9dba15eef6b86a26f8fd62c5ce6a98bdf7c3fa682a8542e0055aa2816e4cc1d1"
     },
     "hardware/design/qwen_fixed_core.sv": {
-      "bytes": 32884,
-      "sha256": "60eb6d357f01ae7276f3560d041c2f743cd0c24b06e4e52c9557600c59c0b571"
+      "bytes": 33311,
+      "sha256": "7846a43595e2b5e2a1cef4d4d371c4aa080b49ee2d5204d62fa37386d5ef44b6"
     },
     "hardware/design/qwen_fp32_add_stage.sv": {
       "bytes": 1697,
@@ -209,16 +209,16 @@
       "sha256": "87aa5106a84fa3a65669e79eb24e29a049eed81aa572418d24c4424056284ff8"
     },
     "hardware/design/qwen_kv_plain_writer.sv": {
-      "bytes": 7569,
-      "sha256": "471dc00c3a00937410953d6cae8421b9cd587cf3a1451c8422a01fc4be33e751"
+      "bytes": 8011,
+      "sha256": "35e6fbbb701dd9fe7025664bc1ee2ff62301c0bf32e5da15e58ff43aceb0c03b"
     },
     "hardware/design/qwen_model_address.sv": {
       "bytes": 6610,
       "sha256": "16a89ff5faa71514e74ee74f35277a07729db3408d8ea70931b847a3dd21ba9a"
     },
     "hardware/design/qwen_model_boot_loader.sv": {
-      "bytes": 7307,
-      "sha256": "6db4cd6bafcacae824c0b68e937a16b19847120152e8aac6a0c32a91858d74ca"
+      "bytes": 7338,
+      "sha256": "e5bfe1c350cc781f265cc827eec89bb8b06682c25bf0ba5dde608ece906d1203"
     },
     "hardware/design/qwen_model_hash_frame.sv": {
       "bytes": 2476,
@@ -253,16 +253,16 @@
       "sha256": "7f36f237da333f094e3265199e9d368b4e54e23eba303d0c354e2731cd4d6d3f"
     },
     "hardware/design/qwen_model_page_cdc.sv": {
-      "bytes": 10886,
-      "sha256": "f07c2be91cfc9f818f5a266fb85b9b96fc45b66a7a977391c50925922392b534"
+      "bytes": 10942,
+      "sha256": "6e08bc16fc07ed7912c1748e30946056c216c78fbee3d48b8db9fb400be781de"
     },
     "hardware/design/qwen_model_reader.sv": {
-      "bytes": 15103,
-      "sha256": "f12e06df837130d5f516f389d391b93af1ce77dc0267ee6c44a5408e7d99fd39"
+      "bytes": 15162,
+      "sha256": "cd3b16645e0eea96997a5e0c1329417fc5424bf16fabc8f86229fd56563c8994"
     },
     "hardware/design/qwen_model_verified_machine.sv": {
-      "bytes": 4138,
-      "sha256": "5fb94625aace2f6d5fa137e4ea5e4f025d47ff1146f34635d284f45e7857e08e"
+      "bytes": 6141,
+      "sha256": "285cf1316aa66246d5d5fe774e6a8a2409e2fe3179a192a004ce1129d30efc6d"
     },
     "hardware/design/qwen_ocl_control.sv": {
       "bytes": 3618,
@@ -289,12 +289,12 @@
       "sha256": "797ab23097fae1a721872520e476cda91412975c5bad0b412a04dab1d6b69d0a"
     },
     "hardware/design/qwen_private_tensors.sv": {
-      "bytes": 1893,
-      "sha256": "8077cf0689d8041c301873b241f957b8e83dfa0502d5df9444bb3de89bd5397d"
+      "bytes": 2663,
+      "sha256": "20d7c606957c6400647176ae2428b0b14810ca03c0d6d406270539537c814694"
     },
     "hardware/design/qwen_projection_engine.sv": {
-      "bytes": 10118,
-      "sha256": "7dfd87d1a1b9522f6598f09f7bbedad55e60cb76bf1a54d48594767216a9705d"
+      "bytes": 13820,
+      "sha256": "c1cb8969fff6642d3fc7d023a14b443b601c4a4fa1e323ecc51a600009ebe4a7"
     },
     "hardware/design/qwen_projection_scale.sv": {
       "bytes": 2908,
@@ -304,13 +304,17 @@
       "bytes": 7274,
       "sha256": "6254da1fee00f3f594f364f64019b9d502706daefdc1565b671877ded39f2c3a"
     },
+    "hardware/design/qwen_projection_tile32_overlap.sv": {
+      "bytes": 7936,
+      "sha256": "504fca34fa0bde84be40d6511c2bc76b4d8de6a1e687959e2e1dcf2b5968f3eb"
+    },
     "hardware/design/qwen_qk_dot128.sv": {
-      "bytes": 8643,
-      "sha256": "4eaf7627a2091f6c424a5e0a0c3dc9fc38fdc3f70df47fc718905152813de969"
+      "bytes": 8954,
+      "sha256": "5967b9e95b1948050a0e27585f1dd03477722bb2940130be9aacdfc42db7cc04"
     },
     "hardware/design/qwen_rms_norm.sv": {
-      "bytes": 8645,
-      "sha256": "b55ddb6620c08e2add9ef0ca69faa4848d01b0eccced8665c53b59fc932e2431"
+      "bytes": 8903,
+      "sha256": "0718c412ed6a6c30473a5d9a8a0ebc9c9001b3fa85418ac23dfee2503ae2edb3"
     },
     "hardware/design/qwen_rotary_head.sv": {
       "bytes": 4050,
@@ -321,16 +325,16 @@
       "sha256": "2f66d7c7956037530c5ac21c9f0672dc64a312ee21ef569238ad81dad3795a9f"
     },
     "hardware/design/qwen_sha256_pipeline.sv": {
-      "bytes": 8788,
-      "sha256": "b42ba9b7c8fe83bed6d19cc7d4c49c18f8d77216f6e12977eecc0ef3ae46b7ad"
+      "bytes": 9021,
+      "sha256": "53b5c2c1a96d121bdd432debacc8d7e1f5a334794a3fa599131b0412c70851e9"
     },
     "hardware/design/qwen_silu_rom.sv": {
       "bytes": 2177,
       "sha256": "ba0618aa7a53082851680963acad7a84180ad56d2b97bae7adeb2a3db73d99be"
     },
     "hardware/design/qwen_softmax.sv": {
-      "bytes": 11115,
-      "sha256": "b13cb1dd1a57d1f85d8b5b48e2d41a20c0b4201d7a1d389cb008480decba46cf"
+      "bytes": 11575,
+      "sha256": "ca7240af4a2b2d0199669d68c1454843f1e8b6bd3450b502ab52727ad374cde6"
     },
     "hardware/design/qwen_token_command_cdc.sv": {
       "bytes": 4535,

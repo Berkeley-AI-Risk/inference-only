@@ -9,8 +9,8 @@ import json
 from pathlib import Path
 
 MODEL_SHA = '90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1'
-PACKAGE_SHA = 'a3aeca7b6464ebc6962de94579fe125bc40484d94a1ca520fe7aa2b7626073db'
-CHECKPOINT_SHA = '11d8d9997e6b032f6cd208ac63de03c13a969957fecfcb18d98b2051c03b0b2e'
+PACKAGE_SHA = '10cea9c0f7275fe37791d5d2bf40c045854ca992ca28d9b06c80fd33e1e83c10'
+CHECKPOINT_SHA = 'e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d'
 HOST_SHA = '10286666d2263700fad870a29fa3aabb9ade49f81bfa42e249a288752357210c'
 ORACLES = {
     'first-smoke': '30ce20b70da9e9b42beaeb8ccb615b3284581388cdbc16e36f057b06a1852e4d',
@@ -68,7 +68,7 @@ def measure(case):
 def validate(data):
     need(set(data) == {'schema', 'recorded_date', 'implementation', 'campaigns', 'scope'},
          'Unexpected evidence fields')
-    need(data['schema'] == 'qwen-public-hardware-measurements-v1' and data['recorded_date'] == '2026-10-17',
+    need(data['schema'] == 'qwen-public-hardware-measurements-v1' and data['recorded_date'] == '2026-10-19',
          'Unexpected measurement version')
     implementation = data['implementation']
     need(set(implementation) == {'model_image_sha256', 'package_sha256', 'checkpoint_sha256', 'host_sha256',
@@ -77,7 +77,7 @@ def validate(data):
     need(implementation['model_image_sha256'] == MODEL_SHA and implementation['package_sha256'] == PACKAGE_SHA
          and implementation['checkpoint_sha256'] == CHECKPOINT_SHA and implementation['host_sha256'] == HOST_SHA,
          'Changed implementation identity')
-    need(implementation['core_clock_mhz'] == 62.5 and implementation['weight_authentication'] is True,
+    need(implementation['core_clock_mhz'] == 100 and implementation['weight_authentication'] is True,
          'Wrong clock or authentication status')
     for key in ('kv_integrity', 'weight_encryption', 'full_context_qualified', 'production_security_certified'):
         need(implementation[key] is False, 'Unsupported qualification: ' + key)

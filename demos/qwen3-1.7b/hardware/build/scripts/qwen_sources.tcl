@@ -4,6 +4,7 @@ set qwen_sv_sources {
     qwen_fp32_add_stage.sv
     qwen_projection_scale.sv
     qwen_projection_tile32.sv
+    qwen_projection_tile32_overlap.sv
     qwen_exact_activation_pipeline.sv
     qwen_model_page_auth_parallel.sv
     qwen_model_page_auth_shared_worker.sv

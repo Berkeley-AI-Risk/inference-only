@@ -102,15 +102,15 @@ module qwen_attention_pair #(
 
     genvar head;
     generate for(head=0;head<2;head=head+1)begin:heads
-        qwen_qk_dot128 qk(.clk(clk),.rst_n(rst_n),.clear(child_clear),
+        qwen_qk_dot128 #(.PRIVATE_STREAM_STATE_ONLY(1)) qk(.clk(clk),.rst_n(rst_n),.clear(child_clear),
             .in_valid(key_take),.in_ready(qk_in_ready[head]),.query(queries[head]),.key(key),
             .out_valid(qk_valid[head]),.out_ready(score_take),.score(score[head]),.out_error(qk_error[head]));
-        qwen_softmax #(.EXP_ROM_FILE(EXP_ROM_FILE)) softmax(.clk(clk),.rst_n(rst_n),.clear(child_clear),
+        qwen_softmax #(.EXP_ROM_FILE(EXP_ROM_FILE),.PRIVATE_READY_STATE_ONLY(1),.PRIVATE_STREAM_STATE_ONLY(1)) softmax(.clk(clk),.rst_n(rst_n),.clear(child_clear),
             .start_valid(children_start),.start_ready(sm_start_ready[head]),.context_length(length),
             .in_valid(score_take),.in_ready(sm_in_ready[head]),.score(score[head]),
             .out_valid(sm_valid[head]),.out_ready(probability_enqueue),.out_index(sm_index[head]),
             .out_last(sm_last[head]),.probability(probability[head]),.out_error(sm_error[head]));
-        qwen_av_stream16 #(.LANES(64)) av(.clk(clk),.rst_n(rst_n),.clear(child_clear),
+        qwen_av_stream16 #(.LANES(64),.PRIVATE_READY_STATE_ONLY(1),.PRIVATE_STREAM_STATE_ONLY(1)) av(.clk(clk),.rst_n(rst_n),.clear(child_clear),
             .start_valid(children_start),.start_ready(av_start_ready[head]),.context_length(length),
             .in_valid(value_take),.in_ready(av_in_ready[head]),.probability(queued_probability[16*head +:16]),.values(values),
             .out_valid(av_valid[head]),.out_ready(result_take),.out_group(av_group[head]),

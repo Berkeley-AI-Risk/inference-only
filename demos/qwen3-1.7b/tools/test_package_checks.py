@@ -60,8 +60,9 @@ class PackageChecks(unittest.TestCase):
 
     def test_selected_hardware_inputs(self):
         inputs, metadata = hardware.verify()
-        self.assertEqual(len(inputs), 111)
+        self.assertEqual(len(inputs), 112)
         self.assertEqual(metadata['clock_recipes']['a'], 'A0')
+        self.assertEqual(metadata['clock_recipes']['c'], 'C2')
 
     def test_staging_and_overwrite_rejection(self):
         with tempfile.TemporaryDirectory(prefix='qwen-release-') as work:
@@ -94,8 +95,8 @@ class PackageChecks(unittest.TestCase):
 
     def test_recorded_reports_pass(self):
         result = reports.check(ROOT/'evidence/implementation')
-        self.assertEqual(result['routed_nets'], 1044328)
-        self.assertEqual(result['setup_slack_ns'], 0.132)
+        self.assertEqual(result['routed_nets'], 1057236)
+        self.assertEqual(result['setup_slack_ns'], 0.011)
 
     def altered_report(self, filename, old, new):
         with tempfile.TemporaryDirectory() as work:
@@ -110,7 +111,7 @@ class PackageChecks(unittest.TestCase):
                 reports.check(root)
 
     def test_bad_setup_rejected(self):
-        self.altered_report('timing-summary.rpt', '0.132', '-0.132')
+        self.altered_report('timing-summary.rpt', '0.011', '-0.011')
 
     def test_missing_timing_verdict_rejected(self):
         self.altered_report('timing-summary.rpt',
@@ -151,7 +152,7 @@ class PackageChecks(unittest.TestCase):
     def test_report_hashes(self):
         root = ROOT/'evidence/implementation'
         record = json.loads((root/'REPORTS.json').read_text())
-        self.assertEqual(len(record['reports']), 19)
+        self.assertEqual(len(record['reports']), 21)
         for name, row in record['reports'].items():
             self.assertEqual(hardware.digest(root/name), row['public']['sha256'])
             self.assertEqual((root/name).stat().st_size, row['public']['bytes'])

@@ -57,12 +57,17 @@ module qwen_rms_norm (
         .b(state==MEAN_LAUNCH ? mean_factor_rec : input_rec),
         .in_error(1'b0),.result(product),.out_error(mul_error)
     );
-    wire [32:0] addition;
-    wire [4:0] add_flags;
+    wire [32:0] addition, mean_addition;
+    wire [4:0] add_flags, mean_add_flags;
     addRecFN #(8,24) add(
-        .control(1'b1),.subOp(1'b0),.a(state==MEAN_WAIT ? product : sum),
-        .b(state==MEAN_WAIT ? epsilon_rec : product),.roundingMode(3'b000),
+        .control(1'b1),.subOp(1'b0),.a(sum),
+        .b(product),.roundingMode(3'b000),
         .out(addition),.exceptionFlags(add_flags)
+    );
+    // Fixed private mean path: no FSM operand mux ahead of either adder.
+    addRecFN #(8,24) add_mean(
+        .control(1'b1),.subOp(1'b0),.a(product),.b(epsilon_rec),
+        .roundingMode(3'b000),.out(mean_addition),.exceptionFlags(mean_add_flags)
     );
     wire divide_ready, divide_valid, unused_sqrt;
     wire [32:0] quotient;
@@ -155,8 +160,8 @@ module qwen_rms_norm (
                 end
                 MEAN_LAUNCH: state<=MEAN_WAIT;
                 MEAN_WAIT: if(mul_valid[1]) begin
-                    if(|add_flags[4:2]) state<=ERROR;
-                    else begin mean_epsilon<=addition; state<=SQRT_LAUNCH; end
+                    if(|mean_add_flags[4:2]) state<=ERROR;
+                    else begin mean_epsilon<=mean_addition; state<=SQRT_LAUNCH; end
                 end
                 SQRT_LAUNCH: if(divide_ready) state<=SQRT_WAIT;
                 SQRT_WAIT: if(divide_valid) begin
@@ -176,5 +181,5 @@ module qwen_rms_norm (
             endcase
         end
     end
-    wire unused_flags=^{add_flags[1:0],divide_flags[1:0],norm_flags[1:0],weight_flags[1:0]};
+    wire unused_flags=^{add_flags[1:0],mean_add_flags[1:0],divide_flags[1:0],norm_flags[1:0],weight_flags[1:0]};
 endmodule

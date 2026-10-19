@@ -33,7 +33,7 @@ are described separately in each model's guide.
 | **SimpleStories-V2-5M — Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |
 | Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |
 | Same model, **encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |
-| **Qwen3-1.7B — AWS F2**, authenticated weights | **5.506–5.523 tokens/s** | Runnable release; public AWS FPGA image |
+| **Qwen3-1.7B — AWS F2**, authenticated weights | **8.964–9.001 tokens/s** | Runnable release; public AWS FPGA image |
 
 These are measured rates, not clock-based estimates or peak ratings. Tang
 Mega uses a one-token prompt and 128 generated tokens; Qwen uses 4-, 5- and

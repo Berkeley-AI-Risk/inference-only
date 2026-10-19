@@ -98,7 +98,8 @@ module qwen_model_page_cdc #(
     // PRIVATE_RETURN_PAYLOAD: invalid bytes are not observable by the API.
     // Keep data_valid and every downstream valid-qualified capture unchanged.
     assign data=return_at_core_data[2047:0];
-    assign data_last=data_valid && return_at_core_data[2048];
+    // PRIVATE_LAST_METADATA: downstream use remains VALID-qualified.
+    assign data_last=return_at_core_data[2048];
     assign error=core_running && (core_failed || observed_error);
     assign quiescent=core_running && !core_failed && !observed_error &&
         ((core_state==C_IDLE && !core_abort) || core_state==C_ABORTED);

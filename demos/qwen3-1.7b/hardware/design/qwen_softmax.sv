@@ -3,7 +3,9 @@
 // carry-save sum, then FP32 reciprocal scaling and BF16 probabilities.
 // No host addresses, logits or configurable arithmetic operation is exposed.
 module qwen_softmax #(
-    parameter EXP_ROM_FILE="softmax-exp2.hex"
+    parameter EXP_ROM_FILE="softmax-exp2.hex",
+    parameter PRIVATE_READY_STATE_ONLY=0,
+    parameter PRIVATE_STREAM_STATE_ONLY=0
 ) (
     input wire clk,
     input wire rst_n,
@@ -27,8 +29,12 @@ module qwen_softmax #(
     reg [15:0] length,load_count,exp_read_count,prob_read_count;
     reg [15:0] maximum;
     wire alive=rst_n && !clear;
-    assign start_ready=state==IDLE && alive;
-    assign in_ready=state==LOAD && alive;
+    // PRIVATE readiness cofactor: the attention parent already gates
+    // START by reset/CLEAR. Only its fixed instantiation selects this.
+    assign start_ready=state==IDLE && (PRIVATE_READY_STATE_ONLY || alive);
+    // PRIVATE stream cofactor: the fixed parent gates RUN transfers
+    // by reset/CLEAR; synchronous child reset still dominates updates.
+    assign in_ready=state==LOAD && (PRIVATE_STREAM_STATE_ONLY || alive);
     wire input_accept=in_valid && in_ready;
     wire score_nonfinite=&score[14:7];
     wire score_greater=(score[15]!=maximum[15]) ? !score[15] :
@@ -125,7 +131,7 @@ module qwen_softmax #(
     recFNToRecFN #(8,24,8,8) narrow_probability(.control(1'b1),.in(product),.roundingMode(3'b000),
         .out(product_bf16_rec),.exceptionFlags(product_flags));
     recFNToFN #(8,8) encode_probability(.in(product_bf16_rec),.out(product_bf16));
-    assign out_valid=alive && ((probability_state && probability_valid[3]) || state==ERROR);
+    assign out_valid=(PRIVATE_STREAM_STATE_ONLY || alive) && ((probability_state && probability_valid[3]) || state==ERROR);
     assign out_index=state==ERROR ? 15'b0 : probability_index[3];
     assign out_last=state==ERROR || {1'b0,probability_index[3]}==length-1'b1;
     assign probability=state==ERROR ? 16'b0 : output_probability;

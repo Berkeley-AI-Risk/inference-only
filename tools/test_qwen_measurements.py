@@ -17,7 +17,7 @@ class QwenMeasurementTests(unittest.TestCase):
         result = checker.check(self.package)
         self.assertEqual(result['compared_tokens'], 852)
         self.assertEqual(result['cases'], 21)
-        self.assertTrue(5.50 < result['sustained_cached_tokens_per_second'][0] < 5.53)
+        self.assertTrue(8.96 < result['sustained_cached_tokens_per_second'][0] < 9.01)
 
     def changed(self):
         return copy.deepcopy(self.evidence)

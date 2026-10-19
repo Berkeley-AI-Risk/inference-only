@@ -43,8 +43,9 @@ instances.
 
 ## Regenerate the detailed drawings
 
-The scripts require Python 3.8 or newer and Matplotlib; they were rendered with
-Matplotlib 3.7.5 and its bundled DejaVu Sans font. From the repository root:
+The scripts require Python 3.8 or newer and Matplotlib. The SimpleStories image
+was rendered with Matplotlib 3.7.5; the Qwen image uses 3.11.2. Both use the
+bundled DejaVu Sans font. From the repository root:
 
 ```sh
 python3 diagrams/simplestories-hardware-architecture.py

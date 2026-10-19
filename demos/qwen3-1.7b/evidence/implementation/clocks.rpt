@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
----------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
-| Date              : Fri Oct 16 20:42:05 2026
+| Date              : Mon Oct 19 05:01:22 2026
 | Host              : [build host omitted]
 | Command           : report_clocks -file <build-output>/clocks.rpt
 | Design            : top
@@ -9,7 +9,7 @@ Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanc
 | Speed File        : -2  PRODUCTION 1.30 05-01-2022
 | Design State      : Routed
 | Temperature Grade : E
----------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------
 
 Clock Report
 
@@ -33,8 +33,8 @@ clk_125                                                                         
 clk_core                                                                                              4.000       {0.000 2.000}    P,G,A,R     {WRAPPER/IO_SHIM/PLL_CLK_CORE/inst/plle4_adv_inst/CLKOUT0}
 clk_hbm_ref                                                                                           10.000      {0.000 5.000}    P,G,A,R     {WRAPPER/IO_SHIM/MMCM_CLK_HBM_REF/inst/mmcme4_adv_inst/CLKOUT0}
 clk_main_a0                                                                                           4.000       {0.000 2.000}    P,G,A,R     {WRAPPER/IO_SHIM/RL_CLKS/MMCM_CLK_MAIN_A/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst/CLKOUT0}
-clk_out1_clk_mmcm_a                                                                                   16.000      {0.000 8.000}    P,G,A       {WRAPPER/CL/AWS_CLK_GEN/CLK_GRP_A_EN_I.CLK_MMCM_A_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst/CLKOUT0}
 clk_out1_clk_mmcm_hbm                                                                                 8.000       {0.000 4.000}    P,G,A       {WRAPPER/CL/AWS_CLK_GEN/CLK_HBM_EN_I.CLK_MMCM_HBM_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst/CLKOUT0}
+clk_out2_clk_mmcm_c                                                                                   10.000      {0.000 5.000}    P,G,A       {WRAPPER/CL/AWS_CLK_GEN/CLK_GRP_C_EN_I.CLK_MMCM_C_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst/CLKOUT1}
 
 
 ====================================================
@@ -78,19 +78,18 @@ Master Clock        : clk_fpga
 Multiply By         : 2
 Generated Sources   : {WRAPPER/IO_SHIM/RL_CLKS/MMCM_CLK_MAIN_A/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst/CLKOUT0}
 
-Generated Clock     : clk_out1_clk_mmcm_a
-Master Source       : WRAPPER/CL/AWS_CLK_GEN/CLK_GRP_A_EN_I.CLK_MMCM_A_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst/CLKIN1
-Master Clock        : clk_hbm_ref
-Edges               : {1 2 3}
-Edge Shifts(ns)     : {0.000 3.000 6.000}
-Generated Sources   : {WRAPPER/CL/AWS_CLK_GEN/CLK_GRP_A_EN_I.CLK_MMCM_A_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst/CLKOUT0}
-
 Generated Clock     : clk_out1_clk_mmcm_hbm
 Master Source       : WRAPPER/CL/AWS_CLK_GEN/CLK_HBM_EN_I.CLK_MMCM_HBM_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst/CLKIN1
 Master Clock        : clk_hbm_ref
 Edges               : {1 2 3}
 Edge Shifts(ns)     : {0.000 -1.000 -2.000}
 Generated Sources   : {WRAPPER/CL/AWS_CLK_GEN/CLK_HBM_EN_I.CLK_MMCM_HBM_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst/CLKOUT0}
+
+Generated Clock     : clk_out2_clk_mmcm_c
+Master Source       : WRAPPER/CL/AWS_CLK_GEN/CLK_GRP_C_EN_I.CLK_MMCM_C_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst/CLKIN1
+Master Clock        : clk_hbm_ref
+Multiply By         : 1
+Generated Sources   : {WRAPPER/CL/AWS_CLK_GEN/CLK_GRP_C_EN_I.CLK_MMCM_C_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst/CLKOUT1}
 
 
 
@@ -121,5 +120,5 @@ clk_125                                                                         
 clk_core                                                                                              Static 
 clk_hbm_ref                                                                                           Static 
 clk_main_a0                                                                                           Static 
-clk_out1_clk_mmcm_a                                                                                   CL 
 clk_out1_clk_mmcm_hbm                                                                                 CL 
+clk_out2_clk_mmcm_c                                                                                   CL 

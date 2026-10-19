@@ -3,7 +3,7 @@
 // 16-coordinate chunks. No user-selected operation, operand or address.
 // Same FP32 adjacent-pair reduction and BF16 scaling as the wide engine.
 // Minimum steady input interval is eight cycles; latency is not equivalent.
-module qwen_qk_dot128 (
+module qwen_qk_dot128 #(parameter PRIVATE_STREAM_STATE_ONLY=0) (
     input wire clk,input wire rst_n,input wire clear,
     input wire in_valid,output wire in_ready,
     input wire [2047:0] query,input wire [2047:0] key,
@@ -17,7 +17,11 @@ module qwen_qk_dot128 (
     wire beat_ready,beat_payload_ready;
     wire beat_valid=held && alive;
     wire beat_take=beat_valid && beat_ready;
-    assign in_ready=alive && (!held || (group_index==3'd7 && beat_ready));
+    // PRIVATE stream cofactor: the fixed parent gates RUN transfers
+    // by reset/CLEAR; synchronous child reset still dominates updates.
+    assign in_ready=(PRIVATE_STREAM_STATE_ONLY || alive) &&
+        (!held || (group_index==3'd7 &&
+        (PRIVATE_STREAM_STATE_ONLY ? beat_payload_ready : beat_ready)));
     wire input_take=in_valid && in_ready;
     always @(posedge clk)begin
         if(!rst_n || clear)begin held<=0;group_index<=0;end
@@ -43,7 +47,7 @@ module qwen_qk_dot128 (
     wire [15:0] raw_score;
     wire score_push=raw_valid && score_room;
     wire score_pop=out_valid && out_ready;
-    assign out_valid=(score_count!=0) && alive;
+    assign out_valid=(score_count!=0) && (PRIVATE_STREAM_STATE_ONLY || alive);
     assign score=score_queue[score_read][15:0];
     assign out_error=score_queue[score_read][16];
     always @(posedge clk) begin

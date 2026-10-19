@@ -16,7 +16,9 @@
 // if their AW is live, zero strobes force the real restricted ingress to reject.
 // CLEAR must not reset this guard or change online. No downstream watchdog is
 // implemented here; lifecycle shutdown must handle a failed private target.
-module qwen_aws_pcis_gate (
+module qwen_aws_pcis_gate #(parameter bit REGISTER_AR_READY=1'b0,
+    // read_count has the existing asynchronous reset below.
+    parameter bit ASYNC_READ_COUNT_VALID=1'b0) (
     input wire clk,input wire rst_n,input wire online,
     output reg error,output wire fault_request,
     input wire [63:0] s_awaddr,input wire [5:0] s_awid,
@@ -130,8 +132,8 @@ module qwen_aws_pcis_gate (
     wire capture_b=response_pending && (reject_response || m_bvalid);
     wire wrong_id=capture_b && !reject_response && m_bid!=response_head[13:8];
 
-    assign s_arready=rst_n && read_count<32;
-    assign s_rvalid=rst_n && read_count!=0;
+    // Read capacity is selected below; reads still never reach the target.
+    assign s_rvalid=(ASYNC_READ_COUNT_VALID || rst_n) && read_count!=0;
     assign s_rdata=0;
     assign s_rid=s_rvalid ? read_head[13:8] : 6'b0;
     assign s_rresp=2'b11;
@@ -139,6 +141,23 @@ module qwen_aws_pcis_gate (
     wire ar_take=s_arvalid && s_arready;
     wire r_take=s_rvalid && s_rready;
     wire read_finish=r_take && s_rlast;
+    // PRIVATE_READ_CREDIT_STAGE: only capacity for zero/DECERR reads.
+    // Predict the post-edge count. Both reset assertion and the disabled
+    // mode retain their original fail-closed behavior; release takes one edge.
+    generate if(REGISTER_AR_READY)begin:read_credit_stage
+        (* keep="true" *) reg ready_q;
+        always @(posedge clk or negedge rst_n)begin
+            if(!rst_n)ready_q<=0;
+            else case({ar_take,read_finish})
+                2'b10:ready_q<=read_count<6'd31;
+                2'b01:ready_q<=1'b1;
+                default:ready_q<=read_count<6'd32;
+            endcase
+        end
+        assign s_arready=ready_q;
+    end else begin:combinational_read_credit
+        assign s_arready=rst_n && read_count<32;
+    end endgenerate
     assign m_araddr=0;
     assign m_arid=0;
     assign m_arlen=0;

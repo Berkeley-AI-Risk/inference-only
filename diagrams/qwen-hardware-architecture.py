@@ -20,8 +20,8 @@ from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 ROOT = Path(__file__).resolve().parents[1]
 STEM = Path(__file__).resolve().with_suffix("")
 RELEASE = ROOT / "demos/qwen3-1.7b"
-CHECKPOINT = "11d8d9997e6b032f6cd208ac63de03c13a969957fecfcb18d98b2051c03b0b2e"
-SOURCE_MANIFEST = "adf4303dd3020ecff692b75db92bd2117d041c08eb521efacbb4e66505d469d6"
+CHECKPOINT = "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d"
+SOURCE_MANIFEST = "98d686aff399bdf89cbec628e683dee8eb983e63a1af5eb3c7093311f7ddf790"
 
 
 def inventory():
@@ -29,7 +29,7 @@ def inventory():
     deployment = json.loads((RELEASE / "deployment.json").read_text())
     assert selected["source_bundle_manifest_sha256"] == SOURCE_MANIFEST
     assert deployment["routed_checkpoint_sha256"] == CHECKPOINT
-    assert deployment["core_clock_mhz"] == 62.5
+    assert deployment["core_clock_mhz"] == 100
     checked = {}
     # Bind all released design files, including the fixed tables, not only the
     # handful whose names appear as illustrative labels in the drawing.
@@ -72,7 +72,7 @@ def inventory():
                     "rotary": 8, "elementwise": 2}, dsps
     assert sum(dsps.values()) == resource("fixed_machine", "qwen_aws_host_machine") == 1000
     for bank in ("tile_short", "tile_long"):
-        assert resource(bank, "qwen_projection_tile32") == 324
+        assert resource(bank, "qwen_projection_tile32_overlap") == 324
     attention = {}
     for head in range(2):
         for part, module, count in (("qk", "qwen_qk_dot128", 34),
@@ -94,7 +94,7 @@ def inventory():
     assert ".GROUPS(768)) tile_long" in projection
     assert "long_vector=kind==6" in projection
     assert "!long_vector" in projection and "&& long_vector" in projection
-    assert "row<32" in rtl("qwen_projection_tile32.sv")
+    assert "row<32" in rtl("qwen_projection_tile32_overlap.sv")
     assert "lane<16" in rtl("qwen_qk_dot128.sv")
     assert ".LANES(64)" in rtl("qwen_attention_pair.sv")
     assert "ATTENTION_CORES=1" in rtl("qwen_fixed_core.sv")
@@ -105,13 +105,13 @@ def inventory():
     assert "qwen_kv_plain_store #" in rtl("qwen_verified_machine.sv")
 
     result = {
-        "scope": "Diagram of the released A0 Qwen3-1.7B baseline.",
+        "scope": "Diagram of the released C2 100 MHz Qwen3-1.7B baseline.",
         "source_repository": "https://github.com/Berkeley-AI-Risk/inference-only",
         "source_bundle_manifest_sha256": SOURCE_MANIFEST,
         "routed_checkpoint_sha256": CHECKPOINT,
         "model_sha256": deployment["model_sha256"],
         "model_bytes": deployment["model_bytes"],
-        "clocks_mhz": {"inference": 62.5, "memory": 125, "host": 250},
+        "clocks_mhz": {"inference": 100, "memory": 125, "host": 250},
         "report": "evidence/implementation/" + report_name,
         "report_sha256": report_hash,
         "dsp_blocks_by_disjoint_subsystem": dsps,
@@ -303,11 +303,11 @@ def draw(data):
         y = 2740 + index // 2 * 51
         line([(x, y + 10), (x + 100, y + 10)], kind, dashed=kind == "control")
         text(x + 125, y - 4, value, 22)
-    text(65, 2860, "Clocks in this image: 62.5 MHz inference / 125 MHz memory / 250 MHz host. 28 layers; hidden size 2,048; 16 Q heads / 8 K/V heads; head width 128.", 21)
+    text(65, 2860, "Clocks in this image: 100 MHz inference / 125 MHz memory / 250 MHz host. 28 layers; hidden size 2,048; 16 Q heads / 8 K/V heads; head width 128.", 21)
     text(65, 2905, "HBM = high-bandwidth memory. BF16 / FP32 = floating-point formats. Private = no ordinary host operand/address interface, not physical memory secrecy.", 20)
     text(65, 2950, "Scope: selected paths in the released baseline, not every wire or a physical layout. 32,768-token design capacity is not full-context hardware qualification.", 20, "muted")
     text(65, 2995, "The AWS host and configuration plane are outside the inference-only claim. Mapped resources and a schematic do not prove physical-tamper resistance.", 20, "muted")
-    text(65, 3040, "Sources: released Qwen RTL + HARDWARE.md + routed utilization-hierarchical.rpt; checkpoint 11d8d999… . Full identities and resource checks: companion inventory JSON.", 19, "muted")
+    text(65, 3040, "Sources: released Qwen RTL + HARDWARE.md + routed utilization-hierarchical.rpt; checkpoint " + CHECKPOINT[:8] + "… . Full identities and resource checks: companion inventory JSON.", 19, "muted")
 
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
@@ -327,7 +327,7 @@ def draw(data):
             raise RuntimeError("Text outside canvas: " + item.get_text())
 
     title = "Qwen3-1.7B released hardware architecture"
-    description = "Frozen A0 baseline; routed checkpoint " + CHECKPOINT
+    description = "Frozen C2 100 MHz baseline; routed checkpoint " + CHECKPOINT
     fig.savefig(STEM.with_suffix(".svg"), format="svg", facecolor="white",
                 metadata={"Title": title, "Description": description, "Date": None})
     fig.savefig(STEM.with_suffix(".png"), dpi=150, facecolor="white",

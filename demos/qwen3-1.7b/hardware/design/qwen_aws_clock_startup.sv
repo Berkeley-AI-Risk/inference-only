@@ -1,7 +1,7 @@
 // PRIVATE, fixed initialization/monitoring master for the pinned AWS clock block.
 // Run on raw shell clk_main_a0, NOT an output held in reset by aws_clk_gen.
 // No host input, model operation, clock recipe, or address/data programming port.
-// Recipes are build-time choices. Only A1, main, HBM-ref and HBM-AXI are released.
+// Recipes are build-time choices. Only C1, main, HBM-ref and HBM-AXI are released.
 // Reset must also reset the clock block's AXI fabric. CLEAR is NOT this reset.
 // Failure closes ready permanently until that coordinated reset. Outstanding
 // requests retain AXI VALID/payload until accepted; timeout does not retract them.
@@ -21,8 +21,8 @@ module qwen_aws_clock_startup #(
     input wire m_rvalid,output wire m_rready
 );
     localparam [31:0] RESET_ADDR=32'h00058014,LOCK_ADDR=32'h00058020;
-    localparam [31:0] HOLD_MASK=32'hfffffffe,RELEASE_MASK=32'hfffffcfc;
-    localparam [31:0] LOCK_MASK=32'h00000101; // A at bit 0, HBM at bit 8.
+    localparam [31:0] HOLD_MASK=32'hfffffffe,RELEASE_MASK=32'hfffffc7e;
+    localparam [31:0] LOCK_MASK=32'h00000140; // C at bit 6, HBM at bit 8.
     localparam integer TIMER_BITS=$clog2(TIMEOUT_CYCLES+1);
     localparam integer POLL_BITS=POLL_INTERVAL>1 ? $clog2(POLL_INTERVAL) : 1;
     localparam [3:0] HOLD_W=0,HOLD_B=1,HOLD_AR=2,HOLD_R=3,

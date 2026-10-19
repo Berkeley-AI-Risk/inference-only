@@ -5,7 +5,9 @@
 // then BF16 RNE on output. The fixed sequencer owns the 1..32768 length.
 // Output errors invalidate the entire head, including earlier output beats.
 module qwen_av_stream16 #(
-    parameter integer LANES=16
+    parameter integer LANES=16,
+    parameter PRIVATE_READY_STATE_ONLY=0,
+    parameter PRIVATE_STREAM_STATE_ONLY=0
 ) (
     input wire clk,
     input wire rst_n,
@@ -31,18 +33,27 @@ module qwen_av_stream16 #(
     reg [15:0] length,position;
     reg [2:0] input_group,output_group;
     reg [15:0] held_probability;
-    reg [4:0] valid_pipe,first_pipe,last_pipe;
-    reg [2:0] group_pipe [0:4];
+    reg [5:0] valid_pipe,first_pipe,last_pipe;
+    reg [2:0] group_pipe [0:5];
     reg arithmetic_error,bad_length;
     wire advance=rst_n && !clear;
-    assign start_ready=state==IDLE && advance;
-    assign in_ready=state==FEED && advance;
-    assign out_valid=state==OUTPUT && advance;
+    // PRIVATE readiness cofactor: the attention parent already gates
+    // START by reset/CLEAR. Only its fixed instantiation selects this.
+    assign start_ready=state==IDLE && (PRIVATE_READY_STATE_ONLY || advance);
+    // PRIVATE stream cofactor: the fixed parent gates RUN transfers
+    // by reset/CLEAR; synchronous child reset still dominates updates.
+    assign in_ready=state==FEED && (PRIVATE_STREAM_STATE_ONLY || advance);
+    assign out_valid=state==OUTPUT && (PRIVATE_STREAM_STATE_ONLY || advance);
     assign out_group=output_group;
     wire accept=in_valid && in_ready;
     wire last_input=position==length-1'b1 && input_group==LAST_GROUP;
     wire probability_error=(probability[15] && |probability[14:0]) || probability[14:0]>15'h3f80 ||
         (input_group!=0 && probability!=held_probability);
+    // PRIVATE_FIRST_GROUP_CAPTURE: the held value is ignored while
+    // input_group is zero. Sample that private value until the first group is
+    // accepted; the unchanged index then holds it for all subsequent groups.
+    // Fault checks, CLEAR, acceptance and all arithmetic metadata are unchanged.
+    always @(posedge clk) if(input_group==0)held_probability<=probability;
     // Private input payload is sampled each clock. Only the matching
     // delayed valid metadata may commit it; CLEAR discards that metadata.
     reg [15:0] probability_q;
@@ -66,8 +77,18 @@ module qwen_av_stream16 #(
         wire [32:0] v_rec,product,sum;
         wire product_error;
         fNToRecFN #(8,24) decode_value(.in({v,16'b0}),.out(v_rec));
-        qwen_fp32_mul_stage multiply(.clk(clk),.advance(1'b1),.a(p_rec),.b(v_rec),
-            .in_error(probability_error_q || (&v[14:7])),.result(product),.out_error(product_error));
+        // PRIVATE_AV_RECODED_OPERANDS: decode and distribute operands
+        // before the multiplier's first arithmetic clock interval. Payload
+        // may advance in bubbles; only the delayed valid tags can commit it.
+        (* keep="true" *) reg [32:0] probability_rec_q;
+        reg [32:0] value_rec_q;
+        reg operand_error_q;
+        always @(posedge clk) begin
+            probability_rec_q<=p_rec;value_rec_q<=v_rec;
+            operand_error_q<=probability_error_q || (&v[14:7]);
+        end
+        qwen_fp32_mul_stage multiply(.clk(clk),.advance(1'b1),.a(probability_rec_q),.b(value_rec_q),
+            .in_error(operand_error_q),.result(product),.out_error(product_error));
         // With 64 lanes the next position reaches the adder on the same
         // edge as its predecessor commits. Forward that registered sum.
         // This preserves left-to-right ordering without an input bubble.
@@ -77,26 +98,26 @@ module qwen_av_stream16 #(
         (* keep="true" *) reg forward_sum_q;
         always @(posedge clk) begin
             if(!rst_n || clear) forward_sum_q<=0;
-            else forward_sum_q<=valid_pipe[3] && group_pipe[3]==group_pipe[1];
+            else forward_sum_q<=valid_pipe[4] && group_pipe[4]==group_pipe[2];
         end
         wire forward_sum=forward_sum_q;
-        wire [32:0] previous=first_pipe[2] ? 33'b0 :
-            (forward_sum ? sum : accumulator[group_pipe[2][ADDRESS_BITS-1:0]]);
+        wire [32:0] previous=first_pipe[3] ? 33'b0 :
+            (forward_sum ? sum : accumulator[group_pipe[3][ADDRESS_BITS-1:0]]);
         qwen_fp32_add_stage add(.clk(clk),.advance(1'b1),.a(previous),.b(product),
             .in_error(product_error),.result(sum),.out_error(lane_error[lane]));
-        // AV_COMMIT097: this is a local copy of valid_pipe[4], not a
+        // AV_COMMIT097: this is a local copy of valid_pipe[5], not a
         // new arithmetic operation or an extra pipeline stage. Keep each
         // lane's write enable separate through native optimization.
         (* DONT_TOUCH="TRUE" *) reg accumulator_write_valid_q;
         always @(posedge clk)begin
             if(!rst_n || clear)accumulator_write_valid_q<=0;
-            else accumulator_write_valid_q<=valid_pipe[3];
+            else accumulator_write_valid_q<=valid_pipe[4];
         end
         // On reset/CLEAR an old write can touch private stale payload only.
         // Output/valid metadata still clear, and a new first position starts
         // from zero. Cancellation/restart correctness is tested separately.
         always @(posedge clk) if(accumulator_write_valid_q)
-            accumulator[group_pipe[4][ADDRESS_BITS-1:0]]<=sum;
+            accumulator[group_pipe[5][ADDRESS_BITS-1:0]]<=sum;
         // Separate the accumulator RAM read from the final BF16 conversion.
         // The output group remains fixed throughout READ_OUTPUT and CAPTURE.
         reg [32:0] output_accumulator_q;
@@ -119,11 +140,11 @@ module qwen_av_stream16 #(
             state<=IDLE;position<=0;length<=0;input_group<=0;output_group<=0;
             valid_pipe<=0;first_pipe<=0;last_pipe<=0;arithmetic_error<=0;bad_length<=0;output_fault<=0;
         end else begin
-            valid_pipe<={valid_pipe[3:0],accept};
-            first_pipe<={first_pipe[3:0],position==0};
-            last_pipe<={last_pipe[3:0],last_input};
+            valid_pipe<={valid_pipe[4:0],accept};
+            first_pipe<={first_pipe[4:0],position==0};
+            last_pipe<={last_pipe[4:0],last_input};
             group_pipe[0]<=input_group;
-            for(i=1;i<5;i=i+1)group_pipe[i]<=group_pipe[i-1];
+            for(i=1;i<6;i=i+1)group_pipe[i]<=group_pipe[i-1];
             if(start_valid && start_ready) begin
                 length<=context_length;position<=0;input_group<=0;output_group<=0;
                 arithmetic_error<=0;
@@ -131,14 +152,13 @@ module qwen_av_stream16 #(
                 state<=(context_length==0 || context_length>16'd32768) ? READ_OUTPUT : FEED;
             end
             if(accept) begin
-                if(input_group==0)held_probability<=probability;
                 input_group<=input_group==LAST_GROUP ? 3'b0 : input_group+1'b1;
                 if(input_group==LAST_GROUP)position<=position+1'b1;
                 if(last_input)state<=DRAIN;
             end
-            if(valid_pipe[4]) begin
+            if(valid_pipe[5]) begin
                 arithmetic_error<=arithmetic_error || |lane_error;
-                if(last_pipe[4])begin state<=READ_OUTPUT;output_group<=0;end
+                if(last_pipe[5])begin state<=READ_OUTPUT;output_group<=0;end
             end
             // Capture only after the final sum and sticky error commit.
             // OUTPUT holds this private packet until it is accepted.
