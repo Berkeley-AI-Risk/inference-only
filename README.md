@@ -26,14 +26,14 @@ controllers own the inference schedule and memory addresses; the user supplies
 tokens, not tensor pointers. Startup loaders, status and transport handling
 are described separately in each model's guide.
 
-## The demonstrated design and measurements
+## The demonstrated designs and measurements
 
 | Model and platform | Measured cached generation | Package status |
 | --- | --- | --- |
 | **SimpleStories-V2-5M — Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |
 | Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |
 | Same model, **encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |
-| **Qwen3-1.7B — AWS F2**, authenticated weights | **8.964–9.001 tokens/s** | Runnable release; public AWS FPGA image |
+| **Qwen3-1.7B — AWS F2**, authenticated weights | About **9.0 tokens/s** | Runnable release; public AWS FPGA image |
 
 These are measured rates, not clock-based estimates or peak ratings. Tang
 Mega uses a one-token prompt and 128 generated tokens; Qwen uses 4-, 5- and
@@ -129,6 +129,9 @@ use Tcl and constraints. This attribution excludes the FPGA silicon, boards,
 vendor IP and tools, pretrained models, and third-party libraries. It is an
 engineering experiment with human oversight, not a controlled comparison of
 AI and human engineering ability.
+The custom implementation builds on established algorithms and hardware
+techniques; [design references and prior work](REFERENCES.md) distinguish
+those antecedents from directly reused components.
 
 ## Technical documentation and licenses
 

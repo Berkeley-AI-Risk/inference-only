@@ -3,7 +3,7 @@
 [Project overview](../../README.md) · [SimpleStories-V2-5M on Tang Mega](../simplestories-v2-5m/README.md)
 
 **A fixed numerical version of Qwen3-1.7B runs on one physical AWS F2 FPGA
-at 8.964–9.001 sustained cached tokens/s in the tested short-prompt workloads.**
+at about 9.0 sustained cached tokens/s in the tested short-prompt workloads.**
 The FPGA performs inference; the host uploads the fixed model, sends token
 commands and records the replies. This is a billion-parameter demonstration
 of the same authenticated-weight, fixed-inference approach as Tang Mega.
@@ -84,13 +84,14 @@ resistance certification or measured training-capacity bound is claimed here.
 The following are two runs of the same three 128-output workloads on the
 same loaded image. Each cached rate uses the **127 intervals after the first
 returned token**, not the first STEP. The first-token column is from the
-second run.
+second run. Generation rates are rounded to one decimal place; the
+[measurement record](measurements.json) retains the full timing data.
 
 | Workload | Prompt tokens | Run 1, cached tokens/s | Run 2, cached tokens/s | Time to first token |
 | --- | ---: | ---: | ---: | ---: |
-| Story continuation | 4 | 8.9967 | 9.0012 | 0.389 s |
-| Geography completion | 5 | 9.0004 | 9.0006 | 0.483 s |
-| Chat-formatted greeting | 15 | 8.9649 | 8.9639 | 1.420 s |
+| Story continuation | 4 | 9.0 | 9.0 | 0.389 s |
+| Geography completion | 5 | 9.0 | 9.0 | 0.483 s |
+| Chat-formatted greeting | 15 | 9.0 | 9.0 | 1.420 s |
 
 The story prompt is “Once upon a time”; the geography prompt is “The capital
 of France is”. The greeting uses “Say hello.” with the pinned single-user,
@@ -101,9 +102,9 @@ Longer prompts were tested separately, with **16 outputs per case**:
 
 | Prompt tokens | Generated tokens | Time to first token | Cached tokens/s |
 | ---: | ---: | ---: | ---: |
-| 64 | 16 | 6.058 s | 8.996 |
-| 256 | 16 | 24.960 s | 8.516 |
-| 512 | 16 | 51.964 s | 7.992 |
+| 64 | 16 | 6.058 s | 9.0 |
+| 256 | 16 | 24.960 s | 8.5 |
+| 512 | 16 | 51.964 s | 8.0 |
 
 The 16-output cases contain only 15 cached intervals each. They characterize
 these longer-prompt workloads, not a sustained 128-output run at those

@@ -122,12 +122,22 @@ def check(package):
     data = json.loads((package / 'demos/qwen3-1.7b/measurements.json').read_text())
     result = validate(data)
     low, high = result['sustained_cached_tokens_per_second']
-    headline = f'{low:.3f}–{high:.3f}'
-    need(headline in (package / 'README.md').read_text(), 'Overview rate differs from evidence')
+    rounded_low, rounded_high = f'{low:.1f}', f'{high:.1f}'
+    headline = rounded_low if rounded_low == rounded_high else f'{rounded_low}–{rounded_high}'
+    need(f'About **{headline} tokens/s**' in (package / 'README.md').read_text(),
+         'Overview rate differs from evidence')
     guide = (package / 'demos/qwen3-1.7b/README.md').read_text()
-    need(headline in guide and '852' in guide, 'Qwen guide summary differs from evidence')
+    need(f'about {headline} sustained cached tokens/s' in guide and '852' in guide,
+         'Qwen guide summary differs from evidence')
+    first = result['measurements']['sustained-128-run1'][1:4]
+    second = result['measurements']['sustained-128-run2'][1:4]
+    for label, left, right in zip(('Story continuation', 'Geography completion', 'Chat-formatted greeting'),
+                                  first, second):
+        text = (f"| {label} | {left['prompt_tokens']} | {left['cached_tokens_per_second']:.1f} | "
+                f"{right['cached_tokens_per_second']:.1f} | {right['prompt_to_first_token_seconds']:.3f} s |")
+        need(text in guide, 'Qwen sustained measurement differs from evidence')
     for row in result['measurements']['prefill-64-256-512'][1:4]:
-        text = f"| {row['prompt_tokens']} | 16 | {row['prompt_to_first_token_seconds']:.3f} s | {row['cached_tokens_per_second']:.3f} |"
+        text = f"| {row['prompt_tokens']} | 16 | {row['prompt_to_first_token_seconds']:.3f} s | {row['cached_tokens_per_second']:.1f} |"
         need(text in guide, 'Qwen prompt measurement differs from evidence')
     return result
 

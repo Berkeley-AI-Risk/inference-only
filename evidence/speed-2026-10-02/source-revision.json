@@ -132,7 +132,7 @@
       ]
     },
     "ARCHITECTURE.md": {
-      "after_sha256": "a844115620e3f5272c8005d6bbf7dc1fbd7e5aa4ceeb6ebfb5b985bf486a547e",
+      "after_sha256": "5f5e880e187176480c4949947b7a3177a1c9f4a19e7a96948ed3d95b2c859f64",
       "before_sha256": "3bd5cd42e22df73f439980373d50d4f1d9603c58528531f678ea9ee6d9ed9102",
       "reverse_edits": [
         {
@@ -152,13 +152,17 @@
         },
         {
           "after": [
+            "[Design references](REFERENCES.md) identify the model algorithms,\n",
+            "cryptographic specifications and architectural antecedents.\n",
+            "\n",
             "The source links below describe the supplied baseline circuit:\n"
           ],
           "before": [
+            "\n",
             "The source links below describe the selected September 24 baseline circuit:\n"
           ],
-          "end": 14,
-          "start": 13
+          "end": 16,
+          "start": 12
         },
         {
           "after": [
@@ -171,8 +175,8 @@
             "and three public commands are fixed. The baseline and preceding protected\n",
             "image passed [model and app tests on the board](VALIDATION.md#september-24-baseline-and-preceding-protected-image).\n"
           ],
-          "end": 18,
-          "start": 15
+          "end": 20,
+          "start": 17
         },
         {
           "after": [
@@ -181,8 +185,8 @@
           "before": [
             "[October 2 board tests](VALIDATION.md#current-protected-and-encrypted-images).\n"
           ],
-          "end": 20,
-          "start": 19
+          "end": 22,
+          "start": 21
         },
         {
           "after": [
@@ -198,8 +202,8 @@
             "rows. These changes are private implementation choices, not new user controls;\n",
             "the K/V guard and its expected-digest storage remain unchanged.\n"
           ],
-          "end": 33,
-          "start": 28
+          "end": 35,
+          "start": 30
         },
         {
           "after": [
@@ -220,8 +224,8 @@
             "\n"
           ],
           "before": [],
-          "end": 91,
-          "start": 76
+          "end": 93,
+          "start": 78
         },
         {
           "after": [
@@ -230,8 +234,20 @@
           "before": [
             "The clock tree also contains the PLL's 50 MHz output. Historical signal names\n"
           ],
-          "end": 106,
-          "start": 105
+          "end": 108,
+          "start": 107
+        },
+        {
+          "after": [
+            "Gray-pointer asynchronous FIFOs\n",
+            "([established CDC background](REFERENCES.md#hardware-and-memory-protection-antecedents)),\n",
+            "a 32-command queue, a 64-entry return FIFO,\n"
+          ],
+          "before": [
+            "Gray-pointer asynchronous FIFOs, a 32-command queue, a 64-entry return FIFO,\n"
+          ],
+          "end": 119,
+          "start": 116
         },
         {
           "after": [
@@ -244,8 +260,19 @@
             "reached the full 2,048-input window and final output slot. The new protected\n",
             "image's board tests reached 512-token prompts; see\n"
           ],
-          "end": 143,
-          "start": 141
+          "end": 147,
+          "start": 145
+        },
+        {
+          "after": [
+            "by itself. [SHA-256](https://csrc.nist.gov/pubs/fips/180-4/upd1/final)\n",
+            "is used for fixed-content verification, not encryption;\n"
+          ],
+          "before": [
+            "by itself. SHA-256 is used for fixed-content verification, not encryption;\n"
+          ],
+          "end": 255,
+          "start": 253
         },
         {
           "after": [
@@ -335,8 +362,8 @@
             "\n"
           ],
           "before": [],
-          "end": 359,
-          "start": 275
+          "end": 364,
+          "start": 280
         },
         {
           "after": [
@@ -345,8 +372,8 @@
           "before": [
             "The selected builds include three small exact-arithmetic speedups: a\n"
           ],
-          "end": 362,
-          "start": 361
+          "end": 367,
+          "start": 366
         },
         {
           "after": [
@@ -355,8 +382,8 @@
           "before": [
             "add public controls, change clocks or bypass weight/K/V checks. Source-bound\n"
           ],
-          "end": 367,
-          "start": 366
+          "end": 372,
+          "start": 371
         },
         {
           "after": [
@@ -365,8 +392,8 @@
           "before": [
             "their receipt hashes. Public model replays exercise the changed RTL but do\n"
           ],
-          "end": 371,
-          "start": 370
+          "end": 376,
+          "start": 375
         },
         {
           "after": [
@@ -378,8 +405,8 @@
             "| 128 tokens | 19.34 s |\n",
             "| 512 tokens | 133.92 s |\n"
           ],
-          "end": 387,
-          "start": 384
+          "end": 392,
+          "start": 389
         },
         {
           "after": [
@@ -396,8 +423,8 @@
           "before": [
             "four outputs, averaging 2.26 cached tokens/s after the first.\n"
           ],
-          "end": 400,
-          "start": 391
+          "end": 405,
+          "start": 396
         },
         {
           "after": [
@@ -411,8 +438,8 @@
             "violated endpoints**. Its reported inference-clock Fmax is 26.065 MHz against\n",
             "a 25 MHz target. A complete census of the reported negative endpoints places\n"
           ],
-          "end": 432,
-          "start": 428
+          "end": 437,
+          "start": 433
         },
         {
           "after": [
@@ -422,8 +449,8 @@
           "before": [
             "qualified. The current protected route has 211 setup/recovery and three hold\n"
           ],
-          "end": 438,
-          "start": 436
+          "end": 443,
+          "start": 441
         },
         {
           "after": [
@@ -436,8 +463,8 @@
             "setup/hold margins are +1.080/+0.138 ns, not complete product signoff.\n",
             "See [baseline native results](evidence/leaf-speed/native.json),\n"
           ],
-          "end": 442,
-          "start": 439
+          "end": 447,
+          "start": 444
         },
         {
           "after": [
@@ -446,8 +473,8 @@
           "before": [
             "The selected baseline uses 56,538/69,120 CLS, 196/340 BSRAM, and\n"
           ],
-          "end": 446,
-          "start": 445
+          "end": 451,
+          "start": 450
         },
         {
           "after": [
@@ -461,8 +488,8 @@
             "- Selected encrypted configuration SHA-256: `7ab1d1c35d79da3e3341e81947353d337b981ee916628dc9fda79cfcec79d46b`.\n",
             "- Historical baseline campaign configuration SHA-256: `5a5b6788ea0d5b07d25614e91f2950c0c3a7b3cf49f8e225f2dcaf9e76ac8c2a`.\n"
           ],
-          "end": 466,
-          "start": 463
+          "end": 471,
+          "start": 468
         },
         {
           "after": [
@@ -473,13 +500,13 @@
             "and [portable test](evidence/portable-host.json) describe previous images, not\n",
             "the selected arithmetic revision. See [the evidence chronology](evidence/README.md)\n"
           ],
-          "end": 472,
-          "start": 471
+          "end": 477,
+          "start": 476
         }
       ]
     },
     "ENCRYPTED-MEMORY.md": {
-      "after_sha256": "8644d7a3bc0a1bd84f8e003b8d22cb613ed37eb217f1c188df9ee609b148d7b6",
+      "after_sha256": "33594bc190e22eb6340c54ac85e3cc5f757f084043a4002f63c02b7f1a9af913",
       "before_sha256": "71642821928ae282661d2124e6fd8763a2b86bd21c90dfee0a1a12bee4269177",
       "reverse_edits": [
         {
@@ -524,6 +551,11 @@
         },
         {
           "after": [
+            "AES and CTR follow [FIPS 197](https://csrc.nist.gov/pubs/fips/197/final)\n",
+            "and [SP 800-38A](https://csrc.nist.gov/pubs/sp/800/38/a/final).\n",
+            "The [design references](REFERENCES.md#arithmetic-implementations-and-cryptographic-specifications)\n",
+            "also credit the directly adapted AES S-box circuit.\n",
+            "\n",
             "The private AES circuit retains all 14 AES-256 rounds and processes them in\n",
             "five round-processing clocks per block (3 + 3 + 3 + 3 + 2 rounds). This does\n",
             "not include request/response overhead. The four banks share two AES engines\n",
@@ -538,6 +570,7 @@
             "are internal scheduling and storage choices, not additional user operations.\n"
           ],
           "before": [
+            "\n",
             "The October 2 image replaces the previous encrypted implementation with\n",
             "a faster private AES circuit. It retains every AES-256 round; internal\n",
             "control retiming reduces a block's round-processing schedule from 28 to\n",
@@ -545,8 +578,8 @@
             "weight cache are unchanged. This is not reduced-round encryption or a\n",
             "host-accessible cryptographic accelerator.\n"
           ],
-          "end": 63,
-          "start": 51
+          "end": 67,
+          "start": 50
         },
         {
           "after": [
@@ -555,8 +588,8 @@
           "before": [
             "original nine-word layout.\n"
           ],
-          "end": 95,
-          "start": 94
+          "end": 99,
+          "start": 98
         },
         {
           "after": [
@@ -567,8 +600,8 @@
             "\n"
           ],
           "before": [],
-          "end": 106,
-          "start": 101
+          "end": 110,
+          "start": 105
         },
         {
           "after": [
@@ -580,8 +613,8 @@
             "clock setup margin is **+1.162 ns** and hold margin **+0.141 ns** at 25 MHz.\n",
             "Global vendor DDR/clock/reset timing violations remain. A positive inference\n"
           ],
-          "end": 112,
-          "start": 109
+          "end": 116,
+          "start": 113
         },
         {
           "after": [
@@ -592,8 +625,8 @@
             "The encrypted image delivered **3.92 tokens/s**, up from the preceding\n",
             "image's 2.65 on the same short sequence. These include first-token work;\n"
           ],
-          "end": 119,
-          "start": 117
+          "end": 123,
+          "start": 121
         },
         {
           "after": [
@@ -605,8 +638,8 @@
             "[broad](evidence/encrypted-memory/broad-board.json) records remain historical;\n",
             "they do not describe the replacement image's performance.\n"
           ],
-          "end": 125,
-          "start": 124
+          "end": 129,
+          "start": 128
         },
         {
           "after": [
@@ -616,8 +649,8 @@
             "below. Every returned token matched the fixed integer reference. The\n",
             "restored preceding K/V-protected image then passed three matched cases.\n"
           ],
-          "end": 130,
-          "start": 129
+          "end": 134,
+          "start": 133
         },
         {
           "after": [
@@ -640,8 +673,8 @@
             "| `prefix1024` | 1024 | 4 | 1351.830 | 0.402 |\n",
             "| `prefix2047` | 2047 | 2 | 4989.176 | 0.212 |\n"
           ],
-          "end": 141,
-          "start": 133
+          "end": 145,
+          "start": 137
         },
         {
           "after": [
@@ -654,8 +687,8 @@
             "[K/V-protected measurements](KV-PROTECTION.md#measured-performance). That\n",
             "image was tested separately, not used for this encrypted campaign's restoration.\n"
           ],
-          "end": 151,
-          "start": 148
+          "end": 155,
+          "start": 152
         },
         {
           "after": [
@@ -668,8 +701,8 @@
             "and a fresh private profile. It did not start the browser or replace\n",
             "the default profile. Full flash readback and restoration also passed.\n"
           ],
-          "end": 161,
-          "start": 159
+          "end": 165,
+          "start": 163
         },
         {
           "after": [
@@ -698,8 +731,8 @@
             "cache state, cryptography and final commit. Those are simulations, not\n",
             "measurements of the physical controller under every reset or fault condition.\n"
           ],
-          "end": 186,
-          "start": 168
+          "end": 190,
+          "start": 172
         },
         {
           "after": [
@@ -708,8 +741,8 @@
           "before": [
             "original-variant scope. They are not silently extended to this changed\n"
           ],
-          "end": 190,
-          "start": 189
+          "end": 194,
+          "start": 193
         },
         {
           "after": [
@@ -718,8 +751,8 @@
           "before": [
             "The third variant ships its exact 94 redistributable inputs, the four pinned\n"
           ],
-          "end": 202,
-          "start": 201
+          "end": 206,
+          "start": 205
         },
         {
           "after": [
@@ -734,16 +767,16 @@
           "before": [
             "From the repository root:\n"
           ],
-          "end": 213,
-          "start": 206
+          "end": 217,
+          "start": 210
         },
         {
           "after": [
             "python3.12 -I -S -B tools/check_encrypted_validation.py\n"
           ],
           "before": [],
-          "end": 218,
-          "start": 217
+          "end": 222,
+          "start": 221
         },
         {
           "after": [
@@ -752,8 +785,8 @@
           "before": [
             "- `host-app/hardware-inputs-encrypted-memory.json`: all 98 input hashes.\n"
           ],
-          "end": 234,
-          "start": 233
+          "end": 238,
+          "start": 237
         },
         {
           "after": [
@@ -762,8 +795,8 @@
           "before": [
             "98 inputs; it does not run the vendor tool or access hardware. A fresh build\n"
           ],
-          "end": 244,
-          "start": 243
+          "end": 248,
+          "start": 247
         }
       ]
     },
@@ -1113,7 +1146,7 @@
       ]
     },
     "KV-PROTECTION.md": {
-      "after_sha256": "edb216687314a8d559fafc87d153779506ab38aa896f3b981bbf3300ec6f3686",
+      "after_sha256": "7144d7f646bd3ec9b26d297f0936903550e0c76d7186d2b5a66fe0067163027f",
       "before_sha256": "817bf3fb7715538a2b95efb406c8b90532617e5bcc5bd269d053d28c96011570",
       "reverse_edits": [
         {
@@ -1138,12 +1171,18 @@
             "rounds per cycle in the baseline and two in the protected configuration;\n",
             "both retain all 64 rounds.\n",
             "The third [encrypted-memory configuration](ENCRYPTED-MEMORY.md)\n",
-            "retains K/V integrity and adds encryption with public test keys.\n"
+            "retains K/V integrity and adds encryption with public test keys.\n",
+            "\n",
+            "Checking untrusted external memory against protected on-chip state has a long\n",
+            "history in secure-processor design; see the\n",
+            "[AEGIS comparison](REFERENCES.md#hardware-and-memory-protection-antecedents).\n",
+            "The mechanism here specializes integrity checking to this fixed model's K/V\n",
+            "records. It is not a new cryptographic primitive or an implementation of AEGIS.\n"
           ],
           "before": [
             "not an operation offered by either frozen inference circuit.\n"
           ],
-          "end": 14,
+          "end": 20,
           "start": 8
         },
         {
@@ -1153,8 +1192,8 @@
           "before": [
             "qualifier and transport/reset changes made during implementation. It is not\n"
           ],
-          "end": 57,
-          "start": 56
+          "end": 63,
+          "start": 62
         },
         {
           "after": [
@@ -1163,8 +1202,8 @@
           "before": [
             "These are **individual FPGA trials**, not repeated-run statistics. The table\n"
           ],
-          "end": 139,
-          "start": 138
+          "end": 145,
+          "start": 144
         },
         {
           "after": [
@@ -1204,8 +1243,8 @@
             "implementation without adding commands, changing weights or approximating\n",
             "the arithmetic further. The K/V hash engine itself is unchanged.\n"
           ],
-          "end": 166,
-          "start": 147
+          "end": 172,
+          "start": 153
         },
         {
           "after": [
@@ -1237,8 +1276,8 @@
             "The [current protected measurements](evidence/speed-2026-10-02/board.json)\n",
             "and [historical baseline/protected comparison](evidence/leaf-speed/physical.json)\n"
           ],
-          "end": 180,
-          "start": 169
+          "end": 186,
+          "start": 175
         },
         {
           "after": [
@@ -1247,8 +1286,8 @@
           "before": [
             "cost grows even though the weight checker is faster.\n"
           ],
-          "end": 184,
-          "start": 183
+          "end": 190,
+          "start": 189
         },
         {
           "after": [
@@ -1261,8 +1300,8 @@
             "| Registers | 49,523 | 52,064 |\n",
             "| Occupied CLS | 56,538 | 60,069 |\n"
           ],
-          "end": 190,
-          "start": 187
+          "end": 196,
+          "start": 193
         },
         {
           "after": [
@@ -1272,8 +1311,8 @@
             "[current protected native summary](evidence/speed-2026-10-02/native.json)\n",
             "and [unchanged baseline summary](evidence/leaf-speed/native.json).\n"
           ],
-          "end": 197,
-          "start": 196
+          "end": 203,
+          "start": 202
         },
         {
           "after": [
@@ -1296,8 +1335,8 @@
             "  [Earlier simulation records](evidence/kv-protected/simulation-summary.json)\n",
             "  retain their original source identities, including the earlier smoke tests.\n"
           ],
-          "end": 204,
-          "start": 200
+          "end": 210,
+          "start": 206
         },
         {
           "after": [
@@ -1311,8 +1350,8 @@
             "  of one, 128 and 512 tokens. Earlier protected images, not the current image,\n",
             "  supplied the full-window physical evidence. **Deliberately corrupted DDR was tested in simulation**, not by\n"
           ],
-          "end": 212,
-          "start": 209
+          "end": 218,
+          "start": 215
         },
         {
           "after": [
@@ -1327,8 +1366,8 @@
             "  is not a new app rehearsal of the October image.\n",
             "- New [source-bound formal checks](formal/kv-integrity/README.md) prove\n"
           ],
-          "end": 215,
-          "start": 214
+          "end": 221,
+          "start": 220
         },
         {
           "after": [
@@ -1343,8 +1382,8 @@
             "- The baseline report has 145 setup/recovery and 10 hold violated endpoints;\n",
             "  the selected protected report has 211 and three, within the vendor DDR hierarchy.\n"
           ],
-          "end": 224,
-          "start": 220
+          "end": 230,
+          "start": 226
         },
         {
           "after": [
@@ -1357,8 +1396,8 @@
             "  The inference-clock setup/hold margins are +1.080/+0.138 ns. A new DLL\n",
             "  hold violation of \u22120.006 ns and other changed DDR/reset paths remain\n"
           ],
-          "end": 231,
-          "start": 227
+          "end": 237,
+          "start": 233
         },
         {
           "after": [
@@ -1370,8 +1409,8 @@
             "board-tested October 2 build. A new\n",
             "recipient-side build produces its own route and requires its own validation.\n"
           ],
-          "end": 255,
-          "start": 253
+          "end": 261,
+          "start": 259
         }
       ]
     },
@@ -1466,7 +1505,7 @@
       ]
     },
     "README.md": {
-      "after_sha256": "5aac91bcb3016d77d914a8fddfe03838cc8fd674505e399e4e6bfed78e8c3bc0",
+      "after_sha256": "a62d916f25c859006e634d49dd7777b0ad8925d60810f21425821feddb0b953d",
       "before_sha256": "a5857c8782de407acf15e929b7ae4d5927e0372779df1b48414f8ed4bb85d8a1",
       "reverse_edits": [
         {
@@ -1573,7 +1612,7 @@
         },
         {
           "after": [
-            "## The demonstrated design and measurements\n"
+            "## The demonstrated designs and measurements\n"
           ],
           "before": [
             "The prototype runs on a Sipeed Tang Mega 138K **non-Pro Dock** board package\n",
@@ -1597,7 +1636,7 @@
             "| **SimpleStories-V2-5M \u2014 Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |\n",
             "| Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |\n",
             "| Same model, **encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |\n",
-            "| **Qwen3-1.7B \u2014 AWS F2**, authenticated weights | **8.964\u20139.001 tokens/s** | Runnable release; public AWS FPGA image |\n"
+            "| **Qwen3-1.7B \u2014 AWS F2**, authenticated weights | About **9.0 tokens/s** | Runnable release; public AWS FPGA image |\n"
           ],
           "before": [
             "<img src=\"fpga.jpeg\" alt=\"The Sipeed Tang Mega 138K FPGA board used for this inference-only demonstration, connected by USB.\" width=\"720\">\n"
@@ -2020,14 +2059,17 @@
             "use Tcl and constraints. This attribution excludes the FPGA silicon, boards,\n",
             "vendor IP and tools, pretrained models, and third-party libraries. It is an\n",
             "engineering experiment with human oversight, not a controlled comparison of\n",
-            "AI and human engineering ability.\n"
+            "AI and human engineering ability.\n",
+            "The custom implementation builds on established algorithms and hardware\n",
+            "techniques; [design references and prior work](REFERENCES.md) distinguish\n",
+            "those antecedents from directly reused components.\n"
           ],
           "before": [
             "**Fable 5.1 contributed review suggestions incorporated into the working\n",
             "design**, notably the separation of fast DDR transport from slower inference\n",
             "control.\n"
           ],
-          "end": 131,
+          "end": 134,
           "start": 125
         },
         {
@@ -2037,8 +2079,8 @@
           "before": [
             "**Opus 5.5 also provided feedback in later reviews of the project.**\n"
           ],
-          "end": 133,
-          "start": 132
+          "end": 136,
+          "start": 135
         },
         {
           "after": [
@@ -2057,8 +2099,8 @@
             "with substantial tool use and human oversight, not a controlled comparison\n",
             "of AI and human engineering ability.\n"
           ],
-          "end": 139,
-          "start": 134
+          "end": 142,
+          "start": 137
         },
         {
           "after": [
@@ -2131,8 +2173,8 @@
             "model assets use the upstream MIT declaration and third-party notices are\n",
             "preserved. See [LICENSE](LICENSE), [NOTICE](NOTICE) and [LICENSING.md](LICENSING.md).\n"
           ],
-          "end": 147,
-          "start": 140
+          "end": 150,
+          "start": 143
         }
       ]
     },
@@ -2267,9 +2309,20 @@
       ]
     },
     "THIRD-PARTY-NOTICES.md": {
-      "after_sha256": "7226994005d00db87a2f8d31b9f94ba0371599c48d49267952c308e5cf6853cd",
+      "after_sha256": "df93f4d0a1f76e4f1e559d3685389df8b1ea9d05a89db213e82a9fe498283ef5",
       "before_sha256": "18b65ea5a6a162bb6095ca00f851f25dca6ca2c5eb613ab47e5823d2a79bd428",
       "reverse_edits": [
+        {
+          "after": [
+            "\n",
+            "[Design references and prior work](REFERENCES.md) separately identify\n",
+            "algorithmic and architectural antecedents. Those citations supplement,\n",
+            "and do not replace, the source-revision and license notices here.\n"
+          ],
+          "before": [],
+          "end": 5,
+          "start": 1
+        },
         {
           "after": [
             "## AES S-box circuit\n",
@@ -2278,7 +2331,9 @@
             "`tang_private_aes256_fixed2.sv` adapt the Boolean S-box in BearSSL's\n",
             "`br_aes_ct_bitslice_Sbox` to one-bit SystemVerilog signals. The source is\n",
             "[`src/symcipher/aes_ct.c` at revision `5f045c759957fdff8c85716e6af99e10901fdac0`](https://www.bearssl.org/gitweb/?p=BearSSL;a=blob;f=src/symcipher/aes_ct.c;hb=5f045c759957fdff8c85716e6af99e10901fdac0).\n",
-            "BearSSL credits the underlying Boolean circuit to Boyar and Peralta.\n",
+            "BearSSL credits the underlying Boolean circuit to Boyar and Peralta;\n",
+            "see their [logic-minimization paper](https://eprint.iacr.org/2009/191)\n",
+            "and [BearSSL's explanation](https://bearssl.org/constanttime.html).\n",
             "The adaptation retains Thomas Pornin's copyright and full MIT permission\n",
             "notice in both RTL files and in [LICENSES/BearSSL-MIT.txt](LICENSES/BearSSL-MIT.txt).\n",
             "The project did not originate this S-box circuit. Adapting it to hardware\n",
@@ -2286,8 +2341,8 @@
             "\n"
           ],
           "before": [],
-          "end": 68,
-          "start": 56
+          "end": 74,
+          "start": 60
         },
         {
           "after": [
@@ -2296,8 +2351,8 @@
           "before": [
             "outputs. Both inference configurations incorporate the selected DDR/clock functions;\n"
           ],
-          "end": 72,
-          "start": 71
+          "end": 78,
+          "start": 77
         },
         {
           "after": [
@@ -2315,8 +2370,8 @@
           "before": [
             "## AI and photographic attribution\n"
           ],
-          "end": 95,
-          "start": 85
+          "end": 101,
+          "start": 91
         },
         {
           "after": [
@@ -2328,8 +2383,8 @@
             "The owner-supplied board photograph is included in the project's Apache-2.0\n",
             "grant; its removal of metadata is not an ownership claim about its subjects.\n"
           ],
-          "end": 102,
-          "start": 99
+          "end": 108,
+          "start": 105
         }
       ]
     },
@@ -2970,6 +3025,40 @@
           ],
           "end": 123,
           "start": 121
+        }
+      ]
+    },
+    "demos/qwen3-1.7b/HARDWARE.md": {
+      "after_sha256": "ead865a5c7116e6de19cd1a83ed3487f628f635c1faa258312fbb39895a71ad6",
+      "before_sha256": "08c2373c0cd79d1755f0c8db8dba14dc4bd5b0061163a5ff204ff884dd00c0d4",
+      "reverse_edits": [
+        {
+          "after": [
+            "\n",
+            "The [design references](../../REFERENCES.md) credit the model's algorithmic\n",
+            "antecedents, reused arithmetic library and relevant hardware prior work.\n"
+          ],
+          "before": [],
+          "end": 6,
+          "start": 3
+        }
+      ]
+    },
+    "demos/qwen3-1.7b/NOTICES.md": {
+      "after_sha256": "53627fe82c55b2d4ee00570e72dd7c979f4136d0f7034c5590838afd640d568b",
+      "before_sha256": "dd3d815d30f34d9b17437a157766d5abad57dff3d20f936863a7444ad0dcfa44",
+      "reverse_edits": [
+        {
+          "after": [
+            "- **Berkeley HardFloat:** John R. Hauser's\n",
+            "  [Verilog arithmetic library](https://www.jhauser.us/arithmetic/HardFloat.html).\n",
+            "  The included floating-point modules and their include\n"
+          ],
+          "before": [
+            "- **Berkeley HardFloat:** the included floating-point modules and their include\n"
+          ],
+          "end": 14,
+          "start": 11
         }
       ]
     },

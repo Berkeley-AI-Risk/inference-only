@@ -13,6 +13,12 @@ both retain all 64 rounds.
 The third [encrypted-memory configuration](ENCRYPTED-MEMORY.md)
 retains K/V integrity and adds encryption with public test keys.
 
+Checking untrusted external memory against protected on-chip state has a long
+history in secure-processor design; see the
+[AEGIS comparison](REFERENCES.md#hardware-and-memory-protection-antecedents).
+The mechanism here specializes integrity checking to this fixed model's K/V
+records. It is not a new cryptographic primitive or an implementation of AEGIS.
+
 ## Why use the protected version?
 
 For this project's anti-training requirement, memory tampering matters when

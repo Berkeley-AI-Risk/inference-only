@@ -10,6 +10,8 @@ accelerator design. The [README](README.md) introduces the demo;
 [INFERENCE-ONLY.md](INFERENCE-ONLY.md) assesses the restricted design, and
 [FORMAL-STATUS.md](FORMAL-STATUS.md) separates
 proved properties from remaining obligations.
+[Design references](REFERENCES.md) identify the model algorithms,
+cryptographic specifications and architectural antecedents.
 
 The source links below describe the supplied baseline circuit:
 the physically tested design with private weight prefetch, phase-selective
@@ -112,7 +114,9 @@ In particular, the boot/runtime DDR adapters and private arbiter use the core
 clock despite that port name; the boot-image readback hash uses the trusted clock.
 
 The [thin transport](hardware/project/thin_transport.sv) uses
-Gray-pointer asynchronous FIFOs, a 32-command queue, a 64-entry return FIFO,
+Gray-pointer asynchronous FIFOs
+([established CDC background](REFERENCES.md#hardware-and-memory-protection-antecedents)),
+a 32-command queue, a 64-entry return FIFO,
 and a 32-outstanding-read reservation limit. Write command and data acceptance
 are coordinated. Public `CLEAR` does not reset the transport: accepted work
 must retain ownership and drain instead of being mistaken for a later request.
@@ -247,7 +251,8 @@ held in a compiled on-chip ROM, with 55,872 useful payload bytes.
 
 This avoids checking DDR once and then consuming unchecked mutable copies.
 It does not establish cryptographic correctness or physical tamper resistance
-by itself. SHA-256 is used for fixed-content verification, not encryption;
+by itself. [SHA-256](https://csrc.nist.gov/pubs/fips/180-4/upd1/final)
+is used for fixed-content verification, not encryption;
 there is no update-signing secret or manufacturer weight-update command.
 
 The runtime arbiter separates the following 256-bit-word address regions:

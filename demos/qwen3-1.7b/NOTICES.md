@@ -9,7 +9,9 @@ video is included under that grant. That grant does not replace the terms below.
   under [its supplied Apache-2.0 license](licenses/QWEN-LICENSE.txt).
   The memory image is a quantized and serialized derivative, not an independently
   trained model. The Python reference retains its Qwen/Transformers attribution.
-- **Berkeley HardFloat:** the included floating-point modules and their include
+- **Berkeley HardFloat:** John R. Hauser's
+  [Verilog arithmetic library](https://www.jhauser.us/arithmetic/HardFloat.html).
+  The included floating-point modules and their include
   files retain their upstream notices and [BSD-style license](hardware/licenses/HardFloat-COPYING.txt).
   They are third-party arithmetic implementations, not original project work.
 - **AWS FPGA HDK:** dependency revision

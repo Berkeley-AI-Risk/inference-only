@@ -2,6 +2,9 @@
 
 [Qwen guide](README.md) · [Run the prebuilt design](INSTALL.md) · [Licenses](NOTICES.md)
 
+The [design references](../../REFERENCES.md) credit the model's algorithmic
+antecedents, reused arithmetic library and relevant hardware prior work.
+
 ## Circuit organization
 
 The custom SystemVerilog circuit implements a fixed 28-layer Qwen3-1.7B

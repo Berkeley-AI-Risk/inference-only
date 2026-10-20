@@ -19,7 +19,7 @@
       "runnable_package_included": true
     }
   },
-  "documentation_revision": "2026-10-19-qwen-100mhz",
+  "documentation_revision": "2026-10-20-design-references",
   "encrypted_memory_broader_board_tests_complete": true,
   "encrypted_memory_experimental": true,
   "excluded_vendor_files": 4,
@@ -41,12 +41,12 @@
       "sha256": "bfcf342619a1f1ea107e22cadd846aeb230a7ad380730a511cb392798b7ebbbf"
     },
     "ARCHITECTURE.md": {
-      "bytes": 28363,
-      "sha256": "a844115620e3f5272c8005d6bbf7dc1fbd7e5aa4ceeb6ebfb5b985bf486a547e"
+      "bytes": 28630,
+      "sha256": "5f5e880e187176480c4949947b7a3177a1c9f4a19e7a96948ed3d95b2c859f64"
     },
     "ENCRYPTED-MEMORY.md": {
-      "bytes": 17325,
-      "sha256": "8644d7a3bc0a1bd84f8e003b8d22cb613ed37eb217f1c188df9ee609b148d7b6"
+      "bytes": 17613,
+      "sha256": "33594bc190e22eb6340c54ac85e3cc5f757f084043a4002f63c02b7f1a9af913"
     },
     "FORMAL-STATUS.md": {
       "bytes": 23646,
@@ -61,8 +61,8 @@
       "sha256": "146ae0a0dc0b683200add6794b8e0a250370bb147966913099d81133f10def50"
     },
     "KV-PROTECTION.md": {
-      "bytes": 14881,
-      "sha256": "edb216687314a8d559fafc87d153779506ab38aa896f3b981bbf3300ec6f3686"
+      "bytes": 15238,
+      "sha256": "7144d7f646bd3ec9b26d297f0936903550e0c76d7186d2b5a66fe0067163027f"
     },
     "LICENSE": {
       "bytes": 11358,
@@ -101,16 +101,20 @@
       "sha256": "4ad6ae1ea1476ce6fd6ae53e30ec1fc58269c36cbc6e6fe1c14befd978f60373"
     },
     "README.md": {
-      "bytes": 8575,
-      "sha256": "5aac91bcb3016d77d914a8fddfe03838cc8fd674505e399e4e6bfed78e8c3bc0"
+      "bytes": 8769,
+      "sha256": "a62d916f25c859006e634d49dd7777b0ad8925d60810f21425821feddb0b953d"
+    },
+    "REFERENCES.md": {
+      "bytes": 7254,
+      "sha256": "77cee5557eb87f5f807a91c5854044cb40e927735147a0df1006c9b480bcc0bc"
     },
     "REPRODUCE.md": {
       "bytes": 19546,
       "sha256": "40ab53adc24e72615de459fa8290583447722c75140781fb76c157450f5f14e6"
     },
     "THIRD-PARTY-NOTICES.md": {
-      "bytes": 5843,
-      "sha256": "7226994005d00db87a2f8d31b9f94ba0371599c48d49267952c308e5cf6853cd"
+      "bytes": 6190,
+      "sha256": "df93f4d0a1f76e4f1e559d3685389df8b1ea9d05a89db213e82a9fe498283ef5"
     },
     "TRAINING-CAPACITY.md": {
       "bytes": 36544,
@@ -225,20 +229,20 @@
       "sha256": "85a8e3c8a7b8381071a80366e34440309f5000677b8ce9931b3dafb04a8b74e7"
     },
     "demos/qwen3-1.7b/HARDWARE.md": {
-      "bytes": 9061,
-      "sha256": "08c2373c0cd79d1755f0c8db8dba14dc4bd5b0061163a5ff204ff884dd00c0d4"
+      "bytes": 9211,
+      "sha256": "ead865a5c7116e6de19cd1a83ed3487f628f635c1faa258312fbb39895a71ad6"
     },
     "demos/qwen3-1.7b/INSTALL.md": {
       "bytes": 6814,
       "sha256": "da7c6d9e35c6c78b4ead817cf60a4dabbcb180122b9617496ce414de42bcbd29"
     },
     "demos/qwen3-1.7b/NOTICES.md": {
-      "bytes": 2876,
-      "sha256": "dd3d815d30f34d9b17437a157766d5abad57dff3d20f936863a7444ad0dcfa44"
+      "bytes": 2977,
+      "sha256": "53627fe82c55b2d4ee00570e72dd7c979f4136d0f7034c5590838afd640d568b"
     },
     "demos/qwen3-1.7b/README.md": {
-      "bytes": 10078,
-      "sha256": "c15d51778b693c9cb88c33b8c709c53cdd75e88b82de15c999d6a267fd6f77c2"
+      "bytes": 10175,
+      "sha256": "9aa53e903f66665ed196eb64b06bfbd6870afdd16601a18de1cc6d255d76a03c"
     },
     "demos/qwen3-1.7b/SOURCE-INPUTS.json": {
       "bytes": 17321,
@@ -1457,8 +1461,8 @@
       "sha256": "c4af0b8f93fa22eceea1edd619ca03ae8bfe8c27722582e7eec3a607e1ed6636"
     },
     "evidence/speed-2026-10-02/source-revision.json": {
-      "bytes": 1327487,
-      "sha256": "301fadb56952ae046a0c050f0a6bfdf46aa23e02b8f27f3bbd1538ba0a159c3c"
+      "bytes": 1331471,
+      "sha256": "97d7c8db8efeeea834751c48b9984e84a69473e2a2d494ddab1e326f9e445665"
     },
     "evidence/training-capacity-estimates.json": {
       "bytes": 13830,
@@ -2685,8 +2689,8 @@
       "sha256": "bc937ff36764918eba6223c41dfe8a72737def044ca53418b08cb405556ec116"
     },
     "tools/check_qwen_measurements.py": {
-      "bytes": 8589,
-      "sha256": "480afa58a9a7d89253a9898d5a2c4adba8f4d6b538cc7cc1fc2b07c659666e7d"
+      "bytes": 9358,
+      "sha256": "d7b6c50f5096c37eb4b2af85d9e4716986a2b9be6fdb1cdb5e8f4c1bc72afdc0"
     },
     "tools/check_qwen_package.py": {
       "bytes": 8859,

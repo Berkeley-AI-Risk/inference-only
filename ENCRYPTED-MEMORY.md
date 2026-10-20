@@ -48,6 +48,10 @@ AES-256-CTR. SHA-256 checks the **same on-chip plaintext copy** against an
 independent immutable digest; the arithmetic cannot use it until the full
 page check succeeds. Decryption and hashing overlap, without another
 whole-page buffer or an early permission to use unverified data.
+AES and CTR follow [FIPS 197](https://csrc.nist.gov/pubs/fips/197/final)
+and [SP 800-38A](https://csrc.nist.gov/pubs/sp/800/38/a/final).
+The [design references](REFERENCES.md#arithmetic-implementations-and-cryptographic-specifications)
+also credit the directly adapted AES S-box circuit.
 
 The private AES circuit retains all 14 AES-256 rounds and processes them in
 five round-processing clocks per block (3 + 3 + 3 + 3 + 2 rounds). This does

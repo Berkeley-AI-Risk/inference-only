@@ -1,5 +1,9 @@
 # Third-party attribution and asset provenance
 
+[Design references and prior work](REFERENCES.md) separately identify
+algorithmic and architectural antecedents. Those citations supplement,
+and do not replace, the source-revision and license notices here.
+
 ## SimpleStories model and tokenizer
 
 The selected model is `SimpleStories/SimpleStories-V2-5M`, revision
@@ -60,7 +64,9 @@ The encrypted-memory variant's `tang_private_aes256.sv` and
 `tang_private_aes256_fixed2.sv` adapt the Boolean S-box in BearSSL's
 `br_aes_ct_bitslice_Sbox` to one-bit SystemVerilog signals. The source is
 [`src/symcipher/aes_ct.c` at revision `5f045c759957fdff8c85716e6af99e10901fdac0`](https://www.bearssl.org/gitweb/?p=BearSSL;a=blob;f=src/symcipher/aes_ct.c;hb=5f045c759957fdff8c85716e6af99e10901fdac0).
-BearSSL credits the underlying Boolean circuit to Boyar and Peralta.
+BearSSL credits the underlying Boolean circuit to Boyar and Peralta;
+see their [logic-minimization paper](https://eprint.iacr.org/2009/191)
+and [BearSSL's explanation](https://bearssl.org/constanttime.html).
 The adaptation retains Thomas Pornin's copyright and full MIT permission
 notice in both RTL files and in [LICENSES/BearSSL-MIT.txt](LICENSES/BearSSL-MIT.txt).
 The project did not originate this S-box circuit. Adapting it to hardware
