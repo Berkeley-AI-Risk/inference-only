@@ -1,0 +1,238 @@
+{
+  "cases": [
+    {
+      "expected_tokens": [
+        11,
+        358,
+        2776
+      ],
+      "name": "self-test",
+      "rows": [
+        {
+          "generation_elapsed_ns": 885577209,
+          "index": 0,
+          "prompt_elapsed_ns": 885590339,
+          "step_ns": 885545798,
+          "token": 11
+        },
+        {
+          "generation_elapsed_ns": 1771603348,
+          "index": 1,
+          "prompt_elapsed_ns": 1771616618,
+          "step_ns": 886009719,
+          "token": 358
+        },
+        {
+          "generation_elapsed_ns": 2657546945,
+          "index": 2,
+          "prompt_elapsed_ns": 2657560376,
+          "step_ns": 885925896,
+          "token": 2776
+        }
+      ]
+    },
+    {
+      "expected_tokens": [
+        11,
+        358,
+        2776,
+        4460,
+        311,
+        1477,
+        279,
+        897,
+        315,
+        279,
+        25098,
+        315,
+        279,
+        729,
+        282,
+        2075
+      ],
+      "name": "generate-sixteen",
+      "rows": [
+        {
+          "generation_elapsed_ns": 885583227,
+          "index": 0,
+          "prompt_elapsed_ns": 885619618,
+          "step_ns": 885560147,
+          "token": 11
+        },
+        {
+          "generation_elapsed_ns": 1770749744,
+          "index": 1,
+          "prompt_elapsed_ns": 1770786035,
+          "step_ns": 885146997,
+          "token": 358
+        },
+        {
+          "generation_elapsed_ns": 2656621427,
+          "index": 2,
+          "prompt_elapsed_ns": 2656657708,
+          "step_ns": 885856213,
+          "token": 2776
+        },
+        {
+          "generation_elapsed_ns": 3542133592,
+          "index": 3,
+          "prompt_elapsed_ns": 3542169983,
+          "step_ns": 885496164,
+          "token": 4460
+        },
+        {
+          "generation_elapsed_ns": 4427951044,
+          "index": 4,
+          "prompt_elapsed_ns": 4427987355,
+          "step_ns": 885803392,
+          "token": 311
+        },
+        {
+          "generation_elapsed_ns": 5313749016,
+          "index": 5,
+          "prompt_elapsed_ns": 5313785387,
+          "step_ns": 885784272,
+          "token": 1477
+        },
+        {
+          "generation_elapsed_ns": 6199716472,
+          "index": 6,
+          "prompt_elapsed_ns": 6199753193,
+          "step_ns": 885953616,
+          "token": 279
+        },
+        {
+          "generation_elapsed_ns": 7086069948,
+          "index": 7,
+          "prompt_elapsed_ns": 7086106208,
+          "step_ns": 886334125,
+          "token": 897
+        },
+        {
+          "generation_elapsed_ns": 7972420013,
+          "index": 8,
+          "prompt_elapsed_ns": 7972456374,
+          "step_ns": 886331805,
+          "token": 315
+        },
+        {
+          "generation_elapsed_ns": 8859154737,
+          "index": 9,
+          "prompt_elapsed_ns": 8859191038,
+          "step_ns": 886715794,
+          "token": 279
+        },
+        {
+          "generation_elapsed_ns": 9745723828,
+          "index": 10,
+          "prompt_elapsed_ns": 9745760219,
+          "step_ns": 886553201,
+          "token": 25098
+        },
+        {
+          "generation_elapsed_ns": 10632422201,
+          "index": 11,
+          "prompt_elapsed_ns": 10632458723,
+          "step_ns": 886679043,
+          "token": 315
+        },
+        {
+          "generation_elapsed_ns": 11519068024,
+          "index": 12,
+          "prompt_elapsed_ns": 11519104435,
+          "step_ns": 886621892,
+          "token": 279
+        },
+        {
+          "generation_elapsed_ns": 12405656025,
+          "index": 13,
+          "prompt_elapsed_ns": 12405692536,
+          "step_ns": 886566571,
+          "token": 729
+        },
+        {
+          "generation_elapsed_ns": 13292108693,
+          "index": 14,
+          "prompt_elapsed_ns": 13292145014,
+          "step_ns": 886433328,
+          "token": 282
+        },
+        {
+          "generation_elapsed_ns": 14178962400,
+          "index": 15,
+          "prompt_elapsed_ns": 14178998811,
+          "step_ns": 886837607,
+          "token": 2075
+        }
+      ]
+    },
+    {
+      "expected_tokens": [
+        11,
+        358,
+        2776
+      ],
+      "name": "clear-replay",
+      "rows": [
+        {
+          "generation_elapsed_ns": 885743710,
+          "index": 0,
+          "prompt_elapsed_ns": 885756661,
+          "step_ns": 885731170,
+          "token": 11
+        },
+        {
+          "generation_elapsed_ns": 1771466201,
+          "index": 1,
+          "prompt_elapsed_ns": 1771479182,
+          "step_ns": 885709261,
+          "token": 358
+        },
+        {
+          "generation_elapsed_ns": 2657382777,
+          "index": 2,
+          "prompt_elapsed_ns": 2657395738,
+          "step_ns": 885907955,
+          "token": 2776
+        }
+      ]
+    }
+  ],
+  "completed_utc": "2026-10-22T16:31:24.371286+00:00",
+  "final_clear": {
+    "elapsed_ns": 13701,
+    "id": 29,
+    "status": 0,
+    "token": 0
+  },
+  "final_status": {
+    "credits": 0,
+    "flags": 19,
+    "received_bytes": 8828026880
+  },
+  "fpga_image_global_id": "agfi-0b8b13da723c187a7",
+  "fresh_model_upload": true,
+  "initial_status": {
+    "credits": 256,
+    "flags": 35,
+    "received_bytes": 0
+  },
+  "model_bytes": 8828026880,
+  "model_sha256": "a1e8a91912dfa79fb602601e256a4a07da64c57dda146529c08886532d42f833",
+  "model_upload": {
+    "elapsed_ns": 545531523937,
+    "image_bytes": 8828026880,
+    "model_ready": true
+  },
+  "output_token_checks": 22,
+  "passed": true,
+  "runtime_sources": {
+    "host/Makefile": "1fba3caa2931d2af681286e38d8452e99fe048c583dafa9c5fd95cad8d90737f",
+    "host/qwen_host.cpp": "ae4cbd51a3ea766c81811ecaf5974e8f88a63b1f53895178927061cd343fbf97",
+    "host/qwen_host_protocol.h": "fc2c476fc5984dac0ea8e4cd17b4b605ca6d655e3b4fe8079150d885225baf46"
+  },
+  "schema": "qwen8b-recorded-installation-v1",
+  "scope": "Fresh package client build, full model upload, self-test,16 generated tokens and CLEAR/replay on the measured FPGA image. Rehearsed in the image owner account with the SDK already installed; not a second-account or full-context trial.",
+  "shell_version": "0x10212415",
+  "slot_reloaded": true
+}

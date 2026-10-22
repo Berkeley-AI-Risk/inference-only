@@ -1,10 +1,76 @@
 # What has—and has not—been formally proved
 
-The proof receipts below identify the exact sources checked. They do
-not certify the [encrypted-memory configuration](ENCRYPTED-MEMORY.md).
+## What the formalization is meant to establish
+
+The aim is to show that the implemented circuit obeys a precise inference-only
+specification: software can use one fixed model through its allowed commands,
+rather than select arbitrary internal operations or replace its accepted
+weights. For the [fixed numerical SimpleStories model](INFERENCE-ONLY.md#the-idealized-machine-and-the-implemented-interface)
+described here, the ideal machine has a token tape and three commands:
+
+- `APPEND(token)` adds an input token to the tape, when there is room in the
+  2,048-token input context.
+- `STEP` applies the fixed model to a nonempty tape of at most 2,048 tokens,
+  appends its next token and returns that token. An extra tape slot holds the
+  result at the context boundary.
+- `CLEAR` empties the logical tape so a new sequence can begin. In the circuit,
+  cancellation and invalidation must also prevent old private work from becoming
+  a later public result; logical clearing need not zero every physical cell.
+
+The larger proof objective is to connect the circuit's accepted commands and
+completed replies to this ideal machine, including its private state,
+authenticated model data and fixed inference computation. This connection is
+often called *refinement*: the implementation's public transactions must agree
+with the specification. Establishing it requires joining the component
+guarantees, not merely checking the parser or the numerical output separately.
+That end-to-end theorem is **not yet proved**.
+
+Finite prompt tests check particular executions. A completed induction proof
+instead establishes its stated safety properties for arbitrarily long
+executions of the checked digital model, with its declared input boundaries
+and reset conditions. This can rule out entire classes of unauthorized
+commands, stale-state use or mismatched replies within that scope. It does
+not establish eventual completion or properties omitted from the model.
+
+## What is checked now, and what it implies
+
+There are two complementary kinds of formal work here. **Lean checks the
+abstract transaction specification**, including command effects, tape bounds
+and reply counts. Its `nextToken` parameter is an arbitrary function held
+fixed throughout an execution; no model weights or numerical inference
+algorithm are defined there. Lean does **not** prove that the RTL computes
+that function or implements the specification. The
+[Lean reading guide](formal/abstract/README.md) maps the definitions and theorems
+to these claims.
+
+**Yosys and SMT solvers check selected hardware components and connections**
+against assertions about their actual RTL. These include request authorization,
+STEP ownership of returned tokens, live tape contents, logical CLEAR behavior,
+and scoped weight/K/V memory checks. Some private computation and hash-result
+interfaces remain arbitrary inputs. These are hardware safety proofs, not
+Lean proofs of the fixed model's numerical next-token computation.
+
+Under the frozen-circuit, reset and synchronous digital-model assumptions,
+changing host software or command sequences cannot violate the proved
+interface/control properties at those boundaries. This supports the intended
+software-facing restriction: token commands must not authorize arbitrary
+tensor operations, weight replacement or intermediate-memory access. The
+current results do not establish that full restriction end to end, nor do they
+bound every computation obtainable through legitimate prompts. They do not
+certify resistance to physical modification, probing or fault injection, or
+provide a numerical residual-training-capacity bound; see the separate
+[inference-only assessment](INFERENCE-ONLY.md) and
+[conditional capacity analysis](TRAINING-CAPACITY.md).
 
 The current result is **partial machine-checked verification**, not a complete
 proof that the whole FPGA refines the ideal inference-only machine.
+
+## Detailed proof inventory and source scope
+
+The proof receipts below identify the exact sources checked. These results
+concern the SimpleStories baseline and the separately identified K/V-protected
+components; they do not automatically cover any Qwen design. They do
+not certify the [encrypted-memory configuration](ENCRYPTED-MEMORY.md).
 
 **Version scope:** the 48-assertion token-shell and 134-assertion connected
 proofs have been replayed against the supplied baseline,
@@ -27,7 +93,7 @@ separate from its formal evidence.
 
 | Layer | Checked result | Important boundary |
 | --- | --- | --- |
-| Abstract machine | Lean checks the three-command specification, tape bounds, command effects and reply counts. | Its fixed next-token function is abstract; this is not an RTL correspondence proof. |
+| [Abstract machine](formal/abstract/README.md) | Lean checks the three-command specification, tape bounds, command effects and reply counts. | Its fixed next-token function is abstract; this is not an RTL correspondence proof. |
 | Actual UART bridge | Yosys proves 46 assertions by induction covering domain/CLEAR rules, request history, authorization and replies. | This covers the bridge's admitted input bytes, command interface and reply-byte handoff, not the inference engine. |
 | UART plus three-operation adapter | 60 joint properties: the 46 bridge properties plus 14 for real operation wires, operand preservation, CLEAR and token-return connections. Two SMT solvers check the complete induction. | Uses the actual front-end instance wiring; the machine backend is excluded and its ready/token inputs are arbitrary. |
 | Token-shell controller and tape | 48 assertions covering control, live tape contents, tape overwrite-before-read after CLEAR/reset, and stored/published-token agreement. Both SMT solvers check the complete induction. | Real local arithmetic and memories remain; external private services are arbitrary component inputs. This is not K/V/scratch erasure or the fixed model's numerical next-token theorem. |

@@ -1,0 +1,43 @@
+{
+  "clear_replay_outputs": [
+    [
+      11,
+      358,
+      2776
+    ],
+    [
+      11,
+      358,
+      2776
+    ]
+  ],
+  "elapsed_software_seconds": 19.51707175000047,
+  "expected_tokens": [
+    11,
+    358,
+    2776
+  ],
+  "hardware_access": false,
+  "model_sha256": "a1e8a91912dfa79fb602601e256a4a07da64c57dda146529c08886532d42f833",
+  "passed": true,
+  "prompt_tokens": [
+    9707
+  ],
+  "scope": "CPU reference and CLEAR/replay only; not an FPGA measurement.",
+  "source_sha256": {
+    "reference/dense_qwen_reference.py": "fa21d5fcf5030dbbff4657eb081237e7b36da24ff70f54fce493d443f4fa017f",
+    "reference/fixed_nonlinear_tables.py": "0f5cf11af9fa74765c5edca70484e94226878c4cbd95222532fbf7af06f3414c",
+    "reference/fixed_qwen_reference.py": "f2450b8d581283b3f3f07e98b82f64b9ba644506004678f35d0e60497918d841",
+    "reference/fixed_softmax.py": "ea7eedc163e95205c09371fd09c9378bea417ee3d26dbb92ee11839bc8b356fb",
+    "reference/integer_projection.py": "9ccfcb3f3b208d026bbb880bac5578190ded9f6b73dc487f535493f370395c0c",
+    "reference/model_image.py": "e6d215b81324fd092636a4fbc988405fa19c08265c32b0316684974e5de31bb1",
+    "reference/ordered_rms_norm.py": "54ee038375ab5e09f3b77198626192672936c2bbd7a6bba90dce7712770a822c",
+    "reference/run_reference.py": "8038ae8b8ade9330aad87784d3b3d58f4803c371efc18561963f41418d6a0a6e",
+    "reference/tables/silu-bf16.bin": "859765e19bdbff036092c2348745f589803006506e6ec78d77be3d4d516fd77a",
+    "reference/tables/softmax-exp2.bin": "7914026720a0167743ba2e68d3aaf0b86255b75d878ad56e5fa1827dad9b77f3",
+    "reference/tree_attention.py": "f3223390ac7d4e8cf34c6968b1095f1e33530574fdb59f068ed5f960826656ee",
+    "tools/fixed_model_export.py": "c53c952150d9c973821bcd60436042d7c13f23764af5ffc7912daf530ad9d1d3",
+    "tools/prepare_model.py": "1a27ebab761a8d17c73465c58b5cadf198f729ca9eb92408f41018498dfecd30"
+  },
+  "threads": 16
+}

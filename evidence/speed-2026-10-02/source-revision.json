@@ -1,7 +1,7 @@
 {
   "changes": {
     ".github/workflows/offline-checks.yml": {
-      "after_sha256": "13a27493a979f10bf375d1b49c76013b20458ae242431a88d064b49be66c9109",
+      "after_sha256": "8178a1515a6c33be93ccd400baf8e435a013f81fd5e5da11e3f778dddfaaf7c8",
       "before_sha256": "b6db015ad4d6bda2c87598fa86b7cc27c2b7802bbb882daea7ebe13c0eb9692f",
       "reverse_edits": [
         {
@@ -22,10 +22,16 @@
             "      - name: Check Qwen frozen sources, implementation reports and reference records\n",
             "        run: |\n",
             "          python -I -S -B tools/check_qwen_package.py\n",
-            "          python -I -S -B -m unittest discover -s demos/qwen3-1.7b/tools -p 'test_package_checks.py' -v\n"
+            "          python -I -S -B -m unittest discover -s demos/qwen3-1.7b/tools -p 'test_package_checks.py' -v\n",
+            "      - name: Check Qwen3-8B sources and recorded evidence\n",
+            "        # Qwen3-8B checks recorded evidence; no cloud access or model download.\n",
+            "        run: python -I -S -B demos/qwen3-8b/tools/check_package.py\n",
+            "      - name: Run the shared offline helper tests\n"
           ],
-          "before": [],
-          "end": 62,
+          "before": [
+            "      - name: Run the offline helper tests\n"
+          ],
+          "end": 66,
           "start": 56
         },
         {
@@ -50,8 +56,8 @@
             "        run: python -B -m unittest discover -s demos/qwen3-1.7b/host -p 'test_*.py' -v\n"
           ],
           "before": [],
-          "end": 86,
-          "start": 68
+          "end": 89,
+          "start": 71
         }
       ]
     },
@@ -801,20 +807,93 @@
       ]
     },
     "FORMAL-STATUS.md": {
-      "after_sha256": "f1b6cecc98338d0a395d3820591c64086f7ce28c26dfd8ef98ea2d3c3e2c3fc4",
+      "after_sha256": "6a464dbf8ac8c6cf64bc69da03b90a73042ba0361ad2b37321c277084d5f87f1",
       "before_sha256": "43c685741450e179e3a4fae38412ce76c39238fe078ad0d9276dec968aabc550",
       "reverse_edits": [
         {
           "after": [
-            "The proof receipts below identify the exact sources checked. They do\n",
-            "not certify the [encrypted-memory configuration](ENCRYPTED-MEMORY.md).\n"
+            "## What the formalization is meant to establish\n",
+            "\n",
+            "The aim is to show that the implemented circuit obeys a precise inference-only\n",
+            "specification: software can use one fixed model through its allowed commands,\n",
+            "rather than select arbitrary internal operations or replace its accepted\n",
+            "weights. For the [fixed numerical SimpleStories model](INFERENCE-ONLY.md#the-idealized-machine-and-the-implemented-interface)\n",
+            "described here, the ideal machine has a token tape and three commands:\n",
+            "\n",
+            "- `APPEND(token)` adds an input token to the tape, when there is room in the\n",
+            "  2,048-token input context.\n",
+            "- `STEP` applies the fixed model to a nonempty tape of at most 2,048 tokens,\n",
+            "  appends its next token and returns that token. An extra tape slot holds the\n",
+            "  result at the context boundary.\n",
+            "- `CLEAR` empties the logical tape so a new sequence can begin. In the circuit,\n",
+            "  cancellation and invalidation must also prevent old private work from becoming\n",
+            "  a later public result; logical clearing need not zero every physical cell.\n",
+            "\n",
+            "The larger proof objective is to connect the circuit's accepted commands and\n",
+            "completed replies to this ideal machine, including its private state,\n",
+            "authenticated model data and fixed inference computation. This connection is\n",
+            "often called *refinement*: the implementation's public transactions must agree\n",
+            "with the specification. Establishing it requires joining the component\n",
+            "guarantees, not merely checking the parser or the numerical output separately.\n",
+            "That end-to-end theorem is **not yet proved**.\n",
+            "\n",
+            "Finite prompt tests check particular executions. A completed induction proof\n",
+            "instead establishes its stated safety properties for arbitrarily long\n",
+            "executions of the checked digital model, with its declared input boundaries\n",
+            "and reset conditions. This can rule out entire classes of unauthorized\n",
+            "commands, stale-state use or mismatched replies within that scope. It does\n",
+            "not establish eventual completion or properties omitted from the model.\n",
+            "\n",
+            "## What is checked now, and what it implies\n",
+            "\n",
+            "There are two complementary kinds of formal work here. **Lean checks the\n",
+            "abstract transaction specification**, including command effects, tape bounds\n",
+            "and reply counts. Its `nextToken` parameter is an arbitrary function held\n",
+            "fixed throughout an execution; no model weights or numerical inference\n",
+            "algorithm are defined there. Lean does **not** prove that the RTL computes\n",
+            "that function or implements the specification. The\n",
+            "[Lean reading guide](formal/abstract/README.md) maps the definitions and theorems\n",
+            "to these claims.\n",
+            "\n",
+            "**Yosys and SMT solvers check selected hardware components and connections**\n",
+            "against assertions about their actual RTL. These include request authorization,\n",
+            "STEP ownership of returned tokens, live tape contents, logical CLEAR behavior,\n",
+            "and scoped weight/K/V memory checks. Some private computation and hash-result\n",
+            "interfaces remain arbitrary inputs. These are hardware safety proofs, not\n",
+            "Lean proofs of the fixed model's numerical next-token computation.\n",
+            "\n",
+            "Under the frozen-circuit, reset and synchronous digital-model assumptions,\n",
+            "changing host software or command sequences cannot violate the proved\n",
+            "interface/control properties at those boundaries. This supports the intended\n",
+            "software-facing restriction: token commands must not authorize arbitrary\n",
+            "tensor operations, weight replacement or intermediate-memory access. The\n",
+            "current results do not establish that full restriction end to end, nor do they\n",
+            "bound every computation obtainable through legitimate prompts. They do not\n",
+            "certify resistance to physical modification, probing or fault injection, or\n",
+            "provide a numerical residual-training-capacity bound; see the separate\n",
+            "[inference-only assessment](INFERENCE-ONLY.md) and\n",
+            "[conditional capacity analysis](TRAINING-CAPACITY.md).\n"
           ],
           "before": [
             "The proof receipts below retain their original source bindings. They do\n",
             "not certify the changed [encrypted-memory configuration](ENCRYPTED-MEMORY.md).\n"
           ],
-          "end": 4,
+          "end": 63,
           "start": 2
+        },
+        {
+          "after": [
+            "## Detailed proof inventory and source scope\n",
+            "\n",
+            "The proof receipts below identify the exact sources checked. These results\n",
+            "concern the SimpleStories baseline and the separately identified K/V-protected\n",
+            "components; they do not automatically cover any Qwen design. They do\n",
+            "not certify the [encrypted-memory configuration](ENCRYPTED-MEMORY.md).\n",
+            "\n"
+          ],
+          "before": [],
+          "end": 74,
+          "start": 67
         },
         {
           "after": [
@@ -829,8 +908,8 @@
             "proofs have been replayed against the selected September 24 baseline,\n",
             "including its changed arithmetic children. The K/V-protected sources have\n"
           ],
-          "end": 15,
-          "start": 9
+          "end": 81,
+          "start": 75
         },
         {
           "after": [
@@ -842,8 +921,8 @@
             "buffer requires a different read-only observation point, not fewer assertions\n",
             "or an extra assumption. The proof elaboration maps its eight small rows to\n"
           ],
-          "end": 18,
-          "start": 16
+          "end": 84,
+          "start": 82
         },
         {
           "after": [
@@ -852,8 +931,8 @@
           "before": [
             "The wrong-coordinate fault control was updated to select the adjacent value\n"
           ],
-          "end": 20,
-          "start": 19
+          "end": 86,
+          "start": 85
         },
         {
           "after": [],
@@ -861,18 +940,20 @@
             "Historical receipts retain their earlier identities, including the\n",
             "[September baseline/protected replay](evidence/leaf-speed/release-replay.json).\n"
           ],
-          "end": 22,
-          "start": 22
+          "end": 88,
+          "start": 88
         },
         {
           "after": [
+            "| [Abstract machine](formal/abstract/README.md) | Lean checks the three-command specification, tape bounds, command effects and reply counts. | Its fixed next-token function is abstract; this is not an RTL correspondence proof. |\n",
             "| Actual UART bridge | Yosys proves 46 assertions by induction covering domain/CLEAR rules, request history, authorization and replies. | This covers the bridge's admitted input bytes, command interface and reply-byte handoff, not the inference engine. |\n"
           ],
           "before": [
+            "| Abstract machine | Lean checks the three-command specification, tape bounds, command effects and reply counts. | Its fixed next-token function is abstract; this is not an RTL correspondence proof. |\n",
             "| Actual UART bridge | Yosys proves 46 assertions by induction: 15 earlier domain/CLEAR properties plus 31 request-history, authorization and reply properties. | This covers the bridge's admitted input bytes, command interface and reply-byte handoff, not the inference engine. |\n"
           ],
-          "end": 31,
-          "start": 30
+          "end": 97,
+          "start": 95
         },
         {
           "after": [
@@ -881,8 +962,8 @@
           "before": [
             "| Token-shell controller and tape | 48 assertions: the earlier 35 control properties plus 13 for live tape contents, tape overwrite-before-read after CLEAR/reset, and stored/published-token agreement. Both SMT solvers check the complete induction. | Real local arithmetic and memories remain; external private services are arbitrary component inputs. This is not K/V/scratch erasure or the fixed model's numerical next-token theorem. |\n"
           ],
-          "end": 33,
-          "start": 32
+          "end": 99,
+          "start": 98
         },
         {
           "after": [
@@ -891,8 +972,8 @@
           "before": [
             "| Verified weight-page bank | 37 assertions, with both solvers checking the complete induction: fill-before-read, sealed RAM, digest-comparison admission, hash-input correspondence, owned replies and sticky faults. | Real 128-by-256-bit RAM is retained; SHA replies and the expected-digest input remain arbitrary. Not SHA correctness or parent-ROM composition. |\n"
           ],
-          "end": 36,
-          "start": 35
+          "end": 102,
+          "start": 101
         },
         {
           "after": [
@@ -901,8 +982,8 @@
           "before": [
             "| Protected guard/cache/parent connections | 325 joint assertions, both solvers, including the preceding 221, the local cache's 59 and 45 connection/history checks. Includes accumulated data, request identity, exponents and guard-side CLEAR. | Real guard and atomic cache with source-projected parent reset/reply gates; private schedule and arithmetic boundaries remain arbitrary. |\n"
           ],
-          "end": 38,
-          "start": 37
+          "end": 104,
+          "start": 103
         },
         {
           "after": [
@@ -911,22 +992,28 @@
           "before": [
             "changed arithmetic but do not prove its bounds for every input. The controller\n"
           ],
-          "end": 46,
-          "start": 45
+          "end": 112,
+          "start": 111
         },
         {
           "after": [
-            "assume a separate proof receipt as a theorem.\n",
-            "\n",
+            "assume a separate proof receipt as a theorem.\n"
+          ],
+          "before": [
+            "assume an earlier proof receipt as a theorem.\n"
+          ],
+          "end": 122,
+          "start": 121
+        },
+        {
+          "after": [
             "## UART request and reply proof\n"
           ],
           "before": [
-            "assume an earlier proof receipt as a theorem.\n",
-            "\n",
             "## What the expanded UART proof adds\n"
           ],
-          "end": 58,
-          "start": 55
+          "end": 124,
+          "start": 123
         },
         {
           "after": [
@@ -935,8 +1022,8 @@
           "before": [
             "an exhaustive UART test. Earlier formal negative controls remain separate.\n"
           ],
-          "end": 87,
-          "start": 86
+          "end": 153,
+          "start": 152
         },
         {
           "after": [
@@ -946,8 +1033,8 @@
             "phase invariants are proved together by induction. The first controller stage\n",
             "proved 35 assertions; the tape extension proves all 48 jointly. Both Z3 and\n"
           ],
-          "end": 147,
-          "start": 146
+          "end": 213,
+          "start": 212
         },
         {
           "after": [
@@ -959,8 +1046,8 @@
             "and five newer tape mutations produce reset-reachable bounded counterexamples.\n",
             "The portable replay includes the five tape mutations. A separate internal source\n"
           ],
-          "end": 150,
-          "start": 148
+          "end": 216,
+          "start": 214
         },
         {
           "after": [
@@ -969,8 +1056,8 @@
           "before": [
             "The added tape monitor watches one arbitrary, constant slot; proving the\n"
           ],
-          "end": 153,
-          "start": 152
+          "end": 219,
+          "start": 218
         },
         {
           "after": [
@@ -979,8 +1066,8 @@
           "before": [
             "The proof preserves synthesis-mode production logic. Older unqualified\n"
           ],
-          "end": 169,
-          "start": 168
+          "end": 235,
+          "start": 234
         },
         {
           "after": [
@@ -989,8 +1076,8 @@
           "before": [
             "embedding, normalization and argmax. It jointly reproves the previous 108\n"
           ],
-          "end": 201,
-          "start": 200
+          "end": 267,
+          "start": 266
         },
         {
           "after": [
@@ -1002,8 +1089,8 @@
             "300-second allowance per conclusion, then 900 seconds for five other\n",
             "unresolved conclusions, all of which passed. The source/query auditor checks\n"
           ],
-          "end": 217,
-          "start": 216
+          "end": 283,
+          "start": 282
         },
         {
           "after": [
@@ -1012,8 +1099,8 @@
           "before": [
             "The actual weight-bank RTL now has an additional 37-property component proof,\n"
           ],
-          "end": 254,
-          "start": 253
+          "end": 320,
+          "start": 319
         },
         {
           "after": [
@@ -1026,8 +1113,8 @@
           "before": [
             "checks the replay. The assertion count includes supporting invariants.\n"
           ],
-          "end": 264,
-          "start": 259
+          "end": 330,
+          "start": 325
         }
       ]
     },
@@ -1415,7 +1502,7 @@
       ]
     },
     "LICENSE-SCOPE.md": {
-      "after_sha256": "2c8a4b3719dd613c6d4d256629a1d4785cf2f4edb769ba5c3252c813198411e0",
+      "after_sha256": "2001c9921856334e39c11fd2fa96ece073e0b10bda64498db0fc26f6a0a33249",
       "before_sha256": "296774aafe3ac1a2d89885352a0a32e210ebcb5eba312499e6a011f6777ae27c",
       "reverse_edits": [
         {
@@ -1437,7 +1524,7 @@
           "after": [
             "- The Qwen checkpoint, tokenizer and model-derived data, under the upstream\n",
             "  Apache-2.0 license.\n",
-            "- The Qwen demonstration's Berkeley HardFloat arithmetic modules and\n",
+            "- The Qwen demonstrations' Berkeley HardFloat arithmetic modules and\n",
             "  AWS integration files, under their retained BSD-style and AWS terms.\n",
             "- The MIT-licensed BearSSL S-box adapted in the encrypted-memory AES circuits.\n"
           ],
@@ -1448,12 +1535,13 @@
         {
           "after": [
             "[THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) and the\n",
-            "[Qwen notices](demos/qwen3-1.7b/NOTICES.md) identify these distinctions.\n"
+            "[Qwen3-1.7B notices](demos/qwen3-1.7b/NOTICES.md) and\n",
+            "[Qwen3-8B notices](demos/qwen3-8b/NOTICES.md) identify these distinctions.\n"
           ],
           "before": [
             "[THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) identifies these distinctions.\n"
           ],
-          "end": 28,
+          "end": 29,
           "start": 26
         },
         {
@@ -1463,8 +1551,8 @@
           "before": [
             "cryptographic hashes, or grants rights in GOWIN's independently supplied tools.\n"
           ],
-          "end": 30,
-          "start": 29
+          "end": 31,
+          "start": 30
         }
       ]
     },
@@ -1505,7 +1593,7 @@
       ]
     },
     "README.md": {
-      "after_sha256": "a62d916f25c859006e634d49dd7777b0ad8925d60810f21425821feddb0b953d",
+      "after_sha256": "cf1bc21f7675c9edd9e1db513f6a7530c45f435baeea7cf411f2d7237021d6ef",
       "before_sha256": "a5857c8782de407acf15e929b7ae4d5927e0372779df1b48414f8ed4bb85d8a1",
       "reverse_edits": [
         {
@@ -1636,29 +1724,31 @@
             "| **SimpleStories-V2-5M \u2014 Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |\n",
             "| Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |\n",
             "| Same model, **encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |\n",
-            "| **Qwen3-1.7B \u2014 AWS F2**, authenticated weights | About **9.0 tokens/s** | Runnable release; public AWS FPGA image |\n"
+            "| **Qwen3-1.7B \u2014 AWS F2**, authenticated weights | About **9.0 tokens/s** | Runnable release; public AWS FPGA image |\n",
+            "| **Qwen3-8B \u2014 AWS F2**, authenticated weights | About **1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |\n"
           ],
           "before": [
             "<img src=\"fpga.jpeg\" alt=\"The Sipeed Tang Mega 138K FPGA board used for this inference-only demonstration, connected by USB.\" width=\"720\">\n"
           ],
-          "end": 36,
+          "end": 37,
           "start": 30
         },
         {
           "after": [
             "These are measured rates, not clock-based estimates or peak ratings. Tang\n",
-            "Mega uses a one-token prompt and 128 generated tokens; Qwen uses 4-, 5- and\n",
-            "15-token prompts and two repeated 128-token suites. The models, tokenizers and\n",
+            "Mega uses a one-token prompt and 128 generated tokens; Qwen3-1.7B uses 4-, 5- and\n",
+            "15-token prompts and two repeated 128-token suites. Qwen3-8B's sustained case\n",
+            "uses a one-token prompt and 128 generated tokens. The models, tokenizers and\n",
             "workloads differ, so this is **not a head-to-head performance benchmark**.\n",
-            "Both measurements exclude the first token. Tang's figures are cached command\n",
+            "These cached rates exclude the first token. Tang's figures are cached command\n",
             "rates; Qwen's also include gaps between replies. Longer prompts take longer\n",
             "to produce the first token, and growing context slows subsequent generation.\n"
           ],
           "before": [
             "*The physical board used for the demonstration.*\n"
           ],
-          "end": 44,
-          "start": 37
+          "end": 46,
+          "start": 38
         },
         {
           "after": [
@@ -1667,7 +1757,10 @@
             "  and links to source, proofs and reproduction instructions.\n",
             "- **[Qwen3-1.7B / AWS F2 guide](demos/qwen3-1.7b/README.md):** the billion-parameter\n",
             "  hardware result, measured prompt/decode speeds, frozen-model boundary,\n",
-            "  installation, browser app, hardware sources and numerical reference.\n"
+            "  installation, browser app, hardware sources and numerical reference.\n",
+            "- **[Qwen3-8B / AWS F2 guide](demos/qwen3-8b/README.md):** the eight-billion-parameter\n",
+            "  prototype, measured prompt/decode speeds, installation with a token-ID client,\n",
+            "  hardware sources and numerical reference. A browser app is not yet included.\n"
           ],
           "before": [
             "An FPGA is a chip whose digital circuitry can be configured after manufacture.\n",
@@ -1678,8 +1771,8 @@
             "Resistance to other physical tampering is a separate question, not something\n",
             "the frozen-configuration assumption establishes.\n"
           ],
-          "end": 51,
-          "start": 45
+          "end": 56,
+          "start": 47
         },
         {
           "after": [
@@ -1693,8 +1786,8 @@
             "This is a working research prototype, not a\n",
             "production-qualified or security-certified accelerator.\n"
           ],
-          "end": 53,
-          "start": 52
+          "end": 58,
+          "start": 57
         },
         {
           "after": [
@@ -1783,8 +1876,8 @@
             "test scope, source reproduction, installation and restoration. All\n",
             "three preserve the same model and public three-operation interface.\n"
           ],
-          "end": 57,
-          "start": 54
+          "end": 62,
+          "start": 59
         },
         {
           "after": [
@@ -1802,8 +1895,8 @@
             "token operations. No command loads arbitrary weights, invokes matrix\n",
             "multiplication, or reads/writes intermediate tensors.\n"
           ],
-          "end": 66,
-          "start": 60
+          "end": 71,
+          "start": 65
         },
         {
           "after": [
@@ -1822,8 +1915,8 @@
             "or manufacturer-update command. This is hardware-checked external storage,\n",
             "not physically hardwired weight bits.\n"
           ],
-          "end": 74,
-          "start": 67
+          "end": 79,
+          "start": 72
         },
         {
           "after": [
@@ -1841,8 +1934,8 @@
             "normalization squares are likewise private. There is no software interface\n",
             "for injecting their arbitrary operands or retrieving their products.\n"
           ],
-          "end": 81,
-          "start": 75
+          "end": 86,
+          "start": 80
         },
         {
           "after": [
@@ -1850,7 +1943,7 @@
             "an adversary with physical possession**. Demonstrating the restricted\n",
             "architecture is not the same as certifying that standard. External memory,\n",
             "test/debug/scan paths and any future inter-chip links require their own\n",
-            "assessment. The Qwen experiment also has AWS management and diagnostic\n",
+            "assessment. The Qwen experiments also have AWS management and diagnostic\n",
             "facilities outside its token application interface; the whole cloud platform\n",
             "is not claimed to be inference-only.\n"
           ],
@@ -1861,8 +1954,8 @@
             "mapped into the host's address space. Private buffers between operations do\n",
             "not themselves expose a matrix-multiplication interface.\n"
           ],
-          "end": 89,
-          "start": 82
+          "end": 94,
+          "start": 87
         },
         {
           "after": [
@@ -1872,7 +1965,7 @@
             "refinement or Qwen. The [conditional training-capacity analysis](TRAINING-CAPACITY.md)\n",
             "and [architecture-dependent analysis](ARCHITECTURE-DEPENDENT-CAPACITY.md)\n",
             "make their assumptions explicit; their Tang Mega numerical factors are not\n",
-            "Qwen measurements. **Neither demonstration has a certified, nation-state-resistant\n",
+            "Qwen measurements. **None of these demonstrations has a certified, nation-state-resistant\n",
             "residual training fraction.** Small model size or modest speed is not what\n",
             "makes the architectural restriction inference-only.\n"
           ],
@@ -1889,8 +1982,8 @@
             "remain scoped proofs, not a proof of the whole protected machine or of\n",
             "resistance to physical circuit modification.\n"
           ],
-          "end": 99,
-          "start": 90
+          "end": 104,
+          "start": 95
         },
         {
           "after": [
@@ -1907,8 +2000,8 @@
             "idealized machine's specification, and no nation-state-resistant\n",
             "training-capacity rating has been certified.\n"
           ],
-          "end": 101,
-          "start": 100
+          "end": 106,
+          "start": 105
         },
         {
           "after": [
@@ -1926,16 +2019,17 @@
             "modifying the silicon, but would not automatically provide general access to\n",
             "the multiplier units.\n"
           ],
-          "end": 107,
-          "start": 102
+          "end": 112,
+          "start": 107
         },
         {
           "after": [
-            "For Qwen, follow [the AWS F2 installation guide](demos/qwen3-1.7b/INSTALL.md).\n",
+            "For Qwen, follow the AWS F2 installation guide for\n",
+            "[Qwen3-1.7B](demos/qwen3-1.7b/INSTALL.md) or [Qwen3-8B](demos/qwen3-8b/INSTALL.md).\n",
             "Load the publicly available tested FPGA image, reconstruct the fixed model\n",
             "from the pinned upstream checkpoint, and build the included host client.\n",
             "No FPGA compilation is needed for that path. You provide your own AWS account\n",
-            "and rental; the browser app can run on your Mac and connect to the F2 host\n",
+            "and rental; the 1.7B browser app can run on your Mac and connect to the F2 host\n",
             "over SSH. Hardware sources, build instructions and numerical-reference tools\n",
             "are also included.\n"
           ],
@@ -2027,8 +2121,8 @@
             "[current protected/encrypted measurements](evidence/speed-2026-10-02/board.json), the\n",
             "[technical guide](ARCHITECTURE.md), and the [host guide](host-app/README.md).\n"
           ],
-          "end": 115,
-          "start": 108
+          "end": 121,
+          "start": 113
         },
         {
           "after": [
@@ -2049,8 +2143,8 @@
             "primarily SystemVerilog/Verilog; references, tests and host tools use Python;\n",
             "vendor implementation uses Tcl and timing/pin constraint files.\n"
           ],
-          "end": 124,
-          "start": 118
+          "end": 130,
+          "start": 124
         },
         {
           "after": [
@@ -2069,8 +2163,8 @@
             "design**, notably the separation of fast DDR transport from slower inference\n",
             "control.\n"
           ],
-          "end": 134,
-          "start": 125
+          "end": 140,
+          "start": 131
         },
         {
           "after": [
@@ -2079,8 +2173,8 @@
           "before": [
             "**Opus 5.5 also provided feedback in later reviews of the project.**\n"
           ],
-          "end": 136,
-          "start": 135
+          "end": 142,
+          "start": 141
         },
         {
           "after": [
@@ -2088,7 +2182,7 @@
             "evidence. The root-level architecture, installation, simulation, proof,\n",
             "H100 benchmark and capacity documents currently describe **Tang Mega** unless\n",
             "they explicitly say otherwise. Qwen's reported results and limitations live\n",
-            "in its separate guide.\n"
+            "in the respective model guides.\n"
           ],
           "before": [
             "\u201cDesigned by AI\u201d refers to this project's custom design, not to the GOWIN\n",
@@ -2099,8 +2193,8 @@
             "with substantial tool use and human oversight, not a controlled comparison\n",
             "of AI and human engineering ability.\n"
           ],
-          "end": 142,
-          "start": 137
+          "end": 148,
+          "start": 143
         },
         {
           "after": [
@@ -2109,7 +2203,9 @@
             "See [LICENSE](LICENSE), [NOTICE](NOTICE), [LICENSING.md](LICENSING.md) and\n",
             "[third-party notices](THIRD-PARTY-NOTICES.md). Qwen's upstream model is Apache-2.0;\n",
             "its [dependency notices](demos/qwen3-1.7b/NOTICES.md) distinguish project-owned\n",
-            "code from AWS, FPGA-vendor and other third-party components. The project license\n",
+            "code from AWS, FPGA-vendor and other third-party components. The\n",
+            "[8B dependency notices](demos/qwen3-8b/NOTICES.md) identify its corresponding\n",
+            "sources. The project license\n",
             "does not replace those components' terms.\n"
           ],
           "before": [
@@ -2173,8 +2269,8 @@
             "model assets use the upstream MIT declaration and third-party notices are\n",
             "preserved. See [LICENSE](LICENSE), [NOTICE](NOTICE) and [LICENSING.md](LICENSING.md).\n"
           ],
-          "end": 150,
-          "start": 143
+          "end": 158,
+          "start": 149
         }
       ]
     },
@@ -2309,7 +2405,7 @@
       ]
     },
     "THIRD-PARTY-NOTICES.md": {
-      "after_sha256": "df93f4d0a1f76e4f1e559d3685389df8b1ea9d05a89db213e82a9fe498283ef5",
+      "after_sha256": "8e22bffec3e68009462c709f041a1252b9183d9fe0d2cdcee951a3344bce1431",
       "before_sha256": "18b65ea5a6a162bb6095ca00f851f25dca6ca2c5eb613ab47e5823d2a79bd428",
       "reverse_edits": [
         {
@@ -2356,11 +2452,12 @@
         },
         {
           "after": [
-            "## Qwen3-1.7B / AWS F2\n",
+            "## Qwen3-1.7B and Qwen3-8B / AWS F2\n",
             "\n",
-            "The second demonstration uses the pinned `Qwen/Qwen3-1.7B` checkpoint,\n",
-            "Berkeley HardFloat modules and AWS-specific integration. Its\n",
-            "[dependency and license notice](demos/qwen3-1.7b/NOTICES.md) identifies the\n",
+            "The Qwen demonstrations use pinned `Qwen/Qwen3-1.7B` and `Qwen/Qwen3-8B` checkpoints,\n",
+            "Berkeley HardFloat modules and AWS-specific integration. Their\n",
+            "[1.7B dependency notice](demos/qwen3-1.7b/NOTICES.md) and\n",
+            "[8B dependency notice](demos/qwen3-8b/NOTICES.md) identify the\n",
             "upstream model license, BSD-style arithmetic license, Amazon Software License\n",
             "files and separately installed vendor dependencies. In particular, the project's\n",
             "Apache-2.0 grant does not override Amazon-platform-use restrictions in AWS files.\n",
@@ -2370,7 +2467,7 @@
           "before": [
             "## AI and photographic attribution\n"
           ],
-          "end": 101,
+          "end": 102,
           "start": 91
         },
         {
@@ -2383,8 +2480,8 @@
             "The owner-supplied board photograph is included in the project's Apache-2.0\n",
             "grant; its removal of metadata is not an ownership claim about its subjects.\n"
           ],
-          "end": 108,
-          "start": 105
+          "end": 109,
+          "start": 106
         }
       ]
     },

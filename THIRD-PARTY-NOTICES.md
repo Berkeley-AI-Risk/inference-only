@@ -89,11 +89,12 @@ installed separately under their own terms.
 The openFPGALoader utility used for restoring a complete factory backup is
 also installed separately; no copy of its executable or libraries is bundled.
 
-## Qwen3-1.7B / AWS F2
+## Qwen3-1.7B and Qwen3-8B / AWS F2
 
-The second demonstration uses the pinned `Qwen/Qwen3-1.7B` checkpoint,
-Berkeley HardFloat modules and AWS-specific integration. Its
-[dependency and license notice](demos/qwen3-1.7b/NOTICES.md) identifies the
+The Qwen demonstrations use pinned `Qwen/Qwen3-1.7B` and `Qwen/Qwen3-8B` checkpoints,
+Berkeley HardFloat modules and AWS-specific integration. Their
+[1.7B dependency notice](demos/qwen3-1.7b/NOTICES.md) and
+[8B dependency notice](demos/qwen3-8b/NOTICES.md) identify the
 upstream model license, BSD-style arithmetic license, Amazon Software License
 files and separately installed vendor dependencies. In particular, the project's
 Apache-2.0 grant does not override Amazon-platform-use restrictions in AWS files.

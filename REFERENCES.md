@@ -108,4 +108,5 @@ Memory integrity is not, by itself, an inference-only restriction. These
 demonstrations also fix the inference schedule, permitted model and private
 operand/result paths. Their particular guarantees and remaining assumptions
 are assessed in [INFERENCE-ONLY.md](INFERENCE-ONLY.md) and the
-[Qwen interface assessment](demos/qwen3-1.7b/README.md#interface-and-inference-only-scope).
+[Qwen3-1.7B interface assessment](demos/qwen3-1.7b/README.md#interface-and-inference-only-scope)
+and [Qwen3-8B interface scope](demos/qwen3-8b/README.md#inference-only-scope).

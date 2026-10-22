@@ -15,7 +15,7 @@ separate provenance or terms of:
 - The SimpleStories model image, tokenizer and model-derived numerical tables.
 - The Qwen checkpoint, tokenizer and model-derived data, under the upstream
   Apache-2.0 license.
-- The Qwen demonstration's Berkeley HardFloat arithmetic modules and
+- The Qwen demonstrations' Berkeley HardFloat arithmetic modules and
   AWS integration files, under their retained BSD-style and AWS terms.
 - The MIT-licensed BearSSL S-box adapted in the encrypted-memory AES circuits.
 - The adapted Sipeed/GOWIN board constraints and retained third-party notices.
@@ -25,6 +25,7 @@ separate provenance or terms of:
 - Separately installed Python packages and verification tools.
 
 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) and the
-[Qwen notices](demos/qwen3-1.7b/NOTICES.md) identify these distinctions.
+[Qwen3-1.7B notices](demos/qwen3-1.7b/NOTICES.md) and
+[Qwen3-8B notices](demos/qwen3-8b/NOTICES.md) identify these distinctions.
 Nothing here decides the copyrightability of weights, numerical facts or
 cryptographic hashes, or grants rights in independently supplied vendor tools.

@@ -96,7 +96,8 @@ On the F2 Linux host, install a C++ compiler, `make` and OpenSSL development
 headers if needed, then source the separately installed SDK:
 
 ```sh
-source /path/to/aws-fpga/sdk_setup.sh
+cd /path/to/aws-fpga
+source sdk_setup.sh
 cd /path/to/inference-only/demos/qwen3-1.7b
 make -C host
 sudo host/qwen_host --slot 0 status

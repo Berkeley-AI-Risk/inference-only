@@ -60,7 +60,10 @@ jobs:
         run: |
           python -I -S -B tools/check_qwen_package.py
           python -I -S -B -m unittest discover -s demos/qwen3-1.7b/tools -p 'test_package_checks.py' -v
-      - name: Run the offline helper tests
+      - name: Check Qwen3-8B sources and recorded evidence
+        # Qwen3-8B checks recorded evidence; no cloud access or model download.
+        run: python -I -S -B demos/qwen3-8b/tools/check_package.py
+      - name: Run the shared offline helper tests
         run: python -I -S -B -m unittest discover -s tools -p 'test_*.py' -v
       - name: Check proof-log and constraint validators (no formal tools)
         run: python -I -S -B -m unittest discover -s formal/kv-integrity -p test_contract_auditor.py -v

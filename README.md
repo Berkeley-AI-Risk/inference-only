@@ -34,12 +34,14 @@ are described separately in each model's guide.
 | Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |
 | Same model, **encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |
 | **Qwen3-1.7B — AWS F2**, authenticated weights | About **9.0 tokens/s** | Runnable release; public AWS FPGA image |
+| **Qwen3-8B — AWS F2**, authenticated weights | About **1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
 
 These are measured rates, not clock-based estimates or peak ratings. Tang
-Mega uses a one-token prompt and 128 generated tokens; Qwen uses 4-, 5- and
-15-token prompts and two repeated 128-token suites. The models, tokenizers and
+Mega uses a one-token prompt and 128 generated tokens; Qwen3-1.7B uses 4-, 5- and
+15-token prompts and two repeated 128-token suites. Qwen3-8B's sustained case
+uses a one-token prompt and 128 generated tokens. The models, tokenizers and
 workloads differ, so this is **not a head-to-head performance benchmark**.
-Both measurements exclude the first token. Tang's figures are cached command
+These cached rates exclude the first token. Tang's figures are cached command
 rates; Qwen's also include gaps between replies. Longer prompts take longer
 to produce the first token, and growing context slows subsequent generation.
 
@@ -49,6 +51,9 @@ to produce the first token, and growing context slows subsequent generation.
 - **[Qwen3-1.7B / AWS F2 guide](demos/qwen3-1.7b/README.md):** the billion-parameter
   hardware result, measured prompt/decode speeds, frozen-model boundary,
   installation, browser app, hardware sources and numerical reference.
+- **[Qwen3-8B / AWS F2 guide](demos/qwen3-8b/README.md):** the eight-billion-parameter
+  prototype, measured prompt/decode speeds, installation with a token-ID client,
+  hardware sources and numerical reference. A browser app is not yet included.
 
 <img src="fpga.jpeg" alt="The Tang Mega 138K board used for the SimpleStories inference-only demonstration, connected by USB." width="720">
 
@@ -84,7 +89,7 @@ The practical standard concerns **low residual training capacity even against
 an adversary with physical possession**. Demonstrating the restricted
 architecture is not the same as certifying that standard. External memory,
 test/debug/scan paths and any future inter-chip links require their own
-assessment. The Qwen experiment also has AWS management and diagnostic
+assessment. The Qwen experiments also have AWS management and diagnostic
 facilities outside its token application interface; the whole cloud platform
 is not claimed to be inference-only.
 
@@ -94,7 +99,7 @@ covers specific properties of those RTL configurations, not whole-machine
 refinement or Qwen. The [conditional training-capacity analysis](TRAINING-CAPACITY.md)
 and [architecture-dependent analysis](ARCHITECTURE-DEPENDENT-CAPACITY.md)
 make their assumptions explicit; their Tang Mega numerical factors are not
-Qwen measurements. **Neither demonstration has a certified, nation-state-resistant
+Qwen measurements. **None of these demonstrations has a certified, nation-state-resistant
 residual training fraction.** Small model size or modest speed is not what
 makes the architectural restriction inference-only.
 
@@ -106,11 +111,12 @@ running them requires neither hardware compilation nor a paid FPGA design
 license. Installing the model erases flash, so preserve the factory backup
 first. The tested host workflow uses Apple Silicon macOS.
 
-For Qwen, follow [the AWS F2 installation guide](demos/qwen3-1.7b/INSTALL.md).
+For Qwen, follow the AWS F2 installation guide for
+[Qwen3-1.7B](demos/qwen3-1.7b/INSTALL.md) or [Qwen3-8B](demos/qwen3-8b/INSTALL.md).
 Load the publicly available tested FPGA image, reconstruct the fixed model
 from the pinned upstream checkpoint, and build the included host client.
 No FPGA compilation is needed for that path. You provide your own AWS account
-and rental; the browser app can run on your Mac and connect to the F2 host
+and rental; the 1.7B browser app can run on your Mac and connect to the F2 host
 over SSH. Hardware sources, build instructions and numerical-reference tools
 are also included.
 
@@ -139,12 +145,14 @@ Start with a model's guide for its architecture, hardware instructions and
 evidence. The root-level architecture, installation, simulation, proof,
 H100 benchmark and capacity documents currently describe **Tang Mega** unless
 they explicitly say otherwise. Qwen's reported results and limitations live
-in its separate guide.
+in the respective model guides.
 
 Project-owned code, documentation and the photograph are Apache-2.0; the
 packaged SimpleStories model assets use the upstream MIT declaration.
 See [LICENSE](LICENSE), [NOTICE](NOTICE), [LICENSING.md](LICENSING.md) and
 [third-party notices](THIRD-PARTY-NOTICES.md). Qwen's upstream model is Apache-2.0;
 its [dependency notices](demos/qwen3-1.7b/NOTICES.md) distinguish project-owned
-code from AWS, FPGA-vendor and other third-party components. The project license
+code from AWS, FPGA-vendor and other third-party components. The
+[8B dependency notices](demos/qwen3-8b/NOTICES.md) identify its corresponding
+sources. The project license
 does not replace those components' terms.

@@ -1,0 +1,207 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date              : Tue Oct 20 02:17:26 2026
+| Host              : [build host omitted]
+| Command           : report_cdc -details -file <qwen-build>/audit-packet-20261019T222140608559Z/output/cdc.rpt
+| Design            : top
+| Device            : xcvu47p-fsvh2892
+| Speed File        : -2  PRODUCTION 1.30 05-01-2022
+| Design State      : Routed
+| Temperature Grade : E
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+CDC Report
+
+ID      Severity  Count  Description
+------  --------  -----  -------------------------------------------------------
+CDC-1   Critical      1  1-bit unknown CDC circuitry
+CDC-3   Info         36  1-bit synchronized with ASYNC_REG property
+CDC-6   Warning      14  Multi-bit synchronized with ASYNC_REG property
+CDC-7   Critical      1  Asynchronous reset unknown CDC circuitry
+CDC-9   Info          9  Asynchronous reset synchronized with ASYNC_REG property
+CDC-10  Critical     35  Combinational logic detected before a synchronizer
+CDC-13  Critical      2  1-bit CDC path on a non-FD primitive
+
+Source Clock: WRAPPER/RL/RL_DEBUG_BRIDGE/inst/axi_jtag/inst/u_jtag_proc/tck_i_reg/Q
+Destination Clock: clk_core
+CDC Type: User Ignored
+
+Row  ID     Severity  Description                  Depth  Exception   Source (From)                                                            Destination (To)
+---  -----  --------  ---------------------------  -----  ----------  -----------------------------------------------------------------------  -----------------------------------------------------------------------
+  1  CDC-1  Critical  1-bit unknown CDC circuitry      0  False Path  <hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>  <hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+
+Source Clock: clk_core
+Destination Clock: clk_hbm_ref
+CDC Type: No Common Phase
+
+Row  ID      Severity  Description                                              Depth  Exception   Source (From)                        Destination (To)
+---  ------  --------  -------------------------------------------------------  -----  ----------  -----------------------------------  -----------------------------------
+  1  CDC-13  Critical  1-bit CDC path on a non-FD primitive                         0  False Path  <hidden>/<hidden>/<hidden>/<hidden>  <hidden>/<hidden>/<hidden>
+  2  CDC-7   Critical  Asynchronous reset unknown CDC circuitry                     0  False Path  <hidden>/<hidden>/<hidden>/<hidden>  <hidden>/<hidden>/<hidden>/<hidden>
+  3  CDC-9   Info      Asynchronous reset synchronized with ASYNC_REG property      4  False Path  <hidden>/<hidden>/<hidden>/<hidden>  <hidden>/<hidden>/<hidden>/<hidden>
+
+Source Clock: clk_main_a0
+Destination Clock: clk_hbm_ref
+CDC Type: No Common Phase
+
+Row  ID     Severity  Description                                              Depth  Exception   Source (From)                                                                                                                      Destination (To)
+---  -----  --------  -------------------------------------------------------  -----  ----------  ---------------------------------------------------------------------------------------------------------------------------------  ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  1  CDC-3  Info      1-bit synchronized with ASYNC_REG property                   2  False Path  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_fwd_ar/handshake/src_sendd_ff_reg/C  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_fwd_ar/handshake/xpm_cdc_single_src2dest_inst/syncstages_ff_reg[0]/D
+  2  CDC-3  Info      1-bit synchronized with ASYNC_REG property                   2  False Path  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_fwd_aw/handshake/src_sendd_ff_reg/C  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_fwd_aw/handshake/xpm_cdc_single_src2dest_inst/syncstages_ff_reg[0]/D
+  3  CDC-3  Info      1-bit synchronized with ASYNC_REG property                   2  False Path  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_fwd_w/handshake/src_sendd_ff_reg/C   WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_fwd_w/handshake/xpm_cdc_single_src2dest_inst/syncstages_ff_reg[0]/D
+  4  CDC-3  Info      1-bit synchronized with ASYNC_REG property                   2  False Path  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_resp_b/dest_ack_reg/C                WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_resp_b/handshake/xpm_cdc_single_dest2src_inst/syncstages_ff_reg[0]/D
+  5  CDC-3  Info      1-bit synchronized with ASYNC_REG property                   2  False Path  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_resp_r/dest_ack_reg/C                WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_resp_r/handshake/xpm_cdc_single_dest2src_inst/syncstages_ff_reg[0]/D
+  6  CDC-9  Info      Asynchronous reset synchronized with ASYNC_REG property      4  False Path  WRAPPER/CL/AWS_CLK_GEN/rst_main_n_reg/C                                                                                            WRAPPER/CL/AWS_CLK_GEN/CDC_ASYNC_HBM_RST_I/arststages_ff_reg[0]/CLR
+  7  CDC-9  Info      Asynchronous reset synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/fixed_hbm_reset/flr_shell_edges_reg[7]/C                                                                                WRAPPER/CL/fixed_hbm_reset/flr_reference_start_reg[0]/CLR
+  8  CDC-9  Info      Asynchronous reset synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/fixed_hbm_reset/shell_eight_reg/C                                                                                       WRAPPER/CL/fixed_hbm_reset/reference_start_reg[0]/CLR
+
+Source Clock: clk_core
+Destination Clock: clk_main_a0
+CDC Type: User Ignored
+
+Row  ID      Severity  Description                           Depth  Exception   Source (From)                        Destination (To)
+---  ------  --------  ------------------------------------  -----  ----------  -----------------------------------  -----------------------------------
+  1  CDC-13  Critical  1-bit CDC path on a non-FD primitive      0  False Path  <hidden>/<hidden>/<hidden>/<hidden>  <hidden>/<hidden>/<hidden>/<hidden>
+
+Source Clock: clk_hbm_ref
+Destination Clock: clk_main_a0
+CDC Type: No Common Phase
+
+Row  ID     Severity  Description                                 Depth  Exception   Source (From)                                                                                                                      Destination (To)
+---  -----  --------  ------------------------------------------  -----  ----------  ---------------------------------------------------------------------------------------------------------------------------------  ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  1  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_fwd_ar/dest_ack_reg/C                WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_fwd_ar/handshake/xpm_cdc_single_dest2src_inst/syncstages_ff_reg[0]/D
+  2  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_fwd_aw/dest_ack_reg/C                WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_fwd_aw/handshake/xpm_cdc_single_dest2src_inst/syncstages_ff_reg[0]/D
+  3  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_fwd_w/dest_ack_reg/C                 WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_fwd_w/handshake/xpm_cdc_single_dest2src_inst/syncstages_ff_reg[0]/D
+  4  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_resp_b/handshake/src_sendd_ff_reg/C  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_resp_b/handshake/xpm_cdc_single_src2dest_inst/syncstages_ff_reg[0]/D
+  5  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_resp_r/handshake/src_sendd_ff_reg/C  WRAPPER/CL/AWS_CLK_GEN/AXIL_CLK_CNV_I/inst/gen_clock_conv.gen_async_lite_conv.clock_conv_lite_resp_r/handshake/xpm_cdc_single_src2dest_inst/syncstages_ff_reg[0]/D
+  6  CDC-3  Info      1-bit synchronized with ASYNC_REG property      4  False Path  WRAPPER/CL/HBM/HBM_CORE_I/inst/TWO_STACK.u_hbm_top/TWO_STACK_HBM.hbm_apb_mst_0/apb_switch_r_reg/C                                  WRAPPER/CL/HBM/SYNC_HBM_INIT_TO_ACLK/syncstages_ff_reg[0][0]/D
+  7  CDC-3  Info      1-bit synchronized with ASYNC_REG property      4  False Path  WRAPPER/CL/HBM/HBM_CORE_I/inst/TWO_STACK.u_hbm_top/TWO_STACK_HBM.hbm_apb_mst_1/apb_switch_r_reg/C                                  WRAPPER/CL/HBM/SYNC_HBM_INIT_TO_ACLK/syncstages_ff_reg[0][1]/D
+  8  CDC-3  Info      1-bit synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/fixed_hbm_reset/flr_reference_hold_reg[4]/C                                                                             WRAPPER/CL/fixed_hbm_reset/flr_reference_sync_reg[0]/D
+  9  CDC-3  Info      1-bit synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/fixed_hbm_reset/reference_hold_reg[4]/C                                                                                 WRAPPER/CL/fixed_hbm_reset/reference_done_sync_reg[0]/D
+ 10  CDC-3  Info      1-bit synchronized with ASYNC_REG property      3  False Path  WRAPPER/HBM_SHIM/PIPE_PRERST_0/pipe_reg[0][0]/C                                                                                    WRAPPER/CL/fixed_machine/lifecycle/monitor0_sync_reg[0]/D
+ 11  CDC-3  Info      1-bit synchronized with ASYNC_REG property      3  False Path  WRAPPER/HBM_SHIM/PIPE_PRERST_1/pipe_reg[0][0]/C                                                                                    WRAPPER/CL/fixed_machine/lifecycle/monitor1_sync_reg[0]/D
+ 12  CDC-3  Info      1-bit synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/AWS_CLK_GEN/CDC_RST_OUT[8].CDC_ASYNC_RST_OUT_I/arststages_ff_reg[1]/C                                                   WRAPPER/CL/fixed_machine/lifecycle/reference_reset_sync_reg[0]/D
+
+Source Clock: clk_out1_clk_mmcm_hbm
+Destination Clock: clk_main_a0
+CDC Type: No Common Phase
+
+Row  ID     Severity  Description                                 Depth  Exception   Source (From)                                                                     Destination (To)
+---  -----  --------  ------------------------------------------  -----  ----------  --------------------------------------------------------------------------------  ---------------------------------------------------------------
+  1  CDC-3  Info      1-bit synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/fixed_hbm_reset/axi_release_reg[2]/C                                   WRAPPER/CL/fixed_hbm_reset/axi_reset_state_sync_reg[0]/D
+  2  CDC-3  Info      1-bit synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/fixed_hbm_reset/axi_settle_reg[7]/C                                    WRAPPER/CL/fixed_hbm_reset/axi_settle_sync_reg[0]/D
+  3  CDC-3  Info      1-bit synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/fixed_hbm_reset/flr_memory_hold_reg[4]/C                               WRAPPER/CL/fixed_hbm_reset/flr_memory_sync_reg[0]/D
+  4  CDC-3  Info      1-bit synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/fixed_hbm_reset/memory_hold_reg[4]/C                                   WRAPPER/CL/fixed_hbm_reset/memory_done_sync_reg[0]/D
+  5  CDC-3  Info      1-bit synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/fixed_machine/lifecycle/memory_reset_edges_reg[7]/C                    WRAPPER/CL/fixed_machine/lifecycle/memory_ack_sync_reg[0]/D
+  6  CDC-3  Info      1-bit synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/fixed_machine/lifecycle/hbm_memory_release_reg[2]/C                    WRAPPER/CL/fixed_machine/lifecycle/memory_release_sync_reg[0]/D
+  7  CDC-3  Info      1-bit synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/AWS_CLK_GEN/CDC_RST_OUT[9].CDC_ASYNC_RST_OUT_I/arststages_ff_reg[1]/C  WRAPPER/CL/fixed_machine/lifecycle/memory_reset_sync_reg[0]/D
+
+Source Clock: clk_out2_clk_mmcm_c
+Destination Clock: clk_main_a0
+CDC Type: No Common Phase
+
+Row  ID     Severity  Description                                     Depth  Exception                Source (From)                                                                                     Destination (To)
+---  -----  --------  ----------------------------------------------  -----  -----------------------  ------------------------------------------------------------------------------------------------  --------------------------------------------------------------------------------------------------------------
+  1  CDC-3  Info      1-bit synchronized with ASYNC_REG property          3  False Path               WRAPPER/CL/fixed_machine/lifecycle/core_reset_edges_reg[7]/C                                      WRAPPER/CL/fixed_machine/lifecycle/core_ack_sync_reg[0]/D
+  2  CDC-3  Info      1-bit synchronized with ASYNC_REG property          3  False Path               WRAPPER/CL/AWS_CLK_GEN/CDC_RST_OUT[7].CDC_ASYNC_RST_OUT_I/arststages_ff_reg[1]/C                  WRAPPER/CL/fixed_machine/lifecycle/core_reset_sync_reg[0]/D
+  3  CDC-6  Warning   Multi-bit synchronized with ASYNC_REG property      3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/application/host_control/crossing/commands/read_gray_reg[2:0]/C  WRAPPER/CL/fixed_machine/machine/application/host_control/crossing/commands/read_gray_source_1_reg[2:0]/D
+  4  CDC-6  Warning   Multi-bit synchronized with ASYNC_REG property      3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/application/host_control/crossing/results/write_gray_reg[2:0]/C  WRAPPER/CL/fixed_machine/machine/application/host_control/crossing/results/write_gray_destination_1_reg[2:0]/D
+  5  CDC-3  Info      1-bit synchronized with ASYNC_REG property          3  False Path               WRAPPER/CL/fixed_machine/machine/application/host_control/error_source_reg/C                      WRAPPER/CL/fixed_machine/machine/application/host_control/error_sync_reg[0]/D
+  6  CDC-3  Info      1-bit synchronized with ASYNC_REG property          3  False Path               WRAPPER/CL/fixed_machine/machine/application/host_control/loading_source_reg/C                    WRAPPER/CL/fixed_machine/machine/application/host_control/loading_sync_reg[0]/D
+  7  CDC-3  Info      1-bit synchronized with ASYNC_REG property          3  False Path               WRAPPER/CL/fixed_machine/machine/application/host_control/ready_source_reg/C                      WRAPPER/CL/fixed_machine/machine/application/host_control/ready_sync_reg[0]/D
+  8  CDC-3  Info      1-bit synchronized with ASYNC_REG property          3  False Path               WRAPPER/CL/fixed_machine/machine/startup/error_shell_source_reg/C                                 WRAPPER/CL/fixed_machine/machine/startup/error_to_shell_reg[0]/D
+  9  CDC-6  Warning   Multi-bit synchronized with ASYNC_REG property      3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/startup/ingress_crossing/read_gray_reg[6:0]/C                    WRAPPER/CL/fixed_machine/machine/startup/ingress_crossing/read_gray_source_1_reg[6:0]/D
+ 10  CDC-3  Info      1-bit synchronized with ASYNC_REG property          3  False Path               WRAPPER/CL/fixed_machine/machine/startup/ready_shell_source_reg/C                                 WRAPPER/CL/fixed_machine/machine/startup/ready_to_shell_reg[0]/D
+
+Source Clock: clk_hbm_ref
+Destination Clock: clk_out1_clk_mmcm_hbm
+CDC Type: User Ignored
+
+Row  ID     Severity  Description                                              Depth  Exception   Source (From)                                             Destination (To)
+---  -----  --------  -------------------------------------------------------  -----  ----------  --------------------------------------------------------  ----------------------------------------------------------------------------------
+  1  CDC-9  Info      Asynchronous reset synchronized with ASYNC_REG property      2  False Path  WRAPPER/CL/AWS_CLK_GEN/AWS_CLK_REGS_I/rst_out_n_reg[9]/C  WRAPPER/CL/AWS_CLK_GEN/CDC_RST_OUT[9].CDC_ASYNC_RST_OUT_I/arststages_ff_reg[0]/CLR
+
+Source Clock: clk_main_a0
+Destination Clock: clk_out1_clk_mmcm_hbm
+CDC Type: No Common Phase
+
+Row  ID      Severity  Description                                              Depth  Exception   Source (From)                                             Destination (To)
+---  ------  --------  -------------------------------------------------------  -----  ----------  --------------------------------------------------------  ---------------------------------------------------------------------------------------------------------------------------------------
+  1  CDC-9   Info      Asynchronous reset synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/fixed_hbm_reset/controller_released_reg/C      WRAPPER/CL/fixed_hbm_reset/axi_release_reg[0]/CLR
+  2  CDC-9   Info      Asynchronous reset synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/fixed_hbm_reset/flr_shell_edges_reg[7]/C       WRAPPER/CL/fixed_hbm_reset/flr_memory_start_reg[0]/CLR
+  3  CDC-9   Info      Asynchronous reset synchronized with ASYNC_REG property      3  False Path  WRAPPER/CL/fixed_hbm_reset/shell_eight_reg/C              WRAPPER/CL/fixed_hbm_reset/memory_start_reg[0]/CLR
+  4  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path  WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C  WRAPPER/CL/fixed_machine/lifecycle/hbm_memory_release_reg[0]/CLR
+  5  CDC-10  Critical  Combinational logic detected before a synchronizer           8  False Path  <hidden>/<hidden>/<hidden>/<hidden>                       WRAPPER/CL/fixed_machine/lifecycle/memory_reset_edges_reg[0]/CLR
+  6  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path  WRAPPER/CL/fixed_clock_control/ready_reg/C                WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/read_crossing/forward_stream/destination_reset_release_reg[0]/CLR
+  7  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path  WRAPPER/CL/fixed_clock_control/ready_reg/C                WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/read_crossing/memory_reset_release_reg[0]/CLR
+  8  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path  WRAPPER/CL/fixed_clock_control/ready_reg/C                WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/read_crossing/return_stream/source_reset_release_reg[0]/CLR
+  9  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path  WRAPPER/CL/fixed_clock_control/ready_reg/C                WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/update_crossing/forward_stream/destination_reset_release_reg[0]/CLR
+ 10  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path  WRAPPER/CL/fixed_clock_control/ready_reg/C                WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/update_crossing/memory_reset_release_reg[0]/CLR
+ 11  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path  WRAPPER/CL/fixed_clock_control/ready_reg/C                WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/update_crossing/return_stream/source_reset_release_reg[0]/CLR
+ 12  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path  WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C  WRAPPER/CL/fixed_machine/machine/application/inference/model_transport/crossing/memory_reset_release_reg[0]/CLR
+ 13  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path  WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C  WRAPPER/CL/fixed_machine/machine/application/inference/model_transport/crossing/requests/destination_reset_release_reg[0]/CLR
+ 14  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path  WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C  WRAPPER/CL/fixed_machine/machine/application/inference/model_transport/crossing/responses/source_reset_release_reg[0]/CLR
+ 15  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path  WRAPPER/CL/fixed_clock_control/ready_reg/C                WRAPPER/CL/fixed_machine/machine/startup/boot/crossing/forward_stream/destination_reset_release_reg[0]/CLR
+ 16  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path  WRAPPER/CL/fixed_clock_control/ready_reg/C                WRAPPER/CL/fixed_machine/machine/startup/boot/crossing/memory_reset_release_reg[0]/CLR
+ 17  CDC-10  Critical  Combinational logic detected before a synchronizer           3  False Path  WRAPPER/CL/fixed_clock_control/ready_reg/C                WRAPPER/CL/fixed_machine/machine/startup/boot/crossing/return_stream/source_reset_release_reg[0]/CLR
+
+Source Clock: clk_hbm_ref
+Destination Clock: clk_out2_clk_mmcm_c
+CDC Type: User Ignored
+
+Row  ID     Severity  Description                                              Depth  Exception   Source (From)                                             Destination (To)
+---  -----  --------  -------------------------------------------------------  -----  ----------  --------------------------------------------------------  ----------------------------------------------------------------------------------
+  1  CDC-9  Info      Asynchronous reset synchronized with ASYNC_REG property      2  False Path  WRAPPER/CL/AWS_CLK_GEN/AWS_CLK_REGS_I/rst_out_n_reg[7]/C  WRAPPER/CL/AWS_CLK_GEN/CDC_RST_OUT[7].CDC_ASYNC_RST_OUT_I/arststages_ff_reg[0]/CLR
+
+Source Clock: clk_main_a0
+Destination Clock: clk_out2_clk_mmcm_c
+CDC Type: No Common Phase
+
+Row  ID      Severity  Description                                         Depth  Exception                Source (From)                                                                                      Destination (To)
+---  ------  --------  --------------------------------------------------  -----  -----------------------  -------------------------------------------------------------------------------------------------  --------------------------------------------------------------------------------------------------------------------------------------
+  1  CDC-10  Critical  Combinational logic detected before a synchronizer      8  False Path               <hidden>/<hidden>/<hidden>/<hidden>                                                                WRAPPER/CL/fixed_machine/lifecycle/core_reset_edges_reg[0]/CLR
+  2  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C                                           WRAPPER/CL/fixed_machine/machine/application/host_control/crossing/commands/destination_reset_release_reg[0]/CLR
+  3  CDC-6   Warning   Multi-bit synchronized with ASYNC_REG property          3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/application/host_control/crossing/commands/write_gray_reg[2:0]/C  WRAPPER/CL/fixed_machine/machine/application/host_control/crossing/commands/write_gray_destination_1_reg[2:0]/D
+  4  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C                                           WRAPPER/CL/fixed_machine/machine/application/host_control/crossing/core_reset_release_reg[0]/CLR
+  5  CDC-6   Warning   Multi-bit synchronized with ASYNC_REG property          3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/application/host_control/crossing/results/read_gray_reg[2:0]/C    WRAPPER/CL/fixed_machine/machine/application/host_control/crossing/results/read_gray_source_1_reg[2:0]/D
+  6  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C                                           WRAPPER/CL/fixed_machine/machine/application/host_control/crossing/results/source_reset_release_reg[0]/CLR
+  7  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C                                           WRAPPER/CL/fixed_machine/machine/application/host_control/status_core_reset_release_reg[0]/CLR
+  8  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_clock_control/ready_reg/C                                                         WRAPPER/CL/fixed_machine/machine/application/inference/core_reset_release_reg[0]/CLR
+  9  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_clock_control/ready_reg/C                                                         WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/read_crossing/core_reset_release_reg[0]/CLR
+ 10  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_clock_control/ready_reg/C                                                         WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/read_crossing/forward_stream/source_reset_release_reg[0]/CLR
+ 11  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_clock_control/ready_reg/C                                                         WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/read_crossing/return_stream/destination_reset_release_reg[0]/CLR
+ 12  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_clock_control/ready_reg/C                                                         WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/update_crossing/core_reset_release_reg[0]/CLR
+ 13  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_clock_control/ready_reg/C                                                         WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/update_crossing/forward_stream/source_reset_release_reg[0]/CLR
+ 14  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_clock_control/ready_reg/C                                                         WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/update_crossing/return_stream/destination_reset_release_reg[0]/CLR
+ 15  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C                                           WRAPPER/CL/fixed_machine/machine/application/inference/model_transport/crossing/core_reset_release_reg[0]/CLR
+ 16  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C                                           WRAPPER/CL/fixed_machine/machine/application/inference/model_transport/crossing/requests/source_reset_release_reg[0]/CLR
+ 17  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C                                           WRAPPER/CL/fixed_machine/machine/application/inference/model_transport/crossing/responses/destination_reset_release_reg[0]/CLR
+ 18  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C                                           WRAPPER/CL/fixed_machine/machine/startup/boot/core_reset_release_reg[0]/CLR
+ 19  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_clock_control/ready_reg/C                                                         WRAPPER/CL/fixed_machine/machine/startup/boot/crossing/core_reset_release_reg[0]/CLR
+ 20  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_clock_control/ready_reg/C                                                         WRAPPER/CL/fixed_machine/machine/startup/boot/crossing/forward_stream/source_reset_release_reg[0]/CLR
+ 21  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_clock_control/ready_reg/C                                                         WRAPPER/CL/fixed_machine/machine/startup/boot/crossing/return_stream/destination_reset_release_reg[0]/CLR
+ 22  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C                                           WRAPPER/CL/fixed_machine/machine/startup/core_reset_release_reg[0]/CLR
+ 23  CDC-10  Critical  Combinational logic detected before a synchronizer      3  False Path               WRAPPER/CL/fixed_machine/lifecycle/host_release_reg[2]/C                                           WRAPPER/CL/fixed_machine/machine/startup/ingress_crossing/destination_reset_release_reg[0]/CLR
+ 24  CDC-6   Warning   Multi-bit synchronized with ASYNC_REG property          3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/startup/ingress_crossing/write_gray_reg[6:0]/C                    WRAPPER/CL/fixed_machine/machine/startup/ingress_crossing/write_gray_destination_1_reg[6:0]/D
+ 25  CDC-3   Info      1-bit synchronized with ASYNC_REG property              3  False Path               WRAPPER/CL/fixed_machine/machine/startup/ingress/error_reg/C                                       WRAPPER/CL/fixed_machine/machine/startup/ingress_error_to_core_reg[0]/D
+
+Source Clock: clk_out1_clk_mmcm_hbm
+Destination Clock: clk_out2_clk_mmcm_c
+CDC Type: Safely Timed
+
+Row  ID     Severity  Description                                     Depth  Exception                Source (From)                                                                                                            Destination (To)
+---  -----  --------  ----------------------------------------------  -----  -----------------------  -----------------------------------------------------------------------------------------------------------------------  -------------------------------------------------------------------------------------------------------------------------------------
+  1  CDC-6  Warning   Multi-bit synchronized with ASYNC_REG property      3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/read_crossing/forward_stream/read_gray_reg[6:0]/C    WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/read_crossing/forward_stream/read_gray_source_1_reg[6:0]/D
+  2  CDC-3  Info      1-bit synchronized with ASYNC_REG property          3  False Path               WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/read_crossing/memory_failed_reg/C                    WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/read_crossing/memory_error_core_reg[0]/D
+  3  CDC-6  Warning   Multi-bit synchronized with ASYNC_REG property      3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/read_crossing/return_stream/write_gray_reg[6:0]/C    WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/read_crossing/return_stream/write_gray_destination_1_reg[6:0]/D
+  4  CDC-6  Warning   Multi-bit synchronized with ASYNC_REG property      3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/update_crossing/forward_stream/read_gray_reg[6:0]/C  WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/update_crossing/forward_stream/read_gray_source_1_reg[6:0]/D
+  5  CDC-3  Info      1-bit synchronized with ASYNC_REG property          3  False Path               WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/update_crossing/memory_failed_reg/C                  WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/update_crossing/memory_error_core_reg[0]/D
+  6  CDC-6  Warning   Multi-bit synchronized with ASYNC_REG property      3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/update_crossing/return_stream/write_gray_reg[6:0]/C  WRAPPER/CL/fixed_machine/machine/application/inference/kv_transport/update_crossing/return_stream/write_gray_destination_1_reg[6:0]/D
+  7  CDC-3  Info      1-bit synchronized with ASYNC_REG property          3  False Path               WRAPPER/CL/fixed_machine/machine/application/inference/model_transport/crossing/memory_failed_reg/C                      WRAPPER/CL/fixed_machine/machine/application/inference/model_transport/crossing/memory_error_core_reg[0]/D
+  8  CDC-6  Warning   Multi-bit synchronized with ASYNC_REG property      3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/application/inference/model_transport/crossing/requests/read_gray_reg[3:0]/C            WRAPPER/CL/fixed_machine/machine/application/inference/model_transport/crossing/requests/read_gray_source_1_reg[3:0]/D
+  9  CDC-6  Warning   Multi-bit synchronized with ASYNC_REG property      3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/application/inference/model_transport/crossing/responses/write_gray_reg[6:0]/C          WRAPPER/CL/fixed_machine/machine/application/inference/model_transport/crossing/responses/write_gray_destination_1_reg[6:0]/D
+ 10  CDC-6  Warning   Multi-bit synchronized with ASYNC_REG property      3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/startup/boot/crossing/forward_stream/read_gray_reg[6:0]/C                               WRAPPER/CL/fixed_machine/machine/startup/boot/crossing/forward_stream/read_gray_source_1_reg[6:0]/D
+ 11  CDC-3  Info      1-bit synchronized with ASYNC_REG property          3  False Path               WRAPPER/CL/fixed_machine/machine/startup/boot/crossing/memory_failed_reg/C                                               WRAPPER/CL/fixed_machine/machine/startup/boot/crossing/memory_error_core_reg[0]/D
+ 12  CDC-6  Warning   Multi-bit synchronized with ASYNC_REG property      3  Max Delay Datapath Only  WRAPPER/CL/fixed_machine/machine/startup/boot/crossing/return_stream/write_gray_reg[6:0]/C                               WRAPPER/CL/fixed_machine/machine/startup/boot/crossing/return_stream/write_gray_destination_1_reg[6:0]/D
+
