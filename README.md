@@ -38,16 +38,21 @@ evidence is separate from the original three Tang Mega versions.
 | --- | --- | --- |
 | **SimpleStories-V2-5M — Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |
 | Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |
-| Same model, **encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |
-| Same model, **seeded sampling** | About **10.3 tokens/s** in one shorter trial | Experimental browser version; short-context tests |
+| Same model, **K/V protection + encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |
+| Same model, **seeded sampling**, without K/V integrity | About **8.7 tokens/s** at temperature 1 | Runnable release; seeded sampling |
 | **Qwen3-1.7B — AWS F2**, authenticated weights | About **9.0 tokens/s** | Runnable release; public AWS FPGA image |
 | **Qwen3-8B — AWS F2**, authenticated weights | About **1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
 
+The encrypted-memory version retains K/V integrity and replay protection and
+also encrypts both weights and K/V; its supplied keys are public demonstration
+keys. Seeded sampling uses the baseline's authenticated weights, without K/V
+integrity or encryption.
+
 These rates come from separate validation campaigns with different workloads:
 
-- **SimpleStories-V2-5M:** the three greedy versions use a one-token prompt
-  and 128 generated tokens. The optional seeded version uses a one-token
-  prompt and 64 generated tokens at temperature 1 in a single trial.
+- **SimpleStories-V2-5M:** all four quoted versions use a one-token prompt
+  and 128 generated tokens. Seeded sampling was run twice at each of
+  temperatures 0, 0.5, 1 and 2; its table rate is for temperature 1.
 - **Qwen3-1.7B:** three prompts of 4, 5 and 15 tokens each generate 128 tokens;
   the complete three-prompt suite was run twice.
 - **Qwen3-8B:** the quoted sustained case uses a one-token prompt and
@@ -60,6 +65,12 @@ methods differ. Cached rates exclude the first token; the SimpleStories
 rates sum command/reply times, while Qwen's also include gaps between replies.
 Longer prompts take longer to produce the first token, and growing context
 slows subsequent generation. These are measured rates, not peak ratings.
+
+“Runnable release” means the image, model, app and installation instructions
+are available. Each version's validation scope is recorded separately;
+the seeded version's [qualification roadmap](variants/seeded-sampling/QUALIFICATION.md)
+lists its remaining functional and proof work. No Tang version has complete
+vendor-DDR timing or physical-security certification.
 
 - **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** board selection,
   the three greedy versions, optional seeded sampling, browser app,

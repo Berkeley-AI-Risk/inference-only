@@ -6,13 +6,17 @@ a public 128-bit seed. Repeating a prompt with the same settings reproduces
 the tokens; temperature 0 keeps the original exact greedy rule.
 
 Use the local browser app to enter text and choose generation settings.
-The experimental image passed short UART board checks and one 64-output run.
+The image is a runnable release with browser controls, prebuilt hardware,
+model assets and installation instructions. It passed short UART board checks
+and two 128-output runs at every supported temperature.
 Its extended registration check and a Streamlit AppTest of the app controls
 also passed with the real FPGA. A clean recipient export passed inventory,
 offline app and package checks.
 The existing baseline, K/V-protected and encrypted-memory versions remain
 available. The new image has no K/V integrity or memory encryption and does
 not inherit the existing three-command proofs or full-context qualification.
+The [qualification roadmap](variants/seeded-sampling/QUALIFICATION.md) defines
+the remaining checks independently of release availability.
 
 ## Load and check the seeded image
 
@@ -142,7 +146,37 @@ board-checked first three outputs are:
 
 ## Board evidence and limits
 
-The 2026-10-23 UTC physical trial returned **107 tokens**, with **46 exact
+### Repeated 128-output workloads
+
+The current performance campaign uses prompt token `[378]` followed by
+**128 generated tokens**, the same prompt/output count used for the quoted
+greedy SimpleStories measurements. Each supported temperature was run twice
+with seed `0x99aabbccddeeff001122334455667788`; the second run replayed after
+CLEAR without resending settings. All 1,024 outputs were recorded, and the
+two complete token sequences at each temperature matched exactly.
+
+| Temperature | Run 1 cached command tokens/s | Run 2 cached command tokens/s |
+| --- | ---: | ---: |
+| 0 | 8.41 | 8.66 |
+| 0.5 | 8.70 | 8.63 |
+| 1 | 8.67 | 8.68 |
+| 2 | 7.73 | 8.67 |
+
+The headline is **about 8.7 tokens/s at temperature 1**, using 127 cached
+STEP command/reply times per run and excluding the first STEP. Timings include
+host/UART and evidence recording and exclude connection and prompt upload.
+All repetitions are retained, including the slower first temperature-2 run.
+A subsequent independent whole-model comparison checked every one of the
+1,024 outputs, including all 768 positive-temperature outputs, and matched
+exactly. The original capture receipt retains the narrower checks available
+at capture time; the separate comparison records the later full reference
+check. [The complete archive](evidence/seeded-sampling/matched128.json) retains
+all wire events and reference outputs; [the evidence guide](evidence/seeded-sampling/README.md)
+provides offline checking commands.
+
+### Initial short trial and application checks
+
+The initial 2026-10-23 UTC physical trial returned **107 tokens**, with **46 exact
 reference checks**: three startup-greedy outputs before any settings, 40
 greedy/seeded/replay checks, and the first three outputs of a 64-output
 temperature-1 run. The other 61 performance tokens were recorded with valid
@@ -176,12 +210,13 @@ A clean manifest-only recipient export also passed strict inventory and the
 offline app/package checks. No complete installation on a second owner's
 setup or human browser-click rehearsal is claimed.
 
-For the single one-token-prompt, 64-output trial at temperature 1, the first
+In that historical one-token-prompt, 64-output trial at temperature 1, the first
 STEP took **85.38 ms** and the following 63 command/reply intervals totaled
 **6.09747 seconds**, or **10.33 tokens/s**. These durations include host/UART
 and evidence recording and exclude connection and prompt upload. The workload
-is shorter than the original 128-output greedy campaigns; it does not
-establish a speedup from sampling or a matched comparison with Qwen.
+was shorter than the 128-output campaigns and is no longer the advertised
+generation rate. It does not establish a speedup from sampling or a matched
+comparison with Qwen.
 
 The routed image uses 58,758 CLS and 225 BSRAM, 525 CLS and 29 BSRAM above the
 current baseline. Reported inference-clock setup/hold margins are

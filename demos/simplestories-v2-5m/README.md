@@ -97,8 +97,9 @@ Neither version has complete vendor-DDR timing signoff. See
 [K/V protection and the measured tradeoff](../../KV-PROTECTION.md) for the mechanism,
 current images, performance and evidence boundaries.
 
-- **Encrypted-memory:** an experimental version that also encrypts the
-  external weight image and K/V. Its supplied keys are public, so it
+- **K/V protection + encrypted memory:** an experimental version that retains
+  K/V integrity and replay protection and also encrypts the external weight
+  image and K/V. Its supplied keys are public, so it
   demonstrates the mechanism rather than protecting secrets from
   someone with this package. It requires a different flash image.
 
@@ -106,14 +107,18 @@ See [encrypted memory](../../ENCRYPTED-MEMORY.md) for its diagram, current
 test scope, source reproduction, installation and restoration. All
 three preserve the same model and public three-operation interface.
 
-The experimental **seeded-sampling** version uses the baseline's authenticated
-weights and plaintext flash image, with temperatures 0, 0.5, 1 and 2 and a
+The runnable **seeded-sampling** release uses the baseline's authenticated
+weights and plaintext flash image, without K/V integrity or encryption,
+with temperatures 0, 0.5, 1 and 2 and a
 public reproducibility seed. Temperature 0 retains the exact greedy rule.
-It passed short seeded/replay checks and one 64-output UART board trial; it
+It passed two 128-output UART runs at each supported temperature, alongside
+short seeded/replay and application checks; it
 has not received the other images' full-context or formal qualification.
 Its extended board-registration check and app controls have separate real-board
 tests, with the UI driven by Streamlit AppTest. Follow
 [its installation and browser guide](../../STOCHASTIC-GENERATION.md).
+Its availability is separate from the remaining
+[functional and proof qualification work](../../variants/seeded-sampling/QUALIFICATION.md).
 
 ## Inference-only scope
 
@@ -148,11 +153,14 @@ tokens, the cached command rates are **8.77 tokens/s for the baseline,
 5.22–5.23 for K/V-protected, and 4.27 for encrypted memory**. These rates include
 host/UART reply overhead but exclude gaps between commands.
 
-The seeded version measured **10.33 cached tokens/s** in one shorter,
-64-output trial at temperature 1; its first STEP took 85.38 ms. This does not
-establish a speedup over the 128-output greedy trials. The
+The seeded version measured **8.67 and 8.68 cached tokens/s** in two
+128-output trials at temperature 1, using prompt token 378. All four
+temperatures were tested twice with that same prompt/output count, matching
+the workload length quoted for the other three SimpleStories versions. The
 [seeded evidence](../../STOCHASTIC-GENERATION.md#board-evidence-and-limits)
-states which outputs were checked. The SimpleStories and Qwen measurements
+retains all temperatures and repetitions, including the slower first
+temperature-2 run, and states which outputs were checked. The original
+64-output trial remains historical evidence. The SimpleStories and Qwen measurements
 also come from separate campaigns with different models, prompts, hardware
 and timing methods; the [project comparison](../../README.md#the-demonstrated-designs-and-measurements)
 does not present them as a matched benchmark.
@@ -229,7 +237,7 @@ and an offline checker are included.
 ## Run it on your board
 
 The runnable release includes **three prebuilt greedy configurations**, an
-experimental seeded-sampling image with browser controls and a diagnostic CLI, a
+seeded-sampling image with browser controls and a diagnostic CLI, a
 separate backup-reader configuration, the fixed model image, tokenizer and
 browser app. You need the matching Tang Mega 138K non-Pro/device-C board
 with 128-Mbit / 16-MiB flash (tested JEDEC ID `0B4018`). Older 64-Mbit /

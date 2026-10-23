@@ -34,9 +34,10 @@ jobs:
           python -I -S -B tools/check_encrypted_memory.py
           python -I -S -B tools/encrypt_model_image.py
           python -I -S -B tools/check_encrypted_board_evidence.py
-      - name: Check experimental seeded sampling and its recorded board trial
+      - name: Check seeded sampling and its recorded board trials
         run: |
           python -I -S -B tools/check_seeded_sampling.py
+          python -I -S -B tools/check_seeded_matched128.py
           python -I -S -B -m unittest discover -s variants/seeded-sampling/tests -p 'test_*.py' -v
           python -I -S -B -m unittest discover -s host-app -p 'test_seeded_build.py' -v
       - name: Check the photograph for embedded metadata

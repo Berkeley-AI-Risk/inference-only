@@ -1,9 +1,8 @@
 # Seeded-sampling evidence
 
-The Tang Mega 138K non-Pro Dock passed one bounded UART trial on October 23, 2026 UTC
-(October 22 in California). The trial used the frozen optional `seeded-sampling`
-image, one prompt token `[378]`, temperatures `0`, `0.5`, `1`, and `2`, and public
-128-bit seeds. See [the CLI guide](../../STOCHASTIC-GENERATION.md).
+The Tang Mega 138K non-Pro Dock passed bounded UART and application trials on
+October 23, 2026 UTC (October 22 in California), using the frozen optional
+`seeded-sampling` image. See [the generation guide](../../STOCHASTIC-GENERATION.md).
 
 - [receipt.json](receipt.json) records artifact identities, loading scope, tested
   fixtures, counts, observations, and host command/reply measurements.
@@ -24,6 +23,28 @@ image, one prompt token `[378]`, temperatures `0`, `0.5`, `1`, and `2`, and publ
 - [app-stop.jsonl](app-stop.jsonl) retains 48 raw frames from a later AppTest
   Stop after generation had begun, followed by a greedy restart. Its separate
   summary is the `stopped_after_generation` block in `app.json`.
+- [matched128.json](matched128.json) retains eight later 128-output runs, two
+  at each temperature, their complete sanitized command/reply events and
+  timings, and independently computed reference outputs for all 1,024 tokens.
+
+## Repeated 128-output campaign
+
+Each temperature (`0`, `0.5`, `1`, `2`) was run twice from prompt `[378]` and
+seed `0x99aabbccddeeff001122334455667788`. The second run used CLEAR without
+resending SETTINGS. All 1,024 returned tokens matched the later independent
+whole-model reference, including 768 positive-temperature outputs, and each
+complete seeded sequence replayed exactly.
+
+The two temperature-1 cached command rates were **8.66723 and 8.68175
+tokens/s**, measured from 127 STEP/reply durations after the first STEP.
+Host/UART and evidence-recording costs are included. All eight runs, including
+the slower first temperature-2 run at 7.73359 tokens/s, are retained; see
+[the full table](../../STOCHASTIC-GENERATION.md#repeated-128-output-workloads).
+The original capture receipt keeps its narrower at-capture reference flags;
+the later comparison is recorded separately. The public checker validates the
+archived reference outputs and bindings rather than executing the model again.
+
+## Initial short trial
 
 There were 107 returned tokens: three startup tokens, 40 acceptance tokens, and
 64 tokens in the performance fixture. Exactly 46 were compared with model
@@ -41,10 +62,11 @@ continuation. Sending CLEAR immediately after STEP produced a CLEAR reply,
 then the seeded fixture replayed. These are host/wire observations; internal
 busy transitions and owned memory reads were not observed physically.
 
-At temperature `1`, the 64-output fixture had a first STEP of 85.382 ms and
+At temperature `1`, the historical 64-output fixture had a first STEP of 85.382 ms and
 63 subsequent STEP command/reply durations totaling 6.097466498 seconds:
-**10.332160090 tokens/s**. Durations include host evidence recording. This
-single prompt does not establish full-context throughput or worst-case latency.
+10.332160090 tokens/s. Durations include host evidence recording. The repeated
+128-output campaign now supplies the advertised rate. Neither establishes
+full-context throughput or worst-case latency.
 
 The local image was SHA-256 checked and the SRAM programmer reported successful
 loading. Flash was not modified. This is not independent attestation of the
@@ -58,6 +80,8 @@ no full-context, browser, formal proof, physical fault injection, or security
 qualification. Positive-temperature selection uses a finite fixed-point CDF
 and deterministic seeded PRNG, rather than independent physical randomness or
 an exact floating-point softmax distribution.
+
+## Application checks
 
 The separate app rehearsal checked 19 expected outputs across all temperatures,
 repeat with the same seed, greedy after sampling, a changed seed, and a greedy
@@ -87,6 +111,8 @@ Run from the repository root, offline:
 ```sh
 python -I -S -B tools/check_seeded_sampling.py
 python -I -S -B tools/test_seeded_sampling.py
+python -I -S -B tools/check_seeded_matched128.py
+python -I -S -B tools/test_seeded_matched128.py
 ```
 
 The checker independently verifies frame CRCs, exact SETTINGS seed/temperature
@@ -98,3 +124,9 @@ tests exercise wrong tokens with valid CRCs, changed seeds/temperatures,
 rejections, replay/order changes, truncated frames, timing changes, unsupported
 claims, and altered image/source/build/evidence hashes. These checks validate
 the published record and its artifact bindings; they do not run hardware.
+The matched128 checker additionally validates all eight full output sequences,
+the independent reference identities, complete frame/CRC and CLEAR replay
+order, timing arithmetic and completion-time brackets. Its mutation tests
+reject altered outputs/references, settings, frames, repetitions, rates and
+unsupported qualification claims. No checker independently attests the live
+FPGA configuration or establishes full-context, timing or security qualification.

@@ -60,9 +60,30 @@ rates. See [K/V performance](KV-PROTECTION.md#measured-performance) and
 [encrypted-memory measurements](ENCRYPTED-MEMORY.md#evidence-and-limits)
 for workloads and measurement boundaries.
 
-## Experimental seeded-sampling image
+<a id="experimental-seeded-sampling-image"></a>
 
-On 2026-10-23 UTC, the supplied seeded image passed a bounded physical UART
+## Seeded-sampling image
+
+The seeded image is available as a runnable release with the browser app.
+Its [qualification roadmap](variants/seeded-sampling/QUALIFICATION.md)
+separates remaining functional/proof work from the timing and security
+obligations that also remain for the other Tang images.
+
+The repeated performance campaign ran **128 outputs from prompt token 378
+twice at each temperature**, with 1,024 returned outputs and exact full
+sequence replay at all four temperatures. Temperature 1 measured **8.66723
+and 8.68175 cached command tokens/s**, excluding the first STEP. The complete
+eight-run table, including the slower first temperature-2 run, is in
+[the seeded guide](STOCHASTIC-GENERATION.md#repeated-128-output-workloads).
+A subsequent independent whole-model comparison matched **all 1,024
+outputs**, including all 768 positive-temperature outputs. This later
+comparison is separate from the original capture receipt, whose narrower
+at-capture reference flags remain unchanged.
+The [complete archive](evidence/seeded-sampling/matched128.json) and
+[offline checker](tools/check_seeded_matched128.py) preserve and verify those
+outputs, wire events, timings and source/image bindings without rerunning hardware.
+
+In the earlier 2026-10-23 UTC trial, the supplied seeded image passed a bounded physical UART
 campaign with **46 exact token checks**: three greedy outputs before any
 SETTINGS after a fresh SRAM load, 40 seeded/greedy/replay checks, and the first
 three outputs of a 64-output temperature-1 run. The campaign returned 107
@@ -101,11 +122,11 @@ all 22 offline package checks and 70 host-app tests, including the seeded
 controls and registration fixtures. These checks do not establish a second
 owner's complete installation or a human browser-click rehearsal.
 
-The single 64-output run measured 63 cached commands in 6.09747 seconds,
+That historical 64-output run measured 63 cached commands in 6.09747 seconds,
 **10.33 tokens/s**, with an 85.38 ms first STEP. Command timings include
 host/UART and evidence recording, and exclude connection and prompt upload.
-Its shorter context and different decoding prevent a direct speed comparison
-with the existing 128-output greedy runs.
+It remains in the original receipt; the repeated 128-output measurements now
+supply the advertised rate.
 
 The [native summary](evidence/seeded-sampling/native.json) reports
 inference-clock setup/hold margins +0.092/+0.144 ns at 25 MHz, with 145
