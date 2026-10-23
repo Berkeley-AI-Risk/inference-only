@@ -26,6 +26,12 @@ controllers own the inference schedule and memory addresses; the user supplies
 tokens, not tensor pointers. Startup loaders, status and transport handling
 are described separately in each model's guide.
 
+An optional [seeded-sampling version of SimpleStories-V2-5M](STOCHASTIC-GENERATION.md)
+also accepts a bounded temperature and seed setting while its tape is empty
+and idle. Its browser controls and extended board-registration check have
+separate real-board evidence; a token-ID CLI is also included for diagnostics. Its board
+evidence is separate from the original three Tang Mega versions.
+
 ## The demonstrated designs and measurements
 
 | Model and platform | Measured cached generation | Package status |
@@ -33,20 +39,31 @@ are described separately in each model's guide.
 | **SimpleStories-V2-5M — Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |
 | Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |
 | Same model, **encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |
+| Same model, **seeded sampling** | About **10.3 tokens/s** in one shorter trial | Experimental browser version; short-context tests |
 | **Qwen3-1.7B — AWS F2**, authenticated weights | About **9.0 tokens/s** | Runnable release; public AWS FPGA image |
 | **Qwen3-8B — AWS F2**, authenticated weights | About **1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
 
-These are measured rates, not clock-based estimates or peak ratings. Tang
-Mega uses a one-token prompt and 128 generated tokens; Qwen3-1.7B uses 4-, 5- and
-15-token prompts and two repeated 128-token suites. Qwen3-8B's sustained case
-uses a one-token prompt and 128 generated tokens. The models, tokenizers and
-workloads differ, so this is **not a head-to-head performance benchmark**.
-These cached rates exclude the first token. Tang's figures are cached command
-rates; Qwen's also include gaps between replies. Longer prompts take longer
-to produce the first token, and growing context slows subsequent generation.
+These rates come from separate validation campaigns with different workloads:
+
+- **SimpleStories-V2-5M:** the three greedy versions use a one-token prompt
+  and 128 generated tokens. The optional seeded version uses a one-token
+  prompt and 64 generated tokens at temperature 1 in a single trial.
+- **Qwen3-1.7B:** three prompts of 4, 5 and 15 tokens each generate 128 tokens;
+  the complete three-prompt suite was run twice.
+- **Qwen3-8B:** the quoted sustained case uses a one-token prompt and
+  128 generated tokens.
+
+The records report what each campaign tested; they are **not a matched
+comparison between the SimpleStories and Qwen models**, or evidence that
+sampling makes SimpleStories faster. Models, tokenizers, hardware and timing
+methods differ. Cached rates exclude the first token; the SimpleStories
+rates sum command/reply times, while Qwen's also include gaps between replies.
+Longer prompts take longer to produce the first token, and growing context
+slows subsequent generation. These are measured rates, not peak ratings.
 
 - **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** board selection,
-  all three versions, browser app, installation, measured prompt/decode speeds,
+  the three greedy versions, optional seeded sampling, browser app,
+  installation, measured prompt/decode speeds,
   and links to source, proofs and reproduction instructions.
 - **[Qwen3-1.7B / AWS F2 guide](demos/qwen3-1.7b/README.md):** the billion-parameter
   hardware result, measured prompt/decode speeds, frozen-model boundary,
@@ -95,8 +112,9 @@ is not claimed to be inference-only.
 
 The [detailed inference-only assessment](INFERENCE-ONLY.md) explains these
 distinctions using the Tang Mega designs. Its [formal-verification report](FORMAL-STATUS.md)
-covers specific properties of those RTL configurations, not whole-machine
-refinement or Qwen. The [conditional training-capacity analysis](TRAINING-CAPACITY.md)
+covers specific properties of the baseline and K/V-protected RTL, not the
+seeded-sampling extension, whole-machine refinement or Qwen.
+The [conditional training-capacity analysis](TRAINING-CAPACITY.md)
 and [architecture-dependent analysis](ARCHITECTURE-DEPENDENT-CAPACITY.md)
 make their assumptions explicit; their Tang Mega numerical factors are not
 Qwen measurements. **None of these demonstrations has a certified, nation-state-resistant

@@ -18,6 +18,7 @@ import time
 import uuid
 
 import runtime_profile
+import sampling_protocol
 
 APP = Path(__file__).resolve().parent
 TOKENIZER_SHA = '01b6553da99789d461cec48eed624684a803f259a5177616a67f7391700acf51'
@@ -96,7 +97,9 @@ class LiveUART:
         self.session.open()
         try:
             runtime_profile.check_open_device(self.session.fd, profile['device'])
-            self.channel = self.reader.StrictChannel(self.session, self.client, self.observe)
+            decoder = (sampling_protocol.decoder_client(self.client)
+                       if profile.get('variant') == 'seeded-sampling' else self.client)
+            self.channel = self.reader.StrictChannel(self.session, decoder, self.observe)
             event = self.channel.next(1.0)
             if event is not None or self.channel.pending:
                 raise BoardError('Unexpected startup data or a latched FPGA fault. No command was sent. See the local log.')
@@ -151,6 +154,24 @@ class LiveUART:
             raise BoardError('Noncanonical FPGA acknowledgment.')
         return None
 
+    def configure(self, temperature: str, seed: int = 0) -> bool:
+        """Apply bounded settings only after the caller's acknowledged CLEAR."""
+        code = sampling_protocol.temperature_code(temperature)
+        if self.profile.get('variant', 'baseline') != 'seeded-sampling':
+            if code != 0:
+                raise BoardError('This loaded build supports only greedy temperature 0.')
+            return False
+        frame = sampling_protocol.codec.encode_settings(code, seed)
+        self.channel.send(frame, 'settings')
+        event = self.channel.next(10)
+        if event is None:
+            raise BoardError('FPGA SETTINGS timed out. No retry or automatic reset was attempted.')
+        if event['kind'] != 'normal' or event['response'] != 0x83 or event['token'] != code:
+            raise BoardError('FPGA SETTINGS was rejected or acknowledged the wrong temperature.')
+        self.observe({'event': 'sampling_settings', 'temperature': temperature,
+                      'seed': f'0x{seed:032x}', 'seed_used': code != 0})
+        return True
+
     def __exit__(self, *args):
         self.session.close()
 
@@ -175,6 +196,10 @@ class Result:
     error: str = ''
     log_path: str = ''
     started_utc: str = ''
+    temperature: str = '0'
+    seed: str | None = None
+    seed_used: bool = False
+    sampling_settings_applied: bool = False
 
     @property
     def streaming_tps(self) -> float | None:
@@ -257,9 +282,11 @@ class Controller:
         with self.lock:
             return self.thread is not None and self.thread.is_alive()
 
-    def start(self, owner: str, prompt: str, count: int):
+    def start(self, owner: str, prompt: str, count: int, temperature: str = '0', seed=None):
         if type(count) is not int or not 1 <= count <= MAX_NEW:
             raise ValueError(f'Choose 1–{MAX_NEW} generated tokens.')
+        code = sampling_protocol.temperature_code(temperature)
+        chosen_seed = sampling_protocol.run_seed(temperature, seed)
         tokens = self.tokenizer.encode(prompt)
         if len(tokens) + count > DEMO_CAP:
             raise ValueError(f'The interactive demo is limited to {DEMO_CAP} total tokens.')
@@ -271,7 +298,8 @@ class Controller:
             self.stop_event.clear()
             self.result = Result(owner=owner, job_id=uuid.uuid4().hex, state='connecting',
                 prompt=prompt, prompt_tokens=tokens, text=self.tokenizer.decode(tokens),
-                requested=count, started_utc=utc())
+                requested=count, started_utc=utc(), temperature=temperature,
+                seed=chosen_seed, seed_used=code != 0)
             self.thread = threading.Thread(target=self._work, name='fpga-uart-worker', daemon=True)
             self.thread.start()
 
@@ -304,7 +332,9 @@ class Controller:
                 observe({'event':'run', 'prompt':self.result.prompt, 'tokens':self.result.prompt_tokens,
                     'tokenizer_sha256':TOKENIZER_SHA, 'backend_source_sha256':BACKEND_SHA,
                     'original_tested_baseline_image_sha256':IMAGE_SHA,
-                    'hardware_configuration_not_independently_attested':True, 'software_inference':False})
+                    'hardware_configuration_not_independently_attested':True, 'software_inference':False,
+                    'temperature':self.result.temperature, 'seed':self.result.seed,
+                    'seed_used':self.result.seed_used})
                 try:
                     with self._run_link(observe) as link:
                         def command(op, operand=0):
@@ -317,6 +347,14 @@ class Controller:
                                 'token':token, 'seconds':seconds})
                             return token, seconds
                         command('clear')
+                        if hasattr(link, 'configure'):
+                            # Even T=0 needs explicit settings on this image:
+                            # retained connections may have used positive T.
+                            applied = link.configure(self.result.temperature,
+                                int(self.result.seed, 0) if self.result.seed is not None else 0)
+                            self.update(sampling_settings_applied=applied)
+                        elif self.result.temperature != '0':
+                            raise BoardError('This link does not support seeded temperature settings.')
                         self.update(state='loading prompt')
                         for index, token in enumerate(self.result.prompt_tokens):
                             if self.stop_event.is_set(): break

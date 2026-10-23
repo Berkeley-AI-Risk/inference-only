@@ -107,6 +107,16 @@ def undo_connection_revision(name, raw, record):
     return recovered
 
 
+# These files were added with the separately tested seeded variant. Older
+# host trials retain their exact original source census and inverse hashes.
+# Future unlisted host additions still fail the census checks below.
+SEEDED_HOST_ADDITIONS = frozenset({
+    'host-app/hardware-inputs-seeded-sampling.json', 'host-app/sampling_protocol.py',
+    'host-app/test_seeded_backend.py', 'host-app/test_seeded_build.py',
+    'host-app/test_seeded_profile.py', 'host-app/test_seeded_ui.py',
+})
+
+
 def check_connection_reuse(package, data):
     if (data['schema'] != 'host-connection-reuse-v1' or data['passed'] is not True
             or data['tested_variant'] != 'kv-protected' or data['image_sha256'] != IMAGE
@@ -138,6 +148,7 @@ def check_connection_reuse(package, data):
     files = read(package / 'MANIFEST.json')['files']
     expected_sources = {name for name in files if name.startswith('host-app/')
         and name != 'host-app/hardware-inputs-encrypted-memory.json'
+        and name not in SEEDED_HOST_ADDITIONS
         and (Path(name).suffix in ('.py', '.toml', '.json') or name == 'host-app/requirements.txt')}
     if set(data['current_host_sources']) != expected_sources:
         raise ValueError('Incomplete connection-reuse source binding')
@@ -182,6 +193,7 @@ def check_rehearsal(package, data):
     files = read(package / 'MANIFEST.json')['files']
     expected_sources = {name for name in files if name.startswith('host-app/')
         and name != 'host-app/hardware-inputs-encrypted-memory.json'
+        and name not in SEEDED_HOST_ADDITIONS
         and (Path(name).suffix in ('.py', '.toml', '.json') or name == 'host-app/requirements.txt')}
     if set(data['unchanged_host_executable_sources']) != expected_sources:
         if set(data['unchanged_host_executable_sources']) != expected_sources - {'host-app/test_persistent_uart.py'}:

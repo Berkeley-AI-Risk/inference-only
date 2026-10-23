@@ -34,6 +34,11 @@ jobs:
           python -I -S -B tools/check_encrypted_memory.py
           python -I -S -B tools/encrypt_model_image.py
           python -I -S -B tools/check_encrypted_board_evidence.py
+      - name: Check experimental seeded sampling and its recorded board trial
+        run: |
+          python -I -S -B tools/check_seeded_sampling.py
+          python -I -S -B -m unittest discover -s variants/seeded-sampling/tests -p 'test_*.py' -v
+          python -I -S -B -m unittest discover -s host-app -p 'test_seeded_build.py' -v
       - name: Check the photograph for embedded metadata
         run: python -I -S -B tools/check_photo_metadata.py
       - name: Check protected-variant source bindings and measured comparisons
@@ -87,3 +92,5 @@ jobs:
         run: python -m pip install -r demos/qwen3-1.7b/host/requirements-browser.txt
       - name: Test the browser and runtime with fixture replies
         run: python -B -m unittest discover -s demos/qwen3-1.7b/host -p 'test_*.py' -v
+      - name: Test the SimpleStories browser, sampling controls and local profiles with fixture replies
+        run: python -B -m unittest discover -s host-app -p 'test_*.py' -v

@@ -6,6 +6,9 @@ K/V-protected configurations. Its architectural principles also inform the
 and numerical capacity estimates here are not evidence about that circuit. The [encrypted-memory version](ENCRYPTED-MEMORY.md)
 preserves the same public operations, but has separate circuitry and test
 coverage; it has no whole-machine proof or certified training-capacity rating.
+The optional [seeded-sampling version](STOCHASTIC-GENERATION.md) also has separate
+evidence: it adds bounded generation settings and does not inherit the
+three-command proofs or the capacity estimates for the configurations below.
 
 *The Feasibility of a Hardwired Pause of Frontier AI Training* introduces both
 an idealized inference-only machine and a practical, operational criterion.
@@ -55,6 +58,25 @@ Physical implementation on an FPGA is real; permanence is what the FPGA
 does not provide. The separate backup-reader configuration replaces the
 inference circuit and is not a fourth operation of that circuit.
 
+### Optional seeded generation
+
+The experimental seeded version adds `SETTINGS(temperature, seed)` only at an
+empty, idle conversation boundary. Temperature is one of `{0, 0.5, 1, 2}`;
+the seed is a public 128-bit reproducibility setting. Temperature 0 keeps the
+original greedy rule. Positive temperatures use a fixed circuit distribution
+over the same authenticated model logits. The host supplies no logits,
+probability table, tensor operands or per-token random draws.
+
+For a chosen temperature and seed, generation is deterministic. CLEAR retains
+the settings and rewinds the generator; reset restores greedy defaults. This
+is a bounded family of inference behaviors, with unchanged accepted weights
+and private model arithmetic. Its additional command and state require a
+separate specification and proof. The existing three-command results, finite
+greedy capacity estimates and full-context tests do not qualify this extension.
+Its board tests establish the limited behavior recorded in
+[the seeded-generation evidence](VALIDATION.md#experimental-seeded-sampling-image),
+not a certified residual training fraction or physical-security result.
+
 ## Fixed accepted weights, although their storage is writable
 
 Weights are stored in flash and loaded into private external DDR. Their
@@ -67,7 +89,7 @@ describes this path and its separation from the mutable K/V cache.
 
 This is an FPGA demonstration of the paper's **Authenticated-Weight
 Inference-Only Chip (AWIC)** architecture (§4.3), not an MSIC whose weight bits
-are hardwired into model-specific silicon. All three supplied variants use
+are hardwired into model-specific silicon. All supplied Tang variants use
 hardware-authenticated external weights. Under the frozen-configuration
 assumption, neither the inference function nor the accepted weight digests
 can be changed through the public interface. In an ASIC, those fixed circuit

@@ -11,11 +11,19 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import stat
+import sampling_protocol
 
 APP = Path(__file__).resolve().parent
 PROFILE = APP / 'local/board-profile.json'
 HARDWARE_INPUTS_SHA256 = '8955cde51f78b582612ca4ee61d146b6128a85a535b3d492d325a4168f77e334'
 VARIANTS = {
+    'seeded-sampling': {
+        'label': 'Seeded temperature sampling (experimental)',
+        'inventory': 'hardware-inputs-seeded-sampling.json',
+        'hardware_root': 'variants/seeded-sampling/hardware',
+        'inputs_sha256': '26a0885f9ffefaeea68b948295635fcfb37367254b549c48e75e0d7093e96831',
+        'input_files': 91,
+    },
     'encrypted-memory': {
         'label': 'Encrypted external memory (public test keys)',
         'inventory': 'hardware-inputs-encrypted-memory.json',
@@ -64,7 +72,7 @@ def read_regular(path: Path, limit: int = 2 * 1024 * 1024) -> bytes:
 
 def variant_settings(variant: str = 'baseline') -> dict:
     if not isinstance(variant, str) or variant not in VARIANTS:
-        raise ValueError('Unknown hardware variant; choose baseline, kv-protected or encrypted-memory.')
+        raise ValueError('Unknown hardware variant; choose baseline, kv-protected, encrypted-memory or seeded-sampling.')
     return VARIANTS[variant]
 
 
@@ -140,13 +148,19 @@ def configured_port() -> str | None:
 
 def configured_variant() -> str | None:
     """Idle UI label from the local profile, not a readback of FPGA state."""
+    variant = configured_variant_id()
+    return VARIANTS[variant]['label'] if variant is not None else None
+
+
+def configured_variant_id() -> str | None:
+    """Selected local capability; execution still rechecks the full profile."""
     try:
         record = json.loads(read_regular(PROFILE))
         variant = record.get('variant', 'baseline')
         selected = variant_settings(variant)
         if (record.get('schema') == PROFILE_SCHEMA and record.get('passed') is True
                 and record.get('hardware_inputs_sha256') == selected['inputs_sha256']):
-            return selected['label']
+            return variant
     except (OSError, ValueError, KeyError, TypeError): pass
     return None
 
@@ -167,16 +181,31 @@ def load_checked() -> dict:
         if build[key] != profile[key]: raise ValueError('Local build association changed: ' + key)
     if not build['timing_qualified'] and profile.get('operator_acknowledged_unqualified_timing') is not True:
         raise ValueError('This build still needs an explicit exploratory timing acknowledgement.')
-    if profile.get('known_answer') != {'prompt_tokens': [378], 'generated_tokens': EXPECTED_TOKENS,
-            'initial_clear_acknowledged': True, 'final_clear_acknowledged': True}:
+    expected_known_answer = (sampling_protocol.known_answer() if variant == 'seeded-sampling' else
+        {'prompt_tokens': [378], 'generated_tokens': EXPECTED_TOKENS,
+         'initial_clear_acknowledged': True, 'final_clear_acknowledged': True})
+    if profile.get('known_answer') != expected_known_answer:
         raise ValueError('No matching completed local known-answer test.')
     raw = read_regular(Path(profile['qualification_log_path']))
     if sha(raw) != profile['qualification_log_sha256']:
         raise ValueError('The local qualification log changed.')
     rows = [json.loads(line) for line in raw.splitlines()]
-    commands = [(row['operation'], row['operand'], row['token']) for row in rows if row.get('event') == 'qualification_result']
-    expected = [('clear', 0, None), ('append', 378, None)] + [('step', 0, t) for t in EXPECTED_TOKENS] + [('clear', 0, None)]
+    if variant == 'seeded-sampling':
+        commands = []
+        for row in rows:
+            if row.get('event') != 'qualification_result':
+                continue
+            item = {key: row[key] for key in ('operation', 'operand', 'token')}
+            if row['operation'] == 'settings':
+                item['seed'] = row.get('seed')
+            commands.append(item)
+        expected = sampling_protocol.qualification_results()
+    else:
+        commands = [(row['operation'], row['operand'], row['token']) for row in rows if row.get('event') == 'qualification_result']
+        expected = [('clear', 0, None), ('append', 378, None)] + [('step', 0, t) for t in EXPECTED_TOKENS] + [('clear', 0, None)]
     if commands != expected or not rows or rows[-1].get('event') != 'qualification_complete':
         raise ValueError('The recorded qualification sequence is incomplete or changed.')
+    if variant == 'seeded-sampling' and rows[-1].get('generated_tokens') != [row['token'] for row in expected if row['operation'] == 'step']:
+        raise ValueError('The seeded qualification completion record changed.')
     check_device(profile['device']['path'], profile['device'])
     return profile

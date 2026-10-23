@@ -4,6 +4,10 @@ This guide describes the baseline and K/V-protected layouts. The
 third configuration has an encrypted external-memory path, a four-bank weight
 cache sharing two AES and two SHA engines, four time-shared projection multiplier
 lanes, and a different physical K/V layout; see [ENCRYPTED-MEMORY.md](ENCRYPTED-MEMORY.md).
+The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) extends
+the baseline with a fixed sampler and bounded temperature/seed command.
+Its source, resources and limited validation are separate from the baseline
+figures and three-command proof scope used below.
 
 This document is for readers familiar with RTL, FPGA implementation and
 accelerator design. The [README](README.md) introduces the demo;
@@ -49,7 +53,7 @@ implementation figures below describe the baseline, not the protected image.
 | Vocabulary | 4,019 IDs; fixed lowercase WordPiece tokenizer |
 | Context target | 2,048 input positions; a 2,049-slot tape accommodates the final generated token |
 | Numerical format | Project block-floating-point v5: W10/A16/KV16 |
-| Decoding | Deterministic greedy argmax, not stochastic sampling |
+| Decoding in the three original configurations | Deterministic greedy argmax |
 
 Weights have signed 10-bit mantissas; activations and cached K/V values use
 16-bit mantissas with the prescribed shared exponents and scaling metadata.
@@ -62,6 +66,14 @@ The verification target is the project's pinned integer reference, not equality
 with every output of the original floating-point model. The packaged
 [reference model](reference/reference/model.py), quantization
 code and asset manifests define the reproducible model conversion.
+
+The optional seeded version preserves these model logits, weight checks,
+clocks and pins. Temperature 0 uses the unchanged greedy selector; positive
+temperatures select from a fixed-point CDF calculated entirely on-chip.
+Its public seed initializes a noncryptographic xoroshiro128++ generator.
+Settings are admitted only with an empty, idle tape; CLEAR retains them and
+rewinds the generator. See the
+[numerical and protocol contract](STOCHASTIC-GENERATION.md#fixed-sampling-and-protocol-contract).
 
 ## System organization and clock boundaries
 
@@ -143,7 +155,7 @@ tracks tape length, replay position, committed prefix and held-output state.
 `CLEAR` invalidates logical tape/cache state and cancels or drains work according
 to ownership. It is not a bulk RAM zeroization operation and does not reopen
 the boot loader or clear a terminal integrity fault. A physical reset is a
-different event. All three supplied images have reached
+different event. All three original greedy images have reached
 the full 2,048-input window and final output slot in board tests; see
 [the results](KV-PROTECTION.md#measured-performance).
 These are finite functional tests, not complete timing qualification.

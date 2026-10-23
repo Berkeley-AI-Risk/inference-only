@@ -1,10 +1,11 @@
 # Validation and known limits
 
-This release contains three runnable configurations: baseline, K/V-protected
+This release contains three greedy configurations: baseline, K/V-protected
 and encrypted-memory. They share the same model, numerical contract and
 three-operation interface, but have separate implementation and validation
-evidence. This is a **research demonstration**, not a production or security
-certification.
+evidence. An optional seeded-sampling configuration has browser controls and
+bounded board evidence below. This is a **research demonstration**, not a
+production or security certification.
 
 ## Current baseline image
 
@@ -59,6 +60,60 @@ rates. See [K/V performance](KV-PROTECTION.md#measured-performance) and
 [encrypted-memory measurements](ENCRYPTED-MEMORY.md#evidence-and-limits)
 for workloads and measurement boundaries.
 
+## Experimental seeded-sampling image
+
+On 2026-10-23 UTC, the supplied seeded image passed a bounded physical UART
+campaign with **46 exact token checks**: three greedy outputs before any
+SETTINGS after a fresh SRAM load, 40 seeded/greedy/replay checks, and the first
+three outputs of a 64-output temperature-1 run. The campaign returned 107
+outputs in total; the remaining 61 performance outputs were recorded and
+checked for valid token encoding, without a full reference comparison.
+See [the evidence guide](evidence/seeded-sampling/README.md) and
+[source/image-bound receipt](evidence/seeded-sampling/receipt.json).
+
+The checks cover all four temperatures, fixed-seed replay after CLEAR without
+resending settings, selected changed-seed fixtures, greedy seed independence,
+bad CRC/invalid-temperature/nonempty-settings rejection, settings sent behind
+STEP, and STEP/CLEAR followed by replay. The physical trace observed the
+STEP canceled by CLEAR and no deferred settings reply; it cannot observe the
+internal busy edge or outstanding private reads. It is not a physical fault
+injection test or full-context campaign. This trial used the UART acceptance
+harness; it is separate from the application checks below.
+
+The extended local registration check then passed **45 command results and
+19 exact tokens** on the same FPGA. A separate Streamlit AppTest run drove
+the rendered app's controls through the real FPGA backend, with **19 expected
+UI outputs checked**. It exercised all temperatures, fixed-seed replay,
+greedy after positive temperature, a changed seed, two distinct automatic
+seeds, early Stop/CLEAR, subsequent greedy generation, and Disconnect releasing
+USB ownership. That first Stop case occurred before prompt upload.
+A supplemental run requested 64 tokens at temperature 1, requested Stop after
+one output was observed while generating, and finished with 13 outputs,
+acknowledged CLEAR and a released connection. A subsequent greedy run returned
+`[200, 15, 103]`. Its first three stopped outputs and three resumed outputs
+add **six exact checks**, separately from the original 19 UI checks.
+These observations do not establish the internal STEP edge at the click or
+instantaneous stopping. No mocked UART or software inference supplied the outputs.
+This was a framework-driven UI test: no listening web server or browser
+automation was used. See [the source-bound app record](evidence/seeded-sampling/app.json).
+A clean manifest-only recipient export passed strict inventory verification,
+all 22 offline package checks and 70 host-app tests, including the seeded
+controls and registration fixtures. These checks do not establish a second
+owner's complete installation or a human browser-click rehearsal.
+
+The single 64-output run measured 63 cached commands in 6.09747 seconds,
+**10.33 tokens/s**, with an 85.38 ms first STEP. Command timings include
+host/UART and evidence recording, and exclude connection and prompt upload.
+Its shorter context and different decoding prevent a direct speed comparison
+with the existing 128-output greedy runs.
+
+The [native summary](evidence/seeded-sampling/native.json) reports
+inference-clock setup/hold margins +0.092/+0.144 ns at 25 MHz, with 145
+setup/recovery and ten hold/removal violated endpoints in vendor DDR.
+The image has no complete timing signoff, extended formal proof or full-context
+qualification. The app checks have the bounded scope stated above. See
+[the seeded-generation guide](STOCHASTIC-GENERATION.md).
+
 ## K/V integrity checks
 
 The protected proof package was replayed against the supplied source set:
@@ -92,7 +147,7 @@ encrypted-memory image.
 The local app has offline UI/controller tests. The physical-image tests above
 exercise the host/UART path. The selected encrypted image was tested with the
 UART test client, not the browser or the app's qualification API. These are
-not a recorded end-to-end human browser-click rehearsal of all three supplied
+not a recorded end-to-end human browser-click rehearsal of all three greedy
 images on a second owner's Mac and board.
 
 The backup, flash installation, independent read-back and recovery workflow

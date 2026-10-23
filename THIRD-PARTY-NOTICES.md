@@ -72,10 +72,21 @@ notice in both RTL files and in [LICENSES/BearSSL-MIT.txt](LICENSES/BearSSL-MIT.
 The project did not originate this S-box circuit. Adapting it to hardware
 does not establish resistance to power or electromagnetic side channels.
 
+## Seeded-sampling PRNG
+
+The optional seeded-sampling variant implements xoroshiro128++ 1.0, the
+17/49/28-rotation recurrence by David Blackman and Sebastiano Vigna.
+Their [reference implementation](https://prng.di.unimi.it/xoroshiro128plusplus.c)
+contains a public-domain dedication and permission to use, copy, modify and
+distribute it. The project-owned RTL and Python reference implement that
+recurrence with the documented 128-bit seed mapping. This noncryptographic
+PRNG provides reproducibility; its seed is public and is not a key.
+
 ## Vendor outputs, source inputs and tools
 
 The included FPGA configurations are GOWIN-device-specific implementation
-outputs. All three inference configurations incorporate the selected DDR/clock functions;
+outputs. The three original inference configurations and the seeded-sampling variant
+incorporate the selected DDR/clock functions;
 the separate reader contains no vendor DDR controller. GOWIN and Sipeed
 retain their respective third-party rights. See [LICENSING.md](LICENSING.md)
 for the output-distribution judgment and its scope.

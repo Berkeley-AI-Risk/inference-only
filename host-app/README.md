@@ -1,20 +1,27 @@
 # Local FPGA story app
 
-This app tokenizes a prompt, sends only `APPEND`, `STEP` and `CLEAR` to the
-FPGA, and displays text and timings. Inference runs on the board. There is no
+This app tokenizes a prompt, sends `APPEND`, `STEP` and `CLEAR` to the FPGA,
+and displays text and timings. For the optional seeded-sampling image, it
+also sets a bounded temperature and seed at the start of each generation.
+Inference runs on the board. There is no
 software-model fallback, weight upload, memory/arithmetic command, programming
 button or automatic retry. The restriction is in the frozen FPGA design,
 not in this editable application.
 
-The app supports all three supplied configurations through separate local
-profiles. For `encrypted-memory`, use `prebuilt/encrypted-memory/BUILD.json`
+The app uses separate local profiles for the three greedy configurations and
+the optional seeded-sampling image. Its extended registration check and
+Streamlit AppTest exercised the real FPGA; offline recipient checks passed
+from a clean export. The framework test did not open a browser or start a web server.
+See
+[the seeded-generation guide](../STOCHASTIC-GENERATION.md).
+For `encrypted-memory`, use `prebuilt/encrypted-memory/BUILD.json`
 and install its distinct
 [ciphertext flash payload](../ENCRYPTED-MEMORY.md#install-or-restore) first.
 
 The [validation record](../VALIDATION.md#host-and-installation-checks)
 distinguishes physical hardware tests, backend qualification and offline UI
 tests. It does not claim a complete human browser-click rehearsal of all
-three supplied images on another owner's setup. Neither build receipts nor
+three greedy images on another owner's setup. Neither build receipts nor
 matching outputs independently attest the configuration.
 
 The app keeps a healthy USB connection open between successful runs. This
@@ -25,9 +32,10 @@ Keep the host awake during speed measurements. Host sleep can delay serial
 processing and make elapsed-clock measurements misleading; a trial affected
 by sleep should be repeated rather than used to claim a speedup.
 
-All three hardware variants still have unresolved vendor-DDR timing paths.
-All three supplied images have passed full-context board tests. None of those tests
-is complete timing signoff. This app conservatively allows at most 128 prompt
+All four hardware variants retain unresolved vendor-DDR timing paths.
+The three greedy images have passed full-context board tests; the seeded image
+has a separate short-context trial. None establishes complete timing signoff.
+This app conservatively allows at most 128 prompt
 tokens, 128 new tokens and 256 total. The tested platform is macOS; other
 platforms are not yet validated.
 
@@ -76,12 +84,27 @@ separately pinned source inventory; a baseline/protected mismatch is rejected.
 The app displays the locally selected variant, not an independently measured
 identity of the circuit. See [the comparison](../KV-PROTECTION.md).
 
+For the **seeded-sampling** image, use this matching receipt instead:
+
+```sh
+.venv/bin/python -B qualify_board.py \
+  --build-receipt ../prebuilt/seeded-sampling/BUILD.json \
+  --device /dev/cu.usbserial-YOUR_BOARD \
+  --confirm-loaded-source-build --acknowledge-unqualified-timing
+```
+
+This selects an extended greedy/seeded/replay known-answer check before the
+profile is registered. A failed or incomplete check cannot enable generation.
+Add `--replace-profile` when replacing an existing profile. The command
+deliberately clears the tape; it does not load an image or change flash.
+
 The flag `--confirm-loaded-source-build` also applies to this
 included source-built image: you are confirming the exact file you just loaded,
 not claiming that you personally ran the compiler. A fresh local build can use
 its own `BUILD.json` path instead.
 
-This is a seven-command hardware test, including CLEAR at both ends. It
+For the three greedy images this is a seven-command hardware test, including
+CLEAR at both ends. It
 discards the current conversation, appends token 378 (`around`) and requires
 exactly `[200, 15, 103, 157]`. Success creates a local board profile and raw
 serial record. The timing acknowledgement permits exploratory use; it does
@@ -93,16 +116,16 @@ Profiles and logs are local deployment guards, not security roots.
 Requalify after power cycling, reprogramming, replacing the board or an
 unexplained fault. Never edit a profile to bypass a failed check.
 
-To switch between the baseline and K/V-protected versions, stop the app,
+To switch between baseline, K/V-protected and seeded-sampling images, stop the app,
 explicitly load the other image into SRAM using the programming guide,
 and rerun this check with its matching receipt and `--replace-profile`.
-Those two versions use the same plaintext model in flash.
+These three use the same plaintext model in flash.
 
 Switching to or from `encrypted-memory` also requires the **matching flash
 contents**, not just an SRAM reload. Follow the
 [encrypted-memory installation/restoration instructions](../ENCRYPTED-MEMORY.md#install-or-restore),
 then requalify with the matching receipt and `--replace-profile`.
-The tokenizer is unchanged across all three versions. The browser cannot
+The tokenizer is unchanged across all four versions. The browser cannot
 switch variants or program the board.
 
 ## Start and use
@@ -129,6 +152,16 @@ connection always performs the original startup check.
 One cached controller owns the board across browser tabs.
 A second tab cannot view another tab's prompt/output. Opening the page alone
 does not begin inference.
+
+With a **seeded-sampling** profile, the page also shows temperature and seed
+controls. Temperature defaults to **0**, the original greedy rule. Positive
+temperatures are **0.5, 1 and 2**. Choose an automatic seed for a fresh
+continuation or supply a 128-bit seed to reproduce one. The last-run display
+and downloadable record retain the actual seed and temperature used.
+Each Generate clears the tape, applies the chosen settings, appends your
+prompt and streams tokens; completion and Stop finish with CLEAR. Repeating
+the same prompt, temperature and seed replays the same continuation. These
+controls appear only for a seeded profile; they do not reprogram another image.
 
 Streaming tokens/s excludes the first token. Time to first token includes
 connection checking, prompt upload and prompt evaluation. Per-STEP times and

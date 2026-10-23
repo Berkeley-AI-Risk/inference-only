@@ -7,12 +7,13 @@ import uuid
 import streamlit as st
 
 from fpga_backend import ACTIVE, Controller, DEMO_CAP, MAX_NEW, MAX_PROMPT
-from runtime_profile import configured_port, configured_variant
+from runtime_profile import configured_port, configured_variant, configured_variant_id
 
 st.set_page_config(page_title='FPGA story lab', page_icon=':material/memory:', layout='centered')
 st.title('FPGA story lab')
 st.caption('SimpleStories 5M · Tang Mega 138K · Real generation over USB')
 variant_label = configured_variant()
+sampling_enabled = configured_variant_id() == 'seeded-sampling'
 st.caption('Locally selected build: ' + (variant_label or 'not yet checked')
            + '. Selection is not independent attestation of the loaded FPGA.')
 st.write('Start a story and watch the FPGA continue it. This tiny model completes stories; it is not a general chat assistant.')
@@ -20,6 +21,8 @@ st.session_state.setdefault('owner', uuid.uuid4().hex)
 st.session_state.setdefault('prompt', 'once')
 st.session_state.setdefault('new_tokens', 32)
 st.session_state.setdefault('input_error', '')
+st.session_state.setdefault('temperature', '0')
+st.session_state.setdefault('seed_input', '')
 
 
 @st.cache_resource(max_entries=1, show_spinner=False)
@@ -46,12 +49,24 @@ def console():
             placeholder='once upon a time, a little fox', disabled=busy, persist_state='session')
         count = st.number_input('Maximum new tokens', min_value=1, max_value=MAX_NEW,
             step=1, key='new_tokens', disabled=busy, persist_state='session')
+        temperature, seed_input = '0', ''
+        if sampling_enabled:
+            temperature = st.segmented_control('Temperature', ('0', '0.5', '1', '2'),
+                required=True, key='temperature', disabled=busy, persist_state='session',
+                help='0 chooses the highest-scoring token. Higher temperatures allow more varied continuations.')
+            seed_input = st.text_input('Seed (optional)', key='seed_input', max_chars=40,
+                placeholder='Leave blank for a fresh seed', disabled=busy, persist_state='session',
+                help='Use a decimal number or 0x-prefixed hexadecimal number, up to 128 bits. '
+                     'The same prompt, temperature and seed repeat a story. Greedy generation ignores the seed.')
         submitted = st.form_submit_button('Generate on FPGA', icon=':material/play_arrow:',
             type='primary', disabled=busy or board.needs_board_check)
     if submitted:
         st.session_state.input_error = ''
         try:
-            board.start(owner, prompt, count)
+            if sampling_enabled:
+                board.start(owner, prompt, count, temperature=temperature, seed=seed_input)
+            else:
+                board.start(owner, prompt, count)
             # Finish this render: aborting it with a full rerun discarded the
             # just-submitted widget values. The timed fragment updates controls.
             result = board.snapshot(owner)
@@ -105,6 +120,10 @@ def console():
     if 0 in result.prompt_tokens:
         st.warning('Some prompt text is outside this small vocabulary and became [UNK]. Try simpler words.')
     if result.job_id:
+        if result.seed_used:
+            st.caption(f'Run settings: temperature {result.temperature} · Seed {result.seed}')
+        elif sampling_enabled:
+            st.caption('Run settings: temperature 0 (greedy) · Seed unused')
         st.caption(f'{len(result.prompt_tokens)} prompt tokens · {len(result.generated)} generated tokens · '
                    f'Run {result.job_id[:8]}. Output uses the model’s lowercase tokenizer.')
         with st.expander('Timing details and test record'):
@@ -123,8 +142,14 @@ def console():
 
 console()
 st.caption(f'Initial interactive-demo limit: {MAX_PROMPT} prompt tokens, {MAX_NEW} new tokens, '
-           f'{DEMO_CAP} total. All three hardware variants have passed separate tests at the 2,048-input limit.')
+           f'{DEMO_CAP} total. The three original greedy builds have passed separate tests at the 2,048-input limit. '
+           'The seeded-sampling build has separate short-context tests.')
 with st.expander('What this demo does—and does not do'):
     st.write('This computer only converts between text and token IDs, sends APPEND / STEP / CLEAR, and measures the replies. All inference runs on the FPGA. Each Generate starts with CLEAR; successful completion or Stop clears the tape again. A successful run retains the exclusive USB connection for the next run. Stop or Disconnect USB releases it. No weights, tensors or arithmetic commands are sent.')
     st.write('Three builds are available: the faster baseline without K/V integrity checks; the K/V-protected build that checks cached attention data before use; and the experimental encrypted-memory build, which also encrypts external weights and K/V. Encryption uses public demonstration keys, not secret deployment keys, and requires its matching encrypted flash image. All three authenticate model weights and have passed normal-inference board tests through the full context window. K/V corruption/replay rejection was tested in simulation, not by physically altering DDR. Vendor-DDR timing remains unresolved for all three. The local four-token check does not reproduce the larger campaigns or attest the loaded circuit. The app stops on errors and cannot reset, reflash or reconfigure the board.')
+    st.write('An optional seeded-sampling build adds the temperature and seed controls above. '
+             'It uses the same SimpleStories model and plaintext flash as the baseline. '
+             'Each Generate starts a new story, and a blank seed chooses and displays a fresh seed for that run. '
+             'A chosen seed lets you replay the same prompt and temperature. '
+             'This experimental build has separate short-context board tests; the older full-window tests and formal proofs do not cover it.')
     st.write('Keep the board powered: its tested configuration is in SRAM. The app cannot restore it after a power cycle. Local raw logs include your prompt; nothing is published or sent to an online model.')

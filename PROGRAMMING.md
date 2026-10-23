@@ -1,7 +1,8 @@
 # Run the demo on a Tang Mega 138K
 
-This guide installs the **plaintext** model for the baseline and
-K/V-protected configurations. For the third image, follow the explicit
+This guide installs the **plaintext** model for the baseline,
+K/V-protected and optional seeded-sampling configurations. For the
+encrypted-memory image, follow the explicit
 [encrypted-memory substitutions](ENCRYPTED-MEMORY.md#install-or-restore);
 it requires different flash contents, not only a different SRAM image.
 
@@ -41,7 +42,11 @@ operations below are for **1.9.12.03 build 2712** only. Install Python 3.12 and
 the host dependencies from [host-app/README.md](host-app/README.md).
 
 Connect the board's USB debugging port with a data-capable cable and provide
-the board's specified power. Stop the app and other serial/JTAG programs.
+the board's specified power. If the board is off, hold **PWR** next to HDMI
+for about two seconds to turn it on. This button toggles power, so do not
+press it again if the board is already on; see
+[Sipeed's power-button instructions](https://wiki.sipeed.com/hardware/en/tang/tang-mega-138k/mega-138k.html#after-powering-on-the-board-only-four-indicator-lights-on-the-dockboard-are-on-the-som-indicator-light-is-not-on).
+Stop the app and other serial/JTAG programs.
 Keep the cable/power stable throughout programming and reads.
 Set the flash capacity in both required `spi.ini` sections as specified in
 [VENDOR-SETUP.md](VENDOR-SETUP.md) before continuing; the tested flash is
@@ -186,12 +191,22 @@ Load only one configuration, then use its matching build receipt for the
 known-answer check below. Both remain timing-unqualified exploratory images;
 see [the comparison and limitations](KV-PROTECTION.md).
 
+For optional **seeded sampling**, the same SRAM operation instead uses
+`--fsFile "$FPGA_PACKAGE/prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs"`.
+It uses this same plaintext model in flash. Follow
+[its extended known-answer check and browser instructions](STOCHASTIC-GENERATION.md#load-and-check-the-seeded-image)
+after startup. The browser shows sampling controls for a qualified seeded
+profile. This image has
+bounded short-context tests, separate from the original images' full-window
+and formal results.
+
 Require the expected target, successful **SRAM Program** and `Finished.`.
 Do not run another flash bridge/JTAG operation afterward: it may replace the
 loaded circuit. Keep the board powered and allow **at least 60 seconds** for
 startup. Waiting alone does not establish a successful boot.
 
-Follow [the host guide](host-app/README.md) to run the seven-command known-answer
+For the baseline or protected browser workflow, follow
+[the host guide](host-app/README.md) to run the seven-command known-answer
 test with `prebuilt/inference/BUILD.json` for the baseline or
 `prebuilt/kv-protected/BUILD.json` for the protected image, then start the browser app. The
 test deliberately clears any current conversation. Requalify after every

@@ -2,7 +2,7 @@
 
 [Project overview](../../README.md) · [Qwen on AWS F2](../qwen3-1.7b/README.md)
 
-This is the runnable small-model demonstration: a fixed numerical approximation of **SimpleStories-V2-5M**, with 5,354,496 parameters and six transformer layers. The FPGA performs inference; a connected computer supplies text and displays replies. The release includes three hardware configurations, their source and evidence, the model image, tokenizer and a local browser application.
+This is the runnable small-model demonstration: a fixed numerical approximation of **SimpleStories-V2-5M**, with 5,354,496 parameters and six transformer layers. The FPGA performs inference; a connected computer supplies text and displays replies. The release includes three greedy hardware configurations, their source and evidence, the model image, tokenizer and a local browser application. An optional [seeded-sampling configuration](../../STOCHASTIC-GENERATION.md) adds temperature and seed controls to the browser app.
 
 The prototype runs on a Sipeed Tang Mega 138K **non-Pro Dock** board package
 ([AliExpress listing used for this demo](https://www.aliexpress.us/item/3256807078990410.html)).
@@ -11,8 +11,9 @@ Check the selected variant: the supported setup needs the **device-C FPGA
 and 128-Mbit / 16-MiB flash**; the model layout does not fit older 8-MiB flash.
 Its GOWIN FPGA uses a
 [22 nm manufacturing process](https://www.gowinsemi.com/en/about/detail/latest_news/76/).
-Its hardware command interface offers only `APPEND`, `STEP` and `CLEAR`,
-described below. This demonstration supports one fixed model, so there is
+The three greedy configurations offer only `APPEND`, `STEP` and `CLEAR`,
+described below; the optional seeded version adds bounded generation settings.
+This demonstration supports one fixed model, so there is
 no model-selection command.
 
 <img src="../../fpga.jpeg" alt="The Sipeed Tang Mega 138K FPGA board used for this inference-only demonstration, connected by USB." width="720">
@@ -75,7 +76,7 @@ the supplied tokenizer; the installation record separately checks its first
 The repository includes the tested configurations, model image and local app.
 See [Run it on your board](#run-it-on-your-board).
 
-## Three runnable versions
+## Three greedy versions and optional seeded sampling
 
 The baseline and K/V-protected versions use the same model and three-operation interface, and both
 authenticate model weights:
@@ -105,9 +106,18 @@ See [encrypted memory](../../ENCRYPTED-MEMORY.md) for its diagram, current
 test scope, source reproduction, installation and restoration. All
 three preserve the same model and public three-operation interface.
 
+The experimental **seeded-sampling** version uses the baseline's authenticated
+weights and plaintext flash image, with temperatures 0, 0.5, 1 and 2 and a
+public reproducibility seed. Temperature 0 retains the exact greedy rule.
+It passed short seeded/replay checks and one 64-output UART board trial; it
+has not received the other images' full-context or formal qualification.
+Its extended board-registration check and app controls have separate real-board
+tests, with the UI driven by Streamlit AppTest. Follow
+[its installation and browser guide](../../STOCHASTIC-GENERATION.md).
+
 ## Inference-only scope
 
-The configured circuit exposes `APPEND`, `STEP` and `CLEAR`, with hardware-owned inference and memory addressing. All three variants authenticate the weights actually consumed. We assess the circuit with its configuration frozen, not the FPGA's ability to load another circuit.
+The three greedy circuits expose `APPEND`, `STEP` and `CLEAR`, with hardware-owned inference and memory addressing. The seeded version additionally accepts only a fixed temperature/seed setting at an empty, idle boundary. All four authenticate the weights actually consumed. We assess the circuit with its configuration frozen, not the FPGA's ability to load another circuit.
 
 The [shared overview](../../README.md#in-what-sense-is-it-inference-only) explains the concept. The [detailed Tang Mega assessment](../../INFERENCE-ONLY.md), [scoped formal proofs](../../FORMAL-STATUS.md), and [conditional capacity analysis](../../TRAINING-CAPACITY.md) distinguish demonstrated restrictions from remaining physical-security obligations. The encrypted-memory variant has separate evidence and public demonstration keys; it does not inherit all of the plaintext variants' proofs.
 
@@ -131,12 +141,21 @@ memory organization, clock domains and implementation details, with a
   The baseline also prepares the next hash block while checking the current one,
   with no temporary diagnostic output. Exact identities are in the technical guide.
 
-The three supplied images have physical-board tests against the same integer
+The three greedy images have physical-board tests against the same integer
 reference. [VALIDATION.md](../../VALIDATION.md) records each image's test coverage
 and remaining limitations. For a one-token prompt followed by 128 generated
 tokens, the cached command rates are **8.77 tokens/s for the baseline,
 5.22–5.23 for K/V-protected, and 4.27 for encrypted memory**. These rates include
 host/UART reply overhead but exclude gaps between commands.
+
+The seeded version measured **10.33 cached tokens/s** in one shorter,
+64-output trial at temperature 1; its first STEP took 85.38 ms. This does not
+establish a speedup over the 128-output greedy trials. The
+[seeded evidence](../../STOCHASTIC-GENERATION.md#board-evidence-and-limits)
+states which outputs were checked. The SimpleStories and Qwen measurements
+also come from separate campaigns with different models, prompts, hardware
+and timing methods; the [project comparison](../../README.md#the-demonstrated-designs-and-measurements)
+does not present them as a matched benchmark.
 
 The baseline's streaming rates, which also include those gaps, are:
 
@@ -166,7 +185,7 @@ tokens/s, still including host/serial overhead.
 
 The hardware processes prompt positions one at a time. The technical guide
 explains [prompt-processing cost and possible improvements](../../ARCHITECTURE.md#prompt-processing-and-time-to-first-token).
-All three supplied images have reached the full 2,048-input limit and final
+All three greedy images have reached the full 2,048-input limit and final
 output slot in board tests, including boundary rejection and CLEAR/replay.
 Full-context prompt processing is slow: a 2,048-token prompt took about
 22 minutes before the first baseline reply and 52 minutes with K/V protection.
@@ -209,7 +228,8 @@ and an offline checker are included.
 
 ## Run it on your board
 
-The runnable release includes **three prebuilt inference configurations**, a
+The runnable release includes **three prebuilt greedy configurations**, an
+experimental seeded-sampling image with browser controls and a diagnostic CLI, a
 separate backup-reader configuration, the fixed model image, tokenizer and
 browser app. You need the matching Tang Mega 138K non-Pro/device-C board
 with 128-Mbit / 16-MiB flash (tested JEDEC ID `0B4018`). Older 64-Mbit /
@@ -231,6 +251,14 @@ must be reloaded after power-off; the model stays in flash. Plan about
 For the third configuration, follow the variant-specific
 [encrypted-memory instructions](../../ENCRYPTED-MEMORY.md#install-or-restore) instead;
 its flash payload is not interchangeable with the plaintext model image.
+
+For optional seeded generation, follow
+[STOCHASTIC-GENERATION.md](../../STOCHASTIC-GENERATION.md) after installing the
+plaintext model. Switching from the baseline changes only the SRAM image.
+Register it using its matching build receipt and extended known-answer check,
+then use the browser's temperature and seed controls. The diagnostic CLI is
+optional; the [seeded guide](../../STOCHASTIC-GENERATION.md) records the exact
+app-test scope.
 
 Then follow [host-app/README.md](../../host-app/README.md) to qualify your loaded board
 and start the local browser app. The [validation record](../../VALIDATION.md) states

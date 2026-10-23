@@ -1,5 +1,14 @@
 # What has—and has not—been formally proved
 
+The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) is outside
+the proof inventory below. Its SETTINGS decoder, sampler, seed state and
+CLEAR/replay semantics have finite simulation and board evidence. No proof
+extends the three-command results to it, and no whole-machine or
+numerical-distribution theorem is claimed.
+This also applies when that new image is used at temperature 0: retaining
+the greedy selector does not make the changed controller a proved instance
+of the original source-bound configuration.
+
 ## What the formalization is meant to establish
 
 The aim is to show that the implemented circuit obeys a precise inference-only
@@ -70,7 +79,8 @@ proof that the whole FPGA refines the ideal inference-only machine.
 The proof receipts below identify the exact sources checked. These results
 concern the SimpleStories baseline and the separately identified K/V-protected
 components; they do not automatically cover any Qwen design. They do
-not certify the [encrypted-memory configuration](ENCRYPTED-MEMORY.md).
+not certify the [encrypted-memory configuration](ENCRYPTED-MEMORY.md) or the
+[seeded-sampling configuration](STOCHASTIC-GENERATION.md).
 
 **Version scope:** the 48-assertion token-shell and 134-assertion connected
 proofs have been replayed against the supplied baseline,

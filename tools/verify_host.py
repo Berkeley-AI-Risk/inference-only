@@ -34,6 +34,12 @@ def main():
     manifest = json.loads((package / 'MANIFEST.json').read_text())
     files = {name.removeprefix('host-app/'): row for name, row in manifest['files'].items() if name.startswith('host-app/')}
     if not files: raise ValueError('No host app in this package')
+    support = {name: row for name, row in manifest['files'].items()
+               if name.startswith('variants/seeded-sampling/')}
+    for name, row in support.items():
+        path = package / name
+        if path.is_symlink() or sha(path) != row['sha256'] or path.stat().st_size != row['bytes']:
+            raise ValueError('Changed host sampling dependency: ' + name)
     for name, row in files.items():
         path = package / 'host-app' / name
         if path.is_symlink() or sha(path) != row['sha256'] or path.stat().st_size != row['bytes']:
@@ -48,6 +54,9 @@ def main():
     for name in files:
         target = host / name; target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(package / 'host-app' / name, target)
+    for name in support:
+        target = work / name; target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(package / name, target)
     (host / 'assets').mkdir(exist_ok=True)
     bundled = host / 'assets/tokenizer.json'
     if bundled.exists():
@@ -71,9 +80,12 @@ def main():
     counts = re.findall(r'^Ran (\d+) tests? in ', log, re.MULTILINE)
     passed = code == 0 and counts == [str(len(tests))] and re.search(r'^OK$', log, re.MULTILINE) is not None
     unchanged = all(sha(host / name) == row['sha256'] and sha(package / 'host-app' / name) == row['sha256'] for name, row in files.items())
+    unchanged = unchanged and all(sha(work / name) == row['sha256'] and sha(package / name) == row['sha256']
+                                  for name, row in support.items())
     result = {'passed': passed and unchanged, 'exit': code, 'seconds': time.monotonic() - started,
         'tests_expected': len(tests), 'test_methods': tests, 'tests_reported': counts,
         'source_files': {name: row['sha256'] for name, row in files.items()},
+        'sampling_support_files': {name: row['sha256'] for name, row in support.items()},
         'source_files_unchanged': unchanged, 'log_sha256': sha(work / 'tests.log'),
         'package_manifest_sha256': sha(package / 'MANIFEST.json'),
         'hardware_access': False, 'network_access': False, 'server_started': False,

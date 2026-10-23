@@ -3,6 +3,7 @@ import copy
 import json
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 import check_kv_protected as subject
 
@@ -48,6 +49,21 @@ class ProtectedEvidenceTests(unittest.TestCase):
         data = json.loads((self.package / 'evidence/kv-protected/release-rehearsal.json').read_text())
         data['unchanged_host_executable_sources'].pop('host-app/streamlit_app.py')
         with self.assertRaises(ValueError): subject.check_rehearsal(self.package, data)
+
+    def test_unrecorded_host_addition_cannot_inherit_old_rehearsal(self):
+        original_read = subject.read
+        manifest = original_read(self.package / 'MANIFEST.json')
+        changed = copy.deepcopy(manifest)
+        changed['files']['host-app/unreviewed_extension.py'] = {'bytes': 1, 'sha256': '0' * 64}
+        def read(path):
+            return changed if path == self.package / 'MANIFEST.json' else original_read(path)
+        rehearsal = original_read(self.package / 'evidence/kv-protected/release-rehearsal.json')
+        reuse = original_read(self.package / 'evidence/host-connection-reuse.json')
+        with patch.object(subject, 'read', side_effect=read):
+            with self.assertRaisesRegex(ValueError, 'Incomplete rehearsed host binding'):
+                subject.check_rehearsal(self.package, rehearsal)
+            with self.assertRaisesRegex(ValueError, 'Incomplete connection-reuse source binding'):
+                subject.check_connection_reuse(self.package, reuse)
 
     def test_exact_label_only_changes_match_board_tested_sources(self):
         data = json.loads((self.package / 'evidence/kv-protected/release-rehearsal.json').read_text())

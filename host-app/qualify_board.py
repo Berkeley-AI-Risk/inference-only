@@ -16,6 +16,7 @@ import uuid
 
 from fpga_backend import BoardError, LiveUART, utc
 import runtime_profile as profile
+import sampling_protocol
 
 
 class QualificationUART(LiveUART):
@@ -71,18 +72,36 @@ def qualify(build_receipt: Path, device: str, *, confirm_loaded: bool,
                     observe({'event': 'qualification_result', 'operation': op, 'operand': operand,
                         'token': token, 'seconds': time.monotonic() - started})
                     return token
-                command('clear'); command('append', 378)
-                for expected in profile.EXPECTED_TOKENS:
-                    actual = command('step')
-                    if actual != expected:
-                        raise BoardError(f'Known-answer mismatch: expected {expected}, received {actual}. No retry/reset follows.')
-                command('clear')
+                if deployment['variant'] == 'seeded-sampling':
+                    generated = []
+                    for operation, operand, expected, seed in sampling_protocol.qualification_plan():
+                        if operation == 'settings':
+                            started = time.monotonic()
+                            if not link.configure(sampling_protocol.TEMPERATURES[operand], seed):
+                                raise BoardError('The seeded build did not apply SETTINGS.')
+                            observe({'event': 'qualification_result', 'operation': 'settings',
+                                'operand': operand, 'seed': f'0x{seed:032x}', 'token': None,
+                                'seconds': time.monotonic() - started})
+                        else:
+                            actual = command(operation, operand)
+                            if operation == 'step':
+                                if actual != expected:
+                                    raise BoardError(f'Seeded known-answer mismatch: expected {expected}, received {actual}. No retry/reset follows.')
+                                generated.append(actual)
+                else:
+                    command('clear'); command('append', 378)
+                    for expected in profile.EXPECTED_TOKENS:
+                        actual = command('step')
+                        if actual != expected:
+                            raise BoardError(f'Known-answer mismatch: expected {expected}, received {actual}. No retry/reset follows.')
+                    command('clear')
+                    generated = profile.EXPECTED_TOKENS
                 if link.channel.next(0.1) is not None or link.channel.pending:
                     raise BoardError('Unexpected bytes after the final CLEAR acknowledgement.')
             profile.check_device(device, deployment['device'])
             if profile.check_build(build_receipt) != {k: v for k, v in deployment.items() if k != 'device'}:
                 raise RuntimeError('Build association changed during qualification.')
-            observe({'event': 'qualification_complete', 'generated_tokens': profile.EXPECTED_TOKENS})
+            observe({'event': 'qualification_complete', 'generated_tokens': generated})
         except BaseException as error:
             observe({'event': 'qualification_failed', 'error': str(error),
                 'no_automatic_retry_reset_or_reconfiguration': True})
@@ -91,8 +110,9 @@ def qualify(build_receipt: Path, device: str, *, confirm_loaded: bool,
         operator_confirmed_loaded_build=True, operator_acknowledged_unqualified_timing=acknowledge_timing,
         hardware_configuration_not_independently_attested=True,
         qualification_log_path=str(log_path.absolute()), qualification_log_sha256=profile.sha(profile.read_regular(log_path)),
-        known_answer={'prompt_tokens': [378], 'generated_tokens': profile.EXPECTED_TOKENS,
-            'initial_clear_acknowledged': True, 'final_clear_acknowledged': True})
+        known_answer=(sampling_protocol.known_answer() if deployment['variant'] == 'seeded-sampling' else
+            {'prompt_tokens': [378], 'generated_tokens': profile.EXPECTED_TOKENS,
+             'initial_clear_acknowledged': True, 'final_clear_acknowledged': True}))
     archived = run / 'board-profile.json'
     profile.private_write(archived, profile.encode(record))
     # Atomic, no-clobber publication of a local profile; all prior records stay.
@@ -112,7 +132,8 @@ def main():
         acknowledge_timing=args.acknowledge_unqualified_timing, replace_profile=args.replace_profile)
     print(json.dumps({'passed': True, 'profile': str(profile.PROFILE), 'image_sha256': record['image_sha256'],
         'variant': record['variant'],
-        'generated_tokens': record['known_answer']['generated_tokens'], 'final_clear_acknowledged': True,
+        'generated_tokens': record['known_answer'].get('generated_tokens',
+            record['known_answer'].get('positive_generated_tokens')), 'final_clear_acknowledged': True,
         'configuration_not_attested': True}, sort_keys=True), flush=True)
 
 

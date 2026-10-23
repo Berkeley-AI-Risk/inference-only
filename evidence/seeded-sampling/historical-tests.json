@@ -1,0 +1,59 @@
+{
+  "hardware_access": false,
+  "physical_fault_injection": false,
+  "public_simulation_rerun": false,
+  "schema": "seeded-sampling-historical-test-summary-v1",
+  "scope": "Historical private simulation receipt summary; these compiled campaigns are not rerun by the public checker.",
+  "selector_component": {
+    "exact_u64_cdf_boundary_vectors": 33,
+    "four_state_fault_cases": 6,
+    "passed": true,
+    "source_receipt_sha256": "94682787764253a52cb5c004eee0afc7901cb7fb5f40e86874b6b4559bc72753",
+    "source_sha256": {
+      "baseline/board1_fixed_head_argmax.sv": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68",
+      "baseline/board1_fixed_head_logit_greater.sv": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44",
+      "rtl/board1_seeded_head_selector_compact_packed_v3.sv": "70d38433ef2281b7bcbed57a32ad8298a02b3cca1b207de80fdc296223a5b1dc",
+      "tests/selector_test_top.sv": "c0a1c9eb974499b51837867d7950b4b5cd53736cd0a8685a6eab5ab12a5f55e1",
+      "tests/test_selector.cpp": "d602c56b8068d5d3b3032ca89c5129f01cd4383b12b6f35a78b1e50dd08c5b8f"
+    },
+    "table_all_4097_entries_match_independent_exp": true
+  },
+  "uart_model": {
+    "all_operations_enter_uart_rx_pin": true,
+    "all_production_rtl_identical_to_physical_source": true,
+    "cases": {
+      "corrupt-boot": {
+        "captured_rows_sha256": "ba45d57c9b255311bb220598f90c1a4fb01b420511974c28f102881cbd7df21a",
+        "exit_code": 0,
+        "log_sha256": "d9734b077b122bbdfbaa2b5ee761bb3212f858feab2959d779070f05d4764dfa",
+        "passed": true
+      },
+      "corrupt-runtime": {
+        "captured_rows_sha256": "8bf75ac79402f093ef1b0592b0335f62c34ddad611413a23cf731b2ed33ffc76",
+        "exit_code": 0,
+        "log_sha256": "5c0331bae85ce0a63b7e3076265efee4e1185483f3e903bf2699153bb879089f",
+        "passed": true
+      },
+      "positive": {
+        "captured_rows_sha256": "3636bbb1594d795df7f85b9e7d0e6d33fbb1a239213cd904b68a012b0a131535",
+        "exit_code": 0,
+        "log_sha256": "11dc84d4a88b70f8072bb3676c5686b3a68c65b8421e81cf444a598f9739750a",
+        "oracle_tokens": [
+          200,
+          200,
+          357,
+          3898,
+          357,
+          13,
+          247,
+          3436,
+          200
+        ],
+        "passed": true
+      }
+    },
+    "passed": true,
+    "responses_decode_actual_tx_pin": true,
+    "source_receipt_sha256": "47397951af1a915c6716f73ae7038076987b8ee2e2d98be1ffeda9c152d67319"
+  }
+}
