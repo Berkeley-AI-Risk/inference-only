@@ -42,7 +42,7 @@ three SimpleStories versions.
 | **SimpleStories-V2-5M — Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |
 | Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |
 | Same model, **K/V protection + encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |
-| Same model, **seeded sampling**, without K/V integrity | About **8.7 tokens/s** at temperature 1 | Runnable release; context and browser campaigns passed |
+| Same model, **seeded sampling**, without K/V integrity | About **8.7 tokens/s** at temperature 1 | Runnable release |
 | **Qwen3-1.7B — AWS F2**, authenticated weights | About **9.0 tokens/s** | Runnable release; public AWS FPGA image |
 | **Qwen3-8B — AWS F2**, authenticated weights | About **1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
 
