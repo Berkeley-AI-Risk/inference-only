@@ -1,0 +1,6827 @@
+{
+  "cases": [
+    {
+      "connection_started": "new",
+      "label": "fixed-t1-a",
+      "observation": {
+        "browser": "Chrome",
+        "download_clicked": true,
+        "maximum_new_tokens_value": 3,
+        "observed_utc": "2026-10-23T14:46:08.847Z",
+        "prompt_value": "around",
+        "seed_displayed": "0x99aabbccddeeff001122334455667788",
+        "seed_input_value": "0x99aabbccddeeff001122334455667788",
+        "source_ui_snapshot_sha256": "684d4f5fed1e4db80c76713513b4377d72795ccbd1483b4062f3ba03e5549ee9",
+        "story_displayed": "around noologan",
+        "temperature_displayed": "1",
+        "temperature_value": "1",
+        "tokens_generated_displayed": 3,
+        "url": "http://127.0.0.1:8507"
+      },
+      "reference": {
+        "kind": "packaged",
+        "path": "reference/seeded-sampling/goldens/around128-t2-seed-a.json",
+        "sha256": "65352789f3acd613e2104d8515a51d6873ca15e041ce683d12bc7d2afb345d7b"
+      },
+      "result": {
+        "arrivals_seconds": [
+          1.193324666004628,
+          1.2785007909988053,
+          1.365126415999839
+        ],
+        "clear_acknowledged": true,
+        "elapsed_seconds": 1.4918701660062652,
+        "error": "",
+        "first_token_seconds": 1.193324666004628,
+        "generated": [
+          357,
+          3898,
+          104
+        ],
+        "prompt": "around",
+        "prompt_tokens": [
+          378
+        ],
+        "requested": 3,
+        "sampling_settings_applied": true,
+        "seed": "0x99aabbccddeeff001122334455667788",
+        "seed_used": true,
+        "state": "complete",
+        "step_seconds": [
+          0.08501283300574869,
+          0.08506175001093652,
+          0.0864111669943668
+        ],
+        "stop_reason": "Requested token limit reached",
+        "streaming_tokens_per_second": 11.641324957724521,
+        "temperature": "1",
+        "text": "around noologan",
+        "uploaded": 1
+      },
+      "source_backend_log_sha256": "2558cc942a5c4f9b72e1acff0de5c8cf08135da11d11ad6a3ec1927f99afb3f8",
+      "source_download_sha256": "cb7c600a8cdc9fdf56ec03b2eae677f2a00c3ce3cd8cd9a9ac3d965cd9adde3b",
+      "source_observation_sha256": "24d49f4c9a9b69f603cce473d9180175047607f61716cbda34de290d2eef17e9",
+      "wire": [
+        {
+          "elapsed_ns": 0,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 1
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 521833,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 2
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 6850292,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 3
+        },
+        {
+          "elapsed_ns": 7023500,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 4,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 7107958,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.007144415998482145,
+          "sequence": 5,
+          "token": null
+        },
+        {
+          "elapsed_ns": 7197500,
+          "event": "command_intent",
+          "hex": "a50302887766554433221100ffeeddccbbaa99fe",
+          "label": "settings",
+          "sequence": 6
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 7258833,
+          "event": "raw_chunk",
+          "hex": "a50302887766554433221100ffeeddccbbaa99fe",
+          "sequence": 7
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 23818917,
+          "event": "raw_chunk",
+          "hex": "5a830200fc",
+          "sequence": 8
+        },
+        {
+          "elapsed_ns": 24001708,
+          "event": "decoded",
+          "frame_hex": "5a830200fc",
+          "kind": "normal",
+          "response": 131,
+          "sequence": 9,
+          "token": 2
+        },
+        {
+          "elapsed_ns": 24090667,
+          "event": "sampling_settings",
+          "seed": "0x99aabbccddeeff001122334455667788",
+          "seed_used": true,
+          "sequence": 10,
+          "temperature": "1"
+        },
+        {
+          "elapsed_ns": 24166167,
+          "event": "command_intent",
+          "hex": "a5007a0196",
+          "label": "append",
+          "sequence": 11
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 24245583,
+          "event": "raw_chunk",
+          "hex": "a5007a0196",
+          "sequence": 12
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 40834042,
+          "event": "raw_chunk",
+          "hex": "5a8000006b",
+          "sequence": 13
+        },
+        {
+          "elapsed_ns": 41025917,
+          "event": "decoded",
+          "frame_hex": "5a8000006b",
+          "kind": "normal",
+          "response": 128,
+          "sequence": 14,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 41096375,
+          "event": "command_result",
+          "operand": 378,
+          "operation": "append",
+          "seconds": 0.016937958003836684,
+          "sequence": 15,
+          "token": null
+        },
+        {
+          "elapsed_ns": 41160208,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 16
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 41219208,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 17
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 125815750,
+          "event": "raw_chunk",
+          "hex": "5a816501b3",
+          "sequence": 18
+        },
+        {
+          "elapsed_ns": 126031917,
+          "event": "decoded",
+          "frame_hex": "5a816501b3",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 19,
+          "token": 357
+        },
+        {
+          "elapsed_ns": 126169375,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08501283300574869,
+          "sequence": 20,
+          "token": 357
+        },
+        {
+          "elapsed_ns": 126344792,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 21
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 126414958,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 22
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 210806792,
+          "event": "raw_chunk",
+          "hex": "5a813a0f56",
+          "sequence": 23
+        },
+        {
+          "elapsed_ns": 211311917,
+          "event": "decoded",
+          "frame_hex": "5a813a0f56",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 24,
+          "token": 3898
+        },
+        {
+          "elapsed_ns": 211400917,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08506175001093652,
+          "sequence": 25,
+          "token": 3898
+        },
+        {
+          "elapsed_ns": 211521125,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 26
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 211606875,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 27
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 296029250,
+          "event": "raw_chunk",
+          "hex": "5a8168005d",
+          "sequence": 28
+        },
+        {
+          "elapsed_ns": 297818500,
+          "event": "decoded",
+          "frame_hex": "5a8168005d",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 29,
+          "token": 104
+        },
+        {
+          "elapsed_ns": 297921958,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.0864111669943668,
+          "sequence": 30,
+          "token": 104
+        },
+        {
+          "elapsed_ns": 298132625,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 31
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 298282583,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 32
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 424333625,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 33
+        },
+        {
+          "elapsed_ns": 424584792,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 34,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 424727375,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.12659062500461005,
+          "sequence": 35,
+          "token": null
+        }
+      ]
+    },
+    {
+      "connection_started": "reused",
+      "label": "greedy-after-sampling",
+      "observation": {
+        "browser": "Chrome",
+        "download_clicked": true,
+        "maximum_new_tokens_value": 3,
+        "observed_utc": "2026-10-23T14:49:50.226Z",
+        "prompt_value": "around",
+        "seed_displayed": null,
+        "seed_input_value": "0x99aabbccddeeff001122334455667788",
+        "source_ui_snapshot_sha256": "15d873d2bb595a50ac54100914c25eabdf6e42758de1046c8e5c29610fa2c231",
+        "story_displayed": "around him. he",
+        "temperature_displayed": "0",
+        "temperature_value": "0",
+        "tokens_generated_displayed": 3,
+        "url": "http://127.0.0.1:8507"
+      },
+      "reference": {
+        "kind": "packaged",
+        "path": "reference/seeded-sampling/goldens/around128-t0-seed-a.json",
+        "sha256": "f517af7880aa9160379c71fb1804a234a40e509051b4f629cdea7f78b0e73e6e"
+      },
+      "result": {
+        "arrivals_seconds": [
+          0.15824937500292435,
+          0.24343600000429433,
+          0.32832950000010896
+        ],
+        "clear_acknowledged": true,
+        "elapsed_seconds": 0.3452360840019537,
+        "error": "",
+        "first_token_seconds": 0.15824937500292435,
+        "generated": [
+          200,
+          15,
+          103
+        ],
+        "prompt": "around",
+        "prompt_tokens": [
+          378
+        ],
+        "requested": 3,
+        "sampling_settings_applied": true,
+        "seed": null,
+        "seed_used": false,
+        "state": "complete",
+        "step_seconds": [
+          0.06799270899500698,
+          0.08511695799825247,
+          0.08482758300669957
+        ],
+        "stop_reason": "Requested token limit reached",
+        "streaming_tokens_per_second": 11.759163512098233,
+        "temperature": "0",
+        "text": "around him. he",
+        "uploaded": 1
+      },
+      "source_backend_log_sha256": "9c9aa9d00b3f480b4621920d2edeeb54f935cf237a0a214ac2d179fd9f5836e3",
+      "source_download_sha256": "685d39685ce98752e86025cd9a28fb9efeb2bfcacca156cd9c654fcbe2bf73ae",
+      "source_observation_sha256": "a5dfbbd5e9ab44bfab6195ab654e3096309bbe5cb0ae1bee6b41b9f10c78f813",
+      "wire": [
+        {
+          "elapsed_ns": 0,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 1
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 67125,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 2
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 4399917,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 3
+        },
+        {
+          "elapsed_ns": 4550958,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 4,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 4649292,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.004659041005652398,
+          "sequence": 5,
+          "token": null
+        },
+        {
+          "elapsed_ns": 4725917,
+          "event": "command_intent",
+          "hex": "a503000000000000000000000000000000000069",
+          "label": "settings",
+          "sequence": 6
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 4774792,
+          "event": "raw_chunk",
+          "hex": "a503000000000000000000000000000000000069",
+          "sequence": 7
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 21373083,
+          "event": "raw_chunk",
+          "hex": "5a830000d6",
+          "sequence": 8
+        },
+        {
+          "elapsed_ns": 21479792,
+          "event": "decoded",
+          "frame_hex": "5a830000d6",
+          "kind": "normal",
+          "response": 131,
+          "sequence": 9,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 21525000,
+          "event": "sampling_settings",
+          "seed": "0x00000000000000000000000000000000",
+          "seed_used": false,
+          "sequence": 10,
+          "temperature": "0"
+        },
+        {
+          "elapsed_ns": 21571542,
+          "event": "command_intent",
+          "hex": "a5007a0196",
+          "label": "append",
+          "sequence": 11
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 21609542,
+          "event": "raw_chunk",
+          "hex": "a5007a0196",
+          "sequence": 12
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 38397417,
+          "event": "raw_chunk",
+          "hex": "5a8000006b",
+          "sequence": 13
+        },
+        {
+          "elapsed_ns": 38482333,
+          "event": "decoded",
+          "frame_hex": "5a8000006b",
+          "kind": "normal",
+          "response": 128,
+          "sequence": 14,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 38526583,
+          "event": "command_result",
+          "operand": 378,
+          "operation": "append",
+          "seconds": 0.016959667002083734,
+          "sequence": 15,
+          "token": null
+        },
+        {
+          "elapsed_ns": 38573500,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 16
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 38612167,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 17
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 106398042,
+          "event": "raw_chunk",
+          "hex": "5a81c80045",
+          "sequence": 18
+        },
+        {
+          "elapsed_ns": 106509083,
+          "event": "decoded",
+          "frame_hex": "5a81c80045",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 19,
+          "token": 200
+        },
+        {
+          "elapsed_ns": 106562375,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.06799270899500698,
+          "sequence": 20,
+          "token": 200
+        },
+        {
+          "elapsed_ns": 106628167,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 21
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 106713667,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 22
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 191507167,
+          "event": "raw_chunk",
+          "hex": "5a810f00c3",
+          "sequence": 23
+        },
+        {
+          "elapsed_ns": 191674583,
+          "event": "decoded",
+          "frame_hex": "5a810f00c3",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 24,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 191740500,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08511695799825247,
+          "sequence": 25,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 191818958,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 26
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 191868292,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 27
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 276414250,
+          "event": "raw_chunk",
+          "hex": "5a8167009e",
+          "sequence": 28
+        },
+        {
+          "elapsed_ns": 276579042,
+          "event": "decoded",
+          "frame_hex": "5a8167009e",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 29,
+          "token": 103
+        },
+        {
+          "elapsed_ns": 276640458,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08482758300669957,
+          "sequence": 30,
+          "token": 103
+        },
+        {
+          "elapsed_ns": 276716667,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 31
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 276758750,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 32
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 293402417,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 33
+        },
+        {
+          "elapsed_ns": 293499875,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 34,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 293539417,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.0168287499982398,
+          "sequence": 35,
+          "token": null
+        }
+      ]
+    },
+    {
+      "connection_started": "reused",
+      "label": "fixed-t05-a",
+      "observation": {
+        "browser": "Chrome",
+        "download_clicked": true,
+        "maximum_new_tokens_value": 3,
+        "observed_utc": "2026-10-23T14:52:21.144Z",
+        "prompt_value": "around",
+        "seed_displayed": "0x99aabbccddeeff001122334455667788",
+        "seed_input_value": "0x99aabbccddeeff001122334455667788",
+        "source_ui_snapshot_sha256": "cee48a95e587efd250ce9e7418c3521436a93be412cd0394387e98915c6d62e1",
+        "story_displayed": "around them with a",
+        "temperature_displayed": "0.5",
+        "temperature_value": "0.5",
+        "tokens_generated_displayed": 3,
+        "url": "http://127.0.0.1:8507"
+      },
+      "reference": {
+        "kind": "packaged",
+        "path": "reference/seeded-sampling/goldens/around128-t1-seed-a.json",
+        "sha256": "e279596a2e6a69149f989a04dcbe6429dacc9cee750c225d4be156bcd3bf86b4"
+      },
+      "result": {
+        "arrivals_seconds": [
+          0.17446966700663324,
+          0.25979608300258406,
+          0.3447402080055326
+        ],
+        "clear_acknowledged": true,
+        "elapsed_seconds": 0.3614014170016162,
+        "error": "",
+        "first_token_seconds": 0.17446966700663324,
+        "generated": [
+          247,
+          130,
+          32
+        ],
+        "prompt": "around",
+        "prompt_tokens": [
+          378
+        ],
+        "requested": 3,
+        "sampling_settings_applied": true,
+        "seed": "0x99aabbccddeeff001122334455667788",
+        "seed_used": true,
+        "state": "complete",
+        "step_seconds": [
+          0.08502625000255648,
+          0.08521058299811557,
+          0.08484441599284764
+        ],
+        "stop_reason": "Requested token limit reached",
+        "streaming_tokens_per_second": 11.74601306994689,
+        "temperature": "0.5",
+        "text": "around them with a",
+        "uploaded": 1
+      },
+      "source_backend_log_sha256": "c495c4eca048b087ebab24d93026c384aab6fc1d6f30748dfb974a9afbb9d396",
+      "source_download_sha256": "fcc7366c921b428f50077e8bbd3c6b1813ba4261bb3d83b685cd9b4eef21645a",
+      "source_observation_sha256": "fa2345ba929f01a0ad2bde736a718fcf1d16e6e95888261147f9eb74d4271497",
+      "wire": [
+        {
+          "elapsed_ns": 0,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 1
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 72375,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 2
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 2917500,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 3
+        },
+        {
+          "elapsed_ns": 3018958,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 4,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 3057916,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.003068208010517992,
+          "sequence": 5,
+          "token": null
+        },
+        {
+          "elapsed_ns": 3109500,
+          "event": "command_intent",
+          "hex": "a50301887766554433221100ffeeddccbbaa99ec",
+          "label": "settings",
+          "sequence": 6
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 3147416,
+          "event": "raw_chunk",
+          "hex": "a50301887766554433221100ffeeddccbbaa99ec",
+          "sequence": 7
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 19919791,
+          "event": "raw_chunk",
+          "hex": "5a830100c3",
+          "sequence": 8
+        },
+        {
+          "elapsed_ns": 20084625,
+          "event": "decoded",
+          "frame_hex": "5a830100c3",
+          "kind": "normal",
+          "response": 131,
+          "sequence": 9,
+          "token": 1
+        },
+        {
+          "elapsed_ns": 20145625,
+          "event": "sampling_settings",
+          "seed": "0x99aabbccddeeff001122334455667788",
+          "seed_used": true,
+          "sequence": 10,
+          "temperature": "0.5"
+        },
+        {
+          "elapsed_ns": 20216083,
+          "event": "command_intent",
+          "hex": "a5007a0196",
+          "label": "append",
+          "sequence": 11
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 20266750,
+          "event": "raw_chunk",
+          "hex": "a5007a0196",
+          "sequence": 12
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 36932541,
+          "event": "raw_chunk",
+          "hex": "5a8000006b",
+          "sequence": 13
+        },
+        {
+          "elapsed_ns": 37047416,
+          "event": "decoded",
+          "frame_hex": "5a8000006b",
+          "kind": "normal",
+          "response": 128,
+          "sequence": 14,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 37101791,
+          "event": "command_result",
+          "operand": 378,
+          "operation": "append",
+          "seconds": 0.016888457990717143,
+          "sequence": 15,
+          "token": null
+        },
+        {
+          "elapsed_ns": 37167708,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 16
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 37211375,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 17
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 121923375,
+          "event": "raw_chunk",
+          "hex": "5a81f7007f",
+          "sequence": 18
+        },
+        {
+          "elapsed_ns": 122120000,
+          "event": "decoded",
+          "frame_hex": "5a81f7007f",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 19,
+          "token": 247
+        },
+        {
+          "elapsed_ns": 122188458,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08502625000255648,
+          "sequence": 20,
+          "token": 247
+        },
+        {
+          "elapsed_ns": 122354208,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 21
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 122446208,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 22
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 206960708,
+          "event": "raw_chunk",
+          "hex": "5a8182009c",
+          "sequence": 23
+        },
+        {
+          "elapsed_ns": 207469166,
+          "event": "decoded",
+          "frame_hex": "5a8182009c",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 24,
+          "token": 130
+        },
+        {
+          "elapsed_ns": 207563375,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08521058299811557,
+          "sequence": 25,
+          "token": 130
+        },
+        {
+          "elapsed_ns": 207682208,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 26
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 207759916,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 27
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 291905875,
+          "event": "raw_chunk",
+          "hex": "5a812000ae",
+          "sequence": 28
+        },
+        {
+          "elapsed_ns": 292424958,
+          "event": "decoded",
+          "frame_hex": "5a812000ae",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 29,
+          "token": 32
+        },
+        {
+          "elapsed_ns": 292521250,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08484441599284764,
+          "sequence": 30,
+          "token": 32
+        },
+        {
+          "elapsed_ns": 292630333,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 31
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 292708958,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 32
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 308933083,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 33
+        },
+        {
+          "elapsed_ns": 309134125,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 34,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 309201291,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.016577125003095716,
+          "sequence": 35,
+          "token": null
+        }
+      ]
+    },
+    {
+      "connection_started": "reused",
+      "label": "fixed-t2-a",
+      "observation": {
+        "browser": "Chrome",
+        "download_clicked": true,
+        "maximum_new_tokens_value": 3,
+        "observed_utc": "2026-10-23T14:54:23.689Z",
+        "prompt_value": "around",
+        "seed_displayed": "0x99aabbccddeeff001122334455667788",
+        "seed_input_value": "0x99aabbccddeeff001122334455667788",
+        "source_ui_snapshot_sha256": "7ad68f6d9154593192b159001ac3799d45977afe3d078b1be8d3e6610ee9e59d",
+        "story_displayed": "aroundchieident but",
+        "temperature_displayed": "2",
+        "temperature_value": "2",
+        "tokens_generated_displayed": 3,
+        "url": "http://127.0.0.1:8507"
+      },
+      "reference": {
+        "kind": "packaged",
+        "path": "reference/seeded-sampling/goldens/around128-t3-seed-a.json",
+        "sha256": "64710280657d5c44af6d7a19f2f64988d62edb92689384d86b30eb62ec531c97"
+      },
+      "result": {
+        "arrivals_seconds": [
+          0.1877422090037726,
+          0.2730056250002235,
+          0.358013667006162
+        ],
+        "clear_acknowledged": true,
+        "elapsed_seconds": 0.3746478340035537,
+        "error": "",
+        "first_token_seconds": 0.1877422090037726,
+        "generated": [
+          3436,
+          4007,
+          141
+        ],
+        "prompt": "around",
+        "prompt_tokens": [
+          378
+        ],
+        "requested": 3,
+        "sampling_settings_applied": true,
+        "seed": "0x99aabbccddeeff001122334455667788",
+        "seed_used": true,
+        "state": "complete",
+        "step_seconds": [
+          0.08504612500837538,
+          0.08516620800946839,
+          0.0849127910041716
+        ],
+        "stop_reason": "Requested token limit reached",
+        "streaming_tokens_per_second": 11.745949811341452,
+        "temperature": "2",
+        "text": "aroundchieident but",
+        "uploaded": 1
+      },
+      "source_backend_log_sha256": "0d0ad04e6b82d6e40088728cc342baa581b3e50665fb92e2f0aae7c3fcdd97bc",
+      "source_download_sha256": "3431beb07359299b09ad126bbb279cbc521997df48a900b6e2790b0d6c0cb4f6",
+      "source_observation_sha256": "770686ba0e950be51fe84e5972a8b0b9e8c6200dc73dded9285357e2240c2332",
+      "wire": [
+        {
+          "elapsed_ns": 0,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 1
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 115667,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 2
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 15897833,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 3
+        },
+        {
+          "elapsed_ns": 16113042,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 4,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 16206333,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.016221166995819658,
+          "sequence": 5,
+          "token": null
+        },
+        {
+          "elapsed_ns": 16296083,
+          "event": "command_intent",
+          "hex": "a50303887766554433221100ffeeddccbbaa99f0",
+          "label": "settings",
+          "sequence": 6
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 16365833,
+          "event": "raw_chunk",
+          "hex": "a50303887766554433221100ffeeddccbbaa99f0",
+          "sequence": 7
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 32841333,
+          "event": "raw_chunk",
+          "hex": "5a830300e9",
+          "sequence": 8
+        },
+        {
+          "elapsed_ns": 33042667,
+          "event": "decoded",
+          "frame_hex": "5a830300e9",
+          "kind": "normal",
+          "response": 131,
+          "sequence": 9,
+          "token": 3
+        },
+        {
+          "elapsed_ns": 33122250,
+          "event": "sampling_settings",
+          "seed": "0x99aabbccddeeff001122334455667788",
+          "seed_used": true,
+          "sequence": 10,
+          "temperature": "2"
+        },
+        {
+          "elapsed_ns": 33190375,
+          "event": "command_intent",
+          "hex": "a5007a0196",
+          "label": "append",
+          "sequence": 11
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 33243417,
+          "event": "raw_chunk",
+          "hex": "a5007a0196",
+          "sequence": 12
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 49811208,
+          "event": "raw_chunk",
+          "hex": "5a8000006b",
+          "sequence": 13
+        },
+        {
+          "elapsed_ns": 49974542,
+          "event": "decoded",
+          "frame_hex": "5a8000006b",
+          "kind": "normal",
+          "response": 128,
+          "sequence": 14,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 50054333,
+          "event": "command_result",
+          "operand": 378,
+          "operation": "append",
+          "seconds": 0.016870749997906387,
+          "sequence": 15,
+          "token": null
+        },
+        {
+          "elapsed_ns": 50120708,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 16
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 50169625,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 17
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 134855667,
+          "event": "raw_chunk",
+          "hex": "5a816c0d2a",
+          "sequence": 18
+        },
+        {
+          "elapsed_ns": 135069833,
+          "event": "decoded",
+          "frame_hex": "5a816c0d2a",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 19,
+          "token": 3436
+        },
+        {
+          "elapsed_ns": 135162333,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08504612500837538,
+          "sequence": 20,
+          "token": 3436
+        },
+        {
+          "elapsed_ns": 135315875,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 21
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 135396542,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 22
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 219853750,
+          "event": "raw_chunk",
+          "hex": "5a81a70f5e",
+          "sequence": 23
+        },
+        {
+          "elapsed_ns": 220382250,
+          "event": "decoded",
+          "frame_hex": "5a81a70f5e",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 24,
+          "token": 4007
+        },
+        {
+          "elapsed_ns": 220475792,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08516620800946839,
+          "sequence": 25,
+          "token": 4007
+        },
+        {
+          "elapsed_ns": 220577958,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 26
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 220656333,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 27
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 304884458,
+          "event": "raw_chunk",
+          "hex": "5a818d005f",
+          "sequence": 28
+        },
+        {
+          "elapsed_ns": 305398500,
+          "event": "decoded",
+          "frame_hex": "5a818d005f",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 29,
+          "token": 141
+        },
+        {
+          "elapsed_ns": 305485250,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.0849127910041716,
+          "sequence": 30,
+          "token": 141
+        },
+        {
+          "elapsed_ns": 305592500,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 31
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 305669667,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 32
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 321856042,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 33
+        },
+        {
+          "elapsed_ns": 322050208,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 34,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 322130625,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.01654245800455101,
+          "sequence": 35,
+          "token": null
+        }
+      ]
+    },
+    {
+      "connection_started": "reused",
+      "label": "repeat-t1-a",
+      "observation": {
+        "browser": "Chrome",
+        "download_clicked": true,
+        "maximum_new_tokens_value": 3,
+        "observed_utc": "2026-10-23T14:55:15.550Z",
+        "prompt_value": "around",
+        "seed_displayed": "0x99aabbccddeeff001122334455667788",
+        "seed_input_value": "0x99aabbccddeeff001122334455667788",
+        "source_ui_snapshot_sha256": "7dc7ec75ec8a1e2f6a7a1028c63a08bc7c3c37b97e4384e19c378decee387f06",
+        "story_displayed": "around noologan",
+        "temperature_displayed": "1",
+        "temperature_value": "1",
+        "tokens_generated_displayed": 3,
+        "url": "http://127.0.0.1:8507"
+      },
+      "reference": {
+        "kind": "packaged",
+        "path": "reference/seeded-sampling/goldens/around128-t2-seed-a.json",
+        "sha256": "65352789f3acd613e2104d8515a51d6873ca15e041ce683d12bc7d2afb345d7b"
+      },
+      "result": {
+        "arrivals_seconds": [
+          0.18677458399906754,
+          0.27170408399251755,
+          0.3567885839875089
+        ],
+        "clear_acknowledged": true,
+        "elapsed_seconds": 0.3737340419902466,
+        "error": "",
+        "first_token_seconds": 0.18677458399906754,
+        "generated": [
+          357,
+          3898,
+          104
+        ],
+        "prompt": "around",
+        "prompt_tokens": [
+          378
+        ],
+        "requested": 3,
+        "sampling_settings_applied": true,
+        "seed": "0x99aabbccddeeff001122334455667788",
+        "seed_used": true,
+        "state": "complete",
+        "step_seconds": [
+          0.07751825000741519,
+          0.084842625001329,
+          0.0849913749989355
+        ],
+        "stop_reason": "Requested token limit reached",
+        "streaming_tokens_per_second": 11.763737104802974,
+        "temperature": "1",
+        "text": "around noologan",
+        "uploaded": 1
+      },
+      "source_backend_log_sha256": "6a715778cba4a6f522fd28a4cd969e249bb75a5091ed634ff986a664897b0c2e",
+      "source_download_sha256": "e07893f6c0da4d336591f1e7da57b3ddc7e5114ab028b7ce9b2a1d3d1fa4053d",
+      "source_observation_sha256": "425862b6112d978444cd2269965530e40eef1f0e8a20c02896442e9938b53af1",
+      "wire": [
+        {
+          "elapsed_ns": 0,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 1
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 130708,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 2
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 16151083,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 3
+        },
+        {
+          "elapsed_ns": 16310375,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 4,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 16373916,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.016395916987676173,
+          "sequence": 5,
+          "token": null
+        },
+        {
+          "elapsed_ns": 16442625,
+          "event": "command_intent",
+          "hex": "a50302887766554433221100ffeeddccbbaa99fe",
+          "label": "settings",
+          "sequence": 6
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 16494416,
+          "event": "raw_chunk",
+          "hex": "a50302887766554433221100ffeeddccbbaa99fe",
+          "sequence": 7
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 33170083,
+          "event": "raw_chunk",
+          "hex": "5a830200fc",
+          "sequence": 8
+        },
+        {
+          "elapsed_ns": 33301166,
+          "event": "decoded",
+          "frame_hex": "5a830200fc",
+          "kind": "normal",
+          "response": 131,
+          "sequence": 9,
+          "token": 2
+        },
+        {
+          "elapsed_ns": 33356375,
+          "event": "sampling_settings",
+          "seed": "0x99aabbccddeeff001122334455667788",
+          "seed_used": true,
+          "sequence": 10,
+          "temperature": "1"
+        },
+        {
+          "elapsed_ns": 33415125,
+          "event": "command_intent",
+          "hex": "a5007a0196",
+          "label": "append",
+          "sequence": 11
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 33465583,
+          "event": "raw_chunk",
+          "hex": "a5007a0196",
+          "sequence": 12
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 57337125,
+          "event": "raw_chunk",
+          "hex": "5a8000006b",
+          "sequence": 13
+        },
+        {
+          "elapsed_ns": 57751750,
+          "event": "decoded",
+          "frame_hex": "5a8000006b",
+          "kind": "normal",
+          "response": 128,
+          "sequence": 14,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 57842500,
+          "event": "command_result",
+          "operand": 378,
+          "operation": "append",
+          "seconds": 0.02442874999542255,
+          "sequence": 15,
+          "token": null
+        },
+        {
+          "elapsed_ns": 57966375,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 16
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 58096500,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 17
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 135185500,
+          "event": "raw_chunk",
+          "hex": "5a816501b3",
+          "sequence": 18
+        },
+        {
+          "elapsed_ns": 135393583,
+          "event": "decoded",
+          "frame_hex": "5a816501b3",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 19,
+          "token": 357
+        },
+        {
+          "elapsed_ns": 135475750,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.07751825000741519,
+          "sequence": 20,
+          "token": 357
+        },
+        {
+          "elapsed_ns": 135599500,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 21
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 135672000,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 22
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 220176541,
+          "event": "raw_chunk",
+          "hex": "5a813a0f56",
+          "sequence": 23
+        },
+        {
+          "elapsed_ns": 220361166,
+          "event": "decoded",
+          "frame_hex": "5a813a0f56",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 24,
+          "token": 3898
+        },
+        {
+          "elapsed_ns": 220436291,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.084842625001329,
+          "sequence": 25,
+          "token": 3898
+        },
+        {
+          "elapsed_ns": 220527666,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 26
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 220594166,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 27
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 305240166,
+          "event": "raw_chunk",
+          "hex": "5a8168005d",
+          "sequence": 28
+        },
+        {
+          "elapsed_ns": 305432333,
+          "event": "decoded",
+          "frame_hex": "5a8168005d",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 29,
+          "token": 104
+        },
+        {
+          "elapsed_ns": 305513166,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.0849913749989355,
+          "sequence": 30,
+          "token": 104
+        },
+        {
+          "elapsed_ns": 305613916,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 31
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 305692500,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 32
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 322237541,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 33
+        },
+        {
+          "elapsed_ns": 322406500,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 34,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 322468083,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.01685879100114107,
+          "sequence": 35,
+          "token": null
+        }
+      ]
+    },
+    {
+      "connection_started": "reused",
+      "label": "fixed-t1-b",
+      "observation": {
+        "browser": "Chrome",
+        "download_clicked": true,
+        "maximum_new_tokens_value": 3,
+        "observed_utc": "2026-10-23T14:55:51.331Z",
+        "prompt_value": "around",
+        "seed_displayed": "0xfefdfcfbfaf9f8f70102030405060708",
+        "seed_input_value": "0xfefdfcfbfaf9f8f70102030405060708",
+        "source_ui_snapshot_sha256": "92907c10714514a86545a5ba06e6b25665610481058f40de99be1a85f0784bd7",
+        "story_displayed": "around, the map",
+        "temperature_displayed": "1",
+        "temperature_value": "1",
+        "tokens_generated_displayed": 3,
+        "url": "http://127.0.0.1:8507"
+      },
+      "reference": {
+        "kind": "packaged",
+        "path": "reference/seeded-sampling/goldens/around128-t2-seed-b.json",
+        "sha256": "4c8a908ab298ac539e6a6f088eb4593f086de558d16a214fcf73d1534a727a03"
+      },
+      "result": {
+        "arrivals_seconds": [
+          0.18901183299021795,
+          0.27401970799837727,
+          0.3589736249996349
+        ],
+        "clear_acknowledged": true,
+        "elapsed_seconds": 0.37588691599376034,
+        "error": "",
+        "first_token_seconds": 0.18901183299021795,
+        "generated": [
+          13,
+          85,
+          592
+        ],
+        "prompt": "around",
+        "prompt_tokens": [
+          378
+        ],
+        "requested": 3,
+        "sampling_settings_applied": true,
+        "seed": "0xfefdfcfbfaf9f8f70102030405060708",
+        "seed_used": true,
+        "state": "complete",
+        "step_seconds": [
+          0.08497995800280478,
+          0.08491137500095647,
+          0.08485349999682512
+        ],
+        "stop_reason": "Requested token limit reached",
+        "streaming_tokens_per_second": 11.767350628364682,
+        "temperature": "1",
+        "text": "around, the map",
+        "uploaded": 1
+      },
+      "source_backend_log_sha256": "6a50cf823b71d7339f54e01c497c04ec10244fef560d398c1c1c23e18af3cef0",
+      "source_download_sha256": "5eea67b1f0a412d00f4eaa01f64bac2c69eb6f62988cc45fd746be5053a45e67",
+      "source_observation_sha256": "21a226699633ddf178c553f0134478fd1e4bad7aaa3b0d9b2a3c401c19ad9fd6",
+      "wire": [
+        {
+          "elapsed_ns": 0,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 1
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 120625,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 2
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 9766166,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 3
+        },
+        {
+          "elapsed_ns": 14450916,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 4,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 14538250,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.014556791007635184,
+          "sequence": 5,
+          "token": null
+        },
+        {
+          "elapsed_ns": 14611375,
+          "event": "command_intent",
+          "hex": "a503020807060504030201f7f8f9fafbfcfdfe89",
+          "label": "settings",
+          "sequence": 6
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 14666500,
+          "event": "raw_chunk",
+          "hex": "a503020807060504030201f7f8f9fafbfcfdfe89",
+          "sequence": 7
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 26696458,
+          "event": "raw_chunk",
+          "hex": "5a830200fc",
+          "sequence": 8
+        },
+        {
+          "elapsed_ns": 26845208,
+          "event": "decoded",
+          "frame_hex": "5a830200fc",
+          "kind": "normal",
+          "response": 131,
+          "sequence": 9,
+          "token": 2
+        },
+        {
+          "elapsed_ns": 26908500,
+          "event": "sampling_settings",
+          "seed": "0xfefdfcfbfaf9f8f70102030405060708",
+          "seed_used": true,
+          "sequence": 10,
+          "temperature": "1"
+        },
+        {
+          "elapsed_ns": 26984333,
+          "event": "command_intent",
+          "hex": "a5007a0196",
+          "label": "append",
+          "sequence": 11
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 27042416,
+          "event": "raw_chunk",
+          "hex": "a5007a0196",
+          "sequence": 12
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 43720500,
+          "event": "raw_chunk",
+          "hex": "5a8000006b",
+          "sequence": 13
+        },
+        {
+          "elapsed_ns": 43861791,
+          "event": "decoded",
+          "frame_hex": "5a8000006b",
+          "kind": "normal",
+          "response": 128,
+          "sequence": 14,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 43916458,
+          "event": "command_result",
+          "operand": 378,
+          "operation": "append",
+          "seconds": 0.01693679099844303,
+          "sequence": 15,
+          "token": null
+        },
+        {
+          "elapsed_ns": 43993125,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 16
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 44048791,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 17
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 128717750,
+          "event": "raw_chunk",
+          "hex": "5a810d00e9",
+          "sequence": 18
+        },
+        {
+          "elapsed_ns": 128884458,
+          "event": "decoded",
+          "frame_hex": "5a810d00e9",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 19,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 128970250,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08497995800280478,
+          "sequence": 20,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 129135000,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 21
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 129211083,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 22
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 213726583,
+          "event": "raw_chunk",
+          "hex": "5a8155004d",
+          "sequence": 23
+        },
+        {
+          "elapsed_ns": 213929083,
+          "event": "decoded",
+          "frame_hex": "5a8155004d",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 24,
+          "token": 85
+        },
+        {
+          "elapsed_ns": 214039708,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08491137500095647,
+          "sequence": 25,
+          "token": 85
+        },
+        {
+          "elapsed_ns": 214144875,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 26
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 214226875,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 27
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 298703875,
+          "event": "raw_chunk",
+          "hex": "5a81500202",
+          "sequence": 28
+        },
+        {
+          "elapsed_ns": 298900625,
+          "event": "decoded",
+          "frame_hex": "5a81500202",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 29,
+          "token": 592
+        },
+        {
+          "elapsed_ns": 298993083,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08485349999682512,
+          "sequence": 30,
+          "token": 592
+        },
+        {
+          "elapsed_ns": 299103125,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 31
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 299194916,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 32
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 315699000,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 33
+        },
+        {
+          "elapsed_ns": 315852833,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 34,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 315920916,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.016822749996208586,
+          "sequence": 35,
+          "token": null
+        }
+      ]
+    },
+    {
+      "connection_started": "reused",
+      "label": "automatic-1",
+      "observation": {
+        "browser": "Chrome",
+        "download_clicked": true,
+        "maximum_new_tokens_value": 3,
+        "observed_utc": "2026-10-23T14:58:11.406Z",
+        "prompt_value": "around",
+        "seed_displayed": "0xb40ec9d9a968cb195c4ca5a352193fcb",
+        "seed_input_value": "",
+        "source_ui_snapshot_sha256": "fc434b9befbb44de66cfb5777effbaebab52324e9eb5067aa55eb77d79f38258",
+        "story_displayed": "around the dinosaurs,",
+        "temperature_displayed": "1",
+        "temperature_value": "1",
+        "tokens_generated_displayed": 3,
+        "url": "http://127.0.0.1:8507"
+      },
+      "reference": {
+        "engine": "scalar",
+        "evaluated_positions": 3,
+        "final_kv_sha256": "9e5435c1753f13425b4c0f597bd06c23f03fd45167748b247d53ad6107b042e6",
+        "final_prng_state": [
+          "0x5059af2ec90983c2",
+          "0xbcedae890a4b33d8"
+        ],
+        "generated_tokens": [
+          85,
+          1949,
+          13
+        ],
+        "head_rows_sha256": [
+          "f4077c017627e90172da6aac57bb8bc9d2305cdc9808b3a804b2c8df0c059779",
+          "daff2d9aa8c754823aa85ed816e0eeba0af543767c0a0992ba3729c90f85a20b",
+          "40d53795766d400df729591c6d6bd5605f4fd317f8380fdb5d1300090ddef5cf"
+        ],
+        "kind": "fresh-portable",
+        "prompt_tokens": [
+          378
+        ],
+        "seed": "0xb40ec9d9a968cb195c4ca5a352193fcb",
+        "source_inventory_sha256": "bc5e2dce531cf10b05590dee483f9f561f5fd8b5bfa82f73022ef93952667897",
+        "source_receipt_sha256": "87624e9a0a47a19f1c1f979bb8e5f6acc4325bcf6ed9fb3879e65f5c39498c71",
+        "temperature": "1"
+      },
+      "result": {
+        "arrivals_seconds": [
+          0.1887992080010008,
+          0.2741080419946229,
+          0.3588015830027871
+        ],
+        "clear_acknowledged": true,
+        "elapsed_seconds": 0.37587258299754467,
+        "error": "",
+        "first_token_seconds": 0.1887992080010008,
+        "generated": [
+          85,
+          1949,
+          13
+        ],
+        "prompt": "around",
+        "prompt_tokens": [
+          378
+        ],
+        "requested": 3,
+        "sampling_settings_applied": true,
+        "seed": "0xb40ec9d9a968cb195c4ca5a352193fcb",
+        "seed_used": true,
+        "state": "complete",
+        "step_seconds": [
+          0.0847792910062708,
+          0.08514745799766388,
+          0.08462241699453443
+        ],
+        "stop_reason": "Requested token limit reached",
+        "streaming_tokens_per_second": 11.764541524663906,
+        "temperature": "1",
+        "text": "around the dinosaurs,",
+        "uploaded": 1
+      },
+      "source_backend_log_sha256": "ddf9ef95b0c3a1d2fd1f0e5a78714ead716ac9a33489000e7e400513826dcc5d",
+      "source_download_sha256": "3200f13c059322b098e790bc6e559cf4d22162dc9068b92b3badf85e1d6ddc47",
+      "source_observation_sha256": "40dff5792470ac843320b205c736bb43670f97f25b1b23c0b10be02f8fffa454",
+      "wire": [
+        {
+          "elapsed_ns": 0,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 1
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 62917,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 2
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 19031459,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 3
+        },
+        {
+          "elapsed_ns": 19214542,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 4,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 19440584,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.019446666992735118,
+          "sequence": 5,
+          "token": null
+        },
+        {
+          "elapsed_ns": 19524500,
+          "event": "command_intent",
+          "hex": "a50302cb3f1952a3a54c5c19cb68a9d9c90eb48b",
+          "label": "settings",
+          "sequence": 6
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 19593125,
+          "event": "raw_chunk",
+          "hex": "a50302cb3f1952a3a54c5c19cb68a9d9c90eb48b",
+          "sequence": 7
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 32168917,
+          "event": "raw_chunk",
+          "hex": "5a830200fc",
+          "sequence": 8
+        },
+        {
+          "elapsed_ns": 32278250,
+          "event": "decoded",
+          "frame_hex": "5a830200fc",
+          "kind": "normal",
+          "response": 131,
+          "sequence": 9,
+          "token": 2
+        },
+        {
+          "elapsed_ns": 32334334,
+          "event": "sampling_settings",
+          "seed": "0xb40ec9d9a968cb195c4ca5a352193fcb",
+          "seed_used": true,
+          "sequence": 10,
+          "temperature": "1"
+        },
+        {
+          "elapsed_ns": 32406292,
+          "event": "command_intent",
+          "hex": "a5007a0196",
+          "label": "append",
+          "sequence": 11
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 32472542,
+          "event": "raw_chunk",
+          "hex": "a5007a0196",
+          "sequence": 12
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 49164209,
+          "event": "raw_chunk",
+          "hex": "5a8000006b",
+          "sequence": 13
+        },
+        {
+          "elapsed_ns": 49300625,
+          "event": "decoded",
+          "frame_hex": "5a8000006b",
+          "kind": "normal",
+          "response": 128,
+          "sequence": 14,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 49385459,
+          "event": "command_result",
+          "operand": 378,
+          "operation": "append",
+          "seconds": 0.0169851669925265,
+          "sequence": 15,
+          "token": null
+        },
+        {
+          "elapsed_ns": 49520042,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 16
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 49626792,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 17
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 134129792,
+          "event": "raw_chunk",
+          "hex": "5a8155004d",
+          "sequence": 18
+        },
+        {
+          "elapsed_ns": 134230209,
+          "event": "decoded",
+          "frame_hex": "5a8155004d",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 19,
+          "token": 85
+        },
+        {
+          "elapsed_ns": 134274917,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.0847792910062708,
+          "sequence": 20,
+          "token": 85
+        },
+        {
+          "elapsed_ns": 134362459,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 21
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 134403542,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 22
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 219240834,
+          "event": "raw_chunk",
+          "hex": "5a819d071d",
+          "sequence": 23
+        },
+        {
+          "elapsed_ns": 219386250,
+          "event": "decoded",
+          "frame_hex": "5a819d071d",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 24,
+          "token": 1949
+        },
+        {
+          "elapsed_ns": 219505375,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08514745799766388,
+          "sequence": 25,
+          "token": 1949
+        },
+        {
+          "elapsed_ns": 219674667,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 26
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 219762625,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 27
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 304148375,
+          "event": "raw_chunk",
+          "hex": "5a810d00e9",
+          "sequence": 28
+        },
+        {
+          "elapsed_ns": 304236459,
+          "event": "decoded",
+          "frame_hex": "5a810d00e9",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 29,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 304291042,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08462241699453443,
+          "sequence": 30,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 304367375,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 31
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 304420917,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 32
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 321222125,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 33
+        },
+        {
+          "elapsed_ns": 321302625,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 34,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 321348959,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.01698758300335612,
+          "sequence": 35,
+          "token": null
+        }
+      ]
+    },
+    {
+      "connection_started": "reused",
+      "label": "automatic-2",
+      "observation": {
+        "browser": "Chrome",
+        "download_clicked": true,
+        "maximum_new_tokens_value": 3,
+        "observed_utc": "2026-10-23T14:58:52.000Z",
+        "prompt_value": "around",
+        "seed_displayed": "0xa9bf4ebdf509698fadfb25dac36d24b0",
+        "seed_input_value": "",
+        "source_ui_snapshot_sha256": "e849ecd520a93f088a678865a35ac7c275f02f2bc344ad25f55be814ee94380b",
+        "story_displayed": "around him. below",
+        "temperature_displayed": "1",
+        "temperature_value": "1",
+        "tokens_generated_displayed": 3,
+        "url": "http://127.0.0.1:8507"
+      },
+      "reference": {
+        "engine": "scalar",
+        "evaluated_positions": 3,
+        "final_kv_sha256": "53217f89509a2d323c9008fe9353c8385dc43b91ed7a3fa4d4124c88bcbbdac1",
+        "final_prng_state": [
+          "0xb9c5f4f1717492f4",
+          "0x84d0e62bc6eaded2"
+        ],
+        "generated_tokens": [
+          200,
+          15,
+          1361
+        ],
+        "head_rows_sha256": [
+          "f4077c017627e90172da6aac57bb8bc9d2305cdc9808b3a804b2c8df0c059779",
+          "883a2d7a0312242b3ff3316c72ad94f0e80336eda9bdf1462b47a828c5d0529c",
+          "beb9c38ee03e81dc2f1d159e0e68636f264c8920aecc75fdf625b5601aa05018"
+        ],
+        "kind": "fresh-portable",
+        "prompt_tokens": [
+          378
+        ],
+        "seed": "0xa9bf4ebdf509698fadfb25dac36d24b0",
+        "source_inventory_sha256": "bc5e2dce531cf10b05590dee483f9f561f5fd8b5bfa82f73022ef93952667897",
+        "source_receipt_sha256": "36245f5c75b3abf67bfd36a5dd26267bacc062c285af34be00f4c1836c45c4f7",
+        "temperature": "1"
+      },
+      "result": {
+        "arrivals_seconds": [
+          0.19734437500301283,
+          0.2691583330015419,
+          0.35410379100358114
+        ],
+        "clear_acknowledged": true,
+        "elapsed_seconds": 0.3711432080017403,
+        "error": "",
+        "first_token_seconds": 0.19734437500301283,
+        "generated": [
+          200,
+          15,
+          1361
+        ],
+        "prompt": "around",
+        "prompt_tokens": [
+          378
+        ],
+        "requested": 3,
+        "sampling_settings_applied": true,
+        "seed": "0xa9bf4ebdf509698fadfb25dac36d24b0",
+        "seed_used": true,
+        "state": "complete",
+        "step_seconds": [
+          0.09804445800546091,
+          0.07173758299904875,
+          0.08488591700734105
+        ],
+        "stop_reason": "Requested token limit reached",
+        "streaming_tokens_per_second": 12.758404254279368,
+        "temperature": "1",
+        "text": "around him. below",
+        "uploaded": 1
+      },
+      "source_backend_log_sha256": "990ec8705bec72e02fa293f5de05f84c7b0c89138daf3ee8aca789257eed41aa",
+      "source_download_sha256": "f291f13871b017a0e5eb66f4e87df757f5db13edfea6d68076b2027f4e9c960b",
+      "source_observation_sha256": "f7ab63e3e6ee5ad70799c976837761e64f04ea92a80cd1b40efae7460a1d0788",
+      "wire": [
+        {
+          "elapsed_ns": 0,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 1
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 52250,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 2
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 10153208,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 3
+        },
+        {
+          "elapsed_ns": 10263125,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 4,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 10306875,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.010316625004634261,
+          "sequence": 5,
+          "token": null
+        },
+        {
+          "elapsed_ns": 10372542,
+          "event": "command_intent",
+          "hex": "a50302b0246dc3da25fbad8f6909f5bd4ebfa964",
+          "label": "settings",
+          "sequence": 6
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 10417500,
+          "event": "raw_chunk",
+          "hex": "a50302b0246dc3da25fbad8f6909f5bd4ebfa964",
+          "sequence": 7
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 27295208,
+          "event": "raw_chunk",
+          "hex": "5a830200fc",
+          "sequence": 8
+        },
+        {
+          "elapsed_ns": 27438042,
+          "event": "decoded",
+          "frame_hex": "5a830200fc",
+          "kind": "normal",
+          "response": 131,
+          "sequence": 9,
+          "token": 2
+        },
+        {
+          "elapsed_ns": 27515333,
+          "event": "sampling_settings",
+          "seed": "0xa9bf4ebdf509698fadfb25dac36d24b0",
+          "seed_used": true,
+          "sequence": 10,
+          "temperature": "1"
+        },
+        {
+          "elapsed_ns": 27575583,
+          "event": "command_intent",
+          "hex": "a5007a0196",
+          "label": "append",
+          "sequence": 11
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 27624042,
+          "event": "raw_chunk",
+          "hex": "a5007a0196",
+          "sequence": 12
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 44239417,
+          "event": "raw_chunk",
+          "hex": "5a8000006b",
+          "sequence": 13
+        },
+        {
+          "elapsed_ns": 44373792,
+          "event": "decoded",
+          "frame_hex": "5a8000006b",
+          "kind": "normal",
+          "response": 128,
+          "sequence": 14,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 44434250,
+          "event": "command_result",
+          "operand": 378,
+          "operation": "append",
+          "seconds": 0.016861875003087334,
+          "sequence": 15,
+          "token": null
+        },
+        {
+          "elapsed_ns": 44511208,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 16
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 44566167,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 17
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 142136750,
+          "event": "raw_chunk",
+          "hex": "5a81c80045",
+          "sequence": 18
+        },
+        {
+          "elapsed_ns": 142451125,
+          "event": "decoded",
+          "frame_hex": "5a81c80045",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 19,
+          "token": 200
+        },
+        {
+          "elapsed_ns": 142551375,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.09804445800546091,
+          "sequence": 20,
+          "token": 200
+        },
+        {
+          "elapsed_ns": 142662208,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 21
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 142825000,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 22
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 214146458,
+          "event": "raw_chunk",
+          "hex": "5a810f00c3",
+          "sequence": 23
+        },
+        {
+          "elapsed_ns": 214318792,
+          "event": "decoded",
+          "frame_hex": "5a810f00c3",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 24,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 214395583,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.07173758299904875,
+          "sequence": 25,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 214483708,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 26
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 214566917,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 27
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 299162208,
+          "event": "raw_chunk",
+          "hex": "5a81510502",
+          "sequence": 28
+        },
+        {
+          "elapsed_ns": 299315875,
+          "event": "decoded",
+          "frame_hex": "5a81510502",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 29,
+          "token": 1361
+        },
+        {
+          "elapsed_ns": 299360625,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08488591700734105,
+          "sequence": 30,
+          "token": 1361
+        },
+        {
+          "elapsed_ns": 299426417,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 31
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 299464375,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 32
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 316188208,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 33
+        },
+        {
+          "elapsed_ns": 316327083,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 34,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 316383375,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.016961375004029833,
+          "sequence": 35,
+          "token": null
+        }
+      ]
+    },
+    {
+      "connection_started": "reused",
+      "label": "stopped-t1-b",
+      "observation": {
+        "before_stop_state": "generating",
+        "before_stop_tokens_generated": 75,
+        "browser": "Chrome",
+        "download_clicked": true,
+        "maximum_new_tokens_value": 128,
+        "observed_utc": "2026-10-23T15:02:32.364Z",
+        "prompt_value": "around",
+        "seed_displayed": "0xfefdfcfbfaf9f8f70102030405060708",
+        "seed_input_value": "0xfefdfcfbfaf9f8f70102030405060708",
+        "source_before_stop_snapshot_sha256": "5c8a8ba0e22db10219d8aedaed65fd40308c5a067b8dd6a75e128b49bfe90222",
+        "source_ui_snapshot_sha256": "31d0a14fce3a914c61375cac3c4942ccd228db69d6e83ca89001fc6e9c4b679f",
+        "stop_clicked": true,
+        "story_displayed": "around, the map glowing dimly. they were not just a map ; they were part of a secret society, tempting the lost souls. rita felt a spark of excitement as they plotted and quietly thinking of what to do next. as they walked, they saw old. they created stories and laughter, filling the air with joy. each tale would tell of bravery, yet as they",
+        "temperature_displayed": "1",
+        "temperature_value": "1",
+        "tokens_generated_displayed": 77,
+        "url": "http://127.0.0.1:8507"
+      },
+      "reference": {
+        "kind": "packaged",
+        "path": "reference/seeded-sampling/goldens/around128-t2-seed-b.json",
+        "sha256": "4c8a908ab298ac539e6a6f088eb4593f086de558d16a214fcf73d1534a727a03"
+      },
+      "result": {
+        "arrivals_seconds": [
+          0.1919737919961335,
+          0.2766784590057796,
+          0.361751667005592,
+          0.44667079199280124,
+          0.5317438750062138,
+          0.6168001670012018,
+          0.7020140420063399,
+          0.7867499999993015,
+          0.8757988750003278,
+          0.9566221669956576,
+          1.041773374992772,
+          1.126926333992742,
+          1.2116789169958793,
+          1.2967561669938732,
+          1.3816557090030983,
+          1.4774105840042466,
+          1.5689450000063516,
+          1.6538330000039423,
+          1.7388092089968268,
+          1.8237002919922816,
+          1.9086402499960968,
+          1.9936181670054793,
+          2.0786724999925354,
+          2.1636375420057448,
+          2.2489781670010416,
+          2.333706292003626,
+          2.418648624996422,
+          2.503866041995934,
+          2.605855250003515,
+          2.7076477090013213,
+          2.809567792006419,
+          2.9117013340000995,
+          3.0136069589934777,
+          3.1156650420016376,
+          3.2177677919971757,
+          3.3196375419938704,
+          3.421582833994762,
+          3.523808084006305,
+          3.625773209001636,
+          3.7292025000060676,
+          3.8295558749960037,
+          3.9316319589997875,
+          4.033602334005991,
+          4.135697417004849,
+          4.237518084002659,
+          4.339473416999681,
+          4.441535624995595,
+          4.543452333993628,
+          4.645602042000974,
+          4.747451584000373,
+          4.849786000006134,
+          4.951728208994609,
+          5.053556750004645,
+          5.155686958998558,
+          5.2575132500060135,
+          5.359519374993397,
+          5.462847167000291,
+          5.580537709000055,
+          5.702550583999255,
+          5.818419792005443,
+          5.9373552089964505,
+          6.062744750001002,
+          6.175578541995492,
+          6.294373458993505,
+          6.413591208998696,
+          6.532536333994358,
+          6.651510541996686,
+          6.77805283399357,
+          6.889339458997711,
+          7.009011250003823,
+          7.127487374993507,
+          7.246454709005775,
+          7.365319459000602,
+          7.484282000004896,
+          7.603674208992743,
+          7.722434124996653,
+          7.84142337499361
+        ],
+        "clear_acknowledged": true,
+        "elapsed_seconds": 7.875954125003773,
+        "error": "",
+        "first_token_seconds": 0.1919737919961335,
+        "generated": [
+          13,
+          85,
+          592,
+          959,
+          2524,
+          145,
+          15,
+          111,
+          294,
+          190,
+          299,
+          32,
+          592,
+          28,
+          111,
+          294,
+          770,
+          115,
+          32,
+          590,
+          2253,
+          13,
+          3547,
+          699,
+          92,
+          85,
+          381,
+          3040,
+          15,
+          570,
+          157,
+          32,
+          478,
+          115,
+          789,
+          140,
+          111,
+          4002,
+          94,
+          1592,
+          989,
+          115,
+          251,
+          93,
+          280,
+          842,
+          15,
+          140,
+          111,
+          542,
+          13,
+          111,
+          354,
+          342,
+          15,
+          111,
+          1414,
+          416,
+          94,
+          450,
+          13,
+          1565,
+          85,
+          459,
+          130,
+          297,
+          15,
+          282,
+          1518,
+          300,
+          1001,
+          115,
+          1813,
+          13,
+          968,
+          140,
+          111
+        ],
+        "prompt": "around",
+        "prompt_tokens": [
+          378
+        ],
+        "requested": 128,
+        "sampling_settings_applied": true,
+        "seed": "0xfefdfcfbfaf9f8f70102030405060708",
+        "seed_used": true,
+        "state": "stopped",
+        "step_seconds": [
+          0.08369908400345594,
+          0.08464804099639878,
+          0.08501962499576621,
+          0.08486045799509156,
+          0.08499279200623278,
+          0.08496691699838266,
+          0.08509133399638813,
+          0.08462566600064747,
+          0.08895662499708124,
+          0.08076054199773353,
+          0.08507945798919536,
+          0.0849984590022359,
+          0.08467379200737923,
+          0.08498500000860076,
+          0.08482108300086111,
+          0.09563595800136682,
+          0.09138225000060629,
+          0.08472754100512248,
+          0.0848696250031935,
+          0.08480654199956916,
+          0.0848375419882359,
+          0.08490412500395905,
+          0.08495208399835974,
+          0.08487887500086799,
+          0.0851694159937324,
+          0.08454729100049008,
+          0.08485470799496397,
+          0.08507708400429692,
+          0.10188383399508893,
+          0.10165429199696518,
+          0.10181758399994578,
+          0.10200283300946467,
+          0.10177829099120572,
+          0.10188862500945106,
+          0.1019322910142364,
+          0.10174475000530947,
+          0.10184145800303668,
+          0.10204895799688529,
+          0.1017511249956442,
+          0.10328675000346266,
+          0.10022937499161344,
+          0.10192524999729358,
+          0.10183674999279901,
+          0.10192237500450574,
+          0.10163483300129883,
+          0.10184950000257231,
+          0.10196625000389758,
+          0.10181820800062269,
+          0.10204158299893606,
+          0.10172099999908824,
+          0.10211416700622067,
+          0.10177841699623968,
+          0.1016304160002619,
+          0.10197966700070538,
+          0.10170745798677672,
+          0.10189770799479447,
+          0.10313704099098686,
+          0.11758374999044463,
+          0.12183079100213945,
+          0.11573341699840967,
+          0.11883245799981523,
+          0.12512966699432582,
+          0.11270300000614952,
+          0.1186882919864729,
+          0.1190808749961434,
+          0.11880424999981187,
+          0.11883483399287798,
+          0.12640845800342504,
+          0.1111500000115484,
+          0.11955454100097995,
+          0.11830904200905934,
+          0.11875533401325811,
+          0.1187133339990396,
+          0.11883345800742973,
+          0.11917849999736063,
+          0.11861104199488182,
+          0.11883450001187157
+        ],
+        "stop_reason": "Stopped by you",
+        "streaming_tokens_per_second": 9.935355371048672,
+        "temperature": "1",
+        "text": "around, the map glowing dimly. they were not just a map ; they were part of a secret society, tempting the lost souls. rita felt a spark of excitement as they plotted and quietly thinking of what to do next. as they walked, they saw old. they created stories and laughter, filling the air with joy. each tale would tell of bravery, yet as they",
+        "uploaded": 1
+      },
+      "source_backend_log_sha256": "385caf973a9cbf0a36f07274588084ad1dbc32a71bc3df72472b6f0969e3cbc8",
+      "source_download_sha256": "1ff7e6720a7a3b2bee8ee34cfc24d93fc96127671ee2acaef6fc8b92f7be6ed3",
+      "source_observation_sha256": "3c4dd0d8a777da723d076fe56c5a112c8c7b89826c46cdb5fd14f705c755c337",
+      "wire": [
+        {
+          "elapsed_ns": 0,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 1
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 105500,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 2
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 18011750,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 3
+        },
+        {
+          "elapsed_ns": 18261083,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 4,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 18356375,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.0183708749973448,
+          "sequence": 5,
+          "token": null
+        },
+        {
+          "elapsed_ns": 18495000,
+          "event": "command_intent",
+          "hex": "a503020807060504030201f7f8f9fafbfcfdfe89",
+          "label": "settings",
+          "sequence": 6
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 18596125,
+          "event": "raw_chunk",
+          "hex": "a503020807060504030201f7f8f9fafbfcfdfe89",
+          "sequence": 7
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 33432958,
+          "event": "raw_chunk",
+          "hex": "5a830200fc",
+          "sequence": 8
+        },
+        {
+          "elapsed_ns": 33821083,
+          "event": "decoded",
+          "frame_hex": "5a830200fc",
+          "kind": "normal",
+          "response": 131,
+          "sequence": 9,
+          "token": 2
+        },
+        {
+          "elapsed_ns": 33875791,
+          "event": "sampling_settings",
+          "seed": "0xfefdfcfbfaf9f8f70102030405060708",
+          "seed_used": true,
+          "sequence": 10,
+          "temperature": "1"
+        },
+        {
+          "elapsed_ns": 33974458,
+          "event": "command_intent",
+          "hex": "a5007a0196",
+          "label": "append",
+          "sequence": 11
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 34043166,
+          "event": "raw_chunk",
+          "hex": "a5007a0196",
+          "sequence": 12
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 50408333,
+          "event": "raw_chunk",
+          "hex": "5a8000006b",
+          "sequence": 13
+        },
+        {
+          "elapsed_ns": 51959458,
+          "event": "decoded",
+          "frame_hex": "5a8000006b",
+          "kind": "normal",
+          "response": 128,
+          "sequence": 14,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 52015416,
+          "event": "command_result",
+          "operand": 378,
+          "operation": "append",
+          "seconds": 0.01804800001264084,
+          "sequence": 15,
+          "token": null
+        },
+        {
+          "elapsed_ns": 52070291,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 16
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 52124750,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 17
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 135509083,
+          "event": "raw_chunk",
+          "hex": "5a810d00e9",
+          "sequence": 18
+        },
+        {
+          "elapsed_ns": 135674833,
+          "event": "decoded",
+          "frame_hex": "5a810d00e9",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 19,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 135768750,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08369908400345594,
+          "sequence": 20,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 135900583,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 21
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 135951000,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 22
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 220397250,
+          "event": "raw_chunk",
+          "hex": "5a8155004d",
+          "sequence": 23
+        },
+        {
+          "elapsed_ns": 220503083,
+          "event": "decoded",
+          "frame_hex": "5a8155004d",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 24,
+          "token": 85
+        },
+        {
+          "elapsed_ns": 220540458,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08464804099639878,
+          "sequence": 25,
+          "token": 85
+        },
+        {
+          "elapsed_ns": 220595833,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 26
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 220633000,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 27
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 305456208,
+          "event": "raw_chunk",
+          "hex": "5a81500202",
+          "sequence": 28
+        },
+        {
+          "elapsed_ns": 305570875,
+          "event": "decoded",
+          "frame_hex": "5a81500202",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 29,
+          "token": 592
+        },
+        {
+          "elapsed_ns": 305611416,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08501962499576621,
+          "sequence": 30,
+          "token": 592
+        },
+        {
+          "elapsed_ns": 305673916,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 31
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 305782500,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 32
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 390374208,
+          "event": "raw_chunk",
+          "hex": "5a81bf0385",
+          "sequence": 33
+        },
+        {
+          "elapsed_ns": 390484208,
+          "event": "decoded",
+          "frame_hex": "5a81bf0385",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 34,
+          "token": 959
+        },
+        {
+          "elapsed_ns": 390529666,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08486045799509156,
+          "sequence": 35,
+          "token": 959
+        },
+        {
+          "elapsed_ns": 390592291,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 36
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 390634375,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 37
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 475425416,
+          "event": "raw_chunk",
+          "hex": "5a81dc0979",
+          "sequence": 38
+        },
+        {
+          "elapsed_ns": 475537416,
+          "event": "decoded",
+          "frame_hex": "5a81dc0979",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 39,
+          "token": 2524
+        },
+        {
+          "elapsed_ns": 475584541,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08499279200623278,
+          "sequence": 40,
+          "token": 2524
+        },
+        {
+          "elapsed_ns": 475674666,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 41
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 475731750,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 42
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 560467166,
+          "event": "raw_chunk",
+          "hex": "5a819100f4",
+          "sequence": 43
+        },
+        {
+          "elapsed_ns": 560583916,
+          "event": "decoded",
+          "frame_hex": "5a819100f4",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 44,
+          "token": 145
+        },
+        {
+          "elapsed_ns": 560636375,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08496691699838266,
+          "sequence": 45,
+          "token": 145
+        },
+        {
+          "elapsed_ns": 560732208,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 46
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 560791583,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 47
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 645522083,
+          "event": "raw_chunk",
+          "hex": "5a810f00c3",
+          "sequence": 48
+        },
+        {
+          "elapsed_ns": 645691625,
+          "event": "decoded",
+          "frame_hex": "5a810f00c3",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 49,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 645818000,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08509133399638813,
+          "sequence": 50,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 645950000,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 51
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 652733583,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 52
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 730351291,
+          "event": "raw_chunk",
+          "hex": "5a816f0036",
+          "sequence": 53
+        },
+        {
+          "elapsed_ns": 730482291,
+          "event": "decoded",
+          "frame_hex": "5a816f0036",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 54,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 730571583,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08462566600064747,
+          "sequence": 55,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 730685375,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 56
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 730752708,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 57
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 819408250,
+          "event": "raw_chunk",
+          "hex": "5a812601d7",
+          "sequence": 58
+        },
+        {
+          "elapsed_ns": 819573708,
+          "event": "decoded",
+          "frame_hex": "5a812601d7",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 59,
+          "token": 294
+        },
+        {
+          "elapsed_ns": 819632166,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08895662499708124,
+          "sequence": 60,
+          "token": 294
+        },
+        {
+          "elapsed_ns": 819727125,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 61
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 819795583,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 62
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 900321333,
+          "event": "raw_chunk",
+          "hex": "5a81be0099",
+          "sequence": 63
+        },
+        {
+          "elapsed_ns": 900440250,
+          "event": "decoded",
+          "frame_hex": "5a81be0099",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 64,
+          "token": 190
+        },
+        {
+          "elapsed_ns": 900481875,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08076054199773353,
+          "sequence": 65,
+          "token": 190
+        },
+        {
+          "elapsed_ns": 900553291,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 66
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 900594416,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 67
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 985421041,
+          "event": "raw_chunk",
+          "hex": "5a812b013e",
+          "sequence": 68
+        },
+        {
+          "elapsed_ns": 985576291,
+          "event": "decoded",
+          "frame_hex": "5a812b013e",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 69,
+          "token": 299
+        },
+        {
+          "elapsed_ns": 985628541,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08507945798919536,
+          "sequence": 70,
+          "token": 299
+        },
+        {
+          "elapsed_ns": 985707083,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 71
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 985756750,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 72
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 1070346750,
+          "event": "raw_chunk",
+          "hex": "5a812000ae",
+          "sequence": 73
+        },
+        {
+          "elapsed_ns": 1070605750,
+          "event": "decoded",
+          "frame_hex": "5a812000ae",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 74,
+          "token": 32
+        },
+        {
+          "elapsed_ns": 1070711583,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.0849984590022359,
+          "sequence": 75,
+          "token": 32
+        },
+        {
+          "elapsed_ns": 1070868000,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 76
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 1070962833,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 77
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 1155351708,
+          "event": "raw_chunk",
+          "hex": "5a81500202",
+          "sequence": 78
+        },
+        {
+          "elapsed_ns": 1155475583,
+          "event": "decoded",
+          "frame_hex": "5a81500202",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 79,
+          "token": 592
+        },
+        {
+          "elapsed_ns": 1155533458,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08467379200737923,
+          "sequence": 80,
+          "token": 592
+        },
+        {
+          "elapsed_ns": 1155612916,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 81
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 1155661916,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 82
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 1240375666,
+          "event": "raw_chunk",
+          "hex": "5a811c00ab",
+          "sequence": 83
+        },
+        {
+          "elapsed_ns": 1240519416,
+          "event": "decoded",
+          "frame_hex": "5a811c00ab",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 84,
+          "token": 28
+        },
+        {
+          "elapsed_ns": 1240593375,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08498500000860076,
+          "sequence": 85,
+          "token": 28
+        },
+        {
+          "elapsed_ns": 1240692458,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 86
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 1240750833,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 87
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 1325336583,
+          "event": "raw_chunk",
+          "hex": "5a816f0036",
+          "sequence": 88
+        },
+        {
+          "elapsed_ns": 1325459375,
+          "event": "decoded",
+          "frame_hex": "5a816f0036",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 89,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 1325508708,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08482108300086111,
+          "sequence": 90,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 1325589166,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 91
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 1325644125,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 92
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 1421020875,
+          "event": "raw_chunk",
+          "hex": "5a812601d7",
+          "sequence": 93
+        },
+        {
+          "elapsed_ns": 1421140000,
+          "event": "decoded",
+          "frame_hex": "5a812601d7",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 94,
+          "token": 294
+        },
+        {
+          "elapsed_ns": 1421224208,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.09563595800136682,
+          "sequence": 95,
+          "token": 294
+        },
+        {
+          "elapsed_ns": 1421351875,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 96
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 1421430875,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 97
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 1512433416,
+          "event": "raw_chunk",
+          "hex": "5a81020323",
+          "sequence": 98
+        },
+        {
+          "elapsed_ns": 1512609041,
+          "event": "decoded",
+          "frame_hex": "5a81020323",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 99,
+          "token": 770
+        },
+        {
+          "elapsed_ns": 1512731625,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.09138225000060629,
+          "sequence": 100,
+          "token": 770
+        },
+        {
+          "elapsed_ns": 1512887375,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 101
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 1512936833,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 102
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 1597393791,
+          "event": "raw_chunk",
+          "hex": "5a8173009d",
+          "sequence": 103
+        },
+        {
+          "elapsed_ns": 1597529916,
+          "event": "decoded",
+          "frame_hex": "5a8173009d",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 104,
+          "token": 115
+        },
+        {
+          "elapsed_ns": 1597618458,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08472754100512248,
+          "sequence": 105,
+          "token": 115
+        },
+        {
+          "elapsed_ns": 1597776166,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 106
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 1597841666,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 107
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 1682349375,
+          "event": "raw_chunk",
+          "hex": "5a812000ae",
+          "sequence": 108
+        },
+        {
+          "elapsed_ns": 1682532583,
+          "event": "decoded",
+          "frame_hex": "5a812000ae",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 109,
+          "token": 32
+        },
+        {
+          "elapsed_ns": 1682640500,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.0848696250031935,
+          "sequence": 110,
+          "token": 32
+        },
+        {
+          "elapsed_ns": 1682751166,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 111
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 1682809208,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 112
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 1767391083,
+          "event": "raw_chunk",
+          "hex": "5a814e0283",
+          "sequence": 113
+        },
+        {
+          "elapsed_ns": 1767507166,
+          "event": "decoded",
+          "frame_hex": "5a814e0283",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 114,
+          "token": 590
+        },
+        {
+          "elapsed_ns": 1767555708,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08480654199956916,
+          "sequence": 115,
+          "token": 590
+        },
+        {
+          "elapsed_ns": 1767645916,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 116
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 1767704375,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 117
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 1852310041,
+          "event": "raw_chunk",
+          "hex": "5a81cd083c",
+          "sequence": 118
+        },
+        {
+          "elapsed_ns": 1852426916,
+          "event": "decoded",
+          "frame_hex": "5a81cd083c",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 119,
+          "token": 2253
+        },
+        {
+          "elapsed_ns": 1852478208,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.0848375419882359,
+          "sequence": 120,
+          "token": 2253
+        },
+        {
+          "elapsed_ns": 1852579958,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 121
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 1852636125,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 122
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 1937326916,
+          "event": "raw_chunk",
+          "hex": "5a810d00e9",
+          "sequence": 123
+        },
+        {
+          "elapsed_ns": 1937439375,
+          "event": "decoded",
+          "frame_hex": "5a810d00e9",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 124,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 1937479500,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08490412500395905,
+          "sequence": 125,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 1937556500,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 126
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 1937629333,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 127
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 2022326041,
+          "event": "raw_chunk",
+          "hex": "5a81db0d0e",
+          "sequence": 128
+        },
+        {
+          "elapsed_ns": 2022445666,
+          "event": "decoded",
+          "frame_hex": "5a81db0d0e",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 129,
+          "token": 3547
+        },
+        {
+          "elapsed_ns": 2022507666,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08495208399835974,
+          "sequence": 130,
+          "token": 3547
+        },
+        {
+          "elapsed_ns": 2022615041,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 131
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 2022661208,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 132
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 2107306791,
+          "event": "raw_chunk",
+          "hex": "5a81bb02d6",
+          "sequence": 133
+        },
+        {
+          "elapsed_ns": 2107432208,
+          "event": "decoded",
+          "frame_hex": "5a81bb02d6",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 134,
+          "token": 699
+        },
+        {
+          "elapsed_ns": 2107488666,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08487887500086799,
+          "sequence": 135,
+          "token": 699
+        },
+        {
+          "elapsed_ns": 2107583958,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 136
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 2107642875,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 137
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 2192357333,
+          "event": "raw_chunk",
+          "hex": "5a815c00f0",
+          "sequence": 138
+        },
+        {
+          "elapsed_ns": 2192541041,
+          "event": "decoded",
+          "frame_hex": "5a815c00f0",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 139,
+          "token": 92
+        },
+        {
+          "elapsed_ns": 2192745375,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.0851694159937324,
+          "sequence": 140,
+          "token": 92
+        },
+        {
+          "elapsed_ns": 2192967000,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 141
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 2193096500,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 142
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 2277294208,
+          "event": "raw_chunk",
+          "hex": "5a8155004d",
+          "sequence": 143
+        },
+        {
+          "elapsed_ns": 2277419416,
+          "event": "decoded",
+          "frame_hex": "5a8155004d",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 144,
+          "token": 85
+        },
+        {
+          "elapsed_ns": 2277507208,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08454729100049008,
+          "sequence": 145,
+          "token": 85
+        },
+        {
+          "elapsed_ns": 2277656083,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 146
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 2277717166,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 147
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 2362316875,
+          "event": "raw_chunk",
+          "hex": "5a817d014c",
+          "sequence": 148
+        },
+        {
+          "elapsed_ns": 2362446375,
+          "event": "decoded",
+          "frame_hex": "5a817d014c",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 149,
+          "token": 381
+        },
+        {
+          "elapsed_ns": 2362502458,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08485470799496397,
+          "sequence": 150,
+          "token": 381
+        },
+        {
+          "elapsed_ns": 2362639791,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 151
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 2362758666,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 152
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 2447435291,
+          "event": "raw_chunk",
+          "hex": "5a81e00b72",
+          "sequence": 153
+        },
+        {
+          "elapsed_ns": 2447612041,
+          "event": "decoded",
+          "frame_hex": "5a81e00b72",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 154,
+          "token": 3040
+        },
+        {
+          "elapsed_ns": 2447700458,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08507708400429692,
+          "sequence": 155,
+          "token": 3040
+        },
+        {
+          "elapsed_ns": 2447812416,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 156
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 2447869958,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 157
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 2549431208,
+          "event": "raw_chunk",
+          "hex": "5a810f00c3",
+          "sequence": 158
+        },
+        {
+          "elapsed_ns": 2549599250,
+          "event": "decoded",
+          "frame_hex": "5a810f00c3",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 159,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 2549694375,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10188383399508893,
+          "sequence": 160,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 2549832958,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 161
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 2549957416,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 162
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 2651268666,
+          "event": "raw_chunk",
+          "hex": "5a813a0275",
+          "sequence": 163
+        },
+        {
+          "elapsed_ns": 2651396125,
+          "event": "decoded",
+          "frame_hex": "5a813a0275",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 164,
+          "token": 570
+        },
+        {
+          "elapsed_ns": 2651477250,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10165429199696518,
+          "sequence": 165,
+          "token": 570
+        },
+        {
+          "elapsed_ns": 2651602291,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 166
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 2651668541,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 167
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 2753222666,
+          "event": "raw_chunk",
+          "hex": "5a819d0008",
+          "sequence": 168
+        },
+        {
+          "elapsed_ns": 2753356166,
+          "event": "decoded",
+          "frame_hex": "5a819d0008",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 169,
+          "token": 157
+        },
+        {
+          "elapsed_ns": 2753411291,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10181758399994578,
+          "sequence": 170,
+          "token": 157
+        },
+        {
+          "elapsed_ns": 2753520833,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 171
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 2753589833,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 172
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 2855255791,
+          "event": "raw_chunk",
+          "hex": "5a812000ae",
+          "sequence": 173
+        },
+        {
+          "elapsed_ns": 2855402166,
+          "event": "decoded",
+          "frame_hex": "5a812000ae",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 174,
+          "token": 32
+        },
+        {
+          "elapsed_ns": 2855519958,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10200283300946467,
+          "sequence": 175,
+          "token": 32
+        },
+        {
+          "elapsed_ns": 2855669125,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 176
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 2855752875,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 177
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 2957214458,
+          "event": "raw_chunk",
+          "hex": "5a81de016b",
+          "sequence": 178
+        },
+        {
+          "elapsed_ns": 2957338625,
+          "event": "decoded",
+          "frame_hex": "5a81de016b",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 179,
+          "token": 478
+        },
+        {
+          "elapsed_ns": 2957442875,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10177829099120572,
+          "sequence": 180,
+          "token": 478
+        },
+        {
+          "elapsed_ns": 2957590291,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 181
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 2957726416,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 182
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 3059213666,
+          "event": "raw_chunk",
+          "hex": "5a8173009d",
+          "sequence": 183
+        },
+        {
+          "elapsed_ns": 3059378416,
+          "event": "decoded",
+          "frame_hex": "5a8173009d",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 184,
+          "token": 115
+        },
+        {
+          "elapsed_ns": 3059463666,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10188862500945106,
+          "sequence": 185,
+          "token": 115
+        },
+        {
+          "elapsed_ns": 3059643083,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 186
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 3059745208,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 187
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 3161258541,
+          "event": "raw_chunk",
+          "hex": "5a8115031f",
+          "sequence": 188
+        },
+        {
+          "elapsed_ns": 3161445041,
+          "event": "decoded",
+          "frame_hex": "5a8115031f",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 189,
+          "token": 789
+        },
+        {
+          "elapsed_ns": 3161554291,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.1019322910142364,
+          "sequence": 190,
+          "token": 789
+        },
+        {
+          "elapsed_ns": 3161723208,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 191
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 3161876250,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 192
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 3263241750,
+          "event": "raw_chunk",
+          "hex": "5a818c004a",
+          "sequence": 193
+        },
+        {
+          "elapsed_ns": 3263379458,
+          "event": "decoded",
+          "frame_hex": "5a818c004a",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 194,
+          "token": 140
+        },
+        {
+          "elapsed_ns": 3263462666,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10174475000530947,
+          "sequence": 195,
+          "token": 140
+        },
+        {
+          "elapsed_ns": 3263592875,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 196
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 3263651583,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 197
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 3365238291,
+          "event": "raw_chunk",
+          "hex": "5a816f0036",
+          "sequence": 198
+        },
+        {
+          "elapsed_ns": 3365364875,
+          "event": "decoded",
+          "frame_hex": "5a816f0036",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 199,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 3365428458,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10184145800303668,
+          "sequence": 200,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 3365540416,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 201
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 3365603583,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 202
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 3467251958,
+          "event": "raw_chunk",
+          "hex": "5a81a20f1f",
+          "sequence": 203
+        },
+        {
+          "elapsed_ns": 3467425500,
+          "event": "decoded",
+          "frame_hex": "5a81a20f1f",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 204,
+          "token": 4002
+        },
+        {
+          "elapsed_ns": 3467586625,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10204895799688529,
+          "sequence": 205,
+          "token": 4002
+        },
+        {
+          "elapsed_ns": 3467766166,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 206
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 3467822416,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 207
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 3569230750,
+          "event": "raw_chunk",
+          "hex": "5a815e00da",
+          "sequence": 208
+        },
+        {
+          "elapsed_ns": 3569371666,
+          "event": "decoded",
+          "frame_hex": "5a815e00da",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 209,
+          "token": 94
+        },
+        {
+          "elapsed_ns": 3569520583,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.1017511249956442,
+          "sequence": 210,
+          "token": 94
+        },
+        {
+          "elapsed_ns": 3569736166,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 211
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 3569840291,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 212
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 3671239125,
+          "event": "raw_chunk",
+          "hex": "5a81380643",
+          "sequence": 213
+        },
+        {
+          "elapsed_ns": 3672941791,
+          "event": "decoded",
+          "frame_hex": "5a81380643",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 214,
+          "token": 1592
+        },
+        {
+          "elapsed_ns": 3673016083,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10328675000346266,
+          "sequence": 215,
+          "token": 1592
+        },
+        {
+          "elapsed_ns": 3673182125,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 216
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 3673315875,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 217
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 3773217791,
+          "event": "raw_chunk",
+          "hex": "5a81dd035a",
+          "sequence": 218
+        },
+        {
+          "elapsed_ns": 3773341875,
+          "event": "decoded",
+          "frame_hex": "5a81dd035a",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 219,
+          "token": 989
+        },
+        {
+          "elapsed_ns": 3773395250,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10022937499161344,
+          "sequence": 220,
+          "token": 989
+        },
+        {
+          "elapsed_ns": 3773553541,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 221
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 3773682541,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 222
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 3875203875,
+          "event": "raw_chunk",
+          "hex": "5a8173009d",
+          "sequence": 223
+        },
+        {
+          "elapsed_ns": 3875353625,
+          "event": "decoded",
+          "frame_hex": "5a8173009d",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 224,
+          "token": 115
+        },
+        {
+          "elapsed_ns": 3875461958,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10192524999729358,
+          "sequence": 225,
+          "token": 115
+        },
+        {
+          "elapsed_ns": 3875595000,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 226
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 3875665458,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 227
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 3977172708,
+          "event": "raw_chunk",
+          "hex": "5a81fb0083",
+          "sequence": 228
+        },
+        {
+          "elapsed_ns": 3977329666,
+          "event": "decoded",
+          "frame_hex": "5a81fb0083",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 229,
+          "token": 251
+        },
+        {
+          "elapsed_ns": 3977426625,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10183674999279901,
+          "sequence": 230,
+          "token": 251
+        },
+        {
+          "elapsed_ns": 3977565625,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 231
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 3977717291,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 232
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 4079190916,
+          "event": "raw_chunk",
+          "hex": "5a815d00e5",
+          "sequence": 233
+        },
+        {
+          "elapsed_ns": 4079350833,
+          "event": "decoded",
+          "frame_hex": "5a815d00e5",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 234,
+          "token": 93
+        },
+        {
+          "elapsed_ns": 4079496833,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10192237500450574,
+          "sequence": 235,
+          "token": 93
+        },
+        {
+          "elapsed_ns": 4079705666,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 236
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 4079864708,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 237
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 4181144250,
+          "event": "raw_chunk",
+          "hex": "5a811801f8",
+          "sequence": 238
+        },
+        {
+          "elapsed_ns": 4181254250,
+          "event": "decoded",
+          "frame_hex": "5a811801f8",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 239,
+          "token": 280
+        },
+        {
+          "elapsed_ns": 4181302375,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10163483300129883,
+          "sequence": 240,
+          "token": 280
+        },
+        {
+          "elapsed_ns": 4181481291,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 241
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 4181578083,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 242
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 4283161000,
+          "event": "raw_chunk",
+          "hex": "5a814a03d0",
+          "sequence": 243
+        },
+        {
+          "elapsed_ns": 4283276458,
+          "event": "decoded",
+          "frame_hex": "5a814a03d0",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 244,
+          "token": 842
+        },
+        {
+          "elapsed_ns": 4283322583,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10184950000257231,
+          "sequence": 245,
+          "token": 842
+        },
+        {
+          "elapsed_ns": 4283438500,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 246
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 4283499958,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 247
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 4385250916,
+          "event": "raw_chunk",
+          "hex": "5a810f00c3",
+          "sequence": 248
+        },
+        {
+          "elapsed_ns": 4385356208,
+          "event": "decoded",
+          "frame_hex": "5a810f00c3",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 249,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 4385396250,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10196625000389758,
+          "sequence": 250,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 4385495250,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 251
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 4385535625,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 252
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 4487150750,
+          "event": "raw_chunk",
+          "hex": "5a818c004a",
+          "sequence": 253
+        },
+        {
+          "elapsed_ns": 4487267000,
+          "event": "decoded",
+          "frame_hex": "5a818c004a",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 254,
+          "token": 140
+        },
+        {
+          "elapsed_ns": 4487309000,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10181820800062269,
+          "sequence": 255,
+          "token": 140
+        },
+        {
+          "elapsed_ns": 4487412083,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 256
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 4487450833,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 257
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 4589178333,
+          "event": "raw_chunk",
+          "hex": "5a816f0036",
+          "sequence": 258
+        },
+        {
+          "elapsed_ns": 4589392208,
+          "event": "decoded",
+          "frame_hex": "5a816f0036",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 259,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 4589449875,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10204158299893606,
+          "sequence": 260,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 4589563250,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 261
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 4589653916,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 262
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 4691099375,
+          "event": "raw_chunk",
+          "hex": "5a811e028f",
+          "sequence": 263
+        },
+        {
+          "elapsed_ns": 4691222666,
+          "event": "decoded",
+          "frame_hex": "5a811e028f",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 264,
+          "token": 542
+        },
+        {
+          "elapsed_ns": 4691283083,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10172099999908824,
+          "sequence": 265,
+          "token": 542
+        },
+        {
+          "elapsed_ns": 4691415791,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 266
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 4691474333,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 267
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 4793221583,
+          "event": "raw_chunk",
+          "hex": "5a810d00e9",
+          "sequence": 268
+        },
+        {
+          "elapsed_ns": 4793408625,
+          "event": "decoded",
+          "frame_hex": "5a810d00e9",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 269,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 4793536500,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10211416700622067,
+          "sequence": 270,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 4793771916,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 271
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 4793894541,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 272
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 4895260458,
+          "event": "raw_chunk",
+          "hex": "5a816f0036",
+          "sequence": 273
+        },
+        {
+          "elapsed_ns": 4895433125,
+          "event": "decoded",
+          "frame_hex": "5a816f0036",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 274,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 4895542500,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10177841699623968,
+          "sequence": 275,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 4895716083,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 276
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 4895802791,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 277
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 4997122875,
+          "event": "raw_chunk",
+          "hex": "5a816201d8",
+          "sequence": 278
+        },
+        {
+          "elapsed_ns": 4997263333,
+          "event": "decoded",
+          "frame_hex": "5a816201d8",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 279,
+          "token": 354
+        },
+        {
+          "elapsed_ns": 4997347708,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.1016304160002619,
+          "sequence": 280,
+          "token": 354
+        },
+        {
+          "elapsed_ns": 4997527000,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 281
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 4997631666,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 282
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 5099135500,
+          "event": "raw_chunk",
+          "hex": "5a81560175",
+          "sequence": 283
+        },
+        {
+          "elapsed_ns": 5099285000,
+          "event": "decoded",
+          "frame_hex": "5a81560175",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 284,
+          "token": 342
+        },
+        {
+          "elapsed_ns": 5099500958,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10197966700070538,
+          "sequence": 285,
+          "token": 342
+        },
+        {
+          "elapsed_ns": 5099665208,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 286
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 5099725708,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 287
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 5201102791,
+          "event": "raw_chunk",
+          "hex": "5a810f00c3",
+          "sequence": 288
+        },
+        {
+          "elapsed_ns": 5201267625,
+          "event": "decoded",
+          "frame_hex": "5a810f00c3",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 289,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 5201360000,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10170745798677672,
+          "sequence": 290,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 5201483958,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 291
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 5201551000,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 292
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 5303177666,
+          "event": "raw_chunk",
+          "hex": "5a816f0036",
+          "sequence": 293
+        },
+        {
+          "elapsed_ns": 5303308375,
+          "event": "decoded",
+          "frame_hex": "5a816f0036",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 294,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 5303372625,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10189770799479447,
+          "sequence": 295,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 5303486458,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 296
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 5303543083,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 297
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 5406182208,
+          "event": "raw_chunk",
+          "hex": "5a818605d3",
+          "sequence": 298
+        },
+        {
+          "elapsed_ns": 5406507458,
+          "event": "decoded",
+          "frame_hex": "5a818605d3",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 299,
+          "token": 1414
+        },
+        {
+          "elapsed_ns": 5406619875,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.10313704099098686,
+          "sequence": 300,
+          "token": 1414
+        },
+        {
+          "elapsed_ns": 5406811166,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 301
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 5421361833,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 302
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 5524197041,
+          "event": "raw_chunk",
+          "hex": "5a81a0011f",
+          "sequence": 303
+        },
+        {
+          "elapsed_ns": 5524323125,
+          "event": "decoded",
+          "frame_hex": "5a81a0011f",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 304,
+          "token": 416
+        },
+        {
+          "elapsed_ns": 5524387958,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.11758374999044463,
+          "sequence": 305,
+          "token": 416
+        },
+        {
+          "elapsed_ns": 5524506000,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 306
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 5524560833,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 307
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 5643152041,
+          "event": "raw_chunk",
+          "hex": "5a815e00da",
+          "sequence": 308
+        },
+        {
+          "elapsed_ns": 5646238458,
+          "event": "decoded",
+          "frame_hex": "5a815e00da",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 309,
+          "token": 94
+        },
+        {
+          "elapsed_ns": 5646331791,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.12183079100213945,
+          "sequence": 310,
+          "token": 94
+        },
+        {
+          "elapsed_ns": 5646566250,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 311
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 5646667750,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 312
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 5762121208,
+          "event": "raw_chunk",
+          "hex": "5a81c201c0",
+          "sequence": 313
+        },
+        {
+          "elapsed_ns": 5762236833,
+          "event": "decoded",
+          "frame_hex": "5a81c201c0",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 314,
+          "token": 450
+        },
+        {
+          "elapsed_ns": 5762279541,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.11573341699840967,
+          "sequence": 315,
+          "token": 450
+        },
+        {
+          "elapsed_ns": 5762390833,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 316
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 5762444166,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 317
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 5881065500,
+          "event": "raw_chunk",
+          "hex": "5a810d00e9",
+          "sequence": 318
+        },
+        {
+          "elapsed_ns": 5881179125,
+          "event": "decoded",
+          "frame_hex": "5a810d00e9",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 319,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 5881218583,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.11883245799981523,
+          "sequence": 320,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 5881324333,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 321
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 5881364708,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 322
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 6000070041,
+          "event": "raw_chunk",
+          "hex": "5a811d06ac",
+          "sequence": 323
+        },
+        {
+          "elapsed_ns": 6006139083,
+          "event": "decoded",
+          "frame_hex": "5a811d06ac",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 324,
+          "token": 1565
+        },
+        {
+          "elapsed_ns": 6006453458,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.12512966699432582,
+          "sequence": 325,
+          "token": 1565
+        },
+        {
+          "elapsed_ns": 6006714833,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 326
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 6007119208,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 327
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 6119202208,
+          "event": "raw_chunk",
+          "hex": "5a8155004d",
+          "sequence": 328
+        },
+        {
+          "elapsed_ns": 6119351291,
+          "event": "decoded",
+          "frame_hex": "5a8155004d",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 329,
+          "token": 85
+        },
+        {
+          "elapsed_ns": 6119415250,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.11270300000614952,
+          "sequence": 330,
+          "token": 85
+        },
+        {
+          "elapsed_ns": 6119553500,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 331
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 6119613541,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 332
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 6238085833,
+          "event": "raw_chunk",
+          "hex": "5a81cb017d",
+          "sequence": 333
+        },
+        {
+          "elapsed_ns": 6238198541,
+          "event": "decoded",
+          "frame_hex": "5a81cb017d",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 334,
+          "token": 459
+        },
+        {
+          "elapsed_ns": 6238235166,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.1186882919864729,
+          "sequence": 335,
+          "token": 459
+        },
+        {
+          "elapsed_ns": 6238346041,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 336
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 6238383125,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 337
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 6357173458,
+          "event": "raw_chunk",
+          "hex": "5a8182009c",
+          "sequence": 338
+        },
+        {
+          "elapsed_ns": 6357335208,
+          "event": "decoded",
+          "frame_hex": "5a8182009c",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 339,
+          "token": 130
+        },
+        {
+          "elapsed_ns": 6357426333,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.1190808749961434,
+          "sequence": 340,
+          "token": 130
+        },
+        {
+          "elapsed_ns": 6357613875,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 341
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 6357752000,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 342
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 6476160541,
+          "event": "raw_chunk",
+          "hex": "5a81290114",
+          "sequence": 343
+        },
+        {
+          "elapsed_ns": 6476330625,
+          "event": "decoded",
+          "frame_hex": "5a81290114",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 344,
+          "token": 297
+        },
+        {
+          "elapsed_ns": 6476396208,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.11880424999981187,
+          "sequence": 345,
+          "token": 297
+        },
+        {
+          "elapsed_ns": 6476509916,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 346
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 6476558416,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 347
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 6595060833,
+          "event": "raw_chunk",
+          "hex": "5a810f00c3",
+          "sequence": 348
+        },
+        {
+          "elapsed_ns": 6595217666,
+          "event": "decoded",
+          "frame_hex": "5a810f00c3",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 349,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 6595344333,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.11883483399287798,
+          "sequence": 350,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 6595488833,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 351
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 6595538708,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 352
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 6714018875,
+          "event": "raw_chunk",
+          "hex": "5a811a01d2",
+          "sequence": 353
+        },
+        {
+          "elapsed_ns": 6721750416,
+          "event": "decoded",
+          "frame_hex": "5a811a01d2",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 354,
+          "token": 282
+        },
+        {
+          "elapsed_ns": 6721891583,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.12640845800342504,
+          "sequence": 355,
+          "token": 282
+        },
+        {
+          "elapsed_ns": 6722064500,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 356
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 6722201875,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 357
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 6833037250,
+          "event": "raw_chunk",
+          "hex": "5a81ee058e",
+          "sequence": 358
+        },
+        {
+          "elapsed_ns": 6833144041,
+          "event": "decoded",
+          "frame_hex": "5a81ee058e",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 359,
+          "token": 1518
+        },
+        {
+          "elapsed_ns": 6833198333,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.1111500000115484,
+          "sequence": 360,
+          "token": 1518
+        },
+        {
+          "elapsed_ns": 6833311833,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 361
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 6833351875,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 362
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 6952001541,
+          "event": "raw_chunk",
+          "hex": "5a812c0155",
+          "sequence": 363
+        },
+        {
+          "elapsed_ns": 6952802291,
+          "event": "decoded",
+          "frame_hex": "5a812c0155",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 364,
+          "token": 300
+        },
+        {
+          "elapsed_ns": 6952861750,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.11955454100097995,
+          "sequence": 365,
+          "token": 300
+        },
+        {
+          "elapsed_ns": 6953002125,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 366
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 6953118583,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 367
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 7071051333,
+          "event": "raw_chunk",
+          "hex": "5a81e903f7",
+          "sequence": 368
+        },
+        {
+          "elapsed_ns": 7071216541,
+          "event": "decoded",
+          "frame_hex": "5a81e903f7",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 369,
+          "token": 1001
+        },
+        {
+          "elapsed_ns": 7071305333,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.11830904200905934,
+          "sequence": 370,
+          "token": 1001
+        },
+        {
+          "elapsed_ns": 7071513125,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 371
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 7071642041,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 372
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 7189979708,
+          "event": "raw_chunk",
+          "hex": "5a8173009d",
+          "sequence": 373
+        },
+        {
+          "elapsed_ns": 7190159583,
+          "event": "decoded",
+          "frame_hex": "5a8173009d",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 374,
+          "token": 115
+        },
+        {
+          "elapsed_ns": 7190260750,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.11875533401325811,
+          "sequence": 375,
+          "token": 115
+        },
+        {
+          "elapsed_ns": 7190434333,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 376
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 7190499750,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 377
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 7308957000,
+          "event": "raw_chunk",
+          "hex": "5a81150703",
+          "sequence": 378
+        },
+        {
+          "elapsed_ns": 7309082000,
+          "event": "decoded",
+          "frame_hex": "5a81150703",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 379,
+          "token": 1813
+        },
+        {
+          "elapsed_ns": 7309143875,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.1187133339990396,
+          "sequence": 380,
+          "token": 1813
+        },
+        {
+          "elapsed_ns": 7309301583,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 381
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 7309370583,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 382
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 7427979125,
+          "event": "raw_chunk",
+          "hex": "5a810d00e9",
+          "sequence": 383
+        },
+        {
+          "elapsed_ns": 7428074833,
+          "event": "decoded",
+          "frame_hex": "5a810d00e9",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 384,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 7428128416,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.11883345800742973,
+          "sequence": 385,
+          "token": 13
+        },
+        {
+          "elapsed_ns": 7428259208,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 386
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 7428313666,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 387
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 7547016166,
+          "event": "raw_chunk",
+          "hex": "5a81c8034c",
+          "sequence": 388
+        },
+        {
+          "elapsed_ns": 7547168958,
+          "event": "decoded",
+          "frame_hex": "5a81c8034c",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 389,
+          "token": 968
+        },
+        {
+          "elapsed_ns": 7547445083,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.11917849999736063,
+          "sequence": 390,
+          "token": 968
+        },
+        {
+          "elapsed_ns": 7547665708,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 391
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 7547726125,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 392
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 7665961333,
+          "event": "raw_chunk",
+          "hex": "5a818c004a",
+          "sequence": 393
+        },
+        {
+          "elapsed_ns": 7666157458,
+          "event": "decoded",
+          "frame_hex": "5a818c004a",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 394,
+          "token": 140
+        },
+        {
+          "elapsed_ns": 7666267208,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.11861104199488182,
+          "sequence": 395,
+          "token": 140
+        },
+        {
+          "elapsed_ns": 7666420125,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 396
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 7666491250,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 397
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 7784957166,
+          "event": "raw_chunk",
+          "hex": "5a816f0036",
+          "sequence": 398
+        },
+        {
+          "elapsed_ns": 7785115666,
+          "event": "decoded",
+          "frame_hex": "5a816f0036",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 399,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 7785249625,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.11883450001187157,
+          "sequence": 400,
+          "token": 111
+        },
+        {
+          "elapsed_ns": 7785440916,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 401
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 7785559166,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 402
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 7802490250,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 403
+        },
+        {
+          "elapsed_ns": 7804639125,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 404,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 7805173541,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.019738791001145728,
+          "sequence": 405,
+          "token": null
+        }
+      ]
+    },
+    {
+      "connection_started": "new",
+      "label": "resumed-greedy",
+      "observation": {
+        "browser": "Chrome",
+        "download_clicked": true,
+        "maximum_new_tokens_value": 3,
+        "observed_utc": "2026-10-23T15:03:47.607Z",
+        "prompt_value": "around",
+        "seed_displayed": null,
+        "seed_input_value": "0xfefdfcfbfaf9f8f70102030405060708",
+        "source_ui_snapshot_sha256": "18e19c52012aa6fdd18b9a6806574463370b6db9b9c290c2c8a1e4ff3e13a130",
+        "story_displayed": "around him. he",
+        "temperature_displayed": "0",
+        "temperature_value": "0",
+        "tokens_generated_displayed": 3,
+        "url": "http://127.0.0.1:8507"
+      },
+      "reference": {
+        "kind": "packaged",
+        "path": "reference/seeded-sampling/goldens/around128-t0-seed-a.json",
+        "sha256": "f517af7880aa9160379c71fb1804a234a40e509051b4f629cdea7f78b0e73e6e"
+      },
+      "result": {
+        "arrivals_seconds": [
+          1.1952006250066916,
+          1.2801556250051362,
+          1.3652456249983516
+        ],
+        "clear_acknowledged": true,
+        "elapsed_seconds": 1.3820865000016056,
+        "error": "",
+        "first_token_seconds": 1.1952006250066916,
+        "generated": [
+          200,
+          15,
+          103
+        ],
+        "prompt": "around",
+        "prompt_tokens": [
+          378
+        ],
+        "requested": 3,
+        "sampling_settings_applied": true,
+        "seed": null,
+        "seed_used": false,
+        "state": "complete",
+        "step_seconds": [
+          0.06788575000246055,
+          0.08489145900239237,
+          0.0850123340060236
+        ],
+        "stop_reason": "Requested token limit reached",
+        "streaming_tokens_per_second": 11.761592520204013,
+        "temperature": "0",
+        "text": "around him. he",
+        "uploaded": 1
+      },
+      "source_backend_log_sha256": "6b17a0e212ea2aefca0f42cc41d6f90cf4eb8980b5e9e7175fbf1f2f98b933a5",
+      "source_download_sha256": "048d1cf77676b32990d8d196f586878aad89a8980d7b1ab80b1dbabda7c55834",
+      "source_observation_sha256": "f16ac57096bee5716c256a7166357ebaa388048324fd84315d24b2272fa1bcaa",
+      "wire": [
+        {
+          "elapsed_ns": 0,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 1
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 125292,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 2
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 12698917,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 3
+        },
+        {
+          "elapsed_ns": 12835125,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 4,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 12890750,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.012911541998619214,
+          "sequence": 5,
+          "token": null
+        },
+        {
+          "elapsed_ns": 12970500,
+          "event": "command_intent",
+          "hex": "a503000000000000000000000000000000000069",
+          "label": "settings",
+          "sequence": 6
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 13023875,
+          "event": "raw_chunk",
+          "hex": "a503000000000000000000000000000000000069",
+          "sequence": 7
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 29678708,
+          "event": "raw_chunk",
+          "hex": "5a830000d6",
+          "sequence": 8
+        },
+        {
+          "elapsed_ns": 29812042,
+          "event": "decoded",
+          "frame_hex": "5a830000d6",
+          "kind": "normal",
+          "response": 131,
+          "sequence": 9,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 29886792,
+          "event": "sampling_settings",
+          "seed": "0x00000000000000000000000000000000",
+          "seed_used": false,
+          "sequence": 10,
+          "temperature": "0"
+        },
+        {
+          "elapsed_ns": 29966667,
+          "event": "command_intent",
+          "hex": "a5007a0196",
+          "label": "append",
+          "sequence": 11
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 30030708,
+          "event": "raw_chunk",
+          "hex": "a5007a0196",
+          "sequence": 12
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 46698625,
+          "event": "raw_chunk",
+          "hex": "5a8000006b",
+          "sequence": 13
+        },
+        {
+          "elapsed_ns": 46826417,
+          "event": "decoded",
+          "frame_hex": "5a8000006b",
+          "kind": "normal",
+          "response": 128,
+          "sequence": 14,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 46880042,
+          "event": "command_result",
+          "operand": 378,
+          "operation": "append",
+          "seconds": 0.016925167001318187,
+          "sequence": 15,
+          "token": null
+        },
+        {
+          "elapsed_ns": 46950250,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 16
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 47009583,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 17
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 114639208,
+          "event": "raw_chunk",
+          "hex": "5a81c80045",
+          "sequence": 18
+        },
+        {
+          "elapsed_ns": 114773375,
+          "event": "decoded",
+          "frame_hex": "5a81c80045",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 19,
+          "token": 200
+        },
+        {
+          "elapsed_ns": 114828333,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.06788575000246055,
+          "sequence": 20,
+          "token": 200
+        },
+        {
+          "elapsed_ns": 114962208,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 21
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 115031875,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 22
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 199688000,
+          "event": "raw_chunk",
+          "hex": "5a810f00c3",
+          "sequence": 23
+        },
+        {
+          "elapsed_ns": 199792667,
+          "event": "decoded",
+          "frame_hex": "5a810f00c3",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 24,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 199843417,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.08489145900239237,
+          "sequence": 25,
+          "token": 15
+        },
+        {
+          "elapsed_ns": 199906375,
+          "event": "command_intent",
+          "hex": "a5010000da",
+          "label": "step",
+          "sequence": 26
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 199947875,
+          "event": "raw_chunk",
+          "hex": "a5010000da",
+          "sequence": 27
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 284642875,
+          "event": "raw_chunk",
+          "hex": "5a8167009e",
+          "sequence": 28
+        },
+        {
+          "elapsed_ns": 284824250,
+          "event": "decoded",
+          "frame_hex": "5a8167009e",
+          "kind": "normal",
+          "response": 129,
+          "sequence": 29,
+          "token": 103
+        },
+        {
+          "elapsed_ns": 284917917,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "step",
+          "seconds": 0.0850123340060236,
+          "sequence": 30,
+          "token": 103
+        },
+        {
+          "elapsed_ns": 285019042,
+          "event": "command_intent",
+          "hex": "a502000067",
+          "label": "clear",
+          "sequence": 31
+        },
+        {
+          "direction": "tx",
+          "elapsed_ns": 285094292,
+          "event": "raw_chunk",
+          "hex": "a502000067",
+          "sequence": 32
+        },
+        {
+          "direction": "rx",
+          "elapsed_ns": 301618500,
+          "event": "raw_chunk",
+          "hex": "5a820000bd",
+          "sequence": 33
+        },
+        {
+          "elapsed_ns": 301725750,
+          "event": "decoded",
+          "frame_hex": "5a820000bd",
+          "kind": "normal",
+          "response": 130,
+          "sequence": 34,
+          "token": 0
+        },
+        {
+          "elapsed_ns": 301764542,
+          "event": "command_result",
+          "operand": 0,
+          "operation": "clear",
+          "seconds": 0.01675816699571442,
+          "sequence": 35,
+          "token": null
+        }
+      ]
+    }
+  ],
+  "claims": {
+    "actual_browser": true,
+    "checker_replays_browser": false,
+    "checker_replays_model": false,
+    "flash_modified": false,
+    "listening_server": true,
+    "mocked_uart": false,
+    "model_flash_reinstalled": false,
+    "operator_ui_observations": true,
+    "physical_configuration_attested": false,
+    "physical_fpga_backend": true,
+    "software_inference_in_app": false,
+    "streamlit_apptest": false,
+    "timing_qualified": false
+  },
+  "counts": {
+    "automatic_reference_runs": 2,
+    "cases": 10,
+    "generated_tokens": 104,
+    "qualifier_exact_tokens": 19,
+    "wire_commands": 144
+  },
+  "disconnect": {
+    "browser": "Chrome",
+    "disconnect_button_disabled": true,
+    "disconnect_clicked": true,
+    "source_ownership_receipt_sha256": "6a0b10d6cf65c9b858afb0f90250cda622a4fbd2a46b7490af0f4074fe8a9325",
+    "source_ui_snapshot_sha256": "fe6a7d1f5a3e8d6b0d28f15df16ede7833ef6ec00816e40a464cd83248d006bc",
+    "uart_owner_exit": 1,
+    "uart_ownership_queried": true,
+    "url": "http://127.0.0.1:8507"
+  },
+  "hardware_inputs_sha256": "26a0885f9ffefaeea68b948295635fcfb37367254b549c48e75e0d7093e96831",
+  "image_sha256": "0e6d30b68bd8757657bc1c3b949ac5b9571a0a8d1f8bb1a6e6018b241f733033",
+  "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+  "passed": true,
+  "schema": "seeded-ordinary-browser-public-v1",
+  "scope": "Actual listening Streamlit application driven in Chrome, with operator/Cua observations, downloaded run records and physical FPGA UART bytes. This checker validates the archived observations and byte/reference bindings; it does not drive a browser, rerun the model or attest physical configuration.",
+  "setup": {
+    "health": {
+      "body": "ok",
+      "source_receipt_sha256": "6f66b2d222ccef5b3b30fdc75e2e42f1917978f41edb0bfbcad027c023ef41f6",
+      "status": 200
+    },
+    "launcher": {
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "streamlit",
+        "run",
+        "host-app/streamlit_app.py",
+        "--server.address",
+        "127.0.0.1",
+        "--server.port",
+        "8507",
+        "--server.headless",
+        "true"
+      ],
+      "dependencies": {
+        "streamlit": "1.64.0",
+        "tokenizers": "0.23.2"
+      },
+      "loopback_only": true,
+      "source_log_sha256": "14b4c3bd3a17808f105debf395046948399603fb354118d1ff891fce0255c9ae",
+      "source_record_sha256": "c2f176bfcd4a7a54b71319f541e100f76058a891840470cabf9bcc1088c5d3ea",
+      "url": "http://127.0.0.1:8507"
+    },
+    "model_readback": {
+      "all_model_and_erased_region_bytes_equal": true,
+      "checker_source_sha256": "13e17eebfe62827fa2f72bce465ea0b76665bbf9c7a081050c3fa46b69ec46f5",
+      "flash_modified": false,
+      "full_array_sha256": "b6be312296b01d4eb2f985cd71f90d110a2a632c42ca0b4698dc8c9832765a25",
+      "model_bytes": 7265984,
+      "model_end_exclusive": 15658688,
+      "model_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+      "model_start": 8392704,
+      "new_independent_factory_backup_pair": false,
+      "other_bytes": "FF",
+      "read_command_hex": "52",
+      "receiver_source_sha256": "e4ff0907724a86fa4466c274c59b47da99bd23eef64ed70d2c5b71aa95decf6d",
+      "reported_crc32": "28e34a2f",
+      "single_fresh_physical_read": true,
+      "source_readback_verifier_sha256": "fe21d871f15fefe154fa6d3cc3d925e46c6ff44aeaca1be99be5e19e6839f25d",
+      "source_reader_load_sha256": "554dcedcec249f6f69bdbf2df5f083928500db2f7de25aece9d060283880a774",
+      "source_receiver_receipt_sha256": "1749befbad3ba41ee0e26a3f06c6319220b213a88885543ac4cada2949259125",
+      "source_summary_sha256": "df6a849e20bf3111f7482c014599ccfd7514a2392b402fbd09a7659e33e7ea38",
+      "whole_flash_bytes": 16777216
+    },
+    "qualification": {
+      "exact_tokens": 19,
+      "operations": 45,
+      "source_profile_sha256": "40dbb35a5755d7e3b595669c0926a9755ca71846ffec547ae0e2757e5067b148",
+      "source_uart_sha256": "34478a9666044bf98d6b6301653d91ae37bebda89dafcf6054b0fe35da387851",
+      "transactions": [
+        {
+          "rx_hex": "5a820000bd",
+          "tx_hex": "a502000067"
+        },
+        {
+          "rx_hex": "5a830000d6",
+          "tx_hex": "a503000000000000000000000000000000000069"
+        },
+        {
+          "rx_hex": "5a8000006b",
+          "tx_hex": "a5007a0196"
+        },
+        {
+          "rx_hex": "5a81c80045",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a810f00c3",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a8167009e",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a819d0008",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a820000bd",
+          "tx_hex": "a502000067"
+        },
+        {
+          "rx_hex": "5a830100c3",
+          "tx_hex": "a50301887766554433221100ffeeddccbbaa99ec"
+        },
+        {
+          "rx_hex": "5a8000006b",
+          "tx_hex": "a5007a0196"
+        },
+        {
+          "rx_hex": "5a81f7007f",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a8182009c",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a812000ae",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a820000bd",
+          "tx_hex": "a502000067"
+        },
+        {
+          "rx_hex": "5a830200fc",
+          "tx_hex": "a50302887766554433221100ffeeddccbbaa99fe"
+        },
+        {
+          "rx_hex": "5a8000006b",
+          "tx_hex": "a5007a0196"
+        },
+        {
+          "rx_hex": "5a816501b3",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a813a0f56",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a8168005d",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a820000bd",
+          "tx_hex": "a502000067"
+        },
+        {
+          "rx_hex": "5a8000006b",
+          "tx_hex": "a5007a0196"
+        },
+        {
+          "rx_hex": "5a816501b3",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a813a0f56",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a8168005d",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a820000bd",
+          "tx_hex": "a502000067"
+        },
+        {
+          "rx_hex": "5a830300e9",
+          "tx_hex": "a50303887766554433221100ffeeddccbbaa99f0"
+        },
+        {
+          "rx_hex": "5a8000006b",
+          "tx_hex": "a5007a0196"
+        },
+        {
+          "rx_hex": "5a816c0d2a",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a81a70f5e",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a818d005f",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a820000bd",
+          "tx_hex": "a502000067"
+        },
+        {
+          "rx_hex": "5a830100c3",
+          "tx_hex": "a503010807060504030201f7f8f9fafbfcfdfe9b"
+        },
+        {
+          "rx_hex": "5a8000006b",
+          "tx_hex": "a5007a0196"
+        },
+        {
+          "rx_hex": "5a810d00e9",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a820000bd",
+          "tx_hex": "a502000067"
+        },
+        {
+          "rx_hex": "5a830200fc",
+          "tx_hex": "a503020807060504030201f7f8f9fafbfcfdfe89"
+        },
+        {
+          "rx_hex": "5a8000006b",
+          "tx_hex": "a5007a0196"
+        },
+        {
+          "rx_hex": "5a810d00e9",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a820000bd",
+          "tx_hex": "a502000067"
+        },
+        {
+          "rx_hex": "5a830300e9",
+          "tx_hex": "a503030807060504030201f7f8f9fafbfcfdfe87"
+        },
+        {
+          "rx_hex": "5a8000006b",
+          "tx_hex": "a5007a0196"
+        },
+        {
+          "rx_hex": "5a8102002a",
+          "tx_hex": "a5010000da"
+        },
+        {
+          "rx_hex": "5a820000bd",
+          "tx_hex": "a502000067"
+        },
+        {
+          "rx_hex": "5a830000d6",
+          "tx_hex": "a503000000000000000000000000000000000069"
+        },
+        {
+          "rx_hex": "5a820000bd",
+          "tx_hex": "a502000067"
+        }
+      ]
+    },
+    "recipient_files": 1316,
+    "recipient_manifest_sha256": "2319031ce0ecba7e7dc60c496991edaf39a70ee94c4ad6fca03cf7fe21c4afbb",
+    "release_files_unchanged_after_browser": true,
+    "sram_reload": {
+      "configuration_independently_attested": false,
+      "flash_modified": false,
+      "image_sha256": "0e6d30b68bd8757657bc1c3b949ac5b9571a0a8d1f8bb1a6e6018b241f733033",
+      "source_association_sha256": "b12d420e3b21ea8bf2623d18e25a114a73d55f5597782c47d8e0227476e6bb34",
+      "source_receipt_sha256": "f88d06ec1d2b434f954a435ff17e4a4f3b62dac4d0abcab9decc0158d9819499",
+      "sram_load_reported": true,
+      "verified_backup_files": 4
+    },
+    "strict_inventory_verified_before_runtime": true
+  },
+  "source_finished_sha256": "90f41552dab20136c5f07f42e456a5719d3ce47d758a83bf13ed606b51610738",
+  "source_inputs_sha256": "9efac7360f7bf2c3a77bf8c8b2d96f1538361a7908d9670f2f2e9570bc767e8c",
+  "source_sha256": {
+    "host-app/.streamlit/config.toml": "85703c45c372948241fcfaa1a9411e9aa31159a74f6ddedcfecad8d47bc94c6c",
+    "host-app/assets/tokenizer.json": "01b6553da99789d461cec48eed624684a803f259a5177616a67f7391700acf51",
+    "host-app/fpga_backend.py": "cd8a3c64dd6211d5d866666cda57132fa0f140723ceee013849c894fa3457171",
+    "host-app/qualify_board.py": "9e590c6ec49fe2ce02b3c6eb711e2971d53186d36dbbb9205e32f888a96cc6ee",
+    "host-app/requirements.txt": "f22d07d97ecfc2ddfa1031acb721944f63d983e56cc665b3845c4e49418daebd",
+    "host-app/runtime_profile.py": "8921585f9d3b2b3643f099797d884eb4f315ee19ecf3bb409c9be8c5ede8d7f2",
+    "host-app/sampling_protocol.py": "e754440e991e3a84ea246292080be9a955957be6bedbc6a82ed38a67c54fae75",
+    "host-app/start_local_server.py": "33e2e8002d7bc62873a9ed850f4c9018037deae78dd2412dd8f1aacfbf5b5dbe",
+    "host-app/streamlit_app.py": "1755664f718fe29b91b510b5aa6b95ad79c9a8dbf05289e44005495f174ca844",
+    "host-app/token_machine_uart.py": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf",
+    "host-app/uart_channel.py": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e",
+    "variants/seeded-sampling/tools/settings_codec.py": "6e2f5cf5310700888187d3d4d9af1921e2150adbe865773874bdbe7eaecc326a"
+  }
+}

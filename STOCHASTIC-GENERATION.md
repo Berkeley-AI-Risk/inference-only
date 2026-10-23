@@ -8,15 +8,19 @@ the tokens; temperature 0 keeps the original exact greedy rule.
 Use the local browser app to enter text and choose generation settings.
 The image is a runnable release with browser controls, prebuilt hardware,
 model assets and installation instructions. It passed short UART board checks
-and two 128-output runs at every supported temperature.
+and two 128-output runs at every supported temperature. It also passed all
+16 context-matrix cases, through full 2,048-token prompts at every temperature.
 Its extended registration check and a Streamlit AppTest of the app controls
-also passed with the real FPGA. A clean recipient export passed inventory,
-offline app and package checks.
+also passed with the real FPGA. A clean recipient package subsequently passed
+fresh installed-model verification, the same SRAM image reload, registration
+and an ordinary Chrome rehearsal, with every generated token reference-checked.
 The existing baseline, K/V-protected and encrypted-memory versions remain
-available. The new image has no K/V integrity or memory encryption and does
-not inherit the existing three-command proofs or full-context qualification.
-The [qualification roadmap](variants/seeded-sampling/QUALIFICATION.md) defines
-the remaining checks independently of release availability.
+available. The new image has no K/V integrity or memory encryption. It
+has separate [extended control proofs](formal/seeded-sampling/README.md) and
+[source-bound full-context results](evidence/seeded-sampling/full-context.json).
+The [qualification record](variants/seeded-sampling/QUALIFICATION.md) records
+completed functional and scoped control coverage, with timing and security
+obligations stated separately from release availability.
 
 ## Load and check the seeded image
 
@@ -51,7 +55,11 @@ startup checks. The new image is volatile; reload it after power loss.
 Its SHA-256 is
 `0e6d30b68bd8757657bc1c3b949ac5b9571a0a8d1f8bb1a6e6018b241f733033`;
 [BUILD.json](prebuilt/seeded-sampling/BUILD.json) binds it to the selected
-sources. These identities do not independently attest a connected FPGA.
+sources. Its scope field records the qualification status at native-build
+time; later board, browser and proof results are recorded separately in
+[VALIDATION.md](VALIDATION.md) and the
+[qualification record](variants/seeded-sampling/QUALIFICATION.md). These
+identities do not independently attest a connected FPGA.
 
 Install the host app dependencies as described in
 [host-app/README.md](host-app/README.md), then register the loaded seeded image
@@ -153,7 +161,9 @@ The current performance campaign uses prompt token `[378]` followed by
 greedy SimpleStories measurements. Each supported temperature was run twice
 with seed `0x99aabbccddeeff001122334455667788`; the second run replayed after
 CLEAR without resending settings. All 1,024 outputs were recorded, and the
-two complete token sequences at each temperature matched exactly.
+two complete token sequences at each temperature matched exactly. The fixed-work
+wire benchmark sends all 128 STEP commands, including after an end-of-story
+token; the ordinary browser app stops when that token is returned.
 
 | Temperature | Run 1 cached command tokens/s | Run 2 cached command tokens/s |
 | --- | ---: | ---: |
@@ -174,6 +184,87 @@ check. [The complete archive](evidence/seeded-sampling/matched128.json) retains
 all wire events and reference outputs; [the evidence guide](evidence/seeded-sampling/README.md)
 provides offline checking commands.
 
+### Context and boundary qualification
+
+The same image passed **16 context cases**: prompt lengths 128, 512, 2,047
+and 2,048 at each supported temperature, with respectively 128, 4, 2 and 1
+outputs. Every one of the **540 main outputs** matched the complete integer
+reference. Each case also passed the baseline-style 12-token CLEAR/replay
+checks without resending SETTINGS, adding **192 exact replay outputs**.
+The longest cases checked the final output slot and rejection of further
+APPEND/STEP operations. All cases ended with acknowledged CLEAR; the campaign
+restored empty greedy state and released USB ownership.
+
+The [complete context record](evidence/seeded-sampling/full-context.json)
+retains wire bytes, timings, reference bindings and the original failure
+provenance. A host output-pipe failure interrupted an earlier case after its
+correct first reply, before its boundary/replay checks. That incomplete case
+is not credited. Three fully completed original cases were independently
+reaudited and retained byte for byte; the other 13 were run from CLEAR with
+durable recording. All 16 completed captures received independent raw-wire
+and model-reference audits. The continuation pins 38 runtime inputs; this is
+separate from the 91-input native-build inventory. Each command had a
+3,600-second deadline; these results do not claim baseline deadline parity.
+
+Eight separate [one-token-prompt control trials](evidence/seeded-sampling/around-control.json)
+also passed: two 128-output trials at each temperature, each with the baseline
+campaign's 12 known-answer CLEAR/replay outputs and invalid-operation checks.
+Their 1,024 main outputs and 96 probe outputs all matched the reference;
+three final greedy outputs checked restoration. Together with the 16 context
+cases, this is **24 baseline-style qualification trials, 1,564 main outputs
+and 288 per-trial replay outputs**, four times the baseline's six-trial
+matrix. These control trials are separate from the earlier performance
+benchmark; its measured rates and original captures remain unchanged.
+
+The [additional seed campaign](evidence/seeded-sampling/seed-domain.json)
+passed 12 cases: a second fixed seed with one-token and 128-token prompts
+at every positive temperature, plus zero and all-ones seeds with 32-output
+streams at every positive temperature. All **960 main outputs**, **96 replay
+outputs** and three final greedy outputs matched the integer reference.
+Zero uses the documented nonzero PRNG-state mapping; these deterministic
+streams do not establish independent physical entropy.
+
+The [early-CLEAR campaign](evidence/seeded-sampling/recovery.json) passed
+three cases: clearing halfway through a 128-token upload, and sending CLEAR
+shortly after STEP for 128- and 2,048-token prompts. The observed delays in
+the latter cases were about 60 ms; neither returned a token before CLEAR.
+Every case then reproduced and replayed an eight-token reference stream,
+for **48 exact recovery outputs**, followed by three final greedy outputs.
+These are physical host/wire observations, not observations of internal
+read ownership or the exact cancellation edge. The scoped RTL proofs and
+simulations establish their separately stated digital drain obligations.
+
+### Clean recipient and ordinary-browser rehearsal
+
+A clean **1,316-file** manifest-only package passed strict verification before
+local runtime files were created. A fresh physical read of all **16 MiB**
+matched the expected plaintext model and every erased-region byte, with CRC32
+`28e34a2f`. The same seeded image was then loaded into SRAM from that package,
+followed by the startup wait and a fresh **45-command, 19-token** registration.
+No flash write, erase or replacement model was used.
+
+The ordinary listening app at `http://127.0.0.1:8507` then passed **10 Chrome
+cases**, with **104 generated tokens and 144 wire commands**. They cover all
+four temperatures, repeated/chosen seeds, two distinct automatic seeds,
+greedy after sampling, Stop after visible output, greedy restart and Disconnect.
+All outputs matched the exact model reference; the six automatic-seed outputs
+were independently regenerated with the scalar reference. In the Stop case,
+75 outputs were visible while generating; it finished with 77 of the requested
+128, acknowledged CLEAR and released USB. This does not claim instantaneous
+stopping or observation of an internal command edge.
+
+[The browser record](evidence/seeded-sampling/browser.json) binds the displayed
+settings and text, actual downloads, raw UART frames, source identities,
+fresh readback/reload/registration and live server health. Disconnect left no
+UART owner. These are operator/Cua browser observations checked against the
+actual records, not independent attestation of browser actions or silicon.
+Browser download waits are outside FPGA command timings; this rehearsal does
+not replace the separate 128-output performance benchmark. A long interrupted
+wait for the first completed run's download was preserved separately; its
+already completed generation was not repeated or credited as a new trial.
+The host and board were the existing tested setup; another owner's installation
+and other platforms remain untested.
+
 ### Initial short trial and application checks
 
 The initial 2026-10-23 UTC physical trial returned **107 tokens**, with **46 exact
@@ -188,7 +279,7 @@ bad-CRC/invalid/nonempty settings rejection, settings sent behind STEP, and
 STEP/CLEAR followed by replay. The wire trace observed cancellation of that
 STEP and successful replay. It cannot show the exact internal busy edge or
 whether private reads were outstanding at CLEAR. No physical fault injection
-or full-context trial was performed for this image.
+or full-context trial was performed in that initial campaign.
 
 Separate application checks passed the extended **45-command, 19-token**
 registration test, then drove the rendered Streamlit controls through the
@@ -208,7 +299,8 @@ UART or software model supplied the outputs. See
 [the application evidence](evidence/seeded-sampling/app.json).
 A clean manifest-only recipient export also passed strict inventory and the
 offline app/package checks. No complete installation on a second owner's
-setup or human browser-click rehearsal is claimed.
+setup is claimed. That earlier framework test is separate from the ordinary
+browser rehearsal recorded above.
 
 In that historical one-token-prompt, 64-output trial at temperature 1, the first
 STEP took **85.38 ms** and the following 63 command/reply intervals totaled
@@ -264,6 +356,11 @@ The source is in [variants/seeded-sampling/hardware](variants/seeded-sampling/ha
 The pinned 91-input inventory is
 [hardware-inputs-seeded-sampling.json](host-app/hardware-inputs-seeded-sampling.json);
 four vendor files must be acquired separately under
-[VENDOR-SETUP.md](VENDOR-SETUP.md). The existing three-command formal proofs
-do not cover this additional command, sampler or seed state, including use
-of the new image at temperature 0.
+[VENDOR-SETUP.md](VENDOR-SETUP.md). The original three-command receipts do not
+cover the changed controller. Separate [seeded formal proofs and public replay](formal/seeded-sampling/README.md)
+now check SETTINGS, sampler/seed ownership and CLEAR/replay with the stated
+private-service boundaries. The connected Z3 proof passes 196 assertions;
+cvc5 passes its base and 194 conclusions, with two CRC conclusions unresolved.
+The public replay verifies 87 distributed source files and image bytes; it does
+not verify or prove the four omitted vendor files, whole-machine refinement,
+numerical CDF equivalence or mapped/timing correctness.

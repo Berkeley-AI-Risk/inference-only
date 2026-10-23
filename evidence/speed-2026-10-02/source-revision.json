@@ -1,7 +1,7 @@
 {
   "changes": {
     ".github/workflows/offline-checks.yml": {
-      "after_sha256": "6d5bd17f29122b37afa90e018f8afc522a1bd65ba8665eec47c9f6272b600448",
+      "after_sha256": "0119558f0cc36516f5989648d9940cec925e1c83926265888bad1e72e1e217bc",
       "before_sha256": "b6db015ad4d6bda2c87598fa86b7cc27c2b7802bbb882daea7ebe13c0eb9692f",
       "reverse_edits": [
         {
@@ -10,11 +10,20 @@
             "        run: |\n",
             "          python -I -S -B tools/check_seeded_sampling.py\n",
             "          python -I -S -B tools/check_seeded_matched128.py\n",
+            "          python -I -S -B tools/check_seeded_context.py\n",
+            "          python -I -S -B tools/check_seeded_domain.py\n",
+            "          python -I -S -B tools/check_seeded_recovery.py\n",
+            "          python -I -S -B tools/check_seeded_around.py\n",
+            "          python -I -S -B tools/check_seeded_browser.py\n",
+            "          python -I -S -B tools/check_seeded_numerical_reference.py\n",
+            "          python -I -S -B reference/seeded-sampling/check_package.py\n",
+            "          python -I -S -B formal/seeded-sampling/check_recorded.py\n",
+            "          python -I -S -B -m unittest discover -s formal/seeded-sampling -p 'test_*.py' -v\n",
             "          python -I -S -B -m unittest discover -s variants/seeded-sampling/tests -p 'test_*.py' -v\n",
             "          python -I -S -B -m unittest discover -s host-app -p 'test_seeded_build.py' -v\n"
           ],
           "before": [],
-          "end": 42,
+          "end": 51,
           "start": 36
         },
         {
@@ -25,8 +34,8 @@
             "        run: python -I -S -B tools/check_weight_authentication_cost.py\n"
           ],
           "before": [],
-          "end": 54,
-          "start": 50
+          "end": 63,
+          "start": 59
         },
         {
           "after": [
@@ -44,8 +53,8 @@
           "before": [
             "      - name: Run the offline helper tests\n"
           ],
-          "end": 72,
-          "start": 62
+          "end": 81,
+          "start": 71
         },
         {
           "after": [
@@ -71,8 +80,8 @@
             "        run: python -B -m unittest discover -s host-app -p 'test_*.py' -v\n"
           ],
           "before": [],
-          "end": 97,
-          "start": 77
+          "end": 106,
+          "start": 86
         }
       ]
     },
@@ -153,7 +162,7 @@
       ]
     },
     "ARCHITECTURE.md": {
-      "after_sha256": "6dbba9c55c38c08700e33527633aa507236d8a4322eda610b8b52e8f9f236a07",
+      "after_sha256": "d572b8b2c277f5b62c1e31aa916a3ed8b1bb51094a62e8354404d9d84b9f0de6",
       "before_sha256": "3bd5cd42e22df73f439980373d50d4f1d9603c58528531f678ea9ee6d9ed9102",
       "reverse_edits": [
         {
@@ -164,15 +173,16 @@
             "lanes, and a different physical K/V layout; see [ENCRYPTED-MEMORY.md](ENCRYPTED-MEMORY.md).\n",
             "The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) extends\n",
             "the baseline with a fixed sampler and bounded temperature/seed command.\n",
-            "Its source, resources and limited validation are separate from the baseline\n",
-            "figures and three-command proof scope used below.\n"
+            "Its source, resources and validation are recorded separately from the baseline\n",
+            "figures below; its [extended control proofs](formal/seeded-sampling/README.md)\n",
+            "cover the additional settings and sampler state.\n"
           ],
           "before": [
             "This guide describes the original baseline and K/V-protected layouts. The\n",
             "third configuration has an encrypted external-memory path, a two-bank weight\n",
             "cache and a different physical K/V layout; see [ENCRYPTED-MEMORY.md](ENCRYPTED-MEMORY.md).\n"
           ],
-          "end": 10,
+          "end": 11,
           "start": 2
         },
         {
@@ -181,8 +191,8 @@
             "cryptographic specifications and architectural antecedents.\n"
           ],
           "before": [],
-          "end": 18,
-          "start": 16
+          "end": 19,
+          "start": 17
         },
         {
           "after": [
@@ -191,8 +201,8 @@
           "before": [
             "The source links below describe the selected September 24 baseline circuit:\n"
           ],
-          "end": 20,
-          "start": 19
+          "end": 21,
+          "start": 20
         },
         {
           "after": [
@@ -205,8 +215,8 @@
             "and three public commands are fixed. The baseline and preceding protected\n",
             "image passed [model and app tests on the board](VALIDATION.md#september-24-baseline-and-preceding-protected-image).\n"
           ],
-          "end": 24,
-          "start": 21
+          "end": 25,
+          "start": 22
         },
         {
           "after": [
@@ -215,8 +225,8 @@
           "before": [
             "[October 2 board tests](VALIDATION.md#current-protected-and-encrypted-images).\n"
           ],
-          "end": 26,
-          "start": 25
+          "end": 27,
+          "start": 26
         },
         {
           "after": [
@@ -232,8 +242,8 @@
             "rows. These changes are private implementation choices, not new user controls;\n",
             "the K/V guard and its expected-digest storage remain unchanged.\n"
           ],
-          "end": 39,
-          "start": 34
+          "end": 40,
+          "start": 35
         },
         {
           "after": [
@@ -242,8 +252,8 @@
           "before": [
             "| Decoding | Deterministic greedy argmax, not stochastic sampling |\n"
           ],
-          "end": 56,
-          "start": 55
+          "end": 57,
+          "start": 56
         },
         {
           "after": [
@@ -257,8 +267,8 @@
             "\n"
           ],
           "before": [],
-          "end": 77,
-          "start": 69
+          "end": 78,
+          "start": 70
         },
         {
           "after": [
@@ -279,8 +289,8 @@
             "[Qwen hardware diagram](demos/qwen3-1.7b/HARDWARE.md#detailed-hardware-diagram)\n"
           ],
           "before": [],
-          "end": 104,
-          "start": 89
+          "end": 105,
+          "start": 90
         },
         {
           "after": [
@@ -289,8 +299,8 @@
           "before": [
             "The clock tree also contains the PLL's 50 MHz output. Historical signal names\n"
           ],
-          "end": 120,
-          "start": 119
+          "end": 121,
+          "start": 120
         },
         {
           "after": [
@@ -301,8 +311,8 @@
           "before": [
             "Gray-pointer asynchronous FIFOs, a 32-command queue, a 64-entry return FIFO,\n"
           ],
-          "end": 131,
-          "start": 128
+          "end": 132,
+          "start": 129
         },
         {
           "after": [
@@ -315,8 +325,8 @@
             "reached the full 2,048-input window and final output slot. The new protected\n",
             "image's board tests reached 512-token prompts; see\n"
           ],
-          "end": 159,
-          "start": 157
+          "end": 160,
+          "start": 158
         },
         {
           "after": [
@@ -326,8 +336,8 @@
           "before": [
             "by itself. SHA-256 is used for fixed-content verification, not encryption;\n"
           ],
-          "end": 267,
-          "start": 265
+          "end": 268,
+          "start": 266
         },
         {
           "after": [
@@ -417,8 +427,8 @@
             "\n"
           ],
           "before": [],
-          "end": 376,
-          "start": 292
+          "end": 377,
+          "start": 293
         },
         {
           "after": [
@@ -427,8 +437,8 @@
           "before": [
             "The selected builds include three small exact-arithmetic speedups: a\n"
           ],
-          "end": 379,
-          "start": 378
+          "end": 380,
+          "start": 379
         },
         {
           "after": [
@@ -437,8 +447,8 @@
           "before": [
             "add public controls, change clocks or bypass weight/K/V checks. Source-bound\n"
           ],
-          "end": 384,
-          "start": 383
+          "end": 385,
+          "start": 384
         },
         {
           "after": [
@@ -447,8 +457,8 @@
           "before": [
             "their receipt hashes. Public model replays exercise the changed RTL but do\n"
           ],
-          "end": 388,
-          "start": 387
+          "end": 389,
+          "start": 388
         },
         {
           "after": [
@@ -460,8 +470,8 @@
             "| 128 tokens | 19.34 s |\n",
             "| 512 tokens | 133.92 s |\n"
           ],
-          "end": 404,
-          "start": 401
+          "end": 405,
+          "start": 402
         },
         {
           "after": [
@@ -478,8 +488,8 @@
           "before": [
             "four outputs, averaging 2.26 cached tokens/s after the first.\n"
           ],
-          "end": 417,
-          "start": 408
+          "end": 418,
+          "start": 409
         },
         {
           "after": [
@@ -493,8 +503,8 @@
             "violated endpoints**. Its reported inference-clock Fmax is 26.065 MHz against\n",
             "a 25 MHz target. A complete census of the reported negative endpoints places\n"
           ],
-          "end": 449,
-          "start": 445
+          "end": 450,
+          "start": 446
         },
         {
           "after": [
@@ -504,8 +514,8 @@
           "before": [
             "qualified. The current protected route has 211 setup/recovery and three hold\n"
           ],
-          "end": 455,
-          "start": 453
+          "end": 456,
+          "start": 454
         },
         {
           "after": [
@@ -518,8 +528,8 @@
             "setup/hold margins are +1.080/+0.138 ns, not complete product signoff.\n",
             "See [baseline native results](evidence/leaf-speed/native.json),\n"
           ],
-          "end": 459,
-          "start": 456
+          "end": 460,
+          "start": 457
         },
         {
           "after": [
@@ -528,8 +538,8 @@
           "before": [
             "The selected baseline uses 56,538/69,120 CLS, 196/340 BSRAM, and\n"
           ],
-          "end": 463,
-          "start": 462
+          "end": 464,
+          "start": 463
         },
         {
           "after": [
@@ -543,8 +553,8 @@
             "- Selected encrypted configuration SHA-256: `7ab1d1c35d79da3e3341e81947353d337b981ee916628dc9fda79cfcec79d46b`.\n",
             "- Historical baseline campaign configuration SHA-256: `5a5b6788ea0d5b07d25614e91f2950c0c3a7b3cf49f8e225f2dcaf9e76ac8c2a`.\n"
           ],
-          "end": 483,
-          "start": 480
+          "end": 484,
+          "start": 481
         },
         {
           "after": [
@@ -555,8 +565,8 @@
             "and [portable test](evidence/portable-host.json) describe previous images, not\n",
             "the selected arithmetic revision. See [the evidence chronology](evidence/README.md)\n"
           ],
-          "end": 489,
-          "start": 488
+          "end": 490,
+          "start": 489
         }
       ]
     },
@@ -856,19 +866,19 @@
       ]
     },
     "FORMAL-STATUS.md": {
-      "after_sha256": "5fdfca52b4340b2a3b6e0510d2a10255fdb914d8af16f7a031e91c3488eafde7",
+      "after_sha256": "ca0d5f19ee8a439205a799af22449aa04297e5fa94a1974833604edc2f76c46b",
       "before_sha256": "43c685741450e179e3a4fae38412ce76c39238fe078ad0d9276dec968aabc550",
       "reverse_edits": [
         {
           "after": [
-            "The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) is outside\n",
-            "the proof inventory below. Its SETTINGS decoder, sampler, seed state and\n",
-            "CLEAR/replay semantics have finite simulation and board evidence. No proof\n",
-            "extends the three-command results to it, and no whole-machine or\n",
-            "numerical-distribution theorem is claimed.\n",
-            "This also applies when that new image is used at temperature 0: retaining\n",
-            "the greedy selector does not make the changed controller a proved instance\n",
-            "of the original source-bound configuration.\n",
+            "The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) now has\n",
+            "[separate source-bound proofs and public replay](formal/seeded-sampling/README.md)\n",
+            "for SETTINGS, sampler/seed ownership and CLEAR/replay. Its connected Z3 proof\n",
+            "passes 196 assertions; cvc5 checks the base and 194 conclusions, with two CRC\n",
+            "conclusions unresolved by that second solver. These new results are separate\n",
+            "from the original three-command receipts and retain scoped component/private\n",
+            "computation boundaries. No whole-machine or numerical-distribution theorem is\n",
+            "claimed.\n",
             "\n",
             "## What the formalization is meant to establish\n",
             "\n",
@@ -876,7 +886,7 @@
             "specification: software can use one fixed model through its allowed commands,\n",
             "rather than select arbitrary internal operations or replace its accepted\n",
             "weights. For the [fixed numerical SimpleStories model](INFERENCE-ONLY.md#the-idealized-machine-and-the-implemented-interface)\n",
-            "described here, the ideal machine has a token tape and three commands:\n",
+            "described here, the baseline ideal machine has a token tape and three commands:\n",
             "\n",
             "- `APPEND(token)` adds an input token to the tape, when there is room in the\n",
             "  2,048-token input context.\n",
@@ -946,12 +956,13 @@
             "The proof receipts below identify the exact sources checked. These results\n",
             "concern the SimpleStories baseline and the separately identified K/V-protected\n",
             "components; they do not automatically cover any Qwen design. They do\n",
-            "not certify the [encrypted-memory configuration](ENCRYPTED-MEMORY.md) or the\n",
-            "[seeded-sampling configuration](STOCHASTIC-GENERATION.md).\n",
+            "not certify the [encrypted-memory configuration](ENCRYPTED-MEMORY.md).\n",
+            "The seeded configuration's separate inventory follows below; the original\n",
+            "receipts do not automatically cover that changed controller, even at temperature 0.\n",
             "\n"
           ],
           "before": [],
-          "end": 84,
+          "end": 85,
           "start": 76
         },
         {
@@ -967,8 +978,8 @@
             "proofs have been replayed against the selected September 24 baseline,\n",
             "including its changed arithmetic children. The K/V-protected sources have\n"
           ],
-          "end": 91,
-          "start": 85
+          "end": 92,
+          "start": 86
         },
         {
           "after": [
@@ -980,8 +991,8 @@
             "buffer requires a different read-only observation point, not fewer assertions\n",
             "or an extra assumption. The proof elaboration maps its eight small rows to\n"
           ],
-          "end": 94,
-          "start": 92
+          "end": 95,
+          "start": 93
         },
         {
           "after": [
@@ -990,8 +1001,8 @@
           "before": [
             "The wrong-coordinate fault control was updated to select the adjacent value\n"
           ],
-          "end": 96,
-          "start": 95
+          "end": 97,
+          "start": 96
         },
         {
           "after": [],
@@ -999,8 +1010,8 @@
             "Historical receipts retain their earlier identities, including the\n",
             "[September baseline/protected replay](evidence/leaf-speed/release-replay.json).\n"
           ],
-          "end": 98,
-          "start": 98
+          "end": 99,
+          "start": 99
         },
         {
           "after": [
@@ -1011,8 +1022,8 @@
             "| Abstract machine | Lean checks the three-command specification, tape bounds, command effects and reply counts. | Its fixed next-token function is abstract; this is not an RTL correspondence proof. |\n",
             "| Actual UART bridge | Yosys proves 46 assertions by induction: 15 earlier domain/CLEAR properties plus 31 request-history, authorization and reply properties. | This covers the bridge's admitted input bytes, command interface and reply-byte handoff, not the inference engine. |\n"
           ],
-          "end": 107,
-          "start": 105
+          "end": 108,
+          "start": 106
         },
         {
           "after": [
@@ -1021,8 +1032,8 @@
           "before": [
             "| Token-shell controller and tape | 48 assertions: the earlier 35 control properties plus 13 for live tape contents, tape overwrite-before-read after CLEAR/reset, and stored/published-token agreement. Both SMT solvers check the complete induction. | Real local arithmetic and memories remain; external private services are arbitrary component inputs. This is not K/V/scratch erasure or the fixed model's numerical next-token theorem. |\n"
           ],
-          "end": 109,
-          "start": 108
+          "end": 110,
+          "start": 109
         },
         {
           "after": [
@@ -1031,8 +1042,8 @@
           "before": [
             "| Verified weight-page bank | 37 assertions, with both solvers checking the complete induction: fill-before-read, sealed RAM, digest-comparison admission, hash-input correspondence, owned replies and sticky faults. | Real 128-by-256-bit RAM is retained; SHA replies and the expected-digest input remain arbitrary. Not SHA correctness or parent-ROM composition. |\n"
           ],
-          "end": 112,
-          "start": 111
+          "end": 113,
+          "start": 112
         },
         {
           "after": [
@@ -1041,8 +1052,8 @@
           "before": [
             "| Protected guard/cache/parent connections | 325 joint assertions, both solvers, including the preceding 221, the local cache's 59 and 45 connection/history checks. Includes accumulated data, request identity, exponents and guard-side CLEAR. | Real guard and atomic cache with source-projected parent reset/reply gates; private schedule and arithmetic boundaries remain arbitrary. |\n"
           ],
-          "end": 114,
-          "start": 113
+          "end": 115,
+          "start": 114
         },
         {
           "after": [
@@ -1051,8 +1062,8 @@
           "before": [
             "changed arithmetic but do not prove its bounds for every input. The controller\n"
           ],
-          "end": 122,
-          "start": 121
+          "end": 123,
+          "start": 122
         },
         {
           "after": [
@@ -1061,18 +1072,53 @@
           "before": [
             "assume an earlier proof receipt as a theorem.\n"
           ],
-          "end": 132,
-          "start": 131
+          "end": 133,
+          "start": 132
         },
         {
           "after": [
+            "## Separate seeded-sampling proof inventory\n",
+            "\n",
+            "The [portable seeded replay](formal/seeded-sampling/README.md) checks the exact\n",
+            "distributed RTL and fixed tables associated with image SHA-256\n",
+            "`0e6d30b68bd8757657bc1c3b949ac5b9571a0a8d1f8bb1a6e6018b241f733033`.\n",
+            "Its [recorded receipts](formal/seeded-sampling/recorded/RESULTS.json) and fresh\n",
+            "replay reports preserve the source/model/solver bindings and all unresolved\n",
+            "second-solver conclusions.\n",
+            "\n",
+            "| Layer | Seeded checked result | Important boundary |\n",
+            "| --- | --- | --- |\n",
+            "| Abstract four-command machine | 15 Lean 4.33.1 theorems for bounded settings/seed state, transaction effects, CLEAR replay, tape bounds and replies. | Greedy/sample/random-step functions remain abstract and fixed throughout a run. Busy, reset circuitry and faults are separate RTL obligations; no RTL correspondence theorem. |\n",
+            "| Selector lifecycle | 35 assertions, both solvers: atomic empty-boundary settings, accepted-start winner ownership, PRNG commit only on accepted positive-mode results, greedy state preservation, stalls, CLEAR rewind and sticky faults. | Complete fixed-dimension selector and original greedy child remain. Not numerical CDF equivalence. |\n",
+            "| Selector buffer ownership | 57 assertions including those 35, both solvers: complete 4,019-row acceptance and current per-slot logits/mass ownership and captured payload before healthy use. | All three real sampler memories retained; arbitrary read-only slot and child row-count observations have no production feedback. Separate from the connected model. |\n",
+            "| Actual UART/frontend | 63 joint assertions. Z3 checks the complete induction; cvc5 checks the base and all conclusions with identical joint priors. | Actual RX/TX at 217 clocks/bit, bridge and adapter retained. Independent admitted-byte/CRC history; downstream readiness/model/settings replies remain arbitrary. |\n",
+            "| Actual seeded token shell | 94 joint assertions: original 48 controller/tape, 11 settings and 35 selector. Both solvers check base and complete induction. | Real shell/arithmetic/sampler and 20 memories; private model/layer/head services remain arbitrary component inputs. |\n",
+            "| Connected UART/core/seeded shell | 196 joint assertions pass Z3 base and induction; cvc5 passes base and 194/196 conclusions. Request CRC 38 and reply CRC 73 remain `unknown` after bounded supplements. | Exactly the original baseline's whole external boundary and 37 unrestricted semantic-layer outputs; actual queues/gates/shell/sampler and 20 memories. Not whole-machine or mapped equivalence. |\n",
+            "\n",
+            "These counts overlap and must not be added. The connected proof keeps 88\n",
+            "baseline statements unchanged and replaces the original 46 UART statements\n",
+            "with 47 extended statements for the new valid frame states/indices. The\n",
+            "57-assertion buffer component proof is not inserted into that composition.\n",
+            "Induction retains every preceding joint assertion; separate cvc5 conclusions\n",
+            "change only the final goal. Solver `unknown` results remain unresolved.\n",
+            "\n",
+            "Public replay verifies 87 distributed source inputs plus the packaged image.\n",
+            "The historical 91-input inventory includes four omitted vendor digests; these\n",
+            "are provenance, not vendor bytes verified or logic proved by this replay.\n",
+            "Source reversal, exact local elaboration, all initialized ROM words, original\n",
+            "cuts/ports and read-only observer cones are audited. Nine reset-reachable\n",
+            "formal faulty controls and five directed UART simulation faults are detected.\n",
+            "Mutable payload is not assumed zero, and logical CLEAR does not imply physical\n",
+            "erasure. No new application weight/tensor-write command is added; that scoped\n",
+            "command/control result is not a whole-memory information-flow theorem.\n",
+            "\n",
             "## UART request and reply proof\n"
           ],
           "before": [
             "## What the expanded UART proof adds\n"
           ],
-          "end": 134,
-          "start": 133
+          "end": 170,
+          "start": 134
         },
         {
           "after": [
@@ -1081,8 +1127,8 @@
           "before": [
             "an exhaustive UART test. Earlier formal negative controls remain separate.\n"
           ],
-          "end": 163,
-          "start": 162
+          "end": 199,
+          "start": 198
         },
         {
           "after": [
@@ -1092,8 +1138,8 @@
             "phase invariants are proved together by induction. The first controller stage\n",
             "proved 35 assertions; the tape extension proves all 48 jointly. Both Z3 and\n"
           ],
-          "end": 223,
-          "start": 222
+          "end": 259,
+          "start": 258
         },
         {
           "after": [
@@ -1105,8 +1151,8 @@
             "and five newer tape mutations produce reset-reachable bounded counterexamples.\n",
             "The portable replay includes the five tape mutations. A separate internal source\n"
           ],
-          "end": 226,
-          "start": 224
+          "end": 262,
+          "start": 260
         },
         {
           "after": [
@@ -1115,8 +1161,8 @@
           "before": [
             "The added tape monitor watches one arbitrary, constant slot; proving the\n"
           ],
-          "end": 229,
-          "start": 228
+          "end": 265,
+          "start": 264
         },
         {
           "after": [
@@ -1125,8 +1171,8 @@
           "before": [
             "The proof preserves synthesis-mode production logic. Older unqualified\n"
           ],
-          "end": 245,
-          "start": 244
+          "end": 281,
+          "start": 280
         },
         {
           "after": [
@@ -1135,8 +1181,8 @@
           "before": [
             "embedding, normalization and argmax. It jointly reproves the previous 108\n"
           ],
-          "end": 277,
-          "start": 276
+          "end": 313,
+          "start": 312
         },
         {
           "after": [
@@ -1148,8 +1194,8 @@
             "300-second allowance per conclusion, then 900 seconds for five other\n",
             "unresolved conclusions, all of which passed. The source/query auditor checks\n"
           ],
-          "end": 293,
-          "start": 292
+          "end": 329,
+          "start": 328
         },
         {
           "after": [
@@ -1158,8 +1204,8 @@
           "before": [
             "The actual weight-bank RTL now has an additional 37-property component proof,\n"
           ],
-          "end": 330,
-          "start": 329
+          "end": 366,
+          "start": 365
         },
         {
           "after": [
@@ -1172,13 +1218,13 @@
           "before": [
             "checks the replay. The assertion count includes supporting invariants.\n"
           ],
-          "end": 340,
-          "start": 335
+          "end": 376,
+          "start": 371
         }
       ]
     },
     "INFERENCE-ONLY.md": {
-      "after_sha256": "dbf4974a29490d8cc5b7e932a4d543bb4ce96e5b28d73505c7ea247a30f64c9c",
+      "after_sha256": "2d0dcf55db46ca773f0633e5534895f5a34f8940720ac4754e98bd928d4ba82d",
       "before_sha256": "d79fd84cdde2506defb4faebb546f9dbad7c9bfd8fb80ef001b769eca734e4fd",
       "reverse_edits": [
         {
@@ -1190,8 +1236,9 @@
             "preserves the same public operations, but has separate circuitry and test\n",
             "coverage; it has no whole-machine proof or certified training-capacity rating.\n",
             "The optional [seeded-sampling version](STOCHASTIC-GENERATION.md) also has separate\n",
-            "evidence: it adds bounded generation settings and does not inherit the\n",
-            "three-command proofs or the capacity estimates for the configurations below.\n"
+            "evidence: it adds bounded generation settings and has\n",
+            "[extended scoped control proofs](formal/seeded-sampling/README.md). The capacity\n",
+            "estimates for the configurations below have not been transferred to it.\n"
           ],
           "before": [
             "This assessment and its proof/capacity receipts concern the original two\n",
@@ -1199,7 +1246,7 @@
             "the same public operations, but its changed circuitry and performance do not\n",
             "inherit a new whole-machine proof or training-capacity rating.\n"
           ],
-          "end": 11,
+          "end": 12,
           "start": 2
         },
         {
@@ -1209,14 +1256,14 @@
           "before": [
             "The two original configurations assessed here are: the original **baseline without\n"
           ],
-          "end": 19,
-          "start": 18
+          "end": 20,
+          "start": 19
         },
         {
           "after": [
             "### Optional seeded generation\n",
             "\n",
-            "The experimental seeded version adds `SETTINGS(temperature, seed)` only at an\n",
+            "The seeded version adds `SETTINGS(temperature, seed)` only at an\n",
             "empty, idle conversation boundary. Temperature is one of `{0, 0.5, 1, 2}`;\n",
             "the seed is a public 128-bit reproducibility setting. Temperature 0 keeps the\n",
             "original greedy rule. Positive temperatures use a fixed circuit distribution\n",
@@ -1226,17 +1273,19 @@
             "For a chosen temperature and seed, generation is deterministic. CLEAR retains\n",
             "the settings and rewinds the generator; reset restores greedy defaults. This\n",
             "is a bounded family of inference behaviors, with unchanged accepted weights\n",
-            "and private model arithmetic. Its additional command and state require a\n",
-            "separate specification and proof. The existing three-command results, finite\n",
-            "greedy capacity estimates and full-context tests do not qualify this extension.\n",
-            "Its board tests establish the limited behavior recorded in\n",
-            "[the seeded-generation evidence](VALIDATION.md#experimental-seeded-sampling-image),\n",
-            "not a certified residual training fraction or physical-security result.\n",
+            "and private model arithmetic. Its additional command and state have a\n",
+            "[separate specification and control proof](formal/seeded-sampling/README.md),\n",
+            "with numerical model functions abstract in the Lean specification. Its board\n",
+            "campaigns and integer references are also recorded separately. The finite\n",
+            "greedy capacity estimates have not been extended to sampling.\n",
+            "[The seeded-generation evidence](VALIDATION.md#experimental-seeded-sampling-image)\n",
+            "records the finite test scope; it does not certify a residual training fraction\n",
+            "or physical security.\n",
             "\n"
           ],
           "before": [],
-          "end": 79,
-          "start": 60
+          "end": 82,
+          "start": 61
         },
         {
           "after": [
@@ -1251,8 +1300,8 @@
             "is distinct from certifying its residual training factor.\n"
           ],
           "before": [],
-          "end": 97,
-          "start": 88
+          "end": 100,
+          "start": 91
         },
         {
           "after": [
@@ -1288,8 +1337,8 @@
             "in its HNLPU discussion, while requiring further audit. We use the same\n",
             "distinction, not an assumption that external memory is untamperable.\n"
           ],
-          "end": 213,
-          "start": 187
+          "end": 216,
+          "start": 190
         },
         {
           "after": [
@@ -1298,8 +1347,8 @@
           "before": [
             "model. The analysis also compares with the paper's illustrative 0.01 and 0.001\n"
           ],
-          "end": 232,
-          "start": 231
+          "end": 235,
+          "start": 234
         },
         {
           "after": [
@@ -1315,8 +1364,8 @@
             "through the qualification/app path. Earlier series are identified separately\n",
             "in [VALIDATION.md](VALIDATION.md).\n"
           ],
-          "end": 285,
-          "start": 280
+          "end": 288,
+          "start": 283
         }
       ]
     },
@@ -1681,7 +1730,7 @@
       ]
     },
     "PROGRAMMING.md": {
-      "after_sha256": "8b537b8aa516f916591a7764cbda9d0a0a1b45bc94fa38b97736f3ace3a46da0",
+      "after_sha256": "cff1d86bee2e55627db895e80ebe1fabd693314809b2ed17ae2054d7001acb6a",
       "before_sha256": "4ad6ae1ea1476ce6fd6ae53e30ec1fc58269c36cbc6e6fe1c14befd978f60373",
       "reverse_edits": [
         {
@@ -1718,13 +1767,15 @@
             "It uses this same plaintext model in flash. Follow\n",
             "[its extended known-answer check and browser instructions](STOCHASTIC-GENERATION.md#load-and-check-the-seeded-image)\n",
             "after startup. The browser shows sampling controls for a qualified seeded\n",
-            "profile. This image has\n",
-            "bounded short-context tests, separate from the original images' full-window\n",
-            "and formal results.\n",
+            "profile. This image passed its own finite full-context and replay campaign\n",
+            "at all four temperatures, with separate source-bound\n",
+            "[scoped control proofs](formal/seeded-sampling/README.md). See its\n",
+            "[qualification record](variants/seeded-sampling/QUALIFICATION.md) for the\n",
+            "completed evidence and remaining timing/security limits.\n",
             "\n"
           ],
           "before": [],
-          "end": 202,
+          "end": 204,
           "start": 193
         },
         {
@@ -1735,13 +1786,13 @@
           "before": [
             "Follow [the host guide](host-app/README.md) to run the seven-command known-answer\n"
           ],
-          "end": 209,
-          "start": 207
+          "end": 211,
+          "start": 209
         }
       ]
     },
     "README.md": {
-      "after_sha256": "14057733d5f54366d252bffea072d4f8a36118b5b9fc1d8f3ac3999d31f9eefa",
+      "after_sha256": "98a1d019b4e33ea63eb85719cf43a1b0ab318ab93920da9188a105b6247bc63f",
       "before_sha256": "a5857c8782de407acf15e929b7ae4d5927e0372779df1b48414f8ed4bb85d8a1",
       "reverse_edits": [
         {
@@ -1850,9 +1901,12 @@
           "after": [
             "An optional [seeded-sampling version of SimpleStories-V2-5M](STOCHASTIC-GENERATION.md)\n",
             "also accepts a bounded temperature and seed setting while its tape is empty\n",
-            "and idle. Its browser controls and extended board-registration check have\n",
-            "separate real-board evidence; a token-ID CLI is also included for diagnostics. Its board\n",
-            "evidence is separate from the original three Tang Mega versions.\n"
+            "and idle. Its controls passed Streamlit AppTest with the real FPGA, and its\n",
+            "extended board-registration check has separate real-board evidence. A separate\n",
+            "[Chrome rehearsal](evidence/seeded-sampling/browser.json) passed with the actual\n",
+            "listening app on the same host and board. A token-ID CLI is also\n",
+            "included for diagnostics; its board evidence is separate from the original\n",
+            "three SimpleStories versions.\n"
           ],
           "before": [
             "The prototype runs on a Sipeed Tang Mega 138K **non-Pro Dock** board package\n",
@@ -1866,7 +1920,7 @@
             "operations above. This demonstration supports one fixed model, so there is\n",
             "no model-selection command.\n"
           ],
-          "end": 33,
+          "end": 36,
           "start": 28
         },
         {
@@ -1876,8 +1930,8 @@
           "before": [
             "<img src=\"fpga.jpeg\" alt=\"The Sipeed Tang Mega 138K FPGA board used for this inference-only demonstration, connected by USB.\" width=\"720\">\n"
           ],
-          "end": 35,
-          "start": 34
+          "end": 38,
+          "start": 37
         },
         {
           "after": [
@@ -1886,15 +1940,15 @@
             "| **SimpleStories-V2-5M \u2014 Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |\n",
             "| Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |\n",
             "| Same model, **K/V protection + encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |\n",
-            "| Same model, **seeded sampling**, without K/V integrity | About **8.7 tokens/s** at temperature 1 | Runnable release; seeded sampling |\n",
+            "| Same model, **seeded sampling**, without K/V integrity | About **8.7 tokens/s** at temperature 1 | Runnable release; context and browser campaigns passed |\n",
             "| **Qwen3-1.7B \u2014 AWS F2**, authenticated weights | About **9.0 tokens/s** | Runnable release; public AWS FPGA image |\n",
             "| **Qwen3-8B \u2014 AWS F2**, authenticated weights | About **1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |\n"
           ],
           "before": [
             "*The physical board used for the demonstration.*\n"
           ],
-          "end": 44,
-          "start": 36
+          "end": 47,
+          "start": 39
         },
         {
           "after": [
@@ -1912,8 +1966,8 @@
             "Resistance to other physical tampering is a separate question, not something\n",
             "the frozen-configuration assumption establishes.\n"
           ],
-          "end": 49,
-          "start": 45
+          "end": 52,
+          "start": 48
         },
         {
           "after": [
@@ -1927,8 +1981,8 @@
             "This is a working research prototype, not a\n",
             "production-qualified or security-certified accelerator.\n"
           ],
-          "end": 51,
-          "start": 50
+          "end": 54,
+          "start": 53
         },
         {
           "after": [
@@ -1943,8 +1997,8 @@
           "before": [
             "## What the demonstration does\n"
           ],
-          "end": 59,
-          "start": 52
+          "end": 62,
+          "start": 55
         },
         {
           "after": [
@@ -1963,22 +2017,30 @@
             "and converts returned token IDs back to text. **The FPGA performs the model\n",
             "inference; the Mac does not run the language model that produces the replies.**\n"
           ],
-          "end": 67,
-          "start": 60
+          "end": 70,
+          "start": 63
         },
         {
           "after": [
             "\u201cRunnable release\u201d means the image, model, app and installation instructions\n",
             "are available. Each version's validation scope is recorded separately;\n",
             "the seeded version's [qualification roadmap](variants/seeded-sampling/QUALIFICATION.md)\n",
-            "lists its remaining functional and proof work. No Tang version has complete\n",
-            "vendor-DDR timing or physical-security certification.\n"
+            "records completed functional, scoped control-proof and recipient/browser\n",
+            "coverage. Its 24 baseline-style trials at temperatures 0,\n",
+            "0.5, 1 and 2 matched all 1,564 main outputs and 288 CLEAR/replay outputs,\n",
+            "including 2,047- and 2,048-token prompts. Separate additional-seed and recovery\n",
+            "campaigns also passed. These finite checks do not establish every possible\n",
+            "workload. A clean 1,316-file recipient package also passed fresh model/flash\n",
+            "readback, reloading the same SRAM image, 45-command/19-token registration and\n",
+            "ten Chrome cases with all 104 outputs exact across 144 wire commands. This\n",
+            "used the same supported host and board, not another owner's installation.\n",
+            "No Tang version has complete vendor-DDR timing or physical-security certification.\n"
           ],
           "before": [
             "The application uses this hardware interface:\n"
           ],
-          "end": 73,
-          "start": 68
+          "end": 84,
+          "start": 71
         },
         {
           "after": [
@@ -2000,8 +2062,8 @@
             "| `STEP` | Generate one token, append it to the tape, and return it. |\n",
             "| `CLEAR` | Empty the logical tape and invalidate its cached inference state. |\n"
           ],
-          "end": 84,
-          "start": 74
+          "end": 95,
+          "start": 85
         },
         {
           "after": [
@@ -2015,8 +2077,8 @@
             "transport details around the three operations. `CLEAR` resets the logical\n",
             "state; it does not physically overwrite every memory cell with zeros.\n"
           ],
-          "end": 86,
-          "start": 85
+          "end": 97,
+          "start": 96
         },
         {
           "after": [
@@ -2082,8 +2144,8 @@
             "test scope, source reproduction, installation and restoration. All\n",
             "three preserve the same model and public three-operation interface.\n"
           ],
-          "end": 90,
-          "start": 87
+          "end": 101,
+          "start": 98
         },
         {
           "after": [
@@ -2101,8 +2163,8 @@
             "token operations. No command loads arbitrary weights, invokes matrix\n",
             "multiplication, or reads/writes intermediate tensors.\n"
           ],
-          "end": 99,
-          "start": 93
+          "end": 110,
+          "start": 104
         },
         {
           "after": [
@@ -2121,8 +2183,8 @@
             "or manufacturer-update command. This is hardware-checked external storage,\n",
             "not physically hardwired weight bits.\n"
           ],
-          "end": 107,
-          "start": 100
+          "end": 118,
+          "start": 111
         },
         {
           "after": [
@@ -2140,8 +2202,8 @@
             "normalization squares are likewise private. There is no software interface\n",
             "for injecting their arbitrary operands or retrieving their products.\n"
           ],
-          "end": 114,
-          "start": 108
+          "end": 125,
+          "start": 119
         },
         {
           "after": [
@@ -2160,15 +2222,16 @@
             "mapped into the host's address space. Private buffers between operations do\n",
             "not themselves expose a matrix-multiplication interface.\n"
           ],
-          "end": 122,
-          "start": 115
+          "end": 133,
+          "start": 126
         },
         {
           "after": [
             "The [detailed inference-only assessment](INFERENCE-ONLY.md) explains these\n",
             "distinctions using the Tang Mega designs. Its [formal-verification report](FORMAL-STATUS.md)\n",
-            "covers specific properties of the baseline and K/V-protected RTL, not the\n",
-            "seeded-sampling extension, whole-machine refinement or Qwen.\n",
+            "covers specific properties of the baseline and K/V-protected RTL and a\n",
+            "separate source-bound extension for seeded sampling. These are scoped\n",
+            "control/component proofs, without whole-machine refinement or a Qwen proof.\n",
             "The [conditional training-capacity analysis](TRAINING-CAPACITY.md)\n",
             "and [architecture-dependent analysis](ARCHITECTURE-DEPENDENT-CAPACITY.md)\n",
             "make their assumptions explicit; their Tang Mega numerical factors are not\n",
@@ -2189,8 +2252,8 @@
             "remain scoped proofs, not a proof of the whole protected machine or of\n",
             "resistance to physical circuit modification.\n"
           ],
-          "end": 133,
-          "start": 123
+          "end": 145,
+          "start": 134
         },
         {
           "after": [
@@ -2207,8 +2270,8 @@
             "idealized machine's specification, and no nation-state-resistant\n",
             "training-capacity rating has been certified.\n"
           ],
-          "end": 135,
-          "start": 134
+          "end": 147,
+          "start": 146
         },
         {
           "after": [
@@ -2226,8 +2289,8 @@
             "modifying the silicon, but would not automatically provide general access to\n",
             "the multiplier units.\n"
           ],
-          "end": 141,
-          "start": 136
+          "end": 153,
+          "start": 148
         },
         {
           "after": [
@@ -2328,8 +2391,8 @@
             "[current protected/encrypted measurements](evidence/speed-2026-10-02/board.json), the\n",
             "[technical guide](ARCHITECTURE.md), and the [host guide](host-app/README.md).\n"
           ],
-          "end": 150,
-          "start": 142
+          "end": 162,
+          "start": 154
         },
         {
           "after": [
@@ -2350,8 +2413,8 @@
             "primarily SystemVerilog/Verilog; references, tests and host tools use Python;\n",
             "vendor implementation uses Tcl and timing/pin constraint files.\n"
           ],
-          "end": 159,
-          "start": 153
+          "end": 171,
+          "start": 165
         },
         {
           "after": [
@@ -2370,8 +2433,8 @@
             "design**, notably the separation of fast DDR transport from slower inference\n",
             "control.\n"
           ],
-          "end": 169,
-          "start": 160
+          "end": 181,
+          "start": 172
         },
         {
           "after": [
@@ -2380,8 +2443,8 @@
           "before": [
             "**Opus 5.5 also provided feedback in later reviews of the project.**\n"
           ],
-          "end": 171,
-          "start": 170
+          "end": 183,
+          "start": 182
         },
         {
           "after": [
@@ -2400,8 +2463,8 @@
             "with substantial tool use and human oversight, not a controlled comparison\n",
             "of AI and human engineering ability.\n"
           ],
-          "end": 177,
-          "start": 172
+          "end": 189,
+          "start": 184
         },
         {
           "after": [
@@ -2476,8 +2539,8 @@
             "model assets use the upstream MIT declaration and third-party notices are\n",
             "preserved. See [LICENSE](LICENSE), [NOTICE](NOTICE) and [LICENSING.md](LICENSING.md).\n"
           ],
-          "end": 187,
-          "start": 178
+          "end": 199,
+          "start": 190
         }
       ]
     },
@@ -2884,7 +2947,7 @@
       ]
     },
     "VALIDATION.md": {
-      "after_sha256": "a6c20616052b97a803149551c4d347df7766bac312e44976830f46cea5d65854",
+      "after_sha256": "4730ef8ae2568c20cc50fa0bb4c3e4f6c973780620993c1a7f5a8f9a05e53b79",
       "before_sha256": "fc1059d224ace37d4bb5eaa4cb3ec999d9e263c38d3a7f4deec21ae9ebec6b1d",
       "reverse_edits": [
         {
@@ -3000,8 +3063,9 @@
             "\n",
             "The seeded image is available as a runnable release with the browser app.\n",
             "Its [qualification roadmap](variants/seeded-sampling/QUALIFICATION.md)\n",
-            "separates remaining functional/proof work from the timing and security\n",
-            "obligations that also remain for the other Tang images.\n",
+            "records completed functional, scoped control-proof and same-host recipient/\n",
+            "browser coverage, and the timing and security obligations that\n",
+            "also remain for the other Tang images.\n",
             "\n",
             "The repeated performance campaign ran **128 outputs from prompt token 378\n",
             "twice at each temperature**, with 1,024 returned outputs and exact full\n",
@@ -3016,6 +3080,47 @@
             "The [complete archive](evidence/seeded-sampling/matched128.json) and\n",
             "[offline checker](tools/check_seeded_matched128.py) preserve and verify those\n",
             "outputs, wire events, timings and source/image bindings without rerunning hardware.\n",
+            "\n",
+            "The same image subsequently passed **all 16 context-matrix cases**, covering\n",
+            "128-, 512-, 2,047- and 2,048-token prompts at all four temperatures. All **540\n",
+            "main outputs and 192 CLEAR/replay outputs** matched the complete integer\n",
+            "reference, including final-slot and over-limit checks. Three completed\n",
+            "original cases were retained after independent re-audit; 13 new cases completed\n",
+            "the continuation. An earlier host output-pipe failure and its incomplete case\n",
+            "are preserved and are not credited. The [full context record](evidence/seeded-sampling/full-context.json)\n",
+            "binds every frame, reference, timing and source identity. Its 38 runtime pins\n",
+            "are distinct from the native build's 91-input inventory. Commands used a\n",
+            "3,600-second deadline; deadline parity with the baseline is not claimed.\n",
+            "\n",
+            "Eight further [around-control trials](evidence/seeded-sampling/around-control.json)\n",
+            "passed with 1,024 main and 96 known-answer replay outputs, plus three final\n",
+            "greedy restoration outputs. Combined with the context matrix, **24\n",
+            "baseline-style trials check 1,564 main and 288 per-trial replay outputs**.\n",
+            "This matches the baseline's prompt fixtures and replay method at all four\n",
+            "temperatures. The eight earlier matched128 performance runs remain separate.\n",
+            "\n",
+            "The [additional seed campaign](evidence/seeded-sampling/seed-domain.json)\n",
+            "passed 12 cases and **1,059 exact outputs**: 960 continuous-stream outputs,\n",
+            "96 CLEAR replays and three final greedy outputs. It covers a second fixed\n",
+            "seed at one- and 128-token prompts and zero/all-ones seeds at each positive\n",
+            "temperature. The [early-CLEAR campaign](evidence/seeded-sampling/recovery.json)\n",
+            "passed partial upload and early cancellation of 128- and 2,048-token prompt\n",
+            "computations, then checked **48 recovery/replay outputs and three final\n",
+            "greedy outputs**. No token preceded CLEAR in either canceled STEP case.\n",
+            "Internal command/read edges were not physically observed.\n",
+            "\n",
+            "The [clean-recipient browser rehearsal](evidence/seeded-sampling/browser.json)\n",
+            "also passed. Its 1,316-file package was verified before runtime artifacts;\n",
+            "a fresh full 16-MiB read matched every model and erased-region byte, then the\n",
+            "same image was reloaded and passed fresh 45-command/19-token registration.\n",
+            "The ordinary listening app passed ten Chrome cases with **104 exact generated\n",
+            "outputs and 144 wire commands**, including all temperatures, replay, changed\n",
+            "and automatic seeds, Stop and recovery. Both automatic seeds received fresh\n",
+            "scalar-reference checks. Stop was observed at 75 outputs and completed at 77;\n",
+            "subsequent greedy generation and Disconnect passed. No UART owner remained.\n",
+            "Browser observations are operator/Cua records checked against actual downloads\n",
+            "and wire bytes; they do not independently attest the browser actions or silicon.\n",
+            "No second-owner or new-platform installation is claimed.\n",
             "\n",
             "In the earlier 2026-10-23 UTC trial, the supplied seeded image passed a bounded physical UART\n",
             "campaign with **46 exact token checks**: three greedy outputs before any\n",
@@ -3054,7 +3159,8 @@
             "A clean manifest-only recipient export passed strict inventory verification,\n",
             "all 22 offline package checks and 70 host-app tests, including the seeded\n",
             "controls and registration fixtures. These checks do not establish a second\n",
-            "owner's complete installation or a human browser-click rehearsal.\n",
+            "owner's complete installation; the later ordinary-browser evidence is\n",
+            "recorded separately above.\n",
             "\n",
             "That historical 64-output run measured 63 cached commands in 6.09747 seconds,\n",
             "**10.33 tokens/s**, with an 85.38 ms first STEP. Command timings include\n",
@@ -3065,8 +3171,11 @@
             "The [native summary](evidence/seeded-sampling/native.json) reports\n",
             "inference-clock setup/hold margins +0.092/+0.144 ns at 25 MHz, with 145\n",
             "setup/recovery and ten hold/removal violated endpoints in vendor DDR.\n",
-            "The image has no complete timing signoff, extended formal proof or full-context\n",
-            "qualification. The app checks have the bounded scope stated above. See\n",
+            "The image has separate [extended scoped control proofs](FORMAL-STATUS.md#separate-seeded-sampling-proof-inventory)\n",
+            "and portable numerical references. Its full-context matrix passed; recipient\n",
+            "and actual-browser checks also passed on the same host and board. Complete\n",
+            "timing signoff remains absent. The historical app checks have\n",
+            "the bounded scope stated above. See\n",
             "[the seeded-generation guide](STOCHASTIC-GENERATION.md).\n",
             "\n",
             "## K/V integrity checks\n",
@@ -3076,7 +3185,7 @@
           "before": [
             "The protected proof package was replayed against the new source set:\n"
           ],
-          "end": 140,
+          "end": 186,
           "start": 41
         },
         {
@@ -3092,8 +3201,8 @@
             "not a whole-machine theorem. The full-geometry guard simulation also passed\n",
             "275,913 commands. See the [current replay summary](evidence/speed-2026-10-02/replay.json).\n"
           ],
-          "end": 144,
-          "start": 141
+          "end": 190,
+          "start": 187
         },
         {
           "after": [
@@ -3112,8 +3221,8 @@
             "retain their recorded hashes, while `verify_release.py` checks current bytes.\n",
             "The previous images remain available in Git history.\n"
           ],
-          "end": 152,
-          "start": 145
+          "end": 198,
+          "start": 191
         },
         {
           "after": [
@@ -3125,8 +3234,8 @@
           "before": [
             "## September 24 baseline and preceding protected image\n"
           ],
-          "end": 157,
-          "start": 153
+          "end": 203,
+          "start": 199
         },
         {
           "after": [
@@ -3145,8 +3254,8 @@
             "The [September measurements](evidence/leaf-speed/physical.json) identify each\n",
             "image, prompt, output, elapsed interval and original evidence hash.\n"
           ],
-          "end": 164,
-          "start": 158
+          "end": 210,
+          "start": 204
         },
         {
           "after": [
@@ -3160,8 +3269,8 @@
             "contaminated run. Individual trials remain distinct from repeated-run\n",
             "statistics or timing signoff.\n"
           ],
-          "end": 166,
-          "start": 165
+          "end": 212,
+          "start": 211
         },
         {
           "after": [
@@ -3184,8 +3293,8 @@
             "an exact reversible source record lets the evidence checker recover those\n",
             "older files without claiming that old trials used new hardware.\n"
           ],
-          "end": 172,
-          "start": 167
+          "end": 218,
+          "start": 213
         },
         {
           "after": [
@@ -3364,8 +3473,8 @@
             "This later physical check used the protected image only. It is not new\n",
             "full-context testing, timing signoff, or independent configuration attestation.\n"
           ],
-          "end": 179,
-          "start": 173
+          "end": 225,
+          "start": 219
         },
         {
           "after": [
@@ -3397,8 +3506,8 @@
             "134-property proof has complete primary-solver support; the secondary solver\n",
             "proved 133 conclusions and left one checksum conclusion unresolved.\n"
           ],
-          "end": 196,
-          "start": 182
+          "end": 242,
+          "start": 228
         },
         {
           "after": [
@@ -3414,8 +3523,8 @@
             "Read [FORMAL-STATUS.md](FORMAL-STATUS.md) for exact proof boundaries and the\n",
             "[inference-only assessment](INFERENCE-ONLY.md) for the frozen-configuration argument.\n"
           ],
-          "end": 199,
-          "start": 197
+          "end": 245,
+          "start": 243
         }
       ]
     },
@@ -3454,7 +3563,7 @@
       ]
     },
     "demos/simplestories-v2-5m/README.md": {
-      "after_sha256": "3887a62a80ec3022a5277f5e2f598588865d9df3e18a728668357c5a963e8429",
+      "after_sha256": "47332b216c8f548d61fe4fdc852ad87e756f874f6f0e550ab688acc9c515a743",
       "before_sha256": "4a77d2c863f3bc984bb6ee341efb7c524df04b9cdbf5c61d091332150e989048",
       "reverse_edits": [
         {
@@ -3509,18 +3618,30 @@
             "weights and plaintext flash image, without K/V integrity or encryption,\n",
             "with temperatures 0, 0.5, 1 and 2 and a\n",
             "public reproducibility seed. Temperature 0 retains the exact greedy rule.\n",
-            "It passed two 128-output UART runs at each supported temperature, alongside\n",
-            "short seeded/replay and application checks; it\n",
-            "has not received the other images' full-context or formal qualification.\n",
+            "It passed two 128-output UART benchmark runs at each supported temperature,\n",
+            "plus a separate 24-trial baseline-style context/control campaign. All 1,564\n",
+            "main outputs and 288 CLEAR/replay outputs matched the integer reference,\n",
+            "including 2,047- and 2,048-token prompts at every temperature. Additional-seed\n",
+            "and recovery campaigns also passed. It has separate\n",
+            "[extended scoped control proofs](../../formal/seeded-sampling/README.md).\n",
             "Its extended board-registration check and app controls have separate real-board\n",
             "tests, with the UI driven by Streamlit AppTest. Follow\n",
             "[its installation and browser guide](../../STOCHASTIC-GENERATION.md).\n",
-            "Its availability is separate from the remaining\n",
-            "[functional and proof qualification work](../../variants/seeded-sampling/QUALIFICATION.md).\n",
+            "A separate [actual Chrome rehearsal](../../evidence/seeded-sampling/browser.json)\n",
+            "passed from a clean 1,316-file recipient package on the same supported host\n",
+            "and board. A fresh 16-MiB readback matched the installed model and surrounding\n",
+            "`FF` bytes, followed by reloading the same SRAM image and passing 45-command/\n",
+            "19-token registration. All 104 outputs in ten Chrome cases matched the integer\n",
+            "reference across 144 wire commands. Cases covered all temperatures, fixed-seed\n",
+            "replay, a changed seed, two independently replayed automatic seeds, Stop/CLEAR,\n",
+            "resumed greedy generation and Disconnect. The\n",
+            "[qualification roadmap](../../variants/seeded-sampling/QUALIFICATION.md)\n",
+            "records this finite coverage and the remaining timing/security obligations;\n",
+            "another owner's installation and other host platforms remain untested.\n",
             "\n"
           ],
           "before": [],
-          "end": 122,
+          "end": 134,
           "start": 109
         },
         {
@@ -3530,8 +3651,8 @@
           "before": [
             "The configured circuit exposes `APPEND`, `STEP` and `CLEAR`, with hardware-owned inference and memory addressing. All three variants authenticate the weights actually consumed. We assess the circuit with its configuration frozen, not the FPGA's ability to load another circuit.\n"
           ],
-          "end": 125,
-          "start": 124
+          "end": 137,
+          "start": 136
         },
         {
           "after": [
@@ -3540,8 +3661,8 @@
           "before": [
             "The three supplied images have physical-board tests against the same integer\n"
           ],
-          "end": 149,
-          "start": 148
+          "end": 161,
+          "start": 160
         },
         {
           "after": [
@@ -3559,44 +3680,57 @@
             "does not present them as a matched benchmark.\n"
           ],
           "before": [],
-          "end": 166,
-          "start": 154
+          "end": 178,
+          "start": 166
         },
         {
           "after": [
-            "All three greedy images have reached the full 2,048-input limit and final\n"
+            "All four images have reached the full 2,048-input limit and final output slot\n",
+            "in board tests, including boundary rejection and CLEAR/replay. The seeded\n",
+            "image passed both 2,047- and 2,048-token prompts at temperatures 0, 0.5, 1 and 2.\n"
           ],
           "before": [
-            "All three supplied images have reached the full 2,048-input limit and final\n"
+            "All three supplied images have reached the full 2,048-input limit and final\n",
+            "output slot in board tests, including boundary rejection and CLEAR/replay.\n"
           ],
-          "end": 196,
-          "start": 195
+          "end": 210,
+          "start": 207
         },
         {
           "after": [
-            "The runnable release includes **three prebuilt greedy configurations**, an\n",
+            "The runnable release includes **three prebuilt greedy configurations**, a\n",
             "seeded-sampling image with browser controls and a diagnostic CLI, a\n"
           ],
           "before": [
             "The runnable release includes **three prebuilt inference configurations**, a\n"
           ],
-          "end": 240,
-          "start": 238
+          "end": 253,
+          "start": 251
         },
         {
           "after": [
-            "\n",
             "For optional seeded generation, follow\n",
             "[STOCHASTIC-GENERATION.md](../../STOCHASTIC-GENERATION.md) after installing the\n",
             "plaintext model. Switching from the baseline changes only the SRAM image.\n",
             "Register it using its matching build receipt and extended known-answer check,\n",
             "then use the browser's temperature and seed controls. The diagnostic CLI is\n",
             "optional; the [seeded guide](../../STOCHASTIC-GENERATION.md) records the exact\n",
-            "app-test scope.\n"
+            "app-test scope.\n",
+            "\n"
           ],
           "before": [],
-          "end": 269,
-          "start": 261
+          "end": 283,
+          "start": 275
+        },
+        {
+          "after": [
+            "what was checked and the remaining timing, security and proof limitations.\n"
+          ],
+          "before": [
+            "what was checked and the remaining timing, context and proof limitations.\n"
+          ],
+          "end": 286,
+          "start": 285
         }
       ]
     },
@@ -29269,7 +29403,7 @@
       ]
     },
     "host-app/README.md": {
-      "after_sha256": "12f4df7affe35c1b0dceea8717aedc5bc9e8dc86fa7f606c2bf01ecdcfc73834",
+      "after_sha256": "9ae2fb30dfeb15cf578113ff3f684ab382e43b168befeb6a0fbcd23ef32a1a89",
       "before_sha256": "25d38582ff79b3da3b0399a7c9299c4fb47bf3d4139130df9ea21ca2b56bd348",
       "reverse_edits": [
         {
@@ -29299,6 +29433,9 @@
             "the optional seeded-sampling image. Its extended registration check and\n",
             "Streamlit AppTest exercised the real FPGA; offline recipient checks passed\n",
             "from a clean export. The framework test did not open a browser or start a web server.\n",
+            "A separate [actual Chrome rehearsal](../evidence/seeded-sampling/browser.json)\n",
+            "passed from a clean 1,316-file recipient package on the same supported host\n",
+            "and board.\n",
             "See\n",
             "[the seeded-generation guide](../STOCHASTIC-GENERATION.md).\n",
             "For `encrypted-memory`, use `prebuilt/encrypted-memory/BUILD.json`\n",
@@ -29315,7 +29452,7 @@
             "These app tests are additional to the separate 700-output hardware campaign.\n",
             "Neither build receipts nor matching outputs independently attest the configuration.\n"
           ],
-          "end": 19,
+          "end": 22,
           "start": 10
         },
         {
@@ -29325,6 +29462,19 @@
             "tests. It does not claim a complete human browser-click rehearsal of all\n",
             "three greedy images on another owner's setup. Neither build receipts nor\n",
             "matching outputs independently attest the configuration.\n",
+            "\n",
+            "Before that Chrome rehearsal, a fresh 16-MiB flash readback matched every model\n",
+            "byte and the `FF` bytes outside the model region. The exact same seeded SRAM\n",
+            "image was then reloaded and its 45-command/19-token registration passed.\n",
+            "Ten cases exercised every temperature, fixed-seed replay, a changed seed,\n",
+            "two distinct automatic seeds, greedy after sampling, Stop, resumed greedy\n",
+            "generation and Disconnect. All 104 outputs matched the integer reference;\n",
+            "both automatic-seed runs also matched independent scalar model replays.\n",
+            "Displayed and downloaded settings were checked against 144 wire commands.\n",
+            "Stop was clicked after 75 outputs were visible; the request finished with 77\n",
+            "of 128 requested outputs, acknowledged CLEAR and released the connection.\n",
+            "Greedy generation then resumed, and Disconnect released USB ownership.\n",
+            "These observations do not identify the internal command edge at the click.\n",
             "\n",
             "The app keeps a healthy USB connection open between successful runs. This\n",
             "avoids repeated connection setup, not FPGA computation. Each run still clears\n"
@@ -29336,8 +29486,8 @@
             "**1.19 seconds** with a retained connection, for the same eight-token prompt. This\n",
             "saves repeated connection setup, not FPGA computation. Each run still clears\n"
           ],
-          "end": 28,
-          "start": 20
+          "end": 44,
+          "start": 23
         },
         {
           "after": [],
@@ -29345,14 +29495,18 @@
             "The [earlier connection-reuse tests](../VALIDATION.md#host-connection-reuse)\n",
             "retain their original image and timing records.\n"
           ],
-          "end": 29,
-          "start": 29
+          "end": 45,
+          "start": 45
         },
         {
           "after": [
             "All four hardware variants retain unresolved vendor-DDR timing paths.\n",
-            "The three greedy images have passed full-context board tests; the seeded image\n",
-            "has a separate short-context trial. None establishes complete timing signoff.\n",
+            "All four images have passed finite full-context board tests. The seeded image\n",
+            "passed 24 baseline-style trials across temperatures 0, 0.5, 1 and 2, including\n",
+            "2,047- and 2,048-token prompts, with all 1,564 main outputs and 288 CLEAR/replay\n",
+            "outputs matching the integer reference. Separate additional-seed and recovery\n",
+            "campaigns also passed; see the [qualification roadmap](../variants/seeded-sampling/QUALIFICATION.md).\n",
+            "None establishes complete timing signoff or correctness for every prompt.\n",
             "This app conservatively allows at most 128 prompt\n"
           ],
           "before": [
@@ -29360,8 +29514,8 @@
             "have passed separate functional tests through the full 2,048-input context;\n",
             "that is not complete timing signoff. This app conservatively allows at most 128 prompt\n"
           ],
-          "end": 38,
-          "start": 34
+          "end": 58,
+          "start": 50
         },
         {
           "after": [
@@ -29384,8 +29538,8 @@
           "before": [
             "The historical flag name `--confirm-loaded-source-build` also applies to this\n"
           ],
-          "end": 101,
-          "start": 86
+          "end": 121,
+          "start": 106
         },
         {
           "after": [
@@ -29395,8 +29549,8 @@
           "before": [
             "This is a seven-command hardware test, including CLEAR at both ends. It\n"
           ],
-          "end": 107,
-          "start": 105
+          "end": 127,
+          "start": 125
         },
         {
           "after": [
@@ -29405,8 +29559,8 @@
           "before": [
             "To switch between the baseline and K/V-protected versions, stop the app,\n"
           ],
-          "end": 119,
-          "start": 118
+          "end": 139,
+          "start": 138
         },
         {
           "after": [
@@ -29415,8 +29569,8 @@
           "before": [
             "Those two versions use the same plaintext model in flash.\n"
           ],
-          "end": 122,
-          "start": 121
+          "end": 142,
+          "start": 141
         },
         {
           "after": [
@@ -29425,8 +29579,8 @@
           "before": [
             "The tokenizer is unchanged across all three versions. The browser cannot\n"
           ],
-          "end": 128,
-          "start": 127
+          "end": 148,
+          "start": 147
         },
         {
           "after": [
@@ -29437,8 +29591,8 @@
             "the server PID; stop that server normally before programming or requalifying.\n",
             "Do not kill unrelated Python processes.\n"
           ],
-          "end": 140,
-          "start": 138
+          "end": 160,
+          "start": 158
         },
         {
           "after": [
@@ -29454,8 +29608,8 @@
             "\n"
           ],
           "before": [],
-          "end": 165,
-          "start": 155
+          "end": 185,
+          "start": 175
         },
         {
           "after": [
@@ -29500,8 +29654,8 @@
             "configuration.\n"
           ],
           "before": [],
-          "end": 213,
-          "start": 174
+          "end": 233,
+          "start": 194
         }
       ]
     },
@@ -29995,7 +30149,7 @@
       ]
     },
     "host-app/runtime_profile.py": {
-      "after_sha256": "ef74d1c2a15c83814553377592b2a1db84e6ab5bfdd1fb54c87f6ffb49fa7e32",
+      "after_sha256": "8921585f9d3b2b3643f099797d884eb4f315ee19ecf3bb409c9be8c5ede8d7f2",
       "before_sha256": "62d9e257c0ed96773a817c5e1ba97293ad44a885dd2b9f4ead6081c75f9cb6fb",
       "reverse_edits": [
         {
@@ -30019,7 +30173,7 @@
         {
           "after": [
             "    'seeded-sampling': {\n",
-            "        'label': 'Seeded temperature sampling (experimental)',\n",
+            "        'label': 'Seeded temperature sampling without K/V integrity',\n",
             "        'inventory': 'hardware-inputs-seeded-sampling.json',\n",
             "        'hardware_root': 'variants/seeded-sampling/hardware',\n",
             "        'inputs_sha256': '26a0885f9ffefaeea68b948295635fcfb37367254b549c48e75e0d7093e96831',\n",
@@ -30029,6 +30183,16 @@
           "before": [],
           "end": 26,
           "start": 19
+        },
+        {
+          "after": [
+            "        'label': 'K/V protection + encrypted memory (public test keys)',\n"
+          ],
+          "before": [
+            "        'label': 'Encrypted external memory (public test keys)',\n"
+          ],
+          "end": 28,
+          "start": 27
         },
         {
           "after": [
@@ -30132,7 +30296,7 @@
       ]
     },
     "host-app/streamlit_app.py": {
-      "after_sha256": "49342547979bc8f4e4f805b81fdfb99771c45bf8445a91ca9fc7a3e3ee95effa",
+      "after_sha256": "1755664f718fe29b91b510b5aa6b95ad79c9a8dbf05289e44005495f174ca844",
       "before_sha256": "1ff164ede091671ac340647208b463099d39682787b867e4e4b5b49cef898bf1",
       "reverse_edits": [
         {
@@ -30204,8 +30368,8 @@
         },
         {
           "after": [
-            "           f'{DEMO_CAP} total. The three original greedy builds have passed separate tests at the 2,048-input limit. '\n",
-            "           'The seeded-sampling build has separate short-context tests.')\n"
+            "           f'{DEMO_CAP} total. Separate board campaigns exercise longer contexts; '\n",
+            "           'see the repository validation report for each build.')\n"
           ],
           "before": [
             "           f'{DEMO_CAP} total. Both hardware variants have passed separate tests at the 2,048-input limit.')\n"
@@ -30215,12 +30379,12 @@
         },
         {
           "after": [
-            "    st.write('Three builds are available: the faster baseline without K/V integrity checks; the K/V-protected build that checks cached attention data before use; and the experimental encrypted-memory build, which also encrypts external weights and K/V. Encryption uses public demonstration keys, not secret deployment keys, and requires its matching encrypted flash image. All three authenticate model weights and have passed normal-inference board tests through the full context window. K/V corruption/replay rejection was tested in simulation, not by physically altering DDR. Vendor-DDR timing remains unresolved for all three. The local four-token check does not reproduce the larger campaigns or attest the loaded circuit. The app stops on errors and cannot reset, reflash or reconfigure the board.')\n",
+            "    st.write('Three builds are available: the faster baseline without K/V integrity checks; the K/V-protected build that checks cached attention data before use; and the encrypted-memory build, which retains K/V integrity and replay protection and adds encryption for external weights and K/V. Encryption uses public demonstration keys, not secret deployment keys, and requires its matching encrypted flash image. All three authenticate model weights and have passed normal-inference board tests through the full context window. K/V corruption/replay rejection was tested in simulation, not by physically altering DDR. Vendor-DDR timing remains unresolved for all three. The local four-token check does not reproduce the larger campaigns or attest the loaded circuit. The app stops on errors and cannot reset, reflash or reconfigure the board.')\n",
             "    st.write('An optional seeded-sampling build adds the temperature and seed controls above. '\n",
             "             'It uses the same SimpleStories model and plaintext flash as the baseline. '\n",
             "             'Each Generate starts a new story, and a blank seed chooses and displays a fresh seed for that run. '\n",
             "             'A chosen seed lets you replay the same prompt and temperature. '\n",
-            "             'This experimental build has separate short-context board tests; the older full-window tests and formal proofs do not cover it.')\n"
+            "             'This build has its own source-bound board tests and qualification evidence. It has no K/V integrity protection or memory encryption.')\n"
           ],
           "before": [
             "    st.write('Two experimental builds are available: the faster baseline without K/V integrity checks, and the protected build that checks cached attention data before use. Both authenticate model weights and have passed normal-inference board tests through the full context window. Corruption/replay rejection in the protected build was tested in simulation, not by physically altering DDR. Vendor-DDR timing remains unresolved for both. The local four-token check does not reproduce the larger campaigns or attest the loaded circuit. The app stops on errors and cannot reset, reflash or reconfigure the board.')\n"
@@ -30247,23 +30411,25 @@
       ]
     },
     "host-app/test_streamlit_app.py": {
-      "after_sha256": "c97708c9e81067f16e59e53d2b82644eae642d406853b0699b5fb41aa95de1db",
+      "after_sha256": "6f639c37d83bb603d7223a386cbd6f1f40103494142ac13cf606105b40243b33",
       "before_sha256": "23d17965bbe34a1ef9888fb6a04434ea67e6fe0a007642126d52428fe2540c90",
       "reverse_edits": [
         {
           "after": [
             "        captions = '\\n'.join(item.value for item in app.caption)\n",
             "        explanation = '\\n'.join(item.value for item in app.markdown)\n",
-            "        self.assertIn('three original greedy builds', captions)\n",
-            "        self.assertIn('seeded-sampling build has separate short-context tests', captions)\n",
+            "        self.assertIn('128 prompt tokens, 128 new tokens, 256 total', captions)\n",
+            "        self.assertIn('validation report for each build', captions)\n",
             "        for phrase in ('Three builds are available', 'K/V-protected', 'encrypted-memory',\n",
-            "                       'public demonstration keys', 'matching encrypted flash image'):\n",
+            "                       'public demonstration keys', 'matching encrypted flash image',\n",
+            "                       'retains K/V integrity and replay protection',\n",
+            "                       'no K/V integrity protection or memory encryption'):\n",
             "            self.assertIn(phrase, explanation)\n",
             "        self.assertNotIn('Both hardware variants', captions)\n",
             "        self.assertNotIn('Two experimental builds', explanation)\n"
           ],
           "before": [],
-          "end": 31,
+          "end": 33,
           "start": 22
         }
       ]
@@ -31717,9 +31883,19 @@
       ]
     },
     "tools/test_encrypted_memory.py": {
-      "after_sha256": "8f0c1c55185264add4cfa96ec86e750699fbc46899fc1ef28a9489a48f82af76",
+      "after_sha256": "7c29a701f084191c35df4a148d237af155bb9254946cb45b9ca15dcf8d51ccf3",
       "before_sha256": "6c3db4dfed15483669eeb7913c96290dc2c2b729c5e4ffa8ce1a10641ddaa3a8",
       "reverse_edits": [
+        {
+          "after": [
+            "                self.assertEqual(profile.configured_variant(),'K/V protection + encrypted memory (public test keys)')\n"
+          ],
+          "before": [
+            "                self.assertEqual(profile.configured_variant(),'Encrypted external memory (public test keys)')\n"
+          ],
+          "end": 48,
+          "start": 47
+        },
         {
           "after": [
             "                self.assertEqual(len(profile.hardware_inputs('encrypted-memory')),100)\n"
@@ -35704,7 +35880,7 @@
       ]
     }
   },
-  "latest_revision": "2026-10-22-seeded-matched128-and-protection-labels",
+  "latest_revision": "2026-10-23-seeded-image-functional-and-control-qualification",
   "old_board_tests_apply_to_new_images": false,
   "schema": "tang-speed-source-revision-v1"
 }

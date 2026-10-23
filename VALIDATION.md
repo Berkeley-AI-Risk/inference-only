@@ -66,8 +66,9 @@ for workloads and measurement boundaries.
 
 The seeded image is available as a runnable release with the browser app.
 Its [qualification roadmap](variants/seeded-sampling/QUALIFICATION.md)
-separates remaining functional/proof work from the timing and security
-obligations that also remain for the other Tang images.
+records completed functional, scoped control-proof and same-host recipient/
+browser coverage, and the timing and security obligations that
+also remain for the other Tang images.
 
 The repeated performance campaign ran **128 outputs from prompt token 378
 twice at each temperature**, with 1,024 returned outputs and exact full
@@ -82,6 +83,47 @@ at-capture reference flags remain unchanged.
 The [complete archive](evidence/seeded-sampling/matched128.json) and
 [offline checker](tools/check_seeded_matched128.py) preserve and verify those
 outputs, wire events, timings and source/image bindings without rerunning hardware.
+
+The same image subsequently passed **all 16 context-matrix cases**, covering
+128-, 512-, 2,047- and 2,048-token prompts at all four temperatures. All **540
+main outputs and 192 CLEAR/replay outputs** matched the complete integer
+reference, including final-slot and over-limit checks. Three completed
+original cases were retained after independent re-audit; 13 new cases completed
+the continuation. An earlier host output-pipe failure and its incomplete case
+are preserved and are not credited. The [full context record](evidence/seeded-sampling/full-context.json)
+binds every frame, reference, timing and source identity. Its 38 runtime pins
+are distinct from the native build's 91-input inventory. Commands used a
+3,600-second deadline; deadline parity with the baseline is not claimed.
+
+Eight further [around-control trials](evidence/seeded-sampling/around-control.json)
+passed with 1,024 main and 96 known-answer replay outputs, plus three final
+greedy restoration outputs. Combined with the context matrix, **24
+baseline-style trials check 1,564 main and 288 per-trial replay outputs**.
+This matches the baseline's prompt fixtures and replay method at all four
+temperatures. The eight earlier matched128 performance runs remain separate.
+
+The [additional seed campaign](evidence/seeded-sampling/seed-domain.json)
+passed 12 cases and **1,059 exact outputs**: 960 continuous-stream outputs,
+96 CLEAR replays and three final greedy outputs. It covers a second fixed
+seed at one- and 128-token prompts and zero/all-ones seeds at each positive
+temperature. The [early-CLEAR campaign](evidence/seeded-sampling/recovery.json)
+passed partial upload and early cancellation of 128- and 2,048-token prompt
+computations, then checked **48 recovery/replay outputs and three final
+greedy outputs**. No token preceded CLEAR in either canceled STEP case.
+Internal command/read edges were not physically observed.
+
+The [clean-recipient browser rehearsal](evidence/seeded-sampling/browser.json)
+also passed. Its 1,316-file package was verified before runtime artifacts;
+a fresh full 16-MiB read matched every model and erased-region byte, then the
+same image was reloaded and passed fresh 45-command/19-token registration.
+The ordinary listening app passed ten Chrome cases with **104 exact generated
+outputs and 144 wire commands**, including all temperatures, replay, changed
+and automatic seeds, Stop and recovery. Both automatic seeds received fresh
+scalar-reference checks. Stop was observed at 75 outputs and completed at 77;
+subsequent greedy generation and Disconnect passed. No UART owner remained.
+Browser observations are operator/Cua records checked against actual downloads
+and wire bytes; they do not independently attest the browser actions or silicon.
+No second-owner or new-platform installation is claimed.
 
 In the earlier 2026-10-23 UTC trial, the supplied seeded image passed a bounded physical UART
 campaign with **46 exact token checks**: three greedy outputs before any
@@ -120,7 +162,8 @@ automation was used. See [the source-bound app record](evidence/seeded-sampling/
 A clean manifest-only recipient export passed strict inventory verification,
 all 22 offline package checks and 70 host-app tests, including the seeded
 controls and registration fixtures. These checks do not establish a second
-owner's complete installation or a human browser-click rehearsal.
+owner's complete installation; the later ordinary-browser evidence is
+recorded separately above.
 
 That historical 64-output run measured 63 cached commands in 6.09747 seconds,
 **10.33 tokens/s**, with an 85.38 ms first STEP. Command timings include
@@ -131,8 +174,11 @@ supply the advertised rate.
 The [native summary](evidence/seeded-sampling/native.json) reports
 inference-clock setup/hold margins +0.092/+0.144 ns at 25 MHz, with 145
 setup/recovery and ten hold/removal violated endpoints in vendor DDR.
-The image has no complete timing signoff, extended formal proof or full-context
-qualification. The app checks have the bounded scope stated above. See
+The image has separate [extended scoped control proofs](FORMAL-STATUS.md#separate-seeded-sampling-proof-inventory)
+and portable numerical references. Its full-context matrix passed; recipient
+and actual-browser checks also passed on the same host and board. Complete
+timing signoff remains absent. The historical app checks have
+the bounded scope stated above. See
 [the seeded-generation guide](STOCHASTIC-GENERATION.md).
 
 ## K/V integrity checks

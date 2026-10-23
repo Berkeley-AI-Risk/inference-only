@@ -38,6 +38,15 @@ jobs:
         run: |
           python -I -S -B tools/check_seeded_sampling.py
           python -I -S -B tools/check_seeded_matched128.py
+          python -I -S -B tools/check_seeded_context.py
+          python -I -S -B tools/check_seeded_domain.py
+          python -I -S -B tools/check_seeded_recovery.py
+          python -I -S -B tools/check_seeded_around.py
+          python -I -S -B tools/check_seeded_browser.py
+          python -I -S -B tools/check_seeded_numerical_reference.py
+          python -I -S -B reference/seeded-sampling/check_package.py
+          python -I -S -B formal/seeded-sampling/check_recorded.py
+          python -I -S -B -m unittest discover -s formal/seeded-sampling -p 'test_*.py' -v
           python -I -S -B -m unittest discover -s variants/seeded-sampling/tests -p 'test_*.py' -v
           python -I -S -B -m unittest discover -s host-app -p 'test_seeded_build.py' -v
       - name: Check the photograph for embedded metadata

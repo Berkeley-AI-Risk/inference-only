@@ -1,0 +1,1737 @@
+{
+  "arithmetic": {
+    "activations": "signed int16 BFP with signed exponent",
+    "attention_score_accumulator": "signed 37 bits",
+    "attention_value_accumulator": "signed 40 bits",
+    "bfp_exponent_derivation": "finest exponent in [-32,31] for which all RNE-even-aligned nonzero mantissas fit symmetric [-32767,32767]",
+    "bfp_exponent_range": [
+      -32,
+      31
+    ],
+    "bfp_exponent_visibility": "derived only from token-dependent internal values; not host addressable, writable, or persistent across CLEAR",
+    "elementwise_product": "signed 31 bits (32767**2 bound)",
+    "greedy_tie_break": "lowest token ID",
+    "host_carrier": "signed int64, with asserted hardware-width bounds",
+    "kv_cache": "signed int16 BFP per token and projection",
+    "matrix_accumulator": "signed 35 bits (682*511*32767 bound)",
+    "range_fault": "any declared-width violation, invalid shift, or BFP exponent overflow raises a fail-stop RANGE_FAULT; no token is appended, and the inference state remains fault-latched until CLEAR",
+    "reachable_state_status": "the declared arithmetic is total because out-of-range states trap; absence of RANGE_FAULT on every possible token history is not proved by this artifact",
+    "residual_add": "normalize both branches to the finest common BFP exponent, sum in signed 17 bits, then BFP-normalize the sum",
+    "right_shift_rounding": "nearest, exact ties to even",
+    "rms_division_numerator": "signed 28 bits (32767*2**12 bound)",
+    "rms_epsilon_aligned_radicand": "unsigned 45 bits for BFP exponents in [-32,31]",
+    "rms_square_sum": "unsigned 38 bits (256*32767**2 bound)",
+    "rms_weight_product": "signed 40 bits (32767*511*32767 bound)",
+    "rmsnorm": "epsilon=2**-20; floor integer square root; RNE-even division; normalized value in signed Q3.12",
+    "rope": "Q0.15 int16 LUT, half-split pairing",
+    "rope_accumulator": "signed 32 bits",
+    "saturation": "symmetric [-32767,32767] after BFP normalization",
+    "scale_product_intermediate": "signed 50 bits (682*511*32767*32767 bound)",
+    "silu": "Q5.10 input/output int16 LUT",
+    "softmax": "difference Q8.8, exp(-x) Q2.30 LUT over [0,16]; each probability is independently RNE-even(exp*32767/sum_exp); value accumulation divides by 32767",
+    "softmax_denominator": "unsigned 40 bits (at most 512*2**30, inclusive)",
+    "softmax_exponential": "unsigned Q2.30 in 31 bits",
+    "softmax_probability_numerator": "unsigned 45 bits (at most 2**30*32767)",
+    "weights": "signed symmetric int10 [-511,511], packed two's-complement LSB-first; per-output-row uint15 significand and signed int8 power-of-two exponent"
+  },
+  "builder": {
+    "canonical_command": "python scripts/quantize.py MODEL_DIRECTORY OUTPUT_DIRECTORY",
+    "numpy": "1.26.4",
+    "sources": [
+      {
+        "path": "quantization/artifacts.py",
+        "sha256": "028631df245a9dc0624a799ae2ba3bdea5c0a86c88eafb003fd2836b36b175ee",
+        "size": 17154
+      },
+      {
+        "path": "quantization/oracle.py",
+        "sha256": "9b048a8e8b82faba3d21fd6b259aa1c23d91f04662fe2734fc109602777b4a74",
+        "size": 38217
+      },
+      {
+        "path": "scripts/quantize.py",
+        "sha256": "a709c27e67d973140ec8a7557912117b7b44ffda1d8d74132cce6bb3ef0424a5",
+        "size": 1896
+      }
+    ]
+  },
+  "corpora": {
+    "calibration": {
+      "records": 512,
+      "sha256": "f5eb872eb2f572166f69bad6bc17f3b9db9b81f32f0f3b6459983686dc4047f2",
+      "teacher_forced_positions": 145667,
+      "used_for_scales": false
+    },
+    "evaluation": {
+      "records": 1024,
+      "sha256": "8c11dc3aedfbeaeb446b7c5f1cedceafbf7cf4ef5fa26be8fe8920cc1344d7e9",
+      "teacher_forced_positions": 282976,
+      "used_for_scales": false
+    }
+  },
+  "files": [
+    {
+      "path": "exp_neg_q30.i32le.bin",
+      "sha256": "0b330c5527eaa94e06557cd254485b23e514267b995030f6e7938ebf1a26c886",
+      "size": 16388
+    },
+    {
+      "path": "exponents.i8.bin",
+      "sha256": "818b45440511d72a34cf8ea3335e41cab73955fb3021ce9f079dd9c88d62b25d",
+      "size": 18360
+    },
+    {
+      "path": "multipliers.u16le.bin",
+      "sha256": "11c4e98d355cf86db4829bb85b26283200aa1b195ea9220b1db8003b0b99a9aa",
+      "size": 36720
+    },
+    {
+      "path": "rope_cos_q15.i16le.bin",
+      "sha256": "527f200b548934a4ec7ceaa84f3bc26516bb37a7e4dd02b1b8b63ccbe55a0637",
+      "size": 32768
+    },
+    {
+      "path": "rope_sin_q15.i16le.bin",
+      "sha256": "ccf9244715cfd54bfe68702a63bb3336c701a65076c0278ef100d37dbd4ef861",
+      "size": 32768
+    },
+    {
+      "path": "silu_q10.i16le.bin",
+      "sha256": "e34c89266abe9c073b790122f24b76ab226054e57f7b24f032e21a6b5f30f107",
+      "size": 131072
+    },
+    {
+      "path": "weights.i10.lsb0.bin",
+      "sha256": "862d5b7f7c356e2ce93978f0d6ce751a4027ff6c17c7ba3b027f98d77e25e69b",
+      "size": 6693120
+    }
+  ],
+  "luts": {
+    "rope_shape": [
+      512,
+      32
+    ],
+    "silu_entries": 65536,
+    "softmax_exp_entries": 4097
+  },
+  "profile": "simplestories-w10-a16-kv16-bfp-v5",
+  "schema_version": 1,
+  "source": {
+    "model_sha256": "7c8a5d078690e816920b4779decf55e58c34901c2668a1bc4f344b21862fce03",
+    "repository": "SimpleStories/SimpleStories-V2-5M",
+    "revision": "c4b3a4bb81297f5316697098e1d4b65c1249daf8"
+  },
+  "tensors": [
+    {
+      "exponents": {
+        "count": 4019,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 0,
+        "sha256": "0810b942c2670be23b9c106acd5e0226b37c0d9ed1a875b2205382e374ffd27f"
+      },
+      "multipliers": {
+        "count": 4019,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 0,
+        "sha256": "067c1df0986af7aba2ff96ba68492d33c3d86bd896b2b8f265c66573819bd52d"
+      },
+      "name": "model.embed_tokens.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        4019,
+        256
+      ],
+      "values": {
+        "bit_offset": 0,
+        "bit_size": 10288640,
+        "canonical_int16le_sha256": "8f1cae612de8e3d7a0171450205934638d2ad3395f6878fdad7121714f94ca4f",
+        "count": 1028864,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 1,
+        "dtype": "int8",
+        "layout": "per_tensor",
+        "offset": 4019,
+        "sha256": "e596a8e5c49dd20a79bd0c1a7dd190a674507d1129785746fcc1c5e64cd8416c"
+      },
+      "multipliers": {
+        "count": 1,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_tensor",
+        "offset": 8038,
+        "sha256": "234072b7e754ae5e6db0d30160f75c1d909eaa795a6d24ea00cf1d0409e3686e"
+      },
+      "name": "model.layers.0.input_layernorm.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256
+      ],
+      "values": {
+        "bit_offset": 10288640,
+        "bit_size": 2560,
+        "canonical_int16le_sha256": "9239750f1ee88c09c1a2b1e67e4be825aecbdfbe7e7b9d18682efef47ce2ade1",
+        "count": 256,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 4020,
+        "sha256": "5ffc78a695593240b7295a5cb7c2dfd615c0a3045f8a7c7aaf09c6c6d0350ece"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 8040,
+        "sha256": "f60605054269dbd86bb2fb3e8dec8d064ae9b5668baf34b0dc8574c0674dc693"
+      },
+      "name": "model.layers.0.mlp.down_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        682
+      ],
+      "values": {
+        "bit_offset": 10291200,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "0c1170f0859b269e0e95b23b230124cec49ae983d3155f536a847ad04d5dd5ac",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 682,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 4276,
+        "sha256": "1f5617bd25dc28a375b166cc9f3f1776444bc1824ffe86258183a8366b283ab7"
+      },
+      "multipliers": {
+        "count": 682,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 8552,
+        "sha256": "2f2216ddc0984df60c2e5b22b927e9759a1ac5daf64ac27f8e08ff9b62bb17b6"
+      },
+      "name": "model.layers.0.mlp.gate_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        682,
+        256
+      ],
+      "values": {
+        "bit_offset": 12037120,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "481e4eb5d9e88671745a1eb64360ef78d365c48981db8939f976d6ccad28d861",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 682,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 4958,
+        "sha256": "5f17582d46399fc31e02312ec72877fa70b9a7beda00c389169d76cbcfde040f"
+      },
+      "multipliers": {
+        "count": 682,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 9916,
+        "sha256": "afc534b9947c83202a4fbe88322a07964fcaa067e61ca50e447fa140799a8115"
+      },
+      "name": "model.layers.0.mlp.up_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        682,
+        256
+      ],
+      "values": {
+        "bit_offset": 13783040,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "282b95d578780b895163f19fca163256503c33552567d6adca9c0e221a8dac2c",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 1,
+        "dtype": "int8",
+        "layout": "per_tensor",
+        "offset": 5640,
+        "sha256": "e596a8e5c49dd20a79bd0c1a7dd190a674507d1129785746fcc1c5e64cd8416c"
+      },
+      "multipliers": {
+        "count": 1,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_tensor",
+        "offset": 11280,
+        "sha256": "2a421aa55c3e82288a767f13cfbcc23c0f7ed897253819184a285c8120ade6cf"
+      },
+      "name": "model.layers.0.post_attention_layernorm.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256
+      ],
+      "values": {
+        "bit_offset": 15528960,
+        "bit_size": 2560,
+        "canonical_int16le_sha256": "b7ef501cfa1fad8230a93c51f1addf7c967f1db88a60e41adfab60706bd215e4",
+        "count": 256,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 128,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 5641,
+        "sha256": "a869ace388e319323605e826502da369613a465b6fb99f2157e13c210bd668f4"
+      },
+      "multipliers": {
+        "count": 128,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 11282,
+        "sha256": "e1386b8b7885b704e5aa4db4d09597acfbf6fdd391332f4b37e0c295f9a9936f"
+      },
+      "name": "model.layers.0.self_attn.k_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        128,
+        256
+      ],
+      "values": {
+        "bit_offset": 15531520,
+        "bit_size": 327680,
+        "canonical_int16le_sha256": "7d94ad01545639b0f4d5580fc8a4c705d7482f0a4578fa74474280616ff6e01b",
+        "count": 32768,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 5769,
+        "sha256": "c1b6556cf16799097c58265ee9f85c530f9dd0f0974f33c9f2c35a736f8e7edf"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 11538,
+        "sha256": "a7c9db2889dbce2e7fe179ddf8e0b37e805ccafd7fe0472000bedbcf36304ae8"
+      },
+      "name": "model.layers.0.self_attn.o_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        256
+      ],
+      "values": {
+        "bit_offset": 15859200,
+        "bit_size": 655360,
+        "canonical_int16le_sha256": "08455ff936024331af9d283dca78f1c5ee6d71bdfe055c32aa3d2ecde5415098",
+        "count": 65536,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 6025,
+        "sha256": "95841c635494b8689e4019d9366a1047ade7204f88052a3b6c6dfde9a92951ce"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 12050,
+        "sha256": "282af78145886e5b059cfe1848c63e158de04b7f26b21fca7c02d94a823627f9"
+      },
+      "name": "model.layers.0.self_attn.q_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        256
+      ],
+      "values": {
+        "bit_offset": 16514560,
+        "bit_size": 655360,
+        "canonical_int16le_sha256": "8aa235812da2df1c44919b6a3ae5b26d2618a5fc8992bc406d6b9f9cb84ebdf9",
+        "count": 65536,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 128,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 6281,
+        "sha256": "d9773ed233a1f0f3d959c038266162de2df54fd757e3e91f4584bab56dc74531"
+      },
+      "multipliers": {
+        "count": 128,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 12562,
+        "sha256": "e35d8e8d94f3fd87c00e1fdb41c4224b429767c038ce9bd0682e27b3e9bdb962"
+      },
+      "name": "model.layers.0.self_attn.v_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        128,
+        256
+      ],
+      "values": {
+        "bit_offset": 17169920,
+        "bit_size": 327680,
+        "canonical_int16le_sha256": "cac6dbbb1bfdf66d4e578607a0cf85115ef9e9d92955c0c1b4d9320b7e6e1d00",
+        "count": 32768,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 1,
+        "dtype": "int8",
+        "layout": "per_tensor",
+        "offset": 6409,
+        "sha256": "e596a8e5c49dd20a79bd0c1a7dd190a674507d1129785746fcc1c5e64cd8416c"
+      },
+      "multipliers": {
+        "count": 1,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_tensor",
+        "offset": 12818,
+        "sha256": "489ec251f42a6f039b226fa18fe9a27f8097e40e0f62c4a50e5ed6fbbc3f2ead"
+      },
+      "name": "model.layers.1.input_layernorm.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256
+      ],
+      "values": {
+        "bit_offset": 17497600,
+        "bit_size": 2560,
+        "canonical_int16le_sha256": "1af57abd4918e58bd8762c49be1bb5db295b5628a556bf27a499cb183bc858b8",
+        "count": 256,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 6410,
+        "sha256": "b7d00579ec15c415ad6f8ee2a7b2a0fd2a5bb7dbcc504f18a6155454ca0931cf"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 12820,
+        "sha256": "ce7561e7f9fdc990ab6f34d4cbadd14dc684741144be350ce8bb551b9b4207e0"
+      },
+      "name": "model.layers.1.mlp.down_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        682
+      ],
+      "values": {
+        "bit_offset": 17500160,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "8839ef8e4318aef918e84b59c7ee7009569d0d78d339003cec36e3ec40875120",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 682,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 6666,
+        "sha256": "9ae433fff8e2a00a22106703a666307d5fefc72c74a3041ed5adb63fc2c4a7f3"
+      },
+      "multipliers": {
+        "count": 682,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 13332,
+        "sha256": "00ec515abfe683df235b1b216beed106d04e9914b156c8b0bd7926bfe1a5db9c"
+      },
+      "name": "model.layers.1.mlp.gate_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        682,
+        256
+      ],
+      "values": {
+        "bit_offset": 19246080,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "14fe4c1a7e8ae79e8849705f0e4eac5427a635c294f47368ce3606472924ab9c",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 682,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 7348,
+        "sha256": "0fea0b07b61f54b0e016aba9090072e524013848ccbb7cdbcaebaae1ecdaff3c"
+      },
+      "multipliers": {
+        "count": 682,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 14696,
+        "sha256": "5b18ef316084dfb2da6d437d43aedb605f0ac40c305b703a35cabb0e808c7444"
+      },
+      "name": "model.layers.1.mlp.up_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        682,
+        256
+      ],
+      "values": {
+        "bit_offset": 20992000,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "27b9e33ae5e8e7b7b57002fbc7ed4927b2564ee8487aa10a2ac6586d5ff0fba3",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 1,
+        "dtype": "int8",
+        "layout": "per_tensor",
+        "offset": 8030,
+        "sha256": "e596a8e5c49dd20a79bd0c1a7dd190a674507d1129785746fcc1c5e64cd8416c"
+      },
+      "multipliers": {
+        "count": 1,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_tensor",
+        "offset": 16060,
+        "sha256": "fb00e553dcb67e43a4c485dab69e7c6b1a809dea87302ace2ef51502ae31357a"
+      },
+      "name": "model.layers.1.post_attention_layernorm.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256
+      ],
+      "values": {
+        "bit_offset": 22737920,
+        "bit_size": 2560,
+        "canonical_int16le_sha256": "6b72302ebd42710b9def72dfe710bb9400c6635ec3f925485b212c69b1580da8",
+        "count": 256,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 128,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 8031,
+        "sha256": "2f347dd38e2c485392f15fd9361c4f2b8311dfec865535da5341e73b5dff1060"
+      },
+      "multipliers": {
+        "count": 128,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 16062,
+        "sha256": "e26d01f2e332ec7e952262d1536dd97f19568a271b548cc0453750e333df751f"
+      },
+      "name": "model.layers.1.self_attn.k_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        128,
+        256
+      ],
+      "values": {
+        "bit_offset": 22740480,
+        "bit_size": 327680,
+        "canonical_int16le_sha256": "ccdfeb698b43fc3c65256bdb7b7233fff4b86f61f4e246830312dd77a59241c5",
+        "count": 32768,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 8159,
+        "sha256": "bd739d11354ce23253b7be15748c80433c8b3f34f59b012b8d412ef76df2a24e"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 16318,
+        "sha256": "df5983df0340e9eb00ac638bbbfab0750ab4dd7903cf0580ffe7fae9946414b9"
+      },
+      "name": "model.layers.1.self_attn.o_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        256
+      ],
+      "values": {
+        "bit_offset": 23068160,
+        "bit_size": 655360,
+        "canonical_int16le_sha256": "3caa5acf5e985bfd0abdbd0b8ed20e954aa233c9599bf606fca12d627439b391",
+        "count": 65536,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 8415,
+        "sha256": "9ffac6257aa45b7a448d79a91e88183079d2fb61f2bd9d0e62edafdc2eeb94ce"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 16830,
+        "sha256": "d4e225de0126aaf30818a08360f10efc9578c316d784feee8bf39767cac65e1e"
+      },
+      "name": "model.layers.1.self_attn.q_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        256
+      ],
+      "values": {
+        "bit_offset": 23723520,
+        "bit_size": 655360,
+        "canonical_int16le_sha256": "04ebbaf67117dc77a0505f1b9a83793ce075506b4a10b19678f88dfdc7b40ff4",
+        "count": 65536,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 128,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 8671,
+        "sha256": "75093d2fd6293ff998f12c29073380125fcaeaf714143052ffef6693b0cef51b"
+      },
+      "multipliers": {
+        "count": 128,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 17342,
+        "sha256": "0e40414c6983f82159d02b86876a1fbfbc35e148dd66027369331079c44b90da"
+      },
+      "name": "model.layers.1.self_attn.v_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        128,
+        256
+      ],
+      "values": {
+        "bit_offset": 24378880,
+        "bit_size": 327680,
+        "canonical_int16le_sha256": "24a35a21e9db0ae6bf37957a8df3ecfd6857ac223b70c981654cde2fd45385cf",
+        "count": 32768,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 1,
+        "dtype": "int8",
+        "layout": "per_tensor",
+        "offset": 8799,
+        "sha256": "e596a8e5c49dd20a79bd0c1a7dd190a674507d1129785746fcc1c5e64cd8416c"
+      },
+      "multipliers": {
+        "count": 1,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_tensor",
+        "offset": 17598,
+        "sha256": "b1a1b0f2ff8b36bc22ae239f77b09b9a5bb2883a7daa1231b78d1e3805c73dd6"
+      },
+      "name": "model.layers.2.input_layernorm.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256
+      ],
+      "values": {
+        "bit_offset": 24706560,
+        "bit_size": 2560,
+        "canonical_int16le_sha256": "4bd8b1be87487be7d977323f5af91a2491fb0e2ed79972d615b1b346336d3448",
+        "count": 256,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 8800,
+        "sha256": "2dc17d7da0d3b965eab68dc8209a553617fd612140fa6b704e64165c0e8044f6"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 17600,
+        "sha256": "8ccda36d5d70b8588394078f597afb9dcd580a5c7e6e8e9a557afa15f20fef2d"
+      },
+      "name": "model.layers.2.mlp.down_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        682
+      ],
+      "values": {
+        "bit_offset": 24709120,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "fc4a30ea3f40248a50ca5da0b532727a9cb8fcfca0a29f55438e0cd040fb6f0e",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 682,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 9056,
+        "sha256": "754af5784c0ec1150bcba900cade5545b21eeb2e7431e6f1145f8d25ab53b630"
+      },
+      "multipliers": {
+        "count": 682,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 18112,
+        "sha256": "2c33b3d3c17a91dd3e670371e283a72696f7ea04814a655928621583c9a2f0e3"
+      },
+      "name": "model.layers.2.mlp.gate_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        682,
+        256
+      ],
+      "values": {
+        "bit_offset": 26455040,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "8a9669a24f6a001c10681119c4e92b56005ef3c2abb1812cb4122233a3b3ac8e",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 682,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 9738,
+        "sha256": "d38ca9d345b7221d23e7ebeded1050650027f0738a9baabe3df6a5554acaaba5"
+      },
+      "multipliers": {
+        "count": 682,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 19476,
+        "sha256": "40a1b3bac8420139509fd96e7952f2f7e1775d4e59c71473d05c863995feb8ef"
+      },
+      "name": "model.layers.2.mlp.up_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        682,
+        256
+      ],
+      "values": {
+        "bit_offset": 28200960,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "7d7649b9fa72861cfe68b92fe7e98fd78dfe66cc91a259b3f4a4dd2c9071c101",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 1,
+        "dtype": "int8",
+        "layout": "per_tensor",
+        "offset": 10420,
+        "sha256": "e596a8e5c49dd20a79bd0c1a7dd190a674507d1129785746fcc1c5e64cd8416c"
+      },
+      "multipliers": {
+        "count": 1,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_tensor",
+        "offset": 20840,
+        "sha256": "35ff561fe50ac52b9f3d2e5a86b12d170dbc5e23226d967e48b99a2d56aed677"
+      },
+      "name": "model.layers.2.post_attention_layernorm.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256
+      ],
+      "values": {
+        "bit_offset": 29946880,
+        "bit_size": 2560,
+        "canonical_int16le_sha256": "7a496f66e537518dc3c1f520ab3df60f6cc3a4b18abe7b6802f8b1adaee269a9",
+        "count": 256,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 128,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 10421,
+        "sha256": "f624401ab16cde3144061fcbb24458261e0726b59b67911cb2c9a39d4219d572"
+      },
+      "multipliers": {
+        "count": 128,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 20842,
+        "sha256": "e012cbaef788da8c23e3363a23e2bb7223bea32a582b07165794354474698683"
+      },
+      "name": "model.layers.2.self_attn.k_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        128,
+        256
+      ],
+      "values": {
+        "bit_offset": 29949440,
+        "bit_size": 327680,
+        "canonical_int16le_sha256": "5eb3d3aa258ca3558880c00aefda20db9e9fbc05466cb46cc5fefb0fff633061",
+        "count": 32768,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 10549,
+        "sha256": "eee1106fc066a1817cc7bef34b7367226e7760cea4f62e3429a97cc465db9082"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 21098,
+        "sha256": "840d340aa3145904c922229e6ab0b56395ec5ffd3d553b3359d89d36e361711f"
+      },
+      "name": "model.layers.2.self_attn.o_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        256
+      ],
+      "values": {
+        "bit_offset": 30277120,
+        "bit_size": 655360,
+        "canonical_int16le_sha256": "2bd5bb2190b2950004988ad39ab2fe7794a89878591b51c9b30bafbb586fdb7a",
+        "count": 65536,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 10805,
+        "sha256": "1c81046f030d9fe6056fbb12dff214c5d5339c03f6c92e4a540a76eae3f25dfc"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 21610,
+        "sha256": "ec8b1490f066a4fd74739ebf9a749149855c2b0797feb889ed08178bb6f9871b"
+      },
+      "name": "model.layers.2.self_attn.q_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        256
+      ],
+      "values": {
+        "bit_offset": 30932480,
+        "bit_size": 655360,
+        "canonical_int16le_sha256": "4f552e925ffab3ce9780ded0b0a28551532de39f4251bf70b6ca34574487bc16",
+        "count": 65536,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 128,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 11061,
+        "sha256": "d9773ed233a1f0f3d959c038266162de2df54fd757e3e91f4584bab56dc74531"
+      },
+      "multipliers": {
+        "count": 128,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 22122,
+        "sha256": "85b98a229a467911f585b78d338ffd738b5c156180c6fe61c97fe3f7ee0b1a69"
+      },
+      "name": "model.layers.2.self_attn.v_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        128,
+        256
+      ],
+      "values": {
+        "bit_offset": 31587840,
+        "bit_size": 327680,
+        "canonical_int16le_sha256": "f3921be240412ad933d89f4684fdf74fa9566a1d9240ebad9646e9612faf12af",
+        "count": 32768,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 1,
+        "dtype": "int8",
+        "layout": "per_tensor",
+        "offset": 11189,
+        "sha256": "e596a8e5c49dd20a79bd0c1a7dd190a674507d1129785746fcc1c5e64cd8416c"
+      },
+      "multipliers": {
+        "count": 1,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_tensor",
+        "offset": 22378,
+        "sha256": "9f700deb0fe7f75be9feca0226a022a2cf300b5fd7b2b7d838d54a7baf567b73"
+      },
+      "name": "model.layers.3.input_layernorm.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256
+      ],
+      "values": {
+        "bit_offset": 31915520,
+        "bit_size": 2560,
+        "canonical_int16le_sha256": "11b98394848655d9c293b77f20bfed7199ad252446d4d0ddef9a05c9a6f86459",
+        "count": 256,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 11190,
+        "sha256": "ae7f92e97d966c84f5bdbabff74d65fcaa4c0e544020a20c7a51eb7bb4e0a7fd"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 22380,
+        "sha256": "766f800422fbe7cb849a5dc537a33d5b24b0d8ffffbbdb12f65d2568e83a21c3"
+      },
+      "name": "model.layers.3.mlp.down_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        682
+      ],
+      "values": {
+        "bit_offset": 31918080,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "fe027d8b2329eae1605dbdac0f40a7ef3f87d2568e4c72994b86d0fc067b41d0",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 682,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 11446,
+        "sha256": "0471ada9a5b73cd73d5b0cd19aef07d7b45f0521d74a0bda4c7d73e8a6fc21ce"
+      },
+      "multipliers": {
+        "count": 682,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 22892,
+        "sha256": "01df978cd2d3d94de80dea35acbf01c642bc35e1d400bc02a44550431fcb85f7"
+      },
+      "name": "model.layers.3.mlp.gate_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        682,
+        256
+      ],
+      "values": {
+        "bit_offset": 33664000,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "e66b0b340d7f8c213506aa27f4e9858bef0591f06524d5130739a44393ce702d",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 682,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 12128,
+        "sha256": "0636a179bbce7dc9f872adda19a031927dd83de157b9478a805df69418de5676"
+      },
+      "multipliers": {
+        "count": 682,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 24256,
+        "sha256": "7f7e1cddcfb62eb78d78f24f163f67fbacf057d1a4d23de0d702bcfdee40ead2"
+      },
+      "name": "model.layers.3.mlp.up_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        682,
+        256
+      ],
+      "values": {
+        "bit_offset": 35409920,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "fc4239921864c271cb8bb92905a7fc5e638f578859271129952346d218c9041c",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 1,
+        "dtype": "int8",
+        "layout": "per_tensor",
+        "offset": 12810,
+        "sha256": "e596a8e5c49dd20a79bd0c1a7dd190a674507d1129785746fcc1c5e64cd8416c"
+      },
+      "multipliers": {
+        "count": 1,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_tensor",
+        "offset": 25620,
+        "sha256": "4e61b93773f8362f965c13f4389175fe97b2f409d9396af3916f151d75b1f147"
+      },
+      "name": "model.layers.3.post_attention_layernorm.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256
+      ],
+      "values": {
+        "bit_offset": 37155840,
+        "bit_size": 2560,
+        "canonical_int16le_sha256": "a36bb2c1f1f62a5743b225f2c6472783f5d885e9dded839fe6e5de6586dfe320",
+        "count": 256,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 128,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 12811,
+        "sha256": "c147d64e679866530522f0b2d43986b4610041e43e6bb70bc01cb9900bab2f22"
+      },
+      "multipliers": {
+        "count": 128,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 25622,
+        "sha256": "48c7e4553c673297eeecdd454a14e629ee06fdcb14d24cafaacfa8e4a473c730"
+      },
+      "name": "model.layers.3.self_attn.k_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        128,
+        256
+      ],
+      "values": {
+        "bit_offset": 37158400,
+        "bit_size": 327680,
+        "canonical_int16le_sha256": "9897e1c792f020f7db7b8f9086466025c1ec102d422b655acac19b8f6fae63d1",
+        "count": 32768,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 12939,
+        "sha256": "c7dac16edd0d74464f9a4bade518cf8f9f6d5a483c14f10e257acb20b5c8d800"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 25878,
+        "sha256": "a323764aecc786cbd073f21dddd503c7f4af1fce06b2edc6e3da6320c59aaf81"
+      },
+      "name": "model.layers.3.self_attn.o_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        256
+      ],
+      "values": {
+        "bit_offset": 37486080,
+        "bit_size": 655360,
+        "canonical_int16le_sha256": "558d9538d9247a4ac0788b40d08e6230a5a17245e63268e282b483deb84c690a",
+        "count": 65536,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 13195,
+        "sha256": "14c10ed5a294dbcbaf69c416bef6a2718def100fb164af742a21b9b94da5e4c3"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 26390,
+        "sha256": "a2ffd4807b16238b33e682dd40cf7a49e923fdbce42971acd3d5211b3caf72f1"
+      },
+      "name": "model.layers.3.self_attn.q_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        256
+      ],
+      "values": {
+        "bit_offset": 38141440,
+        "bit_size": 655360,
+        "canonical_int16le_sha256": "874b3aea5b01ba68d88047e7682308c8a4ce3210798e3ea0a6f3253631594e76",
+        "count": 65536,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 128,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 13451,
+        "sha256": "7d6808bfa6d6c2ad906142d95aebc424e084634aeb29495c081cf0f1863f016a"
+      },
+      "multipliers": {
+        "count": 128,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 26902,
+        "sha256": "d1119a68a79006450091657cd575916b9efdf74c1e407e02cc05e2301c9e3c61"
+      },
+      "name": "model.layers.3.self_attn.v_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        128,
+        256
+      ],
+      "values": {
+        "bit_offset": 38796800,
+        "bit_size": 327680,
+        "canonical_int16le_sha256": "65da32ba3029627a2e5ed03be123046ad224223f3b732f8b1945ba0bf7d8cd0f",
+        "count": 32768,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 1,
+        "dtype": "int8",
+        "layout": "per_tensor",
+        "offset": 13579,
+        "sha256": "e596a8e5c49dd20a79bd0c1a7dd190a674507d1129785746fcc1c5e64cd8416c"
+      },
+      "multipliers": {
+        "count": 1,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_tensor",
+        "offset": 27158,
+        "sha256": "754dd2613ad928027f50149b8e7271c0b10bedc0c2928c769092c49c4b8efe24"
+      },
+      "name": "model.layers.4.input_layernorm.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256
+      ],
+      "values": {
+        "bit_offset": 39124480,
+        "bit_size": 2560,
+        "canonical_int16le_sha256": "b262c1cb6e21a62da0f73755e7eea94a5879153db15d755e56cc57c26a816d48",
+        "count": 256,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 13580,
+        "sha256": "f463d95c1a6d0f3ae7b5658e91e618342f1ab0f33d11803867a48eaa94161466"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 27160,
+        "sha256": "ac39c1315ffd627a0af40231cdf639e64bca269298feed33bd003f3d03508c83"
+      },
+      "name": "model.layers.4.mlp.down_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        682
+      ],
+      "values": {
+        "bit_offset": 39127040,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "e450f233e34534f59950ff0160e7968a2d4783f7ebd1c4524bb0d4ceddbbf810",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 682,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 13836,
+        "sha256": "8583dce8f8fc3bdeec267c14a4153bbb4176b1881edde2d3ed5344f11b888429"
+      },
+      "multipliers": {
+        "count": 682,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 27672,
+        "sha256": "9e63bc6f3ac4b23396512a0ef63247290295834566b3b9a3870df3789c220145"
+      },
+      "name": "model.layers.4.mlp.gate_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        682,
+        256
+      ],
+      "values": {
+        "bit_offset": 40872960,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "fe476affe733ab837c830dadc4dbebea8a029fb4f346f71a173525a321e88419",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 682,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 14518,
+        "sha256": "c0d5c61f23da15c5d2bbd3a8a9e066ce57950661040b9c9f1231d57c3ad9a606"
+      },
+      "multipliers": {
+        "count": 682,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 29036,
+        "sha256": "381a8fab9a898185039b9b40ab66012ec62dabdad08489c433f2393b623875ed"
+      },
+      "name": "model.layers.4.mlp.up_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        682,
+        256
+      ],
+      "values": {
+        "bit_offset": 42618880,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "bdd458ce79029aaf7e95f4d0dc6e7608169e92fdda04511aa422cefa336fb1d0",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 1,
+        "dtype": "int8",
+        "layout": "per_tensor",
+        "offset": 15200,
+        "sha256": "e596a8e5c49dd20a79bd0c1a7dd190a674507d1129785746fcc1c5e64cd8416c"
+      },
+      "multipliers": {
+        "count": 1,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_tensor",
+        "offset": 30400,
+        "sha256": "10e48cba14fd3cfb12bacf6c92802b12456fb0eb261addddce20fa52c336ac2a"
+      },
+      "name": "model.layers.4.post_attention_layernorm.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256
+      ],
+      "values": {
+        "bit_offset": 44364800,
+        "bit_size": 2560,
+        "canonical_int16le_sha256": "2d795a4ac78afe0451ee95cbf808bfeb4f14b0d735e5a0d014aa8e942845f0e4",
+        "count": 256,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 128,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 15201,
+        "sha256": "9224f63e085ce46b9aac5e6b7cd439db7d5f2594038ba32783cc0a029106b4e2"
+      },
+      "multipliers": {
+        "count": 128,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 30402,
+        "sha256": "9a596e0b5a7e632e603c0f7ea6cba809e7e93152a0414eda8b4d3418f45c4978"
+      },
+      "name": "model.layers.4.self_attn.k_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        128,
+        256
+      ],
+      "values": {
+        "bit_offset": 44367360,
+        "bit_size": 327680,
+        "canonical_int16le_sha256": "1e70970ce5c3efd99bb1c697cc064b11275fe753d645da786ce917eaf22c9505",
+        "count": 32768,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 15329,
+        "sha256": "1ed278fbcc273e645628f71770de90b78b18042c5e476f04430a79a40f46c1bf"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 30658,
+        "sha256": "e01d1f94ca01438bc65cacc77b2045cfc2818a007ae1d6e677f99410a2da5821"
+      },
+      "name": "model.layers.4.self_attn.o_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        256
+      ],
+      "values": {
+        "bit_offset": 44695040,
+        "bit_size": 655360,
+        "canonical_int16le_sha256": "a32dc1b273a5eefcaab315c97e984ca2d36a71d1c4198a7c87e63b5862cdcf33",
+        "count": 65536,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 15585,
+        "sha256": "356486da27f9c1af08b92737e45fa3372b1f6f082cf9a0a03e132644ae2485f9"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 31170,
+        "sha256": "6e651665385f4e84394d3b6d1eabec9fc0fd88f17cf0f42640af51e5ff02c97e"
+      },
+      "name": "model.layers.4.self_attn.q_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        256
+      ],
+      "values": {
+        "bit_offset": 45350400,
+        "bit_size": 655360,
+        "canonical_int16le_sha256": "c126c7d179f79c711042f60ba7022d33dbf3c4ac8411dcb822e56565849f9534",
+        "count": 65536,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 128,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 15841,
+        "sha256": "f758be580d03831c4d26ac369596d8396635676e5bffc27b71655abfd125467c"
+      },
+      "multipliers": {
+        "count": 128,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 31682,
+        "sha256": "b1ade1431b75eb1d7afd785ab26423dded56d1cfabcc9bc2d6e104d618899a7a"
+      },
+      "name": "model.layers.4.self_attn.v_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        128,
+        256
+      ],
+      "values": {
+        "bit_offset": 46005760,
+        "bit_size": 327680,
+        "canonical_int16le_sha256": "847b156a353f81e713038d3febc2de9bc183502b4c95617a0378de3b31e80e66",
+        "count": 32768,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 1,
+        "dtype": "int8",
+        "layout": "per_tensor",
+        "offset": 15969,
+        "sha256": "e596a8e5c49dd20a79bd0c1a7dd190a674507d1129785746fcc1c5e64cd8416c"
+      },
+      "multipliers": {
+        "count": 1,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_tensor",
+        "offset": 31938,
+        "sha256": "ba09d949bc50b9686d69dc00f70856fb5d9a7e0e6e7f4fcea2e71ba53f318c5e"
+      },
+      "name": "model.layers.5.input_layernorm.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256
+      ],
+      "values": {
+        "bit_offset": 46333440,
+        "bit_size": 2560,
+        "canonical_int16le_sha256": "be60452fd72e711e5da252106cb81418efc991a12c567146a3218090dc067222",
+        "count": 256,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 15970,
+        "sha256": "c78152fe5c8610eaa0212892127b3720396de8b402e0520bb100d0d97cf247ab"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 31940,
+        "sha256": "8377ff376664488852f8d1c149e3a33537324be808ee9fac9ae03f7904f4e05b"
+      },
+      "name": "model.layers.5.mlp.down_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        682
+      ],
+      "values": {
+        "bit_offset": 46336000,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "592743d019df55f9f71f67d608b9063cc28ab32e055c5bdf637d0b282832ac62",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 682,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 16226,
+        "sha256": "e38412d3dadd0c553269eeec15de9fcb3b1adfdbc875a2d08896a73ff7665af6"
+      },
+      "multipliers": {
+        "count": 682,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 32452,
+        "sha256": "28ba15fe5d32dcf361f0d6288ec92954ee183a8f75519d0fa1cb23d90176cfc2"
+      },
+      "name": "model.layers.5.mlp.gate_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        682,
+        256
+      ],
+      "values": {
+        "bit_offset": 48081920,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "4dda9190427230cfee05ead0a817cae58eea16d14c860a6d32d3c5d278e85751",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 682,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 16908,
+        "sha256": "4a8fed8c46e33569f3db4a89745d80bcbea00278c1929c25333d94ae9dda3dd4"
+      },
+      "multipliers": {
+        "count": 682,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 33816,
+        "sha256": "749a3cb5198cc4a8eac09786e2a79d950b04f5b48b42a8157208c37efb4763f1"
+      },
+      "name": "model.layers.5.mlp.up_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        682,
+        256
+      ],
+      "values": {
+        "bit_offset": 49827840,
+        "bit_size": 1745920,
+        "canonical_int16le_sha256": "e01ea69cd44c729b372575b5c5547f0378cfc96efc3a8cd4cdb1000e5ec5e859",
+        "count": 174592,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 1,
+        "dtype": "int8",
+        "layout": "per_tensor",
+        "offset": 17590,
+        "sha256": "e596a8e5c49dd20a79bd0c1a7dd190a674507d1129785746fcc1c5e64cd8416c"
+      },
+      "multipliers": {
+        "count": 1,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_tensor",
+        "offset": 35180,
+        "sha256": "3974103f5a4c66e9852f06f8b7e117812451b7397686fd09085a5bf44be60a89"
+      },
+      "name": "model.layers.5.post_attention_layernorm.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256
+      ],
+      "values": {
+        "bit_offset": 51573760,
+        "bit_size": 2560,
+        "canonical_int16le_sha256": "ea0743f1821c55cde474746e5bc3a106e4f84dbb16ace3612cd7fcce9ed7d051",
+        "count": 256,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 128,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 17591,
+        "sha256": "025db8f25bfd01c9363cbfb3389701d11fb75ce3816fe162728e1a161e391f7d"
+      },
+      "multipliers": {
+        "count": 128,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 35182,
+        "sha256": "442f96cd17d116fcc824c6ab3989d566d03694e9a124f39ac9b7ba67b29a4f59"
+      },
+      "name": "model.layers.5.self_attn.k_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        128,
+        256
+      ],
+      "values": {
+        "bit_offset": 51576320,
+        "bit_size": 327680,
+        "canonical_int16le_sha256": "9d9a0bf3c9f1093007469384b04ca6f63578fa4b465d0565eb08305356db0303",
+        "count": 32768,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 17719,
+        "sha256": "9b5c08cca259fd28e443d313cd921592b5e23e67c70d9b86def80c61d905b7eb"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 35438,
+        "sha256": "6d6d9c6b3c0bbc588eba2debf5291542b9389868f1b7153ce5bef6c4641475cf"
+      },
+      "name": "model.layers.5.self_attn.o_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        256
+      ],
+      "values": {
+        "bit_offset": 51904000,
+        "bit_size": 655360,
+        "canonical_int16le_sha256": "58c46fa47a4e282b56b04dcc0a901ad88dad766b5873871387a7a364ef20d6f7",
+        "count": 65536,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 256,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 17975,
+        "sha256": "30e263288a8e8c117c3d0d53586b14471c20c420c7804cc6f0ce7b41c639eaea"
+      },
+      "multipliers": {
+        "count": 256,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 35950,
+        "sha256": "fb187e995868ce25930a63f852f662dbea4364eadf5cc6d400a33961f3ed5275"
+      },
+      "name": "model.layers.5.self_attn.q_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256,
+        256
+      ],
+      "values": {
+        "bit_offset": 52559360,
+        "bit_size": 655360,
+        "canonical_int16le_sha256": "9d8dc3ddcaf83f23210e3efae4944eb07eb8a61d6263914c811f916836f47ee5",
+        "count": 65536,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 128,
+        "dtype": "int8",
+        "layout": "per_output_row",
+        "offset": 18231,
+        "sha256": "545e5ee225d5e43aba3d936c90f91d5cf2a1a847eca2435bfd3154b59d2dc0d1"
+      },
+      "multipliers": {
+        "count": 128,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_output_row",
+        "offset": 36462,
+        "sha256": "7e3a8ff7719c11cd34d0e216cfca47ed0dc7ff2a249bf82ab9672be64ebf6737"
+      },
+      "name": "model.layers.5.self_attn.v_proj.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        128,
+        256
+      ],
+      "values": {
+        "bit_offset": 53214720,
+        "bit_size": 327680,
+        "canonical_int16le_sha256": "0cab16626c63e2ed9edebd79ef66cb462e85706622715aca4af7d29c54275782",
+        "count": 32768,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    },
+    {
+      "exponents": {
+        "count": 1,
+        "dtype": "int8",
+        "layout": "per_tensor",
+        "offset": 18359,
+        "sha256": "d52022534fa2dba3bb8a45809c425f42a5dd8786ef8d206fcff19c1fd66725b4"
+      },
+      "multipliers": {
+        "count": 1,
+        "dtype": "uint15_in_uint16le",
+        "layout": "per_tensor",
+        "offset": 36718,
+        "sha256": "1eacd235ff4e20a68e0674a1915922cbad97f2cc6251d86062a0c3e94c404855"
+      },
+      "name": "model.norm.weight",
+      "real_value": "int10_value * uint15_multiplier * 2**(signed_int8_exponent - 15)",
+      "shape": [
+        256
+      ],
+      "values": {
+        "bit_offset": 53542400,
+        "bit_size": 2560,
+        "canonical_int16le_sha256": "4b80b0a26610511dcb601f121383dcd663c17ef5604bd5376544faaa1062ddd8",
+        "count": 256,
+        "dtype": "int10_twos_complement_lsb0"
+      }
+    }
+  ]
+}

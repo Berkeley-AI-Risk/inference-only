@@ -111,14 +111,26 @@ The runnable **seeded-sampling** release uses the baseline's authenticated
 weights and plaintext flash image, without K/V integrity or encryption,
 with temperatures 0, 0.5, 1 and 2 and a
 public reproducibility seed. Temperature 0 retains the exact greedy rule.
-It passed two 128-output UART runs at each supported temperature, alongside
-short seeded/replay and application checks; it
-has not received the other images' full-context or formal qualification.
+It passed two 128-output UART benchmark runs at each supported temperature,
+plus a separate 24-trial baseline-style context/control campaign. All 1,564
+main outputs and 288 CLEAR/replay outputs matched the integer reference,
+including 2,047- and 2,048-token prompts at every temperature. Additional-seed
+and recovery campaigns also passed. It has separate
+[extended scoped control proofs](../../formal/seeded-sampling/README.md).
 Its extended board-registration check and app controls have separate real-board
 tests, with the UI driven by Streamlit AppTest. Follow
 [its installation and browser guide](../../STOCHASTIC-GENERATION.md).
-Its availability is separate from the remaining
-[functional and proof qualification work](../../variants/seeded-sampling/QUALIFICATION.md).
+A separate [actual Chrome rehearsal](../../evidence/seeded-sampling/browser.json)
+passed from a clean 1,316-file recipient package on the same supported host
+and board. A fresh 16-MiB readback matched the installed model and surrounding
+`FF` bytes, followed by reloading the same SRAM image and passing 45-command/
+19-token registration. All 104 outputs in ten Chrome cases matched the integer
+reference across 144 wire commands. Cases covered all temperatures, fixed-seed
+replay, a changed seed, two independently replayed automatic seeds, Stop/CLEAR,
+resumed greedy generation and Disconnect. The
+[qualification roadmap](../../variants/seeded-sampling/QUALIFICATION.md)
+records this finite coverage and the remaining timing/security obligations;
+another owner's installation and other host platforms remain untested.
 
 ## Inference-only scope
 
@@ -193,8 +205,9 @@ tokens/s, still including host/serial overhead.
 
 The hardware processes prompt positions one at a time. The technical guide
 explains [prompt-processing cost and possible improvements](../../ARCHITECTURE.md#prompt-processing-and-time-to-first-token).
-All three greedy images have reached the full 2,048-input limit and final
-output slot in board tests, including boundary rejection and CLEAR/replay.
+All four images have reached the full 2,048-input limit and final output slot
+in board tests, including boundary rejection and CLEAR/replay. The seeded
+image passed both 2,047- and 2,048-token prompts at temperatures 0, 0.5, 1 and 2.
 Full-context prompt processing is slow: a 2,048-token prompt took about
 22 minutes before the first baseline reply and 52 minutes with K/V protection.
 These finite functional
@@ -236,7 +249,7 @@ and an offline checker are included.
 
 ## Run it on your board
 
-The runnable release includes **three prebuilt greedy configurations**, an
+The runnable release includes **three prebuilt greedy configurations**, a
 seeded-sampling image with browser controls and a diagnostic CLI, a
 separate backup-reader configuration, the fixed model image, tokenizer and
 browser app. You need the matching Tang Mega 138K non-Pro/device-C board
@@ -270,7 +283,7 @@ app-test scope.
 
 Then follow [host-app/README.md](../../host-app/README.md) to qualify your loaded board
 and start the local browser app. The [validation record](../../VALIDATION.md) states
-what was checked and the remaining timing, context and proof limitations.
+what was checked and the remaining timing, security and proof limitations.
 
 For optional source rebuilding, exact vendor dependencies and download steps
 are in [VENDOR-SETUP.md](../../VENDOR-SETUP.md). [REPRODUCE.md](../../REPRODUCE.md) explains

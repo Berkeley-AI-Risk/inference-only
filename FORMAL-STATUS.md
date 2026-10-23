@@ -1,13 +1,13 @@
 # What has—and has not—been formally proved
 
-The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) is outside
-the proof inventory below. Its SETTINGS decoder, sampler, seed state and
-CLEAR/replay semantics have finite simulation and board evidence. No proof
-extends the three-command results to it, and no whole-machine or
-numerical-distribution theorem is claimed.
-This also applies when that new image is used at temperature 0: retaining
-the greedy selector does not make the changed controller a proved instance
-of the original source-bound configuration.
+The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) now has
+[separate source-bound proofs and public replay](formal/seeded-sampling/README.md)
+for SETTINGS, sampler/seed ownership and CLEAR/replay. Its connected Z3 proof
+passes 196 assertions; cvc5 checks the base and 194 conclusions, with two CRC
+conclusions unresolved by that second solver. These new results are separate
+from the original three-command receipts and retain scoped component/private
+computation boundaries. No whole-machine or numerical-distribution theorem is
+claimed.
 
 ## What the formalization is meant to establish
 
@@ -15,7 +15,7 @@ The aim is to show that the implemented circuit obeys a precise inference-only
 specification: software can use one fixed model through its allowed commands,
 rather than select arbitrary internal operations or replace its accepted
 weights. For the [fixed numerical SimpleStories model](INFERENCE-ONLY.md#the-idealized-machine-and-the-implemented-interface)
-described here, the ideal machine has a token tape and three commands:
+described here, the baseline ideal machine has a token tape and three commands:
 
 - `APPEND(token)` adds an input token to the tape, when there is room in the
   2,048-token input context.
@@ -79,8 +79,9 @@ proof that the whole FPGA refines the ideal inference-only machine.
 The proof receipts below identify the exact sources checked. These results
 concern the SimpleStories baseline and the separately identified K/V-protected
 components; they do not automatically cover any Qwen design. They do
-not certify the [encrypted-memory configuration](ENCRYPTED-MEMORY.md) or the
-[seeded-sampling configuration](STOCHASTIC-GENERATION.md).
+not certify the [encrypted-memory configuration](ENCRYPTED-MEMORY.md).
+The seeded configuration's separate inventory follows below; the original
+receipts do not automatically cover that changed controller, even at temperature 0.
 
 **Version scope:** the 48-assertion token-shell and 134-assertion connected
 proofs have been replayed against the supplied baseline,
@@ -130,6 +131,41 @@ The 60-property front end includes the 46 UART assertions; these are not
 The protected composition re-proves those 59 local-cache assertions against
 the byte-identical controller inside its 325-assertion model; it does not
 assume a separate proof receipt as a theorem.
+
+## Separate seeded-sampling proof inventory
+
+The [portable seeded replay](formal/seeded-sampling/README.md) checks the exact
+distributed RTL and fixed tables associated with image SHA-256
+`0e6d30b68bd8757657bc1c3b949ac5b9571a0a8d1f8bb1a6e6018b241f733033`.
+Its [recorded receipts](formal/seeded-sampling/recorded/RESULTS.json) and fresh
+replay reports preserve the source/model/solver bindings and all unresolved
+second-solver conclusions.
+
+| Layer | Seeded checked result | Important boundary |
+| --- | --- | --- |
+| Abstract four-command machine | 15 Lean 4.33.1 theorems for bounded settings/seed state, transaction effects, CLEAR replay, tape bounds and replies. | Greedy/sample/random-step functions remain abstract and fixed throughout a run. Busy, reset circuitry and faults are separate RTL obligations; no RTL correspondence theorem. |
+| Selector lifecycle | 35 assertions, both solvers: atomic empty-boundary settings, accepted-start winner ownership, PRNG commit only on accepted positive-mode results, greedy state preservation, stalls, CLEAR rewind and sticky faults. | Complete fixed-dimension selector and original greedy child remain. Not numerical CDF equivalence. |
+| Selector buffer ownership | 57 assertions including those 35, both solvers: complete 4,019-row acceptance and current per-slot logits/mass ownership and captured payload before healthy use. | All three real sampler memories retained; arbitrary read-only slot and child row-count observations have no production feedback. Separate from the connected model. |
+| Actual UART/frontend | 63 joint assertions. Z3 checks the complete induction; cvc5 checks the base and all conclusions with identical joint priors. | Actual RX/TX at 217 clocks/bit, bridge and adapter retained. Independent admitted-byte/CRC history; downstream readiness/model/settings replies remain arbitrary. |
+| Actual seeded token shell | 94 joint assertions: original 48 controller/tape, 11 settings and 35 selector. Both solvers check base and complete induction. | Real shell/arithmetic/sampler and 20 memories; private model/layer/head services remain arbitrary component inputs. |
+| Connected UART/core/seeded shell | 196 joint assertions pass Z3 base and induction; cvc5 passes base and 194/196 conclusions. Request CRC 38 and reply CRC 73 remain `unknown` after bounded supplements. | Exactly the original baseline's whole external boundary and 37 unrestricted semantic-layer outputs; actual queues/gates/shell/sampler and 20 memories. Not whole-machine or mapped equivalence. |
+
+These counts overlap and must not be added. The connected proof keeps 88
+baseline statements unchanged and replaces the original 46 UART statements
+with 47 extended statements for the new valid frame states/indices. The
+57-assertion buffer component proof is not inserted into that composition.
+Induction retains every preceding joint assertion; separate cvc5 conclusions
+change only the final goal. Solver `unknown` results remain unresolved.
+
+Public replay verifies 87 distributed source inputs plus the packaged image.
+The historical 91-input inventory includes four omitted vendor digests; these
+are provenance, not vendor bytes verified or logic proved by this replay.
+Source reversal, exact local elaboration, all initialized ROM words, original
+cuts/ports and read-only observer cones are audited. Nine reset-reachable
+formal faulty controls and five directed UART simulation faults are detected.
+Mutable payload is not assumed zero, and logical CLEAR does not imply physical
+erasure. No new application weight/tensor-write command is added; that scoped
+command/control result is not a whole-memory information-flow theorem.
 
 ## UART request and reply proof
 

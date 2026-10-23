@@ -142,14 +142,14 @@ def console():
 
 console()
 st.caption(f'Initial interactive-demo limit: {MAX_PROMPT} prompt tokens, {MAX_NEW} new tokens, '
-           f'{DEMO_CAP} total. The three original greedy builds have passed separate tests at the 2,048-input limit. '
-           'The seeded-sampling build has separate short-context tests.')
+           f'{DEMO_CAP} total. Separate board campaigns exercise longer contexts; '
+           'see the repository validation report for each build.')
 with st.expander('What this demo does—and does not do'):
     st.write('This computer only converts between text and token IDs, sends APPEND / STEP / CLEAR, and measures the replies. All inference runs on the FPGA. Each Generate starts with CLEAR; successful completion or Stop clears the tape again. A successful run retains the exclusive USB connection for the next run. Stop or Disconnect USB releases it. No weights, tensors or arithmetic commands are sent.')
-    st.write('Three builds are available: the faster baseline without K/V integrity checks; the K/V-protected build that checks cached attention data before use; and the experimental encrypted-memory build, which also encrypts external weights and K/V. Encryption uses public demonstration keys, not secret deployment keys, and requires its matching encrypted flash image. All three authenticate model weights and have passed normal-inference board tests through the full context window. K/V corruption/replay rejection was tested in simulation, not by physically altering DDR. Vendor-DDR timing remains unresolved for all three. The local four-token check does not reproduce the larger campaigns or attest the loaded circuit. The app stops on errors and cannot reset, reflash or reconfigure the board.')
+    st.write('Three builds are available: the faster baseline without K/V integrity checks; the K/V-protected build that checks cached attention data before use; and the encrypted-memory build, which retains K/V integrity and replay protection and adds encryption for external weights and K/V. Encryption uses public demonstration keys, not secret deployment keys, and requires its matching encrypted flash image. All three authenticate model weights and have passed normal-inference board tests through the full context window. K/V corruption/replay rejection was tested in simulation, not by physically altering DDR. Vendor-DDR timing remains unresolved for all three. The local four-token check does not reproduce the larger campaigns or attest the loaded circuit. The app stops on errors and cannot reset, reflash or reconfigure the board.')
     st.write('An optional seeded-sampling build adds the temperature and seed controls above. '
              'It uses the same SimpleStories model and plaintext flash as the baseline. '
              'Each Generate starts a new story, and a blank seed chooses and displays a fresh seed for that run. '
              'A chosen seed lets you replay the same prompt and temperature. '
-             'This experimental build has separate short-context board tests; the older full-window tests and formal proofs do not cover it.')
+             'This build has its own source-bound board tests and qualification evidence. It has no K/V integrity protection or memory encryption.')
     st.write('Keep the board powered: its tested configuration is in SRAM. The app cannot restore it after a power cycle. Local raw logs include your prompt; nothing is published or sent to an online model.')

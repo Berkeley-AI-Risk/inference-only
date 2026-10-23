@@ -196,9 +196,11 @@ For optional **seeded sampling**, the same SRAM operation instead uses
 It uses this same plaintext model in flash. Follow
 [its extended known-answer check and browser instructions](STOCHASTIC-GENERATION.md#load-and-check-the-seeded-image)
 after startup. The browser shows sampling controls for a qualified seeded
-profile. This image has
-bounded short-context tests, separate from the original images' full-window
-and formal results.
+profile. This image passed its own finite full-context and replay campaign
+at all four temperatures, with separate source-bound
+[scoped control proofs](formal/seeded-sampling/README.md). See its
+[qualification record](variants/seeded-sampling/QUALIFICATION.md) for the
+completed evidence and remaining timing/security limits.
 
 Require the expected target, successful **SRAM Program** and `Finished.`.
 Do not run another flash bridge/JTAG operation afterward: it may replace the

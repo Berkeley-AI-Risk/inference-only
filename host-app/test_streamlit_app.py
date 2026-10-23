@@ -22,10 +22,12 @@ class AppTests(unittest.TestCase):
         self.assertEqual(app.metric[0].value, '—')
         captions = '\n'.join(item.value for item in app.caption)
         explanation = '\n'.join(item.value for item in app.markdown)
-        self.assertIn('three original greedy builds', captions)
-        self.assertIn('seeded-sampling build has separate short-context tests', captions)
+        self.assertIn('128 prompt tokens, 128 new tokens, 256 total', captions)
+        self.assertIn('validation report for each build', captions)
         for phrase in ('Three builds are available', 'K/V-protected', 'encrypted-memory',
-                       'public demonstration keys', 'matching encrypted flash image'):
+                       'public demonstration keys', 'matching encrypted flash image',
+                       'retains K/V integrity and replay protection',
+                       'no K/V integrity protection or memory encryption'):
             self.assertIn(phrase, explanation)
         self.assertNotIn('Both hardware variants', captions)
         self.assertNotIn('Two experimental builds', explanation)

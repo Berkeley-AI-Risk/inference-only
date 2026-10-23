@@ -28,9 +28,12 @@ are described separately in each model's guide.
 
 An optional [seeded-sampling version of SimpleStories-V2-5M](STOCHASTIC-GENERATION.md)
 also accepts a bounded temperature and seed setting while its tape is empty
-and idle. Its browser controls and extended board-registration check have
-separate real-board evidence; a token-ID CLI is also included for diagnostics. Its board
-evidence is separate from the original three Tang Mega versions.
+and idle. Its controls passed Streamlit AppTest with the real FPGA, and its
+extended board-registration check has separate real-board evidence. A separate
+[Chrome rehearsal](evidence/seeded-sampling/browser.json) passed with the actual
+listening app on the same host and board. A token-ID CLI is also
+included for diagnostics; its board evidence is separate from the original
+three SimpleStories versions.
 
 ## The demonstrated designs and measurements
 
@@ -39,7 +42,7 @@ evidence is separate from the original three Tang Mega versions.
 | **SimpleStories-V2-5M — Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |
 | Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |
 | Same model, **K/V protection + encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |
-| Same model, **seeded sampling**, without K/V integrity | About **8.7 tokens/s** at temperature 1 | Runnable release; seeded sampling |
+| Same model, **seeded sampling**, without K/V integrity | About **8.7 tokens/s** at temperature 1 | Runnable release; context and browser campaigns passed |
 | **Qwen3-1.7B — AWS F2**, authenticated weights | About **9.0 tokens/s** | Runnable release; public AWS FPGA image |
 | **Qwen3-8B — AWS F2**, authenticated weights | About **1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
 
@@ -69,8 +72,16 @@ slows subsequent generation. These are measured rates, not peak ratings.
 “Runnable release” means the image, model, app and installation instructions
 are available. Each version's validation scope is recorded separately;
 the seeded version's [qualification roadmap](variants/seeded-sampling/QUALIFICATION.md)
-lists its remaining functional and proof work. No Tang version has complete
-vendor-DDR timing or physical-security certification.
+records completed functional, scoped control-proof and recipient/browser
+coverage. Its 24 baseline-style trials at temperatures 0,
+0.5, 1 and 2 matched all 1,564 main outputs and 288 CLEAR/replay outputs,
+including 2,047- and 2,048-token prompts. Separate additional-seed and recovery
+campaigns also passed. These finite checks do not establish every possible
+workload. A clean 1,316-file recipient package also passed fresh model/flash
+readback, reloading the same SRAM image, 45-command/19-token registration and
+ten Chrome cases with all 104 outputs exact across 144 wire commands. This
+used the same supported host and board, not another owner's installation.
+No Tang version has complete vendor-DDR timing or physical-security certification.
 
 - **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** board selection,
   the three greedy versions, optional seeded sampling, browser app,
@@ -123,8 +134,9 @@ is not claimed to be inference-only.
 
 The [detailed inference-only assessment](INFERENCE-ONLY.md) explains these
 distinctions using the Tang Mega designs. Its [formal-verification report](FORMAL-STATUS.md)
-covers specific properties of the baseline and K/V-protected RTL, not the
-seeded-sampling extension, whole-machine refinement or Qwen.
+covers specific properties of the baseline and K/V-protected RTL and a
+separate source-bound extension for seeded sampling. These are scoped
+control/component proofs, without whole-machine refinement or a Qwen proof.
 The [conditional training-capacity analysis](TRAINING-CAPACITY.md)
 and [architecture-dependent analysis](ARCHITECTURE-DEPENDENT-CAPACITY.md)
 make their assumptions explicit; their Tang Mega numerical factors are not

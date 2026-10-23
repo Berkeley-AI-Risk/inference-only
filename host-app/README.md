@@ -12,6 +12,9 @@ The app uses separate local profiles for the three greedy configurations and
 the optional seeded-sampling image. Its extended registration check and
 Streamlit AppTest exercised the real FPGA; offline recipient checks passed
 from a clean export. The framework test did not open a browser or start a web server.
+A separate [actual Chrome rehearsal](../evidence/seeded-sampling/browser.json)
+passed from a clean 1,316-file recipient package on the same supported host
+and board.
 See
 [the seeded-generation guide](../STOCHASTIC-GENERATION.md).
 For `encrypted-memory`, use `prebuilt/encrypted-memory/BUILD.json`
@@ -24,6 +27,19 @@ tests. It does not claim a complete human browser-click rehearsal of all
 three greedy images on another owner's setup. Neither build receipts nor
 matching outputs independently attest the configuration.
 
+Before that Chrome rehearsal, a fresh 16-MiB flash readback matched every model
+byte and the `FF` bytes outside the model region. The exact same seeded SRAM
+image was then reloaded and its 45-command/19-token registration passed.
+Ten cases exercised every temperature, fixed-seed replay, a changed seed,
+two distinct automatic seeds, greedy after sampling, Stop, resumed greedy
+generation and Disconnect. All 104 outputs matched the integer reference;
+both automatic-seed runs also matched independent scalar model replays.
+Displayed and downloaded settings were checked against 144 wire commands.
+Stop was clicked after 75 outputs were visible; the request finished with 77
+of 128 requested outputs, acknowledged CLEAR and released the connection.
+Greedy generation then resumed, and Disconnect released USB ownership.
+These observations do not identify the internal command edge at the click.
+
 The app keeps a healthy USB connection open between successful runs. This
 avoids repeated connection setup, not FPGA computation. Each run still clears
 the tape; it does not reuse another run's prompt or generated answers.
@@ -33,8 +49,12 @@ processing and make elapsed-clock measurements misleading; a trial affected
 by sleep should be repeated rather than used to claim a speedup.
 
 All four hardware variants retain unresolved vendor-DDR timing paths.
-The three greedy images have passed full-context board tests; the seeded image
-has a separate short-context trial. None establishes complete timing signoff.
+All four images have passed finite full-context board tests. The seeded image
+passed 24 baseline-style trials across temperatures 0, 0.5, 1 and 2, including
+2,047- and 2,048-token prompts, with all 1,564 main outputs and 288 CLEAR/replay
+outputs matching the integer reference. Separate additional-seed and recovery
+campaigns also passed; see the [qualification roadmap](../variants/seeded-sampling/QUALIFICATION.md).
+None establishes complete timing signoff or correctness for every prompt.
 This app conservatively allows at most 128 prompt
 tokens, 128 new tokens and 256 total. The tested platform is macOS; other
 platforms are not yet validated.

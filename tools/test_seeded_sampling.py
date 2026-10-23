@@ -169,6 +169,7 @@ class SeededSamplingEvidenceTests(unittest.TestCase):
     def test_app_source_bytes_must_match_physically_tested_sources(self):
         app = json.loads((self.package/(checker.EVIDENCE+'app.json')).read_bytes())
         for relative in ('host-app/sampling_protocol.py', 'host-app/streamlit_app.py',
+                         'host-app/runtime_profile.py', checker.APP_FRONTEND_ARCHIVE, checker.APP_PROFILE_ARCHIVE,
                          'variants/seeded-sampling/tools/settings_codec.py'):
             with self.subTest(path=relative):
                 path = self.package/relative; original = path.read_bytes()

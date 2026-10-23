@@ -27,6 +27,36 @@ October 23, 2026 UTC (October 22 in California), using the frozen optional
   at each temperature, their complete sanitized command/reply events and
   timings, and independently computed reference outputs for all 1,024 tokens.
 
+- [full-context.json](full-context.json) records the 16 completed context
+  cases, all 540 main and 192 replay outputs, capacity rejections, and the
+  independently audited three-retained/13-new continuation. The earlier
+  host output-pipe failure is preserved without crediting its incomplete case.
+
+- [seed-domain.json](seed-domain.json) retains 12 additional-seed cases:
+  960 main outputs, 96 replays and three final greedy outputs, all exact.
+- [recovery.json](recovery.json) retains partial upload and early-CLEAR cases
+  at 128- and 2,048-token prompts, with 48 exact recovery/replay outputs and
+  three final greedy outputs. Internal cancellation edges were not observed.
+
+- [around-control.json](around-control.json) records eight separate 128-output
+  control trials, each with 12 baseline-style known-answer replay outputs.
+  All 1,024 main, 96 probe and three final greedy outputs match the reference.
+  Its timings do not replace the separate matched128 benchmark.
+
+- [browser.json](browser.json) records the later ordinary Chrome rehearsal
+  from a clean 1,316-file recipient package, following fresh exact 16-MiB model/
+  erased-region readback, the same SRAM reload and 45/19 registration. Ten cases
+  checked 104 outputs and 144 wire commands; both automatic seeds have fresh
+  scalar replays. Stop was observed at 75 outputs and finished at 77, then
+  greedy restart and Disconnect passed. Displayed observations are operator/Cua
+  records checked against downloads and raw frames, not independent attestation.
+- [numerical-reference.json](numerical-reference.json) records fresh exact
+  model replays from the [portable reference](../../reference/seeded-sampling/README.md),
+  separately from archive-only output/binding checks.
+- [The scoped formal capsule](../../formal/seeded-sampling/README.md) supplies
+  source-bound replay materials and recorded results. Its recorded checker
+  verifies those records; it does not rerun solvers or prove vendor logic.
+
 ## Repeated 128-output campaign
 
 Each temperature (`0`, `0.5`, `1`, `2`) was run twice from prompt `[378]` and
@@ -113,6 +143,18 @@ python -I -S -B tools/check_seeded_sampling.py
 python -I -S -B tools/test_seeded_sampling.py
 python -I -S -B tools/check_seeded_matched128.py
 python -I -S -B tools/test_seeded_matched128.py
+python -I -S -B tools/check_seeded_context.py
+python -I -S -B tools/test_seeded_context.py
+python -I -S -B tools/check_seeded_domain.py
+python -I -S -B tools/test_seeded_domain.py
+python -I -S -B tools/check_seeded_recovery.py
+python -I -S -B tools/test_seeded_recovery.py
+python -I -S -B tools/check_seeded_around.py
+python -I -S -B tools/test_seeded_around.py
+python -I -S -B tools/check_seeded_browser.py
+python -I -S -B tools/test_seeded_browser.py
+python -I -S -B tools/check_seeded_numerical_reference.py
+python -I -S -B formal/seeded-sampling/check_recorded.py
 ```
 
 The checker independently verifies frame CRCs, exact SETTINGS seed/temperature
@@ -129,4 +171,15 @@ the independent reference identities, complete frame/CRC and CLEAR replay
 order, timing arithmetic and completion-time brackets. Its mutation tests
 reject altered outputs/references, settings, frames, repetitions, rates and
 unsupported qualification claims. No checker independently attests the live
-FPGA configuration or establishes full-context, timing or security qualification.
+FPGA configuration or establishes timing or security qualification. The
+separate context checker validates the recorded full-context campaign; it
+does not execute the FPGA or integer model again.
+
+The later context, domain, recovery, around-control and browser checkers verify
+the complete archived finite campaigns and their current source/image bindings.
+They do not run hardware, drive Chrome, execute the numerical model or rerun
+solvers. The browser archive includes fresh setup and model-readback evidence;
+it retains the same-host/board, timing, physical-security and attestation limits.
+A long first-download wait occurred after that run had completed; its original
+observations and interruption record were preserved privately, and no extra generation
+or improved throughput result is inferred from the download timing.

@@ -33,6 +33,14 @@ APP_SOURCES = {
     'host-app/sampling_protocol.py': 'e754440e991e3a84ea246292080be9a955957be6bedbc6a82ed38a67c54fae75',
     'host-app/token_machine_uart.py': '00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf',
     'host-app/uart_channel.py': 'b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e'}
+# Preserve the exact frontend used by the historical AppTest. The later copies
+# clarify protection and qualification labels; the ordinary-browser campaign
+# records their current revisions separately. The five other app sources are exact.
+APP_FRONTEND_ARCHIVE = 'evidence/seeded-sampling/app-tested-sources/streamlit_app.py.txt'
+APP_PROFILE_ARCHIVE = 'evidence/seeded-sampling/app-tested-sources/runtime_profile.py.txt'
+APP_CURRENT_PROFILE_SHA = '8921585f9d3b2b3643f099797d884eb4f315ee19ecf3bb409c9be8c5ede8d7f2'
+APP_CURRENT_FRONTEND_SHA = '1755664f718fe29b91b510b5aa6b95ad79c9a8dbf05289e44005495f174ca844'
+
 SEED_A = 0x99aabbccddeeff001122334455667788
 SEED_B = 0xfefdfcfbfaf9f8f70102030405060708
 TEMPERATURES = ('0', '0.5', '1', '2')
@@ -333,8 +341,15 @@ def validate_app(app, package):
     require(app['codec_source'] == codec, 'App settings codec identity differs')
     for path, digest in dict(APP_SOURCES, **{codec['path']:codec['sha256']}).items():
         target = Path(package)/path
+        if path in ('host-app/streamlit_app.py', 'host-app/runtime_profile.py'):
+            current_digest = APP_CURRENT_FRONTEND_SHA if path.endswith('/streamlit_app.py') else APP_CURRENT_PROFILE_SHA
+            archive = APP_FRONTEND_ARCHIVE if path.endswith('/streamlit_app.py') else APP_PROFILE_ARCHIVE
+            require(target.is_file() and not target.is_symlink()
+                and sha(target.read_bytes()) == current_digest,
+                'Current app copy revision changed without its browser qualification: '+path)
+            target = Path(package)/archive
         require(target.is_file() and not target.is_symlink() and sha(target.read_bytes()) == digest,
-            'App-qualified source bytes changed: '+path)
+            'Historical AppTest source bytes changed: '+path)
     fields(app['source_receipts'], 'app_sha256 runner_sha256 profile_sha256')
     for value in app['source_receipts'].values():
         require(type(value) is str and len(value) == 64 and all(c in '0123456789abcdef' for c in value),

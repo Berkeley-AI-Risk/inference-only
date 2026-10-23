@@ -18,14 +18,14 @@ PROFILE = APP / 'local/board-profile.json'
 HARDWARE_INPUTS_SHA256 = '8955cde51f78b582612ca4ee61d146b6128a85a535b3d492d325a4168f77e334'
 VARIANTS = {
     'seeded-sampling': {
-        'label': 'Seeded temperature sampling (experimental)',
+        'label': 'Seeded temperature sampling without K/V integrity',
         'inventory': 'hardware-inputs-seeded-sampling.json',
         'hardware_root': 'variants/seeded-sampling/hardware',
         'inputs_sha256': '26a0885f9ffefaeea68b948295635fcfb37367254b549c48e75e0d7093e96831',
         'input_files': 91,
     },
     'encrypted-memory': {
-        'label': 'Encrypted external memory (public test keys)',
+        'label': 'K/V protection + encrypted memory (public test keys)',
         'inventory': 'hardware-inputs-encrypted-memory.json',
         'hardware_root': 'variants/encrypted-memory/hardware',
         'inputs_sha256': '840c12ce7d1a5886966aca73e7c44eb3e42b9ee07ab33adcb2de3d273125e262', 'input_files': 100,

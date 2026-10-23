@@ -7,8 +7,9 @@ and numerical capacity estimates here are not evidence about that circuit. The [
 preserves the same public operations, but has separate circuitry and test
 coverage; it has no whole-machine proof or certified training-capacity rating.
 The optional [seeded-sampling version](STOCHASTIC-GENERATION.md) also has separate
-evidence: it adds bounded generation settings and does not inherit the
-three-command proofs or the capacity estimates for the configurations below.
+evidence: it adds bounded generation settings and has
+[extended scoped control proofs](formal/seeded-sampling/README.md). The capacity
+estimates for the configurations below have not been transferred to it.
 
 *The Feasibility of a Hardwired Pause of Frontier AI Training* introduces both
 an idealized inference-only machine and a practical, operational criterion.
@@ -60,7 +61,7 @@ inference circuit and is not a fourth operation of that circuit.
 
 ### Optional seeded generation
 
-The experimental seeded version adds `SETTINGS(temperature, seed)` only at an
+The seeded version adds `SETTINGS(temperature, seed)` only at an
 empty, idle conversation boundary. Temperature is one of `{0, 0.5, 1, 2}`;
 the seed is a public 128-bit reproducibility setting. Temperature 0 keeps the
 original greedy rule. Positive temperatures use a fixed circuit distribution
@@ -70,12 +71,14 @@ probability table, tensor operands or per-token random draws.
 For a chosen temperature and seed, generation is deterministic. CLEAR retains
 the settings and rewinds the generator; reset restores greedy defaults. This
 is a bounded family of inference behaviors, with unchanged accepted weights
-and private model arithmetic. Its additional command and state require a
-separate specification and proof. The existing three-command results, finite
-greedy capacity estimates and full-context tests do not qualify this extension.
-Its board tests establish the limited behavior recorded in
-[the seeded-generation evidence](VALIDATION.md#experimental-seeded-sampling-image),
-not a certified residual training fraction or physical-security result.
+and private model arithmetic. Its additional command and state have a
+[separate specification and control proof](formal/seeded-sampling/README.md),
+with numerical model functions abstract in the Lean specification. Its board
+campaigns and integer references are also recorded separately. The finite
+greedy capacity estimates have not been extended to sampling.
+[The seeded-generation evidence](VALIDATION.md#experimental-seeded-sampling-image)
+records the finite test scope; it does not certify a residual training fraction
+or physical security.
 
 ## Fixed accepted weights, although their storage is writable
 

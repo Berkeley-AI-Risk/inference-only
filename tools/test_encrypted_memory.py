@@ -45,7 +45,7 @@ class EncryptedMemoryTests(unittest.TestCase):
                 record=fixture.qualify()
                 self.assertEqual(record['variant'],'encrypted-memory')
                 self.assertEqual(profile.load_checked(),record)
-                self.assertEqual(profile.configured_variant(),'Encrypted external memory (public test keys)')
+                self.assertEqual(profile.configured_variant(),'K/V protection + encrypted memory (public test keys)')
                 self.assertEqual(fixture.links[0].calls,[('clear',0),('append',378)]+[('step',0)]*4+[('clear',0)])
                 self.assertTrue(fixture.links[0].closed)
                 self.assertEqual(len(profile.hardware_inputs('encrypted-memory')),100)

@@ -6,8 +6,9 @@ cache sharing two AES and two SHA engines, four time-shared projection multiplie
 lanes, and a different physical K/V layout; see [ENCRYPTED-MEMORY.md](ENCRYPTED-MEMORY.md).
 The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) extends
 the baseline with a fixed sampler and bounded temperature/seed command.
-Its source, resources and limited validation are separate from the baseline
-figures and three-command proof scope used below.
+Its source, resources and validation are recorded separately from the baseline
+figures below; its [extended control proofs](formal/seeded-sampling/README.md)
+cover the additional settings and sampler state.
 
 This document is for readers familiar with RTL, FPGA implementation and
 accelerator design. The [README](README.md) introduces the demo;
