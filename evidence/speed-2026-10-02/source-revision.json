@@ -866,20 +866,11 @@
       ]
     },
     "FORMAL-STATUS.md": {
-      "after_sha256": "ca0d5f19ee8a439205a799af22449aa04297e5fa94a1974833604edc2f76c46b",
+      "after_sha256": "306a414c7b3f26df4c0833cb06d4b7edf93fd09a56ea3abfa285111e90abf4f7",
       "before_sha256": "43c685741450e179e3a4fae38412ce76c39238fe078ad0d9276dec968aabc550",
       "reverse_edits": [
         {
           "after": [
-            "The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) now has\n",
-            "[separate source-bound proofs and public replay](formal/seeded-sampling/README.md)\n",
-            "for SETTINGS, sampler/seed ownership and CLEAR/replay. Its connected Z3 proof\n",
-            "passes 196 assertions; cvc5 checks the base and 194 conclusions, with two CRC\n",
-            "conclusions unresolved by that second solver. These new results are separate\n",
-            "from the original three-command receipts and retain scoped component/private\n",
-            "computation boundaries. No whole-machine or numerical-distribution theorem is\n",
-            "claimed.\n",
-            "\n",
             "## What the formalization is meant to establish\n",
             "\n",
             "The aim is to show that the implemented circuit obeys a precise inference-only\n",
@@ -946,7 +937,7 @@
             "The proof receipts below retain their original source bindings. They do\n",
             "not certify the changed [encrypted-memory configuration](ENCRYPTED-MEMORY.md).\n"
           ],
-          "end": 72,
+          "end": 63,
           "start": 2
         },
         {
@@ -962,8 +953,8 @@
             "\n"
           ],
           "before": [],
-          "end": 85,
-          "start": 76
+          "end": 76,
+          "start": 67
         },
         {
           "after": [
@@ -978,8 +969,8 @@
             "proofs have been replayed against the selected September 24 baseline,\n",
             "including its changed arithmetic children. The K/V-protected sources have\n"
           ],
-          "end": 92,
-          "start": 86
+          "end": 83,
+          "start": 77
         },
         {
           "after": [
@@ -991,8 +982,8 @@
             "buffer requires a different read-only observation point, not fewer assertions\n",
             "or an extra assumption. The proof elaboration maps its eight small rows to\n"
           ],
-          "end": 95,
-          "start": 93
+          "end": 86,
+          "start": 84
         },
         {
           "after": [
@@ -1001,8 +992,8 @@
           "before": [
             "The wrong-coordinate fault control was updated to select the adjacent value\n"
           ],
-          "end": 97,
-          "start": 96
+          "end": 88,
+          "start": 87
         },
         {
           "after": [],
@@ -1010,8 +1001,8 @@
             "Historical receipts retain their earlier identities, including the\n",
             "[September baseline/protected replay](evidence/leaf-speed/release-replay.json).\n"
           ],
-          "end": 99,
-          "start": 99
+          "end": 90,
+          "start": 90
         },
         {
           "after": [
@@ -1022,8 +1013,8 @@
             "| Abstract machine | Lean checks the three-command specification, tape bounds, command effects and reply counts. | Its fixed next-token function is abstract; this is not an RTL correspondence proof. |\n",
             "| Actual UART bridge | Yosys proves 46 assertions by induction: 15 earlier domain/CLEAR properties plus 31 request-history, authorization and reply properties. | This covers the bridge's admitted input bytes, command interface and reply-byte handoff, not the inference engine. |\n"
           ],
-          "end": 108,
-          "start": 106
+          "end": 99,
+          "start": 97
         },
         {
           "after": [
@@ -1032,8 +1023,8 @@
           "before": [
             "| Token-shell controller and tape | 48 assertions: the earlier 35 control properties plus 13 for live tape contents, tape overwrite-before-read after CLEAR/reset, and stored/published-token agreement. Both SMT solvers check the complete induction. | Real local arithmetic and memories remain; external private services are arbitrary component inputs. This is not K/V/scratch erasure or the fixed model's numerical next-token theorem. |\n"
           ],
-          "end": 110,
-          "start": 109
+          "end": 101,
+          "start": 100
         },
         {
           "after": [
@@ -1042,8 +1033,8 @@
           "before": [
             "| Verified weight-page bank | 37 assertions, with both solvers checking the complete induction: fill-before-read, sealed RAM, digest-comparison admission, hash-input correspondence, owned replies and sticky faults. | Real 128-by-256-bit RAM is retained; SHA replies and the expected-digest input remain arbitrary. Not SHA correctness or parent-ROM composition. |\n"
           ],
-          "end": 113,
-          "start": 112
+          "end": 104,
+          "start": 103
         },
         {
           "after": [
@@ -1052,8 +1043,8 @@
           "before": [
             "| Protected guard/cache/parent connections | 325 joint assertions, both solvers, including the preceding 221, the local cache's 59 and 45 connection/history checks. Includes accumulated data, request identity, exponents and guard-side CLEAR. | Real guard and atomic cache with source-projected parent reset/reply gates; private schedule and arithmetic boundaries remain arbitrary. |\n"
           ],
-          "end": 115,
-          "start": 114
+          "end": 106,
+          "start": 105
         },
         {
           "after": [
@@ -1062,8 +1053,8 @@
           "before": [
             "changed arithmetic but do not prove its bounds for every input. The controller\n"
           ],
-          "end": 123,
-          "start": 122
+          "end": 114,
+          "start": 113
         },
         {
           "after": [
@@ -1072,12 +1063,21 @@
           "before": [
             "assume an earlier proof receipt as a theorem.\n"
           ],
-          "end": 133,
-          "start": 132
+          "end": 124,
+          "start": 123
         },
         {
           "after": [
             "## Separate seeded-sampling proof inventory\n",
+            "\n",
+            "The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) now has\n",
+            "[separate source-bound proofs and public replay](formal/seeded-sampling/README.md)\n",
+            "for SETTINGS, sampler/seed ownership and CLEAR/replay. Its connected Z3 proof\n",
+            "passes 196 assertions; cvc5 checks the base and 194 conclusions, with two CRC\n",
+            "conclusions unresolved by that second solver. These new results are separate\n",
+            "from the original three-command receipts and retain scoped component/private\n",
+            "computation boundaries. No whole-machine or numerical-distribution theorem is\n",
+            "claimed.\n",
             "\n",
             "The [portable seeded replay](formal/seeded-sampling/README.md) checks the exact\n",
             "distributed RTL and fixed tables associated with image SHA-256\n",
@@ -1118,7 +1118,7 @@
             "## What the expanded UART proof adds\n"
           ],
           "end": 170,
-          "start": 134
+          "start": 125
         },
         {
           "after": [

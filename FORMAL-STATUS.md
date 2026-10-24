@@ -1,14 +1,5 @@
 # What has—and has not—been formally proved
 
-The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) now has
-[separate source-bound proofs and public replay](formal/seeded-sampling/README.md)
-for SETTINGS, sampler/seed ownership and CLEAR/replay. Its connected Z3 proof
-passes 196 assertions; cvc5 checks the base and 194 conclusions, with two CRC
-conclusions unresolved by that second solver. These new results are separate
-from the original three-command receipts and retain scoped component/private
-computation boundaries. No whole-machine or numerical-distribution theorem is
-claimed.
-
 ## What the formalization is meant to establish
 
 The aim is to show that the implemented circuit obeys a precise inference-only
@@ -133,6 +124,15 @@ the byte-identical controller inside its 325-assertion model; it does not
 assume a separate proof receipt as a theorem.
 
 ## Separate seeded-sampling proof inventory
+
+The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) now has
+[separate source-bound proofs and public replay](formal/seeded-sampling/README.md)
+for SETTINGS, sampler/seed ownership and CLEAR/replay. Its connected Z3 proof
+passes 196 assertions; cvc5 checks the base and 194 conclusions, with two CRC
+conclusions unresolved by that second solver. These new results are separate
+from the original three-command receipts and retain scoped component/private
+computation boundaries. No whole-machine or numerical-distribution theorem is
+claimed.
 
 The [portable seeded replay](formal/seeded-sampling/README.md) checks the exact
 distributed RTL and fixed tables associated with image SHA-256
