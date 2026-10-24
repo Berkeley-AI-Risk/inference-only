@@ -1,3 +1,46 @@
+# Current optimized seeded evidence
+
+Current records below describe the optimized **SimpleStories-V2-5M** seeded
+image; older reports after the history heading keep their 0e6 source context.
+No historical timing, browser census or PASS is transferred to the current image.
+
+- [Current CLI evidence](current-candidate-cli.json): all seven source-bound
+  board suites in control-first order, including eight matched 128-output
+  trials and the 16-case context matrix.
+- [Current model evidence](current-model-v4.json): 30 cases, 108 heads and
+  434,052 raw logit rows for the actual model-tested circuit.
+- [Current scoped source evidence](current-scoped-proofs-v4.json): seven
+  retained modular scopes, separate cache-stage154 and exp-ROM source results,
+  plus the independently scoped finite canonical mapped-ROM association.
+- [Recorded timing](current-timing-v8-baseline-selected-native.json) and
+  [native summary](current-native-summary-v8-baseline-selected-native.json):
+  9.942238076 cached command tokens/s at temperature1 and the named 2,048-token
+  first STEP of 352.237119291seconds, 3.779888478× faster than its parent trial.
+  These are source-bound command/reply timings, not browser timing or guarantees.
+- [Current formal replay](../../formal/current-seeded-sampling/README.md):
+  registered fresh 196-primary connected outcomes; all 196 secondary
+  conclusions were attempted and 194 were proved, with CRC 38/73 unresolved.
+  Component scopes and the separate 42-assertion bank proof retain their limits.
+  [CURRENT-REPLAY.json](../../formal/current-seeded-sampling/CURRENT-REPLAY.json)
+  is the named completion; construction/source-action flags stay unchanged.
+- A fresh whole-flash readback compared all 16,777,216 bytes: the fixed model
+  matched and every other byte was `FF`. Its raw summary retains the original
+  clean-package manifest; a separate 13-payload/87-source comparison joins it
+  to the registered recipient. It is not a new backup pair, flash write or
+  inference-image attestation. The registered recipient then reloaded the
+  inference image, settled and passed 45-command/19-token registration.
+- [Current browser status](current-browser.json): twelve ordinary Chrome cases
+  completed with all 100 outputs exact, including both independent
+  automatic-seed checks, the full 2,048-token greedy case and the 2,047-token
+  first-STEP Stop. The long Stop drained one reply, acknowledged CLEAR and
+  released UART without a second STEP.
+
+See [CURRENT-QUALIFICATION.md](../../CURRENT-QUALIFICATION.md) for the exact
+workloads, timing and qualification limits. Stable source/build/candidate records
+retain their original action flags; later package status is separate.
+
+## Historical seeded 0e6 reports
+
 # Seeded-sampling evidence
 
 The Tang Mega 138K non-Pro Dock passed bounded UART and application trials on

@@ -24,8 +24,33 @@ APP = Path(__file__).resolve().parent
 TOKENIZER_SHA = '01b6553da99789d461cec48eed624684a803f259a5177616a67f7391700acf51'
 IMAGE_SHA = '5a5b6788ea0d5b07d25614e91f2950c0c3a7b3cf49f8e225f2dcaf9e76ac8c2a'
 VOCAB_SIZE, EOS, MAX_PROMPT, MAX_NEW, DEMO_CAP = 4019, 1, 128, 128, 256
+MAX_PROMPT_CHARS = 4000
+STEP_TIMEOUT_SECONDS = 120
 ACTIVE = {'connecting', 'loading prompt', 'generating', 'clearing'}
 BACKEND_SHA = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+
+
+@dataclass(frozen=True)
+class InputLimits:
+    max_prompt: int
+    max_new: int
+    total: int
+    max_chars: int
+    step_timeout_seconds: int
+
+
+def limits_for_variant(variant: str | None) -> InputLimits:
+    """Local UI capability only; LiveUART still rechecks the full deployment."""
+    if variant == 'seeded-sampling':
+        return InputLimits(2048, 128, 2049, 32768, 3600)
+    if variant in (None, 'baseline', 'kv-protected', 'encrypted-memory'):
+        return InputLimits(MAX_PROMPT, MAX_NEW, DEMO_CAP, MAX_PROMPT_CHARS, STEP_TIMEOUT_SECONDS)
+    raise ValueError('Unknown locally selected image; recheck the board profile.')
+
+
+def check_prompt_text(prompt: str, limits: InputLimits):
+    if not isinstance(prompt, str) or not prompt.strip() or len(prompt) > limits.max_chars or '\x00' in prompt:
+        raise ValueError(f'Enter a nonempty story beginning (at most {limits.max_chars:,} characters).')
 
 
 def utc() -> str:
@@ -53,13 +78,13 @@ class Tokenizer:
             raise RuntimeError('Wrong tokenizer vocabulary.')
 
     def encode(self, prompt: str) -> list[int]:
-        if not isinstance(prompt, str) or not prompt.strip() or len(prompt) > 4000 or '\x00' in prompt:
-            raise ValueError('Enter a nonempty story beginning (at most 4,000 characters).')
+        limits = limits_for_variant(runtime_profile.configured_variant_id())
+        check_prompt_text(prompt, limits)
         # The upstream postprocessor adds EOS to finished stories. A prompt
         # is an UNFINISHED story: do not append that special token here.
         tokens = self.native.encode(prompt, add_special_tokens=False).ids
-        if not 1 <= len(tokens) <= MAX_PROMPT:
-            raise ValueError(f'This first app demo accepts 1–{MAX_PROMPT} prompt tokens; got {len(tokens)}.')
+        if not 1 <= len(tokens) <= limits.max_prompt:
+            raise ValueError(f'This app accepts 1–{limits.max_prompt} prompt tokens; got {len(tokens)}.')
         if EOS in tokens:
             raise ValueError('Do not put [EOS] in an unfinished prompt.')
         return tokens
@@ -138,9 +163,10 @@ class LiveUART:
     def command(self, operation: str, token: int = 0) -> int | None:
         # The pinned request builder admits only APPEND / STEP / CLEAR and
         # validates the fixed vocabulary. There is no raw command UI/API.
+        limits = limits_for_variant((getattr(self, 'profile', None) or {}).get('variant', 'baseline'))
         frame = self.client.request_frame(operation, token)
         self.channel.send(frame, operation)
-        event = self.channel.next(120 if operation == 'step' else 10)
+        event = self.channel.next(limits.step_timeout_seconds if operation == 'step' else 10)
         if event is None:
             raise BoardError(f'FPGA {operation.upper()} timed out. No retry or automatic reset was attempted.')
         if event['kind'] != 'normal' or event['response'] != self.client.EXPECTED_RESULTS[operation]:
@@ -226,6 +252,7 @@ class Controller:
         self.keep_connection = (link_factory is LiveUART if keep_connection is None
                                 else bool(keep_connection))
         self._retained_link = None
+        self._requested_variant = None
         if self.keep_connection:
             atexit.register(self._close_retained)
 
@@ -283,19 +310,25 @@ class Controller:
             return self.thread is not None and self.thread.is_alive()
 
     def start(self, owner: str, prompt: str, count: int, temperature: str = '0', seed=None):
-        if type(count) is not int or not 1 <= count <= MAX_NEW:
-            raise ValueError(f'Choose 1–{MAX_NEW} generated tokens.')
+        variant = runtime_profile.configured_variant_id()
+        limits = limits_for_variant(variant)
+        if type(count) is not int or not 1 <= count <= limits.max_new:
+            raise ValueError(f'Choose 1–{limits.max_new} generated tokens.')
         code = sampling_protocol.temperature_code(temperature)
         chosen_seed = sampling_protocol.run_seed(temperature, seed)
+        check_prompt_text(prompt, limits)
         tokens = self.tokenizer.encode(prompt)
-        if len(tokens) + count > DEMO_CAP:
-            raise ValueError(f'The interactive demo is limited to {DEMO_CAP} total tokens.')
+        if not 1 <= len(tokens) <= limits.max_prompt:
+            raise ValueError(f'This app accepts 1–{limits.max_prompt} prompt tokens; got {len(tokens)}.')
+        if len(tokens) + count > limits.total:
+            raise ValueError(f"With {len(tokens):,} prompt tokens, set 'Maximum new tokens' to {min(limits.max_new, limits.total - len(tokens))} or less.")
         with self.lock:
             if self.busy():
                 raise RuntimeError('The FPGA is already working. Stop that run or wait for it to finish.')
             if self.needs_board_check:
                 raise RuntimeError('A previous command failed. The FPGA needs an engineering check; this app will not reset or reflash it.')
             self.stop_event.clear()
+            self._requested_variant = variant or 'baseline'
             self.result = Result(owner=owner, job_id=uuid.uuid4().hex, state='connecting',
                 prompt=prompt, prompt_tokens=tokens, text=self.tokenizer.decode(tokens),
                 requested=count, started_utc=utc(), temperature=temperature,
@@ -337,6 +370,8 @@ class Controller:
                     'seed_used':self.result.seed_used})
                 try:
                     with self._run_link(observe) as link:
+                        if isinstance(link, LiveUART) and link.profile.get('variant', 'baseline') != self._requested_variant:
+                            raise BoardError('The local image selection changed before generation. No command was sent; recheck the board profile.')
                         def command(op, operand=0):
                             nonlocal commands_started
                             commands_started = True

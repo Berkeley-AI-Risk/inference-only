@@ -1,0 +1,264 @@
+{
+  "current_solver_replay_passed": false,
+  "historical_release": {
+    "bytes": 63338547,
+    "manifest_sha256": "90d7cdfa551120293ed663a68aae9f97ed2bde143c86fe0df6c73f32de140806",
+    "path": "history/seeded-sampling-0e6-qualified.zip",
+    "sha256": "1691c1263609ef70be3793d84a8a1ee62617bb5509ed627eb81547970d15634f"
+  },
+  "image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
+  "native_audit_sha256": "3fd3d8220e74f6158832a9fe39528faef92d9c983c247f21dec58359a13e22e1",
+  "native_finished_sha256": "0fbf9fb5e01bf69791eb14fca803eeace1af3e0a59918ec5aa4fdf4f1cbf2887",
+  "native_inventory_sha256": "bd6979971359e5a18e0736ef5771ae9074ef9719d32e75970577eba9bb9d8c30",
+  "native_vo_sha256": "bdc79ac7bfff8103cf055ae6c8d52c1bc06cb395bb29faa961f1736364bcea94",
+  "package_inputs": {
+    "CANDIDATE.json": {
+      "bytes": 52492,
+      "sha256": "0fd6f2e71c955819d7836f46f6aff5659fb86087ccfc77e83a00ee35790996ec"
+    },
+    "evidence/seeded-sampling/current-candidate-cli.json": {
+      "bytes": 14650918,
+      "sha256": "c732062231854a54ab85ee2a53ca2a9d3994a19d17faed3ef409a6e0202eb401"
+    },
+    "evidence/seeded-sampling/current-model-v4.json": {
+      "bytes": 572033,
+      "sha256": "478cf69b6a49b9fc95688c8e0098e45f8cc340fdcd2d322848ea3f528e571aae"
+    },
+    "evidence/seeded-sampling/current-scoped-proofs-v4.json": {
+      "bytes": 3218630,
+      "sha256": "a97c3de1698fcb6d077d6f83eea78ac97fd938604f92e338c906f97e0c522825"
+    },
+    "host-app/hardware-inputs-seeded-sampling.json": {
+      "bytes": 13450,
+      "sha256": "679774e3237d8efdc56817ca00ea60c0b9d8063693736aec8a228be54297ea83"
+    },
+    "prebuilt/seeded-sampling/BUILD.json": {
+      "bytes": 23714,
+      "sha256": "a36aeb1992f990a108057a1bd067cc50dcb93a6c965223ded612b7a1461e8360"
+    },
+    "prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs": {
+      "bytes": 42070540,
+      "sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
+    },
+    "variants/seeded-sampling/SOURCE.json": {
+      "bytes": 24646,
+      "sha256": "b3e46bb79fe8d91cbc5bf0afe8a54eb13da477a38168d11f156bb1de8b2c190d"
+    }
+  },
+  "qualification_inherited": false,
+  "retained_scope_association": {
+    "aggregate_assertion_total": null,
+    "arithmetic_refinement_pending": true,
+    "changed_cache_stage_proof": {
+      "actual_ram_bits": 8192,
+      "aggregate_assertion_total": null,
+      "arbitrary_readonly_selector_bits": 13,
+      "assumptions": [],
+      "cancellation_knownness_scope": "Cancellation may revoke logical knownness while captured payload/assembly coherence remains. Fault replies are masked. These source properties do not establish physical memory erasure.",
+      "candidate_sha256": "ba17ba73a9c708aabd246cbc538f4e81e25b33cc116ded91da4fd554566ead39",
+      "hardware_access": false,
+      "induction_conclusions": 154,
+      "internal_cuts": [],
+      "limits": [
+        "No whole-machine or full cache-equivalence theorem.",
+        "No trusted external DDR content or cryptographic K/V integrity assumption or claim.",
+        "No eventual-response/fairness or fatal-reset-free liveness claim.",
+        "No unconditional local accepted-write ownership/drain theorem across terminal failure. No unexpected completion input is assumed away.",
+        "No independently latched historical-DDR semantic row content theorem; physical fill mux fidelity is separate from accepted pending-stage provenance.",
+        "No physical RAM initialization/erasure, mapped/native/timing/route/board qualification.",
+        "No inherited141 assertion total or pass flag.",
+        "Cancellation revokes logical stage knownness only. Selected-point and captured/stage/assembled payload coherence remain required through CLEAR and terminal failure; retained payload erasure is not claimed.",
+        "Synchronous two-state source safety only; no electrical CDC, physical implementation, native timing or board qualification is inferred.",
+        "Only the primary Z3 campaign is credited. No independent second-solver completion or proof credit is claimed.",
+        "The recorded audit reconstructs consumed evidence and repeats the RAM/observer audit without rerunning the solver or elaborator; independent tool-execution attestation is excluded."
+      ],
+      "mapped_image_equivalence": false,
+      "mapper_sha256": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc",
+      "old_cache141_credited": false,
+      "passed": true,
+      "physical_equivalence": false,
+      "primary_solver": "z3",
+      "production_ram_banks": 8,
+      "qualification_inherited": false,
+      "reset_base_queries": 1,
+      "sat_premise_then_unsat_queries": 155,
+      "scope": "Recorded full source reset-base plus joint-prior inductive safety with exact consumed-query/log reconstruction and actual RAM/observer audit. Independent tool-execution attestation, full cache equivalence, terminal-local write drain and mapped/physical claims are excluded.",
+      "solver_executed_by_this_binding": false,
+      "source_assertions": 154,
+      "source_query_log_closure": true,
+      "source_receipts": {
+        "actual_run": {
+          "bytes": 256776,
+          "sha256": "e39204ffc039b4e157af8758c9b7c1095cfe96f95088d3b80870f341c9948883"
+        },
+        "auditor_source": {
+          "bytes": 13478,
+          "sha256": "9a35fa710afde1416226564273ea2f56b05742030743ce793621a8a8d2b01a42"
+        },
+        "preparation": {
+          "bytes": 9188,
+          "sha256": "8281070c15c4005886caa2f4e7a1a69a7eb56c3283d9affdb0dfa4415e52f612"
+        },
+        "primary_index": {
+          "bytes": 5299,
+          "sha256": "2d9874c97bafd9b7c767b91bd416e61c18e58fee42a65b8d69bf2cf45fe705a2"
+        },
+        "recorded_audit": {
+          "bytes": 305651,
+          "sha256": "a2abd17878e15c9499f9e7d9879364897830c2fcbb0a65be6811ae59cf964c60"
+        }
+      },
+      "state": "complete",
+      "statement_origin": {
+        "aborted_write_and_lock_history_support": 2,
+        "exponent_snapshot_support": 2,
+        "original_knownness_statement_scoped_for_cancellation": 1,
+        "original_monitor_statements_retained_exactly": 116,
+        "phase_history_support": 27,
+        "revoked_semantic_owner_history_support": 1,
+        "through_cancel_coherence_support": 5
+      },
+      "terminal_scope": "Healthy and CLEAR ownership/drain safety; terminal fail-stop may abandon local accepted writes until reset. No unexpected-input assumptions or unconditional terminal-local-drain claim.",
+      "whole_cache_equivalence": false,
+      "whole_machine_proof": false
+    },
+    "changed_exp_rom_proof": {
+      "aggregate_assertion_total": null,
+      "candidate_sha256": "042df8b9da13bc2a66f945b2942a30374d52fa38766ba73916999901fa63622f",
+      "default_table_sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f",
+      "limits": [
+        "Source-only relative ROM safety/equivalence; no full attention FSM, whole model, vendor primitive, mapped image, physical or security theorem.",
+        "FILE parser/I/O uses standard RTL readmemh semantics. Arbitrary32-bit image dataflow is proved; partial/addressed/XZ FILEs are finite actual simulation fixtures.",
+        "Coupled unspecified initial selected payload/metadata is an explicit representation premise, not an assumption that valid response data already matches.",
+        "Clock-level source induction uses async2sync; analog reset pulse widths, glitches and metastability are not claimed.",
+        "No native inference/resource/routing/timing result or FPGA model/flash/write action is credited here. Root-owned synthesis previews and any future mapped-ROM audit remain separate.",
+        "These query/transcript counts are nonadditive with all existing stochastic, transport, arithmetic and whole-model evidence; no aggregate machine assertion total is claimed."
+      ],
+      "mapped_canonical_rom_audit_passed": false,
+      "mapped_canonical_rom_audit_required_before_preload": true,
+      "mapped_image_equivalence": false,
+      "passed": true,
+      "physical_equivalence": false,
+      "qualification_inherited": false,
+      "reference_sha256": "e47bf421e10435e6bffa10e0219415630d57ef00ccdc4040ca7d8d9f720e9477",
+      "scope": {
+        "composition": "Initializer image correspondence and source-proved immutable storage plus runtime state induction preserve all four observable outputs along unbounded clock-sampled digital input sequences. Reset assertion outputs and actual asynchronous pulse behavior are separately checked.",
+        "file_image": "Actual source-parsed1024loop and four disjoint copies prove each low word0..4095 and independent endpoint4096 come from the same complete FILE image; addresses/counts are checked nonwrapping. Source-runtime theorem assumes the resulting requested-word image relation, discharged by that copy construction.",
+        "four_state": "Nine actual original/candidate FILE simulations, all8192 addresses each, pre-read/unreset X,32X/Z control cases and one between-clock asynchronous reset pulse perFILE. Six complete known-integer files also get198144 independent public transaction-oracle comparisons. This is finite four-state evidence, not a universal four-state SMT theorem.",
+        "independent_scalar": "Unmodified full e47 reference, namespace-only in simulations; no candidate ROM is shared with the reference.",
+        "initial_state": "Explicit representation coupling of unspecified initial selected payload and metadata/sticky state; constructive low-selected witness covers every initial32-bit payload. Unrelated power-up states are not compared.",
+        "runtime": "Complete actual-source four-output and inductive state-correspondence proof for arbitrary13-bit request/index sequences and arbitrary32-bit immutable FILE words. No valid-encoding assumption or runtime/output cuts."
+      },
+      "scope_premises_not_dropped": true,
+      "separate_from_reused_modular_scopes": true,
+      "shared_mac_proof_credited": false,
+      "source_query_log_closure": true,
+      "source_receipts": {
+        "component": {
+          "bytes": 69396,
+          "sha256": "80309bee650ec898b7e2a81eb59fa4c925779d56188b448dd37c4729d94273d0"
+        },
+        "final_index": {
+          "bytes": 6256,
+          "sha256": "6ccf19de26525697a144b3995efc31c225f73f6fd1a424247a4863d547e95596"
+        },
+        "source_audit": {
+          "bytes": 184623,
+          "sha256": "3410f9dcab7cc87180deceb4f4e726edbd271c73822f432ca422eadeaa0c0dd3"
+        },
+        "source_proof": {
+          "bytes": 6501,
+          "sha256": "797f55044171f4b3df5565eaaf13875c8562f34e872d572bf95ba870bd8bdeae"
+        }
+      },
+      "state": "complete",
+      "whole_machine_proof": false
+    },
+    "changed_native_inputs": [
+      "project/sha.sv"
+    ],
+    "formal_replay_of_this_variant": false,
+    "mapped_image_equivalence": false,
+    "old_atomic87_credited": false,
+    "old_cache141_credited": false,
+    "public_association_inventory": {
+      "bytes": 100932,
+      "sha256": "335a9b266bdd8b5d5a2276a3d843f79b6fd2317f579ac54a5ecdcee56e18ae7d"
+    },
+    "retained_scope_binding_pass": true,
+    "retained_scope_names": [
+      "app138",
+      "backend29",
+      "fast_shift_intermediate",
+      "front44_composed",
+      "prefix_divider",
+      "small_shift",
+      "typed15"
+    ],
+    "reused_scopes_sha256": "dcc24f886310ab0c9ed7681d4c21ecf1299459b823506f5f03c79113fe4afdd0",
+    "source_ancestry_sha256": "d29069ad81ab3921519bb3220cd28c5c1bcf519828b3618b76d870474b9dcd5f",
+    "source_inventory_sha256": "568eb3314ec96ad7fb4963be80217880b1531385a50beeebdb3f88da7e8e4b8d",
+    "source_scope_assessment": {
+      "bytes": 80030,
+      "sha256": "d8a5d7284e17dfef2cd0113cb03f05415753b3144ddfd1058043ab25eb401100"
+    },
+    "source_scope_decision": {
+      "bytes": 2922,
+      "sha256": "3acbc6468a8fb5e3c6bc55262afd4a7b80501ca82d67e45e9c476bb65ab4bb91"
+    },
+    "universal_sha_refinement_proved": false,
+    "unproved_private_sha_boundary": {
+      "archived_7e_sha_record_unchanged": true,
+      "arithmetic_refinement_pending": true,
+      "baseline_page_bank_sha_outputs_unconstrained": true,
+      "busy_done_latency_assumed": false,
+      "candidate_sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94",
+      "current_d1_sha_outside_theorem": true,
+      "finite_bank_good_bad_cases": 6,
+      "finite_component": {
+        "bytes": 86037,
+        "sha256": "265894090b35e47cdb42e0b94ed195386442702b336820918810de20bbb42657"
+      },
+      "finite_compression_vectors": 235,
+      "finite_model": {
+        "bytes": 1975137,
+        "sha256": "5d09fcecf413a2a010ef14ffdadeef6d670dc0333b6afe20e8590945baf81dcb"
+      },
+      "finite_reset_phases": 32,
+      "finite_source_finished_sha256": "19d2264e67d75a4eb22221f57e7693b288f02a690c6d99867709d00bc30fb701",
+      "finite_validator_sha256": "8d3cbcc6496c0a28c0b5d0b78b1caa0b0a3462246f86c40925bbd2d09428e105",
+      "kind": "unproved-compressor-interface-with-finite-evidence",
+      "model_cases": 30,
+      "model_heads": 108,
+      "model_rows": 434052,
+      "new_page_bank42_run_claimed": false,
+      "owned_interface_header_sha256": "539dbf73b10797d01e7dd1021aece121269b69dd7a1385651754730a2424c036",
+      "private_bank_composition_pending": true,
+      "production_sha_not_elaborated": true,
+      "reference_sha256": "7e4992bdf5c7a6e6405979a01a351254d4a84fb8c0e2e47afcbe3fc4ff7d3610",
+      "returned_digest_correctness_assumed": false,
+      "scope": "Unproved private compression boundary; finite arithmetic/transactions and full-model executions only. No SHA arithmetic/security/private-bank refinement theorem is claimed.",
+      "unchanged_bank_sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1",
+      "universal_refinement_proved": false
+    },
+    "whole_machine_proof": false
+  },
+  "schema": "current-seeded-formal-capsule-binding-v1",
+  "sha_compression_arithmetic_proved": false,
+  "source_delta_disclosure": [
+    "project/arbiter.sv",
+    "project/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv",
+    "project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv",
+    "project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv",
+    "project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv",
+    "project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv",
+    "project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv",
+    "project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv",
+    "project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv",
+    "project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv",
+    "project/sha.sv",
+    "project/shared_token_probe.sv",
+    "run.tcl"
+  ],
+  "whole_machine_refinement": false
+}

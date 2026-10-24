@@ -8,37 +8,37 @@ software-model fallback, weight upload, memory/arithmetic command, programming
 button or automatic retry. The restriction is in the frozen FPGA design,
 not in this editable application.
 
-The app uses separate local profiles for the three greedy configurations and
-the optional seeded-sampling image. Its extended registration check and
-Streamlit AppTest exercised the real FPGA; offline recipient checks passed
-from a clean export. The framework test did not open a browser or start a web server.
-A separate [actual Chrome rehearsal](../evidence/seeded-sampling/browser.json)
-passed from a clean 1,316-file recipient package on the same supported host
-and board.
-See
-[the seeded-generation guide](../STOCHASTIC-GENERATION.md).
-For `encrypted-memory`, use `prebuilt/encrypted-memory/BUILD.json`
-and install its distinct
-[ciphertext flash payload](../ENCRYPTED-MEMORY.md#install-or-restore) first.
+The app uses separate local profiles for the three original greedy images and
+the optimized seeded image. The original 0e6 Streamlit AppTest/ten-case browser
+receipts remain historical. The current clean recipient completed twelve
+ordinary Chrome cases with all 100 outputs matching the reference, including
+independent integer-oracle checks of both automatic-seed runs.
+The current unchanged host suite passed 70 offline tests, including rendering
+and synthetic AppTest fixtures. AppTest does not count as an opened-browser
+rehearsal or a hardware test.
+See the [current qualification record](../CURRENT-QUALIFICATION.md).
+The encrypted-memory image retains K/V integrity/replay protection and encrypts
+both weights and K/V with public demonstration keys; use its distinct flash
+payload. The seeded image uses plaintext model flash and has no K/V
+cryptographic integrity or encryption.
 
-The [validation record](../VALIDATION.md#host-and-installation-checks)
-distinguishes physical hardware tests, backend qualification and offline UI
-tests. It does not claim a complete human browser-click rehearsal of all
-three greedy images on another owner's setup. Neither build receipts nor
-matching outputs independently attest the configuration.
+The current browser contract retains the original ten cases and adds an exact
+2,048-token greedy prompt and a 2,047-token temperature 1/seed A run stopped while
+its first STEP is pending. In the completed long Stop, exactly that first
+reply was drained, CLEAR was acknowledged and UART ownership was automatically
+released, with no second STEP. The short Stop returned 71 outputs and a later
+greedy run resumed successfully.
+Fresh whole-flash model readback passed with a separate exact payload/source
+join to the registered package. After the reader replaced SRAM, the exact
+recipient inference image was reloaded, settled for at least 120 seconds and
+passed 45-command/19-token registration. Matching replies do not independently
+attest the loaded configuration.
 
-Before that Chrome rehearsal, a fresh 16-MiB flash readback matched every model
-byte and the `FF` bytes outside the model region. The exact same seeded SRAM
-image was then reloaded and its 45-command/19-token registration passed.
-Ten cases exercised every temperature, fixed-seed replay, a changed seed,
-two distinct automatic seeds, greedy after sampling, Stop, resumed greedy
-generation and Disconnect. All 104 outputs matched the integer reference;
-both automatic-seed runs also matched independent scalar model replays.
-Displayed and downloaded settings were checked against 144 wire commands.
-Stop was clicked after 75 outputs were visible; the request finished with 77
-of 128 requested outputs, acknowledged CLEAR and released the connection.
-Greedy generation then resumed, and Disconnect released USB ownership.
-These observations do not identify the internal command edge at the click.
+The browser's full 2,048-token greedy case showed its first token at 388.94
+seconds, including setup and prompt upload. The separate temperature-1 context
+campaign measured a 352.237119291-second first hardware STEP; neither value is
+the 9.942238076 cached-command tokens/s benchmark. See the
+[recorded timing](../CURRENT-QUALIFICATION.md#recorded-timing).
 
 The app keeps a healthy USB connection open between successful runs. This
 avoids repeated connection setup, not FPGA computation. Each run still clears
@@ -48,16 +48,13 @@ Keep the host awake during speed measurements. Host sleep can delay serial
 processing and make elapsed-clock measurements misleading; a trial affected
 by sleep should be repeated rather than used to claim a speedup.
 
-All four hardware variants retain unresolved vendor-DDR timing paths.
-All four images have passed finite full-context board tests. The seeded image
-passed 24 baseline-style trials across temperatures 0, 0.5, 1 and 2, including
-2,047- and 2,048-token prompts, with all 1,564 main outputs and 288 CLEAR/replay
-outputs matching the integer reference. Separate additional-seed and recovery
-campaigns also passed; see the [qualification roadmap](../variants/seeded-sampling/QUALIFICATION.md).
-None establishes complete timing signoff or correctness for every prompt.
-This app conservatively allows at most 128 prompt
-tokens, 128 new tokens and 256 total. The tested platform is macOS; other
-platforms are not yet validated.
+Complete vendor-DDR timing and physical-security certification remain open.
+All 16 current context cases passed, covering 128-, 512-, 2,047- and 2,048-token
+prompts at each supported temperature. These finite cases do not establish
+every possible prompt. The seeded profile supports up to
+2,048 prompt tokens, 128 new tokens and 2,049 combined tokens. The original three
+greedy profiles retain 128 prompt tokens, 128 new tokens and 256 combined tokens.
+The supported tested host is macOS; no new platform/other-owner claim is added.
 
 ## Install
 
@@ -85,8 +82,7 @@ the inference circuit into SRAM. **Ordinary use needs no compiler:** the
 configuration and its maintainer build receipt are included under `prebuilt/`.
 For optional source rebuilding, see [VENDOR-SETUP.md](../VENDOR-SETUP.md).
 
-Keep the programmed board powered, wait at least 60 seconds after the SRAM
-load for startup/model checks, and stop all other serial/JTAG tools and apps.
+Keep the programmed board powered. For the optimized seeded image, wait at least 120 seconds after actual SRAM load completes. Follow each original greedy image's startup instructions for that image. Stop all other serial/JTAG tools and apps.
 Identify your board's actual serial path; do not copy another person's suffix.
 Then run, replacing the example device path:
 

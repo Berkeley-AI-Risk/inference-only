@@ -27,13 +27,12 @@ tokens, not tensor pointers. Startup loaders, status and transport handling
 are described separately in each model's guide.
 
 An optional [seeded-sampling version of SimpleStories-V2-5M](STOCHASTIC-GENERATION.md)
-also accepts a bounded temperature and seed setting while its tape is empty
-and idle. Its controls passed Streamlit AppTest with the real FPGA, and its
-extended board-registration check has separate real-board evidence. A separate
-[Chrome rehearsal](evidence/seeded-sampling/browser.json) passed with the actual
-listening app on the same host and board. A token-ID CLI is also
-included for diagnostics; its board evidence is separate from the original
-three SimpleStories versions.
+also accepts a bounded temperature and public seed while its tape is empty and
+idle. The optimized seeded image runs the same numerical model on the same Tang
+Mega board. Its current evidence and qualification limits are stated
+in [CURRENT-QUALIFICATION.md](CURRENT-QUALIFICATION.md). The original three
+greedy images retain their own recorded evidence; the archived seeded 0e6
+release is separate provenance.
 
 ## The demonstrated designs and measurements
 
@@ -42,7 +41,7 @@ three SimpleStories versions.
 | **SimpleStories-V2-5M — Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |
 | Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |
 | Same model, **K/V protection + encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |
-| Same model, **seeded sampling**, without K/V integrity | About **8.7 tokens/s** at temperature 1 | Runnable release |
+| Same model, **seeded sampling**, without K/V integrity | About **9.9 tokens/s** at temperature 1 | Runnable release |
 | **Qwen3-1.7B — AWS F2**, authenticated weights | About **9.0 tokens/s** | Runnable release; public AWS FPGA image |
 | **Qwen3-8B — AWS F2**, authenticated weights | About **1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
 
@@ -53,9 +52,10 @@ integrity or encryption.
 
 These rates come from separate validation campaigns with different workloads:
 
-- **SimpleStories-V2-5M:** all four quoted versions use a one-token prompt
-  and 128 generated tokens. Seeded sampling was run twice at each of
-  temperatures 0, 0.5, 1 and 2; its table rate is for temperature 1.
+- **SimpleStories-V2-5M:** all four quoted configurations use a one-token
+  prompt and 128 generated tokens. The optimized seeded campaign retained its
+  parent's eight trials: twice at each temperature 0, 0.5, 1 and 2. Its
+  table rate is the weighted cached command rate at temperature 1.
 - **Qwen3-1.7B:** three prompts of 4, 5 and 15 tokens each generate 128 tokens;
   the complete three-prompt suite was run twice.
 - **Qwen3-8B:** the quoted sustained case uses a one-token prompt and
@@ -70,18 +70,21 @@ Longer prompts take longer to produce the first token, and growing context
 slows subsequent generation. These are measured rates, not peak ratings.
 
 “Runnable release” means the image, model, app and installation instructions
-are available. Each version's validation scope is recorded separately;
-the seeded version's [qualification roadmap](variants/seeded-sampling/QUALIFICATION.md)
-records completed functional, scoped control-proof and recipient/browser
-coverage. Its 24 baseline-style trials at temperatures 0,
-0.5, 1 and 2 matched all 1,564 main outputs and 288 CLEAR/replay outputs,
-including 2,047- and 2,048-token prompts. Separate additional-seed and recovery
-campaigns also passed. These finite checks do not establish every possible
-workload. A clean 1,316-file recipient package also passed fresh model/flash
-readback, reloading the same SRAM image, 45-command/19-token registration and
-ten Chrome cases with all 104 outputs exact across 144 wire commands. This
-used the same supported host and board, not another owner's installation.
+are available. The optimized seeded package passed its seven board suites,
+registered scoped scientific completion, fresh model/flash readback, exact
+recipient reload and registration, and twelve ordinary Chrome cases with all
+100 outputs matching the reference. Its
+[current qualification record](CURRENT-QUALIFICATION.md) separates those results
+from the remaining timing, security and proof limits. The archived seeded 0e6
+ten-case rehearsal is historical. No other-owner installation or
+complete-workload guarantee follows.
 No Tang version has complete vendor-DDR timing or physical-security certification.
+
+The optimized seeded image recorded **9.94 cached tokens/s** at temperature 1,
+compared with **8.67 tokens/s** for the archived seeded image. Both measurements
+use the same one-token prompt and two 128-output trials and exclude the first
+hardware STEP. See the [qualification and timing details](CURRENT-QUALIFICATION.md#recorded-timing)
+for the exact measurements, full workload and longer-prompt results.
 
 - **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** board selection,
   the three greedy versions, optional seeded sampling, browser app,

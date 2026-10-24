@@ -6,14 +6,16 @@ import uuid
 
 import streamlit as st
 
-from fpga_backend import ACTIVE, Controller, DEMO_CAP, MAX_NEW, MAX_PROMPT
+from fpga_backend import ACTIVE, Controller, limits_for_variant
 from runtime_profile import configured_port, configured_variant, configured_variant_id
 
 st.set_page_config(page_title='FPGA story lab', page_icon=':material/memory:', layout='centered')
 st.title('FPGA story lab')
 st.caption('SimpleStories 5M · Tang Mega 138K · Real generation over USB')
 variant_label = configured_variant()
-sampling_enabled = configured_variant_id() == 'seeded-sampling'
+variant_id = configured_variant_id()
+sampling_enabled = variant_id == 'seeded-sampling'
+limits = limits_for_variant(variant_id)
 st.caption('Locally selected build: ' + (variant_label or 'not yet checked')
            + '. Selection is not independent attestation of the loaded FPGA.')
 st.write('Start a story and watch the FPGA continue it. This tiny model completes stories; it is not a general chat assistant.')
@@ -45,10 +47,11 @@ def console():
     result = board.snapshot(owner)
     busy = board.busy()
     with st.form('story_prompt', border=True):
-        prompt = st.text_area('Story beginning', key='prompt', height=100, max_chars=4000,
+        prompt = st.text_area('Story beginning', key='prompt', height=100, max_chars=limits.max_chars,
             placeholder='once upon a time, a little fox', disabled=busy, persist_state='session')
-        count = st.number_input('Maximum new tokens', min_value=1, max_value=MAX_NEW,
-            step=1, key='new_tokens', disabled=busy, persist_state='session')
+        count = st.number_input('Maximum new tokens', min_value=1, max_value=limits.max_new,
+            step=1, key='new_tokens', disabled=busy, persist_state='session',
+            help='Prompt and new tokens together must fit the context window. Longer prompts leave fewer output slots.')
         temperature, seed_input = '0', ''
         if sampling_enabled:
             temperature = st.segmented_control('Temperature', ('0', '0.5', '1', '2'),
@@ -141,12 +144,17 @@ def console():
 
 
 console()
-st.caption(f'Initial interactive-demo limit: {MAX_PROMPT} prompt tokens, {MAX_NEW} new tokens, '
-           f'{DEMO_CAP} total. Separate board campaigns exercise longer contexts; '
-           'see the repository validation report for each build.')
+if sampling_enabled:
+    st.caption(f'Up to {limits.max_prompt:,} prompt tokens and {limits.max_new} new tokens; '
+               f'{limits.total:,} tokens combined. Longer prompts leave fewer output slots. '
+               'The first token can take several minutes for a long prompt.')
+else:
+    st.caption(f'Initial interactive-demo limit: {limits.max_prompt} prompt tokens, {limits.max_new} new tokens, '
+               f'{limits.total} total. Separate board campaigns exercise longer contexts; '
+               'see the repository validation report for each build.')
 with st.expander('What this demo does—and does not do'):
     st.write('This computer only converts between text and token IDs, sends APPEND / STEP / CLEAR, and measures the replies. All inference runs on the FPGA. Each Generate starts with CLEAR; successful completion or Stop clears the tape again. A successful run retains the exclusive USB connection for the next run. Stop or Disconnect USB releases it. No weights, tensors or arithmetic commands are sent.')
-    st.write('Three builds are available: the faster baseline without K/V integrity checks; the K/V-protected build that checks cached attention data before use; and the encrypted-memory build, which retains K/V integrity and replay protection and adds encryption for external weights and K/V. Encryption uses public demonstration keys, not secret deployment keys, and requires its matching encrypted flash image. All three authenticate model weights and have passed normal-inference board tests through the full context window. K/V corruption/replay rejection was tested in simulation, not by physically altering DDR. Vendor-DDR timing remains unresolved for all three. The local four-token check does not reproduce the larger campaigns or attest the loaded circuit. The app stops on errors and cannot reset, reflash or reconfigure the board.')
+    st.write('Four SimpleStories images are supported: the greedy baseline without K/V integrity checks; the greedy K/V-protected image, which checks cached attention data before use; the greedy encrypted-memory image, which retains K/V integrity and replay protection and adds encryption for external weights and K/V; and the seeded image, which adds temperature sampling with a public seed and has no K/V integrity or encryption. All four authenticate model weights. Encryption uses public demonstration keys and requires its matching encrypted flash image. Published board results apply to the exact image tested. K/V corruption and replay rejection were tested in simulation, not by physically altering DDR. Vendor-DDR timing remains unresolved. The short local check does not reproduce the larger campaigns or attest the loaded circuit. The app stops on errors and cannot reset, reflash or reconfigure the board.')
     st.write('An optional seeded-sampling build adds the temperature and seed controls above. '
              'It uses the same SimpleStories model and plaintext flash as the baseline. '
              'Each Generate starts a new story, and a blank seed chooses and displays a fresh seed for that run. '

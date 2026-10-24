@@ -6,21 +6,13 @@ a public 128-bit seed. Repeating a prompt with the same settings reproduces
 the tokens; temperature 0 keeps the original exact greedy rule.
 
 Use the local browser app to enter text and choose generation settings.
-The image is a runnable release with browser controls, prebuilt hardware,
-model assets and installation instructions. It passed short UART board checks
-and two 128-output runs at every supported temperature. It also passed all
-16 context-matrix cases, through full 2,048-token prompts at every temperature.
-Its extended registration check and a Streamlit AppTest of the app controls
-also passed with the real FPGA. A clean recipient package subsequently passed
-fresh installed-model verification, the same SRAM image reload, registration
-and an ordinary Chrome rehearsal, with every generated token reference-checked.
-The existing baseline, K/V-protected and encrypted-memory versions remain
-available. The new image has no K/V integrity or memory encryption. It
-has separate [extended control proofs](formal/seeded-sampling/README.md) and
-[source-bound full-context results](evidence/seeded-sampling/full-context.json).
-The [qualification record](variants/seeded-sampling/QUALIFICATION.md) records
-completed functional and scoped control coverage, with timing and security
-obligations stated separately from release availability.
+The optimized seeded image uses the same model and authenticated weights;
+it has no K/V cryptographic integrity or memory encryption. The baseline,
+K/V-protected and encrypted-memory versions remain separate available images.
+Current package status is **Runnable release**. See the
+[qualification record](CURRENT-QUALIFICATION.md) for current validation and
+[timing details](CURRENT-QUALIFICATION.md#recorded-timing), then follow the
+installation and generation instructions below.
 
 ## Load and check the seeded image
 
@@ -50,10 +42,10 @@ guide's fresh scan. For its tested cable index 4:
 ```
 
 Require the intended target, successful **SRAM Program**, successful tool exit
-and `Finished.`. Keep the board powered and wait at least 60 seconds for
-startup checks. The new image is volatile; reload it after power loss.
+and `Finished.`. Keep the board powered and wait at least 120 seconds after actual
+SRAM load completes. The new image is volatile; reload it after power loss.
 Its SHA-256 is
-`0e6d30b68bd8757657bc1c3b949ac5b9571a0a8d1f8bb1a6e6018b241f733033`;
+`d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725`;
 [BUILD.json](prebuilt/seeded-sampling/BUILD.json) binds it to the selected
 sources. Its scope field records the qualification status at native-build
 time; later board, browser and proof results are recorded separately in
@@ -108,7 +100,7 @@ Each Generate clears the tape, applies the chosen settings, uploads the
 tokenized prompt and streams the continuation. Completion and Stop finish
 with CLEAR. Repeating the same prompt, temperature and seed reproduces the
 continuation. The tokenizer and conservative browser limits are unchanged:
-at most 128 prompt tokens, 128 new tokens and 256 total. These limits do not
+at most 2,048 prompt tokens, 128 new tokens and 2,049 combined tokens for seeded sampling. The three original greedy profiles retain 128 prompt tokens, 128 new tokens and 256 combined tokens. These limits do not
 constitute a full-context test of the new image.
 
 CLEAR retains temperature and seed and restarts the generator from that seed.
@@ -154,9 +146,13 @@ board-checked first three outputs are:
 
 ## Board evidence and limits
 
+**Historical 0e6 details below.** These unchanged reports describe the archived
+image, including its old benchmark and ten-case browser census. Current optimized seeded
+records and completion are separately bound in [CURRENT-QUALIFICATION.md](CURRENT-QUALIFICATION.md); no old PASS or timing is transferred.
+
 ### Repeated 128-output workloads
 
-The current performance campaign uses prompt token `[378]` followed by
+The archived image's performance campaign used prompt token `[378]` followed by
 **128 generated tokens**, the same prompt/output count used for the quoted
 greedy SimpleStories measurements. Each supported temperature was run twice
 with seed `0x99aabbccddeeff001122334455667788`; the second run replayed after
@@ -172,7 +168,7 @@ token; the ordinary browser app stops when that token is returned.
 | 1 | 8.67 | 8.68 |
 | 2 | 7.73 | 8.67 |
 
-The headline is **about 8.7 tokens/s at temperature 1**, using 127 cached
+That archived campaign's headline was **about 8.7 tokens/s at temperature 1**, using 127 cached
 STEP command/reply times per run and excluding the first STEP. Timings include
 host/UART and evidence recording and exclude connection and prompt upload.
 All repetitions are retained, including the slower first temperature-2 run.

@@ -21,7 +21,7 @@ VARIANTS = {
         'label': 'Seeded temperature sampling without K/V integrity',
         'inventory': 'hardware-inputs-seeded-sampling.json',
         'hardware_root': 'variants/seeded-sampling/hardware',
-        'inputs_sha256': '26a0885f9ffefaeea68b948295635fcfb37367254b549c48e75e0d7093e96831',
+        'inputs_sha256': 'bd6979971359e5a18e0736ef5771ae9074ef9719d32e75970577eba9bb9d8c30',
         'input_files': 91,
     },
     'encrypted-memory': {

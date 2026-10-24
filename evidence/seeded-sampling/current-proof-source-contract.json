@@ -1,0 +1,590 @@
+{
+  "changed_cache_stage_proof": {
+    "actual_ram_bits": 8192,
+    "aggregate_assertion_total": null,
+    "arbitrary_readonly_selector_bits": 13,
+    "assumptions": [],
+    "cancellation_knownness_scope": "Cancellation may revoke logical knownness while captured payload/assembly coherence remains. Fault replies are masked. These source properties do not establish physical memory erasure.",
+    "candidate_sha256": "ba17ba73a9c708aabd246cbc538f4e81e25b33cc116ded91da4fd554566ead39",
+    "hardware_access": false,
+    "induction_conclusions": 154,
+    "internal_cuts": [],
+    "limits": [
+      "No whole-machine or full cache-equivalence theorem.",
+      "No trusted external DDR content or cryptographic K/V integrity assumption or claim.",
+      "No eventual-response/fairness or fatal-reset-free liveness claim.",
+      "No unconditional local accepted-write ownership/drain theorem across terminal failure. No unexpected completion input is assumed away.",
+      "No independently latched historical-DDR semantic row content theorem; physical fill mux fidelity is separate from accepted pending-stage provenance.",
+      "No physical RAM initialization/erasure, mapped/native/timing/route/board qualification.",
+      "No inherited141 assertion total or pass flag.",
+      "Cancellation revokes logical stage knownness only. Selected-point and captured/stage/assembled payload coherence remain required through CLEAR and terminal failure; retained payload erasure is not claimed.",
+      "Synchronous two-state source safety only; no electrical CDC, physical implementation, native timing or board qualification is inferred.",
+      "Only the primary Z3 campaign is credited. No independent second-solver completion or proof credit is claimed.",
+      "The recorded audit reconstructs consumed evidence and repeats the RAM/observer audit without rerunning the solver or elaborator; independent tool-execution attestation is excluded."
+    ],
+    "mapped_image_equivalence": false,
+    "mapper_sha256": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc",
+    "old_cache141_credited": false,
+    "passed": true,
+    "physical_equivalence": false,
+    "primary_solver": "z3",
+    "production_ram_banks": 8,
+    "qualification_inherited": false,
+    "reset_base_queries": 1,
+    "sat_premise_then_unsat_queries": 155,
+    "scope": "Recorded full source reset-base plus joint-prior inductive safety with exact consumed-query/log reconstruction and actual RAM/observer audit. Independent tool-execution attestation, full cache equivalence, terminal-local write drain and mapped/physical claims are excluded.",
+    "solver_executed_by_this_binding": false,
+    "source_assertions": 154,
+    "source_query_log_closure": true,
+    "source_receipts": {
+      "actual_run": {
+        "bytes": 256776,
+        "sha256": "e39204ffc039b4e157af8758c9b7c1095cfe96f95088d3b80870f341c9948883"
+      },
+      "auditor_source": {
+        "bytes": 13478,
+        "sha256": "9a35fa710afde1416226564273ea2f56b05742030743ce793621a8a8d2b01a42"
+      },
+      "preparation": {
+        "bytes": 9188,
+        "sha256": "8281070c15c4005886caa2f4e7a1a69a7eb56c3283d9affdb0dfa4415e52f612"
+      },
+      "primary_index": {
+        "bytes": 5299,
+        "sha256": "2d9874c97bafd9b7c767b91bd416e61c18e58fee42a65b8d69bf2cf45fe705a2"
+      },
+      "recorded_audit": {
+        "bytes": 305651,
+        "sha256": "a2abd17878e15c9499f9e7d9879364897830c2fcbb0a65be6811ae59cf964c60"
+      }
+    },
+    "state": "complete",
+    "statement_origin": {
+      "aborted_write_and_lock_history_support": 2,
+      "exponent_snapshot_support": 2,
+      "original_knownness_statement_scoped_for_cancellation": 1,
+      "original_monitor_statements_retained_exactly": 116,
+      "phase_history_support": 27,
+      "revoked_semantic_owner_history_support": 1,
+      "through_cancel_coherence_support": 5
+    },
+    "terminal_scope": "Healthy and CLEAR ownership/drain safety; terminal fail-stop may abandon local accepted writes until reset. No unexpected-input assumptions or unconditional terminal-local-drain claim.",
+    "whole_cache_equivalence": false,
+    "whole_machine_proof": false
+  },
+  "changed_exp_rom_proof": {
+    "aggregate_assertion_total": null,
+    "candidate_sha256": "042df8b9da13bc2a66f945b2942a30374d52fa38766ba73916999901fa63622f",
+    "default_table_sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f",
+    "limits": [
+      "Source-only relative ROM safety/equivalence; no full attention FSM, whole model, vendor primitive, mapped image, physical or security theorem.",
+      "FILE parser/I/O uses standard RTL readmemh semantics. Arbitrary32-bit image dataflow is proved; partial/addressed/XZ FILEs are finite actual simulation fixtures.",
+      "Coupled unspecified initial selected payload/metadata is an explicit representation premise, not an assumption that valid response data already matches.",
+      "Clock-level source induction uses async2sync; analog reset pulse widths, glitches and metastability are not claimed.",
+      "No native inference/resource/routing/timing result or FPGA model/flash/write action is credited here. Root-owned synthesis previews and any future mapped-ROM audit remain separate.",
+      "These query/transcript counts are nonadditive with all existing stochastic, transport, arithmetic and whole-model evidence; no aggregate machine assertion total is claimed."
+    ],
+    "mapped_canonical_rom_audit_passed": false,
+    "mapped_canonical_rom_audit_required_before_preload": true,
+    "mapped_image_equivalence": false,
+    "passed": true,
+    "physical_equivalence": false,
+    "qualification_inherited": false,
+    "reference_sha256": "e47bf421e10435e6bffa10e0219415630d57ef00ccdc4040ca7d8d9f720e9477",
+    "scope": {
+      "composition": "Initializer image correspondence and source-proved immutable storage plus runtime state induction preserve all four observable outputs along unbounded clock-sampled digital input sequences. Reset assertion outputs and actual asynchronous pulse behavior are separately checked.",
+      "file_image": "Actual source-parsed1024loop and four disjoint copies prove each low word0..4095 and independent endpoint4096 come from the same complete FILE image; addresses/counts are checked nonwrapping. Source-runtime theorem assumes the resulting requested-word image relation, discharged by that copy construction.",
+      "four_state": "Nine actual original/candidate FILE simulations, all8192 addresses each, pre-read/unreset X,32X/Z control cases and one between-clock asynchronous reset pulse perFILE. Six complete known-integer files also get198144 independent public transaction-oracle comparisons. This is finite four-state evidence, not a universal four-state SMT theorem.",
+      "independent_scalar": "Unmodified full e47 reference, namespace-only in simulations; no candidate ROM is shared with the reference.",
+      "initial_state": "Explicit representation coupling of unspecified initial selected payload and metadata/sticky state; constructive low-selected witness covers every initial32-bit payload. Unrelated power-up states are not compared.",
+      "runtime": "Complete actual-source four-output and inductive state-correspondence proof for arbitrary13-bit request/index sequences and arbitrary32-bit immutable FILE words. No valid-encoding assumption or runtime/output cuts."
+    },
+    "scope_premises_not_dropped": true,
+    "separate_from_reused_modular_scopes": true,
+    "shared_mac_proof_credited": false,
+    "source_query_log_closure": true,
+    "source_receipts": {
+      "component": {
+        "bytes": 69396,
+        "sha256": "80309bee650ec898b7e2a81eb59fa4c925779d56188b448dd37c4729d94273d0"
+      },
+      "final_index": {
+        "bytes": 6256,
+        "sha256": "6ccf19de26525697a144b3995efc31c225f73f6fd1a424247a4863d547e95596"
+      },
+      "source_audit": {
+        "bytes": 184623,
+        "sha256": "3410f9dcab7cc87180deceb4f4e726edbd271c73822f432ca422eadeaa0c0dd3"
+      },
+      "source_proof": {
+        "bytes": 6501,
+        "sha256": "797f55044171f4b3df5565eaaf13875c8562f34e872d572bf95ba870bd8bdeae"
+      }
+    },
+    "state": "complete",
+    "whole_machine_proof": false
+  },
+  "checked_paths_count": 8423,
+  "control_cone_audit_source_sha256": "60dfa7103fb6951bf0ef1a25f9293dc430aa85369d65bd5c5c18343700a6e9bb",
+  "counting": "Do not sum: front44 includes backend29; arithmetic counts concern separate relational/control partitions and intermediate chains. The changed banked cache and ROM have separate scopes. Prior cache141 and atomic87 results are excluded from current cache credit.",
+  "current_image_qualification": false,
+  "divider_equivalence_chain": {
+    "current": "30ed1ba9546f9d81974452d786932bd54063c23338503045b4b1ce9eb31e2a9b",
+    "reference": "128f49068f8b2e4c9f603a9606ccc22a7991041da6e958b0af8f48b87364d72c",
+    "scope": "Current prefix30ed is source-equivalent to private div2 reference128 over all N64/D64 pairs, including its low46 private behavior. No directly available universal128-to-qualifiedc09 proof is bound here; independent full-model oracle comparisons remain separate.",
+    "universal_link_from_reference128_to_qualified_c09_bound": false
+  },
+  "limits": [
+    "Scoped digital RTL safety/relative arithmetic only, not a whole-model or mapped-image theorem.",
+    "Healthy CLEAR preserves/drains accepted ownership; terminal global faults can require reset. No fairness/liveness or fatal reset-free recovery theorem.",
+    "Typed15 uses arbitrary digital independent clock edges via clk2fflogic; no metastability/electrical CDC or FIFO end-to-end data/order theorem.",
+    "No trusted external-DDR data, encryption, cryptographic security, native resource/timing or physical performance theorem.",
+    "Existing audited receipts are strictly rehashed; no solver or elaborator is executed by this verifier."
+  ],
+  "old_cache141_credited": false,
+  "origin_binding_sha256": "8a43f4135949c669499facc1df693c7cdaf8d9659d8306133b7b5a123d16e3e1",
+  "passed": false,
+  "proof_inventory_sha256": "09362a0518887130b4187bb770b2052ea00d52cc3da8df24a20de30f7e1ab28a",
+  "retained_scope_association": {
+    "aggregate_assertion_total": null,
+    "arithmetic_refinement_pending": true,
+    "changed_cache_stage_proof": {
+      "actual_ram_bits": 8192,
+      "aggregate_assertion_total": null,
+      "arbitrary_readonly_selector_bits": 13,
+      "assumptions": [],
+      "cancellation_knownness_scope": "Cancellation may revoke logical knownness while captured payload/assembly coherence remains. Fault replies are masked. These source properties do not establish physical memory erasure.",
+      "candidate_sha256": "ba17ba73a9c708aabd246cbc538f4e81e25b33cc116ded91da4fd554566ead39",
+      "hardware_access": false,
+      "induction_conclusions": 154,
+      "internal_cuts": [],
+      "limits": [
+        "No whole-machine or full cache-equivalence theorem.",
+        "No trusted external DDR content or cryptographic K/V integrity assumption or claim.",
+        "No eventual-response/fairness or fatal-reset-free liveness claim.",
+        "No unconditional local accepted-write ownership/drain theorem across terminal failure. No unexpected completion input is assumed away.",
+        "No independently latched historical-DDR semantic row content theorem; physical fill mux fidelity is separate from accepted pending-stage provenance.",
+        "No physical RAM initialization/erasure, mapped/native/timing/route/board qualification.",
+        "No inherited141 assertion total or pass flag.",
+        "Cancellation revokes logical stage knownness only. Selected-point and captured/stage/assembled payload coherence remain required through CLEAR and terminal failure; retained payload erasure is not claimed.",
+        "Synchronous two-state source safety only; no electrical CDC, physical implementation, native timing or board qualification is inferred.",
+        "Only the primary Z3 campaign is credited. No independent second-solver completion or proof credit is claimed.",
+        "The recorded audit reconstructs consumed evidence and repeats the RAM/observer audit without rerunning the solver or elaborator; independent tool-execution attestation is excluded."
+      ],
+      "mapped_image_equivalence": false,
+      "mapper_sha256": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc",
+      "old_cache141_credited": false,
+      "passed": true,
+      "physical_equivalence": false,
+      "primary_solver": "z3",
+      "production_ram_banks": 8,
+      "qualification_inherited": false,
+      "reset_base_queries": 1,
+      "sat_premise_then_unsat_queries": 155,
+      "scope": "Recorded full source reset-base plus joint-prior inductive safety with exact consumed-query/log reconstruction and actual RAM/observer audit. Independent tool-execution attestation, full cache equivalence, terminal-local write drain and mapped/physical claims are excluded.",
+      "solver_executed_by_this_binding": false,
+      "source_assertions": 154,
+      "source_query_log_closure": true,
+      "source_receipts": {
+        "actual_run": {
+          "bytes": 256776,
+          "sha256": "e39204ffc039b4e157af8758c9b7c1095cfe96f95088d3b80870f341c9948883"
+        },
+        "auditor_source": {
+          "bytes": 13478,
+          "sha256": "9a35fa710afde1416226564273ea2f56b05742030743ce793621a8a8d2b01a42"
+        },
+        "preparation": {
+          "bytes": 9188,
+          "sha256": "8281070c15c4005886caa2f4e7a1a69a7eb56c3283d9affdb0dfa4415e52f612"
+        },
+        "primary_index": {
+          "bytes": 5299,
+          "sha256": "2d9874c97bafd9b7c767b91bd416e61c18e58fee42a65b8d69bf2cf45fe705a2"
+        },
+        "recorded_audit": {
+          "bytes": 305651,
+          "sha256": "a2abd17878e15c9499f9e7d9879364897830c2fcbb0a65be6811ae59cf964c60"
+        }
+      },
+      "state": "complete",
+      "statement_origin": {
+        "aborted_write_and_lock_history_support": 2,
+        "exponent_snapshot_support": 2,
+        "original_knownness_statement_scoped_for_cancellation": 1,
+        "original_monitor_statements_retained_exactly": 116,
+        "phase_history_support": 27,
+        "revoked_semantic_owner_history_support": 1,
+        "through_cancel_coherence_support": 5
+      },
+      "terminal_scope": "Healthy and CLEAR ownership/drain safety; terminal fail-stop may abandon local accepted writes until reset. No unexpected-input assumptions or unconditional terminal-local-drain claim.",
+      "whole_cache_equivalence": false,
+      "whole_machine_proof": false
+    },
+    "changed_exp_rom_proof": {
+      "aggregate_assertion_total": null,
+      "candidate_sha256": "042df8b9da13bc2a66f945b2942a30374d52fa38766ba73916999901fa63622f",
+      "default_table_sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f",
+      "limits": [
+        "Source-only relative ROM safety/equivalence; no full attention FSM, whole model, vendor primitive, mapped image, physical or security theorem.",
+        "FILE parser/I/O uses standard RTL readmemh semantics. Arbitrary32-bit image dataflow is proved; partial/addressed/XZ FILEs are finite actual simulation fixtures.",
+        "Coupled unspecified initial selected payload/metadata is an explicit representation premise, not an assumption that valid response data already matches.",
+        "Clock-level source induction uses async2sync; analog reset pulse widths, glitches and metastability are not claimed.",
+        "No native inference/resource/routing/timing result or FPGA model/flash/write action is credited here. Root-owned synthesis previews and any future mapped-ROM audit remain separate.",
+        "These query/transcript counts are nonadditive with all existing stochastic, transport, arithmetic and whole-model evidence; no aggregate machine assertion total is claimed."
+      ],
+      "mapped_canonical_rom_audit_passed": false,
+      "mapped_canonical_rom_audit_required_before_preload": true,
+      "mapped_image_equivalence": false,
+      "passed": true,
+      "physical_equivalence": false,
+      "qualification_inherited": false,
+      "reference_sha256": "e47bf421e10435e6bffa10e0219415630d57ef00ccdc4040ca7d8d9f720e9477",
+      "scope": {
+        "composition": "Initializer image correspondence and source-proved immutable storage plus runtime state induction preserve all four observable outputs along unbounded clock-sampled digital input sequences. Reset assertion outputs and actual asynchronous pulse behavior are separately checked.",
+        "file_image": "Actual source-parsed1024loop and four disjoint copies prove each low word0..4095 and independent endpoint4096 come from the same complete FILE image; addresses/counts are checked nonwrapping. Source-runtime theorem assumes the resulting requested-word image relation, discharged by that copy construction.",
+        "four_state": "Nine actual original/candidate FILE simulations, all8192 addresses each, pre-read/unreset X,32X/Z control cases and one between-clock asynchronous reset pulse perFILE. Six complete known-integer files also get198144 independent public transaction-oracle comparisons. This is finite four-state evidence, not a universal four-state SMT theorem.",
+        "independent_scalar": "Unmodified full e47 reference, namespace-only in simulations; no candidate ROM is shared with the reference.",
+        "initial_state": "Explicit representation coupling of unspecified initial selected payload and metadata/sticky state; constructive low-selected witness covers every initial32-bit payload. Unrelated power-up states are not compared.",
+        "runtime": "Complete actual-source four-output and inductive state-correspondence proof for arbitrary13-bit request/index sequences and arbitrary32-bit immutable FILE words. No valid-encoding assumption or runtime/output cuts."
+      },
+      "scope_premises_not_dropped": true,
+      "separate_from_reused_modular_scopes": true,
+      "shared_mac_proof_credited": false,
+      "source_query_log_closure": true,
+      "source_receipts": {
+        "component": {
+          "bytes": 69396,
+          "sha256": "80309bee650ec898b7e2a81eb59fa4c925779d56188b448dd37c4729d94273d0"
+        },
+        "final_index": {
+          "bytes": 6256,
+          "sha256": "6ccf19de26525697a144b3995efc31c225f73f6fd1a424247a4863d547e95596"
+        },
+        "source_audit": {
+          "bytes": 184623,
+          "sha256": "3410f9dcab7cc87180deceb4f4e726edbd271c73822f432ca422eadeaa0c0dd3"
+        },
+        "source_proof": {
+          "bytes": 6501,
+          "sha256": "797f55044171f4b3df5565eaaf13875c8562f34e872d572bf95ba870bd8bdeae"
+        }
+      },
+      "state": "complete",
+      "whole_machine_proof": false
+    },
+    "changed_native_inputs": [
+      "project/sha.sv"
+    ],
+    "formal_replay_of_this_variant": false,
+    "mapped_image_equivalence": false,
+    "old_atomic87_credited": false,
+    "old_cache141_credited": false,
+    "public_association_inventory": {
+      "bytes": 100932,
+      "sha256": "335a9b266bdd8b5d5a2276a3d843f79b6fd2317f579ac54a5ecdcee56e18ae7d"
+    },
+    "retained_scope_binding_pass": true,
+    "retained_scope_names": [
+      "app138",
+      "backend29",
+      "fast_shift_intermediate",
+      "front44_composed",
+      "prefix_divider",
+      "small_shift",
+      "typed15"
+    ],
+    "reused_scopes_sha256": "dcc24f886310ab0c9ed7681d4c21ecf1299459b823506f5f03c79113fe4afdd0",
+    "source_ancestry_sha256": "d29069ad81ab3921519bb3220cd28c5c1bcf519828b3618b76d870474b9dcd5f",
+    "source_inventory_sha256": "568eb3314ec96ad7fb4963be80217880b1531385a50beeebdb3f88da7e8e4b8d",
+    "source_scope_assessment": {
+      "bytes": 80030,
+      "sha256": "d8a5d7284e17dfef2cd0113cb03f05415753b3144ddfd1058043ab25eb401100"
+    },
+    "source_scope_decision": {
+      "bytes": 2922,
+      "sha256": "3acbc6468a8fb5e3c6bc55262afd4a7b80501ca82d67e45e9c476bb65ab4bb91"
+    },
+    "universal_sha_refinement_proved": false,
+    "unproved_private_sha_boundary": {
+      "archived_7e_sha_record_unchanged": true,
+      "arithmetic_refinement_pending": true,
+      "baseline_page_bank_sha_outputs_unconstrained": true,
+      "busy_done_latency_assumed": false,
+      "candidate_sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94",
+      "current_d1_sha_outside_theorem": true,
+      "finite_bank_good_bad_cases": 6,
+      "finite_component": {
+        "bytes": 86037,
+        "sha256": "265894090b35e47cdb42e0b94ed195386442702b336820918810de20bbb42657"
+      },
+      "finite_compression_vectors": 235,
+      "finite_model": {
+        "bytes": 1975137,
+        "sha256": "5d09fcecf413a2a010ef14ffdadeef6d670dc0333b6afe20e8590945baf81dcb"
+      },
+      "finite_reset_phases": 32,
+      "finite_source_finished_sha256": "19d2264e67d75a4eb22221f57e7693b288f02a690c6d99867709d00bc30fb701",
+      "finite_validator_sha256": "8d3cbcc6496c0a28c0b5d0b78b1caa0b0a3462246f86c40925bbd2d09428e105",
+      "kind": "unproved-compressor-interface-with-finite-evidence",
+      "model_cases": 30,
+      "model_heads": 108,
+      "model_rows": 434052,
+      "new_page_bank42_run_claimed": false,
+      "owned_interface_header_sha256": "539dbf73b10797d01e7dd1021aece121269b69dd7a1385651754730a2424c036",
+      "private_bank_composition_pending": true,
+      "production_sha_not_elaborated": true,
+      "reference_sha256": "7e4992bdf5c7a6e6405979a01a351254d4a84fb8c0e2e47afcbe3fc4ff7d3610",
+      "returned_digest_correctness_assumed": false,
+      "scope": "Unproved private compression boundary; finite arithmetic/transactions and full-model executions only. No SHA arithmetic/security/private-bank refinement theorem is claimed.",
+      "unchanged_bank_sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1",
+      "universal_refinement_proved": false
+    },
+    "whole_machine_proof": false
+  },
+  "schema": "v8-baseline-retained-source-contract-v1",
+  "scoped_current_production_sha256": {
+    "app138": {
+      "project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv": "cdeaf2adec59b811713f17bf2c4a0878d59fdb7020afac09c96c4619c9ec0857"
+    },
+    "backend29": {
+      "project/arbiter.sv": "750ac05828f0d81c989c0985e311ef3ef02426da52ad0112f0314db28cc1a272"
+    },
+    "front44_composed": {
+      "project/arbiter.sv": "750ac05828f0d81c989c0985e311ef3ef02426da52ad0112f0314db28cc1a272",
+      "project/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f"
+    },
+    "prefix_divider": {
+      "project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv": "30ed1ba9546f9d81974452d786932bd54063c23338503045b4b1ce9eb31e2a9b"
+    },
+    "small_shift": {
+      "project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv": "a5a62b158671b4500cac88bf1a7d66cfb7f44cf74cbe49d4e865aebf397abbca"
+    },
+    "typed15": {
+      "project/fifo.sv": "25b9578703f1c44b67867fea92f1a6749fd692c209fecf36b1de0652cd37df81",
+      "project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv": "cdeaf2adec59b811713f17bf2c4a0878d59fdb7020afac09c96c4619c9ec0857",
+      "project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv": "d030fc7fcee27c1b2fddd3503ad9a3d2160b4af4df393393c5b727e7571369f1"
+    }
+  },
+  "scopes": {
+    "app138": {
+      "assertions": 138,
+      "current_source_paths": [
+        "project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv"
+      ],
+      "receipt": {
+        "bytes": 226022,
+        "path": "build/long-context-formal-v1/app-bit-primary-audit/FINISHED.json",
+        "sha256": "b763cb59d43787ab6f32e98cea1f89814609a6ece46108d19ed2be7e1cfd2be4"
+      },
+      "scope": "Synchronous two-state source component safety; arbitrary external typed/raw data and stalls. Healthy CLEAR drains accepted ownership; terminal global transport stop can require reset. No liveness/fairness, trusted external-memory or whole-machine/mapped theorem."
+    },
+    "backend29": {
+      "assertions": 29,
+      "current_source_paths": [
+        "project/arbiter.sv"
+      ],
+      "receipt": {
+        "bytes": 112812,
+        "path": "build/long-context-formal-v1/backend-primary-audit/FINISHED.json",
+        "sha256": "3b1655d772fe4922e73e8a73ed2c788db0c084078a9746db556bcb0a0d1656c3"
+      },
+      "scope": "Synchronous two-state source component safety; arbitrary external typed/raw data and stalls. Healthy CLEAR drains accepted ownership; terminal global transport stop can require reset. No liveness/fairness, trusted external-memory or whole-machine/mapped theorem."
+    },
+    "fast_shift_intermediate": {
+      "current_source_paths": [],
+      "intermediate_only": true,
+      "scope": "All signed64 input values and all512 signed9 counts for one reset-initialized actual-RTL transaction with held replies; seven local base/inductive/control obligations. Source-identical conclusions use explicitly composed count/input partitions, two SMT state encodings, and separately proved source-control invariants/ownership lemmas for one remaining region. Unknowns remain unknown in original records. No arbitrary-stream equivalence, native timing, hardware or image qualification.",
+      "selected_conclusions": 134
+    },
+    "front44_composed": {
+      "assertions": 44,
+      "current_source_paths": [
+        "project/arbiter.sv",
+        "project/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv"
+      ],
+      "receipt": {
+        "bytes": 172631,
+        "path": "build/long-context-formal-v1/front-composed-audit/FINISHED.json",
+        "sha256": "b832da3dff2fbc709d04cd373f80e524684fae12d5870a902d3f8d65e5fb41ee"
+      },
+      "scope": "Fresh composed source safety: parent43 direct induction conclusions plus the independently universal identical backend lemma. This is not a44-goal joint induction rerun or whole-machine theorem. Synchronous two-state source component safety; arbitrary external typed/raw data and stalls. Healthy CLEAR drains accepted ownership; terminal global transport stop can require reset. No liveness/fairness, trusted external-memory or whole-machine/mapped theorem."
+    },
+    "prefix_divider": {
+      "current_source_paths": [
+        "project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv"
+      ],
+      "scope": "Exact accepted-transaction result/fault equivalence of complete actual divider RTL over all signed64/unsigned64 input pairs, held replies atbound27, and seven local synchronous source-control properties. Different latency is intentional. Not arbitrary-stream numerical equivalence, native timing, external memory trust or hardware qualification.",
+      "selected_source_conclusions": 15
+    },
+    "small_shift": {
+      "current_source_paths": [
+        "project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv"
+      ],
+      "scope": "Outside-count stream theorem has its explicit count-domain hypothesis; small-count theorem is one reset-initialized held transaction. No arbitrary mixed-stream cycle equality, mapped-image/native timing or hardware qualification.",
+      "solver_transcripts": 36,
+      "source_queries": 18
+    },
+    "typed15": {
+      "assertions": 15,
+      "current_source_paths": [
+        "project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv",
+        "project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv",
+        "project/fifo.sv"
+      ],
+      "receipt": {
+        "bytes": 75426,
+        "path": "build/long-context-formal-v1/typed-both-audit-v2/FINISHED.json",
+        "sha256": "4e6340d8ae81ff16a33ffef81d8ab718326e57cc397b77f0ac326e53c90c67db"
+      },
+      "scope": "Digital independent-input-clock edge model via Yosys clk2fflogic with actual two-clock FIFOs; no metastability/electrical timing theorem. Source credit/epoch safety only; no FIFO end-to-end data/order theorem. Arbitrary external typed/raw data and stalls. Healthy CLEAR drains accepted ownership; terminal global transport stop can require reset. No liveness/fairness, trusted external-memory or whole-machine/mapped theorem."
+    }
+  },
+  "stochastic_control_cone_reuse": {
+    "connected196": {
+      "assertions": 196,
+      "compiled_sv_count": 24,
+      "credit": "Audited identical compiled control cone. Entire semantic layer is cut at37 arbitrary outputs; changed attention/transport are excluded, not proved by this cone. No fresh solver run is claimed.",
+      "current_production_sha256": {
+        "project/board1_seeded_head_selector.sv": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b",
+        "project/candidate.sv": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374",
+        "project/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a",
+        "project/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193",
+        "project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": "89e5802eeb9276dd761b02e32b5b33f3147476a7e6be9145eb66fa6df4f9e81f",
+        "project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": "55c93116b097b14bb990270e76f03a9d612bb1a203b17ab7ab162a389ffd8e69",
+        "project/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc",
+        "project/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f",
+        "project/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a",
+        "project/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359",
+        "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68",
+        "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44",
+        "project/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc",
+        "project/fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9",
+        "project/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211",
+        "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4",
+        "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5",
+        "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561",
+        "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae",
+        "project/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": "3373d3a7dd46ab2ff632f24b56e93c0556d5963ff2871bcde57c98168f939914",
+        "project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f",
+        "project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e",
+        "project/fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": "5b6b76a879aa72973a68d511af42ccf066daa23c1f7a09afb57ab8ff99d2d402",
+        "project/model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f",
+        "project/normalizer_pipeline.sv": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40"
+      },
+      "extracted_core_instance_sha256": "9a451e89f75f2731c23818841a7ef0de620138c977fd8a8a2ce00390fadefb30",
+      "semantic_output_cuts": 37,
+      "shared_fifo_depth_change_is_outside_extracted_core": true
+    },
+    "selector": {
+      "assertions": 35,
+      "credit": "Previously proved byte-identical modular source cone; not a fresh solver run for the optimized image",
+      "current_production_sha256": {
+        "project/board1_seeded_head_selector.sv": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b",
+        "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68",
+        "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44",
+        "project/model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f"
+      },
+      "verification_prepared_files_sha256": {
+        "board1_seeded_head_selector.sv": "08714307e1f4244af5de18bd9707538beaf69d5ad32188aa596c8bb4bcc6ff12",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": "799d3c16a60bf01f5c86402553055cdc4bded41723a41595253bb5443989b378",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": "f5b30c5a6d59fd3297e0b18784f949de4fc9739781cd24083c420a980c8c1d16",
+        "model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f",
+        "monitor.inc.sv": "71810c70689d1b6f0909a59b7b9b3a59ee825bbfd79aaf6f9adb49fdeb6bd1e8",
+        "production-board1_seeded_head_selector.sv": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b"
+      }
+    },
+    "selector-buffer": {
+      "assertions": 57,
+      "credit": "Previously proved byte-identical modular source cone; not a fresh solver run for the optimized image",
+      "current_production_sha256": {
+        "project/board1_seeded_head_selector.sv": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b",
+        "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68",
+        "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44",
+        "project/model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f"
+      },
+      "verification_prepared_files_sha256": {
+        "argmax-row-ownership-monitor.inc.sv": "3e9406d018ad4a05c143e776dcf4af0af4130efd67c9036a351c82ff5a5f86bb",
+        "board1_seeded_head_selector.sv": "991751a190bfcc2dadabaf1ed4083b017ced50a2621e28a44c6975769b542af6",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": "1156ed4acbfb38fd29c76544ba83c1ee635091698b0771e69b78f630a5c6172e",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": "f5b30c5a6d59fd3297e0b18784f949de4fc9739781cd24083c420a980c8c1d16",
+        "model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f",
+        "monitor.inc.sv": "d1435d74a4c631a96fd032f35b35ea3e4ed09af862c63d7dea39739371a1f2f3",
+        "production-board1_seeded_head_selector.sv": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b",
+        "sampler-buffer-monitor.inc.sv": "15e8a30595b76fac4377807745dac06a27a224cc783cfd81d38a9128fcb433ba"
+      }
+    },
+    "shell": {
+      "assertions": 94,
+      "credit": "Previously proved byte-identical modular source cone; not a fresh solver run for the optimized image",
+      "current_production_sha256": {
+        "project/board1_seeded_head_selector.sv": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b",
+        "project/candidate.sv": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374",
+        "project/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a",
+        "project/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193",
+        "project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": "55c93116b097b14bb990270e76f03a9d612bb1a203b17ab7ab162a389ffd8e69",
+        "project/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc",
+        "project/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a",
+        "project/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359",
+        "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68",
+        "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44",
+        "project/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc",
+        "project/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211",
+        "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4",
+        "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5",
+        "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561",
+        "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae",
+        "project/model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f",
+        "project/normalizer_pipeline.sv": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40"
+      },
+      "verification_prepared_files_sha256": {
+        "board1_seeded_head_selector.sv": "08714307e1f4244af5de18bd9707538beaf69d5ad32188aa596c8bb4bcc6ff12",
+        "candidate.sv": "1516bdd7cdf13e0070ef853ba5d68423326649d9d64db3bd661a32416ba4a3e2",
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": "d2425f7b9aacf97685b482c109e210937347247f1eb1aec8eea2e8081628ac3b",
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": "eb9f2e3846e695421cff3d0d81c27a0a5e4faef66f590db7be674d9ebe8bf840",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": "df1b47ccce204d78c7c491668e9442cf591d76c78ce39c593661900124818129",
+        "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": "f95f5f07e92d6289a9bb97c9c89ce0a001e3f8d074489788a4a5bb1da59ee349",
+        "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": "3b2d76080927e8bf6ee644e8da2d4140ea4b2e9e05178ac0d902eb3d4a57cefe",
+        "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": "0f931fb4ce37939e3019922bfdd19995dfe08ed640918ba649468cc9bd58c432",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": "799d3c16a60bf01f5c86402553055cdc4bded41723a41595253bb5443989b378",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": "f5b30c5a6d59fd3297e0b18784f949de4fc9739781cd24083c420a980c8c1d16",
+        "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": "ca1f8466f54d6eafeea9997f89378fb535b416666da15267725b14f79452c9c9",
+        "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": "8a3ad2d3147d08f9bde42e72424a77c38c23d55bbf1b20ca621d549dec29da5d",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": "724b58c0c968ad3dce49591d9c5e0aac72d036ce036f909f040c6a5c5146e7ea",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": "58c2dae272a6fecdf7f99a862a721c9820e9ecbc52d91580da0bc923383ea88a",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": "e9e36945457f33056eecbddd69b68bf00c15edc5b320c85ae7912298aa97a51b",
+        "model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f",
+        "monitor.inc.sv": "5f13348e024a9afa379a4528bc01f1d23f8b51478f5cd037af89b424be599afd",
+        "normalizer_pipeline.sv": "16eba29f07b24b8cdcc4c8968a15f8e312dd64812b1d6309a9ad47cbf50da61c",
+        "production-board1_context2048_token_shell.sv": "55c93116b097b14bb990270e76f03a9d612bb1a203b17ab7ab162a389ffd8e69",
+        "production-board1_seeded_head_selector.sv": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b",
+        "selector-monitor.inc.sv": "71810c70689d1b6f0909a59b7b9b3a59ee825bbfd79aaf6f9adb49fdeb6bd1e8",
+        "shell-monitor.inc.sv": "3419771f4a861d4a972af5ebea4d5150506627e4a31779b68ef50a7408282a7f"
+      }
+    },
+    "uart": {
+      "assertions": 63,
+      "credit": "Previously proved byte-identical modular source cone; not a fresh solver run for the optimized image",
+      "current_production_sha256": {
+        "project/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": "3373d3a7dd46ab2ff632f24b56e93c0556d5963ff2871bcde57c98168f939914",
+        "project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f",
+        "project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e",
+        "project/fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": "5b6b76a879aa72973a68d511af42ccf066daa23c1f7a09afb57ab8ff99d2d402",
+        "project/uart_core.sv": "819185b91729c87e82c33b3bbdcecb8cbd2eaa701b84db720fc3fb8c803f0f07"
+      },
+      "verification_prepared_files_sha256": {
+        "connection-monitor.inc.sv": "0ab3813f1ff3d7409dc62fc9f59d692db53111808fd11472c6090cf197a208a6",
+        "fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": "ad061aab9d131f8bfb06bc1a636bdda826b43c01d354a939d118aa8b52e61b76",
+        "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": "60d949c2b838cb0739c7e5f7222f7b1bff630eb37d3f71628ac238d7d9f6ba07",
+        "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": "260ab8839486660c61eb29543a85323aeb19f726429912c08e892ae37c042cf8",
+        "fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": "dd8f208fa888a170376c31ce3d442d2c4f22545f508d71728680d251690b51f9",
+        "frontend.sv": "fa5f90920c66d038f928ba2a33c3b771c91ddc6129366acc0debd9bfea0e71a9",
+        "monitor.inc.sv": "b34aa158b63da57b6cf180301093f29310e57983ff825d6c14293de028865b73",
+        "production-token_only_model0_uart_bridge.sv": "5b6b76a879aa72973a68d511af42ccf066daa23c1f7a09afb57ab8ff99d2d402",
+        "production-uart_core.sv": "819185b91729c87e82c33b3bbdcecb8cbd2eaa701b84db720fc3fb8c803f0f07"
+      }
+    }
+  },
+  "validator_sha256": "195439965aa44f449622aa7ed3deaed6c4d203b19ba0c944433f06094086c829"
+}

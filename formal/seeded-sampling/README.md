@@ -1,3 +1,5 @@
+> **Historical image context: `0e6…`.** The original report below describes that image. Its exact package is retained in `history/seeded-sampling-0e6-qualified.zip`. Current V7-R2 stage-store records and fresh browser status are described in [CURRENT-QUALIFICATION.md](../../CURRENT-QUALIFICATION.md). Normal checker entrypoints dispatch current records; use `--history` for the archived reports. The old196-assertion control cone retains37 semantic cuts and does not prove changed attention or transport.
+
 # Seeded-sampling formal replay
 
 This lane adds source-bound safety proofs for the existing seeded SimpleStories

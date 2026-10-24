@@ -1,5 +1,22 @@
 # Hardware architecture and implementation notes
 
+## Scope of the optimized seeded circuit
+
+The current seeded circuit implements the same **SimpleStories-V2-5M** numerical
+model. Its private implementation uses eight attention lanes, synchronous
+pending K/V storage, split canonical exp-ROM storage and two SHA-256 rounds
+per cycle while retaining all 64 rounds. These choices are specific to the
+optimized seeded image; the baseline's four-round SHA schedule and other
+baseline/protected figures below remain scoped to those circuits.
+
+Current source/model/board and scoped proof results are summarized in
+[CURRENT-QUALIFICATION.md](CURRENT-QUALIFICATION.md). They do not establish
+whole-machine refinement, SHA arithmetic/private-bank composition, mapped
+image equivalence or complete vendor-DDR timing. Seeded sampling has no K/V
+cryptographic integrity or encryption. The encrypted-memory configuration
+retains K/V integrity/replay protection and separately encrypts weights and K/V.
+
+
 This guide describes the baseline and K/V-protected layouts. The
 third configuration has an encrypted external-memory path, a four-bank weight
 cache sharing two AES and two SHA engines, four time-shared projection multiplier

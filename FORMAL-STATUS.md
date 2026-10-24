@@ -125,6 +125,44 @@ assume a separate proof receipt as a theorem.
 
 ## Separate seeded-sampling proof inventory
 
+### Current optimized seeded source and replay scope
+
+The current source association binds seven unchanged modular scopes plus
+separate 154 cache-stage assertions and exp-ROM results. These counts overlap
+and are not added; historical 141-assertion cache and 59/87-assertion atomic
+results are not current credit. The binding action itself runs no solver.
+Its actual finite model execution checked 30 cases, 108 heads and 434,052 raw
+logit rows with the implemented two-round-per-cycle SHA engine.
+
+Fresh replay from the [current portable capsule](formal/current-seeded-sampling/README.md)
+closed the 35/57/63/94 component scopes and all **196 connected primary Z3
+assertions**. The secondary cvc5 run passed the base and attempted **all 196
+conclusions**, proving **194**; CRC conclusions **38 and 73 remain unresolved**.
+Unknowns are
+not proofs. The connected model retains 37 arbitrary private-output cuts.
+Fifteen Lean theorems cover the abstract machine, without an RTL correspondence
+theorem. Sensitivity checks retain their separately stated finite scope.
+
+The separate current seeded page-bank proof passed **42 assertions** with both
+solvers, real 32,768-bit storage and arbitrary 258-bit SHA replies; ten directed
+scenarios and five faulty controls were checked. Production SHA is identified
+as source provenance but not elaborated in that proof. The assertion counts
+are nonadditive. SHA compression arithmetic, private-bank/SHA composition,
+whole-machine refinement, mapped-image equivalence, physical security and
+complete vendor timing are not established by these results.
+
+The scientific results are registered in the separate named
+[CURRENT-REPLAY.json](formal/current-seeded-sampling/CURRENT-REPLAY.json) completion
+record. Construction/source-action false replay flags remain unchanged; the
+registration does not rerun the proof tools. Recipient/browser qualification
+and final release checks are separate.
+
+### Historical seeded 0e6 inventory
+
+The inventory and recorded counts below describe the archived 0e6 release.
+The current capsule/results above have separate source/image bindings and do
+not relabel the old PASS records.
+
 The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) now has
 [separate source-bound proofs and public replay](formal/seeded-sampling/README.md)
 for SETTINGS, sampler/seed ownership and CLEAR/replay. Its connected Z3 proof

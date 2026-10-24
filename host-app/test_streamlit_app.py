@@ -24,7 +24,7 @@ class AppTests(unittest.TestCase):
         explanation = '\n'.join(item.value for item in app.markdown)
         self.assertIn('128 prompt tokens, 128 new tokens, 256 total', captions)
         self.assertIn('validation report for each build', captions)
-        for phrase in ('Three builds are available', 'K/V-protected', 'encrypted-memory',
+        for phrase in ('Four SimpleStories images are supported', 'K/V-protected', 'encrypted-memory',
                        'public demonstration keys', 'matching encrypted flash image',
                        'retains K/V integrity and replay protection',
                        'no K/V integrity protection or memory encryption'):

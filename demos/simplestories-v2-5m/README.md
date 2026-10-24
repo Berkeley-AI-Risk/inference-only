@@ -107,30 +107,18 @@ See [encrypted memory](../../ENCRYPTED-MEMORY.md) for its diagram, current
 test scope, source reproduction, installation and restoration. All
 three preserve the same model and public three-operation interface.
 
-The runnable **seeded-sampling** release uses the baseline's authenticated
-weights and plaintext flash image, without K/V integrity or encryption,
-with temperatures 0, 0.5, 1 and 2 and a
-public reproducibility seed. Temperature 0 retains the exact greedy rule.
-It passed two 128-output UART benchmark runs at each supported temperature,
-plus a separate 24-trial baseline-style context/control campaign. All 1,564
-main outputs and 288 CLEAR/replay outputs matched the integer reference,
-including 2,047- and 2,048-token prompts at every temperature. Additional-seed
-and recovery campaigns also passed. It has separate
-[extended scoped control proofs](../../formal/seeded-sampling/README.md).
-Its extended board-registration check and app controls have separate real-board
-tests, with the UI driven by Streamlit AppTest. Follow
-[its installation and browser guide](../../STOCHASTIC-GENERATION.md).
-A separate [actual Chrome rehearsal](../../evidence/seeded-sampling/browser.json)
-passed from a clean 1,316-file recipient package on the same supported host
-and board. A fresh 16-MiB readback matched the installed model and surrounding
-`FF` bytes, followed by reloading the same SRAM image and passing 45-command/
-19-token registration. All 104 outputs in ten Chrome cases matched the integer
-reference across 144 wire commands. Cases covered all temperatures, fixed-seed
-replay, a changed seed, two independently replayed automatic seeds, Stop/CLEAR,
-resumed greedy generation and Disconnect. The
-[qualification roadmap](../../variants/seeded-sampling/QUALIFICATION.md)
-records this finite coverage and the remaining timing/security obligations;
-another owner's installation and other host platforms remain untested.
+The optimized **seeded-sampling** image uses the same numerical model,
+authenticated weights and plaintext model flash image, without K/V integrity
+or encryption. Temperatures remain 0, 0.5, 1 and 2 with a public 128-bit seed;
+temperature 0 preserves the greedy rule. The three original greedy hardware
+configurations above are separate images, not different neural models.
+
+Current package status is **Runnable release**. See the
+[current qualification record](../../CURRENT-QUALIFICATION.md) for actual
+full-seven-suite, clean-recipient, twelve-case browser and current scoped
+replay completion. The archived 0e6 image's 1,316-file/ten-browser-case record
+remains historical and does not qualify this image. Installation on another
+owner's setup and other host platforms remain untested.
 
 ## Inference-only scope
 
@@ -165,17 +153,16 @@ tokens, the cached command rates are **8.77 tokens/s for the baseline,
 5.22–5.23 for K/V-protected, and 4.27 for encrypted memory**. These rates include
 host/UART reply overhead but exclude gaps between commands.
 
-The seeded version measured **8.67 and 8.68 cached tokens/s** in two
-128-output trials at temperature 1, using prompt token 378. All four
-temperatures were tested twice with that same prompt/output count, matching
-the workload length quoted for the other three SimpleStories versions. The
-[seeded evidence](../../STOCHASTIC-GENERATION.md#board-evidence-and-limits)
-retains all temperatures and repetitions, including the slower first
-temperature-2 run, and states which outputs were checked. The original
-64-output trial remains historical evidence. The SimpleStories and Qwen measurements
-also come from separate campaigns with different models, prompts, hardware
-and timing methods; the [project comparison](../../README.md#the-demonstrated-designs-and-measurements)
-does not present them as a matched benchmark.
+The optimized seeded image recorded **9.94 cached tokens/s** at temperature 1,
+compared with **8.67 tokens/s** for the archived seeded image. Both measurements
+use the same one-token prompt and two 128-output trials and exclude the first
+hardware STEP. See the [qualification and timing details](../../CURRENT-QUALIFICATION.md#recorded-timing)
+for the exact measurements, full workload and longer-prompt results.
+
+The current benchmark keeps the one-token prompt and 128-output workload,
+twice at each supported temperature: eight trials. Actual reference matching
+and per-temperature timings remain in the current records. The three greedy and Qwen measurements
+retain their own model/platform/workload names and timing methods.
 
 The baseline's streaming rates, which also include those gaps, are:
 

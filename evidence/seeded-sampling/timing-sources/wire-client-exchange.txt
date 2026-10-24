@@ -1,0 +1,17 @@
+def exchange(self, operation, frame, expected_kind, expected_operand=None):
+        started = time.monotonic()
+        self.report('tx_attempt', operation=operation, frame_hex=frame.hex())
+        self.session._send(frame)
+        response = self.receive(operation)
+        if operation == 'clear' and response.kind == 0x81:
+            # One earlier STEP may have completed before recovery CLEAR won.
+            self.report('previous_step_before_clear', token=response.operand)
+            response = self.receive(operation)
+        if (response.kind != expected_kind or
+                (expected_operand is not None and response.operand != expected_operand)):
+            raise ValueError(f'{operation}: expected 0x{expected_kind:02x}/{expected_operand}, '
+                             f'received 0x{response.kind:02x}/{response.operand}; stopped without retry')
+        seconds = time.monotonic() - started
+        self.report('operation', operation=operation, response_kind=response.kind,
+                    operand=response.operand, seconds=seconds)
+        return response.operand, seconds

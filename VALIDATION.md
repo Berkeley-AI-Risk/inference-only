@@ -1,5 +1,31 @@
 # Validation and known limits
 
+## Optimized seeded image: current record
+
+The optimized **SimpleStories-V2-5M** seeded image has completed its own seven
+physical suites in control-first order, including all eight matched 128-output
+trials and all 16 context cases. Fresh scoped scientific replay passed the
+35/57/63/94 component scopes, 196 connected primary assertions and separate
+42-assertion bank proof. The connected secondary solver attempted all 196
+conclusions and proved 194; CRC conclusions 38 and 73 remain unresolved.
+
+The separate named current formal completion is registered. A fresh whole
+16-MiB model/flash readback also passed; its original package provenance is
+retained and joined to the registered payload by exact file comparison.
+Current package status is **Runnable release**. The registered recipient
+reloaded the exact inference image, settled and passed 45-command/19-token
+registration. Twelve ordinary Chrome cases then completed with all 100 outputs
+matching the reference, including independent checks of both automatic-seed
+runs. The 2,047-token long Stop drained one reply, acknowledged CLEAR and
+released UART without a second STEP. See
+[CURRENT-QUALIFICATION.md](CURRENT-QUALIFICATION.md) for measured timing and
+scope. The seeded image authenticates weights but has no K/V cryptographic
+integrity or encryption; the encrypted-memory image retains K/V protection
+and encrypts weights and K/V. No whole-machine or SHA arithmetic theorem is
+claimed. The older seeded details below retain the historical 0e6 context;
+the original three greedy images retain their own evidence.
+
+
 This release contains three greedy configurations: baseline, K/V-protected
 and encrypted-memory. They share the same model, numerical contract and
 three-operation interface, but have separate implementation and validation

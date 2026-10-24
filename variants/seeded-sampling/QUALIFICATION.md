@@ -1,3 +1,8 @@
+> **Archived seeded 0e6 roadmap.** The completed counts and reports below retain
+> their original image/source context. For the optimized seeded image's actual
+> current status, see [CURRENT-QUALIFICATION.md](../../CURRENT-QUALIFICATION.md).
+> No old qualification flag or PASS is inherited.
+
 # Seeded-sampling qualification roadmap
 
 The seeded image is a **runnable release**: the prebuilt circuit, exact source

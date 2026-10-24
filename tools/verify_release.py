@@ -11,7 +11,7 @@ from pathlib import Path, PurePosixPath
 import stat
 
 ASSETS = {
-    'prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs': (41202015, '0e6d30b68bd8757657bc1c3b949ac5b9571a0a8d1f8bb1a6e6018b241f733033'),
+    'prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs': (42070540, 'd271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725'),
     'prebuilt/encrypted-memory/project/impl/pnr/shared_product.fs': (42303596, '865e74e692d5978815fe921f11e4fa1b8e2c080401a8be05508dd9775823aecc'),
     'assets/board1-encrypted-model2048.bin': (7265984, '88da38f3eb64bacc21aa472666b0cc8ea1e516cb04c80e0678f768425e6390eb'),
     'prebuilt/inference/project/impl/pnr/shared_product.fs': (41074783, '6ba3caa4f88ac58dd30336c3ff4478f836779db0d04309ff457ca065ec1f7f09'),
@@ -22,7 +22,7 @@ ASSETS = {
 }
 VARIANTS = {
     'seeded-sampling': ('prebuilt/seeded-sampling', 'variants/seeded-sampling/hardware',
-        'hardware-inputs-seeded-sampling.json', 91, '26a0885f9ffefaeea68b948295635fcfb37367254b549c48e75e0d7093e96831'),
+        'hardware-inputs-seeded-sampling.json', 91, 'bd6979971359e5a18e0736ef5771ae9074ef9719d32e75970577eba9bb9d8c30'),
     'encrypted-memory': ('prebuilt/encrypted-memory', 'variants/encrypted-memory/hardware',
         'hardware-inputs-encrypted-memory.json', 100, '840c12ce7d1a5886966aca73e7c44eb3e42b9ee07ab33adcb2de3d273125e262'),
     'baseline': ('prebuilt/inference', 'hardware', 'hardware-inputs.json', 90,

@@ -34,7 +34,11 @@ jobs:
           python -I -S -B tools/check_encrypted_memory.py
           python -I -S -B tools/encrypt_model_image.py
           python -I -S -B tools/check_encrypted_board_evidence.py
-      - name: Check seeded sampling and its recorded board trials
+      - name: Check current evidence and explicit browser phase (recorded checks, no hardware)
+        run: python -I -S -B tools/check_current_release.py --require-complete
+      - name: Check fresh current scoped formal completion
+        run: python -I -S -B formal/current-seeded-sampling/check_recorded.py --require-complete
+      - name: Check current seeded records and authenticated historical fixtures
         run: |
           python -I -S -B tools/check_seeded_sampling.py
           python -I -S -B tools/check_seeded_matched128.py

@@ -20,7 +20,7 @@ import time
 HERE = Path(__file__).resolve().parent
 PACKAGE = HERE.parents[2]
 TRANSPORT_SHA256 = '00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf'
-IMAGE_SHA256 = '0e6d30b68bd8757657bc1c3b949ac5b9571a0a8d1f8bb1a6e6018b241f733033'
+IMAGE_SHA256 = 'd271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725'
 
 
 def load_module(name, path):
@@ -161,10 +161,10 @@ def main(argv=None):
     parser.add_argument('--execute', action='store_true')
     parser.add_argument('--record', type=Path, help='optional exclusive new JSONL receipt; never overwrites')
     args = parser.parse_args(argv)
-    if (not 1 <= args.steps <= 2047 or not 1 <= len(args.tokens) <= 2047
-            or len(args.tokens) + args.steps > 2048
+    if (not 1 <= args.steps <= 2048 or not 1 <= len(args.tokens) <= 2048
+            or len(args.tokens) + args.steps > 2049
             or any(not 0 <= token < 4019 for token in args.tokens)):
-        parser.error('require 1..2047 prompt/generated tokens, IDs 0..4018, and total tape length <=2048')
+        parser.error('require 1..2048 prompt/generated tokens, IDs 0..4018, and total tape length <=2049')
     if not math.isfinite(args.timeout) or not 0 < args.timeout <= 3600:
         parser.error('--timeout must be finite, positive and at most 3600 seconds')
     code = codec.temperature_code(args.temperature)

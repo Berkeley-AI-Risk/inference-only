@@ -1,0 +1,1788 @@
+{
+  "clock_summaries": {
+    "app_clk100": {
+      "actual_fmax_mhz": 129.986,
+      "constraint_mhz": 100.0
+    },
+    "board_clk50": {
+      "actual_fmax_mhz": 276.434,
+      "constraint_mhz": 50.0
+    },
+    "inference_clk25": {
+      "actual_fmax_mhz": 25.443,
+      "constraint_mhz": 25.0
+    },
+    "memory_clk400": {
+      "actual_fmax_mhz": 2016.13,
+      "constraint_mhz": 400.0
+    },
+    "trusted_clk12p5": {
+      "actual_fmax_mhz": 69.782,
+      "constraint_mhz": 12.5
+    }
+  },
+  "complete_timing_signoff": false,
+  "core_hold_slack_ns": 0.144,
+  "core_setup_slack_ns": 0.696,
+  "endpoint_census_complete": true,
+  "endpoint_classification": "vendor_ddr iff original source AND target start u_raw_controller/u_ddr3/; endpoint handles are SHA256 of original names, not vendor RTL",
+  "global_violated_endpoints": {
+    "hold": 10,
+    "setup": 145
+  },
+  "hardware_access": false,
+  "hardware_inputs_sha256": "bd6979971359e5a18e0736ef5771ae9074ef9719d32e75970577eba9bb9d8c30",
+  "image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
+  "implemented_recipe_sha256": "0f17cd877087ee30c97ee102e758ac6625a1ac2790d8e9dc605c6a3c9fe51a5f",
+  "mapped_image_equivalence": false,
+  "native_recipe": {
+    "baseline_failure_required": false,
+    "baseline_implemented_recipe_sha256": "8fcabe58675ca456f7f7d46dfc6d6b834fcf9d143eb165c074fbb1dd58207325",
+    "baseline_outcome_assessed": false,
+    "baseline_recipe_deltas": [
+      "place_option:4->3",
+      "route_option:1->0"
+    ],
+    "baseline_result_credited": false,
+    "comparison_admission_sha256": "83cbe7ff4b41d95fea81ef281d750823822f15c555540b1cf4dcc69dbc9a1f75",
+    "comparison_native_builder_sha256": "2b99a7a85259f96d2c1f935db41602e30405a2d602ef0d484bcc15568ddcb704",
+    "comparison_recipe_sha256": "8fcabe58675ca456f7f7d46dfc6d6b834fcf9d143eb165c074fbb1dd58207325",
+    "comparison_started_sha256": "ca2c1884680a79e7bb4be0c98db06fe4bfe38a89732399304e9445233dd9f649",
+    "experiment_recipe_replication_option": 0,
+    "experiment_recipe_route_maxfan": 23,
+    "experiment_recipe_route_option": 0,
+    "implemented_recipe_sha256": "0f17cd877087ee30c97ee102e758ac6625a1ac2790d8e9dc605c6a3c9fe51a5f",
+    "model_tested_recipe_placement_option": 3,
+    "model_tested_recipe_replication_option": 0,
+    "model_tested_recipe_route_maxfan": 23,
+    "model_tested_recipe_route_option": 0,
+    "model_tested_recipe_sha256": "d3a7a2bc2d3f58854466173183dc27dec9877bf1eca7237c782866a5e1d51730",
+    "placement_option": 3,
+    "qualified_intermediate_recipe_deltas": [
+      "place_option:4->3",
+      "route_maxfan:23->60"
+    ],
+    "qualified_intermediate_recipe_sha256": "dacf0fc22dbedcebc1fcdb719bf6077a6ba60116c0502f45365e3e7483fab41e",
+    "qualified_parent_recipe_deltas": [
+      "place_option:4->3",
+      "route_maxfan:23->60"
+    ],
+    "qualified_parent_recipe_sha256": "dacf0fc22dbedcebc1fcdb719bf6077a6ba60116c0502f45365e3e7483fab41e",
+    "qualified_parent_route_maxfan": 23,
+    "qualified_parent_route_option": 0,
+    "replication_option": 0,
+    "route1_v8_comparison": {
+      "admission_sha256": "ddd4067fda5788a9ce1702be5ebbedce5c7cd37f53acc8f85208c68ac6b81860",
+      "baseline_failure_required": false,
+      "baseline_outcome_assessed": false,
+      "baseline_result_credited": false,
+      "implemented_recipe_deltas": [
+        "place_option:4->3",
+        "route_option:1->0"
+      ],
+      "native_builder_sha256": "32fade064ae2110e1891922b3f168b6ea523f4161d7116a83d61c4b85acb458a",
+      "recipe_sha256": "8fcabe58675ca456f7f7d46dfc6d6b834fcf9d143eb165c074fbb1dd58207325",
+      "started_sha256": "d73365520f1ec0e13a1292df20d66cac8a66e921cf496685a26adaa56a2567df"
+    },
+    "route_maxfan": 60,
+    "route_option": 0,
+    "sha_source_sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94",
+    "source_delta_from_comparison": [
+      "project/sha.sv"
+    ]
+  },
+  "negative_endpoint_tables": {
+    "hold": {
+      "negative_endpoint_count": 10,
+      "negative_path_count": 10,
+      "negative_paths": [
+        {
+          "slack_ns": -1.112,
+          "source_sha256": "d6d53ebabc455c39b62f5f1173572f7dd408c455d7762c60a868219c0f24ab91",
+          "target_sha256": "652825c49d4f6633f1d91be1a6e242e2ece3b109015a28512ddf826a7a0a3fa7",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -0.872,
+          "source_sha256": "6c2ea889c953224af22684d2e216b1442e63d3a6ee6c796ee6493642e00a254c",
+          "target_sha256": "cf0296aa3bb050d0ee154e7731a8caa6dd7ab4f6bc9f7a72993f1643e365cb6e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -0.626,
+          "source_sha256": "f343f02fe1dae3abe0b68880fd3135495933706579022de0541bbda1d233e91b",
+          "target_sha256": "97079c03e1e40c50b7e9ab09c37ca6376bf48f2f0ac8b201588bdd6af45c8aff",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -0.624,
+          "source_sha256": "f343f02fe1dae3abe0b68880fd3135495933706579022de0541bbda1d233e91b",
+          "target_sha256": "f5c6c272b5bcd2a125f034f5062156415df3a00e0a3db095bfc26fb7b76a945b",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -0.563,
+          "source_sha256": "f343f02fe1dae3abe0b68880fd3135495933706579022de0541bbda1d233e91b",
+          "target_sha256": "fc99823f5c64760333eadfd1f6a88dc5b562d88dd0b21df11d0d867c9f3dc02f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -0.526,
+          "source_sha256": "f343f02fe1dae3abe0b68880fd3135495933706579022de0541bbda1d233e91b",
+          "target_sha256": "53b8172eb9fb698cbe683f5a209526faf8681fe7e10e803acdf27d23665b917d",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -0.52,
+          "source_sha256": "f343f02fe1dae3abe0b68880fd3135495933706579022de0541bbda1d233e91b",
+          "target_sha256": "8d73bf8af3db6673379a2c6ea322e5dffcb966bdca90e6ba342ef19c70c786fa",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -0.513,
+          "source_sha256": "f343f02fe1dae3abe0b68880fd3135495933706579022de0541bbda1d233e91b",
+          "target_sha256": "bcb0abadf0dca174de46039d99bc03ba667ec6666245e9922435838e91277431",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -0.404,
+          "source_sha256": "f343f02fe1dae3abe0b68880fd3135495933706579022de0541bbda1d233e91b",
+          "target_sha256": "9652f5bee800b5f4a439300f69ad5c8dfcc6d340724aa955442592c3153bb082",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -0.356,
+          "source_sha256": "f343f02fe1dae3abe0b68880fd3135495933706579022de0541bbda1d233e91b",
+          "target_sha256": "49582033ed111ada7503c10db16e3de41906bf2ef5e9fd435fad3371c937c91a",
+          "vendor_ddr": true
+        }
+      ],
+      "nonvendor_negative_endpoint_count": 0,
+      "report_limit": 256,
+      "reported_rows": 256,
+      "vendor_negative_endpoint_count": 10
+    },
+    "recovery": {
+      "negative_endpoint_count": 109,
+      "negative_path_count": 218,
+      "negative_paths": [
+        {
+          "slack_ns": -8.739,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "c93cffbaf9f60e3d3e97caea0c436287f50c21958dbd33668e991c08e476a13d",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.729,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "a2ac89bcc9c424f5f13fe76208f4ead1230e5f80fcd2c59e8f847b3531a672ce",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.729,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "4698ec7f7e93f77838b92764723ef68c417c7fc19dfdeadae5c7b7d77a0b3eee",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.72,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "df52a1395ff19a09318fe19873c80c4ec9d4e430a3194194bbb79266bf80fa8e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.35,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "32d56ea2bf47c23b9d2c5526605fc967a6056769558e363baec73731acdcb56f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.35,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "07e5884f171e7070eb2b5a1f813c5aed6492e8ac4b831f3e78199e1e35b9e2dd",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.347,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "f2cec24738b204a9c415c47a03daac123be1ab9ebcfd9d5ecece3f21fc6692ab",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.344,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "23d93168eb766eb36875b25ac91f0c91a31eec9e6ce575982daa6e0e9bbba792",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.344,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "9d59167a625ea2f8f19d533e61ce4eec1e595c8186a5d3ca11ab4b19a6f1ef84",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.341,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "a761ed38e2a5c7068b7ec01da8ccdf3f787a4825e8c78ea22e3e3dc5ad9a6a01",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.341,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "64a159aa9e1bd9c502dc4b5c28acbbc8c13a348874e4d5b0566c23981a2dd84f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.341,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "8f27fce953ab2b9428c84642ca9c952abd9af486ed2781fb69ccdff0e5d7ea28",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.317,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "443519c5f7a8a8d12ef228c1f9328af80d950db1371f27efcda269b2b32954a0",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.317,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "de36c12d003a3bef89604bfd7282ec08bff9bf07da3227476630050b90dd4e06",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.315,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "e4198cac44643e92a8b9f26d5e2da7eaccedf718e1701d0a716eeff93a23046a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.315,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "9bec61ea9127d6647bc61249b347689072f29295b0c9e5ad3fe7abe8913b5580",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.313,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "3e451ee2dc202e47abb83c553f707282c769a8ab812d05616096e8e534591471",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.313,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "2b980a2ed01b2756902be05bba6367cbbf024ca68e395f170351abdd7a8b4275",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.313,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "56d7d71dd219394e82a89ad39909b5d7c3995c94a12e9ff3e96e3203d893e853",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.312,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "f91db418f93606472091291a5255dd64d25560e943a83ebe928a85f9d042be38",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.312,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "b1769edd3c66455872e0ff103437d65da5807164d72f1853a073d2432b990a6d",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.31,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "1c0937da49b366c70acddad98c66d2fde7df0f6a32e4b7eb20a20f6dbffe860f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.279,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "d5421a268a15fb29a70cce9ae02e841009d3439749c3842d64474bc566010f24",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.253,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "768f8dab771bce68099ab4048afb2f1754e271cd3561f90c9b09d714ba5affa5",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.193,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "5ce41f33084c60504de23070404777ebd694ffbd2d98249d4b0455b76f7465a8",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.17,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "de50c58852f2f68ef05aa9983d619e14c20ef4fb5f2e34610fc8446ee500be84",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.17,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "1c215cd462a3424e9ce4f7b578d8a6d432ab2263d11b03f092ebed1f2075ee86",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.168,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "876f950d95c864dbf588f4515f8d8953f3e172d5a5f37bc4eca3028f1ad3ff82",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.168,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "def7c094dc0b7aee315f4e7f3b4ea504eb42ce64bb223c5c4c0d7c4952969ec0",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.035,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "e776892c06f484b054bc91d28e5f421e95a591af043b06f069c5c9ba2976cdb8",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.035,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "c571e4932c256df62a9c4fae3f0b2ae59aefae2c9c78bdaf452cba377223b07a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.035,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "5d6f34f9d9a27c687931f1023b27074e3f812012d6b4c71a77d46e519a077bff",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.032,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "4f2792706420728a9813540d0263ee39388008d9f85ff47ec02e77462e9cae6f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.032,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "6190416b73bb6b9ab44692ff1560a713ddf43e489ddd87d9f50e5738fc49380a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.029,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "039d95fd001de480e0e06c451d15f07711c051e27fc7f992f3b375261ec93328",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.029,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "30190856b066cd46a76e0d41adf21c2b83c93d6eee37b0598588a871ee561b5d",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.026,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ddd99fb6ae7585a379fb6e83de3d66650e697e87c1ab2bdf62c98b777824cb43",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.026,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "fd09927141bba4e79cc824a777a4462cb87976f8184fdf56365415a00ba070f0",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.023,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "fba734f99ad3fb7afc8db2245d612be0f48b9516baaaffeb6d94f58f817aa359",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.023,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "cb94ac548efd92c15b407ea4e65dafa5b9b363ea2ea0dd6497629bbcd4ff1ee6",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.002,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "cbbb10772aaa85f4f250b5eb136f22c9bc58db68b2031fa1e711c44b586e5242",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.002,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "90242494605f99bf577b39874c273c16b0c58d8f70f8ee4d7b090a46db23fba1",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.0,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "cd3ae7704b84348f12b210623b94683a0ef2b87670097524ab06278b12bd124f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.0,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ef8258c4b9a2b45a488af2d28eb910fdd72b6ff54b92efe297bb13b6f690f78e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -8.0,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "5779fa361516ca923b63ef6ea4797ca1d466546561bb1523e7bdff610412b1bc",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.998,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "49a82e32caff0e9d3b85a57f3c5a68f588ea951d284ba5869ac5f52665a6044c",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.998,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "7a0af7ecc129cb7658f1837d20fad05a9e046b0dd8e98e7b0b85da80be365802",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.996,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ad8cb78ef9802571f6ca97f94c76e081afc557c25d299b8b2233f25998c8869d",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.996,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "bf03c32df5ab66509476bfda4c3a52f3403543c929af289605262412466c333a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.994,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "c2b9fced73d3dd6cb0376a314e9656cc10f130317b92b59119497357955a4d59",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.994,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "93b17c0e1871fdbef07383e3c8120681c5969e0122ca3f9e500f658de6e82c22",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.994,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "c4c4f19bfd486460a8e42a59a76ba477bf163788c901e6487f49a14a7b3ce9c6",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.964,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "2c79167f26ea06abd76e07ec3a7b01795bbf58f900a421b3d82225d0849ccd37",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.964,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "350c2f353a78e239d24aa736632d216bbee11c7e8a8513f90a2aee9daba8dc54",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.964,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "3a569c2696c2bfab93c01f952518960ea89e11a0104212ae869cd5cbcb70a24f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.949,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "58961d26031f87d271d90c51680b1ec5efc3febb33a4813890363bd16a78200a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.943,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "7e28784370a76f1e31b48e1cce9a3b5e605c23c9c28a893546bfbc4a52094514",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.938,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ff7854c3fbdace7cefd2e5306b20e4e73b4a504f0dca7f167ade759114237226",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.938,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "dec2915b6faa5a4c7f7a431176d5a054971ad16fa8861d132d6ded4d280388ee",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.916,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "6023320e5ed8d6f85d1994fbdd8454d4267c1015540c5cbe0a7b7bcc3b4eb96b",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.882,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "3b59b3fd568fd47635b9b7378694a8e5fd0dd85a762861a7513cd32af0520760",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.878,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "0b64a918a5acd7c0d1b9d951c7590aef232a29ca1ffc991f5baf1753c3192931",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.878,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "350edafd798868e02d3933af05777a0c808a9d831fe37765f5ac2d4fe78b6241",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.855,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "4f3c192921f0298fa371580e4c081b299f04f3ab043739eda76d94e585a6172e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.855,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "110483eec0f4c9c734f7e72347066ae6c7cdee222a872589d838ebab49a33902",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.855,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "13f80d4329fc8ab21fbd6b188a73a6f4ace574185e681dd796b1e17b56b5ee55",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.853,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "140bb30f5c05ae613f28cb581a2688d43950c89ba9cb594b445baae5f2f5d219",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.853,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "4ec131f02e322c9ecb4f68b3905f2bb9d2c7a77281e03e9dd6a042b66339cd6e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.773,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "f58c81a7cd09a5f56f1078d5d60089e836c45e47fc05ee526e6c9e6517cf4498",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.493,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "c93cffbaf9f60e3d3e97caea0c436287f50c21958dbd33668e991c08e476a13d",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.484,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "4698ec7f7e93f77838b92764723ef68c417c7fc19dfdeadae5c7b7d77a0b3eee",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.484,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "a2ac89bcc9c424f5f13fe76208f4ead1230e5f80fcd2c59e8f847b3531a672ce",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.475,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "df52a1395ff19a09318fe19873c80c4ec9d4e430a3194194bbb79266bf80fa8e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.188,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "5d6f34f9d9a27c687931f1023b27074e3f812012d6b4c71a77d46e519a077bff",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.188,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "c571e4932c256df62a9c4fae3f0b2ae59aefae2c9c78bdaf452cba377223b07a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.188,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "e776892c06f484b054bc91d28e5f421e95a591af043b06f069c5c9ba2976cdb8",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.185,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "6190416b73bb6b9ab44692ff1560a713ddf43e489ddd87d9f50e5738fc49380a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.185,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "4f2792706420728a9813540d0263ee39388008d9f85ff47ec02e77462e9cae6f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.182,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "58961d26031f87d271d90c51680b1ec5efc3febb33a4813890363bd16a78200a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.182,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "30190856b066cd46a76e0d41adf21c2b83c93d6eee37b0598588a871ee561b5d",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.182,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "039d95fd001de480e0e06c451d15f07711c051e27fc7f992f3b375261ec93328",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.18,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "fd09927141bba4e79cc824a777a4462cb87976f8184fdf56365415a00ba070f0",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.18,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ddd99fb6ae7585a379fb6e83de3d66650e697e87c1ab2bdf62c98b777824cb43",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.177,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "7e28784370a76f1e31b48e1cce9a3b5e605c23c9c28a893546bfbc4a52094514",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.177,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "cb94ac548efd92c15b407ea4e65dafa5b9b363ea2ea0dd6497629bbcd4ff1ee6",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.177,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "fba734f99ad3fb7afc8db2245d612be0f48b9516baaaffeb6d94f58f817aa359",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.155,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "90242494605f99bf577b39874c273c16b0c58d8f70f8ee4d7b090a46db23fba1",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.155,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "cbbb10772aaa85f4f250b5eb136f22c9bc58db68b2031fa1e711c44b586e5242",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.154,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "5779fa361516ca923b63ef6ea4797ca1d466546561bb1523e7bdff610412b1bc",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.154,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ef8258c4b9a2b45a488af2d28eb910fdd72b6ff54b92efe297bb13b6f690f78e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.154,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "cd3ae7704b84348f12b210623b94683a0ef2b87670097524ab06278b12bd124f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.152,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "8b7e5cef9351680ffd727e7b4206f1078df6d62dfba8a6d6a35b0bcbc8778824",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.152,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "f1097cb887f88e985511b68005eea851ebcbecbf35059b5ce0ee85c4d057d907",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.152,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "942a49ef3cac665db2cb55fc8127af4c47d4f6b16b824f816a137f952008fbe7",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.152,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "7a0af7ecc129cb7658f1837d20fad05a9e046b0dd8e98e7b0b85da80be365802",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.152,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "49a82e32caff0e9d3b85a57f3c5a68f588ea951d284ba5869ac5f52665a6044c",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.15,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "6023320e5ed8d6f85d1994fbdd8454d4267c1015540c5cbe0a7b7bcc3b4eb96b",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.15,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "bf03c32df5ab66509476bfda4c3a52f3403543c929af289605262412466c333a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.15,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ad8cb78ef9802571f6ca97f94c76e081afc557c25d299b8b2233f25998c8869d",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.149,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "998421ab88d5846a17d2f46c03e4ca9b756e54482c0f9f3f7a32c63a75374120",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.149,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "cfbc8a62099a6d91bece0ec21fc084ef144f4606908714e448ed815653dfa866",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.148,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "c4c4f19bfd486460a8e42a59a76ba477bf163788c901e6487f49a14a7b3ce9c6",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.148,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "93b17c0e1871fdbef07383e3c8120681c5969e0122ca3f9e500f658de6e82c22",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.148,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "c2b9fced73d3dd6cb0376a314e9656cc10f130317b92b59119497357955a4d59",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.146,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "e89c5270173af3ee25aa91b2d12874c9e8d3068e9f8e1c426f528f80265154d8",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.146,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "42e2e8ab4be5730065f5be78d6c12c2999d2e011c2254f6afcaea231063166cf",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.144,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "d50bcdd02303c46528b3d6375eac21c936e7c14ea91f3a9f36ceecd72d6cf274",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.144,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "6a199918e12066d64ba0844cfe4e62c3cb499e4e9d5b2f1de81a88998ac66d96",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.141,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "abf7bb437719b8fd95878a4b5da748f89c11adf10e19cc618580889f94838ec1",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.141,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "b9313e7a1181fe8e4d8b4ee55c253ee5296e8d3a21933471a94d08f3160b6c91",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.12,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "da573affe23f04da994e4847138f809edb7bc1ce1c073726514c0e75591e4cb3",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.118,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "662587ebe02ec806f973b21f4ad04c364f3e4a2b72f34dc28c13f3f850fd59fc",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.118,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "069ea23aef4c2bb8e7b3b1f1e6d3c66bcec0d0a80072028a344aef4e8698ea2f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.117,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "3a569c2696c2bfab93c01f952518960ea89e11a0104212ae869cd5cbcb70a24f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.117,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "350c2f353a78e239d24aa736632d216bbee11c7e8a8513f90a2aee9daba8dc54",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.117,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "2c79167f26ea06abd76e07ec3a7b01795bbf58f900a421b3d82225d0849ccd37",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.116,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ad6f5fbe7d4da20fff1ebf59751a3f43dae6f2ad949ff60577caee7074055bd9",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.116,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "2e8888f9031de7c053eb3714d830cab02f794b8ccbaf6f9d8eadbbb4b3e58d4f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.114,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "fdeba214cb48953594749271a3aa31725c44ac1853a53cda9ecd422e318f7762",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.114,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "7467dd9e92ddcd547a662448d2dcb2bbfcd22686b291dfef3df6357aa5cb431a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.112,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "29ff8bf8da2467f4d020cb67abcd288f58bebf7bad29fa4ce9eb842822f5fe66",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.112,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "88f0630910716c23d0ccd79421ff3728ea45ad54e99bf59a75bc695bfaba273a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.112,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "df74dcc8842cf6045b0f6bc55b1c8a6d4b514c238f5a03a6df0e34fedaec763c",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.104,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "07e5884f171e7070eb2b5a1f813c5aed6492e8ac4b831f3e78199e1e35b9e2dd",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.104,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "32d56ea2bf47c23b9d2c5526605fc967a6056769558e363baec73731acdcb56f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.101,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "f2cec24738b204a9c415c47a03daac123be1ab9ebcfd9d5ecece3f21fc6692ab",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.099,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "9d59167a625ea2f8f19d533e61ce4eec1e595c8186a5d3ca11ab4b19a6f1ef84",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.099,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "23d93168eb766eb36875b25ac91f0c91a31eec9e6ce575982daa6e0e9bbba792",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.096,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "8f27fce953ab2b9428c84642ca9c952abd9af486ed2781fb69ccdff0e5d7ea28",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.096,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "64a159aa9e1bd9c502dc4b5c28acbbc8c13a348874e4d5b0566c23981a2dd84f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.096,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "a761ed38e2a5c7068b7ec01da8ccdf3f787a4825e8c78ea22e3e3dc5ad9a6a01",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.091,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "dec2915b6faa5a4c7f7a431176d5a054971ad16fa8861d132d6ded4d280388ee",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.091,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ff7854c3fbdace7cefd2e5306b20e4e73b4a504f0dca7f167ade759114237226",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.081,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "f35eddec212941acfc89c3f3b33e6aab8bf7311258f8f30b7466c913a0f82470",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.081,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "2ceb4e9a4477bf27056140c0b1d7da2816693cd7d319a7cf6acfca5b6cc91c4b",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.081,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "d68db4c1705c705ad089de10cf3c39a33690b2ce29246e3f382839f02e20bb0c",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.072,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "de36c12d003a3bef89604bfd7282ec08bff9bf07da3227476630050b90dd4e06",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.072,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "443519c5f7a8a8d12ef228c1f9328af80d950db1371f27efcda269b2b32954a0",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.07,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "9bec61ea9127d6647bc61249b347689072f29295b0c9e5ad3fe7abe8913b5580",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.07,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "e4198cac44643e92a8b9f26d5e2da7eaccedf718e1701d0a716eeff93a23046a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.068,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "56d7d71dd219394e82a89ad39909b5d7c3995c94a12e9ff3e96e3203d893e853",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.068,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "2b980a2ed01b2756902be05bba6367cbbf024ca68e395f170351abdd7a8b4275",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.068,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "3e451ee2dc202e47abb83c553f707282c769a8ab812d05616096e8e534591471",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.066,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "b1769edd3c66455872e0ff103437d65da5807164d72f1853a073d2432b990a6d",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.066,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "f91db418f93606472091291a5255dd64d25560e943a83ebe928a85f9d042be38",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.064,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "1c0937da49b366c70acddad98c66d2fde7df0f6a32e4b7eb20a20f6dbffe860f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.055,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "74e12b9165160a222db341c21bcf3fed5fb0a9b2a2306b5e012230048581f5b0",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.055,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "a2ce0e3e6810774109ce021ebb023a60324f81f92f8f9a54c2863234578cf59a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.036,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "3b59b3fd568fd47635b9b7378694a8e5fd0dd85a762861a7513cd32af0520760",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.034,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "d5421a268a15fb29a70cce9ae02e841009d3439749c3842d64474bc566010f24",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.031,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "350edafd798868e02d3933af05777a0c808a9d831fe37765f5ac2d4fe78b6241",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.031,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "0b64a918a5acd7c0d1b9d951c7590aef232a29ca1ffc991f5baf1753c3192931",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.008,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "13f80d4329fc8ab21fbd6b188a73a6f4ace574185e681dd796b1e17b56b5ee55",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.008,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "110483eec0f4c9c734f7e72347066ae6c7cdee222a872589d838ebab49a33902",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.008,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "4f3c192921f0298fa371580e4c081b299f04f3ab043739eda76d94e585a6172e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.007,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "768f8dab771bce68099ab4048afb2f1754e271cd3561f90c9b09d714ba5affa5",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.006,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "f58c81a7cd09a5f56f1078d5d60089e836c45e47fc05ee526e6c9e6517cf4498",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.006,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "4ec131f02e322c9ecb4f68b3905f2bb9d2c7a77281e03e9dd6a042b66339cd6e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -7.006,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "140bb30f5c05ae613f28cb581a2688d43950c89ba9cb594b445baae5f2f5d219",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.995,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "855ee1f63ff60fd7288ebca5f72d85278759e55ea48e40bbb6ea7c6849eacf6a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.995,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "839f22e6cf9a81457674773d9dbe83d47c43842b49668d98e880bbd47dc04d15",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.972,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "01b080e1c325c2e1cabf924a2177d67f41b720293c184cd92a1ac7183135e001",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.972,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "a62e6ef49ba3b52efbcf5a11a0f7c1f6f7b1082ab26b4a45ab3179bb893f0934",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.97,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "d16e562ed93bd2566ed8158bb02a3058a47d118aecfa73503727361732a9bc7c",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.97,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "05ddf35b29afdb48b7d5dc0bb049fde80141faa14814def9eaaee7d0c08c5874",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.948,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "5ce41f33084c60504de23070404777ebd694ffbd2d98249d4b0455b76f7465a8",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.925,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "1c215cd462a3424e9ce4f7b578d8a6d432ab2263d11b03f092ebed1f2075ee86",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.925,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "de50c58852f2f68ef05aa9983d619e14c20ef4fb5f2e34610fc8446ee500be84",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.923,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "def7c094dc0b7aee315f4e7f3b4ea504eb42ce64bb223c5c4c0d7c4952969ec0",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.923,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "876f950d95c864dbf588f4515f8d8953f3e172d5a5f37bc4eca3028f1ad3ff82",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.799,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "5d6f34f9d9a27c687931f1023b27074e3f812012d6b4c71a77d46e519a077bff",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.799,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "c571e4932c256df62a9c4fae3f0b2ae59aefae2c9c78bdaf452cba377223b07a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.799,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "e776892c06f484b054bc91d28e5f421e95a591af043b06f069c5c9ba2976cdb8",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.796,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "6190416b73bb6b9ab44692ff1560a713ddf43e489ddd87d9f50e5738fc49380a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.796,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "4f2792706420728a9813540d0263ee39388008d9f85ff47ec02e77462e9cae6f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.793,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "30190856b066cd46a76e0d41adf21c2b83c93d6eee37b0598588a871ee561b5d",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.793,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "039d95fd001de480e0e06c451d15f07711c051e27fc7f992f3b375261ec93328",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.791,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "fd09927141bba4e79cc824a777a4462cb87976f8184fdf56365415a00ba070f0",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.791,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ddd99fb6ae7585a379fb6e83de3d66650e697e87c1ab2bdf62c98b777824cb43",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.788,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "cb94ac548efd92c15b407ea4e65dafa5b9b363ea2ea0dd6497629bbcd4ff1ee6",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.788,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "fba734f99ad3fb7afc8db2245d612be0f48b9516baaaffeb6d94f58f817aa359",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.766,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "90242494605f99bf577b39874c273c16b0c58d8f70f8ee4d7b090a46db23fba1",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.766,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "cbbb10772aaa85f4f250b5eb136f22c9bc58db68b2031fa1e711c44b586e5242",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.765,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "5779fa361516ca923b63ef6ea4797ca1d466546561bb1523e7bdff610412b1bc",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.765,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ef8258c4b9a2b45a488af2d28eb910fdd72b6ff54b92efe297bb13b6f690f78e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.765,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "cd3ae7704b84348f12b210623b94683a0ef2b87670097524ab06278b12bd124f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.763,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "7a0af7ecc129cb7658f1837d20fad05a9e046b0dd8e98e7b0b85da80be365802",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.763,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "49a82e32caff0e9d3b85a57f3c5a68f588ea951d284ba5869ac5f52665a6044c",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.761,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "bf03c32df5ab66509476bfda4c3a52f3403543c929af289605262412466c333a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.761,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ad8cb78ef9802571f6ca97f94c76e081afc557c25d299b8b2233f25998c8869d",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.759,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "c4c4f19bfd486460a8e42a59a76ba477bf163788c901e6487f49a14a7b3ce9c6",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.759,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "93b17c0e1871fdbef07383e3c8120681c5969e0122ca3f9e500f658de6e82c22",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.759,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "c2b9fced73d3dd6cb0376a314e9656cc10f130317b92b59119497357955a4d59",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.728,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "3a569c2696c2bfab93c01f952518960ea89e11a0104212ae869cd5cbcb70a24f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.728,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "350c2f353a78e239d24aa736632d216bbee11c7e8a8513f90a2aee9daba8dc54",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.728,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "2c79167f26ea06abd76e07ec3a7b01795bbf58f900a421b3d82225d0849ccd37",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.714,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "58961d26031f87d271d90c51680b1ec5efc3febb33a4813890363bd16a78200a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.709,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "7e28784370a76f1e31b48e1cce9a3b5e605c23c9c28a893546bfbc4a52094514",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.702,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "dec2915b6faa5a4c7f7a431176d5a054971ad16fa8861d132d6ded4d280388ee",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.702,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ff7854c3fbdace7cefd2e5306b20e4e73b4a504f0dca7f167ade759114237226",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.682,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "6023320e5ed8d6f85d1994fbdd8454d4267c1015540c5cbe0a7b7bcc3b4eb96b",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.647,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "3b59b3fd568fd47635b9b7378694a8e5fd0dd85a762861a7513cd32af0520760",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.642,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "350edafd798868e02d3933af05777a0c808a9d831fe37765f5ac2d4fe78b6241",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.642,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "0b64a918a5acd7c0d1b9d951c7590aef232a29ca1ffc991f5baf1753c3192931",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.619,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "13f80d4329fc8ab21fbd6b188a73a6f4ace574185e681dd796b1e17b56b5ee55",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.619,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "110483eec0f4c9c734f7e72347066ae6c7cdee222a872589d838ebab49a33902",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.619,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "4f3c192921f0298fa371580e4c081b299f04f3ab043739eda76d94e585a6172e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.617,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "4ec131f02e322c9ecb4f68b3905f2bb9d2c7a77281e03e9dd6a042b66339cd6e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.617,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "140bb30f5c05ae613f28cb581a2688d43950c89ba9cb594b445baae5f2f5d219",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -6.538,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "f58c81a7cd09a5f56f1078d5d60089e836c45e47fc05ee526e6c9e6517cf4498",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -1.416,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "7aed4a5f737691d1da7e0cab0a0941adad5e904f61db960fddbeeb4daecab675",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -1.411,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "6956ac03aaae4e8ee4a6471cfca2c83c2ddc3c9241114ebaad538ae915f9595b",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -1.411,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "ed4869bf030c5ea8c959e12dc35bb465a7e7828ecf069a7bc5ba45262db66ada",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -1.411,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "3868431311f2997be7464cdab2239d30805263bd7cbe1b0b0f151f9fb4a6e57c",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -1.397,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "00164a22585b73ac0373445937134714a8ebdf2d81003550a4cb8ac83db1a0d9",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -1.397,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "40b0f047dd66a4a08147be7df49ebd3b93d3446a2190c04016c40bebdc3b5ce9",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -1.367,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "01bc8447ac01c379aa261da62e5f38c002311c10ed2bc45594c5b5f865ac34be",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -1.367,
+          "source_sha256": "5707e1efccb0c0867aea2edb9cb22ef9ef8ff15ec53beaaa867d32aaf4853998",
+          "target_sha256": "22e15c5d3b3934f4a07179cdb32b2b711e59b1bd1852f97c6cd54c390099daac",
+          "vendor_ddr": true
+        }
+      ],
+      "nonvendor_negative_endpoint_count": 0,
+      "report_limit": 256,
+      "reported_rows": 256,
+      "vendor_negative_endpoint_count": 109
+    },
+    "removal": {
+      "negative_endpoint_count": 0,
+      "negative_path_count": 0,
+      "negative_paths": [],
+      "nonvendor_negative_endpoint_count": 0,
+      "report_limit": 256,
+      "reported_rows": 256,
+      "vendor_negative_endpoint_count": 0
+    },
+    "setup": {
+      "negative_endpoint_count": 36,
+      "negative_path_count": 36,
+      "negative_paths": [
+        {
+          "slack_ns": -5.838,
+          "source_sha256": "5fd508a2eef2c8f87bb7ded672e1b591995cc64693e1dba86f8014120a33418e",
+          "target_sha256": "de3881a2b773f87c6c20e096c1db5ba5d1eca653b272518c62f2504c9fbb6c40",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -5.783,
+          "source_sha256": "bf70aeea8b32d561ffe50f45290adcddd05b6863a61c9f60eafef85afed4cbbd",
+          "target_sha256": "88f64c90269c6dfa7e29b11fd7dd6bee3c95a9ba544cf922f0f5cc26ecda5ecd",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -5.591,
+          "source_sha256": "dbd3d548506d8c02f84050e6c84307c479193871b3f7e95cefd1307d0c4855ef",
+          "target_sha256": "b840359e011c6dba0124ac582ea9a6e8f235f7052e8776e6fd49297a8bff4485",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -5.573,
+          "source_sha256": "0abd8c48fb0051ea57f13409726f49db8f6083c6b4dd73e6acd1322bb7881cba",
+          "target_sha256": "470a909815949766792b5b81f0842f1554a5a27b07bd653e1e1a427d958f4cfe",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.968,
+          "source_sha256": "d10de8fa99132c6adeb40d3b10bc9274a1177b984f0229e871c30135068362e3",
+          "target_sha256": "807c4aca7f13b0ffffed0988e267eeb3912da6526643a349272251feafe18b28",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.784,
+          "source_sha256": "d10de8fa99132c6adeb40d3b10bc9274a1177b984f0229e871c30135068362e3",
+          "target_sha256": "3f138d6a5299e49154e2aa7552c83f98d825f0ff3145e9acc95ff55218ae564a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.576,
+          "source_sha256": "d10de8fa99132c6adeb40d3b10bc9274a1177b984f0229e871c30135068362e3",
+          "target_sha256": "4812580dace819390f60fb15292ba0f6203a9fd600797dfce9b9eabc8faaaf94",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.576,
+          "source_sha256": "d10de8fa99132c6adeb40d3b10bc9274a1177b984f0229e871c30135068362e3",
+          "target_sha256": "0f91bb605b9fa7e4e5c2524b49b71ea5a535d5c052cea36b2b26225170e9a2d9",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.548,
+          "source_sha256": "ba6f5769cae27effde18b82866bdefde4250edd058cbac2e8150b0af608ccd1e",
+          "target_sha256": "49d87ab3d3918e3764b4e259758da52d0c5783f996d4db034df303a95c68801d",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.506,
+          "source_sha256": "3d15ed68d0f69f27418bf4254663213afc165b475a6adde991d6689cfb319fdb",
+          "target_sha256": "3320b8b6eecb83ac72f4a4570a7e7581332157c7403c6a3046a77af7837aac90",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.506,
+          "source_sha256": "3d15ed68d0f69f27418bf4254663213afc165b475a6adde991d6689cfb319fdb",
+          "target_sha256": "e73cbeab70853250af6dfb25f73dc369bc835b36c3b3bb68dc125c497c947771",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.364,
+          "source_sha256": "d10de8fa99132c6adeb40d3b10bc9274a1177b984f0229e871c30135068362e3",
+          "target_sha256": "c2aaca89d45199ea1aee2d9949b43c186f31d27db00f42dd844f6444caad84cf",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.339,
+          "source_sha256": "ba6f5769cae27effde18b82866bdefde4250edd058cbac2e8150b0af608ccd1e",
+          "target_sha256": "c1b2b955cf9038233da640397e59b235cd0e6508d0086212e01515c4ccec914a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.339,
+          "source_sha256": "ba6f5769cae27effde18b82866bdefde4250edd058cbac2e8150b0af608ccd1e",
+          "target_sha256": "92647be4fd5fd5bfec56f6f6c128383f99fccec4407bc48ee5bd7b57ae28dc6f",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.294,
+          "source_sha256": "3d15ed68d0f69f27418bf4254663213afc165b475a6adde991d6689cfb319fdb",
+          "target_sha256": "96404530fbf701af9c598a4b55b8a31d096db6240dc813da1c59f95176f2eb13",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.216,
+          "source_sha256": "d10de8fa99132c6adeb40d3b10bc9274a1177b984f0229e871c30135068362e3",
+          "target_sha256": "4a9d337d49d43041e2164ccc717d41d6b786cca9da8eb964770437658ceaf1f6",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.167,
+          "source_sha256": "d22bec72084014ec46da3455780e94071be9749cc6312d6e3e46d1408f2abf46",
+          "target_sha256": "ed86c6f58c3e4fed5f5834e3131973b1174301eb9ff961d63e41368872eb9d8b",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.153,
+          "source_sha256": "d10de8fa99132c6adeb40d3b10bc9274a1177b984f0229e871c30135068362e3",
+          "target_sha256": "15c69d6524d0fcff0fca935308ee292b6199073a54fd9b296b922a007ea8f23e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.126,
+          "source_sha256": "ba6f5769cae27effde18b82866bdefde4250edd058cbac2e8150b0af608ccd1e",
+          "target_sha256": "5cc1e06ef58b27bfc6c247300564d506f2ed8bd4095a3bee38c8091117c3a45e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -3.083,
+          "source_sha256": "3d15ed68d0f69f27418bf4254663213afc165b475a6adde991d6689cfb319fdb",
+          "target_sha256": "4bc03fd6c91b7ad8e28c8da4ff9de39f84bfaf2b83551d2974b97565fa6d6426",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.958,
+          "source_sha256": "d22bec72084014ec46da3455780e94071be9749cc6312d6e3e46d1408f2abf46",
+          "target_sha256": "1ce504b1c187cd680e0d28a7d5b0d457b687a27c9f58a451a3e6667d883c16ac",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.958,
+          "source_sha256": "d22bec72084014ec46da3455780e94071be9749cc6312d6e3e46d1408f2abf46",
+          "target_sha256": "1a4738b00eb7276c7a89211120d6ebb7cf7ee5484a06589826b18f5b42e6018e",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.914,
+          "source_sha256": "ba6f5769cae27effde18b82866bdefde4250edd058cbac2e8150b0af608ccd1e",
+          "target_sha256": "5f2b17ef32b489b79808e783fcd7b3256f194ea0085846fdd4f3a47d87aee0f9",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.791,
+          "source_sha256": "d10de8fa99132c6adeb40d3b10bc9274a1177b984f0229e871c30135068362e3",
+          "target_sha256": "65231baee25627996706c6c562646ec15f607ff926f4a4cfabaea10162b37d8c",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.744,
+          "source_sha256": "d22bec72084014ec46da3455780e94071be9749cc6312d6e3e46d1408f2abf46",
+          "target_sha256": "5ec7b8f4c4caca2c9207439690bf4bebdee9de004a57e1ff5d2816446911f2e4",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.744,
+          "source_sha256": "d22bec72084014ec46da3455780e94071be9749cc6312d6e3e46d1408f2abf46",
+          "target_sha256": "49aa7a45c49e887df001bd7fa5bebe37e8d3e1183f07bf9dac65afa848efca80",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.729,
+          "source_sha256": "3d15ed68d0f69f27418bf4254663213afc165b475a6adde991d6689cfb319fdb",
+          "target_sha256": "b7f4d961aa09c545a8dd6c26ba5ffbd75628d1497484858c1a9e287b95d10031",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.596,
+          "source_sha256": "ba6f5769cae27effde18b82866bdefde4250edd058cbac2e8150b0af608ccd1e",
+          "target_sha256": "6fe73640af9d280899890a75fc7654359563e2d5905b3bd7f776cb33a7c1fc56",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.531,
+          "source_sha256": "d22bec72084014ec46da3455780e94071be9749cc6312d6e3e46d1408f2abf46",
+          "target_sha256": "292639df9d291bbbbff787fd916286d4747026192625ba7c913fc14d2922e12a",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.446,
+          "source_sha256": "3d15ed68d0f69f27418bf4254663213afc165b475a6adde991d6689cfb319fdb",
+          "target_sha256": "e6aba5fd129f7c5d87f0c6d4a4f986974e531ca4d7b7423b96494acc415b9979",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.318,
+          "source_sha256": "3d15ed68d0f69f27418bf4254663213afc165b475a6adde991d6689cfb319fdb",
+          "target_sha256": "182067baab1b6eb3a7b009b4f1f73cd63d4830d9d025a91e424e609c090fc583",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.309,
+          "source_sha256": "3d15ed68d0f69f27418bf4254663213afc165b475a6adde991d6689cfb319fdb",
+          "target_sha256": "ce471ebfc0534ff609e82ea502f732d34368ca5faa06fdc349d1d8a260690305",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.246,
+          "source_sha256": "ba6f5769cae27effde18b82866bdefde4250edd058cbac2e8150b0af608ccd1e",
+          "target_sha256": "8a72a0e1aedbee4078c4c9575e0858b3138bd4167d96c04f594d40244358fd08",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.184,
+          "source_sha256": "ba6f5769cae27effde18b82866bdefde4250edd058cbac2e8150b0af608ccd1e",
+          "target_sha256": "0f5ac86b7bc19cfaafc9caf5fafa2e027d139ddb998e22187743eaabefb245fc",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.161,
+          "source_sha256": "d22bec72084014ec46da3455780e94071be9749cc6312d6e3e46d1408f2abf46",
+          "target_sha256": "1864211bbd3d7459156552197b46e357c5562cdaf0a08eccd185a791ac45ee42",
+          "vendor_ddr": true
+        },
+        {
+          "slack_ns": -2.158,
+          "source_sha256": "d22bec72084014ec46da3455780e94071be9749cc6312d6e3e46d1408f2abf46",
+          "target_sha256": "43ab3603d3192bdf4dab5fe7fe0c420b2002f3787f5024c7d7e3a6589f799366",
+          "vendor_ddr": true
+        }
+      ],
+      "nonvendor_negative_endpoint_count": 0,
+      "report_limit": 256,
+      "reported_rows": 256,
+      "vendor_negative_endpoint_count": 36
+    }
+  },
+  "negative_endpoint_unions": {
+    "hold": {
+      "nonvendor": 0,
+      "overlap": 0,
+      "total": 10,
+      "vendor": 10
+    },
+    "setup": {
+      "nonvendor": 0,
+      "overlap": 0,
+      "total": 145,
+      "vendor": 145
+    }
+  },
+  "nonvendor_screen_clear": true,
+  "placement_option": 3,
+  "replication_option": 0,
+  "reported_inference_fmax_mhz": 25.443,
+  "requested_inference_clock_mhz": 25,
+  "resources": {
+    "BSRAM": {
+      "available": 340.0,
+      "used": 267.0
+    },
+    "CLS": {
+      "available": 69120.0,
+      "used": 56224.0
+    },
+    "DSP": {
+      "available": 298.0,
+      "used": 88.5
+    },
+    "Logic": {
+      "available": 138240.0,
+      "used": 87555.0
+    },
+    "Register": {
+      "available": 139095.0,
+      "used": 45851.0
+    }
+  },
+  "route_maxfan": 60,
+  "routing_option": 0,
+  "schema": "long-context-current-native-numerical-summary-v8-baseline-selected-native",
+  "scope": "Safe numerical summary from the actual reviewed native audit and full negative endpoint detail. Original reports are identified by digest, not redistributed. Recorded core screen is not complete vendor/CDC/I/O timing signoff or mapped equivalence.",
+  "source_admission": {
+    "bytes": 1585074,
+    "sha256": "1304b4ed43c43db17fe771cdb928d2e4bc717151e626bf95dfd2d8029afedac3"
+  },
+  "source_audit": {
+    "bytes": 305256,
+    "sha256": "3fd3d8220e74f6158832a9fe39528faef92d9c983c247f21dec58359a13e22e1"
+  },
+  "source_build": {
+    "bytes": 170622,
+    "sha256": "0fbf9fb5e01bf69791eb14fca803eeace1af3e0a59918ec5aa4fdf4f1cbf2887"
+  },
+  "source_resource_report": {
+    "bytes": 99583,
+    "sha256": "cee030230197c5f7925f8e59a788be98884a17d2b26d11086ee0551fe50972b9"
+  },
+  "source_timing_report": {
+    "bytes": 3950664,
+    "sha256": "7eb5c788a269f2fde7cda8ee0fd653c43f321b8e0bfd9b01f04cb0001d2f7f3f"
+  },
+  "source_vo": {
+    "bytes": 84147302,
+    "sha256": "bdc79ac7bfff8103cf055ae6c8d52c1bc06cb395bb29faa961f1736364bcea94"
+  }
+}

@@ -138,7 +138,7 @@ class ClientTests(unittest.TestCase):
 
     def test_invalid_inputs_stop_before_transport(self):
         cases = (['--steps', '0'], ['--tokens', '4019'], ['--seed', '-1'],
-                 ['--timeout', 'nan'], ['--timeout', '0'], ['--steps', '2048'],
+                 ['--timeout', 'nan'], ['--timeout', '0'], ['--steps', '2049'],
                  ['--execute'], ['--temperature', '3'])
         with patch.object(client, 'released_transport', side_effect=AssertionError('opened transport')), \
              contextlib.redirect_stderr(io.StringIO()):
