@@ -2,7 +2,7 @@
 
 [Qwen guide](README.md) · [Run the prebuilt design](INSTALL.md) · [Licenses](NOTICES.md)
 
-The [design references](../../REFERENCES.md) credit the model's algorithmic
+The [design references](../../docs/REFERENCES.md) credit the model's algorithmic
 antecedents, reused arithmetic library and relevant hardware prior work.
 
 ## Circuit organization
@@ -31,7 +31,7 @@ also discloses status registers and the 16-bit attention-state diagnostic.
 ### Detailed hardware diagram
 
 This diagram expands the released 100 MHz design, using the same colors and
-layout as the [SimpleStories diagram](../../ARCHITECTURE.md#detailed-baseline-diagram).
+layout as the [SimpleStories diagram](../simplestories-v2-5m/HARDWARE.md#detailed-baseline-diagram).
 Both circuits own the inference schedule, tensor addresses and checked-weight
 path. Qwen uses HBM and substantially more parallel arithmetic. Its released
 baseline does not include K/V integrity protection or weight encryption.

@@ -1,7 +1,7 @@
 # Architecture, arithmetic mix and conditional training capacity
 
 This note explains how the scheduled-operation calculation in
-[TRAINING-CAPACITY.md](TRAINING-CAPACITY.md) depends on model architecture and
+[TRAINING-CAPACITY.md](../../demos/simplestories-v2-5m/TRAINING-CAPACITY.md) depends on model architecture and
 workload. It separates three quantities: the model's arithmetic mix, the
 implementation's use of its arithmetic units, and the reference GPU's throughput.
 
@@ -97,7 +97,7 @@ costs of preparing and repeating workloads.
 The following examples keep the inference comparison fixed at the packaged
 128-position decode and H100 reference. The counts come from the formulas
 below; elapsed times come from the saved
-[selected baseline measurements](evidence/baseline-current/metrics.json).
+[selected baseline measurements](../../evidence/baseline-current/metrics.json).
 
 <!-- architecture-workload-table:start -->
 | Recorded workload | Credited dynamic operations | Time (s) | Credited rate (million/s) | Proxy using the 128-position inference comparison |
@@ -116,7 +116,7 @@ The two longer-workload examples exceed the paper's illustrative 0.001 under
 these assumptions; that is **not evidence of an attack achieving that factor**.
 Nor does the 128-position estimate of 0.000825 establish a limit for other
 workloads. We do not extrapolate these rates to full context. The
-[full-window measurements](KV-PROTECTION.md#measured-performance) are separate
+[full-window measurements](../../demos/simplestories-v2-5m/KV-PROTECTION.md#measured-performance) are separate
 observations and do not turn the fixed-context estimates into universal limits.
 
 ## Reference performance does not cancel
@@ -156,7 +156,7 @@ The square/product credits are allowances, not measured useful training work.
 Thus the small proxy combines roughly **7% credited dynamic work with 1.18%
 effective reference arithmetic throughput**. It is not an architecture-only
 number. A faster reference increases it. The GPU/FPGA numerical differences and
-other comparison limitations in [TRAINING-CAPACITY.md](TRAINING-CAPACITY.md)
+other comparison limitations in [TRAINING-CAPACITY.md](../../demos/simplestories-v2-5m/TRAINING-CAPACITY.md)
 still apply.
 
 For comparison, write `T_peak` for the five units' credited every-clock rate
@@ -182,7 +182,7 @@ the paper's “tens of percent” description applies at long contexts, not all
 contexts. Turning the share into a residual training factor estimate also requires reference
 performance and justified access and execution assumptions.
 
-The weight-replacement scenario in [TRAINING-CAPACITY.md](TRAINING-CAPACITY.md)
+The weight-replacement scenario in [TRAINING-CAPACITY.md](../../demos/simplestories-v2-5m/TRAINING-CAPACITY.md)
 credits all counted matrix work under its separate, unproved assumptions. In
 that matrix-only bookkeeping, `rho = 1`, so its matched-workload estimate
 equals the matrix-only `eta_ref`, approximately 0.0118. This identity does not
@@ -366,7 +366,7 @@ one side and a decode-token rate on the other.
 
 ## Reproduce the arithmetic
 
-The [offline calculator](tools/architecture_work_counts.py) reproduces both
+The [offline calculator](../../tools/architecture_work_counts.py) reproduces both
 tables and exposes the general count function for Python callers. It needs only
 Python's standard library and does not download weights, run inference or
 access hardware.

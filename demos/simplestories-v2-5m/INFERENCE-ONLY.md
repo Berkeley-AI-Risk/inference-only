@@ -2,13 +2,13 @@
 
 This assessment and its proof/capacity receipts concern the **Tang Mega** baseline and
 K/V-protected configurations. Its architectural principles also inform the
-[Qwen experiment](demos/qwen3-1.7b/README.md), but the proofs, arithmetic inventory
-and numerical capacity estimates here are not evidence about that circuit. The [encrypted-memory version](ENCRYPTED-MEMORY.md)
+[Qwen experiment](../qwen3-1.7b/README.md), but the proofs, arithmetic inventory
+and numerical capacity estimates here are not evidence about that circuit. The [encrypted-memory version](../../ENCRYPTED-MEMORY.md)
 preserves the same public operations, but has separate circuitry and test
 coverage; it has no whole-machine proof or certified training-capacity rating.
 The optional [seeded-sampling version](STOCHASTIC-GENERATION.md) also has separate
 evidence: it adds bounded generation settings and has
-[extended scoped control proofs](formal/seeded-sampling/README.md). The capacity
+[extended scoped control proofs](../../formal/seeded-sampling/README.md). The capacity
 estimates for the configurations below have not been transferred to it.
 
 *The Feasibility of a Hardwired Pause of Frontier AI Training* introduces both
@@ -72,7 +72,7 @@ For a chosen temperature and seed, generation is deterministic. CLEAR retains
 the settings and rewinds the generator; reset restores greedy defaults. This
 is a bounded family of inference behaviors, with unchanged accepted weights
 and private model arithmetic. Its additional command and state have a
-[separate specification and control proof](formal/seeded-sampling/README.md),
+[separate specification and control proof](../../formal/seeded-sampling/README.md),
 with numerical model functions abstract in the Lean specification. Its board
 campaigns and integer references are also recorded separately. The finite
 greedy capacity estimates have not been extended to sampling.
@@ -87,7 +87,7 @@ accepted values are fixed by SHA-256 digests compiled into the circuit.
 Startup checks verify the image. Runtime model pages are copied into on-chip
 memory, sealed and verified before arithmetic uses those same copies. Every
 refill is checked; later reads do not rely solely on the startup result.
-The [architecture guide](ARCHITECTURE.md#model-storage-authentication-and-kv-memory)
+The [architecture guide](HARDWARE.md#model-storage-authentication-and-kv-memory)
 describes this path and its separation from the mutable K/V cache.
 
 This is an FPGA demonstration of the paper's **Authenticated-Weight
@@ -125,7 +125,7 @@ The design follows the paper's proposed attention dataflow:
   their roles are fixed by the schedule. The same elementwise multiplier also
   applies fixed rotary tables, and each RMSNorm multiplier also applies fixed
   normalization weights and row scales. These shared units are included in the
-  [arithmetic inventory](ARCHITECTURE.md#other-runtime-arithmetic), not omitted
+  [arithmetic inventory](HARDWARE.md#other-runtime-arithmetic), not omitted
   merely because they are elementwise rather than matrix-shaped operations.
 
 Thus each attention product has an internally generated operand and
@@ -179,7 +179,7 @@ digests retained in private on-chip memory. It binds data to location and
 current logical context, stages and verifies external reads, and releases
 the sealed verified copy. Changing external K/V alone therefore does not
 supply chosen cache operands under the guard's integrity and trusted-on-chip
-assumptions. [Scoped source-bound proofs](formal/kv-integrity/README.md) check
+assumptions. [Scoped source-bound proofs](../../formal/kv-integrity/README.md) check
 private write/tag history, guard-to-cache data and identity, and separately
 attention capture/use. SHA implementation correctness and whole-machine
 composition remain unproved. Corruption, stale data and CLEAR handling have
@@ -230,7 +230,7 @@ conditional estimates for five scenarios: matrix arithmetic through tokens;
 full use of five dynamic multipliers; full use of all 76 mapped multipliers;
 dynamic operations only when the model runs them; and replacing accepted
 weights while keeping the same schedule. Their residual training factor proxies use
-a [measured single-H100 SXM reference](H100-BENCHMARK.md).
+a [measured single-H100 SXM reference](../../docs/benchmarks/H100-BENCHMARK.md#historical-simplestories-campaign).
 That benchmark uses the original FP16 checkpoint, not the exact FPGA numerical
 model. The analysis also compares with the paper's illustrative 0.01, 0.001 and 0.0001
 factors and separates achieved GPU performance from idealized performance models.
@@ -240,7 +240,7 @@ reports sensitivity and remaining rating assumptions;
 it does not claim zero residual capacity or a certified nation-state-resistant
 factor.
 
-The [architecture-dependent analysis](ARCHITECTURE-DEPENDENT-CAPACITY.md)
+The [architecture-dependent analysis](../../docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md)
 separates the model's arithmetic mix, multiplier-cycle capacity and reference
 GPU efficiency. It explains why the scheduled estimate is workload-specific,
 and derives attention-work fractions for Llama 405B. Those fractions do not

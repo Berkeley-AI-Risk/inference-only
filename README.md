@@ -26,11 +26,11 @@ controllers own the inference schedule and memory addresses; the user supplies
 tokens, not tensor pointers. Startup loaders, status and transport handling
 are described separately in each model's guide.
 
-An optional [seeded-sampling version of SimpleStories-V2-5M](STOCHASTIC-GENERATION.md)
+An optional [seeded-sampling version of SimpleStories-V2-5M](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md)
 also accepts a bounded temperature and public seed while its tape is empty and
 idle. The optimized seeded image runs the same numerical model on the same Tang
 Mega board. Its current evidence and qualification limits are stated
-in [CURRENT-QUALIFICATION.md](CURRENT-QUALIFICATION.md). The original three
+in [CURRENT-QUALIFICATION.md](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md). The original three
 greedy images retain their own recorded evidence; the archived seeded 0e6
 release is separate provenance.
 
@@ -74,7 +74,7 @@ are available. The optimized seeded package passed its seven board suites,
 registered scoped scientific completion, fresh model/flash readback, exact
 recipient reload and registration, and twelve ordinary Chrome cases with all
 100 outputs matching the reference. Its
-[current qualification record](CURRENT-QUALIFICATION.md) separates those results
+[current qualification record](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md) separates those results
 from the remaining timing, security and proof limits. The archived seeded 0e6
 ten-case rehearsal is historical. No other-owner installation or
 complete-workload guarantee follows.
@@ -83,7 +83,7 @@ No Tang version has complete vendor-DDR timing or physical-security certificatio
 The optimized seeded image recorded **9.94 cached tokens/s** at temperature 1,
 compared with **8.67 tokens/s** for the archived seeded image. Both measurements
 use the same one-token prompt and two 128-output trials and exclude the first
-hardware STEP. See the [qualification and timing details](CURRENT-QUALIFICATION.md#recorded-timing)
+hardware STEP. See the [qualification and timing details](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md#recorded-timing)
 for the exact measurements, full workload and longer-prompt results.
 
 - **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** board selection,
@@ -135,13 +135,13 @@ assessment. The Qwen experiments also have AWS management and diagnostic
 facilities outside its token application interface; the whole cloud platform
 is not claimed to be inference-only.
 
-The [detailed inference-only assessment](INFERENCE-ONLY.md) explains these
-distinctions using the Tang Mega designs. Its [formal-verification report](FORMAL-STATUS.md)
+The [detailed inference-only assessment](demos/simplestories-v2-5m/INFERENCE-ONLY.md) explains these
+distinctions using the Tang Mega designs. Its [formal-verification report](demos/simplestories-v2-5m/FORMAL-STATUS.md)
 covers specific properties of the baseline and K/V-protected RTL and a
 separate source-bound extension for seeded sampling. These are scoped
 control/component proofs, without whole-machine refinement or a Qwen proof.
-The [conditional training-capacity analysis](TRAINING-CAPACITY.md)
-and [architecture-dependent analysis](ARCHITECTURE-DEPENDENT-CAPACITY.md)
+The [conditional training-capacity analysis](demos/simplestories-v2-5m/TRAINING-CAPACITY.md)
+and [architecture-dependent analysis](docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md)
 make their assumptions explicit; their Tang Mega numerical factors are not
 Qwen measurements. **None of these demonstrations has a certified, nation-state-resistant
 residual training fraction.** Small model size or modest speed is not what
@@ -180,16 +180,22 @@ vendor IP and tools, pretrained models, and third-party libraries. It is an
 engineering experiment with human oversight, not a controlled comparison of
 AI and human engineering ability.
 The custom implementation builds on established algorithms and hardware
-techniques; [design references and prior work](REFERENCES.md) distinguish
+techniques; [design references and prior work](docs/REFERENCES.md) distinguish
 those antecedents from directly reused components.
 
 ## Technical documentation and licenses
 
-Start with a model's guide for its architecture, hardware instructions and
-evidence. The root-level architecture, installation, simulation, proof,
-H100 benchmark and capacity documents currently describe **Tang Mega** unless
-they explicitly say otherwise. Qwen's reported results and limitations live
-in the respective model guides.
+Start with the guide for [SimpleStories on Tang Mega](demos/simplestories-v2-5m/README.md), [Qwen3-1.7B on AWS F2](demos/qwen3-1.7b/README.md), or [Qwen3-8B on AWS F2](demos/qwen3-8b/README.md). Each guide links to its implementation, installation and evidence.
+
+| Subject | Documentation |
+| --- | --- |
+| Residual training assessment and model comparison | [Shared overview](TRAINING-CAPACITY.md), [methodology](docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md), [architecture and workload analysis](docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md) |
+| GPU reference measurements | [H100 campaigns and reproduction](docs/benchmarks/H100-BENCHMARK.md) |
+| SimpleStories implementation | [Hardware](demos/simplestories-v2-5m/HARDWARE.md), [inference-only assessment](demos/simplestories-v2-5m/INFERENCE-ONLY.md), [formal scope](demos/simplestories-v2-5m/FORMAL-STATUS.md), [validation](demos/simplestories-v2-5m/VALIDATION.md), [current qualification](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md) |
+| SimpleStories configurations and reproduction | [K/V protection](demos/simplestories-v2-5m/KV-PROTECTION.md), [seeded generation](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md), [reproduction](demos/simplestories-v2-5m/REPRODUCE.md); [installation](PROGRAMMING.md), [encrypted memory](ENCRYPTED-MEMORY.md) and [vendor setup](VENDOR-SETUP.md) |
+| Design references and prior work | [References](docs/REFERENCES.md) |
+
+The SimpleStories proof and measurement records apply to their named Tang Mega circuits. The Qwen guides state their separate evidence and limitations.
 
 Project-owned code, documentation and the photograph are Apache-2.0; the
 packaged SimpleStories model assets use the upstream MIT declaration.

@@ -155,7 +155,7 @@ class CapacityTests(unittest.TestCase):
                 self.assertNotIn('certified_compliance', item)
 
     def test_documented_comparison_table_matches_calculator(self):
-        text = (HERE.parent / 'TRAINING-CAPACITY.md').read_text()
+        text = (HERE.parent / 'demos/simplestories-v2-5m/TRAINING-CAPACITY.md').read_text()
         header = '| Scenario | Assumed operation rate `T` | Calculated `φ_proxy` |'
         self.assertEqual(text.count(header), 1)
         table = text[text.index(header):].split('\n\n', 1)[0].splitlines()

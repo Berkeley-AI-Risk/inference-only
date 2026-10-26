@@ -1,6 +1,6 @@
 # Third-party attribution and asset provenance
 
-[Design references and prior work](REFERENCES.md) separately identify
+[Design references and prior work](docs/REFERENCES.md) separately identify
 algorithmic and architectural antecedents. Those citations supplement,
 and do not replace, the source-revision and license notices here.
 

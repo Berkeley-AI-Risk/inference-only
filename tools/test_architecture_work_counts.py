@@ -46,12 +46,12 @@ class ArchitectureCountsTests(unittest.TestCase):
         self.assertAlmostEqual(row['attention_fraction'], 0.07729690869877785)
 
     def test_document_table_reproduces(self):
-        COUNTS.check_document(HERE.parent / 'ARCHITECTURE-DEPENDENT-CAPACITY.md')
+        COUNTS.check_document(HERE.parent / 'docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md')
         self.assertAlmostEqual(COUNTS.cycle_fraction(HERE.parent),
                                801_272 / (0.15292962500825524 * 250_000_000))
 
     def test_document_table_drift_is_rejected(self):
-        original = (HERE.parent / 'ARCHITECTURE-DEPENDENT-CAPACITY.md').read_text(encoding='utf-8')
+        original = (HERE.parent / 'docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md').read_text(encoding='utf-8')
         for text in (original.replace('7.73%', '7.74%'),
                      original.replace('0.02096.', '0.01451.'),
                      original.replace('Here `u_dynamic` is approximately ', 'Missing cycle fraction '),
@@ -66,7 +66,7 @@ class ArchitectureCountsTests(unittest.TestCase):
                     COUNTS.check_document(path, package=HERE.parent)
 
     def test_workload_table_drift_is_rejected(self):
-        original = (HERE.parent / 'ARCHITECTURE-DEPENDENT-CAPACITY.md').read_text(encoding='utf-8')
+        original = (HERE.parent / 'docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md').read_text(encoding='utf-8')
         self.assertEqual(original.count('0.001208 |'), 1)
         for text in (original.replace('0.001208 |', '0.001209 |'),
                      original+COUNTS.WORKLOAD_START, original+COUNTS.WORKLOAD_END,
@@ -87,7 +87,7 @@ class ArchitectureCountsTests(unittest.TestCase):
             return read_text(path, *args, **kwargs)
 
         with mock.patch.object(Path, 'read_text', autospec=True, side_effect=require_utf8):
-            COUNTS.check_document(HERE.parent / 'ARCHITECTURE-DEPENDENT-CAPACITY.md')
+            COUNTS.check_document(HERE.parent / 'docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md')
 
     def test_batch_scales_work_not_fraction(self):
         one = COUNTS.work_counts(COUNTS.LLAMA_405B, cached_tokens=2047)
@@ -208,7 +208,7 @@ class ArchitectureCountsTests(unittest.TestCase):
             f'eta_ref    = {total*rate/CAPACITY.H100_DENSE_FLOPS:.8f}',
             f'φ_schedule = {dynamic*rate/CAPACITY.H100_DENSE_FLOPS:.9f}',
         ))
-        text = (HERE.parent / 'ARCHITECTURE-DEPENDENT-CAPACITY.md').read_text(encoding='utf-8')
+        text = (HERE.parent / 'docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md').read_text(encoding='utf-8')
         self.assertIn(expected, text)
 
     def test_recorded_workloads_use_fixed_inference_comparison(self):
@@ -264,7 +264,7 @@ class ArchitectureCountsTests(unittest.TestCase):
                 mock.patch.object(sys, 'argv', ['counter', '--check', '--package', str(package)]), \
                 contextlib.redirect_stderr(io.StringIO()) as errors, self.assertRaises(SystemExit) as result:
             COUNTS.main()
-        checker.assert_called_once_with(package / 'ARCHITECTURE-DEPENDENT-CAPACITY.md')
+        checker.assert_called_once_with(package / 'docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md', package=package)
         self.assertEqual(result.exception.code, 2)
         self.assertIn('table drift', errors.getvalue())
 

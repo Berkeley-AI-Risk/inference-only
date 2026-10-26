@@ -73,11 +73,16 @@ diagnostic, test/debug and physical-tampering paths. Unaudited physical
 access to HBM is not ruled out by a restricted host command interface.
 
 The [shared conceptual overview](../../README.md#in-what-sense-is-it-inference-only)
-and [Tang Mega assessment](../../INFERENCE-ONLY.md) explain the distinction
+and [Tang Mega assessment](../simplestories-v2-5m/INFERENCE-ONLY.md) explain the distinction
 between an architectural demonstration and a certified residual training
 fraction. Tang Mega's scoped proofs and capacity estimates **do not transfer
 automatically to Qwen**. No whole-machine refinement proof, physical-attack
 resistance certification or measured training-capacity bound is claimed here.
+
+The [Qwen residual training analysis](TRAINING-CAPACITY.md) supplies the
+arithmetic inventory, conditional ratios, workload distinctions and H100
+measurement plan. The [shared methodology](../../docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md)
+sets out the evidence needed for a reliable factor assessment.
 
 ## Measured generation speed
 

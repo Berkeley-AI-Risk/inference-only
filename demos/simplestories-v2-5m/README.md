@@ -2,7 +2,7 @@
 
 [Project overview](../../README.md) · [Qwen on AWS F2](../qwen3-1.7b/README.md)
 
-This is the runnable small-model demonstration: a fixed numerical approximation of **SimpleStories-V2-5M**, with 5,354,496 parameters and six transformer layers. The FPGA performs inference; a connected computer supplies text and displays replies. The release includes three greedy hardware configurations, their source and evidence, the model image, tokenizer and a local browser application. An optional [seeded-sampling configuration](../../STOCHASTIC-GENERATION.md) adds temperature and seed controls to the browser app.
+This is the runnable small-model demonstration: a fixed numerical approximation of **SimpleStories-V2-5M**, with 5,354,496 parameters and six transformer layers. The FPGA performs inference; a connected computer supplies text and displays replies. The release includes three greedy hardware configurations, their source and evidence, the model image, tokenizer and a local browser application. An optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) adds temperature and seed controls to the browser app.
 
 The prototype runs on a Sipeed Tang Mega 138K **non-Pro Dock** board package
 ([AliExpress listing used for this demo](https://www.aliexpress.us/item/3256807078990410.html)).
@@ -57,7 +57,7 @@ memory chip. At startup, an on-chip boot loader
 copies the model from flash into DDR and verifies the boot image; that path
 and the fixed on-chip coefficient ROMs are omitted here. “Private” means
 inaccessible through the host interface, not immune to physical tampering.
-The [memory-check diagram](../../KV-PROTECTION.md#what-kv-protection-adds) shows what
+The [memory-check diagram](KV-PROTECTION.md#what-kv-protection-adds) shows what
 the protected version adds.*
 
 The model is trained to continue simple stories. For example, after the
@@ -94,7 +94,7 @@ normal inference has also been tested on the FPGA. The protected image
 has passed board tests through the full 2,048-input context limit, including
 boundary rejection and CLEAR/replay checks.
 Neither version has complete vendor-DDR timing signoff. See
-[K/V protection and the measured tradeoff](../../KV-PROTECTION.md) for the mechanism,
+[K/V protection and the measured tradeoff](KV-PROTECTION.md) for the mechanism,
 current images, performance and evidence boundaries.
 
 - **K/V protection + encrypted memory:** an experimental version that retains
@@ -114,7 +114,7 @@ temperature 0 preserves the greedy rule. The three original greedy hardware
 configurations above are separate images, not different neural models.
 
 Current package status is **Runnable release**. See the
-[current qualification record](../../CURRENT-QUALIFICATION.md) for actual
+[current qualification record](CURRENT-QUALIFICATION.md) for actual
 full-seven-suite, clean-recipient, twelve-case browser and current scoped
 replay completion. The archived 0e6 image's 1,316-file/ten-browser-case record
 remains historical and does not qualify this image. Installation on another
@@ -124,17 +124,17 @@ owner's setup and other host platforms remain untested.
 
 The three greedy circuits expose `APPEND`, `STEP` and `CLEAR`, with hardware-owned inference and memory addressing. The seeded version additionally accepts only a fixed temperature/seed setting at an empty, idle boundary. All four authenticate the weights actually consumed. We assess the circuit with its configuration frozen, not the FPGA's ability to load another circuit.
 
-The [shared overview](../../README.md#in-what-sense-is-it-inference-only) explains the concept. The [detailed Tang Mega assessment](../../INFERENCE-ONLY.md), [scoped formal proofs](../../FORMAL-STATUS.md), and [conditional capacity analysis](../../TRAINING-CAPACITY.md) distinguish demonstrated restrictions from remaining physical-security obligations. The encrypted-memory variant has separate evidence and public demonstration keys; it does not inherit all of the plaintext variants' proofs.
+The [shared overview](../../README.md#in-what-sense-is-it-inference-only) explains the concept. The [detailed Tang Mega assessment](INFERENCE-ONLY.md), [scoped formal proofs](FORMAL-STATUS.md), and [conditional capacity analysis](TRAINING-CAPACITY.md) distinguish demonstrated restrictions from remaining physical-security obligations. The encrypted-memory variant has separate evidence and public demonstration keys; it does not inherit all of the plaintext variants' proofs.
 
 ## The demonstrated design and measurements
 
 The baseline and K/V-protected configurations use one fixed-model architecture with
 private DDR memory. The measurements below use the supplied
 baseline image; the baseline/protected comparison is in
-[KV-PROTECTION.md](../../KV-PROTECTION.md#measured-performance).
-The [technical architecture guide](../../ARCHITECTURE.md) explains its datapath,
+[KV-PROTECTION.md](KV-PROTECTION.md#measured-performance).
+The [technical architecture guide](HARDWARE.md) explains its datapath,
 memory organization, clock domains and implementation details, with a
-[detailed hardware diagram](../../ARCHITECTURE.md#detailed-baseline-diagram).
+[detailed hardware diagram](HARDWARE.md#detailed-baseline-diagram).
 
 - Board: Tang Mega 138K non-Pro Dock, 16-MiB flash; GOWIN
   `GW5AST-LV138PG484AC1/I0` (the programmer calls this device `GW5AST-138C`).
@@ -147,7 +147,7 @@ memory organization, clock domains and implementation details, with a
   with no temporary diagnostic output. Exact identities are in the technical guide.
 
 The three greedy images have physical-board tests against the same integer
-reference. [VALIDATION.md](../../VALIDATION.md) records each image's test coverage
+reference. [VALIDATION.md](VALIDATION.md) records each image's test coverage
 and remaining limitations. For a one-token prompt followed by 128 generated
 tokens, the cached command rates are **8.77 tokens/s for the baseline,
 5.22–5.23 for K/V-protected, and 4.27 for encrypted memory**. These rates include
@@ -156,7 +156,7 @@ host/UART reply overhead but exclude gaps between commands.
 The optimized seeded image recorded **9.94 cached tokens/s** at temperature 1,
 compared with **8.67 tokens/s** for the archived seeded image. Both measurements
 use the same one-token prompt and two 128-output trials and exclude the first
-hardware STEP. See the [qualification and timing details](../../CURRENT-QUALIFICATION.md#recorded-timing)
+hardware STEP. See the [qualification and timing details](CURRENT-QUALIFICATION.md#recorded-timing)
 for the exact measurements, full workload and longer-prompt results.
 
 The current benchmark keeps the one-token prompt and 128-output workload,
@@ -191,7 +191,7 @@ over-limit APPEND. That cached STEP alone took 1.2589 seconds, or 0.7947
 tokens/s, still including host/serial overhead.
 
 The hardware processes prompt positions one at a time. The technical guide
-explains [prompt-processing cost and possible improvements](../../ARCHITECTURE.md#prompt-processing-and-time-to-first-token).
+explains [prompt-processing cost and possible improvements](HARDWARE.md#prompt-processing-and-time-to-first-token).
 All four images have reached the full 2,048-input limit and final output slot
 in board tests, including boundary rejection and CLEAR/replay. The seeded
 image passed both 2,047- and 2,048-token prompts at temperatures 0, 0.5, 1 and 2.
@@ -210,7 +210,7 @@ board is currently running.
 
 See the [baseline and protected measurements](../../evidence/read-window/board.json), the
 [encrypted measurements](../../evidence/speed-2026-10-02/board.json), the
-[technical guide](../../ARCHITECTURE.md), and the [host guide](../../host-app/README.md).
+[technical guide](HARDWARE.md), and the [host guide](../../host-app/README.md).
 
 ### Performance cost of weight authentication
 
@@ -226,7 +226,7 @@ neither included K/V protection or encryption.
 
 These are the final matched repetition's command rates, excluding the first
 output. Other repetitions broadly agree, except for one short-prompt baseline
-run with unexplained delays; the [complete results and method](../../ARCHITECTURE.md#measuring-the-cost-of-weight-authentication)
+run with unexplained delays; the [complete results and method](HARDWARE.md#measuring-the-cost-of-weight-authentication)
 retain that run. Authentication therefore has a modest measured cost on these
 workloads: removing it alone does not make this circuit dramatically faster.
 This is not a universal overhead or the speed limit of a redesigned,
@@ -261,37 +261,37 @@ For the third configuration, follow the variant-specific
 its flash payload is not interchangeable with the plaintext model image.
 
 For optional seeded generation, follow
-[STOCHASTIC-GENERATION.md](../../STOCHASTIC-GENERATION.md) after installing the
+[STOCHASTIC-GENERATION.md](STOCHASTIC-GENERATION.md) after installing the
 plaintext model. Switching from the baseline changes only the SRAM image.
 Register it using its matching build receipt and extended known-answer check,
 then use the browser's temperature and seed controls. The diagnostic CLI is
-optional; the [seeded guide](../../STOCHASTIC-GENERATION.md) records the exact
+optional; the [seeded guide](STOCHASTIC-GENERATION.md) records the exact
 app-test scope.
 
 Then follow [host-app/README.md](../../host-app/README.md) to qualify your loaded board
-and start the local browser app. The [validation record](../../VALIDATION.md) states
+and start the local browser app. The [validation record](VALIDATION.md) states
 what was checked and the remaining timing, security and proof limitations.
 
 For optional source rebuilding, exact vendor dependencies and download steps
-are in [VENDOR-SETUP.md](../../VENDOR-SETUP.md). [REPRODUCE.md](../../REPRODUCE.md) explains
+are in [VENDOR-SETUP.md](../../VENDOR-SETUP.md). [REPRODUCE.md](REPRODUCE.md) explains
 model reconstruction, numerical references, simulations and scoped proofs.
 The vendor installers and encrypted source inputs are separate downloads;
 private user logs, factory backups and superseded designs are not included.
 
 ## Source guide
 
-The paths below are relative to the repository root.
+Code and asset paths below are relative to the repository root.
 
-- [INFERENCE-ONLY.md](../../INFERENCE-ONLY.md): the paper-facing architectural assessment.
-- [TRAINING-CAPACITY.md](../../TRAINING-CAPACITY.md): conditional quantitative estimates and calculator.
-- [ARCHITECTURE-DEPENDENT-CAPACITY.md](../../ARCHITECTURE-DEPENDENT-CAPACITY.md): how context, batching and model architecture affect those estimates, including Llama 405B.
-- [ARCHITECTURE.md](../../ARCHITECTURE.md): detailed RTL, memory and clock organization.
+- [INFERENCE-ONLY.md](INFERENCE-ONLY.md): the paper-facing architectural assessment.
+- [TRAINING-CAPACITY.md](TRAINING-CAPACITY.md): conditional quantitative estimates and calculator.
+- [ARCHITECTURE-DEPENDENT-CAPACITY.md](../../docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md): how context, batching and model architecture affect those estimates, including Llama 405B.
+- [HARDWARE.md](HARDWARE.md): detailed RTL, memory and clock organization.
 - [ENCRYPTED-MEMORY.md](../../ENCRYPTED-MEMORY.md): third experimental configuration and its distinct evidence/installation scope.
 - `prebuilt/`, `assets/`: selected FPGA configurations, build receipts and model image.
 - `hardware/`: the selected custom RTL, constraints, ROM data and build recipe.
 - `reference/`: pinned upstream asset identities, quantizer and integer model.
 - `formal/`: abstract Lean specification and scoped RTL proofs; see
-  [FORMAL-STATUS.md](../../FORMAL-STATUS.md) before interpreting their results.
+  [FORMAL-STATUS.md](FORMAL-STATUS.md) before interpreting their results.
 - `simulation/model/`: [real-model RTL and altered-weight rejection tests](../../simulation/model/README.md),
   using the unchanged production datapath and real SHA checks.
 - `host-app/`: local text interface, fixed serial protocol and offline tests.

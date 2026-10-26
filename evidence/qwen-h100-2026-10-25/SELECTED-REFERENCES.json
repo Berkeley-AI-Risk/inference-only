@@ -1,0 +1,20 @@
+{
+  "schema": "h100-reference-selection-v1",
+  "measured_date_pacific": "2026-10-25",
+  "reference_arithmetic_ops_per_second": 989000000000000,
+  "selection_rule": "Configuration selected from the initial sweep; use its independent fresh-process seed20261026 repeat, not the highest of the two runs.",
+  "cases": {
+    "qwen_fixed": {
+      "member": "results/ctx128-b512-compiled-fp16-repeat/result.json",
+      "sha256": "1f8cbcab437a77f85fb8a188866d9714df579055b5723fe7d86d04a27bf5320c"
+    },
+    "small_fixed": {
+      "member": "results/small-ctx128-b32768-compiled-fp16-repeat/result.json",
+      "sha256": "cbe08afe99011bfedcc740c179b4715bb17172464d0ffc5230cf83582a3e65d4"
+    },
+    "qwen_primary": {
+      "member": "results/single-token-b2048-graph-fp16-repeat/result.json",
+      "sha256": "18e0c58c749df8f1313620cf1b895ec2621453ee6fe046d85af9f581a0b3225e"
+    }
+  }
+}

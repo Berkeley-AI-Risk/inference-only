@@ -3,7 +3,7 @@
 
 Standard full causal GQA + SwiGLU only, with identical layer geometry and
 equal-length independent sequences. Zero routed_experts selects a dense FFN.
-Source dimensions and counting limitations: ARCHITECTURE-DEPENDENT-CAPACITY.md.
+Source dimensions and counting limitations: docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md.
 No network, model inference, solver, vendor tool or hardware access.
 """
 import argparse
@@ -169,7 +169,7 @@ def cycle_fraction(package):
 
 
 def check_document(path, *, package=None):
-    package = package or path.parent
+    package = package or Path(__file__).resolve().parents[1]
     text = path.read_text(encoding='utf-8')
     check_table(text, START, END, llama_table())
     check_table(text, WORKLOAD_START, WORKLOAD_END, recorded_workload_table(package))
@@ -186,7 +186,7 @@ def main():
     args = parser.parse_args()
     try:
         if args.check:
-            check_document(args.package / 'ARCHITECTURE-DEPENDENT-CAPACITY.md')
+            check_document(args.package / 'docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md', package=args.package)
             print('Architecture-work tables and cycle fraction match the calculations; no hardware accessed.')
         else:
             print(llama_table())

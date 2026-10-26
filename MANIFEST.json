@@ -33,6 +33,28 @@
       "seeded_sampling_experimental": false
     }
   },
+  "documentation_layout": {
+    "h100_campaigns": "docs/benchmarks/H100-BENCHMARK.md",
+    "model_assessments": "demos/<model>/",
+    "pinned_root_guides": [
+      "ENCRYPTED-MEMORY.md",
+      "PROGRAMMING.md",
+      "VENDOR-SETUP.md"
+    ],
+    "references": "docs/REFERENCES.md",
+    "root_compatibility_pages": [
+      "ARCHITECTURE.md",
+      "CURRENT-QUALIFICATION.md",
+      "FORMAL-STATUS.md",
+      "H100-BENCHMARK.md",
+      "KV-PROTECTION.md",
+      "REFERENCES.md",
+      "REPRODUCE.md",
+      "STOCHASTIC-GENERATION.md",
+      "VALIDATION.md"
+    ],
+    "shared_analysis": "docs/analysis/"
+  },
   "documentation_revision": "current-optimized-seeded-qualified-p3-20261024",
   "encrypted_memory_broader_board_tests_complete": true,
   "encrypted_memory_experimental": true,
@@ -50,41 +72,33 @@
       "bytes": 502,
       "sha256": "b3cfe89aaf8fc1b3520d910206e77e0b73abcd67f08e7fb32ccdbde09da34fbe"
     },
-    "ARCHITECTURE-DEPENDENT-CAPACITY.md": {
-      "bytes": 20083,
-      "sha256": "bfcf342619a1f1ea107e22cadd846aeb230a7ad380730a511cb392798b7ebbbf"
-    },
     "ARCHITECTURE.md": {
-      "bytes": 30448,
-      "sha256": "477fed9fc45e4ca5aa6974b38150528f9b6f0e84bbe7f66bf452372910fc019e"
+      "bytes": 2585,
+      "sha256": "b506d7a72851d56789b89ed32d5d4074aa5242f1f5048d5b9c75a3a751418c02"
     },
     "CANDIDATE.json": {
       "bytes": 52492,
       "sha256": "0fd6f2e71c955819d7836f46f6aff5659fb86087ccfc77e83a00ee35790996ec"
     },
     "CURRENT-QUALIFICATION.md": {
-      "bytes": 7676,
-      "sha256": "d2a50eeb54861536c76a28535a39117554cfb69cff76aaeb494ff33fb1a65f36"
+      "bytes": 832,
+      "sha256": "194f688bace17c3a6be635311d243cead14eee33b961bd2931c566124b02a2d4"
     },
     "ENCRYPTED-MEMORY.md": {
       "bytes": 17613,
       "sha256": "33594bc190e22eb6340c54ac85e3cc5f757f084043a4002f63c02b7f1a9af913"
     },
     "FORMAL-STATUS.md": {
-      "bytes": 34175,
-      "sha256": "89154e51d56d3ed09eb55b7317fb449c64898e9f9ae954fb663c7599909d3d34"
+      "bytes": 2809,
+      "sha256": "109fc289a0e7de19e0275782d391dcdd791ce85ef97404fdadf7c74ed6213960"
     },
     "H100-BENCHMARK.md": {
-      "bytes": 10656,
-      "sha256": "1a692e4d02a1557dadfa4e3d3be866f07ea523a1d55fecf601ddb8c6fa06ba15"
-    },
-    "INFERENCE-ONLY.md": {
-      "bytes": 18709,
-      "sha256": "2d0dcf55db46ca773f0633e5534895f5a34f8940720ac4754e98bd928d4ba82d"
+      "bytes": 840,
+      "sha256": "329012c7f4a601777a329b4fc883cdfa6698bee58034b7263309931a2a46fc3d"
     },
     "KV-PROTECTION.md": {
-      "bytes": 15238,
-      "sha256": "7144d7f646bd3ec9b26d297f0936903550e0c76d7186d2b5a66fe0067163027f"
+      "bytes": 1035,
+      "sha256": "606cce8b88b9f4729be0562c5c5fad08994ead887bef835d5e171fe780b0e18f"
     },
     "LICENSE": {
       "bytes": 11358,
@@ -123,32 +137,32 @@
       "sha256": "cff1d86bee2e55627db895e80ebe1fabd693314809b2ed17ae2054d7001acb6a"
     },
     "README.md": {
-      "bytes": 12071,
-      "sha256": "bfcd571cc553df1f733bb59bf141da13dd000b2a062c6b12c63483084dc48ad4"
+      "bytes": 13520,
+      "sha256": "c469b627a107d0d1381de8de3bcbe67d11001f3cdf6dba3d30d19d4abe9d5797"
     },
     "REFERENCES.md": {
-      "bytes": 7338,
-      "sha256": "9f96d49bf072595699b1ba267bc2f6d382c15a8879eb9a4a5f51377bfdd9d5bd"
+      "bytes": 714,
+      "sha256": "0789e7d5678c951ee1cf0c0f7e3661a912217078a37acba1e84acbf364f4ad73"
     },
     "REPRODUCE.md": {
-      "bytes": 19546,
-      "sha256": "40ab53adc24e72615de459fa8290583447722c75140781fb76c157450f5f14e6"
+      "bytes": 1299,
+      "sha256": "b12a5cba137f80e4849572f2efec3ebbddb3b089cb8cd0b106654864f1b7f00e"
     },
     "STOCHASTIC-GENERATION.md": {
-      "bytes": 20575,
-      "sha256": "11f67164d5c61e96e08efd28ba950bd64f35f164c2c62b7f6b3a5f7f61123048"
+      "bytes": 1957,
+      "sha256": "e59f4d65164a1bd7a9b9b8032bca8522bb8d425a2c0312e8eb56947e9a4645ea"
     },
     "THIRD-PARTY-NOTICES.md": {
-      "bytes": 6847,
-      "sha256": "6e7743211fa68257d9dcd9841a44f6aca10cf0b367433aef19746f20ce45b06a"
+      "bytes": 6852,
+      "sha256": "93b4de8b0f77acd53fb3c43b6e676cdf7ec151eaf0098467161d1862a5880827"
     },
     "TRAINING-CAPACITY.md": {
-      "bytes": 36544,
-      "sha256": "0c931adee4477b81c1c508de8ea384242a65bdbc65c52f8805a4f7daa8b920d6"
+      "bytes": 3553,
+      "sha256": "f0adcfb2bc4aac0b60d42a152f6421bb4e95fd466db321272fe2e8ea63c0067e"
     },
     "VALIDATION.md": {
-      "bytes": 16059,
-      "sha256": "c4beb39b790b055eda889a21e575917c9d859697c785f8682008c0690386a11e"
+      "bytes": 1178,
+      "sha256": "ce86f2888e2b998e72c691d2407da39aad025d926efdf57fddb9ef5232c8458b"
     },
     "VENDOR-DEPENDENCIES.json": {
       "bytes": 2220,
@@ -255,8 +269,8 @@
       "sha256": "85a8e3c8a7b8381071a80366e34440309f5000677b8ce9931b3dafb04a8b74e7"
     },
     "demos/qwen3-1.7b/HARDWARE.md": {
-      "bytes": 9211,
-      "sha256": "ead865a5c7116e6de19cd1a83ed3487f628f635c1faa258312fbb39895a71ad6"
+      "bytes": 9229,
+      "sha256": "b21d847e40efe269c4b81b8f590bee111b7c8e2657309604d9d918fa449796f2"
     },
     "demos/qwen3-1.7b/INSTALL.md": {
       "bytes": 6817,
@@ -267,12 +281,16 @@
       "sha256": "53627fe82c55b2d4ee00570e72dd7c979f4136d0f7034c5590838afd640d568b"
     },
     "demos/qwen3-1.7b/README.md": {
-      "bytes": 10175,
-      "sha256": "9aa53e903f66665ed196eb64b06bfbd6870afdd16601a18de1cc6d255d76a03c"
+      "bytes": 10499,
+      "sha256": "735ece0a200b954c6b09d5f05e25c10f962994544332ee424d11790f9691c4b1"
     },
     "demos/qwen3-1.7b/SOURCE-INPUTS.json": {
       "bytes": 17321,
       "sha256": "ef224b5e0fbb4e6a86b64ff8a42034d0db9f18e72c4e52a192fa1f30312aa0f5"
+    },
+    "demos/qwen3-1.7b/TRAINING-CAPACITY.md": {
+      "bytes": 14219,
+      "sha256": "26f21ba900d88576e2acf446fc45b0dc7923f43426f47e47f5bd8e96592fa1fa"
     },
     "demos/qwen3-1.7b/deployment.json": {
       "bytes": 1137,
@@ -1734,9 +1752,45 @@
       "bytes": 2752,
       "sha256": "1a27ebab761a8d17c73465c58b5cadf198f729ca9eb92408f41018498dfecd30"
     },
+    "demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md": {
+      "bytes": 7682,
+      "sha256": "a528caa0041849aac94ec6eead3e2ff9892441fa45ff57d2290f6c5d84b1adb7"
+    },
+    "demos/simplestories-v2-5m/FORMAL-STATUS.md": {
+      "bytes": 34253,
+      "sha256": "31280d2350b43b10ab11d9d3a47993d4dc30d52d910a792bf9f740c59e8f7009"
+    },
+    "demos/simplestories-v2-5m/HARDWARE.md": {
+      "bytes": 30665,
+      "sha256": "badd92ec0e1368f823c757b514dc951973c59b4787ec05c1a726ebd3b0b552c5"
+    },
+    "demos/simplestories-v2-5m/INFERENCE-ONLY.md": {
+      "bytes": 18798,
+      "sha256": "7e698c55b1efa96a41795a687320a09bfc67a6b5fc2952af4a67a33fda64e791"
+    },
+    "demos/simplestories-v2-5m/KV-PROTECTION.md": {
+      "bytes": 15315,
+      "sha256": "75995fae17c179a576314722eb1108dd636827f0e312a00e396c872cd88779a0"
+    },
     "demos/simplestories-v2-5m/README.md": {
-      "bytes": 19346,
-      "sha256": "1ad674fda928dc43efaf9c2a0f6cec58dce25995fc9aab0d0c8b5ba32946136b"
+      "bytes": 19205,
+      "sha256": "9974d36889ebc494750adc9f59d0d5c26f77c2083a3ca0235274eb6d58848929"
+    },
+    "demos/simplestories-v2-5m/REPRODUCE.md": {
+      "bytes": 19636,
+      "sha256": "7341f3b2e562cc21f353377ca7097eb4900b0e9e3d9b91db2435be0a3a580b21"
+    },
+    "demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md": {
+      "bytes": 20694,
+      "sha256": "386ebe482a5fd77c2a9e622b16137526a836c83eef5cfee2f3562c70a07e082c"
+    },
+    "demos/simplestories-v2-5m/TRAINING-CAPACITY.md": {
+      "bytes": 37517,
+      "sha256": "9f878f054d99e3672d844f07e21d064ef76370ddf53bd1748e57e253cb1575d8"
+    },
+    "demos/simplestories-v2-5m/VALIDATION.md": {
+      "bytes": 16203,
+      "sha256": "766b264d94e16576c35d66bdb514270420c0673d120bd67c067540d3f41ef541"
     },
     "demos/simplestories-v2-5m/media/simplestories-demo.mp4": {
       "bytes": 885024,
@@ -1793,6 +1847,22 @@
     "diagrams/simplestories-hardware-architecture.svg": {
       "bytes": 111179,
       "sha256": "d2731b16acf90c7ff2daacb1ff29e3ef2b17e52b60e54571d5f0dcb9049fea60"
+    },
+    "docs/REFERENCES.md": {
+      "bytes": 7388,
+      "sha256": "886d193e9da95b0d511202182453e91ab5ef17c8eecf422599797f44e74afa63"
+    },
+    "docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md": {
+      "bytes": 20223,
+      "sha256": "aecd2f47d69417ca695ca4633a41d9970f265a9e76b41b2ac1892f055cfd2484"
+    },
+    "docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md": {
+      "bytes": 9776,
+      "sha256": "4e14330918d1202d9978abca77ccdd662965f6f4002573af17e95084b5e64732"
+    },
+    "docs/benchmarks/H100-BENCHMARK.md": {
+      "bytes": 23458,
+      "sha256": "849e3b3f77a7ffa50172d044a730d2857553a89795b081b40386a4b6689c48dc"
     },
     "evidence/README.md": {
       "bytes": 5086,
@@ -2233,6 +2303,38 @@
     "evidence/portable-host.json": {
       "bytes": 2065,
       "sha256": "e302fd9d8e07a1c89b8006e6fd99df426b0d673da303c4ec2cd706fd8c2ab2b0"
+    },
+    "evidence/qwen-h100-2026-10-25/BACKUP-VERIFIED.json": {
+      "bytes": 233,
+      "sha256": "27fa0f946afc16d075bb9e89f6abaa2b252d8a06303c23820b9abf0c77913202"
+    },
+    "evidence/qwen-h100-2026-10-25/README.md": {
+      "bytes": 1237,
+      "sha256": "2893dd20fa3f15d797b13e5f193ecb6dc009157e361b2660cfa96c3446fc4bd6"
+    },
+    "evidence/qwen-h100-2026-10-25/REMOTE-ARCHIVE.json": {
+      "bytes": 209,
+      "sha256": "f7445f85b2990d557dd3c126f180e730a7cb190944191f9c147af11735e84836"
+    },
+    "evidence/qwen-h100-2026-10-25/SELECTED-REFERENCES.json": {
+      "bytes": 881,
+      "sha256": "17f503551ad97568f8b0c3eee5bb6cfad713cce8ba47b6ae059fdd93dd2e800b"
+    },
+    "evidence/qwen-h100-2026-10-25/cache-precision-diagnostic.json": {
+      "bytes": 10051,
+      "sha256": "c339a19cdba765641d44fbfe2584226e31d39dad9bb9a36249af574394fd8964"
+    },
+    "evidence/qwen-h100-2026-10-25/compiled-rounding-diagnostic.json": {
+      "bytes": 3429,
+      "sha256": "f2dc971d2a8b654481a17c738bd8a4f9453c2f3e5d72c7c0751871e1aa4a468e"
+    },
+    "evidence/qwen-h100-2026-10-25/computed-results.json": {
+      "bytes": 36015,
+      "sha256": "1655185fe9b33cf61b8ba7fc5eb142335bc31df2e55117df72ae54a9cb1aa341"
+    },
+    "evidence/qwen-h100-2026-10-25/raw-evidence.tar.gz": {
+      "bytes": 2427275,
+      "sha256": "1693f9d44e40d13cfd142223f6522ce0e4e47d4a64125d08f8f4f6cd4c9deb0c"
     },
     "evidence/read-window/board.json": {
       "bytes": 72947,
@@ -5963,8 +6065,8 @@
       "sha256": "a236c9912e5da9f12412c3f91f3d619a574fd5dce41f0c630fb78cb6c7dc7fa4"
     },
     "tools/architecture_work_counts.py": {
-      "bytes": 10434,
-      "sha256": "96bca19a1ba2646a808319c503639ff40f8096ebce55b7c4f51018c596cc901a"
+      "bytes": 10508,
+      "sha256": "5cac26f5afe7acbcc4342915ed6c63dd8bd22d7150568200fd148197d7dc7faa"
     },
     "tools/browser_capture_functions.py": {
       "bytes": 15890,
@@ -6130,6 +6232,10 @@
       "bytes": 2906,
       "sha256": "5c43bd42ac96b35d98e5d55d2fb306ce444ff2024298bfa7a19f653ab9ac5356"
     },
+    "tools/estimate_qwen_training_capacity.py": {
+      "bytes": 8662,
+      "sha256": "22dc8a322fec4379f38b83c591b7aa47cd3619343f50fff41c467888ddf8ef59"
+    },
     "tools/estimate_training_capacity.py": {
       "bytes": 18081,
       "sha256": "46d1c97380ecf55ae1285578d89246ff55021cc5978317f72eef0ff118a94bee"
@@ -6146,6 +6252,10 @@
       "bytes": 12685,
       "sha256": "ca1a2100591975364b1dc3b5b54d1b3b5b5af9b784d8e567150ba6b93ae16ea5"
     },
+    "tools/qwen_h100_results.py": {
+      "bytes": 10780,
+      "sha256": "cbe8da0bbd8ea03659394dfffdee59efdafcfaeea732fef609901e94b2d58790"
+    },
     "tools/replay_diagnostics.py": {
       "bytes": 2791,
       "sha256": "7850cfc1ed85b168ae984acaa8622af5a611af8671aa9a7b58367389e29dc543"
@@ -6159,8 +6269,8 @@
       "sha256": "81bb50025a5bb8ed318fdbe029708d40ad6bd57b1e50fb48c31e749e0ee66f2c"
     },
     "tools/test_architecture_work_counts.py": {
-      "bytes": 17670,
-      "sha256": "9ba90203fbe99b2483f20c374754be92d304764d4d37035b2ec62a1f5b6509e0"
+      "bytes": 17771,
+      "sha256": "971c753131d07321f74e17e2a38dd7d7e310d64ab7c27b0f4f3fc1d29e1ebb06"
     },
     "tools/test_baseline_speed.py": {
       "bytes": 1429,
@@ -6214,9 +6324,17 @@
       "bytes": 1885,
       "sha256": "26ded1090b8454a77404f750ea0cb84e4a34e8a513d6c40994602765513a3aa9"
     },
+    "tools/test_qwen_h100_results.py": {
+      "bytes": 4275,
+      "sha256": "138f5576d174cd2abd0d03ceab42a4c1e7cc8fbc525fda7e36c0495a8abae604"
+    },
     "tools/test_qwen_measurements.py": {
       "bytes": 3800,
       "sha256": "983c16e8eafc67e89cdc84f96d0570456a4896e4c896b7054f0dc076ea1391da"
+    },
+    "tools/test_qwen_training_capacity.py": {
+      "bytes": 3355,
+      "sha256": "38cb5911c542660f666abb60311d1afff415b5938ab8e2ee2db8f2f9a1a2b637"
     },
     "tools/test_replay_diagnostics.py": {
       "bytes": 5170,
@@ -6259,8 +6377,8 @@
       "sha256": "7a46b531a1a0a32847f706772a1fbfa524f04d061898bfdf4a7b165239292b96"
     },
     "tools/test_training_capacity.py": {
-      "bytes": 13897,
-      "sha256": "fefc71d935bc2c682482584e93680aaac91fd468c8db01b8b3364453c198329d"
+      "bytes": 13923,
+      "sha256": "4c3028193fc5a89a6b6932fed87be78c79b6a1212c7248e85fd3032e280a6288"
     },
     "tools/test_verify_release.py": {
       "bytes": 1798,
@@ -7423,6 +7541,15 @@
   "prebuilt_images_included": true,
   "private_candidate": false,
   "release_ready": true,
+  "residual_training_capacity_analysis": {
+    "certified_factor": false,
+    "h100_comparison": "docs/benchmarks/H100-BENCHMARK.md",
+    "h100_evidence": "evidence/qwen-h100-2026-10-25",
+    "method": "docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md",
+    "qwen": "demos/qwen3-1.7b/TRAINING-CAPACITY.md",
+    "qwen_h100_reference_measured": true,
+    "revision": "qwen-h100-measured-2026-10-25"
+  },
   "schema_version": 1,
   "selected_hardware_revision": "Optimized seeded image plus the unchanged three qualified greedy payloads",
   "status": "PUBLIC_MULTIMODEL_RELEASE",
