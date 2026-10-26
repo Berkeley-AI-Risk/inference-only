@@ -238,7 +238,7 @@ module board1_context2048_shared_token_probe #(parameter integer AUTH_BANKS=8) (
         .fail_closed_o(core_machine_fault)
     );
 
-    board1_context2048_typed_ddr_boundary #(.FIFO_ADDR_BITS(2)) u_boundary (
+    board1_context2048_typed_ddr_boundary #(.FIFO_ADDR_BITS(3)) u_boundary (
         .core_clk_i(core_clk_i), .core_reset_n_i(reset_n_i),
         .core_clear_i(clear_i),
         // Registering this feedback avoids a combinational fault loop while

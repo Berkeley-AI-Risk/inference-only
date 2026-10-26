@@ -72,6 +72,15 @@ def observer_cone(module):
                       for n, a, b in edges if a & reached]}
 
 
+def original_baseline_binding(driver):
+    baseline_path = driver.provider.reference_public_root() / 'formal/composed-shell/run_proof.py'
+    assert digest(baseline_path.read_bytes()) == driver.PUBLIC_PINS['formal/composed-shell/run_proof.py']
+    baseline_spec = importlib.util.spec_from_file_location('original_baseline_driver', baseline_path)
+    baseline_driver = importlib.util.module_from_spec(baseline_spec); baseline_spec.loader.exec_module(baseline_driver)
+    _, _, baseline_binding = baseline_driver.derive()
+    return baseline_binding
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--proof', type=Path, required=True)
@@ -99,11 +108,7 @@ def main():
     assert (proof / 'prove.ys').read_bytes() == ('\n'.join(recipe) + '\n').encode()
     # Independently run the unchanged, hash-pinned baseline derivation and
     # require the entire external port list and private cut mapping to match.
-    baseline_path = driver.PUBLIC / 'formal/composed-shell/run_proof.py'
-    assert digest(baseline_path.read_bytes()) == driver.PUBLIC_PINS['formal/composed-shell/run_proof.py']
-    baseline_spec = importlib.util.spec_from_file_location('original_baseline_driver', baseline_path)
-    baseline_driver = importlib.util.module_from_spec(baseline_spec); baseline_spec.loader.exec_module(baseline_driver)
-    _, _, baseline_binding = baseline_driver.derive()
+    baseline_binding = original_baseline_binding(driver)
     assert baseline_binding['wrapper_ports'] == binding['wrapper_ports']
     assert baseline_binding['private_semantic_output_cuts'] == binding['private_semantic_output_cuts']
     for name, row in inputs['files'].items():

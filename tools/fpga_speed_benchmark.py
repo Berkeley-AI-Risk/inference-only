@@ -113,6 +113,8 @@ def selected_trials(row, sources, reference):
                  and source['protocol'] == 'greedy-one-token-128-host-v1'
                  and source['identity'] == row['identity'], 'Changed canonical capture contract')
             case = next(c for c in source['cases'] if c['name'] == name)
+            need(case['prompt_tokens'] == row['prompt_tokens'], 'Canonical prompt differs from selected workload')
+            need(case['raw_capture_sha256'] is not None, 'Missing canonical raw capture identity')
             result.append(trial(case['prompt_tokens'], case['generated_tokens'], case['expected_tokens'],
                 case['reply_elapsed_seconds'], case['cached_command_seconds'], case['first_step_seconds'],
                 source['identity'], decoding=case['decoding'], temperature=case['temperature'],

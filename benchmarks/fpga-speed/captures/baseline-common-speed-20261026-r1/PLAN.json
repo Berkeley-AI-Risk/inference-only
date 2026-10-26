@@ -1,0 +1,1814 @@
+{
+  "automatic_recovery": false,
+  "automatic_retry": false,
+  "captured_manifest_reference": {
+    "all_other_paths_read_from_actual_files": true,
+    "captured_logical_identity": {
+      "bytes": 366488,
+      "sha256": "354b31bb70f1694784cc0264d0e0642495213c5f9c0303d4f04e0c1296980323"
+    },
+    "exact_single_logical_path_only": true,
+    "helper": {
+      "bytes": 7064,
+      "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/captured_original_public_manifest_view_v1.py",
+      "sha256": "247018dae33b1ccb374fbac5b3d1ca85dd6a4969304945e1e9e1f761c1fc7fce"
+    },
+    "logical_Path_writes_permitted": false,
+    "logical_manifest_path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/MANIFEST.json",
+    "native_model_or_hardware_qualification_granted": false,
+    "old_full_release_or_image_substituted": false,
+    "original_manifest_provenance_metadata_only": true,
+    "physical_manifest": {
+      "bytes": 366488,
+      "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/recipient-rtl-v2-minimal-reference-r1/reference/baseline-formal-354/MANIFEST.json",
+      "sha256": "354b31bb70f1694784cc0264d0e0642495213c5f9c0303d4f04e0c1296980323"
+    },
+    "reference_basis_manifest": {
+      "bytes": 381738,
+      "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/recipient-rtl-v2-minimal-reference-r1/MANIFEST.json",
+      "sha256": "4ea07924555fd688562ace7902f5a1facd05b2d44dac7b7f91c7652deeb7c072"
+    },
+    "reference_ledger": {
+      "bytes": 20657,
+      "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/recipient-rtl-v2-minimal-reference-r1/reference/baseline-formal-354/REFERENCE-SOURCES.json",
+      "sha256": "db49aa75151b8b1633779503af8cb5a46f754979cd330db194935e88bc998794"
+    },
+    "schema": "captured-original-public-manifest-reference-view-v1",
+    "source_checksum_or_PASS_bypass": false
+  },
+  "configuration_independently_attested": false,
+  "flash_lineage": {
+    "bytes": 34650,
+    "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/encrypted-CFC-restored-plaintext-flash-lineage-v5r2-20261025.json",
+    "sha256": "96af3979a280efc2a470ee08c0ebe3233392407adba04069745a26bbde06b650"
+  },
+  "flash_modified": false,
+  "identity": {
+    "clock_hz": 25000000,
+    "collector": {
+      "bytes": 12527,
+      "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v1.py",
+      "sha256": "0e0e0260b441a5e354da11793bc4120cd59b0fdc36f9228dd13902e6d958c08f"
+    },
+    "fpga_image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+    "greedy_link": {
+      "bytes": 11486,
+      "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
+      "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
+    },
+    "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+    "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+    "python_executable": "/opt/homebrew/bin/python3.12",
+    "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+    "token_machine_uart": {
+      "bytes": 25318,
+      "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
+      "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
+    },
+    "uart_channel": {
+      "bytes": 1939,
+      "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
+      "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
+    }
+  },
+  "load": {
+    "bytes": 476,
+    "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-browser-load-r1/FINISHED.json",
+    "sha256": "2161d43c5b6f50196a495beb0720dc9bf6915932f9d5be740a8c800be96f38d3"
+  },
+  "physical_fpga": true,
+  "policy": {
+    "bytes": 2707,
+    "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/root-sram-selection-baseline-v1.json",
+    "sha256": "59232ba05af13d15dcfe924ddac855f3261b81480ae6fc57b44a3fe0656216c4"
+  },
+  "protocol": "greedy-one-token-128-host-v1",
+  "schema": "root-common-greedy-speed-plan-v1",
+  "source_inputs": {
+    "/Users/halcrow/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/root-encrypted-CFC-flash-roundtrip-policy-v1.json": {
+      "bytes": 2497,
+      "sha256": "27fb76a32065f6e2d7cbf8c987153cb4dae4d0d50f63f44e2206df5e88b734e6"
+    },
+    "/Users/halcrow/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/root-sram-selection-encrypted-v5-coordinate-CFC.json": {
+      "bytes": 2973,
+      "sha256": "36f01c5ba05816d0dfd44179758bc899379d1d6ad02f5c94956eb59e848c12f0"
+    },
+    "/Users/halcrow/FPGA-Recovery/tang-mega-138k-2026-09-05/factory-flash-sram-read1.bin": {
+      "bytes": 16777216,
+      "sha256": "093ef4c2f4d0aaceff2b01a5e2b012a3ef36a02c1e36c1e962aebe3567be552a"
+    },
+    "/Users/halcrow/FPGA-Recovery/tang-mega-138k-2026-09-05/factory-flash-sram-read1.bin.jsonl": {
+      "bytes": 1152,
+      "sha256": "a317f2d382e46be08d2ec294fd74b7710cee719609c063785a8fee5c0f473f05"
+    },
+    "/Users/halcrow/FPGA-Recovery/tang-mega-138k-2026-09-05/factory-flash-sram-read2.bin": {
+      "bytes": 16777216,
+      "sha256": "093ef4c2f4d0aaceff2b01a5e2b012a3ef36a02c1e36c1e962aebe3567be552a"
+    },
+    "/Users/halcrow/FPGA-Recovery/tang-mega-138k-2026-09-05/factory-flash-sram-read2.bin.jsonl": {
+      "bytes": 1152,
+      "sha256": "b5ae01168b9692e5be2120ef7bdf434275ae5c2480a88198970a5048d933c556"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/ENCRYPTED-MEMORY.md": {
+      "bytes": 17613,
+      "sha256": "33594bc190e22eb6340c54ac85e3cc5f757f084043a4002f63c02b7f1a9af913"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/PROGRAMMING.md": {
+      "bytes": 15381,
+      "sha256": "cff1d86bee2e55627db895e80ebe1fabd693314809b2ed17ae2054d7001acb6a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/VENDOR-SETUP.md": {
+      "bytes": 6457,
+      "sha256": "ce2d468e4de291671fda6d81ea16d0b2f01634d66c331d00060e3ff7289d9bc0"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/assets/board1-encrypted-model2048.bin": {
+      "bytes": 7265984,
+      "sha256": "88da38f3eb64bacc21aa472666b0cc8ea1e516cb04c80e0678f768425e6390eb"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/assets/board1-real-semantic-image2048.bin": {
+      "bytes": 7265984,
+      "sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py": {
+      "bytes": 25318,
+      "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py": {
+      "bytes": 1939,
+      "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/maintenance/flash-reader/host/read_factory_flash.py": {
+      "bytes": 7338,
+      "sha256": "e4ff0907724a86fa4466c274c59b47da99bd23eef64ed70d2c5b71aa95decf6d"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/prebuilt/flash-reader/readonly_flash_reader.fs": {
+      "bytes": 34668952,
+      "sha256": "5c0736fff07d5550dc2b563df009bc9f8922a100b38cbb93db5cf2a7eb7824c9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/prebuilt/seeded-sampling/BUILD.json": {
+      "bytes": 23714,
+      "sha256": "a36aeb1992f990a108057a1bd067cc50dcb93a6c965223ded612b7a1461e8360"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs": {
+      "bytes": 42070540,
+      "sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/reference/seeded-sampling/SOURCE.json": {
+      "bytes": 8600,
+      "sha256": "bc5e2dce531cf10b05590dee483f9f561f5fd8b5bfa82f73022ef93952667897"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/reference/seeded-sampling/goldens/INDEX.json": {
+      "bytes": 7120,
+      "sha256": "a66052169a9abc7f6a509413e798d4d61fd2bcb4beac06b1a7dc7d9987f0477b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/reference/seeded-sampling/goldens/around128-t0-seed-a.json": {
+      "bytes": 11047,
+      "sha256": "f517af7880aa9160379c71fb1804a234a40e509051b4f629cdea7f78b0e73e6e"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/reference/seeded-sampling/goldens/around128-t0-seed-b.json": {
+      "bytes": 11047,
+      "sha256": "9492416ab0a697f603904fe67961651f31445a02b1bd8d54959b105b3cdf41c8"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/reference/seeded-sampling/goldens/prefix128-t0-seed-a.json": {
+      "bytes": 12127,
+      "sha256": "e8e13774ee692ce2a7c233f8553508194f1a677436f2f4e454879a8afc6dba6a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/reference/seeded-sampling/goldens/prefix128-t0-seed-b.json": {
+      "bytes": 12127,
+      "sha256": "e11c9b1d48adbd104256368a326eddcd23e04cd3ecbf7bf52ff60d52a3ee6f7b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/reference/seeded-sampling/goldens/prefix2047-t0-seed-a.json": {
+      "bytes": 18600,
+      "sha256": "76206692eb418e29428166cdd0d3f64b3e8a3f25103fefb9159a54dd05da2271"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/reference/seeded-sampling/goldens/prefix2047-t0-seed-b.json": {
+      "bytes": 18600,
+      "sha256": "6c8cc7bc58fe615c78b0c4599e49c43a32651b3249268d44c39b0aaad157ec65"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/reference/seeded-sampling/goldens/prefix2048-t0-seed-a.json": {
+      "bytes": 18529,
+      "sha256": "1d85e9b9c7b0116862a3de3a20cde80b1f3534069bdf04a4feff53ab82fefcca"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/reference/seeded-sampling/goldens/prefix2048-t0-seed-b.json": {
+      "bytes": 18529,
+      "sha256": "6a0ddf2130a3343f245f6d5138ab56032e1e296632225a7d521e51d5abd14dcc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/reference/seeded-sampling/goldens/prefix512-t0-seed-a.json": {
+      "bytes": 5455,
+      "sha256": "e27b7312917709dbc18f2b897da4cf3ac88e2a9188fdec2797d949a280f502f5"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/reference/seeded-sampling/goldens/prefix512-t0-seed-b.json": {
+      "bytes": 5455,
+      "sha256": "3b364370786b2e71679b224e86691477209b1138c0e0947058bd0c77bb294915"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/tools/check_encrypted_flash.py": {
+      "bytes": 1848,
+      "sha256": "048c46eca846486270f0fbf271f0adba538637fcb42e490eff7995331a250781"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/tools/check_flash_layout.py": {
+      "bytes": 4482,
+      "sha256": "13e17eebfe62827fa2f72bce465ea0b76665bbf9c7a081050c3fa46b69ec46f5"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/variants/encrypted-memory/PUBLIC-TEST-KEYS.json": {
+      "bytes": 888,
+      "sha256": "60681616fb100b1ab4c46fb953fc7df430853c0f2a10c46b21e82c74ae36099c"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-browser-load-r1.selection.json": {
+      "bytes": 4480,
+      "sha256": "87706a6f00af05c969adbc6282101e8508f6ad75ac625366d99b11423100cda2"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-browser-load-r1/FINISHED.json": {
+      "bytes": 476,
+      "sha256": "2161d43c5b6f50196a495beb0720dc9bf6915932f9d5be740a8c800be96f38d3"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-browser-load-r1/INPUTS.json": {
+      "bytes": 1611,
+      "sha256": "260fc96623c7df7ce507602053c885914b118f49b0606b3c5fc1feb218ef7868"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/complete-v2/FINISHED.json": {
+      "bytes": 57289,
+      "sha256": "b3d0e8d84ccb33aa78778e997248f6cb5e52607cd91e6ba3411874ae5ccdfb22"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/ASSEMBLED.json": {
+      "bytes": 154122,
+      "sha256": "78eb292d1e81cbacb5f475693f46e746c76643b822ab31d28665bb615f719f35"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/adapter.sv": {
+      "bytes": 9313,
+      "sha256": "dd45423f8cc645a04bef821130faa5c0a7e4d9a81333c571db23c0139b8314e9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/arbiter.sv": {
+      "bytes": 21388,
+      "sha256": "750ac05828f0d81c989c0985e311ef3ef02426da52ad0112f0314db28cc1a272"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/bank.sv": {
+      "bytes": 10180,
+      "sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/booted_memory.sv": {
+      "bytes": 8799,
+      "sha256": "7ddd3d2bb5fcab13fbaeae6b1947ddea2c39f5ec9d13ab2736a918d11562c1d8"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/candidate.sv": {
+      "bytes": 3943,
+      "sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/cdc.sv": {
+      "bytes": 6781,
+      "sha256": "46cac96fb496d1679b8df1f594b277300f567b00d2479ce98ac2787f52b7bf40"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/cluster-adapter.sv": {
+      "bytes": 14904,
+      "sha256": "0b8d09a0fded73d93f5fddb6bc790b552968f2d8c38cf0e90d20eb5d49b9744b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/cluster-engine.sv": {
+      "bytes": 12136,
+      "sha256": "97a3edaccef6dba1f095f82706c260cb0520fae49751ba34d76dda0ad314ec88"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/cluster-mul.sv": {
+      "bytes": 3395,
+      "sha256": "93e12f47a8651a1c131609d132f7b50810ac1124200e583164fad3b83e589417"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/cluster-tile.sv": {
+      "bytes": 8079,
+      "sha256": "308e12f6337d9d84bc786e4b2c18fac0806cc5fba5fa7745e1a833ace58493af"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fifo.sv": {
+      "bytes": 14373,
+      "sha256": "25b9578703f1c44b67867fea92f1a6749fd692c209fecf36b1de0652cd37df81"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+      "bytes": 3940,
+      "sha256": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": {
+      "bytes": 5911,
+      "sha256": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_private_issue_guard.sv": {
+      "bytes": 2637,
+      "sha256": "95a555560d3b9f3c7e4d22bbabe1bdabc602364ce392e5a2da573e889f59499a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_unified_dsp64.sv": {
+      "bytes": 4517,
+      "sha256": "e99f1e5049af79b53e42f681a4082451158c9912a43eb35397fd76f9acb15560"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv": {
+      "bytes": 50088,
+      "sha256": "ba17ba73a9c708aabd246cbc538f4e81e25b33cc116ded91da4fd554566ead39"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv": {
+      "bytes": 119942,
+      "sha256": "368596a5f8470cd28ccd429cd2ab479db5c77aef0b34eb9541c55aa44c0baf0c"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv": {
+      "bytes": 13562,
+      "sha256": "093927da7f5d322a3beafe45734f80c0f81e7c26b649d76a23bb8d0957c8cfeb"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": {
+      "bytes": 106297,
+      "sha256": "fd7b6ade26e99db09999709954630b6d358b2d6cd7fae1f7f18c878fefec0dc3"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv": {
+      "bytes": 13704,
+      "sha256": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_lookup.sv": {
+      "bytes": 13863,
+      "sha256": "92d8043230d9df3ab917427c4c619a5b57f918c2669abec310fe805d440034ef"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv": {
+      "bytes": 13202,
+      "sha256": "f7ebce15ce1d3ee97d968014d17051ddd942d3dd2d582368e4aa81b6e0e52205"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": {
+      "bytes": 23103,
+      "sha256": "0e4a38023c711abae1bdf1173444601723dc90a25b1f414c5618bf908432d4da"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+      "bytes": 47471,
+      "sha256": "55d56d5a4add9afa81b5622303ff0c81c27734fe23ac7ffa5b849d3944d8fe62"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv": {
+      "bytes": 17734,
+      "sha256": "cdeaf2adec59b811713f17bf2c4a0878d59fdb7020afac09c96c4619c9ec0857"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv": {
+      "bytes": 24322,
+      "sha256": "d030fc7fcee27c1b2fddd3503ad9a3d2160b4af4df393393c5b727e7571369f1"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": {
+      "bytes": 4148,
+      "sha256": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": {
+      "bytes": 2573,
+      "sha256": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv": {
+      "bytes": 3691,
+      "sha256": "042df8b9da13bc2a66f945b2942a30374d52fa38766ba73916999901fa63622f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv": {
+      "bytes": 6175,
+      "sha256": "30ed1ba9546f9d81974452d786932bd54063c23338503045b4b1ce9eb31e2a9b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv": {
+      "bytes": 10465,
+      "sha256": "a5a62b158671b4500cac88bf1a7d66cfb7f44cf74cbe49d4e865aebf397abbca"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+      "bytes": 8052,
+      "sha256": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv": {
+      "bytes": 25862,
+      "sha256": "8d753b5e0e28b5f8bbbbdfdfe3b8894808e068068f44f57fa1b77cdec8a743eb"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv": {
+      "bytes": 2365,
+      "sha256": "1c60a777659e7dea8ba1e13ed9d76ac0e6df544a9c70ccc7327d0e20c0fba5a9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": {
+      "bytes": 30273,
+      "sha256": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv": {
+      "bytes": 22935,
+      "sha256": "653a0eebffff3724312847baf64c5eb188afdaea50ca3b2acb6d4e6e1e888339"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+      "bytes": 10507,
+      "sha256": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+      "bytes": 3760,
+      "sha256": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": {
+      "bytes": 16277,
+      "sha256": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_rope_raw_ram.sv": {
+      "bytes": 1026,
+      "sha256": "d8b9f6c8229af472f8d69858f9412cbcd58991f58b4f4fb2feb508fd5d0b0e21"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_scratch_ram.sv": {
+      "bytes": 1168,
+      "sha256": "dbf09b83baf263397db18970535e41c8c3ab487e9f8926ca8a8740b58f65f901"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector128_ram.sv": {
+      "bytes": 1028,
+      "sha256": "9282e788fc641f15f225986738a8a9d605c892b210e060763622026a5b05310a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector256_ram.sv": {
+      "bytes": 1108,
+      "sha256": "0767c4a1c69432f9537385223101d2e6d69a86259313ed9a27cff10cb9ccff57"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": {
+      "bytes": 11169,
+      "sha256": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv": {
+      "bytes": 2974,
+      "sha256": "9e033db09b614f43999a94692d0f19a7ec58845dc65963d2e37a0e9d134bf7af"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": {
+      "bytes": 17671,
+      "sha256": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_vector_normalize0/rtl/board1_fixed_vector_rne_shift_iterative.sv": {
+      "bytes": 5892,
+      "sha256": "22159952c558c41366eee3abc6f0932867e482a94bfde16d7f26f0a3228fd05b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+      "bytes": 8056,
+      "sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+      "bytes": 1353,
+      "sha256": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+      "bytes": 25459,
+      "sha256": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_ddr_locked_auth_watchdog_cdc.sv": {
+      "bytes": 26322,
+      "sha256": "d30b40d79c02c03f1b6b159054b3ee7403985752763aa332fe86ca4fbfb11e37"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_private_ddr_lock_bridge.sv": {
+      "bytes": 22739,
+      "sha256": "71ecc05bad160b500ec2564dcbed62de196972d1b10673a1452af7049325b818"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_ddr_preboard_locked_boundary.sv": {
+      "bytes": 11586,
+      "sha256": "58760e39d6d82070f595b2b9d93d7116bc8864d4b0abc572cb2e2fc5fceaa8e9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_semantic_image_auth_compact.sv": {
+      "bytes": 7755,
+      "sha256": "0b35dc658c3d87a09777a257c994d9f5273bf287a73eb669f9de4132138c6e98"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/shared_projection_scale0/rtl/board1_shared_projection_scale_engine.sv": {
+      "bytes": 26128,
+      "sha256": "443d16724abe6999af5af35c3685c8d5ef45b707cc1af6dd4514a5beefac209f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/unified_dsp0/rtl/board1_unified_projection_head_mul_exact.sv": {
+      "bytes": 7148,
+      "sha256": "ccf15c1ad0f5bef293a44e89ae56fb9fd6bf8382205d7b12bac472ad2fa295d2"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv": {
+      "bytes": 7882,
+      "sha256": "21c3ebc878f36c7260bf203f78174584d0c3e0ce18546966707ead45a0631b83"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/handoff.sv": {
+      "bytes": 8824,
+      "sha256": "25f6455dd70ccf92107184fa7f166b9ff1dc33018aa867d4a0275ace72e34366"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/mapper_portable.sv": {
+      "bytes": 4485,
+      "sha256": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/normalizer_pipeline.sv": {
+      "bytes": 57551,
+      "sha256": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/service.sv": {
+      "bytes": 15215,
+      "sha256": "f9c0dc77430a1d08d85e2f2ebd8dfb38f13e09e4659bdc053976a3f321048cd6"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/sha.sv": {
+      "bytes": 24176,
+      "sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/shared_token_probe.sv": {
+      "bytes": 16579,
+      "sha256": "c855d6621f4475b04fe662aa628e3d733d32fa2b15bf982ea8e7f269133da33e"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-model-v1/packet/optimized/thin_transport.sv": {
+      "bytes": 8284,
+      "sha256": "b85e08fa0dfe0aefdc37aa0343175f8ea614025392bce0e112d11f12172eb84e"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/encrypted-CFC-backup-scan-20261025-r1.selection.json": {
+      "bytes": 4525,
+      "sha256": "0a10846be8c361364482beb19b4ca5926f9663cd6a76da0142b72c94f35f624d"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/encrypted-CFC-backup-scan-20261025-r1/FINISHED.json": {
+      "bytes": 259,
+      "sha256": "7f70e922f7bee7a50ec790170044f35b1b7225c326952e800f0407287b1c724a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/encrypted-CFC-backup-scan-20261025-r1/INPUTS.json": {
+      "bytes": 1646,
+      "sha256": "7bb2344184fdf3cdf048ce9b59de322342326f512d8688d736055fff735928d3"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/encrypted-CFC-backup-scan-20261025-r1/scan-cables.stdout.log": {
+      "bytes": 156,
+      "sha256": "c763a1c886f98eec57146088c82aa3d0efd723e3d94d6740e4999cf3b3dc3ac7"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/encrypted-CFC-backup-scan-20261025-r2.selection.json": {
+      "bytes": 4525,
+      "sha256": "115210f2e888f101cd03868d73e7c3b4583b4ed4d03a33042fbf5b8da50c92d4"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/encrypted-CFC-backup-scan-20261025-r2/FINISHED.json": {
+      "bytes": 259,
+      "sha256": "8b10371017de5553ab1919565e5047eccdac201103ff2e0cd22ce4d4e0e1d077"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/encrypted-CFC-backup-scan-20261025-r2/INPUTS.json": {
+      "bytes": 1646,
+      "sha256": "8b676a921b70c23e6d19b37022be6e49eba418372423b931f3475db1a1ed6d2b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/encrypted-CFC-backup-scan-20261025-r2/scan-cables.stdout.log": {
+      "bytes": 156,
+      "sha256": "731ee00b69d9f20756ff2d410fe4ddd0414dcf365e351f7c7dc9b552c0eee2be"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/encrypted-CFC-restored-readback-scan-20261025-r7.selection.json": {
+      "bytes": 4575,
+      "sha256": "c8a2b5585f7803d7512a6055307d07549c53882d0065794790946470dfe5f7c2"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/encrypted-CFC-restored-readback-scan-20261025-r7/FINISHED.json": {
+      "bytes": 259,
+      "sha256": "17571cf3c44e13e68de3e2e45d9f4b6dd7be2f686d8180c31f4aca14dd1a5db2"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/encrypted-CFC-restored-readback-scan-20261025-r7/INPUTS.json": {
+      "bytes": 1646,
+      "sha256": "3a26869ae9d247f31d98dec907047c6a028443017b337854ec7c5e113c227737"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/encrypted-CFC-restored-readback-scan-20261025-r7/scan-cables.stdout.log": {
+      "bytes": 156,
+      "sha256": "59cbc2f58f370718ac0cb25ecf7c6bbfa7589e617389eac3d2e86883531694ac"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/mapped-baseline-v1-finite-v5-20261024/RESULT.json": {
+      "bytes": 3169240,
+      "sha256": "6807987827734a9be3ce45e906034aba51aa7171351912ddbb45fee498920259"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/mapped-encrypted-memory-v5-coordinate-20261025-p4r0-rep0-maxfan23-finite-v6-r1/RESULT.json": {
+      "bytes": 3746308,
+      "sha256": "3df1c8fd3581d084def56fca561c93fd840071a3d189bcc06c189a2793412f14"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1-audit/RESULT.json": {
+      "bytes": 140935,
+      "sha256": "116b549e8e3417ec4ee6d6871a7547c02e5edc87436a20df9ba44f675078b4c4"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/FINISHED.json": {
+      "bytes": 5571,
+      "sha256": "a42ebda8d05b3d11affe6a4ac53ed387b174ea6c7a68e01637ce7a9e4ac48339"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/PLAN.json": {
+      "bytes": 40617,
+      "sha256": "fcea3904ae95496ad6ea0afdcd803b548fb5721b50e5a3d73498685dd7be41c6"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/adapter.sv": {
+      "bytes": 9313,
+      "sha256": "dd45423f8cc645a04bef821130faa5c0a7e4d9a81333c571db23c0139b8314e9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/arbiter.sv": {
+      "bytes": 21388,
+      "sha256": "750ac05828f0d81c989c0985e311ef3ef02426da52ad0112f0314db28cc1a272"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/bank.sv": {
+      "bytes": 10180,
+      "sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/booted_memory.sv": {
+      "bytes": 8799,
+      "sha256": "7ddd3d2bb5fcab13fbaeae6b1947ddea2c39f5ec9d13ab2736a918d11562c1d8"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/candidate.sv": {
+      "bytes": 3943,
+      "sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/cdc.sv": {
+      "bytes": 6781,
+      "sha256": "46cac96fb496d1679b8df1f594b277300f567b00d2479ce98ac2787f52b7bf40"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/cluster-adapter.sv": {
+      "bytes": 14904,
+      "sha256": "0b8d09a0fded73d93f5fddb6bc790b552968f2d8c38cf0e90d20eb5d49b9744b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/cluster-engine.sv": {
+      "bytes": 12136,
+      "sha256": "97a3edaccef6dba1f095f82706c260cb0520fae49751ba34d76dda0ad314ec88"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/cluster-mul.sv": {
+      "bytes": 3395,
+      "sha256": "93e12f47a8651a1c131609d132f7b50810ac1124200e583164fad3b83e589417"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/cluster-tile.sv": {
+      "bytes": 8079,
+      "sha256": "308e12f6337d9d84bc786e4b2c18fac0806cc5fba5fa7745e1a833ace58493af"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fifo.sv": {
+      "bytes": 14373,
+      "sha256": "25b9578703f1c44b67867fea92f1a6749fd692c209fecf36b1de0652cd37df81"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+      "bytes": 3940,
+      "sha256": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": {
+      "bytes": 5911,
+      "sha256": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_private_issue_guard.sv": {
+      "bytes": 2637,
+      "sha256": "95a555560d3b9f3c7e4d22bbabe1bdabc602364ce392e5a2da573e889f59499a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_unified_dsp64.sv": {
+      "bytes": 4517,
+      "sha256": "e99f1e5049af79b53e42f681a4082451158c9912a43eb35397fd76f9acb15560"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv": {
+      "bytes": 50088,
+      "sha256": "ba17ba73a9c708aabd246cbc538f4e81e25b33cc116ded91da4fd554566ead39"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv": {
+      "bytes": 119942,
+      "sha256": "368596a5f8470cd28ccd429cd2ab479db5c77aef0b34eb9541c55aa44c0baf0c"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv": {
+      "bytes": 13562,
+      "sha256": "093927da7f5d322a3beafe45734f80c0f81e7c26b649d76a23bb8d0957c8cfeb"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": {
+      "bytes": 106297,
+      "sha256": "fd7b6ade26e99db09999709954630b6d358b2d6cd7fae1f7f18c878fefec0dc3"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv": {
+      "bytes": 13704,
+      "sha256": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_lookup.sv": {
+      "bytes": 13863,
+      "sha256": "92d8043230d9df3ab917427c4c619a5b57f918c2669abec310fe805d440034ef"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv": {
+      "bytes": 13202,
+      "sha256": "f7ebce15ce1d3ee97d968014d17051ddd942d3dd2d582368e4aa81b6e0e52205"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": {
+      "bytes": 23103,
+      "sha256": "0e4a38023c711abae1bdf1173444601723dc90a25b1f414c5618bf908432d4da"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+      "bytes": 47471,
+      "sha256": "55d56d5a4add9afa81b5622303ff0c81c27734fe23ac7ffa5b849d3944d8fe62"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv": {
+      "bytes": 17734,
+      "sha256": "cdeaf2adec59b811713f17bf2c4a0878d59fdb7020afac09c96c4619c9ec0857"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv": {
+      "bytes": 24322,
+      "sha256": "d030fc7fcee27c1b2fddd3503ad9a3d2160b4af4df393393c5b727e7571369f1"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": {
+      "bytes": 4148,
+      "sha256": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": {
+      "bytes": 2573,
+      "sha256": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv": {
+      "bytes": 3691,
+      "sha256": "042df8b9da13bc2a66f945b2942a30374d52fa38766ba73916999901fa63622f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv": {
+      "bytes": 6175,
+      "sha256": "30ed1ba9546f9d81974452d786932bd54063c23338503045b4b1ce9eb31e2a9b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv": {
+      "bytes": 10465,
+      "sha256": "a5a62b158671b4500cac88bf1a7d66cfb7f44cf74cbe49d4e865aebf397abbca"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+      "bytes": 8052,
+      "sha256": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv": {
+      "bytes": 25862,
+      "sha256": "8d753b5e0e28b5f8bbbbdfdfe3b8894808e068068f44f57fa1b77cdec8a743eb"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv": {
+      "bytes": 2365,
+      "sha256": "1c60a777659e7dea8ba1e13ed9d76ac0e6df544a9c70ccc7327d0e20c0fba5a9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": {
+      "bytes": 30273,
+      "sha256": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv": {
+      "bytes": 22935,
+      "sha256": "653a0eebffff3724312847baf64c5eb188afdaea50ca3b2acb6d4e6e1e888339"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+      "bytes": 10507,
+      "sha256": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+      "bytes": 3760,
+      "sha256": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": {
+      "bytes": 16277,
+      "sha256": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_rope_raw_ram.sv": {
+      "bytes": 1026,
+      "sha256": "d8b9f6c8229af472f8d69858f9412cbcd58991f58b4f4fb2feb508fd5d0b0e21"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_scratch_ram.sv": {
+      "bytes": 1168,
+      "sha256": "dbf09b83baf263397db18970535e41c8c3ab487e9f8926ca8a8740b58f65f901"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector128_ram.sv": {
+      "bytes": 1028,
+      "sha256": "9282e788fc641f15f225986738a8a9d605c892b210e060763622026a5b05310a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector256_ram.sv": {
+      "bytes": 1108,
+      "sha256": "0767c4a1c69432f9537385223101d2e6d69a86259313ed9a27cff10cb9ccff57"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": {
+      "bytes": 11169,
+      "sha256": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv": {
+      "bytes": 2974,
+      "sha256": "9e033db09b614f43999a94692d0f19a7ec58845dc65963d2e37a0e9d134bf7af"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": {
+      "bytes": 17671,
+      "sha256": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_vector_normalize0/rtl/board1_fixed_vector_rne_shift_iterative.sv": {
+      "bytes": 5892,
+      "sha256": "22159952c558c41366eee3abc6f0932867e482a94bfde16d7f26f0a3228fd05b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+      "bytes": 8056,
+      "sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+      "bytes": 1353,
+      "sha256": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+      "bytes": 25459,
+      "sha256": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_ddr_locked_auth_watchdog_cdc.sv": {
+      "bytes": 26322,
+      "sha256": "d30b40d79c02c03f1b6b159054b3ee7403985752763aa332fe86ca4fbfb11e37"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_private_ddr_lock_bridge.sv": {
+      "bytes": 22739,
+      "sha256": "71ecc05bad160b500ec2564dcbed62de196972d1b10673a1452af7049325b818"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_ddr_preboard_locked_boundary.sv": {
+      "bytes": 11586,
+      "sha256": "58760e39d6d82070f595b2b9d93d7116bc8864d4b0abc572cb2e2fc5fceaa8e9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_semantic_image_auth_compact.sv": {
+      "bytes": 7755,
+      "sha256": "0b35dc658c3d87a09777a257c994d9f5273bf287a73eb669f9de4132138c6e98"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/shared_projection_scale0/rtl/board1_shared_projection_scale_engine.sv": {
+      "bytes": 26128,
+      "sha256": "443d16724abe6999af5af35c3685c8d5ef45b707cc1af6dd4514a5beefac209f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/unified_dsp0/rtl/board1_unified_projection_head_mul_exact.sv": {
+      "bytes": 7148,
+      "sha256": "ccf15c1ad0f5bef293a44e89ae56fb9fd6bf8382205d7b12bac472ad2fa295d2"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv": {
+      "bytes": 7882,
+      "sha256": "21c3ebc878f36c7260bf203f78174584d0c3e0ce18546966707ead45a0631b83"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/handoff.sv": {
+      "bytes": 8824,
+      "sha256": "25f6455dd70ccf92107184fa7f166b9ff1dc33018aa867d4a0275ace72e34366"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/mapper_portable.sv": {
+      "bytes": 4485,
+      "sha256": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/normalizer_pipeline.sv": {
+      "bytes": 57551,
+      "sha256": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/service.sv": {
+      "bytes": 15215,
+      "sha256": "f9c0dc77430a1d08d85e2f2ebd8dfb38f13e09e4659bdc053976a3f321048cd6"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/sha.sv": {
+      "bytes": 24176,
+      "sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/shared_token_probe.sv": {
+      "bytes": 16579,
+      "sha256": "c855d6621f4475b04fe662aa628e3d733d32fa2b15bf982ea8e7f269133da33e"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/input/project/thin_transport.sv": {
+      "bytes": 8284,
+      "sha256": "b85e08fa0dfe0aefdc37aa0343175f8ea614025392bce0e112d11f12172eb84e"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/adapter.sv": {
+      "bytes": 9313,
+      "sha256": "dd45423f8cc645a04bef821130faa5c0a7e4d9a81333c571db23c0139b8314e9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/arbiter.sv": {
+      "bytes": 21388,
+      "sha256": "750ac05828f0d81c989c0985e311ef3ef02426da52ad0112f0314db28cc1a272"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/bank.sv": {
+      "bytes": 10180,
+      "sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/booted_memory.sv": {
+      "bytes": 8799,
+      "sha256": "7ddd3d2bb5fcab13fbaeae6b1947ddea2c39f5ec9d13ab2736a918d11562c1d8"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/candidate.sv": {
+      "bytes": 3943,
+      "sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/cdc.sv": {
+      "bytes": 6781,
+      "sha256": "46cac96fb496d1679b8df1f594b277300f567b00d2479ce98ac2787f52b7bf40"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/cluster-adapter.sv": {
+      "bytes": 14904,
+      "sha256": "0b8d09a0fded73d93f5fddb6bc790b552968f2d8c38cf0e90d20eb5d49b9744b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/cluster-engine.sv": {
+      "bytes": 12136,
+      "sha256": "97a3edaccef6dba1f095f82706c260cb0520fae49751ba34d76dda0ad314ec88"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/cluster-mul.sv": {
+      "bytes": 3395,
+      "sha256": "93e12f47a8651a1c131609d132f7b50810ac1124200e583164fad3b83e589417"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/cluster-tile.sv": {
+      "bytes": 8079,
+      "sha256": "308e12f6337d9d84bc786e4b2c18fac0806cc5fba5fa7745e1a833ace58493af"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fifo.sv": {
+      "bytes": 14373,
+      "sha256": "25b9578703f1c44b67867fea92f1a6749fd692c209fecf36b1de0652cd37df81"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+      "bytes": 3940,
+      "sha256": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": {
+      "bytes": 5911,
+      "sha256": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_private_issue_guard.sv": {
+      "bytes": 2637,
+      "sha256": "95a555560d3b9f3c7e4d22bbabe1bdabc602364ce392e5a2da573e889f59499a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_unified_dsp64.sv": {
+      "bytes": 4517,
+      "sha256": "e99f1e5049af79b53e42f681a4082451158c9912a43eb35397fd76f9acb15560"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv": {
+      "bytes": 50088,
+      "sha256": "ba17ba73a9c708aabd246cbc538f4e81e25b33cc116ded91da4fd554566ead39"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv": {
+      "bytes": 119942,
+      "sha256": "368596a5f8470cd28ccd429cd2ab479db5c77aef0b34eb9541c55aa44c0baf0c"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv": {
+      "bytes": 13562,
+      "sha256": "093927da7f5d322a3beafe45734f80c0f81e7c26b649d76a23bb8d0957c8cfeb"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": {
+      "bytes": 106297,
+      "sha256": "fd7b6ade26e99db09999709954630b6d358b2d6cd7fae1f7f18c878fefec0dc3"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv": {
+      "bytes": 13704,
+      "sha256": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_lookup.sv": {
+      "bytes": 13863,
+      "sha256": "92d8043230d9df3ab917427c4c619a5b57f918c2669abec310fe805d440034ef"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv": {
+      "bytes": 13202,
+      "sha256": "f7ebce15ce1d3ee97d968014d17051ddd942d3dd2d582368e4aa81b6e0e52205"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": {
+      "bytes": 23103,
+      "sha256": "0e4a38023c711abae1bdf1173444601723dc90a25b1f414c5618bf908432d4da"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+      "bytes": 47471,
+      "sha256": "55d56d5a4add9afa81b5622303ff0c81c27734fe23ac7ffa5b849d3944d8fe62"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv": {
+      "bytes": 17734,
+      "sha256": "cdeaf2adec59b811713f17bf2c4a0878d59fdb7020afac09c96c4619c9ec0857"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv": {
+      "bytes": 24322,
+      "sha256": "d030fc7fcee27c1b2fddd3503ad9a3d2160b4af4df393393c5b727e7571369f1"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": {
+      "bytes": 4148,
+      "sha256": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": {
+      "bytes": 2573,
+      "sha256": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv": {
+      "bytes": 3691,
+      "sha256": "042df8b9da13bc2a66f945b2942a30374d52fa38766ba73916999901fa63622f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv": {
+      "bytes": 6175,
+      "sha256": "30ed1ba9546f9d81974452d786932bd54063c23338503045b4b1ce9eb31e2a9b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv": {
+      "bytes": 10465,
+      "sha256": "a5a62b158671b4500cac88bf1a7d66cfb7f44cf74cbe49d4e865aebf397abbca"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+      "bytes": 8052,
+      "sha256": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv": {
+      "bytes": 25862,
+      "sha256": "8d753b5e0e28b5f8bbbbdfdfe3b8894808e068068f44f57fa1b77cdec8a743eb"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv": {
+      "bytes": 2365,
+      "sha256": "1c60a777659e7dea8ba1e13ed9d76ac0e6df544a9c70ccc7327d0e20c0fba5a9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": {
+      "bytes": 30273,
+      "sha256": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv": {
+      "bytes": 22935,
+      "sha256": "653a0eebffff3724312847baf64c5eb188afdaea50ca3b2acb6d4e6e1e888339"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+      "bytes": 10507,
+      "sha256": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+      "bytes": 3760,
+      "sha256": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": {
+      "bytes": 16277,
+      "sha256": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_rope_raw_ram.sv": {
+      "bytes": 1026,
+      "sha256": "d8b9f6c8229af472f8d69858f9412cbcd58991f58b4f4fb2feb508fd5d0b0e21"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_scratch_ram.sv": {
+      "bytes": 1168,
+      "sha256": "dbf09b83baf263397db18970535e41c8c3ab487e9f8926ca8a8740b58f65f901"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector128_ram.sv": {
+      "bytes": 1028,
+      "sha256": "9282e788fc641f15f225986738a8a9d605c892b210e060763622026a5b05310a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector256_ram.sv": {
+      "bytes": 1108,
+      "sha256": "0767c4a1c69432f9537385223101d2e6d69a86259313ed9a27cff10cb9ccff57"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": {
+      "bytes": 11169,
+      "sha256": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv": {
+      "bytes": 2974,
+      "sha256": "9e033db09b614f43999a94692d0f19a7ec58845dc65963d2e37a0e9d134bf7af"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": {
+      "bytes": 17671,
+      "sha256": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_vector_normalize0/rtl/board1_fixed_vector_rne_shift_iterative.sv": {
+      "bytes": 5892,
+      "sha256": "22159952c558c41366eee3abc6f0932867e482a94bfde16d7f26f0a3228fd05b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+      "bytes": 8056,
+      "sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+      "bytes": 1353,
+      "sha256": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+      "bytes": 25459,
+      "sha256": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_ddr_locked_auth_watchdog_cdc.sv": {
+      "bytes": 26322,
+      "sha256": "d30b40d79c02c03f1b6b159054b3ee7403985752763aa332fe86ca4fbfb11e37"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_private_ddr_lock_bridge.sv": {
+      "bytes": 22739,
+      "sha256": "71ecc05bad160b500ec2564dcbed62de196972d1b10673a1452af7049325b818"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_ddr_preboard_locked_boundary.sv": {
+      "bytes": 11586,
+      "sha256": "58760e39d6d82070f595b2b9d93d7116bc8864d4b0abc572cb2e2fc5fceaa8e9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_semantic_image_auth_compact.sv": {
+      "bytes": 7755,
+      "sha256": "0b35dc658c3d87a09777a257c994d9f5273bf287a73eb669f9de4132138c6e98"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/shared_projection_scale0/rtl/board1_shared_projection_scale_engine.sv": {
+      "bytes": 26128,
+      "sha256": "443d16724abe6999af5af35c3685c8d5ef45b707cc1af6dd4514a5beefac209f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/unified_dsp0/rtl/board1_unified_projection_head_mul_exact.sv": {
+      "bytes": 7148,
+      "sha256": "ccf15c1ad0f5bef293a44e89ae56fb9fd6bf8382205d7b12bac472ad2fa295d2"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv": {
+      "bytes": 7882,
+      "sha256": "21c3ebc878f36c7260bf203f78174584d0c3e0ce18546966707ead45a0631b83"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/handoff.sv": {
+      "bytes": 8824,
+      "sha256": "25f6455dd70ccf92107184fa7f166b9ff1dc33018aa867d4a0275ace72e34366"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/impl/pnr/shared_product.fs": {
+      "bytes": 42197772,
+      "sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/mapper_portable.sv": {
+      "bytes": 4485,
+      "sha256": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/normalizer_pipeline.sv": {
+      "bytes": 57551,
+      "sha256": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/service.sv": {
+      "bytes": 15215,
+      "sha256": "f9c0dc77430a1d08d85e2f2ebd8dfb38f13e09e4659bdc053976a3f321048cd6"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/sha.sv": {
+      "bytes": 24176,
+      "sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/shared_token_probe.sv": {
+      "bytes": 16579,
+      "sha256": "c855d6621f4475b04fe662aa628e3d733d32fa2b15bf982ea8e7f269133da33e"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/project/thin_transport.sv": {
+      "bytes": 8284,
+      "sha256": "b85e08fa0dfe0aefdc37aa0343175f8ea614025392bce0e112d11f12172eb84e"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-encrypted-memory-v5-coordinate-20261025-p4r0-rep0-maxfan23-audit/RESULT.json": {
+      "bytes": 145829,
+      "sha256": "a0e607ca7a71d4df7a7409302330ceb0548d69885f53ced81baa54943203e243"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-encrypted-memory-v5-coordinate-20261025-p4r0-rep0-maxfan23/FINISHED.json": {
+      "bytes": 5744,
+      "sha256": "028642c605ee3af8ed3c9698a767b33570c83ee9352f7f82f4f4cd2ef559d044"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-encrypted-memory-v5-coordinate-20261025-p4r0-rep0-maxfan23/PLAN.json": {
+      "bytes": 47589,
+      "sha256": "2c66464515ef6581c91b643c3634a3ca2d09dae80fedd6739774b7a9931c7605"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-encrypted-memory-v5-coordinate-20261025-p4r0-rep0-maxfan23/project/impl/pnr/shared_product.fs": {
+      "bytes": 42303596,
+      "sha256": "cfc8a3d8832b4a2959606f0e9f01c511357ec68380f521b5f28a4fc737edf1d2"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/recipient-rtl-v2-minimal-reference-r1/MANIFEST.json": {
+      "bytes": 381738,
+      "sha256": "4ea07924555fd688562ace7902f5a1facd05b2d44dac7b7f91c7652deeb7c072"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/recipient-rtl-v2-minimal-reference-r1/reference/baseline-formal-354/MANIFEST.json": {
+      "bytes": 366488,
+      "sha256": "354b31bb70f1694784cc0264d0e0642495213c5f9c0303d4f04e0c1296980323"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/recipient-rtl-v2-minimal-reference-r1/reference/baseline-formal-354/REFERENCE-SOURCES.json": {
+      "bytes": 20657,
+      "sha256": "db49aa75151b8b1633779503af8cb5a46f754979cd330db194935e88bc998794"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/baseline-model-native-source-join-v1.json": {
+      "bytes": 85329,
+      "sha256": "2ff8e7b828298e3a96b2453f6647300131537da216903d663ff679ccc551002f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/baseline-selected-closed-model-native-association-v1.json": {
+      "bytes": 3139,
+      "sha256": "00ed32af19d4be6fc3646256fa8cf632abdb2376af8dc2f61e22b5963fcf945b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/closed-model-native-association-native-encrypted-memory-v5-coordinate-20261025-p4r0-rep0-maxfan23.json": {
+      "bytes": 5923,
+      "sha256": "384ad4750c1507c7ebace60ef4dabde7c0c952d08c92c5e909f493836c1661ff"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/encrypted-CFC-restored-plaintext-flash-lineage-v5r2-20261025.json": {
+      "bytes": 34650,
+      "sha256": "96af3979a280efc2a470ee08c0ebe3233392407adba04069745a26bbde06b650"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/encrypted-memory-model-complete-v5-coordinate.json": {
+      "bytes": 4439,
+      "sha256": "0c1eeef1f148b3908caf5e1e5fc53e0d04d04f874962cc63dfc051c973c7acb3"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/greedy-board-command-plans-v2.json": {
+      "bytes": 1563610,
+      "sha256": "f387b4f4b2f6f46f923266a9cd71591b103fb7a0f5be883480b4419e000f0eba"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/native-model-source-join-native-encrypted-memory-v5-coordinate-20261025-p4r0-rep0-maxfan23.json": {
+      "bytes": 102728,
+      "sha256": "59bcdac0e103134e0e4b9ce70654d8957b50549cae874cdc293e69a4a7446b59"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/root-sram-selection-baseline-v1.json": {
+      "bytes": 2707,
+      "sha256": "59232ba05af13d15dcfe924ddac855f3261b81480ae6fc57b44a3fe0656216c4"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/root-sram-selection-encrypted-v5-coordinate-CFC.json": {
+      "bytes": 2973,
+      "sha256": "36f01c5ba05816d0dfd44179758bc899379d1d6ad02f5c94956eb59e848c12f0"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/PREPARED.json": {
+      "bytes": 14046,
+      "sha256": "5c31f5e13fcaf3a62a56029c4a207200b61cf1bfc87917d852fc57801a6662d6"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/PUBLIC-TEST-KEYS-v1.json": {
+      "bytes": 888,
+      "sha256": "60681616fb100b1ab4c46fb953fc7df430853c0f2a10c46b21e82c74ae36099c"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1.fresh-scan.json": {
+      "bytes": 1132,
+      "sha256": "b166f1d77d5a13294b4ace0c69e6ddbbada2d2733157870f090f20d8dcbe6d04"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1.invocation.json": {
+      "bytes": 1811,
+      "sha256": "0a6893c1e9ae0088028662f5873822c65326a480b30c28615180daed4560571e"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/FINISHED.json": {
+      "bytes": 1060,
+      "sha256": "99fce20123a499fbb34150ab90d0fb37d656dd47c36c148c71b1fcc5beec9845"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/STARTED.json": {
+      "bytes": 313,
+      "sha256": "b92c956f48627dbf7a95bfc2a8b4b68ba4a762b2706e906694ff047d8d2e0169"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/flash.bin": {
+      "bytes": 16777216,
+      "sha256": "b6be312296b01d4eb2f985cd71f90d110a2a632c42ca0b4698dc8c9832765a25"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/flash.bin.jsonl": {
+      "bytes": 1296,
+      "sha256": "eff2807760a794b5619757c0dbf195df0203cc39452bba07a7a5478eab3ff3ab"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/full-read-exit.json": {
+      "bytes": 228,
+      "sha256": "ae18c541d0ba55172e5c4aac56f0ffcafb5d7d0f71a5ae472343c8449eabfde5"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/full-read-intent.json": {
+      "bytes": 554,
+      "sha256": "255bb937e8a3593ebe3037886c80fa58e68d6dc7783f1d578022bb12e45e794c"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/full-read-process.json": {
+      "bytes": 578,
+      "sha256": "1328710f9100ca935b28c79ab8a0f533cf61193b100a88df42b6750217a4de98"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/full-read.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/full-read.stdout.log": {
+      "bytes": 3154,
+      "sha256": "b6f6540e9db1ca3f502fcaf06564dd271f072ec58d37261203af821c123ec7f4"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/reader-load-exit.json": {
+      "bytes": 228,
+      "sha256": "dd2f3fa32b8903283cad3aa99ebb213de143933de2bbe34dd92754584d38f6d3"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/reader-load-intent.json": {
+      "bytes": 594,
+      "sha256": "618b5adae8c0e5149c6b01f4cca73693b1568cf279a852e7a7840d31782bebdc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/reader-load-process.json": {
+      "bytes": 618,
+      "sha256": "bfd21c8eff56e213b1984de23f25f8c26227ff66fedb606bbfc6e57f3a66bb2a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/reader-load.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup1/reader-load.stdout.log": {
+      "bytes": 6348,
+      "sha256": "efd9a310e1c05325523acfd46143602a43693e30807acadc854b0c0ff97803b4"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2.fresh-scan.json": {
+      "bytes": 1132,
+      "sha256": "cbd5ffcc6c97fa84eac7e0a27816d3760aaf447f4671727caf6acaf5be5fcdaf"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2.invocation.json": {
+      "bytes": 1811,
+      "sha256": "d4c1eabd980e258f325a88f3b6e22667e905eb0ddcac7eb457b4645acb989f1a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/FINISHED.json": {
+      "bytes": 1854,
+      "sha256": "c652ce948914a0687f8d17d036e27a68a1b1557dcc31af0e24288b61eb70508e"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/STARTED.json": {
+      "bytes": 313,
+      "sha256": "45fcb4e5c0c60c7762fa0245ead2fc6cb4b37989acfc64764024527f0fc9bb9d"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/flash.bin": {
+      "bytes": 16777216,
+      "sha256": "b6be312296b01d4eb2f985cd71f90d110a2a632c42ca0b4698dc8c9832765a25"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/flash.bin.jsonl": {
+      "bytes": 1296,
+      "sha256": "6eb608523e3bf99d312620b78f5a84e03ebb225bcc29704f459053a43baee393"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/full-read-exit.json": {
+      "bytes": 228,
+      "sha256": "7a4c810256dd5e4501df1122a99581d5b793e38500dcfaa6877f451c5dc3ee79"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/full-read-intent.json": {
+      "bytes": 554,
+      "sha256": "409ec8e5f3291bdcf236c6f15d49c76616a45b07447cd10a590e1e61b4270275"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/full-read-process.json": {
+      "bytes": 578,
+      "sha256": "bb174380b865f39b19a46473ae2e29c8f8fe75cbb5e6058691e58149fedba37a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/full-read.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/full-read.stdout.log": {
+      "bytes": 3154,
+      "sha256": "64762f7e0472dc6125204ec0a9014317dcc1988209675175236da0687c674696"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/reader-load-exit.json": {
+      "bytes": 228,
+      "sha256": "248e48f245b1c5f3730b6856ad3ecb88e6ef45b5318ca9a11016e1e8e65eff49"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/reader-load-intent.json": {
+      "bytes": 594,
+      "sha256": "7805f4e7b5667a110771bc4b457fe4a4e6c2d748f8268622b132f0c86ab4914d"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/reader-load-process.json": {
+      "bytes": 618,
+      "sha256": "7aefb53e66e22899c650b5b00190aa3d23e228d38abefb4e64dfebec9abd5a4b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/reader-load.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/backup2/reader-load.stdout.log": {
+      "bytes": 6348,
+      "sha256": "2c67028ad0f871f0ec85194b6f345faa1cfac0087e132167e7c6d9f4bb4f0045"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored.fresh-scan.json": {
+      "bytes": 1167,
+      "sha256": "0f873cd94623cb94ad79402116477f84021894137ed4fb81de8a4985bb1cd15c"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored.invocation.json": {
+      "bytes": 1829,
+      "sha256": "f1f815557f02ed6cb9019b970efb812cbde5db272d0bd76e9fb73b05bb8e0ee7"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/FINISHED.json": {
+      "bytes": 1562,
+      "sha256": "2f5330061b6893901dbe318688dc1528b2f6ab261246b63445923bcbf5a0e70a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/STARTED.json": {
+      "bytes": 320,
+      "sha256": "6a6b135b8e6529658b8bd5c979b6e011722fe605a0a611e8200c42b8bab5f4df"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/flash.bin": {
+      "bytes": 16777216,
+      "sha256": "b6be312296b01d4eb2f985cd71f90d110a2a632c42ca0b4698dc8c9832765a25"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/flash.bin.jsonl": {
+      "bytes": 1324,
+      "sha256": "bd0c68791d021a0f39faa511bd651b0912dcc754fb2f1b31780307d1f088cefc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/full-read-exit.json": {
+      "bytes": 228,
+      "sha256": "3cebe3e1f2748bfe3d334ae8384057ba292908123cb5b1ac9cebbccf739c1f3f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/full-read-intent.json": {
+      "bytes": 561,
+      "sha256": "44fbd3a3bef86bdac21c3c0ac962357ca04302ef9ab783aaa0316a3746be9d27"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/full-read-process.json": {
+      "bytes": 585,
+      "sha256": "b1c79b06038a3f145fb6ff55ab3a26af84dc2b25b99caf4706a0a4303b91fca0"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/full-read.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/full-read.stdout.log": {
+      "bytes": 3168,
+      "sha256": "738b857fc65cf20c4474101e8745080d1dee9815c221299ebeee1b90993b7982"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/reader-load-exit.json": {
+      "bytes": 226,
+      "sha256": "c42c8d70188ac76908067f64007ff447b559bd2f196bc972cc5df13b1fc570d6"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/reader-load-intent.json": {
+      "bytes": 594,
+      "sha256": "6c5b9eb1a1fbc15ebf28d3edcfd28fb97830ea220e4ed92faffb9bfca8cc443d"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/reader-load-process.json": {
+      "bytes": 618,
+      "sha256": "b78aecc29cba83e2a3552190f639a68cdaac10a68f9a36dd1648a2ec4a501554"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/reader-load.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/check-restored/reader-load.stdout.log": {
+      "bytes": 6348,
+      "sha256": "e89f1476bffafcc2e82eb062e5d8d5f1215efc3603b6abf999e5c16255645637"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/runs/encrypted-CFC-roundtrip-20261025-r1/restore-plaintext/FINISHED.json": {
+      "bytes": 878,
+      "sha256": "515dbc919dd51a722f398dc18b2db148b61c82549b168602a190c07c7860cdb1"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/baseline_model_native_association_v2.py": {
+      "bytes": 10278,
+      "sha256": "cde9285f8ad580caee2b60803fd4a22d601d82e47c9cdf03c3de5686d0cb51ec"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/captured_original_public_manifest_view_v1.py": {
+      "bytes": 7064,
+      "sha256": "247018dae33b1ccb374fbac5b3d1ca85dd6a4969304945e1e9e1f761c1fc7fce"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v1.py": {
+      "bytes": 12527,
+      "sha256": "0e0e0260b441a5e354da11793bc4120cd59b0fdc36f9228dd13902e6d958c08f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/encrypted_flash_lineage_v5_coordinate_r2.py": {
+      "bytes": 18236,
+      "sha256": "b9c39913148cb318e80a889c8bebcc9f3d6a998e2f6edb7c8edf54c81a27a0dd"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py": {
+      "bytes": 11486,
+      "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/guarded_encrypted_trial_v5_coordinate.py": {
+      "bytes": 20442,
+      "sha256": "dcc7eeb893e6cff55b9e621451ede2434ff577958f1c03e307de5f7038ccb735"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/guarded_sram_trial_v2.py": {
+      "bytes": 12387,
+      "sha256": "72685488f91e49de951cc15902030cc0e60dff36837e46ef08d48b5d3207c2a5"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/guarded_sram_trial_v5_coordinate.py": {
+      "bytes": 13871,
+      "sha256": "1230d7f193f47e0a1aaf734fcb84c00cee859595295cfc4ba33175e64f2788ce"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/run_greedy_board.py": {
+      "bytes": 13164,
+      "sha256": "5b4e7c9fc15db0a1e4b31a78c79576a6e073646265f2f0898f83e07f0291229c"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/run_greedy_model_v2.py": {
+      "bytes": 10518,
+      "sha256": "af21c7d843af8427f2e434f79b81371ea6fef63323b4af1930c5feab2e06f917"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/SOURCE-CANDIDATE.json": {
+      "bytes": 10145,
+      "sha256": "f22f7f4d53e8b94b591c3174e67e01cd154cf1c90d5848db4b6b348df0e52122"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/adapter.sv": {
+      "bytes": 9313,
+      "sha256": "dd45423f8cc645a04bef821130faa5c0a7e4d9a81333c571db23c0139b8314e9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/arbiter.sv": {
+      "bytes": 21388,
+      "sha256": "750ac05828f0d81c989c0985e311ef3ef02426da52ad0112f0314db28cc1a272"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/bank.sv": {
+      "bytes": 10180,
+      "sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/booted_memory.sv": {
+      "bytes": 8799,
+      "sha256": "7ddd3d2bb5fcab13fbaeae6b1947ddea2c39f5ec9d13ab2736a918d11562c1d8"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/candidate.sv": {
+      "bytes": 3943,
+      "sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/cdc.sv": {
+      "bytes": 6781,
+      "sha256": "46cac96fb496d1679b8df1f594b277300f567b00d2479ce98ac2787f52b7bf40"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/cluster-adapter.sv": {
+      "bytes": 14904,
+      "sha256": "0b8d09a0fded73d93f5fddb6bc790b552968f2d8c38cf0e90d20eb5d49b9744b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/cluster-engine.sv": {
+      "bytes": 12136,
+      "sha256": "97a3edaccef6dba1f095f82706c260cb0520fae49751ba34d76dda0ad314ec88"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/cluster-mul.sv": {
+      "bytes": 3395,
+      "sha256": "93e12f47a8651a1c131609d132f7b50810ac1124200e583164fad3b83e589417"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/cluster-tile.sv": {
+      "bytes": 8079,
+      "sha256": "308e12f6337d9d84bc786e4b2c18fac0806cc5fba5fa7745e1a833ace58493af"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/constraints/board1_fixed_product.cst": {
+      "bytes": 8226,
+      "sha256": "a74e20927c382bb9e85235fc03bf826e4bde12932b603d5e1b3dd35a212315aa"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/constraints/product.sdc": {
+      "bytes": 2672,
+      "sha256": "ed88a06026c83a0f3b24a5e7fc5841dbfed96dc0d31c6988a0b3d2dfcc76462c"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/defines.v": {
+      "bytes": 55,
+      "sha256": "76cbe1576dbf6c7c6151072d6c1f8125eecc360140ba29784024d3f99b0f6f58"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/digests32.memh": {
+      "bytes": 127728,
+      "sha256": "2c4bb7908d6e957b8a20e99b230c6e8a3d7fafddeb391581dfcbcb1cce7bf672"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fifo.sv": {
+      "bytes": 14373,
+      "sha256": "25b9578703f1c44b67867fea92f1a6749fd692c209fecf36b1de0652cd37df81"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+      "bytes": 3940,
+      "sha256": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": {
+      "bytes": 5911,
+      "sha256": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_private_issue_guard.sv": {
+      "bytes": 2637,
+      "sha256": "95a555560d3b9f3c7e4d22bbabe1bdabc602364ce392e5a2da573e889f59499a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_unified_dsp64.sv": {
+      "bytes": 4517,
+      "sha256": "e99f1e5049af79b53e42f681a4082451158c9912a43eb35397fd76f9acb15560"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv": {
+      "bytes": 50088,
+      "sha256": "ba17ba73a9c708aabd246cbc538f4e81e25b33cc116ded91da4fd554566ead39"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv": {
+      "bytes": 119942,
+      "sha256": "368596a5f8470cd28ccd429cd2ab479db5c77aef0b34eb9541c55aa44c0baf0c"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv": {
+      "bytes": 13562,
+      "sha256": "093927da7f5d322a3beafe45734f80c0f81e7c26b649d76a23bb8d0957c8cfeb"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": {
+      "bytes": 106297,
+      "sha256": "fd7b6ade26e99db09999709954630b6d358b2d6cd7fae1f7f18c878fefec0dc3"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv": {
+      "bytes": 13704,
+      "sha256": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_lookup.sv": {
+      "bytes": 13863,
+      "sha256": "92d8043230d9df3ab917427c4c619a5b57f918c2669abec310fe805d440034ef"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv": {
+      "bytes": 13202,
+      "sha256": "f7ebce15ce1d3ee97d968014d17051ddd942d3dd2d582368e4aa81b6e0e52205"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": {
+      "bytes": 23103,
+      "sha256": "0e4a38023c711abae1bdf1173444601723dc90a25b1f414c5618bf908432d4da"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+      "bytes": 47471,
+      "sha256": "55d56d5a4add9afa81b5622303ff0c81c27734fe23ac7ffa5b849d3944d8fe62"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv": {
+      "bytes": 17734,
+      "sha256": "cdeaf2adec59b811713f17bf2c4a0878d59fdb7020afac09c96c4619c9ec0857"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv": {
+      "bytes": 24322,
+      "sha256": "d030fc7fcee27c1b2fddd3503ad9a3d2160b4af4df393393c5b727e7571369f1"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": {
+      "bytes": 4148,
+      "sha256": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": {
+      "bytes": 2573,
+      "sha256": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv": {
+      "bytes": 3691,
+      "sha256": "042df8b9da13bc2a66f945b2942a30374d52fa38766ba73916999901fa63622f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv": {
+      "bytes": 6175,
+      "sha256": "30ed1ba9546f9d81974452d786932bd54063c23338503045b4b1ce9eb31e2a9b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv": {
+      "bytes": 10465,
+      "sha256": "a5a62b158671b4500cac88bf1a7d66cfb7f44cf74cbe49d4e865aebf397abbca"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+      "bytes": 8052,
+      "sha256": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv": {
+      "bytes": 25862,
+      "sha256": "8d753b5e0e28b5f8bbbbdfdfe3b8894808e068068f44f57fa1b77cdec8a743eb"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv": {
+      "bytes": 2365,
+      "sha256": "1c60a777659e7dea8ba1e13ed9d76ac0e6df544a9c70ccc7327d0e20c0fba5a9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": {
+      "bytes": 30273,
+      "sha256": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv": {
+      "bytes": 22935,
+      "sha256": "653a0eebffff3724312847baf64c5eb188afdaea50ca3b2acb6d4e6e1e888339"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+      "bytes": 10507,
+      "sha256": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+      "bytes": 3760,
+      "sha256": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": {
+      "bytes": 16277,
+      "sha256": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_rope_raw_ram.sv": {
+      "bytes": 1026,
+      "sha256": "d8b9f6c8229af472f8d69858f9412cbcd58991f58b4f4fb2feb508fd5d0b0e21"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_scratch_ram.sv": {
+      "bytes": 1168,
+      "sha256": "dbf09b83baf263397db18970535e41c8c3ab487e9f8926ca8a8740b58f65f901"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector128_ram.sv": {
+      "bytes": 1028,
+      "sha256": "9282e788fc641f15f225986738a8a9d605c892b210e060763622026a5b05310a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector256_ram.sv": {
+      "bytes": 1108,
+      "sha256": "0767c4a1c69432f9537385223101d2e6d69a86259313ed9a27cff10cb9ccff57"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": {
+      "bytes": 11169,
+      "sha256": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv": {
+      "bytes": 2974,
+      "sha256": "9e033db09b614f43999a94692d0f19a7ec58845dc65963d2e37a0e9d134bf7af"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": {
+      "bytes": 17671,
+      "sha256": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_vector_normalize0/rtl/board1_fixed_vector_rne_shift_iterative.sv": {
+      "bytes": 5892,
+      "sha256": "22159952c558c41366eee3abc6f0932867e482a94bfde16d7f26f0a3228fd05b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh": {
+      "bytes": 33280,
+      "sha256": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+      "bytes": 8056,
+      "sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+      "bytes": 1353,
+      "sha256": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+      "bytes": 25459,
+      "sha256": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/product8_timing_successor1/rtl/board1_gowin_ddr3_raw_controller_shell.sv": {
+      "bytes": 9879,
+      "sha256": "eda70d4807b7312af6acf8bdfca683fe2d97d2c74f4e4c9e400e05644b1b18c0"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_ddr_locked_auth_watchdog_cdc.sv": {
+      "bytes": 26322,
+      "sha256": "d30b40d79c02c03f1b6b159054b3ee7403985752763aa332fe86ca4fbfb11e37"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_private_ddr_lock_bridge.sv": {
+      "bytes": 22739,
+      "sha256": "71ecc05bad160b500ec2564dcbed62de196972d1b10673a1452af7049325b818"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_qspi_image_stream.sv": {
+      "bytes": 15141,
+      "sha256": "e871d8d5d4d29e6a58a5569f720414e4d2a915a28b8e42738b13a0173cf3740c"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_qspi_async_word_fifo4.sv": {
+      "bytes": 4935,
+      "sha256": "ddd1611a5e77139ae4d1a3c0f4c61c2efba97bf1123ac0541766bd992a708e04"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": {
+      "bytes": 3033,
+      "sha256": "3373d3a7dd46ab2ff632f24b56e93c0556d5963ff2871bcde57c98168f939914"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_endpoint_fault_cdc.sv": {
+      "bytes": 2045,
+      "sha256": "84c61af4e4d836d295f1c43b92456576990733d0247102cd632433a92ef063b0"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_ddr_preboard_locked_boundary.sv": {
+      "bytes": 11586,
+      "sha256": "58760e39d6d82070f595b2b9d93d7116bc8864d4b0abc572cb2e2fc5fceaa8e9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_qspi_read03_master.sv": {
+      "bytes": 8909,
+      "sha256": "409e8862d850ef398ff1dbf38c40be63ffbe94462b2ca3184fb421b4f4367607"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_semantic_image_auth_compact.sv": {
+      "bytes": 7755,
+      "sha256": "0b35dc658c3d87a09777a257c994d9f5273bf287a73eb669f9de4132138c6e98"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/shared_projection_scale0/rtl/board1_shared_projection_scale_engine.sv": {
+      "bytes": 26128,
+      "sha256": "443d16724abe6999af5af35c3685c8d5ef45b707cc1af6dd4514a5beefac209f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/unified_dsp0/rtl/board1_unified_projection_head_mul_exact.sv": {
+      "bytes": 7148,
+      "sha256": "ccf15c1ad0f5bef293a44e89ae56fb9fd6bf8382205d7b12bac472ad2fa295d2"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv": {
+      "bytes": 7882,
+      "sha256": "21c3ebc878f36c7260bf203f78174584d0c3e0ce18546966707ead45a0631b83"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": {
+      "bytes": 3071,
+      "sha256": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": {
+      "bytes": 1502,
+      "sha256": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": {
+      "bytes": 12541,
+      "sha256": "13551d6d3cdffe60dbfa4ed094bad5fb92b7648604dca8f6a98f1f0d8f27f84b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/handoff.sv": {
+      "bytes": 8824,
+      "sha256": "25f6455dd70ccf92107184fa7f166b9ff1dc33018aa867d4a0275ace72e34366"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/mapper_portable.sv": {
+      "bytes": 4485,
+      "sha256": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/metadata192.memh": {
+      "bytes": 114072,
+      "sha256": "1535aa2d84de71c736b71e40694940f1b291dfd1db6c9f02d10b8605552ccdb9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": {
+      "bytes": 36873,
+      "sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/normalizer_pipeline.sv": {
+      "bytes": 57551,
+      "sha256": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/product.gprj": {
+      "bytes": 10225,
+      "sha256": "38538d928d20a6d5f9914a0786e04366277dca5e6dfca27812d49db530deec71"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/production_sources.f": {
+      "bytes": 5782,
+      "sha256": "2efa4055e6c9c2085462462a44aeb007dd6c75f75283c23c963723717bd8c09d"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/reset.sv": {
+      "bytes": 930,
+      "sha256": "8b7d02cbcc49fad8e017a71051afb61ec923aa6aaa37031866e00a44da3bc7a6"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/service.sv": {
+      "bytes": 15215,
+      "sha256": "f9c0dc77430a1d08d85e2f2ebd8dfb38f13e09e4659bdc053976a3f321048cd6"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/sha.sv": {
+      "bytes": 24176,
+      "sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/shared_token_probe.sv": {
+      "bytes": 16579,
+      "sha256": "c855d6621f4475b04fe662aa628e3d733d32fa2b15bf982ea8e7f269133da33e"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/thin_transport.sv": {
+      "bytes": 8284,
+      "sha256": "b85e08fa0dfe0aefdc37aa0343175f8ea614025392bce0e112d11f12172eb84e"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/top.sv": {
+      "bytes": 8411,
+      "sha256": "b5f5bfbb41ae83fa048df9502ce9b204d148130d16caaa9f38ba7c05b6ef10fb"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/project/uart_core.sv": {
+      "bytes": 3225,
+      "sha256": "315f5d20fa93a5f974eeef1b26220952c6f9ab4264cd6309a1de7cb35ea1832a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/baseline-v1/run.tcl": {
+      "bytes": 843,
+      "sha256": "0f17cd877087ee30c97ee102e758ac6625a1ac2790d8e9dc605c6a3c9fe51a5f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/encrypted-memory-v5-coordinate/CANDIDATE.json": {
+      "bytes": 61661,
+      "sha256": "33f3e98bba59bb1942f7f2245ea435c5ee3981df2cd295702e5d5fe84fdb4b8b"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/encrypted-memory-v5-coordinate/project/shared_token_probe.sv": {
+      "bytes": 22119,
+      "sha256": "e0cac396105faef3fd5e56799965c56c32aa0b94f8cd48443a2f8714d3c9c6c5"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/variants/encrypted-memory-v5-coordinate/project/uart_core.sv": {
+      "bytes": 3229,
+      "sha256": "a5f89b7a9036d135163412707d2cb915807919d4c3b824233a6c837214542c0f"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-kv-speed/tools/prepare_epoch_kv_pipeline_board.py": {
+      "bytes": 2370,
+      "sha256": "9d74d31281cc515a091224802a9294902e8ff3cb3750ece3fb7bc818657507d3"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-kv-speed/tools/prepare_epoch_latched_board.py": {
+      "bytes": 3088,
+      "sha256": "56b294b04f79ceb59682017cb2cfef8a8963f8a1d965668036803637b64875dc"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-stochastic/variant/long-context-v8-sha-two-round/project/official/ddr3_memory_interface.v": {
+      "bytes": 2238123,
+      "sha256": "d7cae5a16467ca35ee3f95411537344ae3702e1dba86a06571530e3dd0180c57"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-stochastic/variant/long-context-v8-sha-two-round/project/official/gowin_pll.v": {
+      "bytes": 992,
+      "sha256": "982ca6387f42086e88b4c858490eb00954a80a3284e0f07d959311d0975d7536"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-stochastic/variant/long-context-v8-sha-two-round/project/official/gowin_pll_mod.v": {
+      "bytes": 6081,
+      "sha256": "07398632b56749dbe52f6e5d739a526c7ca5e71c4060c7d062a64dada6e1a953"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-stochastic/variant/long-context-v8-sha-two-round/project/official/pll_init.v": {
+      "bytes": 6458,
+      "sha256": "502436115e507453e2c139a073f5b56484421311ef57088ce1a16140347957f5"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-weight-confidentiality/BOARD-ROUNDTRIP-AUTHORIZATION-2026-10-01.md": {
+      "bytes": 2273,
+      "sha256": "078541ca6b0eb336c28c201f6878d16037e222cc410d974e00f3dbf8a71345c9"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-weight-confidentiality/tools/check_encrypted_flash_layout.py": {
+      "bytes": 2357,
+      "sha256": "24865324432d69fde075fccf569354860f834532869aa7d4aafe9906c4ad4312"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-weight-confidentiality/tools/encrypted_board_stage.py": {
+      "bytes": 14171,
+      "sha256": "84e80b6168d617c2ada1879fabd055f58996df2887845a186b6d86c82e519624"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-weight-confidentiality/tools/encrypted_board_uart_kat.py": {
+      "bytes": 7979,
+      "sha256": "05a9c6bb104f94f635b7b0cfa4bd45588fb233b64f31e98afbbe0963dd1a26c6"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/vendor-installers/gowin/factory-backups/tang-mega-138k-2026-09-05/factory-flash-sram-read1.bin": {
+      "bytes": 16777216,
+      "sha256": "093ef4c2f4d0aaceff2b01a5e2b012a3ef36a02c1e36c1e962aebe3567be552a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/vendor-installers/gowin/factory-backups/tang-mega-138k-2026-09-05/factory-flash-sram-read1.bin.jsonl": {
+      "bytes": 1152,
+      "sha256": "a317f2d382e46be08d2ec294fd74b7710cee719609c063785a8fee5c0f473f05"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/vendor-installers/gowin/factory-backups/tang-mega-138k-2026-09-05/factory-flash-sram-read2.bin": {
+      "bytes": 16777216,
+      "sha256": "093ef4c2f4d0aaceff2b01a5e2b012a3ef36a02c1e36c1e962aebe3567be552a"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/vendor-installers/gowin/factory-backups/tang-mega-138k-2026-09-05/factory-flash-sram-read2.bin.jsonl": {
+      "bytes": 1152,
+      "sha256": "b5ae01168b9692e5be2120ef7bdf434275ae5c2480a88198970a5048d933c556"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/vendor-installers/gowin/programmer-1.9.12.03-2712-macos-arm64/Programmer/bin/data/spi/spi.ini": {
+      "bytes": 296,
+      "sha256": "7b3019cff501726f66baa9baeae3996c7e7eba4316805677e7fd8420a55b2f95"
+    },
+    "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/vendor-installers/gowin/programmer-1.9.12.03-2712-macos-arm64/Programmer/bin/programmer_cli": {
+      "bytes": 11414528,
+      "sha256": "41a967c1d18ec73b420801d52bf83ad40b92ca032683231d55a5ef158d523cfb"
+    },
+    "/opt/homebrew/Cellar/openfpgaloader/1.1.1/bin/openFPGALoader": {
+      "bytes": 3993648,
+      "sha256": "f880eb583695f8056566da308248ba539a1a1c4cabb6305c3d801acfd58f9e1b"
+    }
+  },
+  "timestamp_boundary": "generation_loop_validated_reply"
+}

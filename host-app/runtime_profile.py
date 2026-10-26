@@ -15,7 +15,7 @@ import sampling_protocol
 
 APP = Path(__file__).resolve().parent
 PROFILE = APP / 'local/board-profile.json'
-HARDWARE_INPUTS_SHA256 = '8955cde51f78b582612ca4ee61d146b6128a85a535b3d492d325a4168f77e334'
+HARDWARE_INPUTS_SHA256 = '4f4cbc54676e9d976af7358386c19d8befdab34d819de30e4fb3e42beb3362fd'
 VARIANTS = {
     'seeded-sampling': {
         'label': 'Seeded temperature sampling without K/V integrity',
@@ -28,7 +28,7 @@ VARIANTS = {
         'label': 'K/V protection + encrypted memory (public test keys)',
         'inventory': 'hardware-inputs-encrypted-memory.json',
         'hardware_root': 'variants/encrypted-memory/hardware',
-        'inputs_sha256': '840c12ce7d1a5886966aca73e7c44eb3e42b9ee07ab33adcb2de3d273125e262', 'input_files': 100,
+        'inputs_sha256': '3361bbe05cd8ea087553a674ef0b3bcf2071d5131ef0b2f84bff150a1a4ba86b', 'input_files': 100,
     },
     'baseline': {
         'label': 'Without K/V integrity checks',
@@ -39,7 +39,7 @@ VARIANTS = {
         'label': 'K/V integrity protection',
         'inventory': 'hardware-inputs-kv-protected.json',
         'hardware_root': 'variants/kv-protected/hardware',
-        'inputs_sha256': 'cfff67c4559b290287ea0c024f4782154fc0c27aa62bb3b264b2e5bf472ed7b2',
+        'inputs_sha256': 'e70e0053282779af8fd87a2fce6631919afbe7ee35f66b49876520c5c090f7b9',
         'input_files': 93,
     },
 }

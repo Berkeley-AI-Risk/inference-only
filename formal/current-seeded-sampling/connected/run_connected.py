@@ -87,12 +87,14 @@ def instance(source, module, name):
 
 
 def derive():
+    reference = provider.reference_public_root()
     checked = {}
     def read(path, expected=None):
         assert path.is_file() and not path.is_symlink(), path
         raw = path.read_bytes()
         if expected is not None: assert sha(raw) == expected, path
-        checked[str(path.relative_to(PUBLIC))] = sha(raw)
+        origin = reference if path.is_relative_to(reference) else PUBLIC
+        checked[str(path.relative_to(origin))] = sha(raw)
         return raw
     inventory = provider.source_inputs()
     production = {}
@@ -101,9 +103,9 @@ def derive():
         if native.startswith('project/'):
             production[native[len('project/'):]] = raw
     image_raw = read(provider.IMAGE_PATH, IMAGE)
-    baseline_inventory = json.loads(read(PUBLIC / 'host-app/hardware-inputs.json'))
+    baseline_inventory = json.loads(read(reference / 'host-app/hardware-inputs.json'))
     def packaged(name):
-        return read(PUBLIC / name, PUBLIC_PINS[name])
+        return read(reference / name, PUBLIC_PINS[name])
     for name in PUBLIC_PINS: packaged(name)
     files, compile_sources, origins = {}, [], {}
     def add(name):
@@ -186,8 +188,8 @@ def derive():
     assert len(cuts) == 37
     # Assert the declaration and binding boundary matches the source used by
     # the baseline proof byte-for-byte. The same 37 outputs remain arbitrary.
-    old_core = read(PUBLIC / 'hardware/project' / core_path, baseline_inventory['project/' + core_path]).decode()
-    old_layer = read(PUBLIC / 'hardware/project' / layer_path, baseline_inventory['project/' + layer_path]).decode()
+    old_core = read(reference / 'hardware/project' / core_path, baseline_inventory['project/' + core_path]).decode()
+    old_layer = read(reference / 'hardware/project' / layer_path, baseline_inventory['project/' + layer_path]).decode()
     _, old_layer_bindings = instance(old_core, LAYER_NAME, 'u_six_layers')
     assert ports(old_layer) == layer_ports and old_layer_bindings == layer_bindings
     core = core.replace(layer_instance, '\n'.join('    assign ' + net + ' = ' + row['verification_input'] + ';'
@@ -303,7 +305,7 @@ def main():
     files['runner.py'] = Path(__file__).read_bytes()
     for basename in ('core-settings-monitor.inc.sv', 'connection-settings-monitor.inc.sv'):
         files[basename] = (HERE / basename).read_bytes()
-    files['baseline-driver.py'] = (PUBLIC / 'formal/composed-shell/run_proof.py').read_bytes()
+    files['baseline-driver.py'] = (provider.reference_public_root() / 'formal/composed-shell/run_proof.py').read_bytes()
     inputs = dict(binding, files={name: {'sha256': sha(data), 'bytes': len(data)} for name, data in files.items()},
         induction_length=k, solvers=solvers, solver_timeout_seconds=args.timeout,
         environment='Reset low in base states 0 and 1 only; all 37 private semantic-layer output cuts and all external service/lock/fault inputs unrestricted; no induction reset constraint. Original FORMAL blocks disabled; original simulation-only X checks excluded by SYNTHESIS.')

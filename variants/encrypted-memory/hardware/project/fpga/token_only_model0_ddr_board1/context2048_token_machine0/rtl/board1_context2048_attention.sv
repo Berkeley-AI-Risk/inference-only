@@ -3,10 +3,11 @@
 
 // Private fixed-geometry causal GQA engine for the selected model.
 //
-// Geometry is not programmable: 4 query heads, 2 KV heads, head dimension
-// 64, context limit 2,048, and q_head -> kv_head is q_head[1].  The only
-// multiplier datapath is one already-audited native 16x16 dynamic lane.  It
-// is time-shared between Q*K score dots and probability*V dots.
+// Geometry is fixed: 4 query heads, 2 KV heads, head dimension64, context
+// limit2048. Four head-banked workspaces share each K/V row across its Q pair.
+// Eight exact coordinate lanes accelerate QK/PV; private prefix
+// summaries replace exponent-only V scans. This mutable experimental variant
+// is not the qualified image and requires new numerical/control/board tests.
 // The cache seam below is an integration-private, derived-address client; it
 // is not a public memory or matrix interface and must remain below the fixed
 // model controller.
@@ -23,6 +24,13 @@ module board1_context2048_attention #(
     input  wire                    start_valid_i,
     output logic                   start_ready_o,
     input  wire [10:0]             fixed_position_i,
+    input  wire [2:0]              fixed_layer_i,
+    // Accepted private KV staging/commit observations; no transport changes.
+    input wire summary_stage_begin_i, summary_stage_value_valid_i,
+    input wire [6:0] summary_stage_coordinate_i,
+    input wire signed [15:0] summary_stage_value_i,
+    input wire signed [7:0] summary_stage_exponent_i,
+    input wire summary_pending_complete_i, summary_commit_i,
     input  wire signed [7:0]       query_exponent_i,
 
     // Four accepted beats, in hardwired query-head order 0,1,2,3.
@@ -163,7 +171,8 @@ module board1_context2048_attention #(
         ST_OUTPUT_READ         = 6'd37,
         ST_ALIGN8_WAIT         = 6'd38,
         ST_EXP8_WAIT           = 6'd39,
-        ST_NORM_CAPTURE        = 6'd40
+        ST_NORM_CAPTURE        = 6'd40,
+        ST_ACCUMULATOR_READ    = 6'd41
     } state_t;
 
     localparam logic [2:0] SHIFT_CLIENT_VALUE_ALIGN       = 3'd0;
@@ -190,8 +199,8 @@ module board1_context2048_attention #(
     // assignment.  Narrow simulation-only validity state below proves that a
     // complete deterministic write precedes every architecturally live read.
     logic [1023:0] query_buffer_q;
-    // The 45 live workspace bits occupy three explicit synchronous 2048x18
-    // banks.  Every consumer first enters ST_WORKSPACE_READ and only consumes
+    // Four independent 45-bit workspaces occupy three synchronous 8192x18
+    // banks addressed by {query_head, context_position}.  Every consumer first enters ST_WORKSPACE_READ and only consumes
     // the registered words on the following cycle.  All three banks are
     // overwritten together at a later edge, so no result depends on a block
     // RAM read-during-write mode.
@@ -199,8 +208,32 @@ module board1_context2048_attention #(
     logic [17:0] workspace_bank1_read_data;
     logic [17:0] workspace_bank2_read_data;
     state_t workspace_read_return_q;
-    logic signed [37:0] value_accumulator_q [0:63];
-    logic signed [15:0] aligned_value_q [0:63];
+    // One synchronous read port per eight-lane bank. Only the current tagged
+    // group is exposed; no production aliases read every stored row.
+    wire [303:0] accumulator_read_group;
+    wire [4:0] accumulator_read_tag;
+    wire accumulator_read_valid, accumulator_memory_fault;
+    logic accumulator_read_enable;
+    logic [4:0] accumulator_read_address;
+    wire [4:0] accumulator_current_address={attention_head_q,coordinate_q[5:3]};
+    wire accumulator_write_enable;
+    wire [303:0] accumulator_write_group;
+    logic [31:0] accumulator_initialized_groups_q;
+    wire accumulator_consume=(state_q==ST_VALUE_ACCUMULATE) ||
+        (state_q==ST_VALUE_DIV_REQUEST) || (state_q==ST_VALUE_DIV_WAIT);
+    wire accumulator_initialization_fault=
+        ((state_q==ST_VALUE_ZERO) && accumulator_initialized_groups_q[accumulator_current_address]) ||
+        ((state_q==ST_VALUE_REQUEST) && !(&accumulator_initialized_groups_q));
+    wire accumulator_tag_fault=accumulator_consume &&
+        (!accumulator_read_valid || accumulator_read_tag!=accumulator_current_address ||
+         !(&accumulator_initialized_groups_q[attention_head_q*8 +:8]));
+    wire signed [37:0] accumulator_selected_lane=$signed(
+        accumulator_read_group[coordinate_q[2:0]*38 +:38]);
+    logic [127:0] aligned_value_groups_q [0:7];
+    wire [127:0] aligned_value_selected_group =
+        aligned_value_groups_q[coordinate_q[5:3]];
+    wire signed [15:0] aligned_value_at_coordinate =
+        $signed(aligned_value_selected_group[coordinate_q[2:0]*16 +: 16]);
     localparam logic [1:0] CAPTURE_NONE  = 2'd0;
     localparam logic [1:0] CAPTURE_KEY   = 2'd1;
     localparam logic [1:0] CAPTURE_VALUE = 2'd2;
@@ -209,8 +242,10 @@ module board1_context2048_attention #(
     logic signed [7:0] captured_value_exponent_q;
     logic signed [7:0] value_group_exponent_q [0:1];
     logic [1023:0] result_buffer_q;
-    logic signed [7:0] value_align_candidate_q;
-    logic value_align_any_nonzero_q;
+    logic signed [7:0] value_align_candidate_by_kv_q [0:1];
+    wire signed [7:0] value_align_candidate_q=value_align_candidate_by_kv_q[attention_head_q[1]];
+    logic value_align_any_by_kv_q [0:1];
+    wire value_align_any_nonzero_q=value_align_any_by_kv_q[attention_head_q[1]];
     logic signed [7:0] value_align_exponent_q;
     logic signed [7:0] score_exponent_q;
     logic signed [15:0] score_max_q;
@@ -225,12 +260,13 @@ module board1_context2048_attention #(
     logic signed [7:0] pending_score_exponent_q;
     logic [12:0] exp_index_q;
     logic [2:0] shift_client_q;
-    logic signed [15:0] query_bram_read_data;
+    wire [127:0] query_bram_read_group;
+    wire signed [15:0] query_bram_read_data=$signed(query_bram_read_group[15:0]);
     logic signed [17:0] output_bram_read_data;
     state_t output_read_return_q;
     logic query_bram_read_enable;
     logic query_bram_write_enable;
-    logic [7:0] query_bram_read_address;
+    logic [4:0] query_bram_read_address;
     logic [7:0] query_bram_write_address;
     logic signed [15:0] query_bram_write_data;
     logic output_bram_read_enable;
@@ -244,19 +280,22 @@ module board1_context2048_attention #(
     logic fault_cache_outstanding_q;
     logic simulation_x_fault;
     logic exp_range_fault;
+    wire summary_read_valid, summary_fault;
+    wire signed [7:0] summary_exponent0, summary_exponent1;
 
 `ifndef SYNTHESIS
+    logic [303:0] accumulator_shadow_q [0:31];
     localparam logic [2:0] WORKSPACE_INVALID = 3'd0;
     localparam logic [2:0] WORKSPACE_RAW     = 3'd1;
     localparam logic [2:0] WORKSPACE_SCORE   = 3'd2;
     localparam logic [2:0] WORKSPACE_EXP     = 3'd3;
     localparam logic [2:0] WORKSPACE_PROB    = 3'd4;
-    logic [2:0] workspace_phase_q [0:2047];
-    logic signed [36:0] workspace_raw_score_shadow_q [0:2047];
-    logic signed [7:0] workspace_raw_exponent_shadow_q [0:2047];
-    logic signed [15:0] workspace_score_shadow_q [0:2047];
-    logic [30:0] workspace_exp_shadow_q [0:2047];
-    logic [15:0] workspace_probability_shadow_q [0:2047];
+    logic [2:0] workspace_phase_q [0:8191];
+    logic signed [36:0] workspace_raw_score_shadow_q [0:8191];
+    logic signed [7:0] workspace_raw_exponent_shadow_q [0:8191];
+    logic signed [15:0] workspace_score_shadow_q [0:8191];
+    logic [30:0] workspace_exp_shadow_q [0:8191];
+    logic [15:0] workspace_probability_shadow_q [0:8191];
     localparam logic [1:0] OUTPUT_INVALID = 2'd0;
     localparam logic [1:0] OUTPUT_RAW     = 2'd1;
     localparam logic [1:0] OUTPUT_NORMAL = 2'd2;
@@ -264,13 +303,14 @@ module board1_context2048_attention #(
     logic signed [16:0] output_raw_shadow_q [0:255];
     logic signed [15:0] output_normal_shadow_q [0:255];
     logic workspace_read_valid_q;
-    logic [10:0] workspace_read_address_q;
+    logic [12:0] workspace_read_address_q;
     logic output_read_valid_q;
     logic [7:0] output_read_address_q;
     logic overwrite_query_full_q;
     logic overwrite_key_full_q;
     logic overwrite_value_full_q;
-    logic overwrite_accumulators_full_q;
+    logic [3:0] overwrite_accumulator_heads_q;
+    wire overwrite_accumulators_full_q=overwrite_accumulator_heads_q[attention_head_q];
     logic [63:0] overwrite_result_lanes_q;
 `endif
 
@@ -303,14 +343,15 @@ module board1_context2048_attention #(
     wire interface_live = rst_n && !clear_i && model_lock_i &&
                           !upstream_fault_i && !range_fault_o &&
                           !simulation_x_fault && !exp_range_fault &&
-                          !capture_kind_fault &&
+                          !capture_kind_fault && !summary_fault &&
+                          !accumulator_memory_fault && !accumulator_tag_fault &&
+                          !accumulator_initialization_fault &&
                           (compute_cycles_q < MAX_COMPUTE_CYCLES);
 
     wire workspace_bram_read_enable = interface_live &&
                                       (state_q == ST_WORKSPACE_READ);
-    wire [10:0] workspace_bram_read_address =
-        (workspace_read_return_q == ST_VALUE_ACCUMULATE)
-            ? scan_position_q : element_q;
+    wire [12:0] workspace_bram_read_address = {attention_head_q,
+        ((workspace_read_return_q == ST_VALUE_ACCUMULATE) ? scan_position_q : element_q)};
     wire signed [36:0] workspace_raw_score_at_element = $signed(
         {workspace_bank2_read_data[0], workspace_bank1_read_data,
          workspace_bank0_read_data});
@@ -324,7 +365,7 @@ module board1_context2048_attention #(
         workspace_bank0_read_data[15:0]);
 
     logic workspace_bram_write_enable;
-    logic [10:0] workspace_bram_write_address;
+    logic [12:0] workspace_bram_write_address;
     logic [17:0] workspace_bank0_write_data;
     logic [17:0] workspace_bank1_write_data;
     logic [17:0] workspace_bank2_write_data;
@@ -347,51 +388,85 @@ module board1_context2048_attention #(
         busy_o = (state_q != ST_IDLE) && (state_q != ST_FAULT);
     end
 
-    // Two immutable-role private lanes. The value path no longer feeds
-    // the score multiplier/adder/writeback path through a shared input mux.
-    // Prime coordinate zero, then prefetch Q/K[n+1] while consuming Q/K[n].
-    // The synchronous query RAM and key register update on the same edge.
-    // No arithmetic reassociation, extra multiplier, cache request or port.
-    wire score_prefetch = (state_q == ST_SCORE_ACCUMULATE) ||
-        ((state_q == ST_SCORE_QUERY_USE) && (coordinate_q != 6'd63));
-    wire [5:0] score_prefetch_coordinate = (state_q == ST_SCORE_QUERY_USE)
-        ? coordinate_q + 6'd1 : coordinate_q;
-    logic signed [15:0] score_key_coordinate_q;
-    always_ff @(posedge clk) begin
-        if (rst_n && score_prefetch)
-            score_key_coordinate_q <= $signed(
-                captured_cache_vector_q[score_prefetch_coordinate*16 +: 16]);
+    // Eight adjacent coordinates per beat. Products are individually widened
+    // before a balanced reduction; all 64 legal 16-bit products fit signed37,
+    // so grouping cannot change the original exact integer dot or rounding.
+    wire score_prefetch=(state_q==ST_SCORE_ACCUMULATE) ||
+        ((state_q==ST_SCORE_QUERY_USE) && coordinate_q!=6'd56);
+    wire [5:0] score_prefetch_coordinate=(state_q==ST_SCORE_QUERY_USE) ?
+        coordinate_q+6'd8 : coordinate_q;
+    logic [127:0] score_key_group_q;
+    always_ff @(posedge clk) if(rst_n && score_prefetch)
+        score_key_group_q<=captured_cache_vector_q[score_prefetch_coordinate[5:3]*128 +:128];
+    wire signed [15:0] score_key_coordinate_q=$signed(score_key_group_q[15:0]);
+    wire signed [31:0] score_products [0:7];
+    wire signed [31:0] value_products [0:7];
+    wire signed [38:0] score_wide [0:7];
+    wire signed [38:0] score_pairs [0:3];
+    wire signed [38:0] score_quads [0:1];
+    wire signed [38:0] score_group_sum=score_quads[0]+score_quads[1];
+    wire signed [38:0] value_accumulator_next_group [0:7];
+    wire signed [31:0] score_lane_product=score_products[0];
+    wire signed [31:0] selected_lane_product=value_products[0];
+    genvar mac;
+    generate for(mac=0;mac<8;mac=mac+1)begin:g_mac8
+        board1_unified_projection_head_dynamic_mul_exact u_score_lane (
+            .mode_i(2'd3),.activation_i($signed(query_bram_read_group[mac*16 +:16])),
+            .dynamic_operand_i($signed(score_key_group_q[mac*16 +:16])),
+            .direct_weight_i(10'sd0),.coarse_weight0_i(4'sd0),.coarse_weight1_i(4'sd0),
+            .residual_weight0_i(6'd0),.residual_weight1_i(6'd0),
+            .product0_o(score_products[mac]),.product1_o());
+        board1_unified_projection_head_dynamic_mul_exact u_value_lane (
+            .mode_i(2'd3),.activation_i(workspace_probability_at_scan),
+            .dynamic_operand_i($signed(aligned_value_selected_group[mac*16 +:16])),
+            .direct_weight_i(10'sd0),.coarse_weight0_i(4'sd0),.coarse_weight1_i(4'sd0),
+            .residual_weight0_i(6'd0),.residual_weight1_i(6'd0),
+            .product0_o(value_products[mac]),.product1_o());
+        assign score_wide[mac]={{7{score_products[mac][31]}},score_products[mac]};
+        assign value_accumulator_next_group[mac]=
+            {accumulator_read_group[mac*38+37],accumulator_read_group[mac*38 +:38]}+
+            {{7{value_products[mac][31]}},value_products[mac]};
+        assign accumulator_write_group[mac*38 +:38]=(state_q==ST_VALUE_ZERO) ?
+            38'd0 : value_accumulator_next_group[mac][37:0];
     end
-    wire signed [31:0] score_lane_product;
-    wire signed [31:0] score_lane_unused_product;
-    board1_unified_projection_head_dynamic_mul_exact u_score_lane (
-        .mode_i(2'd3),
-        .activation_i(query_bram_read_data),
-        .dynamic_operand_i(score_key_coordinate_q),
-        .direct_weight_i(10'sd0),
-        .coarse_weight0_i(4'sd0),
-        .coarse_weight1_i(4'sd0),
-        .residual_weight0_i(6'd0),
-        .residual_weight1_i(6'd0),
-        .product0_o(score_lane_product),
-        .product1_o(score_lane_unused_product)
-    );
-    wire signed [15:0] lane_activation = workspace_probability_at_scan;
-    wire signed [15:0] lane_dynamic_operand = aligned_value_q[coordinate_q];
-    wire signed [31:0] selected_lane_product;
-    wire signed [31:0] lane_unused_product;
-    board1_unified_projection_head_dynamic_mul_exact u_lane (
-        .mode_i(2'd3),
-        .activation_i(lane_activation),
-        .dynamic_operand_i(lane_dynamic_operand),
-        .direct_weight_i(10'sd0),
-        .coarse_weight0_i(4'sd0),
-        .coarse_weight1_i(4'sd0),
-        .residual_weight0_i(6'd0),
-        .residual_weight1_i(6'd0),
-        .product0_o(selected_lane_product),
-        .product1_o(lane_unused_product)
-    );
+    for(mac=0;mac<4;mac=mac+1)begin:g_score_pairs
+        assign score_pairs[mac]=score_wide[2*mac]+score_wide[2*mac+1];
+    end
+    for(mac=0;mac<2;mac=mac+1)begin:g_score_quads
+        assign score_quads[mac]=score_pairs[2*mac]+score_pairs[2*mac+1];
+    end endgenerate
+
+    assign accumulator_write_enable=interface_live &&
+        ((state_q==ST_VALUE_ZERO) || (state_q==ST_VALUE_ACCUMULATE));
+    always_comb begin
+        accumulator_read_enable=1'b0;
+        accumulator_read_address=accumulator_current_address;
+        if(interface_live)begin
+            if(state_q==ST_WORKSPACE_READ && workspace_read_return_q==ST_VALUE_ACCUMULATE)begin
+                accumulator_read_enable=1'b1;
+                accumulator_read_address={attention_head_q,3'd0};
+            end else if(state_q==ST_VALUE_ACCUMULATE && coordinate_q!=6'd56)begin
+                accumulator_read_enable=1'b1;
+                accumulator_read_address={attention_head_q,coordinate_q[5:3]+3'd1};
+            end else if(state_q==ST_ACCUMULATOR_READ)accumulator_read_enable=1'b1;
+        end
+    end
+    always_ff @(posedge clk or negedge rst_n)begin
+        if(!rst_n)accumulator_initialized_groups_q<=0;
+        else if(clear_i || upstream_fault_i || range_fault_o || !model_lock_i ||
+                ((state_q==ST_IDLE) && start_valid_i && start_ready_o))
+            accumulator_initialized_groups_q<=0;
+        else if(accumulator_write_enable && state_q==ST_VALUE_ZERO)
+            accumulator_initialized_groups_q[accumulator_current_address]<=1'b1;
+    end
+    board1_context2048_attention_accumulator8 u_accumulator_bram (
+        .clk(clk),.rst_n(rst_n),
+        .clear_i(clear_i || !model_lock_i || upstream_fault_i || range_fault_o),
+        .read_enable_i(accumulator_read_enable),.read_address_i(accumulator_read_address),
+        .read_data_o(accumulator_read_group),.read_valid_o(accumulator_read_valid),
+        .read_tag_o(accumulator_read_tag),.fault_o(accumulator_memory_fault),
+        .write_enable_i(accumulator_write_enable),.write_address_i(accumulator_current_address),
+        .write_data_i(accumulator_write_group));
 
     genvar generated_lane;
 
@@ -446,11 +521,8 @@ module board1_context2048_attention #(
         value_align_any_next_comb ? value_align_candidate_next_comb : 8'sd0;
     wire signed [38:0] score_accumulator_next_comb =
         {{1{score_accumulator_q[37]}}, score_accumulator_q} +
-        {{7{score_lane_product[31]}}, score_lane_product};
-    wire signed [38:0] value_accumulator_next_comb =
-        {{1{value_accumulator_q[coordinate_q][37]}},
-         value_accumulator_q[coordinate_q]} +
-        {{7{selected_lane_product[31]}}, selected_lane_product};
+        score_group_sum;
+    wire signed [38:0] value_accumulator_next_comb=value_accumulator_next_group[0];
     wire signed [8:0] raw_score_exponent_comb =
         $signed(query_exponent_q) +
         $signed(private_cache_response_key_exponent_i) - 9'sd3;
@@ -561,7 +633,7 @@ module board1_context2048_attention #(
 
     always_comb begin
         query_bram_read_enable = interface_live && score_prefetch;
-        query_bram_read_address = {attention_head_q, score_prefetch_coordinate};
+        query_bram_read_address = {attention_head_q, score_prefetch_coordinate[5:3]};
         query_bram_write_enable = interface_live &&
                                   (state_q == ST_QUERY_STORE);
         query_bram_write_address = {query_beat_q, coordinate_q};
@@ -590,10 +662,21 @@ module board1_context2048_attention #(
                shift_response_result[15:0]};
     end
 
-    board1_context2048_attention_vector256x16 u_query_bram (
+    board1_attention_value_fit_prefix u_value_prefix (
+        .clk(clk),.rst_n(rst_n),.clear_i(clear_i),.model_lock_i(model_lock_i),
+        .upstream_fault_i(upstream_fault_i || range_fault_o),
+        .stage_begin_i(summary_stage_begin_i),.stage_value_valid_i(summary_stage_value_valid_i),
+        .layer_i(fixed_layer_i),.position_i(fixed_position_i),
+        .coordinate_i(summary_stage_coordinate_i),.value_i(summary_stage_value_i),
+        .exponent_i(summary_stage_exponent_i),.pending_complete_i(summary_pending_complete_i),
+        .read_i(start_valid_i && start_ready_o),.commit_i(summary_commit_i),
+        .read_valid_o(summary_read_valid),.exponent0_o(summary_exponent0),
+        .exponent1_o(summary_exponent1),.fault_o(summary_fault));
+
+    board1_context2048_attention_query8 u_query_bram (
         .clk(clk), .read_enable_i(query_bram_read_enable),
         .read_address_i(query_bram_read_address),
-        .read_data_o(query_bram_read_data),
+        .read_data_o(query_bram_read_group),
         .write_enable_i(query_bram_write_enable),
         .write_address_i(query_bram_write_address),
         .write_data_i(query_bram_write_data)
@@ -677,8 +760,7 @@ module board1_context2048_attention #(
             div_request_denominator = {22'd0, softmax_denominator_q};
         end else begin
             div_request_numerator =
-                {{26{value_accumulator_q[coordinate_q][37]}},
-                 value_accumulator_q[coordinate_q]};
+                {{26{accumulator_selected_lane[37]}},accumulator_selected_lane};
             div_request_denominator = 64'd32767;
         end
         div_response_ready = (state_q == ST_PROBABILITY_WAIT) ||
@@ -699,18 +781,18 @@ module board1_context2048_attention #(
 
     always_comb begin
         workspace_bram_write_enable = 1'b0;
-        workspace_bram_write_address = element_q;
+        workspace_bram_write_address = {attention_head_q, element_q};
         workspace_bank0_write_data = 18'd0;
         workspace_bank1_write_data = 18'd0;
         workspace_bank2_write_data = 18'd0;
 
         case (state_q)
             ST_SCORE_QUERY_USE: begin
-                if (interface_live && (coordinate_q == 6'd63) &&
+                if (interface_live && (coordinate_q == 6'd56) &&
                     (score_accumulator_next_comb >= SCORE_MINIMUM_39) &&
                     (score_accumulator_next_comb <= SCORE_MAXIMUM_39)) begin
                     workspace_bram_write_enable = 1'b1;
-                    workspace_bram_write_address = scan_position_q;
+                    workspace_bram_write_address = {attention_head_q, scan_position_q};
                     workspace_bank0_write_data =
                         score_accumulator_next_comb[17:0];
                     workspace_bank1_write_data =
@@ -819,7 +901,55 @@ module board1_context2048_attention #(
         end
     end
 
-    integer sequential_lane;
+    always_ff @(posedge clk) begin
+        if (!rst_n) begin
+        end else if (clear_i) begin
+        end else if (simulation_x_fault || upstream_fault_i || exp_range_fault ||
+                     capture_kind_fault || summary_fault || accumulator_memory_fault ||
+                     accumulator_tag_fault || accumulator_initialization_fault ||
+                     ((state_q != ST_IDLE) && !model_lock_i) ||
+                     ((state_q != ST_IDLE) &&
+                      (compute_cycles_q >= MAX_COMPUTE_CYCLES))) begin
+        end else if (state_q == ST_ALIGN8_WAIT) begin
+            if (align8_response_valid) begin
+                if (align8_response_fault) begin
+                end else begin
+                            aligned_value_groups_q[coordinate_q[5:3]] <=
+                                align8_response_vector;
+                end
+            end
+        end
+    end
+
+    // Private traversal data, never a transaction/publication permission.
+    // Healthy consumption edges retain the original coordinate sequence.
+    // An abort may change this counter on its last edge, while the unchanged
+    // FSM/fault/write/request masks revoke work. Reset/CLEAR and each next
+    // phase's entry establish zero before the coordinate becomes live again.
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) coordinate_q <= 6'd0;
+        else if (clear_i) coordinate_q <= 6'd0;
+        else begin
+            case (state_q)
+                ST_IDLE, ST_QUERY_LOAD, ST_VALUE_EXP_WAIT, ST_SCORE_WAIT,
+                ST_VALUE_WAIT, ST_PROBABILITY_WAIT, ST_SHIFT_WAIT,
+                ST_NEXT_HEAD, ST_RESULT, ST_CLEAR_DRAIN:
+                    coordinate_q <= 6'd0;
+                ST_QUERY_STORE, ST_RESULT_CAPTURE:
+                    coordinate_q <= (coordinate_q == 6'd63) ? 6'd0 : coordinate_q + 1'b1;
+                ST_SCORE_QUERY_USE, ST_VALUE_ZERO, ST_VALUE_ACCUMULATE:
+                    coordinate_q <= (coordinate_q == 6'd56) ? 6'd0 : coordinate_q + 6'd8;
+                ST_EXP8_WAIT, ST_ALIGN8_WAIT:
+                    if (align8_response_valid)
+                        coordinate_q <= (coordinate_q == 6'd56) ? 6'd0 : coordinate_q + 6'd8;
+                ST_VALUE_DIV_WAIT:
+                    if (div_response_valid && coordinate_q != 6'd63)
+                        coordinate_q <= coordinate_q + 1'b1;
+                default: begin end
+            endcase
+        end
+    end
+
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             state_q <= ST_IDLE;
@@ -829,11 +959,10 @@ module board1_context2048_attention #(
             attention_head_q <= 2'd0;
             scan_position_q <= 11'd0;
             element_q <= 11'd0;
-            coordinate_q <= 6'd0;
             result_beat_q <= 2'd0;
             compute_cycles_q <= 32'd0;
-            value_align_candidate_q <= -8'sd32;
-            value_align_any_nonzero_q <= 1'b0;
+            value_align_candidate_by_kv_q[0]<=-8'sd32; value_align_candidate_by_kv_q[1]<=-8'sd32;
+            value_align_any_by_kv_q[0]<=1'b0; value_align_any_by_kv_q[1]<=1'b0;
             value_align_exponent_q <= 8'sd0;
             score_exponent_q <= 8'sd0;
             score_max_q <= 16'sd0;
@@ -870,11 +999,10 @@ module board1_context2048_attention #(
             attention_head_q <= 2'd0;
             scan_position_q <= 11'd0;
             element_q <= 11'd0;
-            coordinate_q <= 6'd0;
             result_beat_q <= 2'd0;
             compute_cycles_q <= 32'd0;
-            value_align_candidate_q <= -8'sd32;
-            value_align_any_nonzero_q <= 1'b0;
+            value_align_candidate_by_kv_q[0]<=-8'sd32; value_align_candidate_by_kv_q[1]<=-8'sd32;
+            value_align_any_by_kv_q[0]<=1'b0; value_align_any_by_kv_q[1]<=1'b0;
             value_align_exponent_q <= 8'sd0;
             score_exponent_q <= 8'sd0;
             score_max_q <= 16'sd0;
@@ -896,7 +1024,8 @@ module board1_context2048_attention #(
             value_group_exponent_q[1] <= 8'sd0;
             range_fault_o <= 1'b0;
         end else if (simulation_x_fault || upstream_fault_i || exp_range_fault ||
-                     capture_kind_fault ||
+                     capture_kind_fault || summary_fault || accumulator_memory_fault ||
+                     accumulator_tag_fault || accumulator_initialization_fault ||
                      ((state_q != ST_IDLE) && !model_lock_i) ||
                      ((state_q != ST_IDLE) &&
                       (compute_cycles_q >= MAX_COMPUTE_CYCLES))) begin
@@ -916,12 +1045,14 @@ module board1_context2048_attention #(
                 ST_IDLE: begin
                     range_fault_o <= 1'b0;
                     if (start_valid_i && start_ready_o) begin
-                        if ((query_exponent_i < -8'sd32) ||
+                        if (!summary_read_valid || (query_exponent_i < -8'sd32) ||
                             (query_exponent_i > 8'sd31)) begin
                             state_q <= ST_FAULT;
                             range_fault_o <= 1'b1;
                         end else begin
                             position_q <= fixed_position_i;
+                            value_group_exponent_q[0]<=summary_exponent0;
+                            value_group_exponent_q[1]<=summary_exponent1;
                             query_exponent_q <= query_exponent_i;
                             query_beat_q <= 2'd0;
                             state_q <= ST_QUERY_LOAD;
@@ -937,7 +1068,6 @@ module board1_context2048_attention #(
                             range_fault_o <= 1'b1;
                         end else begin
                             query_buffer_q <= query_vector_i;
-                            coordinate_q <= 6'd0;
                             state_q <= ST_QUERY_STORE;
                         end
                     end
@@ -945,19 +1075,18 @@ module board1_context2048_attention #(
 
                 ST_QUERY_STORE: begin
                     if (coordinate_q == 6'd63) begin
-                        coordinate_q <= 6'd0;
                         if (query_beat_q == 2'd3) begin
                                 attention_head_q <= 2'd0;
                                 scan_position_q <= 11'd0;
-                                value_align_candidate_q <= -8'sd32;
-                                value_align_any_nonzero_q <= 1'b0;
-                                state_q <= ST_VALUE_EXP_REQUEST;
+                                value_align_candidate_by_kv_q[0]<=-8'sd32; value_align_candidate_by_kv_q[1]<=-8'sd32;
+                                value_align_any_by_kv_q[0]<=1'b0; value_align_any_by_kv_q[1]<=1'b0;
+                                value_align_exponent_q<=value_group_exponent_q[0];
+                                state_q <= ST_SCORE_REQUEST;
                         end else begin
                             query_beat_q <= query_beat_q + 1'b1;
                             state_q <= ST_QUERY_LOAD;
                         end
                     end else begin
-                        coordinate_q <= coordinate_q + 1'b1;
                     end
                 end
 
@@ -982,7 +1111,6 @@ module board1_context2048_attention #(
                             captured_cache_kind_q <= CAPTURE_VALUE;
                             captured_value_exponent_q <=
                                 private_cache_response_value_exponent_i;
-                            coordinate_q <= 6'd0;
                             state_q <= ST_VALUE_EXP_SCAN;
                         end
                     end
@@ -1000,14 +1128,13 @@ module board1_context2048_attention #(
                             range_fault_o <= 1'b1;
                         end else begin
                             if (captured_value_coordinate != 0) begin
-                                value_align_any_nonzero_q <= 1'b1;
+                                value_align_any_by_kv_q[attention_head_q[1]]<= 1'b1;
                                 if (captured_value_fit_comb >
                                     value_align_candidate_q)
-                                    value_align_candidate_q <=
+                                    value_align_candidate_by_kv_q[attention_head_q[1]]<=
                                         captured_value_fit_comb;
                             end
                             if (coordinate_q == 6'd56) begin
-                                coordinate_q <= 6'd0;
                                 if (scan_position_q == position_q) begin
                                     value_align_exponent_q <=
                                         value_align_final_exponent_comb;
@@ -1020,7 +1147,6 @@ module board1_context2048_attention #(
                                     state_q <= ST_VALUE_EXP_REQUEST;
                                 end
                             end else begin
-                                coordinate_q <= coordinate_q + 6'd8;
                                 state_q <= ST_VALUE_EXP_SCAN;
                             end
                         end
@@ -1049,21 +1175,20 @@ module board1_context2048_attention #(
                             pending_score_exponent_q <=
                                 raw_score_exponent_comb[7:0];
                             score_accumulator_q <= 38'sd0;
-                            coordinate_q <= 6'd0;
                             state_q <= ST_SCORE_ACCUMULATE;
                         end
                     end
                 end
 
                 ST_SCORE_ACCUMULATE: begin
+                    score_accumulator_q <= 38'sd0;
                     state_q <= ST_SCORE_QUERY_USE;
                 end
 
                 ST_SCORE_QUERY_USE: begin
-                    if (coordinate_q != 6'd63) begin
+                    if (coordinate_q != 6'd56) begin
                         score_accumulator_q <=
                             score_accumulator_next_comb[37:0];
-                        coordinate_q <= coordinate_q + 1'b1;
                         state_q <= ST_SCORE_QUERY_USE;
                     end else if ((score_accumulator_next_comb <
                                   SCORE_MINIMUM_39) ||
@@ -1072,8 +1197,23 @@ module board1_context2048_attention #(
                         state_q <= ST_FAULT;
                         range_fault_o <= 1'b1;
                     end else begin
-                        coordinate_q <= 6'd0;
-                        if (scan_position_q == position_q) begin
+                        if (!attention_head_q[0]) begin
+                            // Reuse the accepted K row with the sibling Q.
+                            attention_head_q <= attention_head_q + 1'b1;
+                            state_q <= ST_SCORE_ACCUMULATE;
+                        end else if (scan_position_q != position_q) begin
+                            // Keep one authenticated head/role page hot while
+                            // both sibling queries walk positions in order.
+                            attention_head_q <= attention_head_q - 2'd1;
+                            scan_position_q <= scan_position_q + 1'b1;
+                            state_q <= ST_SCORE_REQUEST;
+                        end else if (attention_head_q == 2'd1) begin
+                            attention_head_q <= 2'd2;
+                            scan_position_q <= 11'd0;
+                            state_q <= ST_SCORE_REQUEST;
+                        end else begin
+                            // All raw scores exist before the first softmax.
+                            attention_head_q <= 2'd0;
                             element_q <= 11'd0;
                             normalize_candidate_q <= -8'sd32;
                             normalize_all_fit_q <= 1'b1;
@@ -1081,9 +1221,6 @@ module board1_context2048_attention #(
                             normalize_output_q <= 1'b0;
                             workspace_read_return_q <= ST_NORM_CAPTURE;
                             state_q <= ST_WORKSPACE_READ;
-                        end else begin
-                            scan_position_q <= scan_position_q + 1'b1;
-                            state_q <= ST_SCORE_REQUEST;
                         end
                     end
                 end
@@ -1258,7 +1395,6 @@ module board1_context2048_attention #(
                                         result_exponent_q <=
                                             normalize_candidate_q;
                                         result_beat_q <= 2'd0;
-                                        coordinate_q <= 6'd0;
                                         state_q <= ST_RESULT_READ;
                                     end else begin
                                         element_q <= element_q + 1'b1;
@@ -1347,9 +1483,22 @@ module board1_context2048_attention #(
                             range_fault_o <= 1'b1;
                         end else begin
                             if (element_q == position_q) begin
-                                scan_position_q <= 11'd0;
-                                coordinate_q <= 6'd0;
-                                state_q <= ST_VALUE_ZERO;
+                                element_q <= 11'd0;
+                                if (attention_head_q != 2'd3) begin
+                                    attention_head_q <= attention_head_q + 1'b1;
+                                    normalize_candidate_q <= -8'sd32;
+                                    normalize_all_fit_q <= 1'b1;
+                                    normalize_any_nonzero_q <= 1'b0;
+                                    normalize_output_q <= 1'b0;
+                                    workspace_read_return_q <= ST_NORM_CAPTURE;
+                                    state_q <= ST_WORKSPACE_READ;
+                                end else begin
+                                    // Every head's denominator/probability pass
+                                    // completes before any V row is requested.
+                                    attention_head_q <= 2'd0;
+                                    scan_position_q <= 11'd0;
+                                    state_q <= ST_VALUE_ZERO;
+                                end
                             end else begin
                                 element_q <= element_q + 1'b1;
                                 workspace_read_return_q <=
@@ -1361,20 +1510,24 @@ module board1_context2048_attention #(
                 end
 
                 ST_VALUE_ZERO: begin
-                    // One addressed write each cycle: physically implementable
-                    // in the same private single-write-port accumulator RAM.
-                    // No live use until all 64 coordinates have been cleared.
-                    value_accumulator_q[coordinate_q] <= 38'sd0;
+                    // One addressed write per bank clears eight coordinates per edge.
+                    // All32 head/group words must be initialized before V reads.
+                    if(coordinate_q==0)begin
+                        value_align_candidate_by_kv_q[0]<=-8'sd32; value_align_candidate_by_kv_q[1]<=-8'sd32;
+                        value_align_any_by_kv_q[0]<=1'b0; value_align_any_by_kv_q[1]<=1'b0;
+                    end
                     scan_position_q <= 11'd0;
-                    if (coordinate_q == 6'd63) begin
-                        coordinate_q <= 6'd0;
-                        state_q <= ST_VALUE_REQUEST;
+                    if (coordinate_q == 6'd56) begin
+                        if (attention_head_q == 2'd3) begin
+                            attention_head_q <= 2'd0;
+                            state_q <= ST_VALUE_REQUEST;
+                        end else attention_head_q <= attention_head_q + 1'b1;
                     end else begin
-                        coordinate_q <= coordinate_q + 1'b1;
                     end
                 end
 
                 ST_VALUE_REQUEST: begin
+                    value_align_exponent_q<=value_group_exponent_q[attention_head_q[1]];
                     if (private_cache_request_valid_o &&
                         private_cache_request_ready_i) begin
                         captured_cache_kind_q <= CAPTURE_NONE;
@@ -1395,7 +1548,6 @@ module board1_context2048_attention #(
                             captured_cache_kind_q <= CAPTURE_VALUE;
                             captured_value_exponent_q <=
                                 private_cache_response_value_exponent_i;
-                            coordinate_q <= 6'd0;
                             state_q <= ST_VALUE_ALIGN;
                         end
                     end
@@ -1412,16 +1564,12 @@ module board1_context2048_attention #(
                             state_q <= ST_FAULT;
                             range_fault_o <= 1'b1;
                         end else begin
-                            for (sequential_lane = 0; sequential_lane < 8;
-                                 sequential_lane = sequential_lane + 1)
-                                aligned_value_q[{coordinate_q[5:3], 3'(sequential_lane)}] <=
-                                    align8_response_vector[sequential_lane*16 +: 16];
+                            value_align_candidate_by_kv_q[attention_head_q[1]]<=value_align_candidate_next_comb;
+                            value_align_any_by_kv_q[attention_head_q[1]]<=value_align_any_next_comb;
                             if (coordinate_q == 6'd56) begin
-                                coordinate_q <= 6'd0;
                                 workspace_read_return_q <= ST_VALUE_ACCUMULATE;
                                 state_q <= ST_WORKSPACE_READ;
                             end else begin
-                                coordinate_q <= coordinate_q + 6'd8;
                                 state_q <= ST_VALUE_ALIGN;
                             end
                         end
@@ -1429,19 +1577,41 @@ module board1_context2048_attention #(
                 end
 
                 ST_VALUE_ACCUMULATE: begin
-                    value_accumulator_q[coordinate_q] <=
-                        value_accumulator_next_comb[37:0];
-                    if (coordinate_q != 6'd63) begin
-                        coordinate_q <= coordinate_q + 1'b1;
-                    end else if (scan_position_q == position_q) begin
-                        coordinate_q <= 6'd0;
-                        state_q <= ST_VALUE_DIV_REQUEST;
+                    // Each coordinate retains the original position order;
+                    // only independent coordinate accumulators run together.
+                    if (coordinate_q != 6'd56) begin
                     end else begin
-                        coordinate_q <= 6'd0;
-                        scan_position_q <= scan_position_q + 1'b1;
-                        state_q <= ST_VALUE_REQUEST;
+                        if (!attention_head_q[0]) begin
+                            // The same aligned V feeds the sibling Q's own
+                            // probability and independent accumulator bank.
+                            attention_head_q<=attention_head_q+1'b1;
+                            workspace_read_return_q<=ST_VALUE_ACCUMULATE;
+                            state_q<=ST_WORKSPACE_READ;
+                        end else if (scan_position_q==position_q &&
+                            ((value_align_any_nonzero_q ? value_align_candidate_q : 8'sd0)
+                              != value_align_exponent_q)) begin
+                            state_q<=ST_FAULT;range_fault_o<=1'b1;
+                        end else if (scan_position_q!=position_q) begin
+                            // Per-head sums retain ascending position order;
+                            // finish this sibling pair before changing KV head.
+                            attention_head_q<=attention_head_q-2'd1;
+                            scan_position_q<=scan_position_q+1'b1;
+                            state_q<=ST_VALUE_REQUEST;
+                        end else if (attention_head_q==2'd1) begin
+                            attention_head_q<=2'd2;
+                            scan_position_q<=11'd0;
+                            state_q<=ST_VALUE_REQUEST;
+                        end else begin
+                            // All four PV sums and both observed-fit checks
+                            // precede any head division or public result.
+                            attention_head_q<=2'd0;
+                            state_q<=ST_ACCUMULATOR_READ;
+                        end
                     end
                 end
+
+                ST_ACCUMULATOR_READ:
+                    state_q<=ST_VALUE_DIV_REQUEST;
 
                 ST_VALUE_DIV_REQUEST:
                     if (div_request_valid && div_request_ready)
@@ -1458,8 +1628,8 @@ module board1_context2048_attention #(
                             if (coordinate_q == 6'd63) begin
                                 state_q <= ST_NEXT_HEAD;
                             end else begin
-                                coordinate_q <= coordinate_q + 1'b1;
-                                state_q <= ST_VALUE_DIV_REQUEST;
+                                if(coordinate_q[2:0]==3'd7)state_q<=ST_ACCUMULATOR_READ;
+                                else state_q<=ST_VALUE_DIV_REQUEST;
                             end
                         end
                     end
@@ -1476,14 +1646,7 @@ module board1_context2048_attention #(
                         state_q <= ST_OUTPUT_READ;
                     end else begin
                         attention_head_q <= attention_head_q + 1'b1;
-                        scan_position_q <= 11'd0;
-                        if (attention_head_q == 2'd1) begin
-                            value_align_candidate_q <= -8'sd32;
-                            value_align_any_nonzero_q <= 1'b0;
-                            state_q <= ST_VALUE_EXP_REQUEST;
-                        end else begin
-                            state_q <= ST_SCORE_REQUEST;
-                        end
+                        state_q <= ST_ACCUMULATOR_READ;
                     end
                 end
 
@@ -1495,10 +1658,8 @@ module board1_context2048_attention #(
                     result_buffer_q[coordinate_q*16 +: 16] <=
                         output_bram_read_data;
                     if (coordinate_q == 6'd63) begin
-                        coordinate_q <= 6'd0;
                         state_q <= ST_RESULT;
                     end else begin
-                        coordinate_q <= coordinate_q + 1'b1;
                         state_q <= ST_RESULT_READ;
                     end
                 end
@@ -1509,7 +1670,6 @@ module board1_context2048_attention #(
                             state_q <= ST_DONE;
                         end else begin
                             result_beat_q <= result_beat_q + 1'b1;
-                            coordinate_q <= 6'd0;
                             state_q <= ST_RESULT_READ;
                         end
                     end
@@ -1539,6 +1699,831 @@ module board1_context2048_attention #(
         end
     end
 
+
+// Simulation-only, with explicit opt-in for model recipes that define SYNTHESIS.
+// Native recipes never define BOARD1_ATTENTION_COORDINATE_PHASE_CHECK.
+`ifndef SYNTHESIS
+`define BOARD1_ATTENTION_COORDINATE_PHASE_OBSERVER
+`elsif BOARD1_ATTENTION_COORDINATE_PHASE_CHECK
+`define BOARD1_ATTENTION_COORDINATE_PHASE_OBSERVER
+`endif
+`ifdef BOARD1_ATTENTION_COORDINATE_PHASE_OBSERVER
+    logic [5:0] legacy_coordinate_q;
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            legacy_coordinate_q <= 6'd0;
+            ;
+            ;
+            ; ;
+            ; ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+        end else if (clear_i) begin
+            if ((cache_wait_state || cache_drain_state ||
+                 ((state_q == ST_FAULT) && fault_cache_outstanding_q)) &&
+                !cache_response_known_handshake) begin
+                ;
+            end else begin
+                ;
+            end
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            legacy_coordinate_q <= 6'd0;
+            ;
+            ;
+            ; ;
+            ; ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+            ;
+        end else if (simulation_x_fault || upstream_fault_i || exp_range_fault ||
+                     capture_kind_fault || summary_fault || accumulator_memory_fault ||
+                     accumulator_tag_fault || accumulator_initialization_fault ||
+                     ((state_q != ST_IDLE) && !model_lock_i) ||
+                     ((state_q != ST_IDLE) &&
+                      (compute_cycles_q >= MAX_COMPUTE_CYCLES))) begin
+            ;
+            ;
+            if ((state_q != ST_FAULT) &&
+                (cache_wait_state || cache_drain_state) &&
+                !cache_response_known_handshake)
+                ;
+        end else begin
+            if (state_q == ST_IDLE)
+                ;
+            else if (state_q != ST_FAULT)
+                ;
+
+            case (state_q)
+                ST_IDLE: begin
+                    ;
+                    if (start_valid_i && start_ready_o) begin
+                        if (!summary_read_valid || (query_exponent_i < -8'sd32) ||
+                            (query_exponent_i > 8'sd31)) begin
+                            ;
+                            ;
+                        end else begin
+                            ;
+                            ;
+                            ;
+                            ;
+                            ;
+                            ;
+                        end
+                    end
+                end
+
+                ST_QUERY_LOAD: begin
+                    if (query_valid_i && query_ready_o) begin
+                        if (!query_vector_legal_comb ||
+                            (query_last_i != (query_beat_q == 2'd3))) begin
+                            ;
+                            ;
+                        end else begin
+                            ;
+                            legacy_coordinate_q <= 6'd0;
+                            ;
+                        end
+                    end
+                end
+
+                ST_QUERY_STORE: begin
+                    if (legacy_coordinate_q == 6'd63) begin
+                        legacy_coordinate_q <= 6'd0;
+                        if (query_beat_q == 2'd3) begin
+                                ;
+                                ;
+                                ; ;
+                                ; ;
+                                ;
+                                ;
+                        end else begin
+                            ;
+                            ;
+                        end
+                    end else begin
+                        legacy_coordinate_q <= legacy_coordinate_q + 1'b1;
+                    end
+                end
+
+                ST_VALUE_EXP_REQUEST: begin
+                    if (private_cache_request_valid_o &&
+                        private_cache_request_ready_i) begin
+                        ;
+                        ;
+                    end
+                end
+
+                ST_VALUE_EXP_WAIT: begin
+                    if (private_cache_response_valid_i &&
+                        private_cache_response_ready_o) begin
+                        if (private_cache_response_fault_i ||
+                            !response_vectors_legal_comb ||
+                            (private_cache_response_value_exponent_i < -8'sd32) ||
+                            (private_cache_response_value_exponent_i > 8'sd31)) begin
+                            ;
+                            ;
+                        end else begin
+                            ;
+                            ;
+                            legacy_coordinate_q <= 6'd0;
+                            ;
+                        end
+                    end
+                end
+
+                ST_VALUE_EXP_SCAN: begin
+                    if (interface_live && align8_request_ready)
+                        ;
+                end
+
+                ST_EXP8_WAIT: begin
+                    if (align8_response_valid) begin
+                        if (align8_response_fault || align8_response_magnitude_or[15]) begin
+                            ;
+                            ;
+                        end else begin
+                            if (captured_value_coordinate != 0) begin
+                                ;
+                                if (captured_value_fit_comb >
+                                    value_align_candidate_q)
+                                    ;
+                            end
+                            if (legacy_coordinate_q == 6'd56) begin
+                                legacy_coordinate_q <= 6'd0;
+                                if (scan_position_q == position_q) begin
+                                    ;
+                                    ;
+                                    ;
+                                    ;
+                                end else begin
+                                    ;
+                                    ;
+                                end
+                            end else begin
+                                legacy_coordinate_q <= legacy_coordinate_q + 6'd8;
+                                ;
+                            end
+                        end
+                    end
+                end
+
+                ST_SCORE_REQUEST: begin
+                    if (private_cache_request_valid_o &&
+                        private_cache_request_ready_i) begin
+                        ;
+                        ;
+                    end
+                end
+
+                ST_SCORE_WAIT: begin
+                    if (private_cache_response_valid_i &&
+                        private_cache_response_ready_o) begin
+                        if (private_cache_response_fault_i ||
+                            !response_vectors_legal_comb ||
+                            (private_cache_response_key_exponent_i < -8'sd32) ||
+                            (private_cache_response_key_exponent_i > 8'sd31)) begin
+                            ;
+                            ;
+                        end else begin
+                            ;
+                            ;
+                            ;
+                            legacy_coordinate_q <= 6'd0;
+                            ;
+                        end
+                    end
+                end
+
+                ST_SCORE_ACCUMULATE: begin
+                    ;
+                    ;
+                end
+
+                ST_SCORE_QUERY_USE: begin
+                    if (legacy_coordinate_q != 6'd56) begin
+                        ;
+                        legacy_coordinate_q <= legacy_coordinate_q + 6'd8;
+                        ;
+                    end else if ((score_accumulator_next_comb <
+                                  SCORE_MINIMUM_39) ||
+                                 (score_accumulator_next_comb >
+                                  SCORE_MAXIMUM_39)) begin
+                        ;
+                        ;
+                    end else begin
+                        legacy_coordinate_q <= 6'd0;
+                        if (!attention_head_q[0]) begin
+                            // Reuse the accepted K row with the sibling Q.
+                            ;
+                            ;
+                        end else if (scan_position_q != position_q) begin
+                            // Keep one authenticated head/role page hot while
+                            // both sibling queries walk positions in order.
+                            ;
+                            ;
+                            ;
+                        end else if (attention_head_q == 2'd1) begin
+                            ;
+                            ;
+                            ;
+                        end else begin
+                            // All raw scores exist before the first softmax.
+                            ;
+                            ;
+                            ;
+                            ;
+                            ;
+                            ;
+                            ;
+                            ;
+                        end
+                    end
+                end
+
+                ST_NORM_CAPTURE: begin
+                    ;
+                end
+
+                ST_NORM_SELECT: begin
+                    if (normalize_source_nonzero_comb) begin
+                        ;
+                        if (normalize_first_fit_comb >
+                            normalize_candidate_q)
+                            ;
+                    end
+                    if (normalize_last_comb) begin
+                        ;
+                        ;
+                        if (!normalize_any_nonzero_q &&
+                            !normalize_source_nonzero_comb) begin
+                            ;
+                            if (normalize_output_q) begin
+                                ;
+                                ;
+                            end else begin
+                                ;
+                                ;
+                            end
+                        end else begin
+                            ;
+                            if (normalize_output_q) begin
+                                ;
+                                ;
+                            end else begin
+                                ;
+                                ;
+                            end
+                        end
+                    end else begin
+                        ;
+                        if (normalize_output_q) begin
+                            ;
+                            ;
+                        end else begin
+                            ;
+                            ;
+                        end
+                    end
+                end
+
+                ST_WORKSPACE_READ: begin
+                    ;
+                end
+
+                ST_OUTPUT_READ: begin
+                    ;
+                end
+
+                ST_SCORE_NORM_FIND,
+                ST_SCORE_NORM_WRITE,
+                ST_OUTPUT_NORM_FIND,
+                ST_OUTPUT_NORM_WRITE,
+                ST_EXP: begin
+                    if (shift_request_valid && shift_request_ready) begin
+                        ;
+                        ;
+                    end
+                end
+
+                ST_SHIFT_WAIT: begin
+                    if (shift_response_valid && shift_response_ready) begin
+                        if (shift_response_fault) begin
+                            ;
+                            ;
+                        end else begin
+                          case (shift_client_q)
+                            SHIFT_CLIENT_SCORE_NORM_FIND: begin
+                                if (!shift_response_sample_fit)
+                                    ;
+                                if (element_q == position_q) begin
+                                    if (normalize_all_fit_q &&
+                                        shift_response_sample_fit) begin
+                                        ;
+                                        ;
+                                        ;
+                                    end else if (normalize_candidate_q ==
+                                                 8'sd31) begin
+                                        ;
+                                        ;
+                                    end else begin
+                                        ;
+                                        ;
+                                        ;
+                                        ;
+                                        ;
+                                        ;
+                                    end
+                                end else begin
+                                    ;
+                                    ;
+                                    ;
+                                end
+                            end
+
+                            SHIFT_CLIENT_SCORE_NORM_WRITE: begin
+                                if (!shift_response_sample_fit) begin
+                                    ;
+                                    ;
+                                end else begin
+                                    if (element_q == position_q) begin
+                                        ;
+                                        ;
+                                        ;
+                                        ;
+                                        ;
+                                    end else begin
+                                        ;
+                                        ;
+                                        ;
+                                    end
+                                end
+                            end
+
+                            SHIFT_CLIENT_OUTPUT_NORM_FIND: begin
+                                if (!shift_response_sample_fit)
+                                    ;
+                                if (element_q == 11'd255) begin
+                                    if (normalize_all_fit_q &&
+                                        shift_response_sample_fit) begin
+                                        ;
+                                        ;
+                                        ;
+                                    end else if (normalize_candidate_q ==
+                                                 8'sd31) begin
+                                        ;
+                                        ;
+                                    end else begin
+                                        ;
+                                        ;
+                                        ;
+                                        ;
+                                        ;
+                                        ;
+                                    end
+                                end else begin
+                                    ;
+                                    ;
+                                    ;
+                                end
+                            end
+
+                            SHIFT_CLIENT_OUTPUT_NORM_WRITE: begin
+                                if (!shift_response_sample_fit) begin
+                                    ;
+                                    ;
+                                end else begin
+                                    if (element_q == 11'd255) begin
+                                        ;
+                                        ;
+                                        legacy_coordinate_q <= 6'd0;
+                                        ;
+                                    end else begin
+                                        ;
+                                        ;
+                                        ;
+                                    end
+                                end
+                            end
+
+                            SHIFT_CLIENT_EXP: begin
+                                if (shift_response_result > 0) begin
+                                    ;
+                                    ;
+                                end else begin
+                                    ;
+                                    ;
+                                end
+                            end
+
+                            default: begin
+                                ;
+                                ;
+                            end
+                          endcase
+                        end
+                    end
+                end
+
+                ST_SCORE_MAX: begin
+                    if ((element_q == 0) ||
+                        (workspace_score_at_element >
+                         $signed(score_max_q)))
+                        ;
+                    if (element_q == position_q) begin
+                        ;
+                        ;
+                        ;
+                        ;
+                    end else begin
+                        ;
+                        ;
+                        ;
+                    end
+                end
+
+                ST_EXP_LUT_REQUEST:
+                    ;
+
+                ST_EXP_WAIT: begin
+                    if (exp_response_valid) begin
+                        if (exp_response_fault ||
+                            (denominator_next_comb == 0) ||
+                            denominator_next_comb[42]) begin
+                            ;
+                            ;
+                        end else begin
+                        ;
+                        if (element_q == position_q) begin
+                            ;
+                            ;
+                            ;
+                        end else begin
+                            ;
+                            ;
+                            ;
+                        end
+                        end
+                    end
+                end
+
+                ST_PROBABILITY_REQUEST:
+                    if (div_request_valid && div_request_ready)
+                        ;
+
+                ST_PROBABILITY_WAIT: begin
+                    if (div_response_valid && div_response_ready) begin
+                        if (div_response_fault || (div_response_result < 0) ||
+                            (div_response_result > 64'sd32767)) begin
+                            ;
+                            ;
+                        end else begin
+                            if (element_q == position_q) begin
+                                ;
+                                legacy_coordinate_q <= 6'd0;
+                                if (attention_head_q != 2'd3) begin
+                                    ;
+                                    ;
+                                    ;
+                                    ;
+                                    ;
+                                    ;
+                                    ;
+                                end else begin
+                                    // Every head's denominator/probability pass
+                                    // completes before any V row is requested.
+                                    ;
+                                    ;
+                                    ;
+                                end
+                            end else begin
+                                ;
+                                ;
+                                ;
+                            end
+                        end
+                    end
+                end
+
+                ST_VALUE_ZERO: begin
+                    // One addressed write per bank clears eight coordinates per edge.
+                    // All32 head/group words must be initialized before V reads.
+                    if(legacy_coordinate_q==0)begin
+                        ; ;
+                        ; ;
+                    end
+                    ;
+                    if (legacy_coordinate_q == 6'd56) begin
+                        legacy_coordinate_q <= 6'd0;
+                        if (attention_head_q == 2'd3) begin
+                            ;
+                            ;
+                        end else ;
+                    end else begin
+                        legacy_coordinate_q <= legacy_coordinate_q + 6'd8;
+                    end
+                end
+
+                ST_VALUE_REQUEST: begin
+                    ;
+                    if (private_cache_request_valid_o &&
+                        private_cache_request_ready_i) begin
+                        ;
+                        ;
+                    end
+                end
+
+                ST_VALUE_WAIT: begin
+                    if (private_cache_response_valid_i &&
+                        private_cache_response_ready_o) begin
+                        if (private_cache_response_fault_i ||
+                            !response_vectors_legal_comb ||
+                            (private_cache_response_value_exponent_i < -8'sd32) ||
+                            (private_cache_response_value_exponent_i > 8'sd31)) begin
+                            ;
+                            ;
+                        end else begin
+                            ;
+                            ;
+                            legacy_coordinate_q <= 6'd0;
+                            ;
+                        end
+                    end
+                end
+
+                ST_VALUE_ALIGN: begin
+                    if (interface_live && align8_request_ready)
+                        ;
+                end
+
+                ST_ALIGN8_WAIT: begin
+                    if (align8_response_valid) begin
+                        if (align8_response_fault) begin
+                            ;
+                            ;
+                        end else begin
+                            ;
+                            ;
+                            if (legacy_coordinate_q == 6'd56) begin
+                                legacy_coordinate_q <= 6'd0;
+                                ;
+                                ;
+                            end else begin
+                                legacy_coordinate_q <= legacy_coordinate_q + 6'd8;
+                                ;
+                            end
+                        end
+                    end
+                end
+
+                ST_VALUE_ACCUMULATE: begin
+                    // Each coordinate retains the original position order;
+                    // only independent coordinate accumulators run together.
+                    if (legacy_coordinate_q != 6'd56) begin
+                        legacy_coordinate_q <= legacy_coordinate_q + 6'd8;
+                    end else begin
+                        legacy_coordinate_q <= 6'd0;
+                        if (!attention_head_q[0]) begin
+                            // The same aligned V feeds the sibling Q's own
+                            // probability and independent accumulator bank.
+                            ;
+                            ;
+                            ;
+                        end else if (scan_position_q==position_q &&
+                            ((value_align_any_nonzero_q ? value_align_candidate_q : 8'sd0)
+                              != value_align_exponent_q)) begin
+                            ;;
+                        end else if (scan_position_q!=position_q) begin
+                            // Per-head sums retain ascending position order;
+                            // finish this sibling pair before changing KV head.
+                            ;
+                            ;
+                            ;
+                        end else if (attention_head_q==2'd1) begin
+                            ;
+                            ;
+                            ;
+                        end else begin
+                            // All four PV sums and both observed-fit checks
+                            // precede any head division or public result.
+                            ;
+                            ;
+                        end
+                    end
+                end
+
+                ST_ACCUMULATOR_READ:
+                    ;
+
+                ST_VALUE_DIV_REQUEST:
+                    if (div_request_valid && div_request_ready)
+                        ;
+
+                ST_VALUE_DIV_WAIT: begin
+                    if (div_response_valid && div_response_ready) begin
+                        if (div_response_fault ||
+                            (div_response_result < HEAD_OUTPUT_MINIMUM) ||
+                            (div_response_result > HEAD_OUTPUT_MAXIMUM)) begin
+                            ;
+                            ;
+                        end else begin
+                            if (legacy_coordinate_q == 6'd63) begin
+                                ;
+                            end else begin
+                                legacy_coordinate_q <= legacy_coordinate_q + 1'b1;
+                                if(legacy_coordinate_q[2:0]==3'd7);
+                                else ;
+                            end
+                        end
+                    end
+                end
+
+                ST_NEXT_HEAD: begin
+                    if (attention_head_q == 2'd3) begin
+                        ;
+                        ;
+                        ;
+                        ;
+                        ;
+                        ;
+                        ;
+                    end else begin
+                        ;
+                        legacy_coordinate_q <= 6'd0;
+                        ;
+                    end
+                end
+
+                ST_RESULT_READ: begin
+                    ;
+                end
+
+                ST_RESULT_CAPTURE: begin
+                    ;
+                    if (legacy_coordinate_q == 6'd63) begin
+                        legacy_coordinate_q <= 6'd0;
+                        ;
+                    end else begin
+                        legacy_coordinate_q <= legacy_coordinate_q + 1'b1;
+                        ;
+                    end
+                end
+
+                ST_RESULT: begin
+                    if (result_valid_o && result_ready_i) begin
+                        if (result_beat_q == 2'd3) begin
+                            ;
+                        end else begin
+                            ;
+                            legacy_coordinate_q <= 6'd0;
+                            ;
+                        end
+                    end
+                end
+
+                ST_DONE:
+                    if (done_valid_o && done_ready_i)
+                        ;
+
+                ST_CLEAR_DRAIN: begin
+                    ;
+                    if (cache_response_known_handshake) begin
+                        ;
+                    end
+                end
+
+                ST_FAULT: begin
+                    ;
+                    ;
+                end
+
+                default: begin
+                    ;
+                    ;
+                end
+            endcase
+        end
+    end
+
+    // Equality is checked before the active edge at every authorized use of
+    // the coordinate. Element-only workspace/output normalization is excluded.
+    wire [14:0] coordinate_phase_use = {
+        (interface_live && state_q==ST_SCORE_QUERY_USE && workspace_bram_write_enable),
+        (result_valid_o && result_ready_i),
+        (interface_live && state_q==ST_RESULT_CAPTURE),
+        (interface_live && state_q==ST_VALUE_ACCUMULATE),
+        (interface_live && state_q==ST_SCORE_QUERY_USE),
+        (interface_live && state_q==ST_VALUE_DIV_WAIT),
+        (interface_live && div_request_valid && div_request_ready),
+        (interface_live && (state_q==ST_ALIGN8_WAIT || state_q==ST_EXP8_WAIT)),
+        (interface_live && align8_request_ready &&
+            (state_q==ST_VALUE_ALIGN || state_q==ST_VALUE_EXP_SCAN)),
+        accumulator_write_enable,
+        accumulator_read_enable,
+        output_bram_write_raw,
+        (output_bram_read_enable && state_q==ST_RESULT_READ),
+        query_bram_write_enable,
+        query_bram_read_enable
+    };
+    longint unsigned coordinate_phase_counts [0:14];
+    longint unsigned coordinate_phase_total_uses=0;
+    longint unsigned coordinate_phase_reset_cycles=0;
+    longint unsigned coordinate_phase_clear_cycles=0;
+    longint unsigned coordinate_phase_fault_entries=0;
+    logic [14:0] coordinate_phase_coverage=0;
+    logic [41:0] coordinate_phase_abort_states=0;
+    logic [5:0] coordinate_phase_previous_state=ST_IDLE;
+    initial begin
+        for(integer p=0;p<15;p=p+1) coordinate_phase_counts[p]=0;
+    end
+    always @(posedge clk) begin
+        if(!rst_n) coordinate_phase_reset_cycles++;
+        else begin
+            if((^coordinate_phase_use) === 1'bx)
+                $fatal(1,"COORDINATE_PHASE unknown authorization mask");
+            if(clear_i) coordinate_phase_clear_cycles++;
+            if(state_q==ST_FAULT && coordinate_phase_previous_state!=ST_FAULT)
+                coordinate_phase_fault_entries++;
+            if((clear_i || !interface_live) && state_q<=ST_ACCUMULATOR_READ)
+                coordinate_phase_abort_states[state_q]=1'b1;
+            if((|coordinate_phase_use) === 1'b1) begin
+                if(coordinate_q !== legacy_coordinate_q)
+                    $fatal(1,"COORDINATE_PHASE mismatch state=%0d uses=%h actual=%0d legacy=%0d clear=%b fault=%b",
+                        state_q,coordinate_phase_use,coordinate_q,legacy_coordinate_q,clear_i,range_fault_o);
+                coordinate_phase_total_uses++;
+                coordinate_phase_coverage |= coordinate_phase_use;
+                for(integer p=0;p<15;p=p+1)
+                    if(coordinate_phase_use[p]) coordinate_phase_counts[p]++;
+            end
+        end
+        coordinate_phase_previous_state=state_q;
+    end
+    final begin
+        $display("COORDINATE_PHASE_MONITOR uses=%0d coverage=%h reset_cycles=%0d clear_cycles=%0d fault_entries=%0d abort_states=%h original_updates=25",
+            coordinate_phase_total_uses,coordinate_phase_coverage,
+            coordinate_phase_reset_cycles,coordinate_phase_clear_cycles,
+            coordinate_phase_fault_entries,coordinate_phase_abort_states);
+        for(integer p=0;p<15;p=p+1)
+            $display("COORDINATE_PHASE_USE kind=%0d count=%0d",p,coordinate_phase_counts[p]);
+        if($test$plusargs("COORDINATE_PHASE_REQUIRE_COVERAGE") && coordinate_phase_coverage!==15'h7fff)
+            $fatal(1,"COORDINATE_PHASE required healthy use category missing");
+        if($test$plusargs("COORDINATE_PHASE_REQUIRE_CLEAR") && coordinate_phase_clear_cycles==0)
+            $fatal(1,"COORDINATE_PHASE required CLEAR coverage missing");
+        if($test$plusargs("COORDINATE_PHASE_REQUIRE_ABORT") && coordinate_phase_fault_entries==0)
+            $fatal(1,"COORDINATE_PHASE required abort coverage missing");
+    end
+
+`endif
+`undef BOARD1_ATTENTION_COORDINATE_PHASE_OBSERVER
+
 `ifndef SYNTHESIS
     // Executable overwrite-before-use proof obligations for the 6,528 bits
     // whose reset/CLEAR data cones were removed.  These flags are verification
@@ -1549,7 +2534,7 @@ module board1_context2048_attention #(
     integer output_check_index;
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            for (workspace_check_index = 0; workspace_check_index < 2048;
+            for (workspace_check_index = 0; workspace_check_index < 8192;
                  workspace_check_index = workspace_check_index + 1)
                 workspace_phase_q[workspace_check_index] <=
                     WORKSPACE_INVALID;
@@ -1557,20 +2542,20 @@ module board1_context2048_attention #(
                  output_check_index = output_check_index + 1)
                 output_phase_q[output_check_index] <= OUTPUT_INVALID;
             workspace_read_valid_q <= 1'b0;
-            workspace_read_address_q <= 11'd0;
+            workspace_read_address_q <= 13'd0;
             output_read_valid_q <= 1'b0;
             output_read_address_q <= 8'd0;
             overwrite_query_full_q <= 1'b0;
             overwrite_key_full_q <= 1'b0;
             overwrite_value_full_q <= 1'b0;
-            overwrite_accumulators_full_q <= 1'b0;
+            overwrite_accumulator_heads_q <= 4'd0;
             overwrite_result_lanes_q <= 64'd0;
         end else if (clear_i || simulation_x_fault || upstream_fault_i ||
                      exp_range_fault ||
                      ((state_q != ST_IDLE) && !model_lock_i) ||
                      ((state_q != ST_IDLE) &&
                       (compute_cycles_q >= MAX_COMPUTE_CYCLES))) begin
-            for (workspace_check_index = 0; workspace_check_index < 2048;
+            for (workspace_check_index = 0; workspace_check_index < 8192;
                  workspace_check_index = workspace_check_index + 1)
                 workspace_phase_q[workspace_check_index] <=
                     WORKSPACE_INVALID;
@@ -1582,12 +2567,12 @@ module board1_context2048_attention #(
             overwrite_query_full_q <= 1'b0;
             overwrite_key_full_q <= 1'b0;
             overwrite_value_full_q <= 1'b0;
-            overwrite_accumulators_full_q <= 1'b0;
+            overwrite_accumulator_heads_q <= 4'd0;
             overwrite_result_lanes_q <= 64'd0;
         end else begin
             if ((state_q == ST_IDLE) && start_valid_i && start_ready_o) begin
                 for (workspace_check_index = 0;
-                     workspace_check_index < 2048;
+                     workspace_check_index < 8192;
                      workspace_check_index = workspace_check_index + 1)
                     workspace_phase_q[workspace_check_index] <=
                         WORKSPACE_INVALID;
@@ -1599,7 +2584,7 @@ module board1_context2048_attention #(
                 overwrite_query_full_q <= 1'b0;
                 overwrite_key_full_q <= 1'b0;
                 overwrite_value_full_q <= 1'b0;
-                overwrite_accumulators_full_q <= 1'b0;
+                overwrite_accumulator_heads_q <= 4'd0;
                 overwrite_result_lanes_q <= 64'd0;
             end
 
@@ -1625,7 +2610,7 @@ module board1_context2048_attention #(
                 ((state_q == ST_PROBABILITY_REQUEST) &&
                  div_request_valid && div_request_ready) ||
                 ((state_q == ST_VALUE_ACCUMULATE) &&
-                 (coordinate_q == 6'd63)))
+                 (coordinate_q == 6'd56)))
                 workspace_read_valid_q <= 1'b0;
             if (((state_q == ST_NORM_SELECT) && normalize_output_q) ||
                 (((state_q == ST_OUTPUT_NORM_FIND) ||
@@ -1644,13 +2629,13 @@ module board1_context2048_attention #(
                 (state_q == ST_SCORE_MAX) || (state_q == ST_EXP) ||
                 (state_q == ST_PROBABILITY_REQUEST)) begin
                 if ((workspace_read_valid_q !== 1'b1) ||
-                    (workspace_read_address_q !== element_q))
+                    (workspace_read_address_q !== {attention_head_q,element_q}))
                     $fatal(1,
                         "workspace BSRAM consume without matching registered read");
             end
             if (state_q == ST_VALUE_ACCUMULATE) begin
                 if ((workspace_read_valid_q !== 1'b1) ||
-                    (workspace_read_address_q !== scan_position_q))
+                    (workspace_read_address_q !== {attention_head_q,scan_position_q}))
                     $fatal(1,
                         "workspace probability consume without matching registered read");
             end
@@ -1664,41 +2649,41 @@ module board1_context2048_attention #(
             end
 
             if ((state_q == ST_SCORE_QUERY_USE) &&
-                (coordinate_q == 6'd63) &&
+                (coordinate_q == 6'd56) &&
                 (score_accumulator_next_comb >= SCORE_MINIMUM_39) &&
                 (score_accumulator_next_comb <= SCORE_MAXIMUM_39)) begin
-                if ((workspace_phase_q[scan_position_q] !==
+                if ((workspace_phase_q[{attention_head_q,scan_position_q}] !==
                      WORKSPACE_INVALID) &&
-                    (workspace_phase_q[scan_position_q] !== WORKSPACE_PROB))
+                    (workspace_phase_q[{attention_head_q,scan_position_q}] !== WORKSPACE_PROB))
                     $fatal(1,
                         "workspace phase: raw write did not replace invalid/probability");
-                workspace_phase_q[scan_position_q] <= WORKSPACE_RAW;
-                workspace_raw_score_shadow_q[scan_position_q] <=
+                workspace_phase_q[{attention_head_q,scan_position_q}] <= WORKSPACE_RAW;
+                workspace_raw_score_shadow_q[{attention_head_q,scan_position_q}] <=
                     score_accumulator_next_comb[36:0];
-                workspace_raw_exponent_shadow_q[scan_position_q] <=
+                workspace_raw_exponent_shadow_q[{attention_head_q,scan_position_q}] <=
                     pending_score_exponent_q;
             end
 
             if ((state_q == ST_NORM_SELECT) && !normalize_output_q) begin
-                if (workspace_phase_q[element_q] !== WORKSPACE_RAW)
+                if (workspace_phase_q[{attention_head_q,element_q}] !== WORKSPACE_RAW)
                     $fatal(1,
                         "workspace phase: raw normalization read before raw write");
                 if ((workspace_raw_score_at_element !==
-                     workspace_raw_score_shadow_q[element_q]) ||
+                     workspace_raw_score_shadow_q[{attention_head_q,element_q}]) ||
                     (workspace_raw_exponent_at_element !==
-                     workspace_raw_exponent_shadow_q[element_q]))
+                     workspace_raw_exponent_shadow_q[{attention_head_q,element_q}]))
                     $fatal(1,
                         "workspace field: raw score/exponent decode mismatch");
             end
             if ((state_q == ST_SCORE_NORM_FIND) ||
                 (state_q == ST_SCORE_NORM_WRITE)) begin
-                if (workspace_phase_q[element_q] !== WORKSPACE_RAW)
+                if (workspace_phase_q[{attention_head_q,element_q}] !== WORKSPACE_RAW)
                     $fatal(1,
                         "workspace phase: iterative raw read after overwrite");
                 if ((workspace_raw_score_at_element !==
-                     workspace_raw_score_shadow_q[element_q]) ||
+                     workspace_raw_score_shadow_q[{attention_head_q,element_q}]) ||
                     (workspace_raw_exponent_at_element !==
-                     workspace_raw_exponent_shadow_q[element_q]))
+                     workspace_raw_exponent_shadow_q[{attention_head_q,element_q}]))
                     $fatal(1,
                         "workspace field: iterative raw decode mismatch");
             end
@@ -1706,20 +2691,20 @@ module board1_context2048_attention #(
             if ((state_q == ST_SHIFT_WAIT) && shift_response_valid &&
                 shift_response_ready && shift_response_sample_fit &&
                 (shift_client_q == SHIFT_CLIENT_SCORE_NORM_WRITE)) begin
-                if (workspace_phase_q[element_q] !== WORKSPACE_RAW)
+                if (workspace_phase_q[{attention_head_q,element_q}] !== WORKSPACE_RAW)
                     $fatal(1,
                         "workspace phase: score write did not replace raw");
-                workspace_phase_q[element_q] <= WORKSPACE_SCORE;
-                workspace_score_shadow_q[element_q] <=
+                workspace_phase_q[{attention_head_q,element_q}] <= WORKSPACE_SCORE;
+                workspace_score_shadow_q[{attention_head_q,element_q}] <=
                     shift_response_result[15:0];
             end
 
             if ((state_q == ST_SCORE_MAX) || (state_q == ST_EXP)) begin
-                if (workspace_phase_q[element_q] !== WORKSPACE_SCORE)
+                if (workspace_phase_q[{attention_head_q,element_q}] !== WORKSPACE_SCORE)
                     $fatal(1,
                         "workspace phase: normalized-score read before score write");
                 if (workspace_score_at_element !==
-                    workspace_score_shadow_q[element_q])
+                    workspace_score_shadow_q[{attention_head_q,element_q}])
                     $fatal(1,
                         "workspace field: normalized-score decode mismatch");
             end
@@ -1727,19 +2712,19 @@ module board1_context2048_attention #(
             if ((state_q == ST_EXP_WAIT) && exp_response_valid &&
                 !exp_response_fault && (denominator_next_comb != 0) &&
                 !denominator_next_comb[42]) begin
-                if (workspace_phase_q[element_q] !== WORKSPACE_SCORE)
+                if (workspace_phase_q[{attention_head_q,element_q}] !== WORKSPACE_SCORE)
                     $fatal(1,
                         "workspace phase: exponential write did not replace score");
-                workspace_phase_q[element_q] <= WORKSPACE_EXP;
-                workspace_exp_shadow_q[element_q] <= exp_value_comb;
+                workspace_phase_q[{attention_head_q,element_q}] <= WORKSPACE_EXP;
+                workspace_exp_shadow_q[{attention_head_q,element_q}] <= exp_value_comb;
             end
 
             if (state_q == ST_PROBABILITY_REQUEST) begin
-                if (workspace_phase_q[element_q] !== WORKSPACE_EXP)
+                if (workspace_phase_q[{attention_head_q,element_q}] !== WORKSPACE_EXP)
                     $fatal(1,
                         "workspace phase: exponential read before exp write");
                 if (workspace_exp_at_element !==
-                    workspace_exp_shadow_q[element_q])
+                    workspace_exp_shadow_q[{attention_head_q,element_q}])
                     $fatal(1,
                         "workspace field: exponential decode mismatch");
             end
@@ -1748,20 +2733,20 @@ module board1_context2048_attention #(
                 div_response_ready && !div_response_fault &&
                 (div_response_result >= 0) &&
                 (div_response_result <= 64'sd32767)) begin
-                if (workspace_phase_q[element_q] !== WORKSPACE_EXP)
+                if (workspace_phase_q[{attention_head_q,element_q}] !== WORKSPACE_EXP)
                     $fatal(1,
                         "workspace phase: probability write did not replace exp");
-                workspace_phase_q[element_q] <= WORKSPACE_PROB;
-                workspace_probability_shadow_q[element_q] <=
+                workspace_phase_q[{attention_head_q,element_q}] <= WORKSPACE_PROB;
+                workspace_probability_shadow_q[{attention_head_q,element_q}] <=
                     div_response_result[15:0];
             end
 
             if (state_q == ST_VALUE_ACCUMULATE) begin
-                if (workspace_phase_q[scan_position_q] !== WORKSPACE_PROB)
+                if (workspace_phase_q[{attention_head_q,scan_position_q}] !== WORKSPACE_PROB)
                     $fatal(1,
                         "workspace phase: probability read before probability write");
                 if (workspace_probability_at_scan !==
-                    $signed(workspace_probability_shadow_q[scan_position_q]))
+                    $signed(workspace_probability_shadow_q[{attention_head_q,scan_position_q}]))
                     $fatal(1,
                         "workspace field: probability decode mismatch");
             end
@@ -1876,16 +2861,16 @@ module board1_context2048_attention #(
                         "overwrite-before-use: captured value read before full write");
             end
 
-            if ((state_q == ST_VALUE_ZERO) && (coordinate_q == 6'd63))
-                overwrite_accumulators_full_q <= 1'b1;
+            if ((state_q == ST_VALUE_ZERO) && (coordinate_q == 6'd56))
+                overwrite_accumulator_heads_q[attention_head_q] <= 1'b1;
             if (state_q == ST_NEXT_HEAD)
-                overwrite_accumulators_full_q <= 1'b0;
+                overwrite_accumulator_heads_q[attention_head_q] <= 1'b0;
             if ((state_q == ST_VALUE_ACCUMULATE) ||
                 (state_q == ST_VALUE_DIV_REQUEST)) begin
                 if (overwrite_accumulators_full_q !== 1'b1)
                     $fatal(1,
                         "overwrite-before-use: value accumulator read before zeroing");
-                if (^value_accumulator_q[coordinate_q] === 1'bx)
+                if (^accumulator_selected_lane === 1'bx)
                     $fatal(1,
                         "overwrite-before-use: selected value accumulator is unknown");
             end
@@ -1917,11 +2902,26 @@ module board1_context2048_attention #(
                 (scan_position_q == 11'd0)) begin
                 for (overwrite_check_lane = 0; overwrite_check_lane < 64;
                      overwrite_check_lane = overwrite_check_lane + 1)
-                    if (value_accumulator_q[overwrite_check_lane] !== 38'sd0)
+                    if (accumulator_shadow_q[{attention_head_q,3'(overwrite_check_lane/8)}][(overwrite_check_lane%8)*38 +:38] !== 38'sd0)
                         $fatal(1,
                             "overwrite-before-use: accumulator lane %0d not cleared",
                             overwrite_check_lane);
             end
+        end
+    end
+`endif
+`ifndef SYNTHESIS
+    always_ff @(posedge clk)begin
+        if(rst_n && !clear_i && interface_live)begin
+            if(accumulator_write_enable)accumulator_shadow_q[accumulator_current_address]<=accumulator_write_group;
+            if(accumulator_consume)begin
+                if(accumulator_read_valid!==1'b1 || accumulator_read_tag!==accumulator_current_address ||
+                   accumulator_read_group!==accumulator_shadow_q[accumulator_current_address])
+                    $fatal(1,"accumulator prefetch wrong head/group/data or unowned read");
+            end
+            if(accumulator_read_enable && accumulator_write_enable &&
+               accumulator_read_address==accumulator_current_address)
+                $fatal(1,"accumulator read/write collision");
         end
     end
 `endif
@@ -1951,7 +2951,7 @@ module board1_context2048_attention #(
             end
             if (state_q == ST_VALUE_ACCUMULATE) begin
                 if (aligned_groups_written_q !== 8'hff ||
-                    (^aligned_value_q[coordinate_q] === 1'bx))
+                    (^aligned_value_at_coordinate === 1'bx))
                     $fatal(1, "align8 accumulate before all eight groups written");
             end
         end
@@ -2045,7 +3045,7 @@ module board1_context2048_attention #(
                     (^normalize_source_exponent_comb === 1'bx) ||
                     (normalize_output_q ?
                         (output_read_valid_q !== 1'b1 || output_read_address_q !== element_q) :
-                        (workspace_read_valid_q !== 1'b1 || workspace_read_address_q !== element_q)))
+                        (workspace_read_valid_q !== 1'b1 || workspace_read_address_q !== {attention_head_q,element_q})))
                     $fatal(1,"norm stage capture lacks fresh known registered read");
                 norm_stage_owned_q <= 1'b1;
                 norm_stage_fit_shadow_q <= i64_first_fit_exponent(
@@ -2076,14 +3076,17 @@ module board1_context2048_attention #(
     logic [255:0] score_query_known_q;
     logic signed [15:0] score_query_shadow_q [0:255];
     logic signed [63:0] score_sum_shadow_q;
-    wire signed [15:0] score_expected_query =
-        score_query_shadow_q[{attention_head_q,coordinate_q}];
-    wire signed [15:0] score_expected_key = $signed(
-        captured_cache_vector_q[coordinate_q*16 +: 16]);
-    wire signed [31:0] score_expected_product =
-        score_expected_query * score_expected_key;
-    wire signed [63:0] score_expected_sum = score_sum_shadow_q +
-        {{32{score_expected_product[31]}},score_expected_product};
+    logic signed [63:0] score_expected_sum;
+    integer shadow_mac;
+    logic signed [31:0] shadow_product;
+    always_comb begin
+        score_expected_sum=score_sum_shadow_q;
+        for(integer n=0;n<8;n=n+1)begin
+            shadow_product=$signed(score_query_shadow_q[{attention_head_q,coordinate_q}+n]) *
+                $signed(captured_cache_vector_q[(coordinate_q+n)*16 +:16]);
+            score_expected_sum=score_expected_sum+{{32{shadow_product[31]}},shadow_product};
+        end
+    end
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             score_query_known_q <= 0;
@@ -2104,16 +3107,16 @@ module board1_context2048_attention #(
                 score_sum_shadow_q <= 0;
             end
             if (state_q == ST_SCORE_QUERY_USE) begin
-                if (score_query_known_q[{attention_head_q,coordinate_q}] !== 1'b1 ||
-                    (^score_expected_query === 1'bx) ||
-                    query_bram_read_data !== score_expected_query)
-                    $fatal(1,"score prefetch query coordinate/data mismatch");
-                if (score_key_coordinate_q !== score_expected_key ||
-                    score_lane_product !== score_expected_product)
-                    $fatal(1,"score prefetch key/product mismatch");
-                if ($signed(score_accumulator_q) !== score_sum_shadow_q ||
-                    $signed(score_accumulator_next_comb) !== score_expected_sum)
-                    $fatal(1,"score prefetch ordered accumulation mismatch");
+                for(integer n=0;n<8;n=n+1)begin
+                    if(score_query_known_q[{attention_head_q,coordinate_q}+n] !== 1'b1 ||
+                       query_bram_read_group[n*16 +:16] !== score_query_shadow_q[{attention_head_q,coordinate_q}+n])
+                        $fatal(1,"score8 query coordinate/data mismatch");
+                    if(score_key_group_q[n*16 +:16] !== captured_cache_vector_q[(coordinate_q+n)*16 +:16])
+                        $fatal(1,"score8 key coordinate mismatch");
+                end
+                if($signed(score_accumulator_q) !== score_sum_shadow_q ||
+                   $signed(score_accumulator_next_comb) !== score_expected_sum)
+                    $fatal(1,"score8 exact accumulation mismatch");
                 score_sum_shadow_q <= score_expected_sum;
             end
         end

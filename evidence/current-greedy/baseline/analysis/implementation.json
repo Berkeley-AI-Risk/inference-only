@@ -1,0 +1,49 @@
+{
+  "dynamic_scheduled_role_instances": 19,
+  "image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+  "mapped_multiplier_primitives": {
+    "MULT12X12": 3,
+    "MULTALU27X18": 87
+  },
+  "nominal_inference_clock_hz": 25000000,
+  "resources": {
+    "BSRAM": {
+      "available": 340.0,
+      "used": 238.0
+    },
+    "CLS": {
+      "available": 69120.0,
+      "used": 55232.0
+    },
+    "DSP": {
+      "available": 298.0,
+      "used": 88.5
+    },
+    "Logic": {
+      "available": 138240.0,
+      "used": 85201.0
+    },
+    "Register": {
+      "available": 139095.0,
+      "used": 44924.0
+    }
+  },
+  "scope": "Selected source/native-associated mapped observations only. Runtime-operand role classification is not usable attacker access, a MAC-per-cycle guarantee or a training-capacity bound.",
+  "source_census": {
+    "bytes": 416446,
+    "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/baseline-mapped-multiplier-census-v1.json",
+    "sha256": "5ce797c87d11b838e7b990a34a662b15ba3fac221d0201d6d17c8ba849cc65e0"
+  },
+  "source_native": {
+    "bytes": 5571,
+    "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1/FINISHED.json",
+    "sha256": "a42ebda8d05b3d11affe6a4ac53ed387b174ea6c7a68e01637ce7a9e4ac48339"
+  },
+  "source_native_sha256": "a42ebda8d05b3d11affe6a4ac53ed387b174ea6c7a68e01637ce7a9e4ac48339",
+  "source_static_audit": {
+    "bytes": 140935,
+    "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/native-baseline-v1-20261024-r1-audit/RESULT.json",
+    "sha256": "116b549e8e3417ec4ee6d6871a7547c02e5edc87436a20df9ba44f675078b4c4"
+  },
+  "timing_signoff_complete": false
+}

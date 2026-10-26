@@ -368,8 +368,8 @@ endmodule
 `timescale 1ns/1ps
 `default_nettype none
 
-// Four complete rounds per clock; all64 SHA-256 rounds remain.
-// Round indices are0,4,...,60. Schedule words16/17 feed18/19's sigma terms.
+// Two complete rounds per clock; all64 SHA-256 rounds remain.
+// Round indices are0,2,...,62; the sliding schedule advances two words.
 // Private owner-held-state and DONE-consumption contracts remain unchanged.
 module board1_sha256_bank_owned_compress #(parameter integer REGISTER_RESULT=0) (
     input  wire         clk_i,
@@ -488,8 +488,6 @@ module board1_sha256_bank_owned_compress #(parameter integer REGISTER_RESULT=0) 
 
     wire [31:0] schedule_next0 = small_sigma1(schedule_q[14]) + schedule_q[9] + small_sigma0(schedule_q[1]) + schedule_q[0];
     wire [31:0] schedule_next1 = small_sigma1(schedule_q[15]) + schedule_q[10] + small_sigma0(schedule_q[2]) + schedule_q[1];
-    wire [31:0] schedule_next2 = small_sigma1(schedule_next0) + schedule_q[11] + small_sigma0(schedule_q[3]) + schedule_q[2];
-    wire [31:0] schedule_next3 = small_sigma1(schedule_next1) + schedule_q[12] + small_sigma0(schedule_q[4]) + schedule_q[3];
     wire [31:0] temp1_r1 = h_q + big_sigma1(e_q) + choose(e_q, f_q, g_q) +
         round_constant(round_q + 6'd0) + schedule_q[0];
     wire [31:0] temp2_r1 = big_sigma0(a_q) + majority(a_q, b_q, c_q);
@@ -512,29 +510,6 @@ module board1_sha256_bank_owned_compress #(parameter integer REGISTER_RESULT=0) 
     wire [31:0] f_r2 = e_r1;
     wire [31:0] g_r2 = f_r1;
     wire [31:0] h_r2 = g_r1;
-    wire [31:0] temp1_r3 = h_r2 + big_sigma1(e_r2) + choose(e_r2, f_r2, g_r2) +
-        round_constant(round_q + 6'd2) + schedule_q[2];
-    wire [31:0] temp2_r3 = big_sigma0(a_r2) + majority(a_r2, b_r2, c_r2);
-    wire [31:0] a_r3 = temp1_r3 + temp2_r3;
-    wire [31:0] b_r3 = a_r2;
-    wire [31:0] c_r3 = b_r2;
-    wire [31:0] d_r3 = c_r2;
-    wire [31:0] e_r3 = d_r2 + temp1_r3;
-    wire [31:0] f_r3 = e_r2;
-    wire [31:0] g_r3 = f_r2;
-    wire [31:0] h_r3 = g_r2;
-    wire [31:0] temp1_r4 = h_r3 + big_sigma1(e_r3) + choose(e_r3, f_r3, g_r3) +
-        round_constant(round_q + 6'd3) + schedule_q[3];
-    wire [31:0] temp2_r4 = big_sigma0(a_r3) + majority(a_r3, b_r3, c_r3);
-    wire [31:0] a_r4 = temp1_r4 + temp2_r4;
-    wire [31:0] b_r4 = a_r3;
-    wire [31:0] c_r4 = b_r3;
-    wire [31:0] d_r4 = c_r3;
-    wire [31:0] e_r4 = d_r3 + temp1_r4;
-    wire [31:0] f_r4 = e_r3;
-    wire [31:0] g_r4 = f_r3;
-    wire [31:0] h_r4 = g_r3;
-
     always_ff @(posedge clk_i or negedge reset_n_i) begin
         if (!reset_n_i) begin
             busy_o <= 1'b0;
@@ -567,25 +542,23 @@ module board1_sha256_bank_owned_compress #(parameter integer REGISTER_RESULT=0) 
                 round_q <= 6'd0;
                 busy_o <= 1'b1;
             end else if (busy_o) begin
-                for (index = 0; index < 12; index = index + 1)
-                    schedule_q[index] <= schedule_q[index + 4];
-                schedule_q[12] <= schedule_next0;
-                schedule_q[13] <= schedule_next1;
-                schedule_q[14] <= schedule_next2;
-                schedule_q[15] <= schedule_next3;
-                a_q <= a_r4;
-                b_q <= b_r4;
-                c_q <= c_r4;
-                d_q <= d_r4;
-                e_q <= e_r4;
-                f_q <= f_r4;
-                g_q <= g_r4;
-                h_q <= h_r4;
-                if (round_q == 6'd60) begin
+                for (index = 0; index < 14; index = index + 1)
+                    schedule_q[index] <= schedule_q[index + 2];
+                schedule_q[14] <= schedule_next0;
+                schedule_q[15] <= schedule_next1;
+                a_q <= a_r2;
+                b_q <= b_r2;
+                c_q <= c_r2;
+                d_q <= d_r2;
+                e_q <= e_r2;
+                f_q <= f_r2;
+                g_q <= g_r2;
+                h_q <= h_r2;
+                if (round_q == 6'd62) begin
                     busy_o <= 1'b0;
                     done_o <= 1'b1;
                 end else begin
-                    round_q <= round_q + 6'd4;
+                    round_q <= round_q + 6'd2;
                 end
             end
         end
@@ -599,16 +572,16 @@ module board1_sha256_bank_owned_compress #(parameter integer REGISTER_RESULT=0) 
         assign state_o = result_q;
         always_ff @(posedge clk_i or negedge reset_n_i) begin
             if (!reset_n_i) result_q <= 256'd0;
-            else if (busy_o && round_q == 6'd60) begin
+            else if (busy_o && round_q == 6'd62) begin
                     result_q <= {
-                        state_i[255:224] + a_r4,
-                        state_i[223:192] + b_r4,
-                        state_i[191:160] + c_r4,
-                        state_i[159:128] + d_r4,
-                        state_i[127:96] + e_r4,
-                        state_i[95:64] + f_r4,
-                        state_i[63:32] + g_r4,
-                        state_i[31:0] + h_r4
+                        state_i[255:224] + a_r2,
+                        state_i[223:192] + b_r2,
+                        state_i[191:160] + c_r2,
+                        state_i[159:128] + d_r2,
+                        state_i[127:96] + e_r2,
+                        state_i[95:64] + f_r2,
+                        state_i[63:32] + g_r2,
+                        state_i[31:0] + h_r2
                     };
             end
         end
@@ -629,8 +602,8 @@ module board1_sha256_bank_owned_compress #(parameter integer REGISTER_RESULT=0) 
         if (reset_n_i) begin
             assert (!(busy_o && done_o));
             if (busy_o) begin
-                assert (round_q <= 6'd60);
-                assert (round_q[1:0] == 2'b00);
+                assert (round_q <= 6'd62);
+                assert (round_q[0] == 1'b0);
             end
         end
     end

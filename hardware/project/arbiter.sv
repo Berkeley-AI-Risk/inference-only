@@ -2,7 +2,7 @@
 `default_nettype none
 
 // PRIVATE application-clock seam. One read-only authenticated-page client
-// and the existing typed K/V boundary share the normalized Gowin adapter.
+// and the bounded pipelined typed K/V boundary share the Gowin adapter.
 // No host address, weight-write, or arithmetic command is added. The parent
 // must finish trusted boot before raising model_locked_i, and must stop on
 // fault_o. This is not the boot writer or a replacement for typed K/V checks.
@@ -52,8 +52,16 @@ module board1_private_shared_ddr_arbiter #(
     logic cmd_valid_q, cmd_kv_q, cmd_write_q;
     logic [18:0] cmd_word_q;
     logic [255:0] cmd_data_q;
-    logic kv_busy_q, kv_response_q;
-    logic [255:0] kv_data_q;
+    // Reserve a response slot at admission, not when DDR returns. This
+    // bounded window includes queued commands, raw reads and held responses.
+    localparam integer KV_CREDITS = 8;
+    logic [3:0] kv_reserved_q, kv_response_count_q;
+    logic [2:0] kv_response_head_q, kv_response_tail_q;
+    logic [255:0] kv_response_data_q [0:KV_CREDITS-1];
+    logic kv_write_owner_q;
+    wire kv_busy_q = kv_reserved_q != 0;
+    wire kv_response_q = kv_response_count_q != 0;
+    wire kv_retire = kv_rsp_valid_o && kv_rsp_ready_i;
     logic [31:0] read_owner_q; // 0=model, 1=K/V
     logic [4:0] read_head_q, read_tail_q;
     logic [5:0] read_count_q;
@@ -77,7 +85,11 @@ module board1_private_shared_ddr_arbiter #(
     wire raw_fire = raw_req_valid_o && raw_req_ready_i;
     wire read_issue = raw_fire && !cmd_write_q;
     wire command_room = !cmd_valid_q || raw_fire;
-    wire want_kv = kv_req_valid_i && !kv_busy_q;
+    // Writes remain exclusive through completion delivery. Consequently a
+    // write completion cannot overtake earlier K/V reads in the response FIFO.
+    wire kv_capacity = kv_reserved_q < 4'd8 && !kv_write_owner_q &&
+                       (!kv_req_write_i || kv_reserved_q == 0);
+    wire want_kv = kv_req_valid_i && kv_capacity;
     wire take_kv = want_kv && (!model_req_valid_i || prefer_kv_q);
     wire model_fire = model_req_valid_i && model_req_ready_o;
     wire kv_fire = kv_req_valid_i && kv_req_ready_o;
@@ -98,7 +110,7 @@ module board1_private_shared_ddr_arbiter #(
     // request or its ready logic. The typed parent poisons a simultaneous
     // terminal event; the sticky fault suppresses subsequent visibility.
     assign kv_rsp_valid_o = kv_response_q && reset_n && !fault_o;
-    assign kv_rsp_data_o = kv_data_q;
+    assign kv_rsp_data_o = kv_response_data_q[kv_response_head_q];
     assign kv_rsp_error_o = 1'b0;
     assign busy_o = cmd_valid_q || read_nonempty_q || kv_busy_q;
 
@@ -119,8 +131,8 @@ module board1_private_shared_ddr_arbiter #(
         // stalled valid command holds it. Read-command data is unused by DDR.
         if (!cmd_valid_q || raw_req_ready_i) cmd_data_q <= kv_req_data_i;
         if (read_issue) read_owner_q[read_tail_q] <= cmd_kv_q;
-        if (returning_kv) kv_data_q <= raw_rsp_data_i;
-        else if (raw_fire && cmd_write_q) kv_data_q <= 256'd0;
+        if (returning_kv || (raw_fire && cmd_write_q))
+            kv_response_data_q[kv_response_tail_q] <= returning_kv ? raw_rsp_data_i : 256'd0;
     end
 
     always_comb begin
@@ -144,7 +156,9 @@ module board1_private_shared_ddr_arbiter #(
         if (!reset_n) begin
             lock_seen_q <= 0; prefer_kv_q <= 1;
             cmd_valid_q <= 0; cmd_kv_q <= 0; cmd_write_q <= 0;
-            kv_busy_q <= 0; kv_response_q <= 0;
+            kv_reserved_q <= 0; kv_response_count_q <= 0;
+            kv_response_head_q <= 0; kv_response_tail_q <= 0;
+            kv_write_owner_q <= 0;
             read_head_q <= 0; read_tail_q <= 0; read_count_q <= 0;
             watchdog_q <= 0; fault_o <= 0;
         end else begin
@@ -160,12 +174,23 @@ module board1_private_shared_ddr_arbiter #(
                     cmd_write_q <= kv_fire && kv_req_write_i;
                     prefer_kv_q <= model_fire;
                 end
-                if (kv_response_q && kv_rsp_ready_i) begin
-                    kv_response_q <= 0;
-                    kv_busy_q <= 0;
+                if (kv_retire) begin
+                    kv_response_head_q <= kv_response_head_q + 3'd1;
+                    if (kv_write_owner_q) kv_write_owner_q <= 0;
                 end
-                if (kv_fire) kv_busy_q <= 1;
-                if (returning_kv || (raw_fire && cmd_write_q)) kv_response_q <= 1;
+                if (kv_fire && kv_req_write_i) kv_write_owner_q <= 1;
+                case ({kv_fire,kv_retire})
+                    2'b10: kv_reserved_q <= kv_reserved_q + 4'd1;
+                    2'b01: kv_reserved_q <= kv_reserved_q - 4'd1;
+                    default: ;
+                endcase
+                if (returning_kv || (raw_fire && cmd_write_q))
+                    kv_response_tail_q <= kv_response_tail_q + 3'd1;
+                case ({returning_kv || (raw_fire && cmd_write_q),kv_retire})
+                    2'b10: kv_response_count_q <= kv_response_count_q + 4'd1;
+                    2'b01: kv_response_count_q <= kv_response_count_q - 4'd1;
+                    default: ;
+                endcase
                 if (read_issue) read_tail_q <= read_tail_q + 5'd1;
                 if (returning) read_head_q <= read_head_q + 5'd1;
                 case ({read_issue,returning})
@@ -209,7 +234,10 @@ module board1_private_shared_ddr_arbiter #(
             if (!cmd_kv_q) assert (!raw_req_write_o && cmd_word_q < MODEL_WORDS);
         end
         if (kv_rsp_valid_o) assert (kv_busy_q);
-        if (returning_kv) assert (kv_busy_q && !kv_response_q);
+        assert (kv_reserved_q <= KV_CREDITS);
+        assert (kv_response_count_q <= kv_reserved_q);
+        assert (!(returning_kv && raw_fire && cmd_write_q));
+        if (returning_kv) assert (kv_busy_q && !kv_write_owner_q);
         if (fault_o) assert (!raw_req_valid_o && !model_rsp_valid_o && !kv_rsp_valid_o);
     end
 `endif
@@ -266,7 +294,9 @@ module board1_private_shared_ddr_transaction_boundary #(
     wire backend_kv_valid, backend_kv_ready, backend_kv_error;
     wire [255:0] backend_kv_data;
     wire backend_busy, backend_fault;
-    logic stop_q, lock_seen_q, kv_owner_q;
+    logic stop_q, lock_seen_q;
+    logic [3:0] kv_owner_q;
+    logic kv_write_owner_q;
     logic model_return_valid_q, model_return_error_q;
     logic [255:0] model_return_data_q;
     logic kv_return_valid_q, kv_return_error_q;
@@ -287,7 +317,12 @@ module board1_private_shared_ddr_transaction_boundary #(
     // Source READY depends on registered local occupancy/ownership, not
     // backend validation, raw READY, or a newly arriving memory response.
     assign model_req_ready_o = admit_enabled && model_queue_ready;
-    assign kv_req_ready_o = admit_enabled && !kv_owner_q && kv_queue_ready;
+    // Backend retirement into this boundary's held return register is not
+    // delivery to the typed owner. Keep writes exclusive across BOTH levels,
+    // including an arbitrarily stalled write completion at this output.
+    wire kv_front_capacity = kv_owner_q < 4'd8 && !kv_write_owner_q &&
+                             (!kv_req_write_i || kv_owner_q == 0);
+    assign kv_req_ready_o = admit_enabled && kv_front_capacity && kv_queue_ready;
     board1_ddr_request_fifo2 #(.ADDR_W(19)) u_model_admission (
         .clk(clk), .reset_n(reset_n), .abort_i(1'b0),
         .in_valid_i(model_req_valid_i && admit_enabled), .in_ready_o(model_queue_ready),
@@ -296,7 +331,7 @@ module board1_private_shared_ddr_transaction_boundary #(
         .out_write_o(), .out_addr_o(model_queue_word), .out_data_o());
     board1_ddr_request_fifo2 #(.ADDR_W(19)) u_kv_admission (
         .clk(clk), .reset_n(reset_n), .abort_i(1'b0),
-        .in_valid_i(kv_req_valid_i && admit_enabled && !kv_owner_q), .in_ready_o(kv_queue_ready),
+        .in_valid_i(kv_req_valid_i && admit_enabled && kv_front_capacity), .in_ready_o(kv_queue_ready),
         .in_write_i(kv_req_write_i), .in_addr_i(kv_req_word_i), .in_data_i(kv_req_data_i),
         .out_valid_o(kv_queue_valid), .out_ready_i(kv_backend_ready && !fault_o),
         .out_write_o(kv_queue_write), .out_addr_o(kv_queue_word), .out_data_o(kv_queue_data));
@@ -328,15 +363,15 @@ module board1_private_shared_ddr_transaction_boundary #(
     assign model_rsp_valid_o = model_return_valid_q && reset_n && !fault_o;
     assign model_rsp_data_o = model_return_data_q;
     assign model_rsp_error_o = model_return_error_q;
-    assign backend_kv_ready = !kv_return_valid_q && reset_n && !fault_o;
+    assign backend_kv_ready = (!kv_return_valid_q || kv_rsp_ready_i) && reset_n && !fault_o;
     assign kv_rsp_valid_o = kv_return_valid_q && reset_n && !fault_o;
     assign kv_rsp_data_o = kv_return_data_q;
     assign kv_rsp_error_o = kv_return_error_q;
     assign busy_o = backend_busy || model_queue_valid || kv_queue_valid ||
-                    model_return_valid_q || kv_return_valid_q || kv_owner_q;
+                    model_return_valid_q || kv_return_valid_q || kv_owner_q != 0;
     always_ff @(posedge clk) begin
         model_return_data_q <= backend_model_data;
-        if (!kv_return_valid_q) kv_return_data_q <= backend_kv_data;
+        if (backend_kv_ready) kv_return_data_q <= backend_kv_data;
     end
 
     always_comb begin
@@ -354,14 +389,20 @@ module board1_private_shared_ddr_transaction_boundary #(
 
     always_ff @(posedge clk or negedge reset_n) begin
         if (!reset_n) begin
-            stop_q <= 1'b0; lock_seen_q <= 1'b0; kv_owner_q <= 1'b0;
+            stop_q <= 1'b0; lock_seen_q <= 1'b0; kv_owner_q <= 4'd0;
+            kv_write_owner_q <= 1'b0;
             model_return_valid_q <= 1'b0; model_return_error_q <= 1'b0;
             kv_return_valid_q <= 1'b0; kv_return_error_q <= 1'b0;
         end else begin
             if (model_locked_i) lock_seen_q <= 1'b1;
             if (upstream_fault_i || backend_fault || frontend_fault) stop_q <= 1'b1;
-            if (kv_admit) kv_owner_q <= 1'b1;
-            if (kv_retire) kv_owner_q <= 1'b0;
+            if (kv_admit && kv_req_write_i) kv_write_owner_q <= 1'b1;
+            if (kv_retire && kv_write_owner_q) kv_write_owner_q <= 1'b0;
+            case ({kv_admit,kv_retire})
+                2'b10: kv_owner_q <= kv_owner_q + 4'd1;
+                2'b01: kv_owner_q <= kv_owner_q - 4'd1;
+                default: ;
+            endcase
             model_return_valid_q <= backend_model_valid && !fault_o;
             model_return_error_q <= backend_model_error;
             if (kv_retire) kv_return_valid_q <= 1'b0;
@@ -373,7 +414,11 @@ module board1_private_shared_ddr_transaction_boundary #(
     end
 `ifdef FORMAL
     always_ff @(posedge clk) if (reset_n) begin
-        assert (!(kv_admit && kv_owner_q));
+        assert (kv_owner_q <= 8);
+        if (kv_write_owner_q) begin
+            assert(kv_owner_q == 1);
+            assert(!kv_req_ready_o);
+        end
         if (kv_rsp_valid_o) assert (kv_owner_q);
         if (backend_kv_valid) assert (kv_owner_q);
         if (fault_o) assert (!model_req_ready_o && !kv_req_ready_o &&

@@ -1,92 +1,25 @@
 # Evidence guide
 
-For an overview of what has been checked and what remains unproved, read
-[VALIDATION.md](../VALIDATION.md). This directory supplies the corresponding
-image identities, source bindings, measurements and replay summaries.
+The current SimpleStories images, numerical model, source inventories and qualification scopes are described in [greedy qualification](../demos/simplestories-v2-5m/GREEDY-QUALIFICATION.md) and [seeded qualification](../demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md). Qwen3-1.7B and Qwen3-8B have their own evidence within their [model directories](../demos/).
 
-## Supplied baseline
+## Greedy SimpleStories
 
-The `baseline-current/` records describe the supplied baseline:
+`current-greedy/INDEX.json` selects the baseline, K/V-protected and encrypted-memory capsules, actual role ledger, shared host and minimal support-source context. The portable objects retain the exact recorded model/native observations, scoped proof queries, source associations, mapped observations, raw CLI frames, browser downloads and UI/backend observations. The current checker replays those bytes and their cross-associations; it does not rerun hardware, a numerical model or a solver.
 
-- `board.json`: six physical trials with 391 main outputs and 72 CLEAR/replay
-  outputs, including a repeated 128-output continuation, the full context
-  boundary and a separate 2,048-token prompt. Relative reply timestamps allow
-  streaming-rate calculations without exposing local device identifiers.
-- `metrics.json`: the individual durations used in the capacity analysis.
-- `native.json` and `implementation.json`: build inputs, resource counts and
-  unresolved DDR timing.
-- `replay.json`: packaged-model simulations and token-shell, page-bank and
-  connected-shell proof runs. The connected proof has 134 primary-solver
-  conclusions; the secondary solver confirms 133, with checksum conclusion 39
-  unresolved. The primary connected proof was rerun; the secondary results
-  apply to byte-identical formulas. The page-bank proof has 42 assertions.
+```sh
+python3.12 -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
+```
 
-Run `tools/check_baseline_speed.py` for offline consistency checks. It does
-not rerun solvers or the private UART transcripts.
+Each selected image passed ten CLI cases and seven browser cases. The [common speed captures](../benchmarks/fpga-speed/) separately contain the two full 128-output trials for each selected image. Their validated-reply timestamps, command durations and all generated/reference IDs support the common benchmark calculation.
 
-## Supplied protected and encrypted images
+The baseline's [analysis inputs](current-greedy/baseline/analysis/) bind its fixed-context measurements, native resources and complete mapped multiplier census to the conditional [capacity assessment](../demos/simplestories-v2-5m/TRAINING-CAPACITY.md). They do not demonstrate usable attacker access or certify a training factor.
 
-The `speed-2026-10-02/` records describe these two images:
+## Seeded SimpleStories
 
-- `board.json`: 391 protected and 522 encrypted main-case outputs, plus 12
-  CLEAR/replay outputs per trial. Both images were checked through the
-  full context window. Per-STEP timings
-  distinguish short tests from 128-output continuations.
-- `native.json`: build identities, post-route resources and timing summaries.
-  Both images retain unresolved vendor-DDR timing.
-- `replay.json`: the protected guard/hash, guard/cache/parent and attention
-  proofs, plus full-geometry guard simulation. These do not extend the formal
-  claims to the encrypted image.
+[The seeded evidence guide](seeded-sampling/README.md) links the selected d271 image's model, seven-suite CLI campaign, context matrix, formal completion, readback and browser records. These use their exact recorded host/source contexts. Shared greedy-host fixture results do not grant a fresh seeded browser campaign.
 
-The physical summaries were checked against private UART logs. Public
-checkers validate the sanitized records, reference tokens, timing arithmetic
-and image associations—not the withheld raw transcripts or the currently
-connected chip.
+## Interpretation
 
-The `read-window/` records bind the baseline and protected images to their
-current native builds and physical trials. `references.json` includes the
-independently calculated integer outputs for the separate 2,048-token prompt;
-overlapping reference cases match the established reference set exactly.
+Raw records apply only to the source, image and workload identities they name. Supporting source and component records preserve the inputs needed for scoped checks; they do not add another runnable design or transfer a result to a changed image. Assertion counts overlap. Read [formal status](../demos/simplestories-v2-5m/FORMAL-STATUS.md) for the private-service cuts and unresolved conclusions.
 
-## Other supporting evidence
-
-- `weight-authentication-cost/` contains the matched runtime-checking on/off
-  board experiment, all repetitions, sanitized UART transcripts and the exact
-  diagnostic bank source. `tools/check_weight_authentication_cost.py` replays
-  the recorded protocol, compares answers with the supplied reference cases,
-  and recomputes the rates. The diagnostic retains startup authentication but
-  provides no runtime weight integrity; it is not another protected release.
-  See [method and interpretation](../ARCHITECTURE.md#measuring-the-cost-of-weight-authentication).
-- `leaf-speed/qualification.json` summarizes exact-arithmetic equivalence,
-  caller-bound checks and numerical tests. It includes receipt hashes, not
-  the private proof/model harnesses or raw logs. The public full-model replay
-  runs four cases and does not prove arithmetic bounds for every possible input.
-- `leaf-speed/host-timing.json` records the observed approximately 17 ms
-  host reply-delivery pattern; it does not establish its cause.
-- `installation.json` records backup restoration, model installation,
-  full-array readback and app/controller/UART checks. Its image and source
-  identities define the rehearsal's scope.
-- `training-capacity-estimates.json` contains reproducible conditional
-  calculations, not physical training measurements. See
-  [TRAINING-CAPACITY.md](../TRAINING-CAPACITY.md).
-- `h100/` contains single-GPU timing sweeps, numerical checks, failed cases
-  and source provenance. See [H100-BENCHMARK.md](../H100-BENCHMARK.md) for the
-  numerical acceptance rules and the comparison's limits.
-
-## Reading source-bound records
-
-Each test record applies to the source and image hashes it names. Some
-supporting records and comparison trials concern other revisions; their
-timings and test coverage must not be attributed to the supplied images.
-Flags about host qualification in those records describe that particular
-test, not the status of the current app.
-
-Records and exact reversible source edits are retained where offline
-consistency checks depend on them. This preserves reproducibility without
-treating a documentation update as a new test. The supplied sources, images
-and inventories are checked directly by `tools/verify_release.py`.
-
-Vendor timing summaries include report hashes, not the complete private
-reports. A route-complete marker or clean inference-clock summary is not
-whole-product timing signoff. Hashes identify supplied bytes; they are neither
-certification signatures nor attestation of a board's current configuration.
+All selected Tang images retain incomplete vendor-DDR timing signoff. Native route/resource observations, finite correct outputs and file hashes do not establish whole-machine refinement, cryptographic security, physical security or independent attestation of the loaded FPGA. [Release integrity](../demos/simplestories-v2-5m/REPRODUCE.md) is a separate byte check.

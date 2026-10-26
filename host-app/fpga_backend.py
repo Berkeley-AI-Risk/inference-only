@@ -43,7 +43,9 @@ def limits_for_variant(variant: str | None) -> InputLimits:
     """Local UI capability only; LiveUART still rechecks the full deployment."""
     if variant == 'seeded-sampling':
         return InputLimits(2048, 128, 2049, 32768, 3600)
-    if variant in (None, 'baseline', 'kv-protected', 'encrypted-memory'):
+    if variant in ('baseline', 'kv-protected', 'encrypted-memory'):
+        return InputLimits(2048, 128, 2049, 32768, 14400)
+    if variant is None:
         return InputLimits(MAX_PROMPT, MAX_NEW, DEMO_CAP, MAX_PROMPT_CHARS, STEP_TIMEOUT_SECONDS)
     raise ValueError('Unknown locally selected image; recheck the board profile.')
 

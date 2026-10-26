@@ -4,6 +4,8 @@ No omitted vendor file, changed numerical backend or production SHA is proved.
 All constants remain unset until a chosen passed image has been reviewed.
 """
 import hashlib
+import importlib.util
+import sys
 import json
 from pathlib import Path, PurePosixPath
 
@@ -18,7 +20,19 @@ ASSEMBLY_SHA = '0a3c8fa5498641374b1205f325f2bbedecd820bbeb8cc74d1d796292f61d4376
 INVENTORY_SHA = 'bd6979971359e5a18e0736ef5771ae9074ef9719d32e75970577eba9bb9d8c30'
 DISTRIBUTED_SHA = '2aed505f6fd3428492b3addae554517c2c3b7e7f4852f23a9570432f0a53ca7b'
 SOURCE_RECEIPT_SHA = 'b3e46bb79fe8d91cbc5bf0afe8a54eb13da477a38168d11f156bb1de8b2c190d'
-PROOF_SUPPORT_SHA = '43d40dc466e5dff046a6df64bdd886582759ed5cf21eb06a7ddb421b6a6bcf51'
+PROOF_SUPPORT_SHA = 'f3a2a873d9177fd2da4ff611fd857b4613018639372eea09eda73a731fd52ee6'
+REFERENCE_HELPER_SHA = '2110e3e38156ef38ce6a61709fd8df9d1b3fd4726f839c7a9398f88cbbfaab2f'
+REFERENCE_SUPPORT = frozenset((
+    'formal/command/monitor.inc.sv',
+    'formal/composed-shell/connection_monitor.inc.sv',
+    'formal/composed-shell/core_monitor.inc.sv',
+    'formal/composed-shell/run_proof.py',
+    'formal/token-shell/control_monitor.inc.sv',
+    'formal/token-shell/tape_monitor.inc.sv',
+    'hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv',
+    'hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv',
+    'host-app/hardware-inputs.json',
+))
 
 
 def sha(raw): return hashlib.sha256(raw).hexdigest()
@@ -44,6 +58,20 @@ def pinned(name, row):
     return raw
 
 
+def reference_public_root():
+    """Only original baseline support comes from the minimal source reference."""
+    path = safe(PUBLIC, 'tools/checked_reference_root_v1.py')
+    if sha(path.read_bytes()) != REFERENCE_HELPER_SHA:
+        raise ValueError('Reference source validator changed')
+    key = '_seeded_current_reference_' + sha(str(PUBLIC).encode())
+    if key not in sys.modules:
+        spec = importlib.util.spec_from_file_location(key, path)
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[key] = module
+        spec.loader.exec_module(module)
+    return sys.modules[key].checked_reference_root(PUBLIC)
+
+
 def load_packet():
     if any(value is None for value in (BINDING_SHA, IMAGE, IMAGE_BYTES, ASSEMBLY_SHA,
             INVENTORY_SHA, DISTRIBUTED_SHA, SOURCE_RECEIPT_SHA, PROOF_SUPPORT_SHA)):
@@ -55,8 +83,12 @@ def load_packet():
     for name, row in current['package_inputs'].items(): pinned(name, row)
     support_raw = safe(HERE, 'proof-support.json').read_bytes()
     if sha(support_raw) != PROOF_SUPPORT_SHA: raise ValueError('Proof support inventory changed')
-    for name, digest in json.loads(support_raw).items():
-        if sha(safe(PUBLIC, name).read_bytes()) != digest: raise ValueError('Proof support changed: ' + name)
+    support = json.loads(support_raw)
+    if not REFERENCE_SUPPORT <= support.keys(): raise ValueError('Reference support role missing')
+    reference = reference_public_root()
+    for name, digest in support.items():
+        origin = reference if name in REFERENCE_SUPPORT else PUBLIC
+        if sha(safe(origin, name).read_bytes()) != digest: raise ValueError('Proof support changed: ' + name)
     receipt_raw = safe(PUBLIC, 'variants/seeded-sampling/SOURCE.json').read_bytes()
     if sha(receipt_raw) != SOURCE_RECEIPT_SHA: raise ValueError('Current source receipt changed')
     receipt = json.loads(receipt_raw)

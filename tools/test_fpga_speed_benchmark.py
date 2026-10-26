@@ -79,6 +79,37 @@ class CommonSpeedTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, '128 outputs'):
             bench.selected_trials(row,{name:data},[])
 
+    def canonical_fixture(self):
+        identity={'model_image_sha256':'a'*64,'core_clock_mhz':100}
+        source={'schema':'fpga-common-speed-capture-v1','protocol':'greedy-one-token-128-host-v1',
+                'timestamp_boundary':bench.BOUNDARY,'identity':identity,'cases':[]}
+        for i in range(2):
+            source['cases'].append({'name':str(i),'prompt_tokens':[9707],
+                'generated_tokens':list(range(128)),'expected_tokens':list(range(128)),
+                'reply_elapsed_seconds':list(range(128)),'cached_command_seconds':[0.5]*127,
+                'first_step_seconds':10,'decoding':'greedy','temperature':0,'clear_before':True,
+                'stop_at_eos':False,'feedback_dependent':True,'raw_capture_sha256':str(i)*64})
+        row={'format':'canonical','source':'capture.json','identity':identity,
+             'cases':['0','1'],'prompt_tokens':[9707]}
+        return row,source
+
+    def test_complete_canonical_pair_uses_selected_prompt_and_capture_identities(self):
+        row,source=self.canonical_fixture()
+        result=bench.pool(bench.selected_trials(row,{'capture.json':source},[]))
+        self.assertEqual(result['cached_tokens_per_second'],1)
+
+    def test_canonical_pair_with_same_wrong_single_token_prompt_rejected(self):
+        row,source=self.canonical_fixture()
+        for case in source['cases']:case['prompt_tokens']=[1]
+        with self.assertRaisesRegex(ValueError,'Canonical prompt'):
+            bench.selected_trials(row,{'capture.json':source},[])
+
+    def test_canonical_pair_without_raw_capture_identity_rejected(self):
+        row,source=self.canonical_fixture()
+        source['cases'][0]['raw_capture_sha256']=None
+        with self.assertRaisesRegex(ValueError,'raw capture identity'):
+            bench.selected_trials(row,{'capture.json':source},[])
+
     def test_changed_source_identity_rejected(self):
         selection=json.loads((ROOT/bench.SELECTION).read_text())
         name=next(iter(selection['sources']))

@@ -48,14 +48,14 @@ class ArchitectureCountsTests(unittest.TestCase):
     def test_document_table_reproduces(self):
         COUNTS.check_document(HERE.parent / 'docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md')
         self.assertAlmostEqual(COUNTS.cycle_fraction(HERE.parent),
-                               801_272 / (0.15292962500825524 * 250_000_000))
+                               801_272 / (0.1017904375 * 950_000_000))
 
     def test_document_table_drift_is_rejected(self):
         original = (HERE.parent / 'docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md').read_text(encoding='utf-8')
         for text in (original.replace('7.73%', '7.74%'),
-                     original.replace('0.02096.', '0.01451.'),
+                     original.replace('0.00829.', '0.01451.'),
                      original.replace('Here `u_dynamic` is approximately ', 'Missing cycle fraction '),
-                     original+'\nHere `u_dynamic` is approximately 0.02096.', original+COUNTS.END,
+                     original+'\nHere `u_dynamic` is approximately 0.00829.', original+COUNTS.END,
                      original+COUNTS.START, COUNTS.START+original, 'missing table',
                      original.replace(COUNTS.END, '| 1 | 0% | 0% |\n'+COUNTS.END),
                      original.replace(COUNTS.START, '').replace(COUNTS.END, COUNTS.END+COUNTS.START)):
@@ -67,8 +67,8 @@ class ArchitectureCountsTests(unittest.TestCase):
 
     def test_workload_table_drift_is_rejected(self):
         original = (HERE.parent / 'docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md').read_text(encoding='utf-8')
-        self.assertEqual(original.count('0.001208 |'), 1)
-        for text in (original.replace('0.001208 |', '0.001209 |'),
+        self.assertEqual(original.count('0.001721 |'), 1)
+        for text in (original.replace('0.001721 |', '0.001722 |'),
                      original+COUNTS.WORKLOAD_START, original+COUNTS.WORKLOAD_END,
                      original.replace(COUNTS.WORKLOAD_START, ''),
                      original.replace(COUNTS.WORKLOAD_END, '| extra row |\n'+COUNTS.WORKLOAD_END)):
@@ -214,10 +214,7 @@ class ArchitectureCountsTests(unittest.TestCase):
     def test_recorded_workloads_use_fixed_inference_comparison(self):
         report = CAPACITY.estimate(HERE.parent)
         rows = COUNTS.recorded_workload_comparison(HERE.parent)
-        expected = ((1, 127, 801_272, 0.15292962500825524, 0.0008248058569414512),
-                    (1, 254, 1_581_560, 0.22050779196433723, 0.0011290810669702686),
-                    (512, 0, 814_215_680, 106.07435816596262, 0.0012083491531684084),
-                    (128, 0, 52_559_360, 12.358556292019784, 0.0006694925077549929))
+        expected = ((1, 127, 801272, 0.1017904375, 0.000824805856941451), (1, 254, 1581560, 0.118947709, 0.001393183560497634), (512, 0, 814215680, 49.5862185, 0.0017205100835338569), (128, 0, 52559360, 10.012547041, 0.0005500273043224096))
         self.assertEqual(len(rows), len(expected))
         inference_comparison = (report['inputs']['fpga_inference_rate_proxy'] /
                                 report['measured_reference']['aggregate_tokens_per_second'])
@@ -236,7 +233,7 @@ class ArchitectureCountsTests(unittest.TestCase):
     def test_mismatched_recorded_reference_is_rejected(self):
         report = CAPACITY.estimate(HERE.parent)
         report['inputs']['fpga_context_positions'] = 255
-        physical = (HERE.parent / 'evidence/baseline-current/metrics.json').read_text(encoding='utf-8')
+        physical = (HERE.parent / 'evidence/current-greedy/baseline/analysis/metrics.json').read_text(encoding='utf-8')
         with mock.patch.object(Path, 'read_text', side_effect=[physical, json.dumps(report)]):
             with self.assertRaisesRegex(ValueError, '128-position reference'):
                 COUNTS.recorded_workload_comparison(HERE.parent)

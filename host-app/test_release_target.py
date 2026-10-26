@@ -8,7 +8,7 @@ import runtime_profile as profile
 
 class FasterTargetTests(unittest.TestCase):
     def test_exact_faster_inventory(self):
-        self.assertEqual(profile.HARDWARE_INPUTS_SHA256, "8955cde51f78b582612ca4ee61d146b6128a85a535b3d492d325a4168f77e334")
+        self.assertEqual(profile.HARDWARE_INPUTS_SHA256, "4f4cbc54676e9d976af7358386c19d8befdab34d819de30e4fb3e42beb3362fd")
         self.assertEqual(len(profile.hardware_inputs()), 90)
 
     def test_older_native6_receipt_rejected(self):

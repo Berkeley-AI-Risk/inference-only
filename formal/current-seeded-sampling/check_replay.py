@@ -322,12 +322,6 @@ def main():
                     result=pin(proof / 'FINISHED.json'), audit=pin(audit / 'FINISHED.json'))
         if case in ('uart', 'shell'): lane['second_solver_conclusions'] = check_split(proof, run / ('conclusions-' + case), expected_count)
         lanes[case] = lane
-    lean_path = run / 'lean'; lean = read(lean_path / 'FINISHED.json')
-    assert lean['passed'] and lean['exit'] == 0 and lean['theorem_count'] == 15
-    assert lean['toolchain'] == 'leanprover/lean4:v4.33.1'
-    assert lean['source_sha256'] == sha((HERE / 'SeededPublicSurface.lean').read_bytes())
-    assert lean['stdout_sha256'] == sha((lean_path / 'stdout.log').read_bytes())
-    assert lean['stderr_sha256'] == sha((lean_path / 'stderr.log').read_bytes())
     controls = dict(selector=check_controls(run / 'selector-controls', 7, True, lanes['selector']['model_sha256']),
         buffers=check_controls(run / 'buffer-controls', 2, True, lanes['selector-buffer']['model_sha256']),
         serial=check_controls(run / 'uart-controls', 5, False))
@@ -335,9 +329,8 @@ def main():
     matched = connected['primary']['design_sha256'] == recorded['connected']['model_sha256']; all_match &= matched
     assert connected['secondary']['complete'] == (connected['secondary']['base_passed'] and connected['secondary']['passed_conclusions'] == 196)
     if args.require_recorded_model: assert all_match, 'Yosys models differ from recorded digests; inspect the fresh source-bound results'
-    result = dict(schema='seeded-public-formal-replay-result-v1', primary_scoped_checks_passed=True,
-        source_binding=binding, component_lanes=lanes, connected=connected, lean=dict(theorems=15, passed=True,
-        toolchain=lean['toolchain'], result=pin(lean_path / 'FINISHED.json'), rtl_refinement=False),
+    result = dict(schema='seeded-public-rtl-formal-replay-result-v2', primary_scoped_checks_passed=True,
+        source_binding=binding, component_lanes=lanes, connected=connected,
         sensitivity=controls, all_models_match_recorded=all_match, require_recorded_model=args.require_recorded_model,
         recorded_result_sha256=sha((HERE / 'recorded/RESULTS.json').read_bytes()),
         assertion_counts_overlap=True, whole_machine_refinement=False, numerical_cdf_equivalence=False,

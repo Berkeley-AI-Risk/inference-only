@@ -4,6 +4,7 @@ import json
 import math
 from pathlib import Path
 import unittest
+from unittest import mock
 
 HERE = Path(__file__).resolve().parent
 SPEC = importlib.util.spec_from_file_location('capacity', HERE / 'estimate_training_capacity.py')
@@ -34,15 +35,15 @@ class CapacityTests(unittest.TestCase):
         result = CAPACITY.estimate(HERE.parent)
         self.assertAlmostEqual(result['combined_wire_token_rate_ceiling'], 2 * 25e6 / 217 / 40)
         scenarios = result['scenarios']
-        self.assertEqual(scenarios['five_dynamic_lanes_full_credit']['operation_rate_proxy'], 250e6)
-        self.assertEqual(scenarios['all_mapped_multipliers_full_credit']['operation_rate_proxy'], 3.8e9)
+        self.assertEqual(scenarios['dynamic_lanes_full_credit']['operation_rate_proxy'], 950e6)
+        self.assertEqual(scenarios['all_mapped_multipliers_full_credit']['operation_rate_proxy'], 4.5e9)
         self.assertGreater(scenarios['token_channel_wire_ceiling']['operation_rate_proxy'], 100_000)
         self.assertLess(scenarios['token_channel_wire_ceiling']['operation_rate_proxy'], 101_000)
 
     def test_measured_context_is_not_a_peak_claim(self):
         result = CAPACITY.estimate(HERE.parent)
         self.assertEqual(result['inputs']['fpga_context_positions'], 128)
-        self.assertAlmostEqual(result['inputs']['fpga_inference_rate_proxy'], 1 / 0.15292962500825524)
+        self.assertAlmostEqual(result['inputs']['fpga_inference_rate_proxy'], 1 / 0.1017904375)
         self.assertTrue(result['h100_inference_benchmark_measured'])
         self.assertFalse(result['inputs']['reference_tps_are_sensitivity_inputs_not_measurements'])
         self.assertFalse(result['measured_reference']['fpga_bit_exact'])
@@ -63,16 +64,31 @@ class CapacityTests(unittest.TestCase):
         self.assertAlmostEqual(reference['aggregate_tokens_per_second'], 1018047.5450472439)
         self.assertEqual(reference['context_positions'], 128)
         self.assertEqual(reference['batch'], 32768)
-        ratio = result['scenarios']['five_dynamic_lanes_full_credit']['ratios'][0]
+        ratio = result['scenarios']['dynamic_lanes_full_credit']['ratios'][0]
         self.assertEqual(ratio['reference_kind'], 'measured_fp16_parent_model')
-        self.assertAlmostEqual(ratio['proxy_residual_training_factor'], 0.03935531579996204)
+        self.assertAlmostEqual(ratio['proxy_residual_training_factor'], 0.09954108165404642)
 
     def test_overrides_are_labelled_sensitivity_not_measurements(self):
         result = CAPACITY.estimate(HERE.parent, (1e6, 1e7))
         self.assertTrue(result['inputs']['reference_tps_are_sensitivity_inputs_not_measurements'])
-        ratios = result['scenarios']['five_dynamic_lanes_full_credit']['ratios']
+        ratios = result['scenarios']['dynamic_lanes_full_credit']['ratios']
         self.assertTrue(all(row['reference_kind'] == 'user_supplied_sensitivity' for row in ratios))
         self.assertAlmostEqual(ratios[1]['proxy_residual_training_factor'], 10 * ratios[0]['proxy_residual_training_factor'])
+
+    def test_other_image_or_unsupported_census_cannot_supply_current_credit(self):
+        path = HERE.parent / CAPACITY.CENSUS_FILE
+        real_read = Path.read_bytes
+        original = json.loads(real_read(path))
+        mutations = [('image_sha256', '0' *64),
+                     ('dynamic_scheduled_role_instances',18),
+                     ('unclassified_multiplier_cells',['injected unknown role'])]
+        for key, value in mutations:
+            altered = dict(original, **{key:value})
+            def read(selected):
+                return json.dumps(altered).encode() if selected == path else real_read(selected)
+            with self.subTest(field=key), mock.patch.object(Path,'read_bytes',read):
+                with self.assertRaises(ValueError):
+                    CAPACITY.estimate(HERE.parent)
 
     def test_pinned_geometry_and_changed_geometry_rejection(self):
         source = (HERE.parent / CAPACITY.GEOMETRY_FILE).read_text()
@@ -109,7 +125,7 @@ class CapacityTests(unittest.TestCase):
         result = CAPACITY.estimate(HERE.parent)
         scenarios = result['scenarios']
         self.assertEqual(set(scenarios), {
-            'token_channel_wire_ceiling', 'five_dynamic_lanes_full_credit',
+            'token_channel_wire_ceiling', 'dynamic_lanes_full_credit',
             'all_mapped_multipliers_full_credit', 'fixed_schedule_dynamic_work_allowance',
             'weight_enforcement_failure_fixed_schedule',
         })
@@ -124,7 +140,7 @@ class CapacityTests(unittest.TestCase):
         scenarios = CAPACITY.estimate(HERE.parent)['scenarios']
         expected = {
             'token_channel_wire_ceiling': 'software_token_interface',
-            'five_dynamic_lanes_full_credit': 'physical_dynamic_unit_stress',
+            'dynamic_lanes_full_credit': 'physical_dynamic_unit_stress',
             'all_mapped_multipliers_full_credit': 'internal_circuit_full_access_stress',
             'fixed_schedule_dynamic_work_allowance': 'physical_fixed_schedule_stress',
             'weight_enforcement_failure_fixed_schedule': 'weight_enforcement_compromise',
@@ -160,7 +176,7 @@ class CapacityTests(unittest.TestCase):
         self.assertEqual(text.count(header), 1)
         table = text[text.index(header):].split('\n\n', 1)[0].splitlines()
         self.assertIn('`φ_proxy / 0.0001`', table[0])
-        names = ('token_channel_wire_ceiling', 'five_dynamic_lanes_full_credit',
+        names = ('token_channel_wire_ceiling', 'dynamic_lanes_full_credit',
                  'all_mapped_multipliers_full_credit', 'fixed_schedule_dynamic_work_allowance',
                  'weight_enforcement_failure_fixed_schedule')
         self.assertEqual(len(table), len(names) + 2)
@@ -194,18 +210,18 @@ class CapacityTests(unittest.TestCase):
                            1 / (1 / compute['reference_tps'] + 1 / memory['reference_tps']))
         examples = models['unmeasured_speedup_sensitivities_not_forecasts']
         self.assertEqual([row['multiple_of_measured_reference'] for row in examples], [3, 6])
-        base = result['scenarios']['five_dynamic_lanes_full_credit']['ratios'][0]['proxy_residual_training_factor']
+        base = result['scenarios']['dynamic_lanes_full_credit']['ratios'][0]['proxy_residual_training_factor']
         for row in examples:
             self.assertFalse(row['measured'])
-            self.assertAlmostEqual(row['scenario_proxy_residual_training_factors']['five_dynamic_lanes_full_credit'],
+            self.assertAlmostEqual(row['scenario_proxy_residual_training_factors']['dynamic_lanes_full_credit'],
                                    base * row['multiple_of_measured_reference'])
 
     def test_all_mapped_proxy_crossover(self):
         result = CAPACITY.estimate(HERE.parent)
         rate = result['reference_performance_models']['all_mapped_proxy_equals_one_at_reference_tps']
-        self.assertAlmostEqual(CAPACITY.proxy_residual_training_factor(3.8e9, result['inputs']['fpga_inference_rate_proxy'], rate), 1)
+        self.assertAlmostEqual(CAPACITY.proxy_residual_training_factor(4.5e9, result['inputs']['fpga_inference_rate_proxy'], rate), 1)
         self.assertAlmostEqual(result['reference_performance_models']['all_mapped_proxy_equals_one_at_multiple_of_measured'],
-                               1.6716794757437565)
+                               2.120844053561972)
 
     def test_rounding_diagnostic_scope_is_separate(self):
         reference = CAPACITY.estimate(HERE.parent)['measured_reference']

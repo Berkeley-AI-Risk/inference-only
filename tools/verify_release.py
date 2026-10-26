@@ -10,27 +10,42 @@ import json
 from pathlib import Path, PurePosixPath
 import stat
 
-ASSETS = {
-    'prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs': (42070540, 'd271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725'),
-    'prebuilt/encrypted-memory/project/impl/pnr/shared_product.fs': (42303596, '865e74e692d5978815fe921f11e4fa1b8e2c080401a8be05508dd9775823aecc'),
-    'assets/board1-encrypted-model2048.bin': (7265984, '88da38f3eb64bacc21aa472666b0cc8ea1e516cb04c80e0678f768425e6390eb'),
-    'prebuilt/inference/project/impl/pnr/shared_product.fs': (41074783, '6ba3caa4f88ac58dd30336c3ff4478f836779db0d04309ff457ca065ec1f7f09'),
-    'prebuilt/kv-protected/project/impl/pnr/shared_product.fs': (42198463, '72d5a54e06ed2017e653122f3daecf073f239a917b79f24d1e7b886d68a21a2f'),
-    'prebuilt/flash-reader/readonly_flash_reader.fs': (34668952, '5c0736fff07d5550dc2b563df009bc9f8922a100b38cbb93db5cf2a7eb7824c9'),
-    'assets/board1-real-semantic-image2048.bin': (7265984, 'cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0'),
-    'host-app/assets/tokenizer.json': (86463, '01b6553da99789d461cec48eed624684a803f259a5177616a67f7391700acf51'),
-}
-VARIANTS = {
-    'seeded-sampling': ('prebuilt/seeded-sampling', 'variants/seeded-sampling/hardware',
-        'hardware-inputs-seeded-sampling.json', 91, 'bd6979971359e5a18e0736ef5771ae9074ef9719d32e75970577eba9bb9d8c30'),
-    'encrypted-memory': ('prebuilt/encrypted-memory', 'variants/encrypted-memory/hardware',
-        'hardware-inputs-encrypted-memory.json', 100, '840c12ce7d1a5886966aca73e7c44eb3e42b9ee07ab33adcb2de3d273125e262'),
-    'baseline': ('prebuilt/inference', 'hardware', 'hardware-inputs.json', 90,
-        '8955cde51f78b582612ca4ee61d146b6128a85a535b3d492d325a4168f77e334'),
-    'kv-protected': ('prebuilt/kv-protected', 'variants/kv-protected/hardware',
-        'hardware-inputs-kv-protected.json', 93,
-        'cfff67c4559b290287ea0c024f4782154fc0c27aa62bb3b264b2e5bf472ed7b2'),
-}
+ASSETS = {'prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs': (42070540,
+                                                                 'd271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725'),
+ 'prebuilt/encrypted-memory/project/impl/pnr/shared_product.fs': (42303596,
+                                                                  'cfc8a3d8832b4a2959606f0e9f01c511357ec68380f521b5f28a4fc737edf1d2'),
+ 'assets/board1-encrypted-model2048.bin': (7265984,
+                                           '88da38f3eb64bacc21aa472666b0cc8ea1e516cb04c80e0678f768425e6390eb'),
+ 'prebuilt/inference/project/impl/pnr/shared_product.fs': (42197772,
+                                                           '01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57'),
+ 'prebuilt/kv-protected/project/impl/pnr/shared_product.fs': (42303596,
+                                                              '90ac68150d0c297b666bc1963d05e32d1d2d0d7d69706593e58d48d5ab2e79e2'),
+ 'prebuilt/flash-reader/readonly_flash_reader.fs': (34668952,
+                                                    '5c0736fff07d5550dc2b563df009bc9f8922a100b38cbb93db5cf2a7eb7824c9'),
+ 'assets/board1-real-semantic-image2048.bin': (7265984,
+                                               'cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0'),
+ 'host-app/assets/tokenizer.json': (86463,
+                                    '01b6553da99789d461cec48eed624684a803f259a5177616a67f7391700acf51')}
+VARIANTS = {'seeded-sampling': ('prebuilt/seeded-sampling',
+                     'variants/seeded-sampling/hardware',
+                     'hardware-inputs-seeded-sampling.json',
+                     91,
+                     'bd6979971359e5a18e0736ef5771ae9074ef9719d32e75970577eba9bb9d8c30'),
+ 'encrypted-memory': ('prebuilt/encrypted-memory',
+                      'variants/encrypted-memory/hardware',
+                      'hardware-inputs-encrypted-memory.json',
+                      100,
+                      '3361bbe05cd8ea087553a674ef0b3bcf2071d5131ef0b2f84bff150a1a4ba86b'),
+ 'baseline': ('prebuilt/inference',
+              'hardware',
+              'hardware-inputs.json',
+              90,
+              '4f4cbc54676e9d976af7358386c19d8befdab34d819de30e4fb3e42beb3362fd'),
+ 'kv-protected': ('prebuilt/kv-protected',
+                  'variants/kv-protected/hardware',
+                  'hardware-inputs-kv-protected.json',
+                  93,
+                  'e70e0053282779af8fd87a2fce6631919afbe7ee35f66b49876520c5c090f7b9')}
 
 
 def file_identity(path):

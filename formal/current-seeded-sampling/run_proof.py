@@ -27,6 +27,7 @@ def source_inputs(): return provider.source_inputs()
 
 def prepare(case):
     inventory = source_inputs()
+    reference = provider.reference_public_root()
     files, origins, sources = {}, {}, []
     def add(basename, monitor=None):
         matches = [name for name in inventory if Path(name).name == basename]
@@ -103,7 +104,7 @@ def prepare(case):
                     'settings_accepted_o': 'settings_accepted', 'settings_rejected_o': 'settings_rejected'}
         if any(bindings.get(key) != value for key, value in expected.items()):
             raise ValueError('Frozen backend-boundary wiring changed')
-        connection_monitor = (PUBLIC / 'formal/command/monitor.inc.sv').read_bytes()
+        connection_monitor = (reference / 'formal/command/monitor.inc.sv').read_bytes()
         connection_monitor += b'''\n    always_comb if (reset_n_i) begin
         if (settings_valid) assert(!append_valid && !step_valid && !clear);
         if (settings_valid) assert(settings_temperature <= 3);
@@ -134,8 +135,8 @@ module board1_seeded_command_frontend (
     elif case == 'shell':
         top, reset = 'board1_context2048_token_shell', 'rst_n'
         selector_monitor = (HERE / 'selector-monitor.inc.sv').read_bytes()
-        shell_monitor = ((PUBLIC / 'formal/token-shell/control_monitor.inc.sv').read_bytes() + b'\n' +
-                         (PUBLIC / 'formal/token-shell/tape_monitor.inc.sv').read_bytes() + b'\n' +
+        shell_monitor = ((reference / 'formal/token-shell/control_monitor.inc.sv').read_bytes() + b'\n' +
+                         (reference / 'formal/token-shell/tape_monitor.inc.sv').read_bytes() + b'\n' +
                          (HERE / 'shell-settings-monitor.inc.sv').read_bytes())
         add('board1_seeded_head_selector.sv', selector_monitor)
         add('board1_context2048_token_shell.sv', shell_monitor)

@@ -1,0 +1,58 @@
+{
+  "historical_context": {
+    "capsule": {
+      "bytes": 381806,
+      "path": "evidence/current-greedy/source-reference-CAPSULE.json",
+      "sha256": "c2bfe05888b22f9abe0fd90676ef423de604c3f28b6a381fe645b440aaba642c"
+    },
+    "specification": {
+      "bytes": 105805,
+      "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/current-v15-portable-closed-r2/source-reference-SPECIFICATION.json",
+      "sha256": "6fe9729a5380c5b045d83b01d97247df7598dd30b8925217d0bcb9cbfddb9745"
+    }
+  },
+  "role_ledger": {
+    "bytes": 14809,
+    "path": "evidence/current-greedy/ROLE-LEDGER.json",
+    "sha256": "6c4f94131af8364e919a799846b1b6eddeb391895ebf16533edd1f4e879b5f53"
+  },
+  "schema": "greedy-final-current-release-index-v15-v1",
+  "shared_host": {
+    "capsule": {
+      "bytes": 590067,
+      "path": "evidence/current-greedy/shared-host-CAPSULE.json",
+      "sha256": "4e3892f8f8d33e96e43d77522e90191c2da7b572d1e02987b4393fc10a30a25c"
+    },
+    "specification": {
+      "bytes": 3267,
+      "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/current-v15-portable-closed-r2/shared-host-SPECIFICATION.json",
+      "sha256": "c0f75c6f89ef68d94ef86e0f25872b60e359c2f6ab5a311c8b0831581eaaaae3"
+    }
+  },
+  "variants": {
+    "baseline": {
+      "capsule": {
+        "bytes": 1231295,
+        "path": "evidence/current-greedy/baseline-CAPSULE.json",
+        "sha256": "60185b9841ccbec395bfdf794cd85bdb29dca47d6de551eaaba676639449999e"
+      },
+      "epoch": "baseline-v1"
+    },
+    "encrypted-memory": {
+      "capsule": {
+        "bytes": 2211045,
+        "path": "evidence/current-greedy/encrypted-memory-CAPSULE.json",
+        "sha256": "50f58c230c9a0eb65d25a4dd4b8d84a145eabd66171f9d2f321cba5e955c115c"
+      },
+      "epoch": "encrypted-v5-coordinate"
+    },
+    "kv-protected": {
+      "capsule": {
+        "bytes": 3357786,
+        "path": "evidence/current-greedy/kv-protected-CAPSULE.json",
+        "sha256": "73e530fee2f22d0bd8ee1afa370435533c31c2723f825589e90e7b1daecdeecf"
+      },
+      "epoch": "protected-v15-compact-prefix"
+    }
+  }
+}

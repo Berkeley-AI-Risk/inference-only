@@ -38,6 +38,8 @@ module board1_clustered_projection_scale2 (
 );
     localparam [2:0] IDLE=0, META=1, WEIGHTS=2, DRAIN=3, EMIT=4, DONE=5, FAIL=7;
     logic [2:0] state_q;
+    // Private sixteen-way sharing: four multipliers serve64 fixed rows.
+    logic [3:0] weight_pause_q;
     logic fail_q;
     logic [5:0] group_q;
     logic [6:0] valid_lanes_q, metadata_count_q, issue_count_q;
@@ -81,13 +83,22 @@ module board1_clustered_projection_scale2 (
                 !fail_q && !(|tile_fault);
     assign start_ready_o = state_q == IDLE && live;
     assign metadata_ready_o = state_q == META && live;
-    assign weight_ready_o = state_q == WEIGHTS && live;
+    assign weight_ready_o = state_q == WEIGHTS && live && weight_pause_q == 4'd0;
     assign busy_o = state_q != IDLE && state_q != FAIL;
     assign fail_closed_o = fail_q || upstream_fail_closed_i || (|tile_fault);
     wire start_fire = start_valid_i && start_ready_o;
     wire metadata_fire = metadata_valid_i && metadata_ready_o;
     wire weight_fire = weight_valid_i && weight_ready_o;
     wire kill = clear_i || fail_q || upstream_fail_closed_i || !model_locked_i;
+
+    // Hold each captured weight beat for sixteen private row slices.
+    // Keep the original combinational live/fault/CLEAR gates on ready.
+    always_ff @(posedge clk or negedge reset_n) begin
+        if (!reset_n) weight_pause_q <= 0;
+        else if (kill || start_fire) weight_pause_q <= 0;
+        else if (weight_fire) weight_pause_q <= 4'd15;
+        else if (weight_pause_q != 0) weight_pause_q <= weight_pause_q-4'd1;
+    end
 
     wire signed [34:0] tile_dot [0:3];
     wire [15:0] tile_multiplier [0:3];

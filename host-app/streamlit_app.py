@@ -144,7 +144,7 @@ def console():
 
 
 console()
-if sampling_enabled:
+if sampling_enabled or variant_id in ('baseline', 'kv-protected', 'encrypted-memory'):
     st.caption(f'Up to {limits.max_prompt:,} prompt tokens and {limits.max_new} new tokens; '
                f'{limits.total:,} tokens combined. Longer prompts leave fewer output slots. '
                'The first token can take several minutes for a long prompt.')

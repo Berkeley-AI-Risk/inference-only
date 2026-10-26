@@ -73,10 +73,10 @@ the settings and rewinds the generator; reset restores greedy defaults. This
 is a bounded family of inference behaviors, with unchanged accepted weights
 and private model arithmetic. Its additional command and state have a
 [separate specification and control proof](../../formal/seeded-sampling/README.md),
-with numerical model functions abstract in the Lean specification. Its board
+at the declared RTL boundaries and arbitrary private numerical services. Its board
 campaigns and integer references are also recorded separately. The finite
 greedy capacity estimates have not been extended to sampling.
-[The seeded-generation evidence](VALIDATION.md#experimental-seeded-sampling-image)
+[The seeded-generation evidence](VALIDATION.md#seeded-sampling)
 records the finite test scope; it does not certify a residual training fraction
 or physical security.
 
@@ -227,10 +227,10 @@ those protections remains to be done.
 
 The [training-capacity analysis](TRAINING-CAPACITY.md) provides reproducible
 conditional estimates for five scenarios: matrix arithmetic through tokens;
-full use of five dynamic multipliers; full use of all 76 mapped multipliers;
+full use of the 19 scheduled runtime-operand units; full use of all 90 mapped multiplier instances;
 dynamic operations only when the model runs them; and replacing accepted
 weights while keeping the same schedule. Their residual training factor proxies use
-a [measured single-H100 SXM reference](../../docs/benchmarks/H100-BENCHMARK.md#historical-simplestories-campaign).
+a [measured single-H100 SXM reference](../../docs/benchmarks/H100-BENCHMARK.md).
 That benchmark uses the original FP16 checkpoint, not the exact FPGA numerical
 model. The analysis also compares with the paper's illustrative 0.01, 0.001 and 0.0001
 factors and separates achieved GPU performance from idealized performance models.
@@ -255,42 +255,29 @@ objection to being an inference-only demonstration.
 
 ### What the proofs constrain for a software adversary
 
-The formal checks are stronger than tests of a few well-formed commands.
-They cover arbitrary serial input sequences in a reset-initialized,
-synchronous digital RTL model. The connected front-end/core/token-shell
-proof establishes 134 assertions, including supporting invariants: request
-authorization, APPEND operand preservation, STEP ownership of public token
-replies, tape bounds and stored/published-token agreement. Changing host
-software or constructing a different command sequence cannot violate those
-proved properties in that model. These are safety results, not guarantees
-of eventual completion.
+The scoped RTL checks constrain ownership and admission at their actual
+verification boundaries. The selected baseline has 34 attention-controller
+assertions; the K/V-protected design has a joint 357-assertion cache scope
+including support and a separate 34-assertion attention scope. The encrypted
+attention bridge rechecks those 34 attention assertions through six byte-identical
+isolated sources. Seeded sampling has separate current controller and bank
+proofs. Counts overlap and must not be added.
 
-That materially constrains software-induced misuse at the proved boundaries.
-It is not yet a proof that the full backend always implements the fixed
-model, that all private-memory/controller properties compose, or that the
-mapped FPGA implements the proved RTL. Nor is it a bound on every possible
-computation performed through legitimate prompts. The independent
-weight-page-bank proof adds sealed-copy/digest-admission properties, not
-a complete proof of SHA-256 or the parent verification path. The protected
-variant adds proofs of K/V guard history, cache assembly through selected
-parent gates, and a separate attention capture/use result. They constrain
-when externally fetched data can be admitted and used; they do not establish
-the whole protected machine's numerical behavior or resistance to physical
-modification of the checking circuitry. See
-[FORMAL-STATUS.md](FORMAL-STATUS.md) for the exact theorem and solver scopes.
+Private arithmetic, memory and SHA services remain unrestricted at the listed
+cuts. The results establish their named digital safety properties under reset
+conditions; they do not establish eventual completion under indefinite stalls,
+the whole backend's numerical function, private-component composition,
+cryptographic security or mapped-image equivalence. See
+[FORMAL-STATUS.md](FORMAL-STATUS.md) for each property and solver result.
 
 ### Physical and functional evidence
 
-The supplied baseline and K/V-protected images each produced 391
-reference-matching main-case tokens plus 72 CLEAR/replay outputs, through
-the full 2,048-input window. Their 128-output continuations were each repeated.
-The supplied encrypted image produced 522 main-case tokens plus surrounding
-CLEAR/replay checks and also passed a full-window test.
-Formal work covers the abstract specification and scoped properties of the
-real command interface, tape/controller, local K/V controller, sealed
-weight-page bank, and the protected K/V paths described above.
-See [VALIDATION.md](VALIDATION.md) and
-[FORMAL-STATUS.md](FORMAL-STATUS.md) for precise scopes.
+Each of the three supplied greedy images passed ten CLI cases with 395 main
+reference outputs and separate recovery/race checks. Each also passed seven
+browser cases with 26 reference outputs, including full-context operation,
+Stop during an active STEP and resumed generation. Their common speed pairs
+check all 256 generated IDs per image. The seeded design has its own board
+and browser campaigns. [VALIDATION.md](VALIDATION.md) links these scopes.
 
 These are evidence for an architectural and functional approximation, not
 a completed whole-machine refinement theorem, full numerical proof,

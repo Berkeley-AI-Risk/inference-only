@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline package replay: inventory, model materialization, Lean and UART proof.
+"""Offline package replay: inventory, model materialization and UART proof.
 
 Build products and logs go in a fresh sibling work directory, never into the
 curated package. There is no network, vendor-tool invocation or board access.
@@ -45,7 +45,6 @@ def main():
     parser.add_argument('--rom', required=True, type=Path)
     parser.add_argument('--work', required=True, type=Path)
     parser.add_argument('--yosys', default='yosys')
-    parser.add_argument('--lean', default='lean')
     parser.add_argument('--z3', default='z3')
     parser.add_argument('--cvc5', default='cvc5')
     parser.add_argument('--verilator', default='verilator')
@@ -114,7 +113,6 @@ def main():
     inserted = ''.join(frame_lines[edits[0][3]:edits[0][4]])
     assert inserted.count('assert(') == 46 and 'assume(' not in inserted
 
-    shutil.copytree(package / 'formal/abstract', work / 'abstract')
     expected = json.loads((package / 'formal/uart/expected.json').read_text())
     labels = expected['expected_passing'] + expected['expected_bounded_counterexamples']
     for label in labels: shutil.copytree(package / 'formal/uart' / label, work / label)
@@ -122,8 +120,7 @@ def main():
         '--package', str(package), '--image', str(work / 'image/board1-real-semantic-image2048.bin'),
         '--work', str(work / 'model-rtl'), '--verilator', options.verilator], work),
         ('model-checker-guards', python + ['-S', '-m', 'unittest', 'discover',
-         '-s', str(package / 'tools'), '-p', 'test_model_rtl.py', '-v'], work),
-        ('lean', [options.lean, 'Board1PublicSurface.lean'], work / 'abstract')]
+         '-s', str(package / 'tools'), '-p', 'test_model_rtl.py', '-v'], work)]
     jobs += [('uart-' + label, [options.yosys, '-Q', 'prove.ys'], work / label) for label in labels]
     shutil.copytree(frame_proof, work / 'frame')
     jobs.append(('frame-proof', [options.yosys, '-Q', 'prove.ys'], work / 'frame'))
@@ -210,8 +207,6 @@ def main():
                     and composed['serial_scenarios'] == 13 and composed['simulation_faulty_controls_detected'] == 5
                     and not composed['second_solver_executed'] and not composed['complete_second_solver']
                     and not composed['hardware_access'] and not composed['whole_machine_refinement'])
-        elif name == 'lean':
-            passed = row['exit'] == 0 and 'error:' not in log
         elif name in ('uart-actual', 'frame-proof'):
             passed = (row['exit'] == 0 and 'SAT proof finished - no model found: SUCCESS!' in log
                       and 'Induction step proven: SUCCESS!' in log)
@@ -301,7 +296,7 @@ def main():
         'sanitized_photo_and_backup_helper_checked': all(records[n]['passed'] for n in ('photo-metadata', 'flash-layout-guards', 'flash-reader')),
         'hardware_access': False, 'network_access': False, 'published': False,
         'full_release_ready': False,
-        'scope': 'Package inventory/model reconstruction, six numerical cases, four actual-model RTL inference/corruption simulations and ten checker tests, abstract Lean, complete component two-solver proofs including sealed weight-bank lifecycle with arbitrary SHA replies, connected-shell primary induction/source/serial checks, host tests, sanitized photo and backup-helper checks. Connected-shell secondary solver not replayed. No vendor build, board test, whole-machine refinement or redistribution approval.'}
+        'scope': 'Package inventory/model reconstruction, six numerical cases, four actual-model RTL inference/corruption simulations and ten checker tests, complete component two-solver proofs including sealed weight-bank lifecycle with arbitrary SHA replies, connected-shell primary induction/source/serial checks, host tests, sanitized photo and backup-helper checks. Connected-shell secondary solver not replayed. No vendor build, board test, whole-machine refinement or redistribution approval.'}
     put(work / 'FINISHED.json', result)
     print('PACKAGE_REPLAY_FINISHED passed=' + str(result['passed']), flush=True)
     return 0 if result['passed'] else 1

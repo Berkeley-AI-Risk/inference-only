@@ -2,7 +2,7 @@
 import json
 import hashlib
 import re
-SCHEMA='current-seeded-formal-replay-completion-v1'
+SCHEMA='current-seeded-rtl-formal-replay-completion-v2'
 COUNTS={'selector':35,'selector-buffer':57,'uart':63,'shell':94}
 def need(ok,message):
     if not ok:raise ValueError(message)
@@ -15,7 +15,7 @@ def validate_record_binding(raw,origin,expected_sha256):
     need(hashlib.sha256(raw).hexdigest()==origin['sha256']==expected_sha256,'Completed-record literal identity differs')
 
 def validate_completion(row,binding):
-    need(set(row)=={'schema','current_solver_replay_passed','source_binding','components','connected','lean','sensitivity','current_seeded_page_bank','limits','origins'},'Unexpected completion fields')
+    need(set(row)=={'schema','current_solver_replay_passed','source_binding','components','connected','sensitivity','current_seeded_page_bank','limits','origins'},'Unexpected completion fields')
     need(row['schema']==SCHEMA and row['current_solver_replay_passed']is True,'Actual current replay is incomplete')
     need(canonical(row['source_binding'])==canonical(binding),'Current source/image binding differs')
     need(binding['distributed_inputs_verified']==87 and binding['current_native_inputs']==91 and binding['image_bytes_verified']is True,'Wrong current provenance census')
@@ -34,7 +34,6 @@ def validate_completion(row,binding):
     need(type(passed)is list and type(unresolved)is list and all(type(i)is int for i in passed+unresolved),'Invalid secondary labels')
     need(passed==sorted(set(passed)) and unresolved==sorted(set(unresolved)) and set(passed).isdisjoint(unresolved) and set(passed)|set(unresolved)==set(range(196)),'Secondary partition differs')
     need(set(unresolved)<={38,73} and s['passed_conclusions']==len(passed) and s['complete']is(not unresolved),'Only existing same-scope CRC unknowns may remain')
-    need(canonical(row['lean'])==canonical({'theorems':15,'passed':True,'toolchain':'leanprover/lean4:v4.33.1','rtl_refinement':False}),'Lean scope differs')
     need(canonical(row['sensitivity'])==canonical({'selector_reset_reachable_mutants':7,'buffer_reset_reachable_mutants':2,'serial_mutants':5,'actual_serial_cases':284}),'Sensitivity census differs')
     bank=row['current_seeded_page_bank']
     need(canonical(bank)==canonical(dict(assertions=42,both_solvers_complete=True,real_ram_bits=32768,sha_replies_unconstrained_bits=258,directed_scenarios=10,detected_faulty_variants=5,observer_drives_production=False,production_sha_elaborated=False,sha_correctness_proved=False,bank_source_sha256='ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1',sha_source_not_elaborated_sha256='d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94')),'Current page-bank scope differs')

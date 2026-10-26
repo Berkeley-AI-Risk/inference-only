@@ -204,7 +204,7 @@ completed evidence and remaining timing/security limits.
 
 Require the expected target, successful **SRAM Program** and `Finished.`.
 Do not run another flash bridge/JTAG operation afterward: it may replace the
-loaded circuit. Keep the board powered and allow **at least 60 seconds** for
+loaded circuit. Keep the board powered and allow **at least 120 seconds** for
 startup. Waiting alone does not establish a successful boot.
 
 For the baseline or protected browser workflow, follow

@@ -6,10 +6,10 @@
   "inputs": {
     "core_clock_hz": 25000000,
     "credited_operations_per_multiply": 2,
-    "dynamic_multiplier_instances": 5,
+    "dynamic_multiplier_instances": 19,
     "fpga_context_positions": 128,
-    "fpga_inference_rate_proxy": 6.538955417866351,
-    "fpga_rate_scope": "Reciprocal of one measured last STEP, including host overhead; not sustained peak or a licensed rating.",
+    "fpga_inference_rate_proxy": 9.82410553054161,
+    "fpga_rate_scope": "Two measured128-position last STEPs pooled as2 outputs over their summed request/reply time; includes host overhead. A fixed-context comparison, not the growing-context headline or a certified rating.",
     "h100_dense_flops_per_second": 989000000000000.0,
     "h100_memory_bytes_per_second": 3350000000000.0,
     "illustrative_paper_targets_not_certification_thresholds": [
@@ -17,11 +17,14 @@
       0.001,
       0.0001
     ],
+    "mapped_census_file": "evidence/current-greedy/baseline/analysis/mapped-census.json",
     "mapped_multiplier_primitives": {
       "MULT12X12": 3,
-      "MULTALU27X18": 73
+      "MULTALU27X18": 87
     },
-    "measured_single_step_seconds": 0.15292962500825524,
+    "mapped_role_observations_establish_attacker_access": false,
+    "measured_single_step_repetitions": 2,
+    "measured_single_step_seconds": 0.1017904375,
     "model_geometry": {
       "head_dim": 64,
       "hidden_size": 256,
@@ -32,6 +35,7 @@
       "vocab_size": 4019
     },
     "reference_tps_are_sensitivity_inputs_not_measurements": false,
+    "selected_fpga_image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
     "tape_slots": 2049,
     "uart_clocks_per_bit": 217,
     "uart_data_bits_per_byte_credited": 8,
@@ -76,19 +80,19 @@
   },
   "network_access": false,
   "reference_performance_models": {
-    "all_mapped_proxy_equals_one_at_multiple_of_measured": 1.6716794757437565,
-    "all_mapped_proxy_equals_one_at_reference_tps": 1701849.186386795,
+    "all_mapped_proxy_equals_one_at_multiple_of_measured": 2.120844053561972,
+    "all_mapped_proxy_equals_one_at_reference_tps": 2159120.0821568114,
     "arithmetic_only_roof": {
       "kind": "Ideal dense matrix-work roof ignoring memory and all other operations.",
       "measured": false,
       "multiple_of_measured_reference": 84.55801338890817,
       "reference_tps": 86084077.94464993,
       "scenario_proxy_residual_training_factors": {
-        "all_mapped_multipliers_full_credit": 50.58267126913607,
-        "five_dynamic_lanes_full_credit": 3.3278073203378993,
-        "fixed_schedule_dynamic_work_allowance": 0.06974394469450511,
-        "token_channel_wire_ceiling": 0.0013359417920235839,
-        "weight_enforcement_failure_fixed_schedule": 0.9999999999999999
+        "all_mapped_multipliers_full_credit": 39.86998159854911,
+        "dynamic_lanes_full_credit": 8.416996115249258,
+        "fixed_schedule_dynamic_work_allowance": 0.0697439446945051,
+        "token_channel_wire_ceiling": 0.0008892070419794332,
+        "weight_enforcement_failure_fixed_schedule": 0.9999999999999998
       }
     },
     "combined_ideal_roof_reference_tps": 8519490.559895834,
@@ -103,11 +107,11 @@
       "multiple_of_measured_reference": 8.368460393959769,
       "reference_tps": 8519490.559895834,
       "scenario_proxy_residual_training_factors": {
-        "all_mapped_multipliers_full_credit": 5.006019703769175,
-        "five_dynamic_lanes_full_credit": 0.32934340156376146,
+        "all_mapped_multipliers_full_credit": 3.9458159971285394,
+        "dynamic_lanes_full_credit": 0.8330055993938029,
         "fixed_schedule_dynamic_work_allowance": 0.006902355146520581,
-        "token_channel_wire_ceiling": 0.0001322142695543921,
-        "weight_enforcement_failure_fixed_schedule": 0.09896708849427031
+        "token_channel_wire_ceiling": 8.800223201330691e-05,
+        "weight_enforcement_failure_fixed_schedule": 0.0989670884942703
       }
     },
     "scope": "Idealized models for this independent-cache FP16 workload, not achieved rates, forecasts or a standardized peak rating. Assume the stated useful-work count and no cross-row cache sharing; omit overhead.",
@@ -118,10 +122,10 @@
         "multiple_of_measured_reference": 3.0,
         "reference_tps": 3054142.6351417317,
         "scenario_proxy_residual_training_factors": {
-          "all_mapped_multipliers_full_credit": 1.7946024004782692,
-          "five_dynamic_lanes_full_credit": 0.11806594739988613,
+          "all_mapped_multipliers_full_credit": 1.4145311603469755,
+          "dynamic_lanes_full_credit": 0.29862324496213927,
           "fixed_schedule_dynamic_work_allowance": 0.0024744175708243535,
-          "token_channel_wire_ceiling": 4.739734550807784e-05,
+          "token_channel_wire_ceiling": 3.154782165551944e-05,
           "weight_enforcement_failure_fixed_schedule": 0.035478600782661275
         }
       },
@@ -131,10 +135,10 @@
         "multiple_of_measured_reference": 6.0,
         "reference_tps": 6108285.270283463,
         "scenario_proxy_residual_training_factors": {
-          "all_mapped_multipliers_full_credit": 3.5892048009565385,
-          "five_dynamic_lanes_full_credit": 0.23613189479977226,
+          "all_mapped_multipliers_full_credit": 2.829062320693951,
+          "dynamic_lanes_full_credit": 0.5972464899242785,
           "fixed_schedule_dynamic_work_allowance": 0.004948835141648707,
-          "token_channel_wire_ceiling": 9.479469101615567e-05,
+          "token_channel_wire_ceiling": 6.309564331103888e-05,
           "weight_enforcement_failure_fixed_schedule": 0.07095720156532255
         }
       }
@@ -145,51 +149,51 @@
       "access_assumption": "Hypothetical defeat of operand, readout and scheduling restrictions; no concrete all-unit access method established.",
       "access_model": "internal_circuit_full_access_stress",
       "kind": "Stress proxy crediting every mapped multiplier, including fixed-operand and small units; not a whole-chip tamper bound.",
-      "operation_rate_proxy": 3800000000.0,
+      "operation_rate_proxy": 4500000000.0,
       "ratios": [
         {
           "illustrative_target_comparisons": [
             {
-              "proxy_over_target": 59.82008001594231,
+              "proxy_over_target": 47.15103867823252,
               "target": 0.01
             },
             {
-              "proxy_over_target": 598.2008001594231,
+              "proxy_over_target": 471.51038678232516,
               "target": 0.001
             },
             {
-              "proxy_over_target": 5982.008001594231,
+              "proxy_over_target": 4715.103867823252,
               "target": 0.0001
             }
           ],
-          "proxy_residual_training_factor": 0.5982008001594231,
+          "proxy_residual_training_factor": 0.47151038678232515,
           "reference_kind": "measured_fp16_parent_model",
           "reference_tps": 1018047.5450472439
         }
       ]
     },
-    "five_dynamic_lanes_full_credit": {
+    "dynamic_lanes_full_credit": {
       "access_assumption": "Accepted weights remain fixed; useful access to every named dynamic unit is granted, not software-exposed or established by DDR access alone.",
       "access_model": "physical_dynamic_unit_stress",
-      "kind": "MAC-equivalent over-credit of five internal integer multipliers at nominal clock; not demonstrated GEMM access.",
-      "operation_rate_proxy": 250000000.0,
+      "kind": "MAC-equivalent over-credit of 19 internal integer multiplier roles at nominal clock; not demonstrated GEMM access or a proved simultaneous useful rate.",
+      "operation_rate_proxy": 950000000.0,
       "ratios": [
         {
           "illustrative_target_comparisons": [
             {
-              "proxy_over_target": 3.935531579996204,
+              "proxy_over_target": 9.95410816540464,
               "target": 0.01
             },
             {
-              "proxy_over_target": 39.35531579996204,
+              "proxy_over_target": 99.54108165404642,
               "target": 0.001
             },
             {
-              "proxy_over_target": 393.5531579996204,
+              "proxy_over_target": 995.4108165404641,
               "target": 0.0001
             }
           ],
-          "proxy_residual_training_factor": 0.03935531579996204,
+          "proxy_residual_training_factor": 0.09954108165404642,
           "reference_kind": "measured_fp16_parent_model",
           "reference_tps": 1018047.5450472439
         }
@@ -200,7 +204,7 @@
       "access_model": "physical_fixed_schedule_stress",
       "fixed_operation_count_premise_certified": false,
       "kind": "Conditional model-operation allowance if a verified, unaccelerated schedule limits the named dynamic work; that premise and useful result recovery are not established.",
-      "operation_rate_proxy": 5239481.885584607,
+      "operation_rate_proxy": 7871780.686668137,
       "operations_per_decode_credited": 801272,
       "ratios": [
         {
@@ -233,19 +237,19 @@
         {
           "illustrative_target_comparisons": [
             {
-              "proxy_over_target": 0.0015799115169359277,
+              "proxy_over_target": 0.0010515940551839814,
               "target": 0.01
             },
             {
-              "proxy_over_target": 0.01579911516935928,
+              "proxy_over_target": 0.010515940551839813,
               "target": 0.001
             },
             {
-              "proxy_over_target": 0.15799115169359276,
+              "proxy_over_target": 0.10515940551839813,
               "target": 0.0001
             }
           ],
-          "proxy_residual_training_factor": 1.5799115169359278e-05,
+          "proxy_residual_training_factor": 1.0515940551839813e-05,
           "reference_kind": "measured_fp16_parent_model",
           "reference_tps": 1018047.5450472439
         }
@@ -255,25 +259,25 @@
       "access_assumption": "Hypothetical compromise of hardware weight acceptance by an unspecified cause; not a public weight-update command.",
       "access_model": "weight_enforcement_compromise",
       "kind": "Counterfactual changeable, usable weights at unchanged decode rate: credits dominant matrix work, ignoring replacement/restart costs. No enforcement failure or usable generic-model service demonstrated; not a whole-device bound.",
-      "operation_rate_proxy": 75124541.75820956,
+      "operation_rate_proxy": 112866869.24790947,
       "operations_per_decode_credited": 11488768,
       "ratios": [
         {
           "illustrative_target_comparisons": [
             {
-              "proxy_over_target": 1.1826200260887092,
+              "proxy_over_target": 1.1826200260887094,
               "target": 0.01
             },
             {
-              "proxy_over_target": 11.826200260887092,
+              "proxy_over_target": 11.826200260887093,
               "target": 0.001
             },
             {
-              "proxy_over_target": 118.26200260887092,
+              "proxy_over_target": 118.26200260887093,
               "target": 0.0001
             }
           ],
-          "proxy_residual_training_factor": 0.011826200260887092,
+          "proxy_residual_training_factor": 0.011826200260887093,
           "reference_kind": "measured_fp16_parent_model",
           "reference_tps": 1018047.5450472439
         }
@@ -284,14 +288,16 @@
   "schema": "conditional-training-capacity-v4",
   "scope": "Conditional arithmetic scenarios using a measured FP16 parent-model reference by default; not exact FPGA-model inference, a measured training attack or a certified residual training factor.",
   "source_sha256": {
-    "evidence/baseline-current/implementation.json": "c4dfcef81a9f511f104348a9a3d15a75a1ba4f826359acaea62da50cb1601104",
-    "evidence/baseline-current/metrics.json": "7cce454a3da673e5f1111e20665824a3df1fc1d9ecae2b7a298f3cabb076bc50",
+    "evidence/current-greedy/baseline/analysis/implementation.json": "d903b6e980ea0966bbe12c44196ab8c71c0103395e0e37f930789a9f1ef55423",
+    "evidence/current-greedy/baseline/analysis/mapped-census.json": "5ce797c87d11b838e7b990a34a662b15ba3fac221d0201d6d17c8ba849cc65e0",
+    "evidence/current-greedy/baseline/analysis/metrics.json": "4ad893f57af44d1d74d40da894242919feef8b4dfcad1d843daa81b981e1b2f0",
     "evidence/h100/IMPORT.json": "cde9e645b29d191e5d25ad29aee73ed6f4b5bf39bc7715edd62ff69276cfa9fd",
     "evidence/h100/correctness/compiled-rounding-batch1024.json": "2ab6d71fb5fb8aef13cedd51032f36e84aac2ceed509087ee667676830598af2",
     "evidence/h100/h100-compiled-fp16-repeat/ctx128-batch32768-float16-compile-graph.json": "1ee780a017f63fca95e377a4cbe67b0817dbb2f25eabaafc750a4b22e3d32808",
     "hardware/project/uart_core.sv": "315f5d20fa93a5f974eeef1b26220952c6f9ab4264cd6309a1de7cb35ea1832a",
+    "prebuilt/inference/BUILD.json": "d9f4c40614b90f704190bad934ec2a0624293a3b4b1b0ed736ab4b8787658e5d",
     "reference/reference/model.py": "58d0d8d6d858a74d9bb11a7103b1574b3a0be8eccd0d149363bd10380ffac049",
-    "tools/estimate_training_capacity.py": "46d1c97380ecf55ae1285578d89246ff55021cc5978317f72eef0ff118a94bee"
+    "tools/estimate_training_capacity.py": "97dbdce9adee834939b7b37a7f6962f48bbdd99f94fe0dc1b9fcf3553b036f8a"
   },
   "training_attack_demonstrated": false,
   "uart_baud": 115207.3732718894

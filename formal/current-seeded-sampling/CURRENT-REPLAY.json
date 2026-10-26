@@ -257,12 +257,6 @@
     "sha_source_not_elaborated_sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94"
   },
   "current_solver_replay_passed": true,
-  "lean": {
-    "passed": true,
-    "rtl_refinement": false,
-    "theorems": 15,
-    "toolchain": "leanprover/lean4:v4.33.1"
-  },
   "limits": {
     "assertion_counts_overlap": true,
     "hardware_access": false,
@@ -279,27 +273,27 @@
   },
   "origins": {
     "bank_audit_finished": {
-      "bytes": 9115,
-      "sha256": "5115cad15e2acd323a71715b60e008e7c604082992c33291a7e0cd047881b1d1"
+      "bytes": 8233,
+      "sha256": "e9c026c9473ba5de54b87443ae93d9b61c2e122fbbd3155e8c7e48d250c0704c"
     },
     "bank_finished": {
-      "bytes": 22387,
-      "sha256": "73273f53c8b77ae9a71a6a9fc6e9ae1d863886a59be4b11f39bb2d0d1eb4e89f"
+      "bytes": 21853,
+      "sha256": "2e2ab21fa6dc64fa63d63a6dbfd8a5ac7c763f87c8827dd39ec56292a9414c78"
     },
     "replay_finished": {
-      "bytes": 11591,
-      "sha256": "1245eef93bc31b1b896bb2db7aa4adff4b0c151d8513352cba0f12a0d9485908"
+      "bytes": 10894,
+      "sha256": "38d51a2b352d975fdfcdc9c60ab868bb64edb87262f9ff57f2e271fe2409fb54"
     },
     "replay_results": {
-      "bytes": 58208,
-      "sha256": "11c42912096f742fc60a4e3049b72cdf50e30248570b6716a6cc924c9d4237cf"
+      "bytes": 56154,
+      "sha256": "7b65b13f27901a280eb2a9ad254a98b4aaf688c9152031cf4809fc7625eacf60"
     },
     "reviewed_policy": {
-      "bytes": 1963637,
-      "sha256": "05a25f90debc4daabddc1cc6e0fcf1feff6642190ae305298f8b334eaa238f1d"
+      "bytes": 598684,
+      "sha256": "d5f1bed8526646d1419e2420c17a139dcc1f71043833aad7fd102b00f41d0c14"
     }
   },
-  "schema": "current-seeded-formal-replay-completion-v1",
+  "schema": "current-seeded-rtl-formal-replay-completion-v2",
   "sensitivity": {
     "actual_serial_cases": 284,
     "buffer_reset_reachable_mutants": 2,
@@ -322,7 +316,7 @@
       "project/official/gowin_pll_mod.v": "07398632b56749dbe52f6e5d739a526c7ca5e71c4060c7d062a64dada6e1a953",
       "project/official/pll_init.v": "502436115e507453e2c139a073f5b56484421311ef57088ce1a16140347957f5"
     },
-    "proof_support_inventory_sha256": "43d40dc466e5dff046a6df64bdd886582759ed5cf21eb06a7ddb421b6a6bcf51",
+    "proof_support_inventory_sha256": "f3a2a873d9177fd2da4ff611fd857b4613018639372eea09eda73a731fd52ee6",
     "retained_scope_association": {
       "aggregate_assertion_total": null,
       "arithmetic_refinement_pending": true,

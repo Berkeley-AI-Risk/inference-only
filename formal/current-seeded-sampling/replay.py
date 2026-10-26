@@ -1,7 +1,7 @@
 """Replay scoped seeded formal checks from the supplied public RTL only.
 
 Default: complete primary checks, both component solvers, source/observer audits,
-Lean, and negative controls. --secondary additionally attempts every connected
+and negative controls. --secondary additionally attempts every connected
 cvc5 conclusion with bounded supplements. Unknowns remain explicitly unresolved.
 No installation, hardware, network, programming or publication is performed.
 """
@@ -63,7 +63,6 @@ def main():
         if case in ('uart', 'shell'):
             step('conclusions-' + case, 'check_conclusions.py', '--proof', target,
                  '--run', run / ('conclusions-' + case), '--timeout', '60', '--workers', '2')
-    step('lean', 'run_lean.py', '--run', run / 'lean')
     step('selector-controls', 'check_selector_faults.py', '--run', run / 'selector-controls')
     step('buffer-controls', 'check_selector_faults.py', '--buffer-ownership', '--run', run / 'buffer-controls')
     step('uart-controls', 'check_uart_faults.py', '--run', run / 'uart-controls')

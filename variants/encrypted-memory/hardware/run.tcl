@@ -13,7 +13,7 @@ set_option -place_option 4
 set_option -route_option 0
 set_option -clock_route_order 0
 set_option -route_maxfan 23
-set_option -replicate_resources 1
+set_option -replicate_resources 0
 set_option -correct_hold_violation 1
 set_option -gen_verilog_sim_netlist 1
 set_option -gen_posp 1

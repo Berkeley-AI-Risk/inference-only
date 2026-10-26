@@ -486,26 +486,64 @@ module board1_sha256_bank_owned_compress #(parameter integer REGISTER_RESULT=0) 
         endcase
     endfunction
 
-    wire [31:0] schedule_next =
-        small_sigma1(schedule_q[14]) + schedule_q[9] +
-        small_sigma0(schedule_q[1]) + schedule_q[0];
-    wire [31:0] temp1 = h_q + big_sigma1(e_q) +
-                        choose(e_q, f_q, g_q) +
-                        round_constant(round_q) + schedule_q[0];
-    wire [31:0] temp2 = big_sigma0(a_q) + majority(a_q, b_q, c_q);
-    wire [31:0] next_a = temp1 + temp2;
-    wire [31:0] next_e = d_q + temp1;
+    // Precompute only state already known before each pair of rounds.
+    // Busy START pulses are ignored, just as in the original compressor.
+    wire lookahead_start = start_i && !busy_o;
+    wire [31:0] lookahead_h = lookahead_start ? state_i[31:0] : f_q;
+    wire [31:0] lookahead_g = lookahead_start ? state_i[63:32] : e_q;
+    wire [31:0] lookahead_word0 = lookahead_start ? block_i[511:480] : schedule_q[2];
+    wire [31:0] lookahead_word1 = lookahead_start ? block_i[479:448] : schedule_q[3];
+    wire [5:0] lookahead_round0 = lookahead_start ? 6'd0 : round_q + 6'd2;
+    wire [5:0] lookahead_round1 = lookahead_start ? 6'd1 : round_q + 6'd3;
+    wire [31:0] lookahead_hk, lookahead_gk, lookahead_hkw, lookahead_gkw;
+    logic [31:0] hkw_q, gkw_q;
+    tang_sha_dsp_add32 u_lookahead_hk(.a_i(lookahead_h), .b_i(round_constant(lookahead_round0)), .sum_o(lookahead_hk));
+    tang_sha_dsp_add32 u_lookahead_gk(.a_i(lookahead_g), .b_i(round_constant(lookahead_round1)), .sum_o(lookahead_gk));
+    tang_sha_dsp_add32 u_lookahead_hkw(.a_i(lookahead_hk), .b_i(lookahead_word0), .sum_o(lookahead_hkw));
+    tang_sha_dsp_add32 u_lookahead_gkw(.a_i(lookahead_gk), .b_i(lookahead_word1), .sum_o(lookahead_gkw));
+    always_ff @(posedge clk_i or negedge reset_n_i) begin
+        if (!reset_n_i) begin
+            hkw_q <= 32'd0;
+            gkw_q <= 32'd0;
+        end else if (lookahead_start || busy_o) begin
+            hkw_q <= lookahead_hkw;
+            gkw_q <= lookahead_gkw;
+        end
+    end
 
-    // Round t+1 consumes the original window's word1. The two new schedule
-    // words depend only on old words, so they can be computed in parallel.
-    wire [31:0] schedule_next1 =
-        small_sigma1(schedule_q[15]) + schedule_q[10] +
-        small_sigma0(schedule_q[2]) + schedule_q[1];
-    wire [31:0] temp1_second = g_q + big_sigma1(next_e) +
-        choose(next_e, e_q, f_q) + round_constant(round_q+6'd1) + schedule_q[1];
-    wire [31:0] temp2_second = big_sigma0(next_a) + majority(next_a, a_q, b_q);
-    wire [31:0] second_a = temp1_second + temp2_second;
-    wire [31:0] second_e = c_q + temp1_second;
+    // Balanced modulo-2^32 sums in fixed DSP adders.
+    wire [31:0] schedule_first_lo;
+    tang_sha_dsp_add32 u_schedule_first_lo(.a_i(small_sigma1(schedule_q[14])), .b_i(schedule_q[9]), .sum_o(schedule_first_lo));
+    wire [31:0] schedule_first_hi;
+    tang_sha_dsp_add32 u_schedule_first_hi(.a_i(small_sigma0(schedule_q[1])), .b_i(schedule_q[0]), .sum_o(schedule_first_hi));
+    wire [31:0] schedule_next;
+    tang_sha_dsp_add32 u_schedule_next(.a_i(schedule_first_lo), .b_i(schedule_first_hi), .sum_o(schedule_next));
+    wire [31:0] sum_first_3;
+    tang_sha_csa3_add32 u_sum_first_3 (
+        .x_i(big_sigma1(e_q)), .y_i(choose(e_q, f_q, g_q)),
+        .z_i(hkw_q), .sum_o(sum_first_3));
+    wire [31:0] sum_first_4;
+    tang_sha_dsp_add32 u_sum_first_4(.a_i(big_sigma0(a_q)), .b_i(majority(a_q, b_q, c_q)), .sum_o(sum_first_4));
+    wire [31:0] next_a;
+    tang_sha_dsp_add32 u_next_a(.a_i(sum_first_3), .b_i(sum_first_4), .sum_o(next_a));
+    wire [31:0] next_e;
+    tang_sha_dsp_add32 u_next_e(.a_i(d_q), .b_i(sum_first_3), .sum_o(next_e));
+    wire [31:0] schedule_second_lo;
+    tang_sha_dsp_add32 u_schedule_second_lo(.a_i(small_sigma1(schedule_q[15])), .b_i(schedule_q[10]), .sum_o(schedule_second_lo));
+    wire [31:0] schedule_second_hi;
+    tang_sha_dsp_add32 u_schedule_second_hi(.a_i(small_sigma0(schedule_q[2])), .b_i(schedule_q[1]), .sum_o(schedule_second_hi));
+    wire [31:0] schedule_next1;
+    tang_sha_dsp_add32 u_schedule_next1(.a_i(schedule_second_lo), .b_i(schedule_second_hi), .sum_o(schedule_next1));
+    wire [31:0] sum_second_3;
+    tang_sha_csa3_add32 u_sum_second_3 (
+        .x_i(big_sigma1(next_e)), .y_i(choose(next_e, e_q, f_q)),
+        .z_i(gkw_q), .sum_o(sum_second_3));
+    wire [31:0] sum_second_4;
+    tang_sha_dsp_add32 u_sum_second_4(.a_i(big_sigma0(next_a)), .b_i(majority(next_a, a_q, b_q)), .sum_o(sum_second_4));
+    wire [31:0] second_a;
+    tang_sha_dsp_add32 u_second_a(.a_i(sum_second_3), .b_i(sum_second_4), .sum_o(second_a));
+    wire [31:0] second_e;
+    tang_sha_dsp_add32 u_second_e(.a_i(c_q), .b_i(sum_second_3), .sum_o(second_e));
 
     always_ff @(posedge clk_i or negedge reset_n_i) begin
         if (!reset_n_i) begin
@@ -566,32 +604,34 @@ module board1_sha256_bank_owned_compress #(parameter integer REGISTER_RESULT=0) 
     // reusable compressor's arbitrary-changing-input contract.
     generate if (REGISTER_RESULT != 0) begin : g_registered_result
         logic [255:0] result_q;
+        wire [255:0] final_sum;
+    tang_sha_dsp_add32 u_registered_sum0(.a_i(state_i[255:224]), .b_i(second_a), .sum_o(final_sum[255:224]));
+    tang_sha_dsp_add32 u_registered_sum1(.a_i(state_i[223:192]), .b_i(next_a), .sum_o(final_sum[223:192]));
+    tang_sha_dsp_add32 u_registered_sum2(.a_i(state_i[191:160]), .b_i(a_q), .sum_o(final_sum[191:160]));
+    tang_sha_dsp_add32 u_registered_sum3(.a_i(state_i[159:128]), .b_i(b_q), .sum_o(final_sum[159:128]));
+    tang_sha_dsp_add32 u_registered_sum4(.a_i(state_i[127:96]), .b_i(second_e), .sum_o(final_sum[127:96]));
+    tang_sha_dsp_add32 u_registered_sum5(.a_i(state_i[95:64]), .b_i(next_e), .sum_o(final_sum[95:64]));
+    tang_sha_dsp_add32 u_registered_sum6(.a_i(state_i[63:32]), .b_i(e_q), .sum_o(final_sum[63:32]));
+    tang_sha_dsp_add32 u_registered_sum7(.a_i(state_i[31:0]), .b_i(f_q), .sum_o(final_sum[31:0]));
         assign state_o = result_q;
         always_ff @(posedge clk_i or negedge reset_n_i) begin
             if (!reset_n_i) result_q <= 256'd0;
             else if (busy_o && round_q == 6'd62) begin
-                    result_q <= {
-                        state_i[255:224] + second_a,
-                        state_i[223:192] + next_a,
-                        state_i[191:160] + a_q,
-                        state_i[159:128] + b_q,
-                        state_i[127:96]  + second_e,
-                        state_i[95:64]   + next_e,
-                        state_i[63:32]   + e_q,
-                        state_i[31:0]    + f_q
-                    };
+                    result_q <= final_sum;
             end
         end
     end else begin : g_bank_captures_result
         // On DONE the working registers already hold round 63's completed
         // a..h. The bank captures these eight sums at its unchanged edge.
         // Outside DONE this private bus is unspecified, not a valid digest.
-        assign state_o = {
-            state_i[255:224] + a_q, state_i[223:192] + b_q,
-            state_i[191:160] + c_q, state_i[159:128] + d_q,
-            state_i[127:96] + e_q, state_i[95:64] + f_q,
-            state_i[63:32] + g_q, state_i[31:0] + h_q
-        };
+        assign state_o[255:224] = 32'($unsigned(state_i[255:224]) + $unsigned(a_q));
+        assign state_o[223:192] = 32'($unsigned(state_i[223:192]) + $unsigned(b_q));
+        assign state_o[191:160] = 32'($unsigned(state_i[191:160]) + $unsigned(c_q));
+        assign state_o[159:128] = 32'($unsigned(state_i[159:128]) + $unsigned(d_q));
+        assign state_o[127:96] = 32'($unsigned(state_i[127:96]) + $unsigned(e_q));
+        assign state_o[95:64] = 32'($unsigned(state_i[95:64]) + $unsigned(f_q));
+        assign state_o[63:32] = 32'($unsigned(state_i[63:32]) + $unsigned(g_q));
+        assign state_o[31:0] = 32'($unsigned(state_i[31:0]) + $unsigned(h_q));
     end endgenerate
 
 `ifdef FORMAL
@@ -607,4 +647,207 @@ module board1_sha256_bank_owned_compress #(parameter integer REGISTER_RESULT=0) 
 `endif
 endmodule
 
+`default_nettype wire
+
+// Keep vendor selection for native builds, and portable arithmetic for that simulator.
+`ifdef SYNTHESIS
+`ifndef VERILATOR
+`define TANG_SHA_DSP_ADDER
+`endif
+`endif
+`timescale 1ns/1ps
+// Private modulo-2^32 addition for the weight-page checker. This exposes no
+// new public operation. The native multiplier's second operand is constant 1;
+// feedback, cascade input, all dynamic controls and all registers are disabled.
+// Split a_i to keep the signed native A input nonnegative. The small fabric
+// correction restores its upper six bits, including the low-part carry.
+module tang_sha_dsp_add32 (
+    input wire [31:0] a_i,
+    input wire [31:0] b_i,
+    output wire [31:0] sum_o
+);
+    wire [47:0] low_sum;
+`ifdef TANG_SHA_DSP_ADDER
+    MULTALU27X18 #(
+        .AREG_CLK("BYPASS"), .BREG_CLK("BYPASS"), .DREG_CLK("BYPASS"),
+        .C_IREG_CLK("BYPASS"), .C_PREG_CLK("BYPASS"),
+        .PREG_CLK("BYPASS"), .OREG_CLK("BYPASS"),
+        .PSEL_IREG_CLK("BYPASS"), .PADDSUB_IREG_CLK("BYPASS"),
+        .ADDSUB0_IREG_CLK("BYPASS"), .ADDSUB1_IREG_CLK("BYPASS"),
+        .CSEL_IREG_CLK("BYPASS"), .CASISEL_IREG_CLK("BYPASS"),
+        .ACCSEL_IREG_CLK("BYPASS"),
+        .ADDSUB0_PREG_CLK("BYPASS"), .ADDSUB1_PREG_CLK("BYPASS"),
+        .CSEL_PREG_CLK("BYPASS"), .CASISEL_PREG_CLK("BYPASS"),
+        .ACCSEL_PREG_CLK("BYPASS"),
+        .FB_PREG_EN("FALSE"), .SOA_PREG_EN("FALSE"),
+        .MULT_RESET_MODE("SYNC"), .PRE_LOAD(48'd0),
+        .DYN_P_SEL("FALSE"), .P_SEL(1'b0),
+        .DYN_P_ADDSUB("FALSE"), .P_ADDSUB(1'b0),
+        .DYN_A_SEL("FALSE"), .A_SEL(1'b0),
+        .DYN_ADD_SUB_0("FALSE"), .ADD_SUB_0(1'b0),
+        .DYN_ADD_SUB_1("FALSE"), .ADD_SUB_1(1'b0),
+        .DYN_C_SEL("FALSE"), .C_SEL(1'b1),
+        .DYN_CASI_SEL("FALSE"), .CASI_SEL(1'b0),
+        .DYN_ACC_SEL("FALSE"), .ACC_SEL(1'b0),
+        .MULT12X12_EN("FALSE")
+    ) fixed_add (
+        .DOUT(low_sum), .CASO(), .SOA(),
+        .A({1'b0, a_i[25:0]}), .B(18'd1), .C({16'd0, b_i}),
+        .D(26'd0), .SIA(27'd0), .CASI(48'd0),
+        .PSEL(1'b0), .ASEL(1'b0), .CSEL(1'b1), .CASISEL(1'b0),
+        .PADDSUB(1'b0), .ACCSEL(1'b0), .ADDSUB(2'b00),
+        .CLK(2'b00), .CE(2'b00), .RESET(2'b00)
+    );
+`else
+    // Portable arithmetic specification; not a replacement for checking the
+    // actual vendor primitive or its native mapping and physical timing.
+    assign low_sum = {22'd0, a_i[25:0]} + {16'd0, b_i};
+`endif
+    wire [5:0] corrected_high = low_sum[31:26] + a_i[31:26];
+    assign sum_o = {corrected_high, low_sum[25:0]};
+endmodule
+
+`ifdef SYNTHESIS
+`undef TANG_SHA_DSP_ADDER
+`endif
+
+`timescale 1ns/1ps
+`default_nettype none
+// Exact private owner-held CFC allocator; CLEAR is not an input.
+module tang_private_sha256_pool2 #(
+    parameter integer BANKS=4
+) (
+    input wire clk,reset_n,abort_i,
+    input wire [BANKS-1:0] request_valid_i,
+    output logic [BANKS-1:0] request_ready_o,
+    input wire [BANKS*512-1:0] request_block_i,
+    input wire [BANKS*256-1:0] request_state_i,
+    output wire [BANKS-1:0] pending_o,
+    output logic [BANKS-1:0] response_valid_o,
+    output logic [BANKS*256-1:0] response_state_o,
+    output wire fault_o
+);
+    localparam integer GROUP_BANKS=BANKS/2;
+    localparam integer SLOT_W=GROUP_BANKS>1 ? $clog2(GROUP_BANKS) : 1;
+    localparam integer BANK_W=$clog2(BANKS);
+    logic fault_q;
+    logic [SLOT_W-1:0] rr_q [0:1];
+    logic [1:0] owner_valid_q;
+    logic [BANK_W-1:0] owner_q [0:1];
+    logic [BANKS-1:0] pending_q;
+    wire [1:0] engine_busy,engine_done;
+    wire [255:0] engine_result [0:1];
+    logic [1:0] grant_valid;
+    logic [SLOT_W-1:0] grant_slot [0:1];
+    logic [BANK_W-1:0] grant_bank [0:1];
+    logic bad_return;
+    wire enabled=reset_n && !abort_i && !fault_q;
+    assign fault_o=fault_q;
+    assign pending_o=pending_q & {BANKS{enabled}};
+
+    integer engine,offset,slot,bank;
+    always_comb begin
+        request_ready_o=0;grant_valid=0;slot=0;bank=0;
+        for(engine=0;engine<2;engine=engine+1) begin
+            grant_slot[engine]=0;grant_bank[engine]=0;
+            if(enabled && !engine_busy[engine] && !engine_done[engine]) begin
+                for(offset=0;offset<GROUP_BANKS;offset=offset+1) begin
+                    slot=(int'(rr_q[engine])+offset)&(GROUP_BANKS-1);
+                    bank=slot*2+engine;
+                    if(!grant_valid[engine] && request_valid_i[bank] && !pending_q[bank]) begin
+                        grant_valid[engine]=1;grant_slot[engine]=SLOT_W'(slot);
+                        grant_bank[engine]=BANK_W'(bank);request_ready_o[bank]=1;
+                    end
+                end
+            end
+        end
+    end
+
+    integer e;
+    always_comb begin
+        response_valid_o=0;response_state_o=0;bad_return=0;
+        for(e=0;e<2;e=e+1) begin
+            if(engine_done[e]) begin
+                if(!owner_valid_q[e] || !pending_q[owner_q[e]] || owner_q[e][0]!=1'(e))
+                    bad_return=1;
+                else if(enabled) begin
+                    response_valid_o[owner_q[e]]=1;
+                    response_state_o[int'(owner_q[e])*256 +: 256]=engine_result[e];
+                end
+            end
+        end
+    end
+
+    for(genvar g=0;g<2;g=g+1) begin: g_engine
+        // The bank-owned compressor reads state_i through DONE. Keep
+        // that bank selected, including the edge that captures its digest.
+        wire [SLOT_W-1:0] active_slot=owner_valid_q[g] ?
+            SLOT_W'(int'(owner_q[g])/2) : grant_slot[g];
+        wire [GROUP_BANKS*512-1:0] blocks;
+        wire [GROUP_BANKS*256-1:0] states;
+        for(genvar b=0;b<GROUP_BANKS;b=b+1) begin: g_input
+            assign blocks[b*512 +: 512]=request_block_i[(b*2+g)*512 +: 512];
+            assign states[b*256 +: 256]=request_state_i[(b*2+g)*256 +: 256];
+        end
+        board1_sha256_bank_owned_compress #(.REGISTER_RESULT(0)) u_sha (
+            .clk_i(clk),.reset_n_i(reset_n),.start_i(grant_valid[g]),
+            .block_i(blocks[int'(active_slot)*512 +: 512]),
+            .state_i(states[int'(active_slot)*256 +: 256]),
+            .busy_o(engine_busy[g]),.done_o(engine_done[g]),.state_o(engine_result[g]));
+    end
+
+    wire protocol_error=bad_return || (|(request_valid_i & pending_q));
+`ifndef SYNTHESIS
+    logic x_error;
+    integer x;
+    always_comb begin
+        x_error=$isunknown(abort_i) || $isunknown(request_valid_i);
+        for(x=0;x<BANKS;x=x+1)
+            if(request_valid_i[x]) x_error=x_error ||
+                $isunknown(request_block_i[x*512 +: 512]) ||
+                $isunknown(request_state_i[x*256 +: 256]);
+    end
+`endif
+    integer k;
+    always_ff @(posedge clk or negedge reset_n) begin
+        if(!reset_n) begin
+            fault_q<=0;owner_valid_q<=0;pending_q<=0;
+            owner_q[0]<=0;owner_q[1]<=0;rr_q[0]<=0;rr_q[1]<=0;
+        end else if(fault_q || abort_i || (enabled && protocol_error)
+`ifndef SYNTHESIS
+                    || (enabled && x_error)
+`endif
+        ) begin
+            fault_q<=1;owner_valid_q<=0;pending_q<=0;
+            owner_q[0]<=0;owner_q[1]<=0;rr_q[0]<=0;rr_q[1]<=0;
+        end else begin
+            for(k=0;k<2;k=k+1) begin
+                if(engine_done[k] && owner_valid_q[k]) begin
+                    pending_q[owner_q[k]]<=0;owner_valid_q[k]<=0;
+                end
+                if(grant_valid[k]) begin
+                    pending_q[grant_bank[k]]<=1;owner_valid_q[k]<=1;
+                    owner_q[k]<=grant_bank[k];rr_q[k]<=SLOT_W'(int'(grant_slot[k])+1);
+                end
+            end
+        end
+    end
+    initial begin
+        if(BANKS<2 || BANKS>16 || (BANKS&(BANKS-1))!=0)
+            $fatal(1,"Unsupported private SHA pool geometry");
+    end
+endmodule
+`default_nettype wire
+
+`timescale 1ns/1ps
+`default_nettype none
+module tang_sha_csa3_add32 (
+    input wire [31:0] x_i, y_i, z_i,
+    output wire [31:0] sum_o
+);
+    wire [31:0] sum_bits = x_i ^ y_i ^ z_i;
+    wire [31:0] carry_bits = ((x_i & y_i) | (x_i & z_i) | (y_i & z_i)) << 1;
+    tang_sha_dsp_add32 u_final (
+        .a_i(sum_bits), .b_i(carry_bits), .sum_o(sum_o));
+endmodule
 `default_nettype wire

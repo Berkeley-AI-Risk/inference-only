@@ -98,8 +98,8 @@ The [benchmark report](../../docs/benchmarks/H100-BENCHMARK.md) provides source 
 | Alternative access assumption at context 128 | Qwen `phi_proxy` | SimpleStories `phi_proxy`, shared-method calibration |
 | --- | ---: | ---: |
 | Named useful work on the same decode schedule | 0.00199995 | 0.00239112 |
-| Useful MAC every cycle from all named runtime/square units | 0.235071 | 0.114092 |
-| Useful MAC every cycle from all functional multipliers | 0.974066 | 1.73419 |
+| Useful MAC every cycle from all named runtime/square units | 0.235071 | 0.288571 |
+| Useful MAC every cycle from all functional multipliers | 0.974066 | 1.36691 |
 | Chosen accepted weights make all counted matrix work useful | 0.216341 | 0.0342843 |
 
 These overlapping hypothetical allowances do not establish an observed attack or a range for the actual factor. Both models use the same H100 benchmark method, with Transformers 5.17.0; the SimpleStories reference is 2,951,332.875 evaluations/s at context 128. The device rates come from the identified single FPGA steps at that context; neither is a repeated peak rating.

@@ -9,7 +9,7 @@
 //   * CLEAR never flushes accepted work.  It changes epoch, blocks admission,
 //     and waits for old owners to consume fault-marked responses.
 module board1_context2048_typed_ddr_boundary #(
-    parameter integer FIFO_ADDR_BITS = 2
+    parameter integer FIFO_ADDR_BITS = 3
 ) (
     input  wire         core_clk_i,
     input  wire         core_reset_n_i,
@@ -469,7 +469,10 @@ module board1_context2048_typed_ddr_boundary #(
         .s_valid_i(rsp_fifo_s_valid),
         .s_ready_o(rsp_fifo_s_ready),
         .s_data_i(rsp_fifo_s_data),
-        .s_abort_i(1'b0),
+        // Terminal poison may change a held response's data/fault, but never
+        // its owner/kind/epoch. This only cancels the stability monitor;
+        // the FIFO implementation does not flush already accepted entries.
+        .s_abort_i(app_boundary_fault),
         .s_full_o(rsp_fifo_s_full),
         .s_empty_o(rsp_fifo_s_empty),
         .s_protocol_fault_o(response_fifo_source_fault),

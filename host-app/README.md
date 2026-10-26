@@ -8,53 +8,39 @@ software-model fallback, weight upload, memory/arithmetic command, programming
 button or automatic retry. The restriction is in the frozen FPGA design,
 not in this editable application.
 
-The app uses separate local profiles for the three original greedy images and
-the optimized seeded image. The original 0e6 Streamlit AppTest/ten-case browser
-receipts remain historical. The current clean recipient completed twelve
-ordinary Chrome cases with all 100 outputs matching the reference, including
-independent integer-oracle checks of both automatic-seed runs.
-The current unchanged host suite passed 70 offline tests, including rendering
-and synthetic AppTest fixtures. AppTest does not count as an opened-browser
-rehearsal or a hardware test.
-See the [current qualification record](../CURRENT-QUALIFICATION.md).
+The app uses a locally qualified profile for the supplied baseline,
+K/V-protected, encrypted-memory or seeded-sampling image. The selected image
+and matching source inventory are checked by the local registration guard;
+matching replies do not independently attest the FPGA configuration.
+
+The three greedy designs each passed seven ordinary Chrome cases and 26 exact
+outputs with this common host implementation, including full contexts,
+pending-STEP Stop and generation on a new connection. The shared host passed
+79 offline fixture tests. Fixture tests do not count as a physical browser or
+board campaign. See [greedy qualification](../demos/simplestories-v2-5m/GREEDY-QUALIFICATION.md).
+The seeded image has its own [recorded browser qualification](../demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md)
+in its named host-source context; the common-host fixture checks do not grant
+it a fresh browser campaign.
+
 The encrypted-memory image retains K/V integrity/replay protection and encrypts
-both weights and K/V with public demonstration keys; use its distinct flash
-payload. The seeded image uses plaintext model flash and has no K/V
-cryptographic integrity or encryption.
+both weights and K/V with public demonstration keys. It needs its matching
+ciphertext flash payload. The seeded image uses plaintext model flash and has
+no K/V cryptographic integrity or encryption.
 
-The current browser contract retains the original ten cases and adds an exact
-2,048-token greedy prompt and a 2,047-token temperature 1/seed A run stopped while
-its first STEP is pending. In the completed long Stop, exactly that first
-reply was drained, CLEAR was acknowledged and UART ownership was automatically
-released, with no second STEP. The short Stop returned 71 outputs and a later
-greedy run resumed successfully.
-Fresh whole-flash model readback passed with a separate exact payload/source
-join to the registered package. After the reader replaced SRAM, the exact
-recipient inference image was reloaded, settled for at least 120 seconds and
-passed 45-command/19-token registration. Matching replies do not independently
-attest the loaded configuration.
+All four profiles support up to 2,048 prompt tokens, 128 new tokens and 2,049
+combined tokens, within 32,768 input characters. A long prompt can take many
+minutes before the first output. Stop lets an active hardware STEP finish,
+then drains its reply, clears the tape and releases USB; it cannot interrupt
+that hardware command.
 
-The browser's full 2,048-token greedy case showed its first token at 388.94
-seconds, including setup and prompt upload. The separate temperature-1 context
-campaign measured a 352.237119291-second first hardware STEP; neither value is
-the 9.942238076 cached-command tokens/s benchmark. See the
-[recorded timing](../CURRENT-QUALIFICATION.md#recorded-timing).
+The app keeps a healthy USB connection open between successful runs. Each run
+still clears the tape; it does not reuse another run's prompt or answers.
+Keep the host awake during measurements. Host sleep can delay serial handling
+and invalidate elapsed-time comparisons. Cached streaming rate, per-command
+latency and browser time to first output are different timing scopes.
 
-The app keeps a healthy USB connection open between successful runs. This
-avoids repeated connection setup, not FPGA computation. Each run still clears
-the tape; it does not reuse another run's prompt or generated answers.
-
-Keep the host awake during speed measurements. Host sleep can delay serial
-processing and make elapsed-clock measurements misleading; a trial affected
-by sleep should be repeated rather than used to claim a speedup.
-
-Complete vendor-DDR timing and physical-security certification remain open.
-All 16 current context cases passed, covering 128-, 512-, 2,047- and 2,048-token
-prompts at each supported temperature. These finite cases do not establish
-every possible prompt. The seeded profile supports up to
-2,048 prompt tokens, 128 new tokens and 2,049 combined tokens. The original three
-greedy profiles retain 128 prompt tokens, 128 new tokens and 256 combined tokens.
-The supported tested host is macOS; no new platform/other-owner claim is added.
+The tested host is macOS. Complete vendor-DDR timing and physical-security
+certification remain open; finite tests do not establish every possible prompt.
 
 ## Install
 
@@ -82,7 +68,8 @@ the inference circuit into SRAM. **Ordinary use needs no compiler:** the
 configuration and its maintainer build receipt are included under `prebuilt/`.
 For optional source rebuilding, see [VENDOR-SETUP.md](../VENDOR-SETUP.md).
 
-Keep the programmed board powered. For the optimized seeded image, wait at least 120 seconds after actual SRAM load completes. Follow each original greedy image's startup instructions for that image. Stop all other serial/JTAG tools and apps.
+Keep the programmed board powered and wait at least 120 seconds after the
+actual SRAM load completes. Stop all other serial/JTAG tools and apps.
 Identify your board's actual serial path; do not copy another person's suffix.
 Then run, replacing the example device path:
 
@@ -141,7 +128,8 @@ Switching to or from `encrypted-memory` also requires the **matching flash
 contents**, not just an SRAM reload. Follow the
 [encrypted-memory installation/restoration instructions](../ENCRYPTED-MEMORY.md#install-or-restore),
 then requalify with the matching receipt and `--replace-profile`.
-The tokenizer is unchanged across all four versions. The browser cannot
+Use `--build-receipt ../prebuilt/encrypted-memory/BUILD.json` for that
+configuration. The tokenizer is unchanged across all four versions. The browser cannot
 switch variants or program the board.
 
 ## Start and use

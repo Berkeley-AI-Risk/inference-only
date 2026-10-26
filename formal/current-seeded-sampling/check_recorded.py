@@ -10,7 +10,8 @@ import importlib.util
 import json
 from pathlib import Path, PurePosixPath
 HERE = Path(__file__).resolve().parent
-COMPLETION_RECORD_SHA='c89177b13518209f0c8fb3ccde7db8c1d31dd39b875e1ba084650ed666806fcd'
+# No RTL-only completion is invented by this source-only preparation.
+COMPLETION_RECORD_SHA='b27e743ffd9d3dafc053473f5eed6dffdcb6a74e5704a8e9caa70f2fcac2d13f'
 def sha(raw): return hashlib.sha256(raw).hexdigest()
 def generated(parts):
     return '__pycache__' in parts or parts[:1] == ('runs',) or parts[:2] == ('connected', 'runs')
@@ -56,6 +57,8 @@ def main():
     assert status['image_sha256'] == binding['image_sha256']
     assert status['qualification_inherited'] is False and status['sha_compression_arithmetic_proved'] is False
     if status['current_solver_replay_passed'] is True:
+        if COMPLETION_RECORD_SHA is None:
+            raise ValueError('Actual RTL-only completion registration is pending')
         spec = importlib.util.spec_from_file_location('current_completion_contract', HERE / 'completion_contract.py')
         contract = importlib.util.module_from_spec(spec); spec.loader.exec_module(contract)
         origin = status['current_replay']

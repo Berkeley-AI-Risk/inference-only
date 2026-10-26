@@ -1,0 +1,2236 @@
+{
+  "components": {
+    "selector": {
+      "assertions": 35,
+      "files": {
+        "board1_seeded_head_selector.sv": {
+          "bytes": 19421,
+          "sha256": "08714307e1f4244af5de18bd9707538beaf69d5ad32188aa596c8bb4bcc6ff12"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+          "bytes": 10521,
+          "sha256": "799d3c16a60bf01f5c86402553055cdc4bded41723a41595253bb5443989b378"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+          "bytes": 3774,
+          "sha256": "f5b30c5a6d59fd3297e0b18784f949de4fc9739781cd24083c420a980c8c1d16"
+        },
+        "model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": {
+          "bytes": 36873,
+          "sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f"
+        },
+        "monitor.inc.sv": {
+          "bytes": 5299,
+          "sha256": "71810c70689d1b6f0909a59b7b9b3a59ee825bbfd79aaf6f9adb49fdeb6bd1e8"
+        },
+        "production-board1_seeded_head_selector.sv": {
+          "bytes": 14107,
+          "sha256": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b"
+        }
+      },
+      "origins": {
+        "board1_seeded_head_selector.sv": {
+          "bytes": 14107,
+          "native_path": "project/board1_seeded_head_selector.sv",
+          "sha256": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+          "bytes": 10507,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv",
+          "sha256": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+          "bytes": 3760,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv",
+          "sha256": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44"
+        },
+        "model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": {
+          "bytes": 36873,
+          "native_path": "project/model_rtl_evidence/attention_sublayer/exp_neg_q30.memh",
+          "sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f"
+        }
+      },
+      "reset": "reset_n",
+      "scope": "Actual fixed-dimension selector and original argmax, all three sampler memories and numerical logic retained. Safety of configuration/seed/PRNG commitment, accepted-start winner ownership, stalls, CLEAR/fault/reset. Not a numerical CDF-equivalence, per-row memory-initialization or whole-machine theorem.",
+      "sources": [
+        "board1_seeded_head_selector.sv",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv"
+      ],
+      "top": "board1_seeded_head_selector"
+    },
+    "selector-buffer": {
+      "assertions": 57,
+      "files": {
+        "argmax-row-ownership-monitor.inc.sv": {
+          "bytes": 1126,
+          "sha256": "3e9406d018ad4a05c143e776dcf4af0af4130efd67c9036a351c82ff5a5f86bb"
+        },
+        "board1_seeded_head_selector.sv": {
+          "bytes": 22519,
+          "sha256": "991751a190bfcc2dadabaf1ed4083b017ced50a2621e28a44c6975769b542af6"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+          "bytes": 11690,
+          "sha256": "1156ed4acbfb38fd29c76544ba83c1ee635091698b0771e69b78f630a5c6172e"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+          "bytes": 3774,
+          "sha256": "f5b30c5a6d59fd3297e0b18784f949de4fc9739781cd24083c420a980c8c1d16"
+        },
+        "model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": {
+          "bytes": 36873,
+          "sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f"
+        },
+        "monitor.inc.sv": {
+          "bytes": 9452,
+          "sha256": "d1435d74a4c631a96fd032f35b35ea3e4ed09af862c63d7dea39739371a1f2f3"
+        },
+        "production-board1_seeded_head_selector.sv": {
+          "bytes": 14107,
+          "sha256": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b"
+        },
+        "sampler-buffer-monitor.inc.sv": {
+          "bytes": 3025,
+          "sha256": "15e8a30595b76fac4377807745dac06a27a224cc783cfd81d38a9128fcb433ba"
+        }
+      },
+      "origins": {
+        "board1_seeded_head_selector.sv": {
+          "bytes": 14107,
+          "native_path": "project/board1_seeded_head_selector.sv",
+          "sha256": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+          "bytes": 10507,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv",
+          "sha256": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+          "bytes": 3760,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv",
+          "sha256": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44"
+        },
+        "model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": {
+          "bytes": 36873,
+          "native_path": "project/model_rtl_evidence/attention_sublayer/exp_neg_q30.memh",
+          "sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f"
+        }
+      },
+      "reset": "reset_n",
+      "scope": "Actual full selector, all 4019-row logits/mass RAM entries and every exponential ROM word retained. A read-only child row-count output and unconstrained constant slot observe complete accepted-head ownership, per-slot writes before healthy sampling reads, captured memory payload, and mass-pass ownership. No production feedback, parameters, assumptions or input cuts. Not mathematical CDF equivalence, whole-machine, physical-memory clearing or four-state simulation theorem.",
+      "sources": [
+        "board1_seeded_head_selector.sv",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv"
+      ],
+      "top": "board1_seeded_head_selector"
+    },
+    "shell": {
+      "assertions": 94,
+      "files": {
+        "board1_seeded_head_selector.sv": {
+          "bytes": 19421,
+          "sha256": "08714307e1f4244af5de18bd9707538beaf69d5ad32188aa596c8bb4bcc6ff12"
+        },
+        "candidate.sv": {
+          "bytes": 3957,
+          "sha256": "1516bdd7cdf13e0070ef853ba5d68423326649d9d64db3bd661a32416ba4a3e2"
+        },
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+          "bytes": 3954,
+          "sha256": "d2425f7b9aacf97685b482c109e210937347247f1eb1aec8eea2e8081628ac3b"
+        },
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": {
+          "bytes": 5925,
+          "sha256": "eb9f2e3846e695421cff3d0d81c27a0a5e4faef66f590db7be674d9ebe8bf840"
+        },
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+          "bytes": 58902,
+          "sha256": "df1b47ccce204d78c7c491668e9442cf591d76c78ce39c593661900124818129"
+        },
+        "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": {
+          "bytes": 4162,
+          "sha256": "f95f5f07e92d6289a9bb97c9c89ce0a001e3f8d074489788a4a5bb1da59ee349"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+          "bytes": 8066,
+          "sha256": "3b2d76080927e8bf6ee644e8da2d4140ea4b2e9e05178ac0d902eb3d4a57cefe"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": {
+          "bytes": 30287,
+          "sha256": "0f931fb4ce37939e3019922bfdd19995dfe08ed640918ba649468cc9bd58c432"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+          "bytes": 10521,
+          "sha256": "799d3c16a60bf01f5c86402553055cdc4bded41723a41595253bb5443989b378"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+          "bytes": 3774,
+          "sha256": "f5b30c5a6d59fd3297e0b18784f949de4fc9739781cd24083c420a980c8c1d16"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": {
+          "bytes": 16291,
+          "sha256": "ca1f8466f54d6eafeea9997f89378fb535b416666da15267725b14f79452c9c9"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": {
+          "bytes": 17685,
+          "sha256": "8a3ad2d3147d08f9bde42e72424a77c38c23d55bbf1b20ca621d549dec29da5d"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh": {
+          "bytes": 33280,
+          "sha256": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+          "bytes": 8070,
+          "sha256": "724b58c0c968ad3dce49591d9c5e0aac72d036ce036f909f040c6a5c5146e7ea"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+          "bytes": 1367,
+          "sha256": "58c2dae272a6fecdf7f99a862a721c9820e9ecbc52d91580da0bc923383ea88a"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+          "bytes": 25473,
+          "sha256": "e9e36945457f33056eecbddd69b68bf00c15edc5b320c85ae7912298aa97a51b"
+        },
+        "model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": {
+          "bytes": 36873,
+          "sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f"
+        },
+        "monitor.inc.sv": {
+          "bytes": 15731,
+          "sha256": "5f13348e024a9afa379a4528bc01f1d23f8b51478f5cd037af89b424be599afd"
+        },
+        "normalizer_pipeline.sv": {
+          "bytes": 57565,
+          "sha256": "16eba29f07b24b8cdcc4c8968a15f8e312dd64812b1d6309a9ad47cbf50da61c"
+        },
+        "production-board1_context2048_token_shell.sv": {
+          "bytes": 48456,
+          "sha256": "55c93116b097b14bb990270e76f03a9d612bb1a203b17ab7ab162a389ffd8e69"
+        },
+        "production-board1_seeded_head_selector.sv": {
+          "bytes": 14107,
+          "sha256": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b"
+        },
+        "selector-monitor.inc.sv": {
+          "bytes": 5299,
+          "sha256": "71810c70689d1b6f0909a59b7b9b3a59ee825bbfd79aaf6f9adb49fdeb6bd1e8"
+        },
+        "shell-monitor.inc.sv": {
+          "bytes": 10431,
+          "sha256": "3419771f4a861d4a972af5ebea4d5150506627e4a31779b68ef50a7408282a7f"
+        }
+      },
+      "origins": {
+        "board1_seeded_head_selector.sv": {
+          "bytes": 14107,
+          "native_path": "project/board1_seeded_head_selector.sv",
+          "sha256": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b"
+        },
+        "candidate.sv": {
+          "bytes": 3943,
+          "native_path": "project/candidate.sv",
+          "sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374"
+        },
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+          "bytes": 3940,
+          "native_path": "project/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv",
+          "sha256": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a"
+        },
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": {
+          "bytes": 5911,
+          "native_path": "project/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv",
+          "sha256": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193"
+        },
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+          "bytes": 48456,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv",
+          "sha256": "55c93116b097b14bb990270e76f03a9d612bb1a203b17ab7ab162a389ffd8e69"
+        },
+        "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": {
+          "bytes": 4148,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv",
+          "sha256": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+          "bytes": 8052,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv",
+          "sha256": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": {
+          "bytes": 30273,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv",
+          "sha256": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+          "bytes": 10507,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv",
+          "sha256": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+          "bytes": 3760,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv",
+          "sha256": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": {
+          "bytes": 16277,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv",
+          "sha256": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": {
+          "bytes": 17671,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv",
+          "sha256": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh": {
+          "bytes": 33280,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh",
+          "sha256": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+          "bytes": 8056,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv",
+          "sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+          "bytes": 1353,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv",
+          "sha256": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+          "bytes": 25459,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv",
+          "sha256": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae"
+        },
+        "model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": {
+          "bytes": 36873,
+          "native_path": "project/model_rtl_evidence/attention_sublayer/exp_neg_q30.memh",
+          "sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f"
+        },
+        "normalizer_pipeline.sv": {
+          "bytes": 57551,
+          "native_path": "project/normalizer_pipeline.sv",
+          "sha256": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40"
+        }
+      },
+      "reset": "rst_n",
+      "scope": "Actual seeded token shell with original embedding/normalizer/arithmetic children and complete fixed-dimension sampler, actual RAMs retained. Original 48 controller/tape assertions plus settings-boundary and sampler lifecycle assertions jointly proved. One unconstrained constant tape-slot observer never drives production logic. External private model/layer/head service ports remain arbitrary; not numerical fixed-model, whole-private-memory, core/UART composition or mapped-implementation refinement.",
+      "sources": [
+        "board1_seeded_head_selector.sv",
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv",
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv",
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv",
+        "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv",
+        "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv",
+        "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv",
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv",
+        "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv",
+        "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv",
+        "normalizer_pipeline.sv",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv",
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv",
+        "candidate.sv"
+      ],
+      "top": "board1_context2048_token_shell"
+    },
+    "uart": {
+      "assertions": 63,
+      "files": {
+        "connection-monitor.inc.sv": {
+          "bytes": 1251,
+          "sha256": "0ab3813f1ff3d7409dc62fc9f59d692db53111808fd11472c6090cf197a208a6"
+        },
+        "fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": {
+          "bytes": 3047,
+          "sha256": "ad061aab9d131f8bfb06bc1a636bdda826b43c01d354a939d118aa8b52e61b76"
+        },
+        "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": {
+          "bytes": 3085,
+          "sha256": "60d949c2b838cb0739c7e5f7222f7b1bff630eb37d3f71628ac238d7d9f6ba07"
+        },
+        "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": {
+          "bytes": 1516,
+          "sha256": "260ab8839486660c61eb29543a85323aeb19f726429912c08e892ae37c042cf8"
+        },
+        "fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": {
+          "bytes": 28144,
+          "sha256": "dd8f208fa888a170376c31ce3d442d2c4f22545f508d71728680d251690b51f9"
+        },
+        "frontend.sv": {
+          "bytes": 3145,
+          "sha256": "fa5f90920c66d038f928ba2a33c3b771c91ddc6129366acc0debd9bfea0e71a9"
+        },
+        "monitor.inc.sv": {
+          "bytes": 13052,
+          "sha256": "b34aa158b63da57b6cf180301093f29310e57983ff825d6c14293de028865b73"
+        },
+        "production-token_only_model0_uart_bridge.sv": {
+          "bytes": 16328,
+          "sha256": "5b6b76a879aa72973a68d511af42ccf066daa23c1f7a09afb57ab8ff99d2d402"
+        },
+        "production-uart_core.sv": {
+          "bytes": 3876,
+          "sha256": "819185b91729c87e82c33b3bbdcecb8cbd2eaa701b84db720fc3fb8c803f0f07"
+        }
+      },
+      "origins": {
+        "fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": {
+          "bytes": 3033,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv",
+          "sha256": "3373d3a7dd46ab2ff632f24b56e93c0556d5963ff2871bcde57c98168f939914"
+        },
+        "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": {
+          "bytes": 3071,
+          "native_path": "project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv",
+          "sha256": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f"
+        },
+        "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": {
+          "bytes": 1502,
+          "native_path": "project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv",
+          "sha256": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e"
+        },
+        "fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": {
+          "bytes": 16328,
+          "native_path": "project/fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv",
+          "sha256": "5b6b76a879aa72973a68d511af42ccf066daa23c1f7a09afb57ab8ff99d2d402"
+        },
+        "uart_core.sv": {
+          "backend_boundary_bindings": {
+            "append_ready_o": "append_ready",
+            "append_token_i": "append_token",
+            "append_valid_i": "append_valid",
+            "clear_i": "clear",
+            "settings_accepted_o": "settings_accepted",
+            "settings_ready_o": "settings_ready",
+            "settings_rejected_o": "settings_rejected",
+            "settings_seed_i": "settings_seed",
+            "settings_temperature_i": "settings_temperature",
+            "settings_valid_i": "settings_valid",
+            "step_ready_o": "step_ready",
+            "step_valid_i": "step_valid",
+            "token_o": "token",
+            "token_ready_i": "token_ready",
+            "token_valid_o": "token_valid"
+          },
+          "bytes": 3876,
+          "native_path": "project/uart_core.sv",
+          "sha256": "819185b91729c87e82c33b3bbdcecb8cbd2eaa701b84db720fc3fb8c803f0f07"
+        }
+      },
+      "reset": "reset_n_i",
+      "scope": "Actual CPB217 RX/TX, extended bridge and unchanged operation adapter; actual frontend instances extracted from frozen uart_core. Independent admitted-byte history, complete SETTINGS/legacy provenance, timeout ownership, atomic settings payload, operation authorization and reply framing. Backend readiness/model outputs/settings feedback are unrestricted component input ports. No backend, whole-machine, TX-waveform or UART-authentication theorem.",
+      "sources": [
+        "fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv",
+        "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv",
+        "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv",
+        "fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv",
+        "frontend.sv"
+      ],
+      "top": "board1_seeded_command_frontend"
+    }
+  },
+  "connected": {
+    "binding": {
+      "additional_assumptions": [],
+      "assertions": 196,
+      "baseline_uart_assertions_replaced": 46,
+      "baseline_unchanged_assertions_reproved_jointly": 88,
+      "candidate_image_bytes": 42070540,
+      "candidate_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
+      "checked_sha256": {
+        "formal/command/monitor.inc.sv": "d14f348cf635d8d5bdfc09a29685c7a085bcd3126c0a0e49b6ad882f76291e41",
+        "formal/composed-shell/connection_monitor.inc.sv": "1cb7629ad9a8334c78d2d2dfc815fd66b588cb2043516dfa8dae51304f0308aa",
+        "formal/composed-shell/core_monitor.inc.sv": "773d6a69eda28119d113e051f19facc6dc9592f474656c26d9061d777b2f87fc",
+        "formal/composed-shell/run_proof.py": "73b1c5462659037fd98712a6705e1f7ca61a37a6aff561ade80cf5ba8b731282",
+        "formal/current-seeded-sampling/selector-monitor.inc.sv": "71810c70689d1b6f0909a59b7b9b3a59ee825bbfd79aaf6f9adb49fdeb6bd1e8",
+        "formal/current-seeded-sampling/shell-settings-monitor.inc.sv": "2e85e1e81dae19fa3d70d5db5e74942413ca666ce89037429abdfba32573986d",
+        "formal/current-seeded-sampling/uart-monitor.inc.sv": "41a1bfaa9494738d7c3e446c58cd176d3e52e106031f7c71cde6ec82d358711f",
+        "formal/token-shell/control_monitor.inc.sv": "e2583f8131396d62b3184449dbe44d6cf5a5eb5e688b34de24747d2ee6dac407",
+        "formal/token-shell/tape_monitor.inc.sv": "768a06ba76c4f00a4157b07dd28af99fe5f9f84c9dd933a267c9435114ddc276",
+        "hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6",
+        "hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": "0e4a38023c711abae1bdf1173444601723dc90a25b1f414c5618bf908432d4da",
+        "host-app/hardware-inputs.json": "502451a0a484c424b8b210792568f268d01b70d0ff7913d423a7160a0d2ed678",
+        "prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
+        "variants/seeded-sampling/hardware/project/adapter.sv": "dd45423f8cc645a04bef821130faa5c0a7e4d9a81333c571db23c0139b8314e9",
+        "variants/seeded-sampling/hardware/project/arbiter.sv": "750ac05828f0d81c989c0985e311ef3ef02426da52ad0112f0314db28cc1a272",
+        "variants/seeded-sampling/hardware/project/bank.sv": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1",
+        "variants/seeded-sampling/hardware/project/board1_seeded_head_selector.sv": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b",
+        "variants/seeded-sampling/hardware/project/booted_memory.sv": "7ddd3d2bb5fcab13fbaeae6b1947ddea2c39f5ec9d13ab2736a918d11562c1d8",
+        "variants/seeded-sampling/hardware/project/candidate.sv": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374",
+        "variants/seeded-sampling/hardware/project/cdc.sv": "46cac96fb496d1679b8df1f594b277300f567b00d2479ce98ac2787f52b7bf40",
+        "variants/seeded-sampling/hardware/project/cluster-adapter.sv": "0b8d09a0fded73d93f5fddb6bc790b552968f2d8c38cf0e90d20eb5d49b9744b",
+        "variants/seeded-sampling/hardware/project/cluster-engine.sv": "97a3edaccef6dba1f095f82706c260cb0520fae49751ba34d76dda0ad314ec88",
+        "variants/seeded-sampling/hardware/project/cluster-mul.sv": "93e12f47a8651a1c131609d132f7b50810ac1124200e583164fad3b83e589417",
+        "variants/seeded-sampling/hardware/project/cluster-tile.sv": "308e12f6337d9d84bc786e4b2c18fac0806cc5fba5fa7745e1a833ace58493af",
+        "variants/seeded-sampling/hardware/project/constraints/board1_fixed_product.cst": "a74e20927c382bb9e85235fc03bf826e4bde12932b603d5e1b3dd35a212315aa",
+        "variants/seeded-sampling/hardware/project/constraints/product.sdc": "ed88a06026c83a0f3b24a5e7fc5841dbfed96dc0d31c6988a0b3d2dfcc76462c",
+        "variants/seeded-sampling/hardware/project/defines.v": "76cbe1576dbf6c7c6151072d6c1f8125eecc360140ba29784024d3f99b0f6f58",
+        "variants/seeded-sampling/hardware/project/digests32.memh": "2c4bb7908d6e957b8a20e99b230c6e8a3d7fafddeb391581dfcbcb1cce7bf672",
+        "variants/seeded-sampling/hardware/project/fifo.sv": "25b9578703f1c44b67867fea92f1a6749fd692c209fecf36b1de0652cd37df81",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_private_issue_guard.sv": "95a555560d3b9f3c7e4d22bbabe1bdabc602364ce392e5a2da573e889f59499a",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_unified_dsp64.sv": "e99f1e5049af79b53e42f681a4082451158c9912a43eb35397fd76f9acb15560",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv": "ba17ba73a9c708aabd246cbc538f4e81e25b33cc116ded91da4fd554566ead39",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv": "368596a5f8470cd28ccd429cd2ab479db5c77aef0b34eb9541c55aa44c0baf0c",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv": "093927da7f5d322a3beafe45734f80c0f81e7c26b649d76a23bb8d0957c8cfeb",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": "fd7b6ade26e99db09999709954630b6d358b2d6cd7fae1f7f18c878fefec0dc3",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_lookup.sv": "92d8043230d9df3ab917427c4c619a5b57f918c2669abec310fe805d440034ef",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv": "f7ebce15ce1d3ee97d968014d17051ddd942d3dd2d582368e4aa81b6e0e52205",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": "89e5802eeb9276dd761b02e32b5b33f3147476a7e6be9145eb66fa6df4f9e81f",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": "55c93116b097b14bb990270e76f03a9d612bb1a203b17ab7ab162a389ffd8e69",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv": "cdeaf2adec59b811713f17bf2c4a0878d59fdb7020afac09c96c4619c9ec0857",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv": "d030fc7fcee27c1b2fddd3503ad9a3d2160b4af4df393393c5b727e7571369f1",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv": "042df8b9da13bc2a66f945b2942a30374d52fa38766ba73916999901fa63622f",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv": "30ed1ba9546f9d81974452d786932bd54063c23338503045b4b1ce9eb31e2a9b",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv": "a5a62b158671b4500cac88bf1a7d66cfb7f44cf74cbe49d4e865aebf397abbca",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv": "8d753b5e0e28b5f8bbbbdfdfe3b8894808e068068f44f57fa1b77cdec8a743eb",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv": "1c60a777659e7dea8ba1e13ed9d76ac0e6df544a9c70ccc7327d0e20c0fba5a9",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv": "653a0eebffff3724312847baf64c5eb188afdaea50ca3b2acb6d4e6e1e888339",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_rope_raw_ram.sv": "d8b9f6c8229af472f8d69858f9412cbcd58991f58b4f4fb2feb508fd5d0b0e21",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_scratch_ram.sv": "dbf09b83baf263397db18970535e41c8c3ab487e9f8926ca8a8740b58f65f901",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector128_ram.sv": "9282e788fc641f15f225986738a8a9d605c892b210e060763622026a5b05310a",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector256_ram.sv": "0767c4a1c69432f9537385223101d2e6d69a86259313ed9a27cff10cb9ccff57",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv": "9e033db09b614f43999a94692d0f19a7ec58845dc65963d2e37a0e9d134bf7af",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_normalize0/rtl/board1_fixed_vector_rne_shift_iterative.sv": "22159952c558c41366eee3abc6f0932867e482a94bfde16d7f26f0a3228fd05b",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor1/rtl/board1_gowin_ddr3_raw_controller_shell.sv": "eda70d4807b7312af6acf8bdfca683fe2d97d2c74f4e4c9e400e05644b1b18c0",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_ddr_locked_auth_watchdog_cdc.sv": "d30b40d79c02c03f1b6b159054b3ee7403985752763aa332fe86ca4fbfb11e37",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_private_ddr_lock_bridge.sv": "71ecc05bad160b500ec2564dcbed62de196972d1b10673a1452af7049325b818",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_qspi_image_stream.sv": "e871d8d5d4d29e6a58a5569f720414e4d2a915a28b8e42738b13a0173cf3740c",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_qspi_async_word_fifo4.sv": "ddd1611a5e77139ae4d1a3c0f4c61c2efba97bf1123ac0541766bd992a708e04",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": "3373d3a7dd46ab2ff632f24b56e93c0556d5963ff2871bcde57c98168f939914",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_endpoint_fault_cdc.sv": "84c61af4e4d836d295f1c43b92456576990733d0247102cd632433a92ef063b0",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_ddr_preboard_locked_boundary.sv": "58760e39d6d82070f595b2b9d93d7116bc8864d4b0abc572cb2e2fc5fceaa8e9",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_qspi_read03_master.sv": "409e8862d850ef398ff1dbf38c40be63ffbe94462b2ca3184fb421b4f4367607",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_semantic_image_auth_compact.sv": "0b35dc658c3d87a09777a257c994d9f5273bf287a73eb669f9de4132138c6e98",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/shared_projection_scale0/rtl/board1_shared_projection_scale_engine.sv": "443d16724abe6999af5af35c3685c8d5ef45b707cc1af6dd4514a5beefac209f",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/unified_dsp0/rtl/board1_unified_projection_head_mul_exact.sv": "ccf15c1ad0f5bef293a44e89ae56fb9fd6bf8382205d7b12bac472ad2fa295d2",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv": "21c3ebc878f36c7260bf203f78174584d0c3e0ce18546966707ead45a0631b83",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e",
+        "variants/seeded-sampling/hardware/project/fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": "5b6b76a879aa72973a68d511af42ccf066daa23c1f7a09afb57ab8ff99d2d402",
+        "variants/seeded-sampling/hardware/project/handoff.sv": "25f6455dd70ccf92107184fa7f166b9ff1dc33018aa867d4a0275ace72e34366",
+        "variants/seeded-sampling/hardware/project/mapper_portable.sv": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc",
+        "variants/seeded-sampling/hardware/project/metadata192.memh": "1535aa2d84de71c736b71e40694940f1b291dfd1db6c9f02d10b8605552ccdb9",
+        "variants/seeded-sampling/hardware/project/model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f",
+        "variants/seeded-sampling/hardware/project/normalizer_pipeline.sv": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40",
+        "variants/seeded-sampling/hardware/project/product.gprj": "1aac7a727d1340e09ea7975995a2db851845f57913a8a9635c963c8ad4702fa5",
+        "variants/seeded-sampling/hardware/project/production_sources.f": "3700d3aa54aa0d14faf60e1d653238e144f5f66e969e08d39389f6605560ed66",
+        "variants/seeded-sampling/hardware/project/reset.sv": "8b7d02cbcc49fad8e017a71051afb61ec923aa6aaa37031866e00a44da3bc7a6",
+        "variants/seeded-sampling/hardware/project/service.sv": "f9c0dc77430a1d08d85e2f2ebd8dfb38f13e09e4659bdc053976a3f321048cd6",
+        "variants/seeded-sampling/hardware/project/sha.sv": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94",
+        "variants/seeded-sampling/hardware/project/shared_token_probe.sv": "ce25ff357ccbe62e6428e799748b36186a713e6a3939c7a85b6d4269c13ab3c6",
+        "variants/seeded-sampling/hardware/project/thin_transport.sv": "b85e08fa0dfe0aefdc37aa0343175f8ea614025392bce0e112d11f12172eb84e",
+        "variants/seeded-sampling/hardware/project/top.sv": "b5f5bfbb41ae83fa048df9502ce9b204d148130d16caaa9f38ba7c05b6ef10fb",
+        "variants/seeded-sampling/hardware/project/uart_core.sv": "819185b91729c87e82c33b3bbdcecb8cbd2eaa701b84db720fc3fb8c803f0f07",
+        "variants/seeded-sampling/hardware/run.tcl": "0f17cd877087ee30c97ee102e758ac6625a1ac2790d8e9dc605c6a3c9fe51a5f"
+      },
+      "core_parameters": {
+        "ADDR_W": 19,
+        "MODEL_WORDS": 227062
+      },
+      "extended_seeded_uart_assertions": 47,
+      "frozen_assembly_sha256": "0a3c8fa5498641374b1205f325f2bbedecd820bbeb8cc74d1d796292f61d4376",
+      "frozen_inventory_sha256": "bd6979971359e5a18e0736ef5771ae9074ef9719d32e75970577eba9bb9d8c30",
+      "hardware_access": false,
+      "network_access": false,
+      "origins": {
+        "board1_seeded_head_selector.sv": {
+          "bytes": 14107,
+          "native_path": "project/board1_seeded_head_selector.sv",
+          "sha256": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b"
+        },
+        "candidate.sv": {
+          "bytes": 3943,
+          "native_path": "project/candidate.sv",
+          "sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374"
+        },
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+          "bytes": 3940,
+          "native_path": "project/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv",
+          "sha256": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a"
+        },
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": {
+          "bytes": 5911,
+          "native_path": "project/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv",
+          "sha256": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193"
+        },
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": {
+          "bytes": 23829,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv",
+          "sha256": "89e5802eeb9276dd761b02e32b5b33f3147476a7e6be9145eb66fa6df4f9e81f"
+        },
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+          "bytes": 48456,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv",
+          "sha256": "55c93116b097b14bb990270e76f03a9d612bb1a203b17ab7ab162a389ffd8e69"
+        },
+        "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": {
+          "bytes": 4148,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv",
+          "sha256": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc"
+        },
+        "fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": {
+          "bytes": 2573,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv",
+          "sha256": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+          "bytes": 8052,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv",
+          "sha256": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": {
+          "bytes": 30273,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv",
+          "sha256": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+          "bytes": 10507,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv",
+          "sha256": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+          "bytes": 3760,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv",
+          "sha256": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": {
+          "bytes": 16277,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv",
+          "sha256": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": {
+          "bytes": 11169,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv",
+          "sha256": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": {
+          "bytes": 17671,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv",
+          "sha256": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh": {
+          "bytes": 33280,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh",
+          "sha256": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+          "bytes": 8056,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv",
+          "sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+          "bytes": 1353,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv",
+          "sha256": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+          "bytes": 25459,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv",
+          "sha256": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae"
+        },
+        "fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": {
+          "bytes": 3033,
+          "native_path": "project/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv",
+          "sha256": "3373d3a7dd46ab2ff632f24b56e93c0556d5963ff2871bcde57c98168f939914"
+        },
+        "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": {
+          "bytes": 3071,
+          "native_path": "project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv",
+          "sha256": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f"
+        },
+        "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": {
+          "bytes": 1502,
+          "native_path": "project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv",
+          "sha256": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e"
+        },
+        "fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": {
+          "bytes": 16328,
+          "native_path": "project/fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv",
+          "sha256": "5b6b76a879aa72973a68d511af42ccf066daa23c1f7a09afb57ab8ff99d2d402"
+        },
+        "model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": {
+          "bytes": 36873,
+          "native_path": "project/model_rtl_evidence/attention_sublayer/exp_neg_q30.memh",
+          "sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f"
+        },
+        "normalizer_pipeline.sv": {
+          "bytes": 57551,
+          "native_path": "project/normalizer_pipeline.sv",
+          "sha256": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40"
+        }
+      },
+      "private_semantic_output_cuts": {
+        "child_kv_read_req_valid": {
+          "port": "kv_read_req_valid_o",
+          "shape": "",
+          "verification_input": "f_cut_child_kv_read_req_valid"
+        },
+        "child_kv_read_rsp_ready": {
+          "port": "kv_read_rsp_ready_o",
+          "shape": "",
+          "verification_input": "f_cut_child_kv_read_rsp_ready"
+        },
+        "child_kv_write_cpl_ready": {
+          "port": "kv_write_cpl_ready_o",
+          "shape": "",
+          "verification_input": "f_cut_child_kv_write_cpl_ready"
+        },
+        "child_kv_write_req_valid": {
+          "port": "kv_write_req_valid_o",
+          "shape": "",
+          "verification_input": "f_cut_child_kv_write_req_valid"
+        },
+        "head_activation_ready": {
+          "port": "private_head_activation_ready_o",
+          "shape": "",
+          "verification_input": "f_cut_head_activation_ready"
+        },
+        "head_done_valid": {
+          "port": "private_head_done_valid_o",
+          "shape": "",
+          "verification_input": "f_cut_head_done_valid"
+        },
+        "head_result_last": {
+          "port": "private_head_result_last_o",
+          "shape": "",
+          "verification_input": "f_cut_head_result_last"
+        },
+        "head_result_row_index": {
+          "port": "private_head_result_row_index_o",
+          "shape": "[12:0]            ",
+          "verification_input": "f_cut_head_result_row_index"
+        },
+        "head_result_scaled_raw": {
+          "port": "private_head_result_scaled_raw_o",
+          "shape": "signed [49:0]     ",
+          "verification_input": "f_cut_head_result_scaled_raw"
+        },
+        "head_result_source_exponent": {
+          "port": "private_head_result_source_exponent_o",
+          "shape": "signed [7:0]      ",
+          "verification_input": "f_cut_head_result_source_exponent"
+        },
+        "head_result_valid": {
+          "port": "private_head_result_valid_o",
+          "shape": "",
+          "verification_input": "f_cut_head_result_valid"
+        },
+        "head_start_ready": {
+          "port": "private_head_start_ready_o",
+          "shape": "",
+          "verification_input": "f_cut_head_start_ready"
+        },
+        "kv_read_req_head_o": {
+          "port": "kv_read_req_head_o",
+          "shape": "[1:0]             ",
+          "verification_input": "f_cut_kv_read_req_head_o"
+        },
+        "kv_read_req_layer_o": {
+          "port": "kv_read_req_layer_o",
+          "shape": "[2:0]             ",
+          "verification_input": "f_cut_kv_read_req_layer_o"
+        },
+        "kv_read_req_position_o": {
+          "port": "kv_read_req_position_o",
+          "shape": "[11:0]            ",
+          "verification_input": "f_cut_kv_read_req_position_o"
+        },
+        "kv_read_req_row_word_o": {
+          "port": "kv_read_req_row_word_o",
+          "shape": "[3:0]             ",
+          "verification_input": "f_cut_kv_read_req_row_word_o"
+        },
+        "kv_read_req_shadow_address_o": {
+          "port": "kv_read_req_shadow_address_o",
+          "shape": "[18:0]            ",
+          "verification_input": "f_cut_kv_read_req_shadow_address_o"
+        },
+        "kv_write_req_data_o": {
+          "port": "kv_write_req_data_o",
+          "shape": "[255:0]           ",
+          "verification_input": "f_cut_kv_write_req_data_o"
+        },
+        "kv_write_req_head_o": {
+          "port": "kv_write_req_head_o",
+          "shape": "[1:0]             ",
+          "verification_input": "f_cut_kv_write_req_head_o"
+        },
+        "kv_write_req_layer_o": {
+          "port": "kv_write_req_layer_o",
+          "shape": "[2:0]             ",
+          "verification_input": "f_cut_kv_write_req_layer_o"
+        },
+        "kv_write_req_position_o": {
+          "port": "kv_write_req_position_o",
+          "shape": "[11:0]            ",
+          "verification_input": "f_cut_kv_write_req_position_o"
+        },
+        "kv_write_req_row_word_o": {
+          "port": "kv_write_req_row_word_o",
+          "shape": "[3:0]             ",
+          "verification_input": "f_cut_kv_write_req_row_word_o"
+        },
+        "kv_write_req_shadow_address_o": {
+          "port": "kv_write_req_shadow_address_o",
+          "shape": "[18:0]            ",
+          "verification_input": "f_cut_kv_write_req_shadow_address_o"
+        },
+        "layer_busy": {
+          "port": "busy_o",
+          "shape": "",
+          "verification_input": "f_cut_layer_busy"
+        },
+        "layer_committed_prefixes": {
+          "port": "committed_prefixes_o",
+          "shape": "[71:0]            ",
+          "verification_input": "f_cut_layer_committed_prefixes"
+        },
+        "layer_ddr_req_index": {
+          "port": "private_word_req_index_o",
+          "shape": "[ADDR_W-1:0]      ",
+          "verification_input": "f_cut_layer_ddr_req_index"
+        },
+        "layer_ddr_req_valid": {
+          "port": "private_word_req_valid_o",
+          "shape": "",
+          "verification_input": "f_cut_layer_ddr_req_valid"
+        },
+        "layer_ddr_rsp_ready": {
+          "port": "private_word_rsp_ready_o",
+          "shape": "",
+          "verification_input": "f_cut_layer_ddr_rsp_ready"
+        },
+        "layer_done_valid": {
+          "port": "done_valid_o",
+          "shape": "",
+          "verification_input": "f_cut_layer_done_valid"
+        },
+        "layer_fail": {
+          "port": "range_fault_o",
+          "shape": "",
+          "verification_input": "f_cut_layer_fail"
+        },
+        "layer_input_ready": {
+          "port": "input_ready_o",
+          "shape": "",
+          "verification_input": "f_cut_layer_input_ready"
+        },
+        "layer_result_exponent": {
+          "port": "result_exponent_o",
+          "shape": "signed [7:0]      ",
+          "verification_input": "f_cut_layer_result_exponent"
+        },
+        "layer_result_index": {
+          "port": "result_index_o",
+          "shape": "[7:0]             ",
+          "verification_input": "f_cut_layer_result_index"
+        },
+        "layer_result_last": {
+          "port": "result_last_o",
+          "shape": "",
+          "verification_input": "f_cut_layer_result_last"
+        },
+        "layer_result_mantissa": {
+          "port": "result_mantissa_o",
+          "shape": "signed [15:0]     ",
+          "verification_input": "f_cut_layer_result_mantissa"
+        },
+        "layer_result_valid": {
+          "port": "result_valid_o",
+          "shape": "",
+          "verification_input": "f_cut_layer_result_valid"
+        },
+        "layer_start_ready": {
+          "port": "start_ready_o",
+          "shape": "",
+          "verification_input": "f_cut_layer_start_ready"
+        }
+      },
+      "production_parameters_changed": [],
+      "public_binding_chain": {
+        "core_to_shell": {
+          "append_token_i": "append_token_i",
+          "append_valid_i": "append_valid_i && machine_active",
+          "clear_i": "clear_i && machine_active",
+          "settings_accepted_o": "settings_accepted_o",
+          "settings_ready_o": "shell_settings_ready",
+          "settings_rejected_o": "settings_rejected_o",
+          "settings_seed_i": "settings_seed_i",
+          "settings_temperature_i": "settings_temperature_i",
+          "settings_valid_i": "settings_valid_i && machine_active && !root_terminal",
+          "step_valid_i": "step_valid_i && machine_active",
+          "token_ready_i": "token_ready_i && machine_active"
+        },
+        "shared_to_core": {
+          "append_ready_o": "append_ready_o",
+          "append_token_i": "append_token_i",
+          "append_valid_i": "append_valid_i",
+          "clear_i": "clear_i",
+          "settings_accepted_o": "settings_accepted_o",
+          "settings_ready_o": "settings_ready_o",
+          "settings_rejected_o": "settings_rejected_o",
+          "settings_seed_i": "settings_seed_i",
+          "settings_temperature_i": "settings_temperature_i",
+          "settings_valid_i": "settings_valid_i",
+          "step_ready_o": "step_ready_o",
+          "step_valid_i": "step_valid_i",
+          "token_o": "token_o",
+          "token_ready_i": "token_ready_i",
+          "token_valid_o": "token_valid_o"
+        },
+        "uart_to_shared": {
+          "append_ready_o": "append_ready",
+          "append_token_i": "append_token",
+          "append_valid_i": "append_valid",
+          "clear_i": "clear",
+          "settings_accepted_o": "settings_accepted",
+          "settings_ready_o": "settings_ready",
+          "settings_rejected_o": "settings_rejected",
+          "settings_seed_i": "settings_seed",
+          "settings_temperature_i": "settings_temperature",
+          "settings_valid_i": "settings_valid",
+          "step_ready_o": "step_ready",
+          "step_valid_i": "step_valid",
+          "token_o": "token",
+          "token_ready_i": "token_ready",
+          "token_valid_o": "token_valid"
+        }
+      },
+      "read_only_connection_observers": {
+        "core": {
+          "append_token_i": "[11:0]             ",
+          "append_valid_i": "",
+          "clear_i": "",
+          "settings_accepted_o": "",
+          "settings_ready_o": "",
+          "settings_rejected_o": "",
+          "settings_seed_i": "[127:0] ",
+          "settings_temperature_i": "[2:0] ",
+          "settings_valid_i": "",
+          "step_valid_i": "",
+          "token_ready_i": ""
+        },
+        "shell": {
+          "append_token_i": "[11:0]             ",
+          "append_transfer": "",
+          "append_valid_i": "",
+          "clear_i": "",
+          "settings_accepted_o": "",
+          "settings_ready_o": "",
+          "settings_rejected_o": "",
+          "settings_seed_i": "[127:0] ",
+          "settings_temperature_i": "[2:0] ",
+          "settings_valid_i": "",
+          "step_transfer": "",
+          "step_valid_i": "",
+          "token_ready_i": ""
+        }
+      },
+      "schema": "seeded-connected-formal-inputs-v1",
+      "shell_internal_cuts": [],
+      "source_binding": {
+        "current_binding_sha256": "c17060016035e92ec7c37382a5eb8b164fe7620601005749ba399087494f48f7",
+        "current_native_inputs": 91,
+        "current_native_inventory_sha256": "bd6979971359e5a18e0736ef5771ae9074ef9719d32e75970577eba9bb9d8c30",
+        "distributed_inputs_verified": 87,
+        "distributed_inventory_sha256": "2aed505f6fd3428492b3addae554517c2c3b7e7f4852f23a9570432f0a53ca7b",
+        "image_bytes": 42070540,
+        "image_bytes_verified": true,
+        "image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
+        "omitted_vendor_bytes_verified": false,
+        "omitted_vendor_inputs": {
+          "project/official/ddr3_memory_interface.v": "d7cae5a16467ca35ee3f95411537344ae3702e1dba86a06571530e3dd0180c57",
+          "project/official/gowin_pll.v": "982ca6387f42086e88b4c858490eb00954a80a3284e0f07d959311d0975d7536",
+          "project/official/gowin_pll_mod.v": "07398632b56749dbe52f6e5d739a526c7ca5e71c4060c7d062a64dada6e1a953",
+          "project/official/pll_init.v": "502436115e507453e2c139a073f5b56484421311ef57088ce1a16140347957f5"
+        },
+        "proof_support_inventory_sha256": "f3a2a873d9177fd2da4ff611fd857b4613018639372eea09eda73a731fd52ee6",
+        "retained_scope_association": {
+          "aggregate_assertion_total": null,
+          "arithmetic_refinement_pending": true,
+          "changed_cache_stage_proof": {
+            "actual_ram_bits": 8192,
+            "aggregate_assertion_total": null,
+            "arbitrary_readonly_selector_bits": 13,
+            "assumptions": [],
+            "cancellation_knownness_scope": "Cancellation may revoke logical knownness while captured payload/assembly coherence remains. Fault replies are masked. These source properties do not establish physical memory erasure.",
+            "candidate_sha256": "ba17ba73a9c708aabd246cbc538f4e81e25b33cc116ded91da4fd554566ead39",
+            "hardware_access": false,
+            "induction_conclusions": 154,
+            "internal_cuts": [],
+            "limits": [
+              "No whole-machine or full cache-equivalence theorem.",
+              "No trusted external DDR content or cryptographic K/V integrity assumption or claim.",
+              "No eventual-response/fairness or fatal-reset-free liveness claim.",
+              "No unconditional local accepted-write ownership/drain theorem across terminal failure. No unexpected completion input is assumed away.",
+              "No independently latched historical-DDR semantic row content theorem; physical fill mux fidelity is separate from accepted pending-stage provenance.",
+              "No physical RAM initialization/erasure, mapped/native/timing/route/board qualification.",
+              "No inherited141 assertion total or pass flag.",
+              "Cancellation revokes logical stage knownness only. Selected-point and captured/stage/assembled payload coherence remain required through CLEAR and terminal failure; retained payload erasure is not claimed.",
+              "Synchronous two-state source safety only; no electrical CDC, physical implementation, native timing or board qualification is inferred.",
+              "Only the primary Z3 campaign is credited. No independent second-solver completion or proof credit is claimed.",
+              "The recorded audit reconstructs consumed evidence and repeats the RAM/observer audit without rerunning the solver or elaborator; independent tool-execution attestation is excluded."
+            ],
+            "mapped_image_equivalence": false,
+            "mapper_sha256": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc",
+            "old_cache141_credited": false,
+            "passed": true,
+            "physical_equivalence": false,
+            "primary_solver": "z3",
+            "production_ram_banks": 8,
+            "qualification_inherited": false,
+            "reset_base_queries": 1,
+            "sat_premise_then_unsat_queries": 155,
+            "scope": "Recorded full source reset-base plus joint-prior inductive safety with exact consumed-query/log reconstruction and actual RAM/observer audit. Independent tool-execution attestation, full cache equivalence, terminal-local write drain and mapped/physical claims are excluded.",
+            "solver_executed_by_this_binding": false,
+            "source_assertions": 154,
+            "source_query_log_closure": true,
+            "source_receipts": {
+              "actual_run": {
+                "bytes": 256776,
+                "sha256": "e39204ffc039b4e157af8758c9b7c1095cfe96f95088d3b80870f341c9948883"
+              },
+              "auditor_source": {
+                "bytes": 13478,
+                "sha256": "9a35fa710afde1416226564273ea2f56b05742030743ce793621a8a8d2b01a42"
+              },
+              "preparation": {
+                "bytes": 9188,
+                "sha256": "8281070c15c4005886caa2f4e7a1a69a7eb56c3283d9affdb0dfa4415e52f612"
+              },
+              "primary_index": {
+                "bytes": 5299,
+                "sha256": "2d9874c97bafd9b7c767b91bd416e61c18e58fee42a65b8d69bf2cf45fe705a2"
+              },
+              "recorded_audit": {
+                "bytes": 305651,
+                "sha256": "a2abd17878e15c9499f9e7d9879364897830c2fcbb0a65be6811ae59cf964c60"
+              }
+            },
+            "state": "complete",
+            "statement_origin": {
+              "aborted_write_and_lock_history_support": 2,
+              "exponent_snapshot_support": 2,
+              "original_knownness_statement_scoped_for_cancellation": 1,
+              "original_monitor_statements_retained_exactly": 116,
+              "phase_history_support": 27,
+              "revoked_semantic_owner_history_support": 1,
+              "through_cancel_coherence_support": 5
+            },
+            "terminal_scope": "Healthy and CLEAR ownership/drain safety; terminal fail-stop may abandon local accepted writes until reset. No unexpected-input assumptions or unconditional terminal-local-drain claim.",
+            "whole_cache_equivalence": false,
+            "whole_machine_proof": false
+          },
+          "changed_exp_rom_proof": {
+            "aggregate_assertion_total": null,
+            "candidate_sha256": "042df8b9da13bc2a66f945b2942a30374d52fa38766ba73916999901fa63622f",
+            "default_table_sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f",
+            "limits": [
+              "Source-only relative ROM safety/equivalence; no full attention FSM, whole model, vendor primitive, mapped image, physical or security theorem.",
+              "FILE parser/I/O uses standard RTL readmemh semantics. Arbitrary32-bit image dataflow is proved; partial/addressed/XZ FILEs are finite actual simulation fixtures.",
+              "Coupled unspecified initial selected payload/metadata is an explicit representation premise, not an assumption that valid response data already matches.",
+              "Clock-level source induction uses async2sync; analog reset pulse widths, glitches and metastability are not claimed.",
+              "No native inference/resource/routing/timing result or FPGA model/flash/write action is credited here. Root-owned synthesis previews and any future mapped-ROM audit remain separate.",
+              "These query/transcript counts are nonadditive with all existing stochastic, transport, arithmetic and whole-model evidence; no aggregate machine assertion total is claimed."
+            ],
+            "mapped_canonical_rom_audit_passed": false,
+            "mapped_canonical_rom_audit_required_before_preload": true,
+            "mapped_image_equivalence": false,
+            "passed": true,
+            "physical_equivalence": false,
+            "qualification_inherited": false,
+            "reference_sha256": "e47bf421e10435e6bffa10e0219415630d57ef00ccdc4040ca7d8d9f720e9477",
+            "scope": {
+              "composition": "Initializer image correspondence and source-proved immutable storage plus runtime state induction preserve all four observable outputs along unbounded clock-sampled digital input sequences. Reset assertion outputs and actual asynchronous pulse behavior are separately checked.",
+              "file_image": "Actual source-parsed1024loop and four disjoint copies prove each low word0..4095 and independent endpoint4096 come from the same complete FILE image; addresses/counts are checked nonwrapping. Source-runtime theorem assumes the resulting requested-word image relation, discharged by that copy construction.",
+              "four_state": "Nine actual original/candidate FILE simulations, all8192 addresses each, pre-read/unreset X,32X/Z control cases and one between-clock asynchronous reset pulse perFILE. Six complete known-integer files also get198144 independent public transaction-oracle comparisons. This is finite four-state evidence, not a universal four-state SMT theorem.",
+              "independent_scalar": "Unmodified full e47 reference, namespace-only in simulations; no candidate ROM is shared with the reference.",
+              "initial_state": "Explicit representation coupling of unspecified initial selected payload and metadata/sticky state; constructive low-selected witness covers every initial32-bit payload. Unrelated power-up states are not compared.",
+              "runtime": "Complete actual-source four-output and inductive state-correspondence proof for arbitrary13-bit request/index sequences and arbitrary32-bit immutable FILE words. No valid-encoding assumption or runtime/output cuts."
+            },
+            "scope_premises_not_dropped": true,
+            "separate_from_reused_modular_scopes": true,
+            "shared_mac_proof_credited": false,
+            "source_query_log_closure": true,
+            "source_receipts": {
+              "component": {
+                "bytes": 69396,
+                "sha256": "80309bee650ec898b7e2a81eb59fa4c925779d56188b448dd37c4729d94273d0"
+              },
+              "final_index": {
+                "bytes": 6256,
+                "sha256": "6ccf19de26525697a144b3995efc31c225f73f6fd1a424247a4863d547e95596"
+              },
+              "source_audit": {
+                "bytes": 184623,
+                "sha256": "3410f9dcab7cc87180deceb4f4e726edbd271c73822f432ca422eadeaa0c0dd3"
+              },
+              "source_proof": {
+                "bytes": 6501,
+                "sha256": "797f55044171f4b3df5565eaaf13875c8562f34e872d572bf95ba870bd8bdeae"
+              }
+            },
+            "state": "complete",
+            "whole_machine_proof": false
+          },
+          "changed_native_inputs": [
+            "project/sha.sv"
+          ],
+          "formal_replay_of_this_variant": false,
+          "mapped_image_equivalence": false,
+          "old_atomic87_credited": false,
+          "old_cache141_credited": false,
+          "public_association_inventory": {
+            "bytes": 100932,
+            "sha256": "335a9b266bdd8b5d5a2276a3d843f79b6fd2317f579ac54a5ecdcee56e18ae7d"
+          },
+          "retained_scope_binding_pass": true,
+          "retained_scope_names": [
+            "app138",
+            "backend29",
+            "fast_shift_intermediate",
+            "front44_composed",
+            "prefix_divider",
+            "small_shift",
+            "typed15"
+          ],
+          "reused_scopes_sha256": "dcc24f886310ab0c9ed7681d4c21ecf1299459b823506f5f03c79113fe4afdd0",
+          "source_ancestry_sha256": "d29069ad81ab3921519bb3220cd28c5c1bcf519828b3618b76d870474b9dcd5f",
+          "source_inventory_sha256": "568eb3314ec96ad7fb4963be80217880b1531385a50beeebdb3f88da7e8e4b8d",
+          "source_scope_assessment": {
+            "bytes": 80030,
+            "sha256": "d8a5d7284e17dfef2cd0113cb03f05415753b3144ddfd1058043ab25eb401100"
+          },
+          "source_scope_decision": {
+            "bytes": 2922,
+            "sha256": "3acbc6468a8fb5e3c6bc55262afd4a7b80501ca82d67e45e9c476bb65ab4bb91"
+          },
+          "universal_sha_refinement_proved": false,
+          "unproved_private_sha_boundary": {
+            "archived_7e_sha_record_unchanged": true,
+            "arithmetic_refinement_pending": true,
+            "baseline_page_bank_sha_outputs_unconstrained": true,
+            "busy_done_latency_assumed": false,
+            "candidate_sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94",
+            "current_d1_sha_outside_theorem": true,
+            "finite_bank_good_bad_cases": 6,
+            "finite_component": {
+              "bytes": 86037,
+              "sha256": "265894090b35e47cdb42e0b94ed195386442702b336820918810de20bbb42657"
+            },
+            "finite_compression_vectors": 235,
+            "finite_model": {
+              "bytes": 1975137,
+              "sha256": "5d09fcecf413a2a010ef14ffdadeef6d670dc0333b6afe20e8590945baf81dcb"
+            },
+            "finite_reset_phases": 32,
+            "finite_source_finished_sha256": "19d2264e67d75a4eb22221f57e7693b288f02a690c6d99867709d00bc30fb701",
+            "finite_validator_sha256": "8d3cbcc6496c0a28c0b5d0b78b1caa0b0a3462246f86c40925bbd2d09428e105",
+            "kind": "unproved-compressor-interface-with-finite-evidence",
+            "model_cases": 30,
+            "model_heads": 108,
+            "model_rows": 434052,
+            "new_page_bank42_run_claimed": false,
+            "owned_interface_header_sha256": "539dbf73b10797d01e7dd1021aece121269b69dd7a1385651754730a2424c036",
+            "private_bank_composition_pending": true,
+            "production_sha_not_elaborated": true,
+            "reference_sha256": "7e4992bdf5c7a6e6405979a01a351254d4a84fb8c0e2e47afcbe3fc4ff7d3610",
+            "returned_digest_correctness_assumed": false,
+            "scope": "Unproved private compression boundary; finite arithmetic/transactions and full-model executions only. No SHA arithmetic/security/private-bank refinement theorem is claimed.",
+            "unchanged_bank_sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1",
+            "universal_refinement_proved": false
+          },
+          "whole_machine_proof": false
+        },
+        "schema": "current-seeded-public-formal-source-binding-v1",
+        "scope": "Current87 distributed files and selected FS bytes verified as provenance. The original scoped selector/control proofs retain their cuts and limits. Changed private numerical logic and production SHA are not proved; native91 includes four omitted vendor digests only.",
+        "sha_compression_arithmetic_proved": false,
+        "source_assembly_receipt_sha256": "0a3c8fa5498641374b1205f325f2bbedecd820bbeb8cc74d1d796292f61d4376",
+        "source_delta_disclosure": [
+          "project/arbiter.sv",
+          "project/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv",
+          "project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv",
+          "project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv",
+          "project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv",
+          "project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv",
+          "project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv",
+          "project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv",
+          "project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv",
+          "project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv",
+          "project/sha.sv",
+          "project/shared_token_probe.sv",
+          "run.tcl"
+        ],
+        "source_receipt_sha256": "b3e46bb79fe8d91cbc5bf0afe8a54eb13da477a38168d11f156bb1de8b2c190d",
+        "vendor_logic_elaborated": false,
+        "whole_machine_refinement": false,
+        "whole_native91_byte_audit": false
+      },
+      "top": "board1_seeded_shell_composition",
+      "transformations": {
+        "board1_seeded_head_selector.sv": {
+          "diff": "transformations/board1_seeded_head_selector.sv.diff",
+          "diff_sha256": "f58b8a1086dc045d1acb0519ab59735cee248445e11cfdbe022dcacc967e4006",
+          "original_sha256": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b",
+          "transformed_sha256": "08714307e1f4244af5de18bd9707538beaf69d5ad32188aa596c8bb4bcc6ff12"
+        },
+        "candidate.sv": {
+          "diff": "transformations/candidate.sv.diff",
+          "diff_sha256": "6d04c9b4c2969951e18efe4c4f1f5918d1dfad47f7871f3266290ae16f1fca3a",
+          "original_sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374",
+          "transformed_sha256": "1516bdd7cdf13e0070ef853ba5d68423326649d9d64db3bd661a32416ba4a3e2"
+        },
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+          "diff": "transformations/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv.diff",
+          "diff_sha256": "178ca3a9afc4652d9801f5dff49428c62e0fc20ed51b1fce71006294aea2a594",
+          "original_sha256": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a",
+          "transformed_sha256": "d2425f7b9aacf97685b482c109e210937347247f1eb1aec8eea2e8081628ac3b"
+        },
+        "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": {
+          "diff": "transformations/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv.diff",
+          "diff_sha256": "d9b4d165511178a7fbec79f6dcc00e11c9f7e5c790b5cd6e478c25fac92dc78d",
+          "original_sha256": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193",
+          "transformed_sha256": "eb9f2e3846e695421cff3d0d81c27a0a5e4faef66f590db7be674d9ebe8bf840"
+        },
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv.diff",
+          "diff_sha256": "de037a37737d01d2c62d955de35dc1cf2ca759be059fe4b2965c2f6858502df9",
+          "original_sha256": "89e5802eeb9276dd761b02e32b5b33f3147476a7e6be9145eb66fa6df4f9e81f",
+          "transformed_sha256": "4eecd3c9b9249dc8159a688c81cf766b631ea6cdcd2fa1162d901b0fc95e0584"
+        },
+        "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv.diff",
+          "diff_sha256": "1a5c43da184c70b596d0f7287a852b3a188e1440971220f6219e631005d2769a",
+          "original_sha256": "55c93116b097b14bb990270e76f03a9d612bb1a203b17ab7ab162a389ffd8e69",
+          "transformed_sha256": "7f674af315d12b54700e5947ac1861ce488ab04cfaa950737a2d4413f5c9072e"
+        },
+        "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv.diff",
+          "diff_sha256": "51f26f8e08fc04ce265a81b190d2a4a650dfa1588c2eabde137376548ab0b82d",
+          "original_sha256": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc",
+          "transformed_sha256": "f95f5f07e92d6289a9bb97c9c89ce0a001e3f8d074489788a4a5bb1da59ee349"
+        },
+        "fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv.diff",
+          "diff_sha256": "a1bf45e1f7d888d56833d7302f9dad83cca3b6a24da2f4df876d75846f341b7a",
+          "original_sha256": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f",
+          "transformed_sha256": "d8c64ebb46922f3f05ce7710514649f8e19b43f5da4a53f365bfc5e48c66d84f"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv.diff",
+          "diff_sha256": "688820fb983ce6ef889cdb2ba47dd2a40c6aed097432fb78b7aa7c6183e45829",
+          "original_sha256": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a",
+          "transformed_sha256": "3b2d76080927e8bf6ee644e8da2d4140ea4b2e9e05178ac0d902eb3d4a57cefe"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv.diff",
+          "diff_sha256": "fca9f213a878e49399f965963155b5d2b0f77dea64074d2f5df9e45ef68d1578",
+          "original_sha256": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359",
+          "transformed_sha256": "0f931fb4ce37939e3019922bfdd19995dfe08ed640918ba649468cc9bd58c432"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv.diff",
+          "diff_sha256": "282b996d3d62f7ba896752160e98bc62c590a55fa1f5400d4ed8a5f6fb56060c",
+          "original_sha256": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68",
+          "transformed_sha256": "799d3c16a60bf01f5c86402553055cdc4bded41723a41595253bb5443989b378"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv.diff",
+          "diff_sha256": "9ca71ee8f8fa694b8994f36caa3b0008c99cef818c860d2e9ef2427b501e87c8",
+          "original_sha256": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44",
+          "transformed_sha256": "f5b30c5a6d59fd3297e0b18784f949de4fc9739781cd24083c420a980c8c1d16"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv.diff",
+          "diff_sha256": "c97d23faff80be7b989dbb629d2aa513bb5f6840f70b45381cdd8c09cb775d3e",
+          "original_sha256": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc",
+          "transformed_sha256": "ca1f8466f54d6eafeea9997f89378fb535b416666da15267725b14f79452c9c9"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv.diff",
+          "diff_sha256": "b5c5af1e28fbd587381a8be28fa443e6b2d3b02b6a9f52ca7a4cf0f3da0909f4",
+          "original_sha256": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9",
+          "transformed_sha256": "3d0848118ba7d1e55cae3e21af3dd1f0a772931955b37ce9891d75b966e78799"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv.diff",
+          "diff_sha256": "463bcdfbb660f265f4cb6eae1d201da090817fc1b0868b629ba636c1db2cc2c8",
+          "original_sha256": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211",
+          "transformed_sha256": "8a3ad2d3147d08f9bde42e72424a77c38c23d55bbf1b20ca621d549dec29da5d"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv.diff",
+          "diff_sha256": "481a251246af3d44c3121bf9a4bde37b3217fcfd7458a91f73da907575e7967a",
+          "original_sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5",
+          "transformed_sha256": "724b58c0c968ad3dce49591d9c5e0aac72d036ce036f909f040c6a5c5146e7ea"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv.diff",
+          "diff_sha256": "3dfae4e84319ae5f635e94cef517dad896c7ea036fff338db45360d9320afd63",
+          "original_sha256": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561",
+          "transformed_sha256": "58c2dae272a6fecdf7f99a862a721c9820e9ecbc52d91580da0bc923383ea88a"
+        },
+        "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv.diff",
+          "diff_sha256": "2b892bef25347c5f12bcfee3d511e7c0ff32bc8bab9db3920eb3a543f94c7cd9",
+          "original_sha256": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae",
+          "transformed_sha256": "e9e36945457f33056eecbddd69b68bf00c15edc5b320c85ae7912298aa97a51b"
+        },
+        "fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": {
+          "diff": "transformations/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv.diff",
+          "diff_sha256": "7b7454894c3dc307db308481a4fd16845611561eb14ff996e9a042e74d9d2cc6",
+          "original_sha256": "3373d3a7dd46ab2ff632f24b56e93c0556d5963ff2871bcde57c98168f939914",
+          "transformed_sha256": "ad061aab9d131f8bfb06bc1a636bdda826b43c01d354a939d118aa8b52e61b76"
+        },
+        "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": {
+          "diff": "transformations/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv.diff",
+          "diff_sha256": "0eb30d7ccd9f871a1d23ace274a154d99081702e9d90cd118138aa5722ce7d56",
+          "original_sha256": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f",
+          "transformed_sha256": "60d949c2b838cb0739c7e5f7222f7b1bff630eb37d3f71628ac238d7d9f6ba07"
+        },
+        "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": {
+          "diff": "transformations/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv.diff",
+          "diff_sha256": "061a0abd19e9e12cd09dfc9c12c1d7ce5b3c5eede65096bcafabfbb370a2e5bf",
+          "original_sha256": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e",
+          "transformed_sha256": "260ab8839486660c61eb29543a85323aeb19f726429912c08e892ae37c042cf8"
+        },
+        "fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": {
+          "diff": "transformations/fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv.diff",
+          "diff_sha256": "3b778081401f3c61bbfe6bd75876d6e14a9df507811d888d5e03bb6ff699f064",
+          "original_sha256": "5b6b76a879aa72973a68d511af42ccf066daa23c1f7a09afb57ab8ff99d2d402",
+          "transformed_sha256": "dd8f208fa888a170376c31ce3d442d2c4f22545f508d71728680d251690b51f9"
+        },
+        "normalizer_pipeline.sv": {
+          "diff": "transformations/normalizer_pipeline.sv.diff",
+          "diff_sha256": "ba708f1cf7be23316808b48f36aa9dbfc1fabd5c67fa41aeb8ddcbdf05caf9e7",
+          "original_sha256": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40",
+          "transformed_sha256": "16eba29f07b24b8cdcc4c8968a15f8e312dd64812b1d6309a9ad47cbf50da61c"
+        }
+      },
+      "whole_machine_refinement": false,
+      "wrapper_ports": {
+        "auth_fault": [
+          "input",
+          ""
+        ],
+        "boundary_core_fault": [
+          "input",
+          ""
+        ],
+        "core_clk_i": [
+          "input",
+          ""
+        ],
+        "core_machine_busy": [
+          "output",
+          ""
+        ],
+        "core_machine_fault": [
+          "output",
+          ""
+        ],
+        "core_machine_locked": [
+          "output",
+          ""
+        ],
+        "f_cut_child_kv_read_req_valid": [
+          "input",
+          ""
+        ],
+        "f_cut_child_kv_read_rsp_ready": [
+          "input",
+          ""
+        ],
+        "f_cut_child_kv_write_cpl_ready": [
+          "input",
+          ""
+        ],
+        "f_cut_child_kv_write_req_valid": [
+          "input",
+          ""
+        ],
+        "f_cut_head_activation_ready": [
+          "input",
+          ""
+        ],
+        "f_cut_head_done_valid": [
+          "input",
+          ""
+        ],
+        "f_cut_head_result_last": [
+          "input",
+          ""
+        ],
+        "f_cut_head_result_row_index": [
+          "input",
+          "[12:0]            "
+        ],
+        "f_cut_head_result_scaled_raw": [
+          "input",
+          "signed [49:0]     "
+        ],
+        "f_cut_head_result_source_exponent": [
+          "input",
+          "signed [7:0]      "
+        ],
+        "f_cut_head_result_valid": [
+          "input",
+          ""
+        ],
+        "f_cut_head_start_ready": [
+          "input",
+          ""
+        ],
+        "f_cut_kv_read_req_head_o": [
+          "input",
+          "[1:0]             "
+        ],
+        "f_cut_kv_read_req_layer_o": [
+          "input",
+          "[2:0]             "
+        ],
+        "f_cut_kv_read_req_position_o": [
+          "input",
+          "[11:0]            "
+        ],
+        "f_cut_kv_read_req_row_word_o": [
+          "input",
+          "[3:0]             "
+        ],
+        "f_cut_kv_read_req_shadow_address_o": [
+          "input",
+          "[18:0]            "
+        ],
+        "f_cut_kv_write_req_data_o": [
+          "input",
+          "[255:0]           "
+        ],
+        "f_cut_kv_write_req_head_o": [
+          "input",
+          "[1:0]             "
+        ],
+        "f_cut_kv_write_req_layer_o": [
+          "input",
+          "[2:0]             "
+        ],
+        "f_cut_kv_write_req_position_o": [
+          "input",
+          "[11:0]            "
+        ],
+        "f_cut_kv_write_req_row_word_o": [
+          "input",
+          "[3:0]             "
+        ],
+        "f_cut_kv_write_req_shadow_address_o": [
+          "input",
+          "[18:0]            "
+        ],
+        "f_cut_layer_busy": [
+          "input",
+          ""
+        ],
+        "f_cut_layer_committed_prefixes": [
+          "input",
+          "[71:0]            "
+        ],
+        "f_cut_layer_ddr_req_index": [
+          "input",
+          "[19-1:0]      "
+        ],
+        "f_cut_layer_ddr_req_valid": [
+          "input",
+          ""
+        ],
+        "f_cut_layer_ddr_rsp_ready": [
+          "input",
+          ""
+        ],
+        "f_cut_layer_done_valid": [
+          "input",
+          ""
+        ],
+        "f_cut_layer_fail": [
+          "input",
+          ""
+        ],
+        "f_cut_layer_input_ready": [
+          "input",
+          ""
+        ],
+        "f_cut_layer_result_exponent": [
+          "input",
+          "signed [7:0]      "
+        ],
+        "f_cut_layer_result_index": [
+          "input",
+          "[7:0]             "
+        ],
+        "f_cut_layer_result_last": [
+          "input",
+          ""
+        ],
+        "f_cut_layer_result_mantissa": [
+          "input",
+          "signed [15:0]     "
+        ],
+        "f_cut_layer_result_valid": [
+          "input",
+          ""
+        ],
+        "f_cut_layer_start_ready": [
+          "input",
+          ""
+        ],
+        "kv_read_req_head": [
+          "output",
+          "[1:0]             "
+        ],
+        "kv_read_req_layer": [
+          "output",
+          "[2:0]             "
+        ],
+        "kv_read_req_position": [
+          "output",
+          "[11:0]            "
+        ],
+        "kv_read_req_ready": [
+          "input",
+          ""
+        ],
+        "kv_read_req_row_word": [
+          "output",
+          "[3:0]             "
+        ],
+        "kv_read_req_shadow_address": [
+          "output",
+          "[18:0]            "
+        ],
+        "kv_read_req_valid": [
+          "output",
+          ""
+        ],
+        "kv_read_rsp_data": [
+          "input",
+          "[255:0]            "
+        ],
+        "kv_read_rsp_fault": [
+          "input",
+          ""
+        ],
+        "kv_read_rsp_ready": [
+          "output",
+          ""
+        ],
+        "kv_read_rsp_valid": [
+          "input",
+          ""
+        ],
+        "kv_write_cpl_fault": [
+          "input",
+          ""
+        ],
+        "kv_write_cpl_ready": [
+          "output",
+          ""
+        ],
+        "kv_write_cpl_valid": [
+          "input",
+          ""
+        ],
+        "kv_write_req_data": [
+          "output",
+          "[255:0]           "
+        ],
+        "kv_write_req_head": [
+          "output",
+          "[1:0]             "
+        ],
+        "kv_write_req_layer": [
+          "output",
+          "[2:0]             "
+        ],
+        "kv_write_req_position": [
+          "output",
+          "[11:0]            "
+        ],
+        "kv_write_req_ready": [
+          "input",
+          ""
+        ],
+        "kv_write_req_row_word": [
+          "output",
+          "[3:0]             "
+        ],
+        "kv_write_req_shadow_address": [
+          "output",
+          "[18:0]            "
+        ],
+        "kv_write_req_valid": [
+          "output",
+          ""
+        ],
+        "model_cdc_core_fault": [
+          "input",
+          ""
+        ],
+        "model_lock_core_sync_q": [
+          "input",
+          ""
+        ],
+        "model_req_ready": [
+          "input",
+          ""
+        ],
+        "model_req_valid": [
+          "output",
+          ""
+        ],
+        "model_req_word": [
+          "output",
+          "[19-1:0]      "
+        ],
+        "model_rsp_data": [
+          "input",
+          "[255:0]            "
+        ],
+        "model_rsp_fault": [
+          "input",
+          ""
+        ],
+        "model_rsp_ready": [
+          "output",
+          ""
+        ],
+        "model_rsp_valid": [
+          "input",
+          ""
+        ],
+        "reset_n_i": [
+          "input",
+          ""
+        ],
+        "uart_rx_i": [
+          "input",
+          ""
+        ],
+        "uart_tx_o": [
+          "output",
+          ""
+        ]
+      }
+    },
+    "files": {
+      "board1_seeded_head_selector.sv": {
+        "bytes": 19421,
+        "sha256": "08714307e1f4244af5de18bd9707538beaf69d5ad32188aa596c8bb4bcc6ff12"
+      },
+      "candidate.sv": {
+        "bytes": 3957,
+        "sha256": "1516bdd7cdf13e0070ef853ba5d68423326649d9d64db3bd661a32416ba4a3e2"
+      },
+      "composition.sv": {
+        "bytes": 13703,
+        "sha256": "257cf7084c17d82c84de56bd78d0104e955439c94ff9c43f84cf683a0dd082b9"
+      },
+      "connection-monitor.inc.sv": {
+        "bytes": 1342,
+        "sha256": "fb9582fcc1aa89376920ad39be062a73c29b182b5a1a470d6eff81fd85f3ce32"
+      },
+      "core-monitor.inc.sv": {
+        "bytes": 2435,
+        "sha256": "8e92d53a8ab4b6a1b464f031dab8e897ea2a5efbfeda14aa1416170fa0301a2b"
+      },
+      "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+        "bytes": 3954,
+        "sha256": "d2425f7b9aacf97685b482c109e210937347247f1eb1aec8eea2e8081628ac3b"
+      },
+      "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": {
+        "bytes": 5925,
+        "sha256": "eb9f2e3846e695421cff3d0d81c27a0a5e4faef66f590db7be674d9ebe8bf840"
+      },
+      "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": {
+        "bytes": 29070,
+        "sha256": "4eecd3c9b9249dc8159a688c81cf766b631ea6cdcd2fa1162d901b0fc95e0584"
+      },
+      "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+        "bytes": 60196,
+        "sha256": "7f674af315d12b54700e5947ac1861ce488ab04cfaa950737a2d4413f5c9072e"
+      },
+      "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": {
+        "bytes": 4162,
+        "sha256": "f95f5f07e92d6289a9bb97c9c89ce0a001e3f8d074489788a4a5bb1da59ee349"
+      },
+      "fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": {
+        "bytes": 2587,
+        "sha256": "d8c64ebb46922f3f05ce7710514649f8e19b43f5da4a53f365bfc5e48c66d84f"
+      },
+      "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+        "bytes": 8066,
+        "sha256": "3b2d76080927e8bf6ee644e8da2d4140ea4b2e9e05178ac0d902eb3d4a57cefe"
+      },
+      "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": {
+        "bytes": 30287,
+        "sha256": "0f931fb4ce37939e3019922bfdd19995dfe08ed640918ba649468cc9bd58c432"
+      },
+      "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+        "bytes": 10521,
+        "sha256": "799d3c16a60bf01f5c86402553055cdc4bded41723a41595253bb5443989b378"
+      },
+      "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+        "bytes": 3774,
+        "sha256": "f5b30c5a6d59fd3297e0b18784f949de4fc9739781cd24083c420a980c8c1d16"
+      },
+      "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": {
+        "bytes": 16291,
+        "sha256": "ca1f8466f54d6eafeea9997f89378fb535b416666da15267725b14f79452c9c9"
+      },
+      "fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": {
+        "bytes": 11183,
+        "sha256": "3d0848118ba7d1e55cae3e21af3dd1f0a772931955b37ce9891d75b966e78799"
+      },
+      "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": {
+        "bytes": 17685,
+        "sha256": "8a3ad2d3147d08f9bde42e72424a77c38c23d55bbf1b20ca621d549dec29da5d"
+      },
+      "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh": {
+        "bytes": 33280,
+        "sha256": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4"
+      },
+      "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+        "bytes": 8070,
+        "sha256": "724b58c0c968ad3dce49591d9c5e0aac72d036ce036f909f040c6a5c5146e7ea"
+      },
+      "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+        "bytes": 1367,
+        "sha256": "58c2dae272a6fecdf7f99a862a721c9820e9ecbc52d91580da0bc923383ea88a"
+      },
+      "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+        "bytes": 25473,
+        "sha256": "e9e36945457f33056eecbddd69b68bf00c15edc5b320c85ae7912298aa97a51b"
+      },
+      "fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": {
+        "bytes": 3047,
+        "sha256": "ad061aab9d131f8bfb06bc1a636bdda826b43c01d354a939d118aa8b52e61b76"
+      },
+      "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": {
+        "bytes": 3085,
+        "sha256": "60d949c2b838cb0739c7e5f7222f7b1bff630eb37d3f71628ac238d7d9f6ba07"
+      },
+      "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": {
+        "bytes": 1516,
+        "sha256": "260ab8839486660c61eb29543a85323aeb19f726429912c08e892ae37c042cf8"
+      },
+      "fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": {
+        "bytes": 28144,
+        "sha256": "dd8f208fa888a170376c31ce3d442d2c4f22545f508d71728680d251690b51f9"
+      },
+      "front-monitor.inc.sv": {
+        "bytes": 1066,
+        "sha256": "d14f348cf635d8d5bdfc09a29685c7a085bcd3126c0a0e49b6ad882f76291e41"
+      },
+      "model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": {
+        "bytes": 36873,
+        "sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f"
+      },
+      "normalizer_pipeline.sv": {
+        "bytes": 57565,
+        "sha256": "16eba29f07b24b8cdcc4c8968a15f8e312dd64812b1d6309a9ad47cbf50da61c"
+      },
+      "original/board1_seeded_head_selector.sv": {
+        "bytes": 14107,
+        "sha256": "c419e94a4a5a61cfa69d099fee50b44587a246d70c37420e817d743650725c9b"
+      },
+      "original/candidate.sv": {
+        "bytes": 3943,
+        "sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374"
+      },
+      "original/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+        "bytes": 3940,
+        "sha256": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a"
+      },
+      "original/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": {
+        "bytes": 5911,
+        "sha256": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193"
+      },
+      "original/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv": {
+        "bytes": 13704,
+        "sha256": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6"
+      },
+      "original/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": {
+        "bytes": 23829,
+        "sha256": "89e5802eeb9276dd761b02e32b5b33f3147476a7e6be9145eb66fa6df4f9e81f"
+      },
+      "original/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+        "bytes": 48456,
+        "sha256": "55c93116b097b14bb990270e76f03a9d612bb1a203b17ab7ab162a389ffd8e69"
+      },
+      "original/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": {
+        "bytes": 4148,
+        "sha256": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc"
+      },
+      "original/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": {
+        "bytes": 2573,
+        "sha256": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f"
+      },
+      "original/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+        "bytes": 8052,
+        "sha256": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a"
+      },
+      "original/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": {
+        "bytes": 30273,
+        "sha256": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359"
+      },
+      "original/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+        "bytes": 10507,
+        "sha256": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68"
+      },
+      "original/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+        "bytes": 3760,
+        "sha256": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44"
+      },
+      "original/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": {
+        "bytes": 16277,
+        "sha256": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc"
+      },
+      "original/fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": {
+        "bytes": 11169,
+        "sha256": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9"
+      },
+      "original/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": {
+        "bytes": 17671,
+        "sha256": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211"
+      },
+      "original/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+        "bytes": 8056,
+        "sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5"
+      },
+      "original/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+        "bytes": 1353,
+        "sha256": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561"
+      },
+      "original/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+        "bytes": 25459,
+        "sha256": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae"
+      },
+      "original/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": {
+        "bytes": 3033,
+        "sha256": "3373d3a7dd46ab2ff632f24b56e93c0556d5963ff2871bcde57c98168f939914"
+      },
+      "original/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": {
+        "bytes": 3071,
+        "sha256": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f"
+      },
+      "original/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": {
+        "bytes": 1502,
+        "sha256": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e"
+      },
+      "original/fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": {
+        "bytes": 16328,
+        "sha256": "5b6b76a879aa72973a68d511af42ccf066daa23c1f7a09afb57ab8ff99d2d402"
+      },
+      "original/normalizer_pipeline.sv": {
+        "bytes": 57551,
+        "sha256": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40"
+      },
+      "original/shared_token_probe.sv": {
+        "bytes": 17138,
+        "sha256": "ce25ff357ccbe62e6428e799748b36186a713e6a3939c7a85b6d4269c13ab3c6"
+      },
+      "original/uart_core.sv": {
+        "bytes": 3876,
+        "sha256": "819185b91729c87e82c33b3bbdcecb8cbd2eaa701b84db720fc3fb8c803f0f07"
+      },
+      "selector-monitor.inc.sv": {
+        "bytes": 5299,
+        "sha256": "71810c70689d1b6f0909a59b7b9b3a59ee825bbfd79aaf6f9adb49fdeb6bd1e8"
+      },
+      "shell-monitor.inc.sv": {
+        "bytes": 10431,
+        "sha256": "3419771f4a861d4a972af5ebea4d5150506627e4a31779b68ef50a7408282a7f"
+      },
+      "shell-settings-monitor.inc.sv": {
+        "bytes": 1403,
+        "sha256": "2e85e1e81dae19fa3d70d5db5e74942413ca666ce89037429abdfba32573986d"
+      },
+      "transformations/board1_seeded_head_selector.sv.diff": {
+        "bytes": 5778,
+        "sha256": "f58b8a1086dc045d1acb0519ab59735cee248445e11cfdbe022dcacc967e4006"
+      },
+      "transformations/candidate.sv.diff": {
+        "bytes": 119,
+        "sha256": "6d04c9b4c2969951e18efe4c4f1f5918d1dfad47f7871f3266290ae16f1fca3a"
+      },
+      "transformations/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv.diff": {
+        "bytes": 251,
+        "sha256": "178ca3a9afc4652d9801f5dff49428c62e0fc20ed51b1fce71006294aea2a594"
+      },
+      "transformations/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv.diff": {
+        "bytes": 265,
+        "sha256": "d9b4d165511178a7fbec79f6dcc00e11c9f7e5c790b5cd6e478c25fac92dc78d"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv.diff": {
+        "bytes": 14382,
+        "sha256": "de037a37737d01d2c62d955de35dc1cf2ca759be059fe4b2965c2f6858502df9"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv.diff": {
+        "bytes": 12958,
+        "sha256": "1a5c43da184c70b596d0f7287a852b3a188e1440971220f6219e631005d2769a"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv.diff": {
+        "bytes": 263,
+        "sha256": "51f26f8e08fc04ce265a81b190d2a4a650dfa1588c2eabde137376548ab0b82d"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv.diff": {
+        "bytes": 269,
+        "sha256": "a1bf45e1f7d888d56833d7302f9dad83cca3b6a24da2f4df876d75846f341b7a"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv.diff": {
+        "bytes": 281,
+        "sha256": "688820fb983ce6ef889cdb2ba47dd2a40c6aed097432fb78b7aa7c6183e45829"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv.diff": {
+        "bytes": 283,
+        "sha256": "fca9f213a878e49399f965963155b5d2b0f77dea64074d2f5df9e45ef68d1578"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv.diff": {
+        "bytes": 263,
+        "sha256": "282b996d3d62f7ba896752160e98bc62c590a55fa1f5400d4ed8a5f6fb56060c"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv.diff": {
+        "bytes": 277,
+        "sha256": "9ca71ee8f8fa694b8994f36caa3b0008c99cef818c860d2e9ef2427b501e87c8"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv.diff": {
+        "bytes": 301,
+        "sha256": "c97d23faff80be7b989dbb629d2aa513bb5f6840f70b45381cdd8c09cb775d3e"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv.diff": {
+        "bytes": 283,
+        "sha256": "b5c5af1e28fbd587381a8be28fa443e6b2d3b02b6a9f52ca7a4cf0f3da0909f4"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv.diff": {
+        "bytes": 273,
+        "sha256": "463bcdfbb660f265f4cb6eae1d201da090817fc1b0868b629ba636c1db2cc2c8"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv.diff": {
+        "bytes": 320,
+        "sha256": "481a251246af3d44c3121bf9a4bde37b3217fcfd7458a91f73da907575e7967a"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv.diff": {
+        "bytes": 269,
+        "sha256": "3dfae4e84319ae5f635e94cef517dad896c7ea036fff338db45360d9320afd63"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv.diff": {
+        "bytes": 291,
+        "sha256": "2b892bef25347c5f12bcfee3d511e7c0ff32bc8bab9db3920eb3a543f94c7cd9"
+      },
+      "transformations/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv.diff": {
+        "bytes": 259,
+        "sha256": "7b7454894c3dc307db308481a4fd16845611561eb14ff996e9a042e74d9d2cc6"
+      },
+      "transformations/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv.diff": {
+        "bytes": 201,
+        "sha256": "0eb30d7ccd9f871a1d23ace274a154d99081702e9d90cd118138aa5722ce7d56"
+      },
+      "transformations/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv.diff": {
+        "bytes": 201,
+        "sha256": "061a0abd19e9e12cd09dfc9c12c1d7ce5b3c5eede65096bcafabfbb370a2e5bf"
+      },
+      "transformations/fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv.diff": {
+        "bytes": 12451,
+        "sha256": "3b778081401f3c61bbfe6bd75876d6e14a9df507811d888d5e03bb6ff699f064"
+      },
+      "transformations/normalizer_pipeline.sv.diff": {
+        "bytes": 139,
+        "sha256": "ba708f1cf7be23316808b48f36aa9dbfc1fabd5c67fa41aeb8ddcbdf05caf9e7"
+      },
+      "uart-monitor.inc.sv": {
+        "bytes": 11801,
+        "sha256": "41a1bfaa9494738d7c3e446c58cd176d3e52e106031f7c71cde6ec82d358711f"
+      }
+    },
+    "sources": [
+      "board1_seeded_head_selector.sv",
+      "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv",
+      "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv",
+      "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv",
+      "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv",
+      "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv",
+      "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv",
+      "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv",
+      "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv",
+      "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv",
+      "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv",
+      "normalizer_pipeline.sv",
+      "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv",
+      "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv",
+      "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv",
+      "candidate.sv",
+      "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv",
+      "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv",
+      "fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv",
+      "fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv",
+      "fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv",
+      "fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv",
+      "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv",
+      "composition.sv"
+    ]
+  },
+  "source_binding": {
+    "current_binding_sha256": "c17060016035e92ec7c37382a5eb8b164fe7620601005749ba399087494f48f7",
+    "current_native_inputs": 91,
+    "current_native_inventory_sha256": "bd6979971359e5a18e0736ef5771ae9074ef9719d32e75970577eba9bb9d8c30",
+    "distributed_inputs_verified": 87,
+    "distributed_inventory_sha256": "2aed505f6fd3428492b3addae554517c2c3b7e7f4852f23a9570432f0a53ca7b",
+    "image_bytes": 42070540,
+    "image_bytes_verified": true,
+    "image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
+    "omitted_vendor_bytes_verified": false,
+    "omitted_vendor_inputs": {
+      "project/official/ddr3_memory_interface.v": "d7cae5a16467ca35ee3f95411537344ae3702e1dba86a06571530e3dd0180c57",
+      "project/official/gowin_pll.v": "982ca6387f42086e88b4c858490eb00954a80a3284e0f07d959311d0975d7536",
+      "project/official/gowin_pll_mod.v": "07398632b56749dbe52f6e5d739a526c7ca5e71c4060c7d062a64dada6e1a953",
+      "project/official/pll_init.v": "502436115e507453e2c139a073f5b56484421311ef57088ce1a16140347957f5"
+    },
+    "proof_support_inventory_sha256": "f3a2a873d9177fd2da4ff611fd857b4613018639372eea09eda73a731fd52ee6",
+    "retained_scope_association": {
+      "aggregate_assertion_total": null,
+      "arithmetic_refinement_pending": true,
+      "changed_cache_stage_proof": {
+        "actual_ram_bits": 8192,
+        "aggregate_assertion_total": null,
+        "arbitrary_readonly_selector_bits": 13,
+        "assumptions": [],
+        "cancellation_knownness_scope": "Cancellation may revoke logical knownness while captured payload/assembly coherence remains. Fault replies are masked. These source properties do not establish physical memory erasure.",
+        "candidate_sha256": "ba17ba73a9c708aabd246cbc538f4e81e25b33cc116ded91da4fd554566ead39",
+        "hardware_access": false,
+        "induction_conclusions": 154,
+        "internal_cuts": [],
+        "limits": [
+          "No whole-machine or full cache-equivalence theorem.",
+          "No trusted external DDR content or cryptographic K/V integrity assumption or claim.",
+          "No eventual-response/fairness or fatal-reset-free liveness claim.",
+          "No unconditional local accepted-write ownership/drain theorem across terminal failure. No unexpected completion input is assumed away.",
+          "No independently latched historical-DDR semantic row content theorem; physical fill mux fidelity is separate from accepted pending-stage provenance.",
+          "No physical RAM initialization/erasure, mapped/native/timing/route/board qualification.",
+          "No inherited141 assertion total or pass flag.",
+          "Cancellation revokes logical stage knownness only. Selected-point and captured/stage/assembled payload coherence remain required through CLEAR and terminal failure; retained payload erasure is not claimed.",
+          "Synchronous two-state source safety only; no electrical CDC, physical implementation, native timing or board qualification is inferred.",
+          "Only the primary Z3 campaign is credited. No independent second-solver completion or proof credit is claimed.",
+          "The recorded audit reconstructs consumed evidence and repeats the RAM/observer audit without rerunning the solver or elaborator; independent tool-execution attestation is excluded."
+        ],
+        "mapped_image_equivalence": false,
+        "mapper_sha256": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc",
+        "old_cache141_credited": false,
+        "passed": true,
+        "physical_equivalence": false,
+        "primary_solver": "z3",
+        "production_ram_banks": 8,
+        "qualification_inherited": false,
+        "reset_base_queries": 1,
+        "sat_premise_then_unsat_queries": 155,
+        "scope": "Recorded full source reset-base plus joint-prior inductive safety with exact consumed-query/log reconstruction and actual RAM/observer audit. Independent tool-execution attestation, full cache equivalence, terminal-local write drain and mapped/physical claims are excluded.",
+        "solver_executed_by_this_binding": false,
+        "source_assertions": 154,
+        "source_query_log_closure": true,
+        "source_receipts": {
+          "actual_run": {
+            "bytes": 256776,
+            "sha256": "e39204ffc039b4e157af8758c9b7c1095cfe96f95088d3b80870f341c9948883"
+          },
+          "auditor_source": {
+            "bytes": 13478,
+            "sha256": "9a35fa710afde1416226564273ea2f56b05742030743ce793621a8a8d2b01a42"
+          },
+          "preparation": {
+            "bytes": 9188,
+            "sha256": "8281070c15c4005886caa2f4e7a1a69a7eb56c3283d9affdb0dfa4415e52f612"
+          },
+          "primary_index": {
+            "bytes": 5299,
+            "sha256": "2d9874c97bafd9b7c767b91bd416e61c18e58fee42a65b8d69bf2cf45fe705a2"
+          },
+          "recorded_audit": {
+            "bytes": 305651,
+            "sha256": "a2abd17878e15c9499f9e7d9879364897830c2fcbb0a65be6811ae59cf964c60"
+          }
+        },
+        "state": "complete",
+        "statement_origin": {
+          "aborted_write_and_lock_history_support": 2,
+          "exponent_snapshot_support": 2,
+          "original_knownness_statement_scoped_for_cancellation": 1,
+          "original_monitor_statements_retained_exactly": 116,
+          "phase_history_support": 27,
+          "revoked_semantic_owner_history_support": 1,
+          "through_cancel_coherence_support": 5
+        },
+        "terminal_scope": "Healthy and CLEAR ownership/drain safety; terminal fail-stop may abandon local accepted writes until reset. No unexpected-input assumptions or unconditional terminal-local-drain claim.",
+        "whole_cache_equivalence": false,
+        "whole_machine_proof": false
+      },
+      "changed_exp_rom_proof": {
+        "aggregate_assertion_total": null,
+        "candidate_sha256": "042df8b9da13bc2a66f945b2942a30374d52fa38766ba73916999901fa63622f",
+        "default_table_sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f",
+        "limits": [
+          "Source-only relative ROM safety/equivalence; no full attention FSM, whole model, vendor primitive, mapped image, physical or security theorem.",
+          "FILE parser/I/O uses standard RTL readmemh semantics. Arbitrary32-bit image dataflow is proved; partial/addressed/XZ FILEs are finite actual simulation fixtures.",
+          "Coupled unspecified initial selected payload/metadata is an explicit representation premise, not an assumption that valid response data already matches.",
+          "Clock-level source induction uses async2sync; analog reset pulse widths, glitches and metastability are not claimed.",
+          "No native inference/resource/routing/timing result or FPGA model/flash/write action is credited here. Root-owned synthesis previews and any future mapped-ROM audit remain separate.",
+          "These query/transcript counts are nonadditive with all existing stochastic, transport, arithmetic and whole-model evidence; no aggregate machine assertion total is claimed."
+        ],
+        "mapped_canonical_rom_audit_passed": false,
+        "mapped_canonical_rom_audit_required_before_preload": true,
+        "mapped_image_equivalence": false,
+        "passed": true,
+        "physical_equivalence": false,
+        "qualification_inherited": false,
+        "reference_sha256": "e47bf421e10435e6bffa10e0219415630d57ef00ccdc4040ca7d8d9f720e9477",
+        "scope": {
+          "composition": "Initializer image correspondence and source-proved immutable storage plus runtime state induction preserve all four observable outputs along unbounded clock-sampled digital input sequences. Reset assertion outputs and actual asynchronous pulse behavior are separately checked.",
+          "file_image": "Actual source-parsed1024loop and four disjoint copies prove each low word0..4095 and independent endpoint4096 come from the same complete FILE image; addresses/counts are checked nonwrapping. Source-runtime theorem assumes the resulting requested-word image relation, discharged by that copy construction.",
+          "four_state": "Nine actual original/candidate FILE simulations, all8192 addresses each, pre-read/unreset X,32X/Z control cases and one between-clock asynchronous reset pulse perFILE. Six complete known-integer files also get198144 independent public transaction-oracle comparisons. This is finite four-state evidence, not a universal four-state SMT theorem.",
+          "independent_scalar": "Unmodified full e47 reference, namespace-only in simulations; no candidate ROM is shared with the reference.",
+          "initial_state": "Explicit representation coupling of unspecified initial selected payload and metadata/sticky state; constructive low-selected witness covers every initial32-bit payload. Unrelated power-up states are not compared.",
+          "runtime": "Complete actual-source four-output and inductive state-correspondence proof for arbitrary13-bit request/index sequences and arbitrary32-bit immutable FILE words. No valid-encoding assumption or runtime/output cuts."
+        },
+        "scope_premises_not_dropped": true,
+        "separate_from_reused_modular_scopes": true,
+        "shared_mac_proof_credited": false,
+        "source_query_log_closure": true,
+        "source_receipts": {
+          "component": {
+            "bytes": 69396,
+            "sha256": "80309bee650ec898b7e2a81eb59fa4c925779d56188b448dd37c4729d94273d0"
+          },
+          "final_index": {
+            "bytes": 6256,
+            "sha256": "6ccf19de26525697a144b3995efc31c225f73f6fd1a424247a4863d547e95596"
+          },
+          "source_audit": {
+            "bytes": 184623,
+            "sha256": "3410f9dcab7cc87180deceb4f4e726edbd271c73822f432ca422eadeaa0c0dd3"
+          },
+          "source_proof": {
+            "bytes": 6501,
+            "sha256": "797f55044171f4b3df5565eaaf13875c8562f34e872d572bf95ba870bd8bdeae"
+          }
+        },
+        "state": "complete",
+        "whole_machine_proof": false
+      },
+      "changed_native_inputs": [
+        "project/sha.sv"
+      ],
+      "formal_replay_of_this_variant": false,
+      "mapped_image_equivalence": false,
+      "old_atomic87_credited": false,
+      "old_cache141_credited": false,
+      "public_association_inventory": {
+        "bytes": 100932,
+        "sha256": "335a9b266bdd8b5d5a2276a3d843f79b6fd2317f579ac54a5ecdcee56e18ae7d"
+      },
+      "retained_scope_binding_pass": true,
+      "retained_scope_names": [
+        "app138",
+        "backend29",
+        "fast_shift_intermediate",
+        "front44_composed",
+        "prefix_divider",
+        "small_shift",
+        "typed15"
+      ],
+      "reused_scopes_sha256": "dcc24f886310ab0c9ed7681d4c21ecf1299459b823506f5f03c79113fe4afdd0",
+      "source_ancestry_sha256": "d29069ad81ab3921519bb3220cd28c5c1bcf519828b3618b76d870474b9dcd5f",
+      "source_inventory_sha256": "568eb3314ec96ad7fb4963be80217880b1531385a50beeebdb3f88da7e8e4b8d",
+      "source_scope_assessment": {
+        "bytes": 80030,
+        "sha256": "d8a5d7284e17dfef2cd0113cb03f05415753b3144ddfd1058043ab25eb401100"
+      },
+      "source_scope_decision": {
+        "bytes": 2922,
+        "sha256": "3acbc6468a8fb5e3c6bc55262afd4a7b80501ca82d67e45e9c476bb65ab4bb91"
+      },
+      "universal_sha_refinement_proved": false,
+      "unproved_private_sha_boundary": {
+        "archived_7e_sha_record_unchanged": true,
+        "arithmetic_refinement_pending": true,
+        "baseline_page_bank_sha_outputs_unconstrained": true,
+        "busy_done_latency_assumed": false,
+        "candidate_sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94",
+        "current_d1_sha_outside_theorem": true,
+        "finite_bank_good_bad_cases": 6,
+        "finite_component": {
+          "bytes": 86037,
+          "sha256": "265894090b35e47cdb42e0b94ed195386442702b336820918810de20bbb42657"
+        },
+        "finite_compression_vectors": 235,
+        "finite_model": {
+          "bytes": 1975137,
+          "sha256": "5d09fcecf413a2a010ef14ffdadeef6d670dc0333b6afe20e8590945baf81dcb"
+        },
+        "finite_reset_phases": 32,
+        "finite_source_finished_sha256": "19d2264e67d75a4eb22221f57e7693b288f02a690c6d99867709d00bc30fb701",
+        "finite_validator_sha256": "8d3cbcc6496c0a28c0b5d0b78b1caa0b0a3462246f86c40925bbd2d09428e105",
+        "kind": "unproved-compressor-interface-with-finite-evidence",
+        "model_cases": 30,
+        "model_heads": 108,
+        "model_rows": 434052,
+        "new_page_bank42_run_claimed": false,
+        "owned_interface_header_sha256": "539dbf73b10797d01e7dd1021aece121269b69dd7a1385651754730a2424c036",
+        "private_bank_composition_pending": true,
+        "production_sha_not_elaborated": true,
+        "reference_sha256": "7e4992bdf5c7a6e6405979a01a351254d4a84fb8c0e2e47afcbe3fc4ff7d3610",
+        "returned_digest_correctness_assumed": false,
+        "scope": "Unproved private compression boundary; finite arithmetic/transactions and full-model executions only. No SHA arithmetic/security/private-bank refinement theorem is claimed.",
+        "unchanged_bank_sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1",
+        "universal_refinement_proved": false
+      },
+      "whole_machine_proof": false
+    },
+    "schema": "current-seeded-public-formal-source-binding-v1",
+    "scope": "Current87 distributed files and selected FS bytes verified as provenance. The original scoped selector/control proofs retain their cuts and limits. Changed private numerical logic and production SHA are not proved; native91 includes four omitted vendor digests only.",
+    "sha_compression_arithmetic_proved": false,
+    "source_assembly_receipt_sha256": "0a3c8fa5498641374b1205f325f2bbedecd820bbeb8cc74d1d796292f61d4376",
+    "source_delta_disclosure": [
+      "project/arbiter.sv",
+      "project/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv",
+      "project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv",
+      "project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv",
+      "project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv",
+      "project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv",
+      "project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv",
+      "project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv",
+      "project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv",
+      "project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv",
+      "project/sha.sv",
+      "project/shared_token_probe.sv",
+      "run.tcl"
+    ],
+    "source_receipt_sha256": "b3e46bb79fe8d91cbc5bf0afe8a54eb13da477a38168d11f156bb1de8b2c190d",
+    "vendor_logic_elaborated": false,
+    "whole_machine_refinement": false,
+    "whole_native91_byte_audit": false
+  }
+}

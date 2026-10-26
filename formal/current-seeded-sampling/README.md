@@ -1,79 +1,49 @@
-# Current scoped formal replay
+# Seeded-sampling RTL verification
 
-This capsule is configured for the selected current image and retained source
-scopes. Fresh scientific replay and its separate named completion registration
-have completed with the scoped outcomes below.
-`CURRENT-BINDING.json` records the source and image association at construction;
-its replay and qualification flags remain false as construction provenance.
+The selected SimpleStories-V2-5M seeded image is
+`d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725`.
+[CURRENT-REPLAY.json](CURRENT-REPLAY.json) binds the exact sources, tools,
+queries and recorded outcomes using schema
+`current-seeded-rtl-formal-replay-completion-v2`.
 
-This lane preserves the original 35/57/63/94 component assertions, 196 connected
-assertions with the same 37 private-output cuts, 15 Lean theorems, sensitivity
-controls, model hashes, parameters, query constructors and runtime bounds.
-Counts overlap. Verifying the 87 distributed files and selected image bytes
-establishes provenance; it does not prove all 87 files, the mapped image or the
-numerical backend. Production SHA compression arithmetic and private-bank/SHA
-composition remain unproved.
+The scoped RTL results are:
 
-## Closed current scientific results
+- 35 selector, 57 buffer-ownership, 63 UART/frontend and 94 token-shell
+  assertions, checked by both solvers. These counts overlap.
+- All 196 connected assertions pass Z3. cvc5 passes the base and 194
+  conclusions; CRC conclusions 38 and 73 remain unresolved.
+- The separate weight-page bank passes 42 assertions with both solvers,
+  retaining its real 32,768-bit RAM and arbitrary 258-bit SHA replies.
+- Directed scenarios and deliberately faulty controls check sensitivity
+  within their recorded finite scopes.
 
-The new primary run closed all 196 connected assertions. Its independent
-secondary run passed the base and attempted all 196 conclusions, proving 194;
-only CRC conclusions 38 and 73 remain unresolved. Both component solvers closed the 35/57/63/94 scopes.
-The separate current page-bank run closed 42 assertions with both solvers,
-real 32,768-bit RAM and arbitrary 258-bit SHA replies, plus ten directed
-scenarios and five faulty controls. Fifteen abstract Lean theorems and the
-original finite sensitivity controls also passed. These overlapping counts
-are not a whole-machine total. No SHA compression arithmetic or private-bank
-composition theorem follows.
+The source provider checks 87 distributed native files and the selected image.
+The 91-input native inventory also records four vendor digests. This provenance
+check does not prove vendor logic or source-to-mapped-image equivalence.
+The connected model retains 37 arbitrary private-output boundaries.
+SHA compression arithmetic, private-bank/SHA composition, numerical sampling
+equivalence and whole-machine refinement are not established.
 
-The registered [CURRENT-REPLAY.json](CURRENT-REPLAY.json) has SHA-256
-`c89177b13518209f0c8fb3ccde7db8c1d31dd39b875e1ba084650ed666806fcd`.
-The completion and its status entry are separate from `CURRENT-BINDING.json`;
-registration preserves that construction record and the source provider. It
-records checked raw outcomes without rerunning solvers. The command examples
-below reproduce the same-scope campaign, not a stronger theorem.
+[The formal-status guide](../../demos/simplestories-v2-5m/FORMAL-STATUS.md)
+describes the properties and limits. Hardware/browser qualification is separate.
 
-`recorded/RESULTS.json` and `recorded/PUBLIC-REPLAY.json` retain exact old0e6
-bytes as historical model expectations. They are never current PASS records.
-`historical/seeded-sampling/` preserves the exact original 31-file capsule source
-census; runnable full historical context remains in the authenticated release
-archive. The current replay does not require the old0e6 FS bytes.
+From the repository root, check the recorded completion without running solvers:
 
-Freeze the configured recipient's README, formal source inventory and package
-manifest before the runs. Use a separate disposable copy of that exact clean
-recipient, with new run directories. From its root:
+```sh
+python3.12 -I -S -B formal/current-seeded-sampling/check_recorded.py --require-complete
+```
 
-    python3.12 -I -S -B formal/current-seeded-sampling/check_recorded.py
-    python3.12 -I -S -B formal/current-seeded-sampling/test_replay.py
-    python3.12 -I -S -B formal/current-seeded-sampling/replay.py --run formal/current-seeded-sampling/runs/NEW-combined --secondary --require-recorded-model
-    python3.12 -I -S -B tools/check_current_seeded_page_bank.py --package . --work ../NEW-current-seeded-page-bank
+For a fresh replay, use a clean disposable copy of the selected release and
+new output directories. Preserve the original copy and its manifest:
 
-The single combined replay includes the primary checks, both component solvers,
-source/observer re-elaboration, Lean, negative controls and all 196 connected
-secondary attempts with their existing bounded supplements. Do not add a separate
-primary replay to this combined run. Original per-query timeouts, induction
-depths and worker counts remain unchanged; there is no new overall campaign
-wall timeout. `check_replay.py` independently validates the actual raw run.
-Completion requires the secondary base check and all 196 attempts; only the
-existing CRC conclusions 38 and 73 may remain unresolved. Unknowns remain
-unresolved and are never counted as proofs.
+```sh
+python3.12 -I -S -B formal/current-seeded-sampling/check_recorded.py
+python3.12 -I -S -B formal/current-seeded-sampling/test_replay.py
+python3.12 -I -S -B formal/current-seeded-sampling/replay.py --run formal/current-seeded-sampling/runs/NEW-combined --secondary --require-recorded-model
+python3.12 -I -S -B tools/check_current_seeded_page_bank.py --package . --work ../NEW-current-seeded-page-bank
+```
 
-The separate current-seeded page-bank wrapper runs its 42-property proof,
-scenarios and audit; do not duplicate its child commands. It proves bank safety
-with arbitrary 258-bit SHA replies. Production SHA is not elaborated in that
-proof, and SHA arithmetic or private-bank/SHA composition is not established.
-The original greedy page-bank replay remains unchanged. Keep the original clean
-recipient and work-copy manifest unchanged through both runs and registration;
-the page-bank evidence binds that exact input manifest.
-
-The independently checked fresh outcomes are now registered in the clean
-recipient: `CURRENT-REPLAY.json` records the same-scope results,
-`CURRENT-STATUS.json` identifies that completion, and the package manifest's
-separate `current_control_formal_replay` entry refers to it. These records do
-not relabel historical PASS receipts or change the construction binding's false
-flags. This command checks the registered completion without a solver replay:
-
-    python3.12 -I -S -B formal/current-seeded-sampling/check_recorded.py --require-complete
-
-These scoped replays do not establish whole-machine refinement, mapped-image
-equivalence or hardware/browser qualification.
+The combined command checks the RTL components, connected model, source and
+observer audits, finite sensitivity controls and all 196 secondary conclusions.
+Only CRC conclusions 38 and 73 may remain unresolved; they are not counted
+as proofs. The page-bank command is a separate scoped proof.

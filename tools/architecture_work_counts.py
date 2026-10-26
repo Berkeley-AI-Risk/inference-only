@@ -101,16 +101,20 @@ def recorded_workload_comparison(package):
     workload credited in the numerator. No extrapolation or new measurements.
     """
     package = Path(package)
-    metrics = json.loads((package / 'evidence/baseline-current/metrics.json').read_text(encoding='utf-8'))['metrics']
+    metrics = json.loads((package / 'evidence/current-greedy/baseline/analysis/metrics.json').read_text(encoding='utf-8'))['metrics']
     capacity = json.loads((package / 'evidence/training-capacity-estimates.json').read_text(encoding='utf-8'))
     inputs = capacity['inputs']
     reference = capacity['measured_reference']
     baseline = metrics['around128']
+    repeated = metrics['around128-repeat']
+    if (repeated['prompt_tokens'], repeated['generated_tokens'], repeated['occupied_tape']) != (1, 128, 129):
+        raise ValueError('Repeated measurement does not match the128-position reference')
+    paired_last_seconds = (baseline['last_step_seconds'] + repeated['last_step_seconds']) / 2
     baseline_positions = baseline['prompt_tokens'] + baseline['generated_tokens'] - 1
     if (inputs['model_geometry'] != TINY or inputs['fpga_context_positions'] != 128
             or reference['context_positions'] != 128 or baseline_positions != 128
-            or inputs['measured_single_step_seconds'] != baseline['last_step_seconds']
-            or inputs['fpga_inference_rate_proxy'] != 1 / baseline['last_step_seconds']):
+            or inputs['measured_single_step_seconds'] != paired_last_seconds
+            or inputs['fpga_inference_rate_proxy'] != 1 / paired_last_seconds):
         raise ValueError('Saved workload comparison does not match the 128-position reference')
     inference_comparison = inputs['fpga_inference_rate_proxy'] / reference['aggregate_tokens_per_second']
     arithmetic_rating = inputs['h100_dense_flops_per_second']
@@ -121,7 +125,7 @@ def recorded_workload_comparison(package):
         if phase == 'last':
             positions = measured['prompt_tokens'] + measured['generated_tokens'] - 1
             new_tokens, cached_tokens = 1, positions - 1
-            seconds = measured['last_step_seconds']
+            seconds = paired_last_seconds if case == 'around128' else measured['last_step_seconds']
             label = f'`{case}`, last STEP: {positions:,}-position decode'
         else:
             positions = measured['prompt_tokens']
@@ -159,7 +163,7 @@ def check_table(text, start, end, expected):
 
 
 def cycle_fraction(package):
-    """Counted dynamic work divided by the five lanes' nominal cycle budget."""
+    """Counted dynamic work divided by the named scheduled units' credited nominal cycle budget."""
     package = Path(package)
     row = recorded_workload_comparison(package)[0]
     inputs = json.loads((package / 'evidence/training-capacity-estimates.json').read_text(encoding='utf-8'))['inputs']

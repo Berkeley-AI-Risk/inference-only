@@ -1,64 +1,36 @@
 # Hardware architecture and implementation notes
 
-## Scope of the optimized seeded circuit
+The four supplied configurations run the same fixed SimpleStories-V2-5M
+numerical model on Tang Mega 138K. The three greedy designs differ in memory
+protection; the seeded design adds a bounded on-chip sampler.
 
-The current seeded circuit implements the same **SimpleStories-V2-5M** numerical
-model. Its private implementation uses eight attention lanes, synchronous
-pending K/V storage, split canonical exp-ROM storage and two SHA-256 rounds
-per cycle while retaining all 64 rounds. These choices are specific to the
-optimized seeded image; the baseline's four-round SHA schedule and other
-baseline/protected figures below remain scoped to those circuits.
+| Configuration | Weight checks | External K/V protection | Host operations |
+| --- | --- | --- | --- |
+| Baseline | Fixed plaintext page digests | None | APPEND, STEP, CLEAR |
+| K/V-protected | Fixed plaintext page digests | Private expected SHA-256 digests | APPEND, STEP, CLEAR |
+| K/V protection + encrypted memory | Fixed plaintext page digests after decryption | AES-SIV and private expected SHA-256 digests | APPEND, STEP, CLEAR |
+| Seeded sampling | Fixed plaintext page digests | None | APPEND, STEP, CLEAR; settings on an empty, idle tape |
 
-Current source/model/board and scoped proof results are summarized in
-[CURRENT-QUALIFICATION.md](CURRENT-QUALIFICATION.md). They do not establish
-whole-machine refinement, SHA arithmetic/private-bank composition, mapped
-image equivalence or complete vendor-DDR timing. Seeded sampling has no K/V
-cryptographic integrity or encryption. The encrypted-memory configuration
-retains K/V integrity/replay protection and separately encrypts weights and K/V.
+The encrypted design encrypts both weights and K/V with public demonstration
+keys; it retains K/V integrity and replay checks. See
+[encrypted memory](../../ENCRYPTED-MEMORY.md),
+[K/V protection](KV-PROTECTION.md) and [seeded generation](STOCHASTIC-GENERATION.md).
 
+The source links and detailed diagram below describe the supplied baseline.
+Its private attention engine has eight score lanes and eight value lanes.
+Synchronous pending-row storage and split canonical exp-ROM storage preserve
+the fixed arithmetic contract. The protected design has its own cache guard,
+startup/transport implementation and source inventory; the encrypted design
+also uses four time-shared projection multiplier lanes and a different K/V
+record format. These are separate FPGA images, not host-selectable modes.
 
-This guide describes the baseline and K/V-protected layouts. The
-third configuration has an encrypted external-memory path, a four-bank weight
-cache sharing two AES and two SHA engines, four time-shared projection multiplier
-lanes, and a different physical K/V layout; see [ENCRYPTED-MEMORY.md](../../ENCRYPTED-MEMORY.md).
-The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) extends
-the baseline with a fixed sampler and bounded temperature/seed command.
-Its source, resources and validation are recorded separately from the baseline
-figures below; its [extended control proofs](../../formal/seeded-sampling/README.md)
-cover the additional settings and sampler state.
-
-This document is for readers familiar with RTL, FPGA implementation and
-accelerator design. The [README](../../README.md) introduces the demo;
-[INFERENCE-ONLY.md](INFERENCE-ONLY.md) assesses the restricted design, and
-[FORMAL-STATUS.md](FORMAL-STATUS.md) separates
-proved properties from remaining obligations.
-[Design references](../../docs/REFERENCES.md) identify the model algorithms,
+[Greedy qualification](GREEDY-QUALIFICATION.md) and
+[seeded qualification](CURRENT-QUALIFICATION.md) identify the selected images,
+source associations and tested workloads. [Formal status](FORMAL-STATUS.md)
+states the scoped properties and remaining boundaries. None of these records
+establishes complete vendor-DDR timing signoff or whole-machine numerical
+refinement. [Design references](../../docs/REFERENCES.md) identify the algorithms,
 cryptographic specifications and architectural antecedents.
-
-The source links below describe the supplied baseline circuit:
-the physically tested design with private weight prefetch, phase-selective
-K/V reads, exact normalizer/divider shortcuts, four-round-per-cycle weight hashing and
-packed attention values. Its model, numerical rules and three public commands
-are fixed. The current baseline passed [model and board tests](VALIDATION.md#current-baseline-image).
-The current protected and encrypted images have their own
-[board tests](VALIDATION.md#current-protected-and-encrypted-images).
-Supplied files do not attest the configuration currently running on any other board.
-
-The separately supplied K/V-protected configuration retains this
-model and public interface, but inserts a private integrity guard between
-the atomic K/V controller and typed DDR boundary. It also includes transport
-and reset/startup changes required by that implementation. Its complete
-custom source tree is in `variants/kv-protected/hardware/`; the baseline is
-in `hardware/`. Both include the same exact-arithmetic shortcuts.
-For weight-page checking, the baseline uses four SHA-256 rounds per cycle
-and the protected configuration uses two; both retain all 64 rounds. Both store
-aligned attention values in eight 128-bit rows. These are private
-implementation choices, not user controls. Only the protected version has
-the K/V guard and its private expected-digest storage.
-See [KV-PROTECTION.md](KV-PROTECTION.md)
-for digest granularity, freshness, buffering, source identities and costs.
-Unless explicitly stated otherwise, the source links, schedules and
-implementation figures below describe the baseline, not the protected image.
 
 ## Fixed workload and numerical contract
 
@@ -71,7 +43,7 @@ implementation figures below describe the baseline, not the protected image.
 | Vocabulary | 4,019 IDs; fixed lowercase WordPiece tokenizer |
 | Context target | 2,048 input positions; a 2,049-slot tape accommodates the final generated token |
 | Numerical format | Project block-floating-point v5: W10/A16/KV16 |
-| Decoding in the three original configurations | Deterministic greedy argmax |
+| Decoding in the three greedy configurations | Deterministic greedy argmax |
 
 Weights have signed 10-bit mantissas; activations and cached K/V values use
 16-bit mantissas with the prescribed shared exponents and scaling metadata.
@@ -109,12 +81,13 @@ regions in one external memory, not separate devices.
 ### Detailed baseline diagram
 
 The diagram below expands the controllers, memory paths and arithmetic units
-of the released baseline. Its 76 mapped multiplier instances include the five
-dynamic-role units; these are not 76 host-programmable arithmetic lanes.
+of the released baseline. Its 90 mapped multiplier instances include 19
+units with scheduled runtime-operand roles. These private units follow the fixed
+inference schedule; the count does not establish useful attacker access.
 The encrypted-memory variant has a different projection engine and is not
 represented by this resource count.
 
-![Detailed SimpleStories baseline: fixed token and layer controllers, checked weight buffers, private attention paths, and the 76 mapped multiplier instances.](../../diagrams/simplestories-hardware-architecture.svg)
+![Detailed SimpleStories baseline: fixed token and layer controllers, checked weight buffers, private attention paths, and the 90 mapped multiplier instances.](../../diagrams/simplestories-hardware-architecture.svg)
 
 [Open the full-size SVG](../../diagrams/simplestories-hardware-architecture.svg) ·
 [PNG](../../diagrams/simplestories-hardware-architecture.png) ·
@@ -215,7 +188,7 @@ The source inventory also retains five compiled but uninstantiated files:
 `board1_fixed_vector_rne_shift_iterative`, `board1_shared_projection_scale_engine`
 and `board1_unified_projection_head_mul_exact`. They are not the active
 datapath. They remain to preserve the tested build's exact 90-input identity.
-Some source comments predate this engine or the second attention lane; the
+Some source comments predate this engine or the current attention lanes; the
 live instantiations and this guide describe the released implementation.
 Likewise, `*_GW5_DSP` explicit-primitive branches are not selected by the
 released defines; their comments about tied-off features are not evidence
@@ -223,12 +196,12 @@ about the unselected branch's physical use.
 
 ### Attention and private intermediate storage
 
-The actual attention RTL contains separate fixed-role score and weighted-value
-multiplier instances, `u_score_lane` and `u_lane`. Both are fixed to their
-dynamic 16 × 16 multiplication role. Coordinates are traversed sequentially;
-this is not a 64-wide attention dot-product engine. Query reads are pipelined,
-value alignment handles eight coordinates at a time, and an existing
-value-exponent scan is shared by query heads that share a K/V head.
+The actual attention RTL contains eight separate fixed-role score multiplier
+instances and eight weighted-value multiplier instances. Each has a fixed
+runtime 16 × 16 multiplication role. They process coordinate groups while
+preserving each result's required arithmetic order. Query reads are pipelined;
+aligned values and synchronous pending-row storage feed the private lanes.
+This remains a fixed inference engine, with no host operand or mode input.
 
 `Q × Kᵀ` consumes internally computed queries and privately fetched keys.
 Scores enter private workspace RAM, exponentiation/normalization and softmax.
@@ -248,8 +221,8 @@ The [RMSNorm service](../../hardware/project/fpga/token_only_model0_ddr_board1/f
 uses a shared, mode-selected multiplier: it squares each runtime vector
 element, then in other phases multiplies normalized values by fixed ROM
 weights and applies fixed row scales. The service has two live instances:
-one in the semantic datapath and one in the token shell. Counting the two
-attention lanes, there are five multiplier instances with a scheduled role
+one in the semantic datapath and one in the token shell. Counting the sixteen
+attention lanes, there are 19 multiplier instances with a scheduled role
 in which both inputs are runtime data, rather than one being a fixed model
 coefficient. They are not all dedicated exclusively to that role.
 
@@ -308,103 +281,15 @@ a raw cache-access command, but a physical memory/bus attacker is a separate
 threat. Establishing a practical GEMM-laundering throughput bound remains
 additional work.
 
-### Measuring the cost of weight authentication
-
-We measured the effect of skipping runtime weight-page checking on the physical
-Tang Mega. The comparison uses the baseline, without K/V integrity or
-encryption, and the same fixed model, integer arithmetic, four 4 KiB page banks
-and 25 MHz inference clock. Startup authentication is retained in both builds.
-The diagnostic makes filled banks readable without hashing them; its unused
-runtime SHA-start signal is tied low. No application command selects this
-behavior: the diagnostic is a separately compiled circuit. It lacks the
-baseline's protection against changing weights in external memory after boot.
-
-Each sustained test generates 128 tokens. The rate is 127 divided by the sum
-of the subsequent 127 STEP durations; it excludes the first output, includes
-host/UART reply overhead, and excludes gaps between commands. The extra time
-fraction is `time_on / time_off - 1`, equivalently `rate_off / rate_on - 1`.
-It is not the same percentage as the reduction in throughput. Each pair used
-separate SRAM loads, with a boot interval before testing; the second pair
-reversed the loading order. All repetitions are shown:
-
-| Load pair | Prompt tokens | Authentication on, tokens/s | Runtime checking off, tokens/s | Extra time/token |
-| --- | ---: | ---: | ---: | ---: |
-| 1 | 1 | 8.7330 | 9.7844 | 12.0% |
-| 2 | 1 | 7.7250 | 9.7987 | 26.8% |
-| 3 | 1 | 8.7669 | 9.7409 | 11.1% |
-| 1 | 128 | 5.3387 | 5.7124 | 7.0% |
-| 2 | 128 | 5.3512 | 5.7071 | 6.7% |
-| 3 | 128 | 5.3588 | 5.7169 | 6.7% |
-
-The second short-prompt baseline has a cluster of delayed STEP replies
-(indices 49–61), adding approximately 1.90 seconds relative to the first
-baseline. Its cause is unknown; the median STEP time was nearly unchanged,
-and the third fresh-load pair returned to the earlier range. We retain the
-run and do not attribute its entire difference to authentication. The other
-short-prompt pairs show about 11–12% extra time/token, and all three
-128-token-prompt pairs about 7%. These are workload-specific observations,
-not a statistical confidence interval or a guarantee for another platform.
-
-Prompt latency is separate. In pair 3, a 128-token prompt took 14.5344 seconds
-from the first APPEND to the first reply with checking, versus 13.2764 seconds
-without it. The first STEP alone took 12.3587 versus 11.1006 seconds. Pair 1
-also checked 512-token and 2,047-token prompts: cached rates were respectively
-2.6748 versus 2.8020 and 0.7948 versus 0.7975 tokens/s. With only three and one
-cached samples, those are correctness/latency checks, not sustained-rate estimates.
-
-The experiment shows that removing runtime authentication alone does not
-produce a many-fold speedup in this circuit. It does not measure the best
-possible unauthenticated design: the memory traffic, cache size, scheduling
-and arithmetic organization are retained. Nor does it measure encryption or
-K/V-integrity overhead. Both images retain unresolved vendor-DDR timing;
-successful finite board tests are not timing or physical-security signoff.
-
-Supporting files in [the evidence directory](../../evidence/weight-authentication-cost/board.json) include:
-
-- `board.json` and `transcripts/`: all 17 cases, including the restored
-  K/V-protected image's final check, with 1,676 main outputs and 204 auxiliary
-  CLEAR/replay outputs. UTC timestamps and device identifiers are removed;
-  monotonic timestamps start at zero per transcript. UART bytes, durations,
-  event order and relative timing differences are unchanged.
-- `bank-diagnostic.sv` and `native.json`: the exact diagnostic bank and its
-  source/image associations. Only that bank's RTL changes. Build/report
-  inputs are distinguished from design inputs. The unchecked bitstream is
-  not included or offered as an installation option.
-- `uart_replay.py`: the recorded command-plan and raw-frame replay routines.
-  References are the existing [integer-reference cases](../../evidence/read-window/references.json).
-  `provenance.json` identifies the original private records by hash; those
-  hashes are provenance, not independent attestation.
-
-From the repository root, recompute the measurements and check the recorded
-frames, reference answers, CLEAR/replay, trial census and source delta:
-
-```sh
-python -I -S -B tools/check_weight_authentication_cost.py
-python -I -S -B -m unittest discover -s tools -p test_weight_authentication_cost.py -v
-```
-
-These commands are offline and do not touch a board. They do not rerun the
-numerical model, synthesize the diagnostic, or attest what a physical chip is
-running. For an independent implementation experiment, the diagnostic bank
-replaces `hardware/project/bank.sv` in a separate build using the baseline's
-remaining sources and constraints; the existing [build guide](../../VENDOR-SETUP.md#optional-rebuild-the-hardware-from-source)
-describes the tool and vendor dependencies. Such a new build needs its own
-source inventory, timing review, board backups, correct-image checks and
-restoration; the normal release installer is not an unchecked-mode selector.
-
 ## Prompt processing and time to first token
 
-The baseline and protected builds use three exact-arithmetic optimizations: a
-three-clock block-floating normalizer, a private RMSNorm divider that skips
-36 leading-zero iterations, and an attention divider that skips 18.
-The skipped iterations follow from the actual callers' numerator bounds;
-the rounding rule and integer results are unchanged. These changes do not
-add public controls or bypass weight/K/V checks. Source-bound
-arithmetic checks and model comparisons are summarized in
-[the qualification record](../../evidence/leaf-speed/qualification.json).
-The equivalence and caller-bound proofs are not bundled; the record contains
-their receipt hashes. Public model replays exercise the supplied RTL but do
-not prove these bounds for every possible input.
+Private scheduling and storage reduce repeated attention work while preserving
+the fixed model's arithmetic order and rounding rules. The designs retain all
+weight and applicable K/V checks. Eight score and eight value lanes, private
+row reuse and pipelined memory access reduce long-context work; exact model
+comparisons and full-context board/browser cases check the selected sources.
+These observations are finite functional evidence, not a universal numerical
+equivalence theorem.
 
 `APPEND` records tokens; it does not evaluate the transformer in advance.
 On the first `STEP`, the controller processes each prompt position through
@@ -415,42 +300,16 @@ batched prompt-evaluation path. With the present traversal, projection work
 grows roughly linearly with prompt length while the total causal attention
 visits grow quadratically.
 
-| Tested prompt | First STEP |
-| --- | ---: |
-| 128 tokens | 12.36 s |
-| 512 tokens | 106.07 s |
-| 2,048 tokens | 1,330.35 s |
+Current rates and context-latency records are linked from
+[GREEDY-QUALIFICATION.md](GREEDY-QUALIFICATION.md). The common speed workload
+uses one prompt token and two 128-output trials. It measures cached generation
+between validated replies; prompt processing is reported separately.
 
-These physical measurements include prompt evaluation, but exclude serial
-connection setup and prompt upload. The design combines private weight
-prefetch scheduling with selective K/V reads. The 512-token case generated
-four outputs, averaging 2.68 cached tokens/s after the first. The baseline
-performs four SHA-256 rounds per weight-checker cycle; the protected version
-performs two. Both retain all 64 rounds and pack eight attention-value
-coordinates into each 128-bit row. Neither choice removes checks or changes
-numerical results. Both variants permit eight outstanding private projection
-reads. The baseline prepares the next 512-bit hash block while the compressor
-works on its captured current block, and uses the DSP's internal accumulation
-registers for the same exact projection arithmetic. These choices expose no
-additional commands, addresses or arithmetic operands to the host.
-
-Further first-token improvements are plausible, but not implemented results:
-
-- **Chunked prompt evaluation:** retain several positions' activations and
-  accumulators, apply each verified weight group to those positions, and
-  preserve causal attention within the chunk. This reduces repeated weight
-  fetch/verification work but changes the controller's ordering, storage and
-  per-layer commit invariants. It is not a small host-app change.
-- **More attention parallelism and reuse:** wider private dot-product/value
-  engines and shared K/V row reuse can reduce repeated arithmetic and memory
-  traversal. Added arithmetic only helps when the cache/transport feeds it;
-  routing, timing and exact numerical equivalence still need testing.
-
-Neither requires a fourth public command or host access to arithmetic operands.
-Both require renewed verification of private-state ownership, numerical output
-and CLEAR behavior. There is no validated first-token latency forecast for
-either redesign. Starting work earlier during prompt submission could hide
-some latency, but would not by itself reduce total prompt-evaluation work.
+The eight attention lanes improve the private datapath, but the position-major
+prompt traversal still repeats projection work. A future chunked prompt path
+could reuse each verified weight group across several positions while retaining
+causal attention. That would require changed scheduling, storage and renewed
+numerical/ownership verification. It is not implemented in these images.
 
 ## Physical implementation and verification boundaries
 
@@ -460,29 +319,20 @@ provides reference arithmetic, test drivers and host tools; Tcl and constraint
 files drive vendor synthesis, placement and routing. The DDR controller/PLL
 IP and FPGA silicon are vendor components, not custom AI-authored hardware.
 
-Both configurations routed and produced the reported exact-reference FPGA
-outputs. The baseline global report retains **145 setup/recovery and ten hold/removal
-violated endpoints**. Its inference-clock setup/hold slacks are **+0.018/+0.144 ns**
-against a 25 MHz target: the reported setup margin is very small.
-A complete census of the reported negative endpoints places
-both ends of every negative path inside vendor DDR. This census was made from
-private vendor reports; the release includes the summary and report hashes,
-not the complete reports. That does not establish
-that these crossings may safely be ignored or that external-I/O timing is
-qualified. Successful board tests do not waive those limitations.
-The current protected route has 152 setup/recovery and ten hold/removal
-endpoints. Its complete reported-endpoint census also places negative paths
-within vendor DDR, including seven DLL hold violations of −0.010 to −0.075 ns.
-The inference setup/hold margins are +0.228/+0.116 ns, not complete product signoff.
-See [baseline native results](../../evidence/baseline-current/native.json),
-[current protected/encrypted results](../../evidence/speed-2026-10-02/native.json), and
-[the protected timing limitations](KV-PROTECTION.md#evidence-and-limits).
+All three greedy images completed native placement/routing and produced
+exact-reference outputs in their named CLI and browser campaigns. Their
+BUILD.json files and portable native records identify each route. All retain
+`timing_qualified: false`: vendor-DDR violations and incomplete external-I/O
+constraints remain outside complete signoff. Successful functional tests do not
+waive those limitations or attest another loaded FPGA.
 
-The selected baseline uses 58,233/69,120 CLS, 196/340 BSRAM, and
-74.5/298 DSP, as reported after mapping. Resource fit is not timing signoff.
-The resource table counts 73 `MULTALU27X18` and three `MULT12X12` primitives.
-Neither that count nor a scoped RTL proof substitutes for physical timing
-and functional validation.
+The baseline uses 55,232/69,120 CLS, 238/340 BSRAM and 88.5/298 DSP by vendor
+accounting. Its mapped census records 87 MULTALU27X18 and three MULT12X12
+instances: 64 projection, two projection scaling, 19 scheduled runtime-operand
+and five supporting units. Primitive instances and vendor DSP accounting are
+different counts. [The current capacity assessment](TRAINING-CAPACITY.md)
+keeps these observations separate from usable attacker access or a certified
+training bound.
 
 Formal work covers components of the actual command/controller/cache path,
 as detailed in [FORMAL-STATUS.md](FORMAL-STATUS.md). Whole-machine refinement,
@@ -496,9 +346,9 @@ is implied by the architecture described here.
 - Model revision: `c4b3a4bb81297f5316697098e1d4b65c1249daf8`.
 - Tokenizer SHA-256: `01b6553da99789d461cec48eed624684a803f259a5177616a67f7391700acf51`.
 - Model payload SHA-256: `cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0`.
-- Selected baseline configuration SHA-256: `6ba3caa4f88ac58dd30336c3ff4478f836779db0d04309ff457ca065ec1f7f09`.
-- Selected protected configuration SHA-256: `72d5a54e06ed2017e653122f3daecf073f239a917b79f24d1e7b886d68a21a2f`.
-- Selected encrypted configuration SHA-256: `865e74e692d5978815fe921f11e4fa1b8e2c080401a8be05508dd9775823aecc`.
+- Selected baseline configuration SHA-256: `01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57`.
+- Selected protected configuration SHA-256: `90ac68150d0c297b666bc1963d05e32d1d2d0d7d69706593e58d48d5ab2e79e2`.
+- Selected encrypted configuration SHA-256: `cfc8a3d8832b4a2959606f0e9f01c511357ec68380f521b5f28a4fc737edf1d2`.
 
 See the packaged [input manifest](../../MANIFEST.json) and
 [reproduction instructions](REPRODUCE.md). File hashes identify

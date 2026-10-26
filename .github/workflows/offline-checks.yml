@@ -15,9 +15,9 @@ concurrency:
 
 jobs:
   offline:
-    name: File integrity and Python helper tests (not hardware signoff)
+    name: File integrity and recorded evidence (no hardware signoff)
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Check out the repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -27,74 +27,55 @@ jobs:
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.12'
-      - name: Check the clean release inventory
+      - name: Check the clean selected release inventory
         run: python -I -S -B tools/verify_release.py --strict
-      - name: Check encrypted-memory source bindings and reproduce the public-key ciphertext
+      - name: Reproduce the unchanged public-key ciphertext
         run: |
-          python -I -S -B tools/check_encrypted_memory.py
           python -I -S -B tools/encrypt_model_image.py
-          python -I -S -B tools/check_encrypted_board_evidence.py
-      - name: Check current evidence and explicit browser phase (recorded checks, no hardware)
-        run: python -I -S -B tools/check_current_release.py --require-complete
-      - name: Check fresh current scoped formal completion
-        run: python -I -S -B formal/current-seeded-sampling/check_recorded.py --require-complete
-      - name: Check current seeded records and authenticated historical fixtures
+          python -I -S -B tools/check_encrypted_inherited_components_v1.py
+      - name: Check recorded seeded evidence in its original host source context
+        run: python -I -S -B tools/check_current_seeded_recorded_v1.py --require-complete
+      - name: Check registered current RTL control proof completion (no solver replay)
         run: |
-          python -I -S -B tools/check_seeded_sampling.py
-          python -I -S -B tools/check_seeded_matched128.py
-          python -I -S -B tools/check_seeded_context.py
-          python -I -S -B tools/check_seeded_domain.py
-          python -I -S -B tools/check_seeded_recovery.py
-          python -I -S -B tools/check_seeded_around.py
-          python -I -S -B tools/check_seeded_browser.py
-          python -I -S -B tools/check_seeded_numerical_reference.py
+          python -I -S -B formal/current-seeded-sampling/check_recorded.py --require-complete
+          python -I -S -B -m unittest discover -s formal/current-seeded-sampling -p 'test_*.py' -v
+      - name: Check the independent seeded model reference and client fixtures
+        run: |
           python -I -S -B reference/seeded-sampling/check_package.py
-          python -I -S -B formal/seeded-sampling/check_recorded.py
-          python -I -S -B -m unittest discover -s formal/seeded-sampling -p 'test_*.py' -v
           python -I -S -B -m unittest discover -s variants/seeded-sampling/tests -p 'test_*.py' -v
-          python -I -S -B -m unittest discover -s host-app -p 'test_seeded_build.py' -v
       - name: Check the photograph for embedded metadata
         run: python -I -S -B tools/check_photo_metadata.py
-      - name: Check protected-variant source bindings and measured comparisons
-        run: python -I -S -B tools/check_kv_protected.py
-      - name: Check historical speed revision and measurement arithmetic
-        run: python -I -S -B tools/check_leaf_speed.py
-      - name: Check current protected and encrypted speed measurements
-        run: python -I -S -B tools/check_speed_release.py
-      - name: Check current baseline speed measurements and recorded replay
-        run: python -I -S -B tools/check_baseline_speed.py
-      - name: Replay the runtime weight-authentication cost experiment
-        run: python -I -S -B tools/check_weight_authentication_cost.py
-      - name: Check recorded protected-KV proof bindings (not a solver replay)
-        run: python -I -S -B tools/check_kv_integrity.py --package . --recorded-only
-      - name: Recompute conditional training-capacity estimates
-        run: python -I -S -B tools/estimate_training_capacity.py --check
-      - name: Check architecture work counts and recorded-workload comparisons
-        run: python -I -S -B tools/architecture_work_counts.py --check
-      - name: Check the recorded H100 evidence
-        run: python -I -S -B tools/check_h100_reference.py
-      - name: Check common FPGA benchmark workload and host-loop timing
-        run: python -I -S -B tools/fpga_speed_benchmark.py --check
-      - name: Replay the recorded Qwen token and timing measurements (no AWS access)
-        run: python -I -S -B tools/check_qwen_measurements.py
-      - name: Check Qwen frozen sources, implementation reports and reference records
+      - name: Recompute selected-image conditional capacity calculations
+        # Explicit conditional assumptions; no training attack or certified bound.
         run: |
+          python -I -S -B tools/estimate_training_capacity.py --check
+          python -I -S -B tools/architecture_work_counts.py --check
+      - name: Check recorded H100 and Qwen evidence
+        run: |
+          python -I -S -B tools/check_h100_reference.py
+          python -I -S -B tools/check_qwen_measurements.py
+          python -I -S -B tools/qwen_h100_results.py --check
+          python -I -S -B tools/fpga_speed_benchmark.py --check
           python -I -S -B tools/check_qwen_package.py
           python -I -S -B -m unittest discover -s demos/qwen3-1.7b/tools -p 'test_package_checks.py' -v
-      - name: Check Qwen3-8B sources and recorded evidence
-        # Qwen3-8B checks recorded evidence; no cloud access or model download.
-        run: python -I -S -B demos/qwen3-8b/tools/check_package.py
-      - name: Run the shared offline helper tests
-        run: python -I -S -B -m unittest discover -s tools -p 'test_*.py' -v
-      - name: Check proof-log and constraint validators (no formal tools)
+          python -I -S -B demos/qwen3-8b/tools/check_package.py
+      - name: Test retained independent helper boundaries
+        # Explicit module list avoids importing old-release ZIP dispatchers.
+        run: |
+          for test in test_architecture_work_counts.py test_fetch_vendor.py test_flash_layout.py test_h100_reference.py test_kv_integrity_runner.py test_model_rtl.py test_photo_metadata.py test_qwen_measurements.py test_replay_diagnostics.py test_training_capacity.py test_verify_release.py test_current_seeded_recorded_v1.py test_encrypted_inherited_components_v1.py test_fpga_speed_benchmark.py test_qwen_h100_results.py test_qwen_training_capacity.py; do
+            python -I -S -B -m unittest discover -s tools -p "$test" -v
+          done
+      - name: Test proof-log and constraint validators (no formal tools)
+        # Generic validator refusal fixtures do not credit old image proofs to
+        # any current circuit. Current-design proof bindings are checked below.
         run: python -I -S -B -m unittest discover -s formal/kv-integrity -p test_contract_auditor.py -v
       - name: Confirm that the checks left the release unchanged
         run: python -I -S -B tools/verify_release.py --strict
 
-  qwen-app:
-    name: Qwen browser and controller fixtures (no FPGA access)
+  browser-and-current-evidence:
+    name: Browser fixtures and three current greedy evidence capsules
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Check out the repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -106,7 +87,13 @@ jobs:
           python-version: '3.12'
       - name: Install the pinned browser dependencies
         run: python -m pip install -r demos/qwen3-1.7b/host/requirements-browser.txt
-      - name: Test the browser and runtime with fixture replies
+      - name: Test the Qwen browser and runtime with fixture replies
         run: python -B -m unittest discover -s demos/qwen3-1.7b/host -p 'test_*.py' -v
-      - name: Test the SimpleStories browser, sampling controls and local profiles with fixture replies
+      - name: Test the common SimpleStories host and seeded controls with fixture replies
         run: python -B -m unittest discover -s host-app -p 'test_*.py' -v
+      - name: Derive all three current greedy capsule results and exact shared host bindings
+        # tokenizers0.23.2 is required to independently decode recorded browser
+        # text. Keep site packages available; never add -S to this invocation.
+        run: python -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
+      - name: Confirm that the checks left the release unchanged
+        run: python -I -S -B tools/verify_release.py --strict

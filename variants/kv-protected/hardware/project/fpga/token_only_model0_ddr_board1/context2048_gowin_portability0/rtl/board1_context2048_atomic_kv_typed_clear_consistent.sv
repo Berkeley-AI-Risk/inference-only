@@ -103,6 +103,7 @@ module board1_context2048_atomic_kv_typed (
     localparam logic [3:0] ST_READ_REQ   = 4'd5;
     localparam logic [3:0] ST_READ_WAIT  = 4'd6;
     localparam logic [3:0] ST_RESPONSE   = 4'd7;
+    localparam logic [3:0] ST_PENDING_LOAD = 4'd8;
 
     logic [3:0] state_q;
     logic [11:0] committed_prefix_q [0:5];
@@ -112,16 +113,6 @@ module board1_context2048_atomic_kv_typed (
     logic signed [15:0] pending_value_exponents_q;
     logic [6:0] expected_coordinate_q;
     logic pending_persisted_q;
-
-    // Payload registers deliberately have no reset.  Resettable reachability
-    // metadata is cleared before any row can be observed, and a legal stage
-    // overwrites every coordinate before publication.
-    logic [1023:0] staged_key_head0_q;
-    logic [1023:0] staged_key_head1_q;
-    logic [1023:0] staged_value_head0_q;
-    logic [1023:0] staged_value_head1_q;
-    logic [2063:0] head0_row;
-    logic [2063:0] head1_row;
 
     logic write_head_q;
     logic [3:0] write_word_q;
@@ -176,80 +167,60 @@ module board1_context2048_atomic_kv_typed (
     wire simulation_x_fault = 1'b0;
 `endif
 
-    // Compare the six fixed prefix registers in parallel, then select
-    // one bit. The layer selector no longer precedes a 12-bit comparison.
-    // No prefix, bound, authorization, fault, port or cycle is changed.
-    (* syn_keep = 1 *) wire [5:0] attention_prefix_lt;
-    for (genvar prefix_layer = 0; prefix_layer < 6; prefix_layer++) begin : g_prefix_compare
-        assign attention_prefix_lt[prefix_layer] =
-            attention_position_i < committed_prefix_q[prefix_layer];
-    end
 
     integer reset_layer;
 
-    // Response ownership, kind, fault and valid are still resettable. DDR
-    // payload is overwritten, chunk by chunk, before its selected kind can
-    // become visible. The unrequested half of a K-only/V-only row is masked
-    // at the existing output boundary. CLEAR/fault revoke response ownership;
-    // stale bits are not a readable memory capability.
-    // Pending rows already reside in the immutable-for-this-response staged
-    // registers. Select them at the output instead of copying 2,064 bits into
-    // the DDR assembly register and adding a second wide write source.
-    wire [2063:0] selected_response_row = response_from_pending_q ?
-        (response_head_q ? head1_row : head0_row) : assembled_row_q;
+    // Private payload storage has no reset. Legal stage completion fills
+    // every coordinate before any typed write or pending read is published.
+    wire stage_memory_write = stage_payload_valid_i && stage_payload_ready_o && stage_payload_legal;
+    wire stage_memory_head = (state_q == ST_PENDING_LOAD) ? response_head_q : write_head_q;
+    wire [3:0] stage_memory_word = (state_q == ST_PENDING_LOAD) ? read_word_q : write_word_q;
+    wire [2:0] stage_memory_address = {stage_memory_head, stage_memory_word[1:0]};
+    wire [255:0] stage_memory_keys, stage_memory_values;
+    for (genvar lane = 0; lane < 16; lane++) begin : g_stage_memory
+        logic [31:0] memory [0:7] /* synthesis syn_ramstyle="distributed_ram" */;
+        wire [31:0] pair_data = memory[stage_memory_address];
+        always_ff @(posedge clk) begin
+            if (stage_memory_write && expected_coordinate_q[3:0] == 4'(lane))
+                memory[expected_coordinate_q[6:4]] <= {stage_value_i, stage_key_i};
+        end
+        assign stage_memory_keys[lane*16 +: 16] = pair_data[15:0];
+        assign stage_memory_values[lane*16 +: 16] = pair_data[31:16];
+    end
+    wire [15:0] stage_memory_exponents = stage_memory_head ?
+        {pending_value_exponents_q[15:8], pending_key_exponents_q[15:8]} :
+        {pending_value_exponents_q[7:0], pending_key_exponents_q[7:0]};
+    wire [255:0] stage_memory_data = (stage_memory_word < 8) ?
+        (stage_memory_word[2] ? stage_memory_values : stage_memory_keys) :
+        ((stage_memory_word == 8) ? {240'd0, stage_memory_exponents} : 256'd0);
+
+    // The shared response register publishes only a completely loaded row.
+    // CLEAR/fault revoke ownership; neither memory nor payload bits need reset.
+    wire [2063:0] selected_response_row = assembled_row_q;
+    wire committed_payload_take = reset_n && state_q == ST_READ_WAIT &&
+        kv_read_rsp_valid_i && kv_read_rsp_ready_o &&
+        !read_aborted_q && !terminal_fault_event && !kv_read_rsp_fault_i;
+    wire pending_payload_take = reset_n && state_q == ST_PENDING_LOAD &&
+        !clear_i && !terminal_fault_event;
+    wire [255:0] assembly_data = pending_payload_take ? stage_memory_data : kv_read_rsp_data_i;
     always_ff @(posedge clk) begin
-        if (reset_n && state_q == ST_READ_WAIT &&
-            kv_read_rsp_valid_i && kv_read_rsp_ready_o &&
-            !read_aborted_q && !terminal_fault_event && !kv_read_rsp_fault_i) begin
+        if (committed_payload_take || pending_payload_take) begin
             case (read_word_q)
-                4'd0: assembled_row_q[255:0] <= kv_read_rsp_data_i;
-                4'd1: assembled_row_q[511:256] <= kv_read_rsp_data_i;
-                4'd2: assembled_row_q[767:512] <= kv_read_rsp_data_i;
-                4'd3: assembled_row_q[1023:768] <= kv_read_rsp_data_i;
-                4'd4: assembled_row_q[1279:1024] <= kv_read_rsp_data_i;
-                4'd5: assembled_row_q[1535:1280] <= kv_read_rsp_data_i;
-                4'd6: assembled_row_q[1791:1536] <= kv_read_rsp_data_i;
-                4'd7: assembled_row_q[2047:1792] <= kv_read_rsp_data_i;
-                4'd8: assembled_row_q[2063:2048] <= kv_read_rsp_data_i[15:0];
+                4'd0: assembled_row_q[255:0] <= assembly_data;
+                4'd1: assembled_row_q[511:256] <= assembly_data;
+                4'd2: assembled_row_q[767:512] <= assembly_data;
+                4'd3: assembled_row_q[1023:768] <= assembly_data;
+                4'd4: assembled_row_q[1279:1024] <= assembly_data;
+                4'd5: assembled_row_q[1535:1280] <= assembly_data;
+                4'd6: assembled_row_q[1791:1536] <= assembly_data;
+                4'd7: assembled_row_q[2047:1792] <= assembly_data;
+                4'd8: assembled_row_q[2063:2048] <= assembly_data[15:0];
                 default: begin end
             endcase
         end
     end
 
-    function automatic logic [255:0] row_word(
-        input logic [2063:0] row,
-        input logic [3:0] word_index
-    );
-        begin
-            case (word_index)
-                4'd0: row_word = row[255:0];
-                4'd1: row_word = row[511:256];
-                4'd2: row_word = row[767:512];
-                4'd3: row_word = row[1023:768];
-                4'd4: row_word = row[1279:1024];
-                4'd5: row_word = row[1535:1280];
-                4'd6: row_word = row[1791:1536];
-                4'd7: row_word = row[2047:1792];
-                4'd8: row_word = {240'd0, row[2063:2048]};
-                default: row_word = 256'd0;
-            endcase
-        end
-    endfunction
-
     always_comb begin
-        head0_row = {
-            pending_value_exponents_q[7:0],
-            pending_key_exponents_q[7:0],
-            staged_value_head0_q,
-            staged_key_head0_q
-        };
-        head1_row = {
-            pending_value_exponents_q[15:8],
-            pending_key_exponents_q[15:8],
-            staged_value_head1_q,
-            staged_key_head1_q
-        };
-
         stage_begin_legal = (stage_layer_i < 3'd6) &&
             (stage_position_i < 12'd2048) &&
             (stage_position_i == committed_prefix_q[stage_layer_i]) &&
@@ -279,10 +250,10 @@ module board1_context2048_atomic_kv_typed (
         attention_kind_legal = (attention_req_kind_i == REQ_FULL_KV) ||
             (attention_req_kind_i == REQ_KEY_ONLY) ||
             (attention_req_kind_i == REQ_VALUE_ONLY);
-        attention_request_committed = 1'b0;
-        if (attention_layer_i < 3'd6)
-            attention_request_committed =
-                attention_prefix_lt[attention_layer_i];
+        // The accepted stage descriptor fixes this layer's prefix until
+        // commit or CLEAR. The unchanged layer/persisted guards below make
+        // the intermediate value for any other layer irrelevant.
+        attention_request_committed = attention_position_i < pending_position_q;
         attention_request_pending = pending_persisted_q &&
             (attention_layer_i == pending_layer_q) &&
             (attention_position_i == pending_position_q);
@@ -290,7 +261,7 @@ module board1_context2048_atomic_kv_typed (
             (attention_layer_i == pending_layer_q) &&
             (attention_position_i < 12'd2048) &&
             (attention_kv_head_i < 2'd2) && attention_kind_legal &&
-            (attention_request_committed ^ attention_request_pending);
+            (attention_position_i <= pending_position_q);
 
         // Ready is based on the pre-protocol-fault window so an illegal typed
         // descriptor can be accepted and deterministically converted into a
@@ -377,6 +348,7 @@ module board1_context2048_atomic_kv_typed (
                              (state_q == ST_PENDING ||
                               state_q == ST_READ_REQ ||
                               state_q == ST_READ_WAIT ||
+                              state_q == ST_PENDING_LOAD ||
                               state_q == ST_RESPONSE);
         attention_rsp_valid_o = reset_n && (state_q == ST_RESPONSE);
         attention_rsp_kind_o = response_kind_q;
@@ -505,7 +477,7 @@ module board1_context2048_atomic_kv_typed (
         kv_write_req_shadow_address_o = kv_write_req_valid_o ?
             write_mapper_word_address : 19'd0;
         kv_write_req_data_o = kv_write_req_valid_o ?
-            row_word(write_head_q ? head1_row : head0_row, write_word_q) :
+            stage_memory_data :
             256'd0;
         kv_write_cpl_ready_o = reset_n && (state_q == ST_WRITE_WAIT);
 
@@ -520,24 +492,6 @@ module board1_context2048_atomic_kv_typed (
         kv_read_req_shadow_address_o = kv_read_req_valid_o ?
             read_mapper_word_address : 19'd0;
         kv_read_rsp_ready_o = reset_n && (state_q == ST_READ_WAIT);
-    end
-
-    // Each coordinate has a fixed local write enable and a fixed slice.
-    // This is the same 128-coordinate protocol and storage as the predecessor;
-    // no variable-index wide-vector insertion network is required.
-    for (genvar coordinate = 0; coordinate < 64; coordinate++) begin : g_stage
-        always_ff @(posedge clk) begin
-            if (stage_payload_valid_i && stage_payload_ready_o &&
-                stage_payload_legal && expected_coordinate_q == 7'(coordinate)) begin
-                staged_key_head0_q[coordinate*16 +: 16] <= stage_key_i;
-                staged_value_head0_q[coordinate*16 +: 16] <= stage_value_i;
-            end
-            if (stage_payload_valid_i && stage_payload_ready_o &&
-                stage_payload_legal && expected_coordinate_q == 7'(coordinate+64)) begin
-                staged_key_head1_q[coordinate*16 +: 16] <= stage_key_i;
-                staged_value_head1_q[coordinate*16 +: 16] <= stage_value_i;
-            end
-        end
     end
 
     always_ff @(posedge clk or negedge reset_n) begin
@@ -707,7 +661,8 @@ module board1_context2048_atomic_kv_typed (
                         read_aborted_q <= 1'b0;
                         if (attention_request_pending) begin
                             response_from_pending_q <= 1'b1;
-                            state_q <= ST_RESPONSE;
+                            read_word_q <= (attention_req_kind_i == REQ_VALUE_ONLY) ? 4'd4 : 4'd0;
+                            state_q <= ST_PENDING_LOAD;
                         end else begin
                             response_from_pending_q <= 1'b0;
                             if (attention_req_kind_i == REQ_VALUE_ONLY)
@@ -716,6 +671,20 @@ module board1_context2048_atomic_kv_typed (
                                 read_word_q <= 4'd0;
                             state_q <= ST_READ_REQ;
                         end
+                    end
+                end
+
+                ST_PENDING_LOAD: begin
+                    if (clear_i || terminal_fault_event) begin
+                        response_fault_q <= 1'b1;
+                        response_from_pending_q <= 1'b0;
+                        state_q <= ST_RESPONSE;
+                    end else if (read_word_q == 4'd8) begin
+                        state_q <= ST_RESPONSE;
+                    end else if ((response_kind_q == REQ_KEY_ONLY) && (read_word_q == 4'd3)) begin
+                        read_word_q <= 4'd8;
+                    end else begin
+                        read_word_q <= read_word_q + 1'b1;
                     end
                 end
 

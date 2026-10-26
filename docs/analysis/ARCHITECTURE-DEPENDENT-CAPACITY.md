@@ -97,18 +97,18 @@ costs of preparing and repeating workloads.
 The following examples keep the inference comparison fixed at the packaged
 128-position decode and H100 reference. The counts come from the formulas
 below; elapsed times come from the saved
-[selected baseline measurements](../../evidence/baseline-current/metrics.json).
+[selected baseline measurements](../../evidence/current-greedy/baseline/analysis/metrics.json).
 
 <!-- architecture-workload-table:start -->
 | Recorded workload | Credited dynamic operations | Time (s) | Credited rate (million/s) | Proxy using the 128-position inference comparison |
 | --- | ---: | ---: | ---: | ---: |
-| `around128`, last STEP: 128-position decode | 801,272 | 0.1529 | 5.239 | 0.000825 |
-| `prefix128`, last STEP: 255-position decode | 1,581,560 | 0.2205 | 7.172 | 0.001129 |
-| `prefix512`, first STEP: 512-token prefill | 814,215,680 | 106.0744 | 7.676 | 0.001208 |
-| `prefix128`, first STEP: 128-token prefill | 52,559,360 | 12.3586 | 4.253 | 0.000669 |
+| `around128`, last STEP: 128-position decode | 801,272 | 0.1018 | 7.872 | 0.000825 |
+| `prefix128`, last STEP: 255-position decode | 1,581,560 | 0.1189 | 13.296 | 0.001393 |
+| `prefix512`, first STEP: 512-token prefill | 814,215,680 | 49.5862 | 16.420 | 0.001721 |
+| `prefix128`, first STEP: 128-token prefill | 52,559,360 | 10.0125 | 5.249 | 0.000550 |
 <!-- architecture-workload-table:end -->
 
-These are single host-timed intervals, not sustained peak measurements. The
+The 128-position row pools the two matching last-STEP intervals. The longer-context rows use single host-timed intervals. These are finite observations, not sustained peak measurements. The
 prefill counts credit the named operations across the prompt, with final
 normalization counted only for the final logits. They do not establish useful
 attacker access, the overhead of repeating an attack, or a peak training rate.
@@ -159,10 +159,10 @@ number. A faster reference increases it. The GPU/FPGA numerical differences and
 other comparison limitations in [TRAINING-CAPACITY.md](../../demos/simplestories-v2-5m/TRAINING-CAPACITY.md)
 still apply.
 
-For comparison, write `T_peak` for the five units' credited every-clock rate
+For comparison, write `T_peak` for the 19 named scheduled units' credited every-clock rate
 and `u_dynamic = C_dynamic * F / T_peak`. Then
 `φ_every_clock = φ_schedule / u_dynamic` for this same workload.
-Here `u_dynamic` is approximately 0.02096. This is a separate
+Here `u_dynamic` is approximately 0.00829. This is a separate
 implementation-dependent quantity, not `rho` or `eta_ref`.
 
 ### Relation to the paper

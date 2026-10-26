@@ -1,4 +1,6 @@
-// Frozen Board1 context-2048 typed DDR application-domain boundary.
+`timescale 1ns/1ps
+`default_nettype none
+// Draft pipelined Board1 context-2048 typed DDR application boundary.
 //
 // This module is deliberately independent of the 25 MHz source-side address
 // mapper. A parallel arithmetic certificate proves that the proposed
@@ -51,30 +53,10 @@ module board1_context2048_typed_ddr_app_boundary (
     localparam logic [18:0] KV_BASE_WORD      = 19'd227072;
     localparam logic [18:0] SCRATCH_END_WORD  = 19'd448256;
 
-    localparam logic STATE_IDLE      = 1'b0;
-    localparam logic STATE_WAIT_READ = 1'b1;
-
-    logic state_q;
-    logic fault_q;
-    logic lock_seen_q;
-    logic [1:0] read_kind_q;
-    logic read_epoch_q;
-    logic [3:0] read_row_word_q;
-    logic offer_q;
-    logic offer_reject_q;
-    logic return_is_data_q;
-    logic offer_write_q;
-    logic offer_poison_q;
-    logic [1:0] offer_kind_q;
-    logic offer_epoch_q;
+    logic fault_q, lock_seen_q;
+    logic offer_q, offer_write_q, offer_poison_q;
     logic [18:0] offer_address_q;
     logic [255:0] offer_write_data_q;
-    logic [3:0] offer_row_word_q;
-    logic return_valid_q;
-    logic [1:0] return_kind_q;
-    logic return_epoch_q;
-    logic [255:0] return_data_q;
-    logic return_fault_q;
 
     logic [13:0] kv_layer_position;
     logic [14:0] kv_row;
@@ -191,196 +173,175 @@ module board1_context2048_typed_ddr_app_boundary (
     always_comb simulation_x_fault = 1'b0;
 `endif
 
+    // Eight end-to-end reserved slots. A slot is allocated BEFORE a request
+    // can reach the endpoint and released only when its typed return leaves.
+    // Thus endpoint returns never depend on downstream return FIFO readiness.
+    localparam integer CREDITS = 8;
+    logic [3:0] reserved_q, unissued_q, read_count_q;
+    logic [2:0] head_q, tail_q, issue_q, read_head_q, read_tail_q;
+    logic [1:0] slot_kind_q [0:CREDITS-1];
+    logic slot_epoch_q [0:CREDITS-1];
+    logic [3:0] slot_word_q [0:CREDITS-1];
+    logic [18:0] slot_address_q [0:CREDITS-1];
+    logic [255:0] slot_data_q [0:CREDITS-1];
+    logic slot_reject_q [0:CREDITS-1];
+    logic slot_done_q [0:CREDITS-1];
+    logic slot_fault_q [0:CREDITS-1];
+    logic [2:0] read_slot_q [0:CREDITS-1];
+    logic [2:0] offer_slot_q;
+    wire [2:0] response_slot = read_slot_q[read_head_q];
+    wire request_take = req_valid_i && req_ready_o;
+    wire response_take = rsp_valid_o && rsp_ready_i;
+    wire owned_return = endpoint_response_handshake && read_count_q != 0;
+    wire read_issue = endpoint_request_handshake && !offer_write_q;
+    wire reject_issue = !offer_q && unissued_q != 0 &&
+        (slot_reject_q[issue_q] || terminal_fault_now);
+    wire issue_advance = reject_issue || endpoint_request_handshake;
+    integer reset_slot;
+
     always_comb begin
-        unexpected_endpoint_response =
-            (state_q == STATE_IDLE) && (endpoint_rsp_valid_i === 1'b1);
-        request_without_lock = (req_valid_i === 1'b1) &&
-                               (model_locked_i !== 1'b1);
-        policy_fault_now = (req_valid_i === 1'b1) &&
-                           !request_descriptor_legal;
-        endpoint_padding_fault_now =
-            (state_q == STATE_WAIT_READ) &&
-            (endpoint_rsp_valid_i === 1'b1) &&
-            (read_kind_q == KIND_KV_READ) &&
-            (read_row_word_q == 4'd8) &&
-            (endpoint_rsp_data_i[255:16] != 240'd0);
+        unexpected_endpoint_response = endpoint_rsp_valid_i && read_count_q == 0;
+        request_without_lock = req_valid_i && !model_locked_i;
+        policy_fault_now = req_valid_i && !request_descriptor_legal;
+        endpoint_padding_fault_now = endpoint_rsp_valid_i && read_count_q != 0 &&
+            slot_kind_q[response_slot] == KIND_KV_READ &&
+            slot_word_q[response_slot] == 4'd8 &&
+            endpoint_rsp_data_i[255:16] != 0;
         terminal_fault_now = fault_q || upstream_fault_i ||
-                             (lock_seen_q && !model_locked_i) ||
-                             unexpected_endpoint_response ||
-                             request_without_lock || policy_fault_now ||
-                             endpoint_padding_fault_now ||
-                             simulation_x_fault;
+            (lock_seen_q && !model_locked_i) || unexpected_endpoint_response ||
+            request_without_lock || policy_fault_now || endpoint_padding_fault_now ||
+            simulation_x_fault || (endpoint_rsp_valid_i && endpoint_rsp_error_i);
+
+        // Even a terminal/rejected descriptor owns a fault response. Accepted
+        // FIFO work drains through these slots instead of being flushed.
+        req_ready_o = reset_n_i && reserved_q < 4'd8;
+        rsp_valid_o = reset_n_i && reserved_q != 0 && slot_done_q[head_q];
+        rsp_kind_o = slot_kind_q[head_q];
+        rsp_epoch_o = slot_epoch_q[head_q];
+        rsp_fault_o = slot_fault_q[head_q] || terminal_fault_now;
+        rsp_data_o = !rsp_fault_o && rsp_kind_o != KIND_KV_WRITE ?
+                     slot_data_q[head_q] : 256'd0;
+
+        // Once published, an unaccepted endpoint offer remains stable even
+        // after CLEAR (which is an epoch change upstream) or a terminal event.
+        // Later faults poison its eventual response; they cannot revoke VALID.
+        endpoint_req_valid_o = reset_n_i && offer_q;
+        endpoint_req_word_address_o = offer_address_q;
+        endpoint_req_write_o = offer_write_q;
+        endpoint_req_write_data_o = offer_write_data_q;
+        endpoint_rsp_ready_o = reset_n_i; // Every owned return has reserved storage.
     end
+    assign endpoint_request_handshake = endpoint_req_valid_o && endpoint_req_ready_i;
+    assign endpoint_response_handshake = endpoint_rsp_valid_i && endpoint_rsp_ready_o;
+    assign fail_closed_o = reset_n_i && terminal_fault_now;
+    assign busy_o = reserved_q != 0 || offer_q || req_valid_i || read_count_q != 0;
 
-    // A request acquires a registered offer before reaching the endpoint.
-    // reject=1 owns a local fault only and NEVER presents an endpoint command.
-    // reject=0 begins presentation immediately after the capture edge; later
-    // faults cannot revoke that ordinary ready/valid offer, only poison it.
-    always_comb begin
-        req_ready_o                    = 1'b0;
-        rsp_valid_o                    = return_valid_q;
-        rsp_kind_o                     = return_kind_q;
-        rsp_epoch_o                    = return_epoch_q;
-        rsp_data_o                     = (return_is_data_q && !return_fault_q) ?
-                                         return_data_q : 256'd0;
-        rsp_fault_o                    = return_fault_q;
-        endpoint_req_valid_o           = 1'b0;
-        endpoint_req_word_address_o    = 19'd0;
-        endpoint_req_write_o           = 1'b0;
-        endpoint_req_write_data_o      = 256'd0;
-        endpoint_rsp_ready_o           = 1'b0;
-
-        if (state_q == STATE_WAIT_READ) begin
-            endpoint_rsp_ready_o = !return_valid_q;
-        end else if (offer_q) begin
-            if (offer_reject_q) begin
-                req_ready_o = 1'b1;
-            end else begin
-                endpoint_req_valid_o        = 1'b1;
-                endpoint_req_word_address_o = offer_address_q;
-                endpoint_req_write_o        = offer_write_q;
-                endpoint_req_write_data_o   = offer_write_data_q;
-                req_ready_o                 = (endpoint_req_ready_i === 1'b1);
-            end
-            if (unexpected_endpoint_response)
-                endpoint_rsp_ready_o = 1'b1;
-        end else if (unexpected_endpoint_response) begin
-            endpoint_rsp_ready_o = 1'b1;
-        end
-    end
-
-    assign endpoint_request_handshake = endpoint_req_valid_o &&
-                                        (endpoint_req_ready_i === 1'b1);
-    assign endpoint_response_handshake =
-                                         (endpoint_rsp_valid_i === 1'b1) &&
-                                         endpoint_rsp_ready_o;
-    assign fail_closed_o = terminal_fault_now;
-    assign busy_o = (state_q != STATE_IDLE) || offer_q || req_valid_i ||
-                    return_valid_q;
-
-    // Payload registers are private, resetless, and unpublished until their
-    // separately reset valid/type/fault state grants use. No legality check
-    // drives a 256-bit payload clock enable. Rejected data stays unpublished.
+    // Payload is resetless. The reservation/done bits are the only authority
+    // to expose it; every healthy completion writes data before publication.
     always_ff @(posedge clk_i) begin
-        if (reset_n_i && (state_q == STATE_IDLE) && !offer_q &&
-            (req_valid_i === 1'b1) && !return_valid_q)
-            offer_write_data_q <= req_write_data_i;
-        if (reset_n_i && (state_q == STATE_WAIT_READ) &&
-            endpoint_response_handshake)
-            return_data_q <= endpoint_rsp_data_i;
+        if (request_take) begin
+            slot_address_q[tail_q] <= req_kind_i == KIND_MODEL_READ ?
+                                     req_model_word_i : kv_recomputed_address;
+            slot_data_q[tail_q] <= req_write_data_i;
+        end
+        if (!offer_q && unissued_q != 0 && !reject_issue) begin
+            offer_address_q <= slot_address_q[issue_q];
+            offer_write_data_q <= slot_data_q[issue_q];
+        end
+        if (owned_return) slot_data_q[response_slot] <= endpoint_rsp_data_i;
+        if (read_issue) read_slot_q[read_tail_q] <= offer_slot_q;
     end
 
     always_ff @(posedge clk_i or negedge reset_n_i) begin
         if (!reset_n_i) begin
-            state_q          <= STATE_IDLE;
-            fault_q          <= 1'b0;
-            lock_seen_q      <= 1'b0;
-            read_kind_q      <= KIND_MODEL_READ;
-            read_epoch_q     <= 1'b0;
-            read_row_word_q  <= 4'd0;
-            offer_q          <= 1'b0;
-            offer_reject_q   <= 1'b0;
-            offer_write_q    <= 1'b0;
-            offer_poison_q   <= 1'b0;
-            offer_kind_q     <= KIND_MODEL_READ;
-            offer_epoch_q    <= 1'b0;
-            offer_address_q  <= 19'd0;
-            offer_row_word_q <= 4'd0;
-            return_valid_q   <= 1'b0;
-            return_kind_q    <= KIND_MODEL_READ;
-            return_epoch_q   <= 1'b0;
-            return_is_data_q <= 1'b0;
-            return_fault_q   <= 1'b0;
-        end else begin
-            if (return_valid_q && (rsp_ready_i === 1'b1))
-                return_valid_q <= 1'b0;
-            if (model_locked_i)
-                lock_seen_q <= 1'b1;
-            if (offer_q && terminal_fault_now)
-                offer_poison_q <= 1'b1;
-            if (upstream_fault_i ||
-                (lock_seen_q && !model_locked_i) ||
-                unexpected_endpoint_response || request_without_lock ||
-                policy_fault_now || simulation_x_fault ||
-                endpoint_padding_fault_now ||
-                ((state_q == STATE_WAIT_READ) &&
-                 (endpoint_rsp_valid_i === 1'b1) &&
-                 (endpoint_rsp_error_i !== 1'b0)))
-                fault_q <= 1'b1;
-
-            if (state_q == STATE_IDLE) begin
-                if (offer_q) begin
-                    if (offer_reject_q || endpoint_request_handshake) begin
-                        offer_q <= 1'b0;
-                        if (offer_reject_q || offer_write_q) begin
-                            return_valid_q   <= 1'b1;
-                            return_kind_q    <= offer_kind_q;
-                            return_epoch_q   <= offer_epoch_q;
-                            return_is_data_q <= 1'b0;
-                            return_fault_q   <= offer_reject_q ||
-                                                terminal_fault_now ||
-                                                offer_poison_q;
-                        end else begin
-                            state_q         <= STATE_WAIT_READ;
-                            read_kind_q     <= offer_kind_q;
-                            read_epoch_q    <= offer_epoch_q;
-                            read_row_word_q <= offer_row_word_q;
-                        end
-                    end
-                end else if ((req_valid_i === 1'b1) && !return_valid_q) begin
-                    // This is the only publication decision. The complete
-                    // descriptor, lock, endpoint and upstream checks are
-                    // evaluated before the offer can become visible.
-                    offer_q          <= 1'b1;
-                    offer_reject_q   <= terminal_fault_now;
-                    offer_poison_q   <= terminal_fault_now;
-                    offer_write_q    <= (req_kind_i == KIND_KV_WRITE);
-                    offer_kind_q     <= req_kind_i;
-                    offer_epoch_q    <= req_epoch_i;
-                    offer_address_q  <= (req_kind_i == KIND_MODEL_READ) ?
-                                        req_model_word_i : kv_recomputed_address;
-                    offer_row_word_q <= req_row_word_i;
-                end
-            end else if (endpoint_response_handshake) begin
-                state_q          <= STATE_IDLE;
-                return_valid_q   <= 1'b1;
-                return_kind_q    <= read_kind_q;
-                return_epoch_q   <= read_epoch_q;
-                return_is_data_q <= 1'b1;
-                return_fault_q   <= terminal_fault_now || endpoint_rsp_error_i;
+            fault_q <= 0; lock_seen_q <= 0;
+            reserved_q <= 0; unissued_q <= 0; read_count_q <= 0;
+            head_q <= 0; tail_q <= 0; issue_q <= 0;
+            read_head_q <= 0; read_tail_q <= 0;
+            offer_q <= 0; offer_poison_q <= 0; offer_write_q <= 0;
+            offer_slot_q <= 0;
+            for (reset_slot=0; reset_slot<CREDITS; reset_slot=reset_slot+1) begin
+                slot_done_q[reset_slot] <= 0;
+                slot_fault_q[reset_slot] <= 0;
+                slot_reject_q[reset_slot] <= 0;
+                slot_kind_q[reset_slot] <= KIND_MODEL_READ;
+                slot_epoch_q[reset_slot] <= 0;
+                slot_word_q[reset_slot] <= 0;
             end
+        end else begin
+            if (model_locked_i) lock_seen_q <= 1;
+            if (terminal_fault_now) fault_q <= 1;
+            case ({request_take,response_take})
+                2'b10: reserved_q <= reserved_q + 4'd1;
+                2'b01: reserved_q <= reserved_q - 4'd1;
+                default: ;
+            endcase
+            case ({request_take,issue_advance})
+                2'b10: unissued_q <= unissued_q + 4'd1;
+                2'b01: unissued_q <= unissued_q - 4'd1;
+                default: ;
+            endcase
+            if (request_take) begin
+                slot_kind_q[tail_q] <= req_kind_i;
+                slot_epoch_q[tail_q] <= req_epoch_i;
+                slot_word_q[tail_q] <= req_row_word_i;
+                slot_reject_q[tail_q] <= terminal_fault_now;
+                slot_fault_q[tail_q] <= terminal_fault_now;
+                slot_done_q[tail_q] <= 0;
+                tail_q <= tail_q + 3'd1;
+            end
+            if (response_take) begin
+                slot_done_q[head_q] <= 0;
+                head_q <= head_q + 3'd1;
+            end
+            if (reject_issue) begin
+                slot_done_q[issue_q] <= 1;
+                slot_fault_q[issue_q] <= 1;
+            end
+            if (issue_advance) issue_q <= issue_q + 3'd1;
+            if (!offer_q && unissued_q != 0 && !reject_issue) begin
+                offer_q <= 1;
+                offer_slot_q <= issue_q;
+                offer_write_q <= slot_kind_q[issue_q] == KIND_KV_WRITE;
+                offer_poison_q <= 0;
+            end
+            if (offer_q && terminal_fault_now) offer_poison_q <= 1;
+            if (endpoint_request_handshake) begin
+                offer_q <= 0;
+                if (offer_write_q) begin
+                    slot_done_q[offer_slot_q] <= 1;
+                    slot_fault_q[offer_slot_q] <= terminal_fault_now || offer_poison_q;
+                end
+            end
+            if (read_issue) read_tail_q <= read_tail_q + 3'd1;
+            if (owned_return) begin
+                slot_done_q[response_slot] <= 1;
+                slot_fault_q[response_slot] <= terminal_fault_now || endpoint_rsp_error_i;
+                read_head_q <= read_head_q + 3'd1;
+            end
+            case ({read_issue,owned_return})
+                2'b10: read_count_q <= read_count_q + 4'd1;
+                2'b01: read_count_q <= read_count_q - 4'd1;
+                default: ;
+            endcase
         end
     end
-
 `ifdef FORMAL
-    always_ff @(posedge clk_i) begin
-        if (reset_n_i && endpoint_req_valid_o) begin
-            assert(!fail_closed_o || offer_q);
-            assert(req_valid_i);
-            assert(request_descriptor_legal);
-            assert((endpoint_req_word_address_o < MODEL_WORDS) ||
-                   ((endpoint_req_word_address_o >= KV_BASE_WORD) &&
-                    (endpoint_req_word_address_o < SCRATCH_END_WORD)));
-            assert(!((endpoint_req_word_address_o >= MODEL_WORDS) &&
-                     (endpoint_req_word_address_o < KV_BASE_WORD)));
-            if (endpoint_req_write_o) begin
-                assert(req_kind_i == KIND_KV_WRITE);
-                assert(endpoint_req_word_address_o == kv_recomputed_address);
-                if (req_row_word_i == 4'd8)
-                    assert(endpoint_req_write_data_o[255:16] == 240'd0);
-            end else begin
-                assert((req_kind_i == KIND_MODEL_READ) ||
-                       (req_kind_i == KIND_KV_READ));
-                if (req_kind_i == KIND_KV_READ)
-                    assert(endpoint_req_word_address_o == kv_recomputed_address);
-            end
+    always_ff @(posedge clk_i) if (reset_n_i) begin
+        assert(reserved_q <= CREDITS);
+        assert(unissued_q <= reserved_q);
+        assert(read_count_q <= reserved_q);
+        if (endpoint_req_valid_o) begin
+            assert(!slot_reject_q[offer_slot_q]);
+            assert(endpoint_req_word_address_o < MODEL_WORDS ||
+                  (endpoint_req_word_address_o >= KV_BASE_WORD && endpoint_req_word_address_o < SCRATCH_END_WORD));
+            if (endpoint_req_write_o && slot_word_q[offer_slot_q] == 8)
+                assert(endpoint_req_write_data_o[255:16] == 0);
         end
-        if ($past(reset_n_i) && $past(fault_q))
-            assert(fault_q);
-        if (reset_n_i && return_valid_q &&
-            (return_kind_q == KIND_KV_READ) &&
-            (read_row_word_q == 4'd8) && !return_fault_q)
-            assert(return_data_q[255:16] == 240'd0);
+        if (rsp_valid_o && rsp_kind_o == KIND_KV_READ &&
+            slot_word_q[head_q] == 8 && !rsp_fault_o)
+            assert(rsp_data_o[255:16] == 0);
+        if ($past(reset_n_i) && $past(fault_q)) assert(fault_q);
     end
 `endif
 endmodule

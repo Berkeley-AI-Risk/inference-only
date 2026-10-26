@@ -61,18 +61,18 @@ The GPU parent and quantized FPGA do not produce identical continuations. For th
 
 ### Conditional capacity comparison
 
-For the [Qwen analysis](../../demos/qwen3-1.7b/TRAINING-CAPACITY.md), use `phi_proxy = T*R/(989e12*F)`. The device rates come from the identified single fixed-context steps: Qwen `F=1/0.112895146` and SimpleStories `F=1/0.152929625`. Neither is a sustained peak rating. They are distinct from the headline growing-context averages.
+For the [Qwen analysis](../../demos/qwen3-1.7b/TRAINING-CAPACITY.md), use `phi_proxy = T*R/(989e12*F)`. The device rates use identified fixed-context STEP intervals: Qwen `F=1/0.112895146`; SimpleStories pools two matching 128-position intervals, giving `F=2/(0.101706167+0.101874708)`. Neither is a sustained peak rating. They are distinct from the headline growing-context averages.
 
 The following alternatives use the shared-method repeated H100 references above. Rows overlap and must not be added. Every-cycle rows grant useful operand control, readout and continuous utilization that have not been demonstrated. Narrow products, squares and standalone multiplication are generously credited as full MACs.
 
 | Hypothetical access and schedule | Qwen phi_proxy | SimpleStories phi_proxy | Qwen / SimpleStories |
 | --- | ---: | ---: | ---: |
 | Named dynamic work on the same decode schedule | 0.00199995 | 0.00239112 | 0.836 |
-| Useful MAC every cycle from all named runtime/square units | 0.235071 | 0.114092 | 2.06 |
-| Useful MAC every cycle from all functional multipliers | 0.974066 | 1.73419 | 0.562 |
+| Useful MAC every cycle from all named runtime/square units | 0.235071 | 0.288571 | 0.815 |
+| Useful MAC every cycle from all functional multipliers | 0.974066 | 1.36691 | 0.713 |
 | Chosen accepted weights make all counted matrix work useful | 0.216341 | 0.0342843 | 6.31 |
 
-The counts in the named scheduled-work row are 32,080,640 and 801,272 operations/decode. Under that row's matched-workload assumption, `T=C*F` and device speed cancels. The every-cycle runtime row grants 33.4 billion operations/s for Qwen's 167 named units and 250 million/s for SimpleStories' five units. Its inferred ratio depends on both the FPGA rate and GPU reference. A value near 0.24 describes credited training arithmetic per unit of inference service; it does not say one FPGA supplies 24% of an H100's raw training arithmetic.
+The counts in the named scheduled-work row are 32,080,640 and 801,272 operations/decode. Under that row's matched-workload assumption, `T=C*F` and device speed cancels. The every-cycle runtime row grants 33.4 billion operations/s for Qwen's 167 named units and 950 million/s for SimpleStories' 19 scheduled runtime-operand instances. Its inferred ratio depends on both the FPGA rate and GPU reference. A value near 0.24 describes credited training arithmetic per unit of inference service; it does not say one FPGA supplies 24% of an H100's raw training arithmetic.
 
 Qwen's smaller attention-work share is therefore an architectural advantage, but it does not establish a smaller whole-system residual training factor. The outcome depends on accessible arithmetic, its schedule, the reference implementation, workload and numerical-function standard. The one-token continuation's conditional named-work identity is separately 0.00111124, using 17,573,504 average operations per cached token; it does not supply the missing FPGA measurement or a device-wide bound.
 

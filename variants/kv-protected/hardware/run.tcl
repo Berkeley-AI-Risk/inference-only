@@ -9,7 +9,7 @@ set_option -gen_text_timing_rpt 1
 if {[catch {run syn} result options]} {puts stderr $result; exit 1}
 puts "LOCAL_KV_SYN_COMPLETE hardware_access=0"
 flush stdout
-set_option -place_option 4
+set_option -place_option 3
 set_option -route_option 0
 set_option -clock_route_order 0
 set_option -route_maxfan 23

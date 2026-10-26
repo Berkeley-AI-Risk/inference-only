@@ -23,11 +23,11 @@ These alternative access assumptions overlap and must not be added. They grant u
 | Hypothetical access and schedule | Qwen `phi_proxy` | SimpleStories `phi_proxy` |
 | --- | ---: | ---: |
 | Named dynamic work on the same decode schedule | 0.00199995 | 0.00239112 |
-| Useful MAC every cycle from all named runtime/square units | 0.235071 | 0.114092 |
-| Useful MAC every cycle from all functional multipliers | 0.974066 | 1.73419 |
+| Useful MAC every cycle from all named runtime/square units | 0.235071 | 0.288571 |
+| Useful MAC every cycle from all functional multipliers | 0.974066 | 1.36691 |
 | Chosen accepted weights make all counted matrix work useful | 0.216341 | 0.0342843 |
 
-Qwen's scheduled-work proxy is about 16% lower, while its full-use-of-runtime-units proxy is about twice as high. The assumed access and schedule therefore determine the ordering. The [benchmark report](docs/benchmarks/H100-BENCHMARK.md#conditional-capacity-comparison) gives the inputs, numerical acceptance policies and remaining qualifications. The SimpleStories assessment uses a Transformers 4.48.3 reference; this comparison uses Transformers 5.17.0 for both models. Those reference rates are implementation-specific.
+With these grants, Qwen's scheduled-work proxy is about 16% lower and its full-use-of-runtime-units proxy is about 19% lower. The assumed access and schedule therefore determine the ordering. The [benchmark report](docs/benchmarks/H100-BENCHMARK.md#conditional-capacity-comparison) gives the inputs, numerical acceptance policies and remaining qualifications. The SimpleStories assessment uses a Transformers 4.48.3 reference; this comparison uses Transformers 5.17.0 for both models. Those reference rates are implementation-specific.
 
 ## Reproduce the calculations
 

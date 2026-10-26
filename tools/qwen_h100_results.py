@@ -112,17 +112,23 @@ def analyze(package_root, evidence_root=None):
     q_coefficients = baseline['phi_proxy_coefficient_per_reference_tps']
     q = {name: value * rates['qwen_fixed'] for name, value in q_coefficients.items()
          if name != 'named_schedule_story_continuation'}
-    small_metrics_path = package / 'evidence/baseline-current/metrics.json'
-    small_metrics_raw = small_metrics_path.read_bytes()
-    small_metrics = json.loads(small_metrics_raw)['metrics']['around128']
-    require((small_metrics['prompt_tokens'], small_metrics['generated_tokens'], small_metrics['occupied_tape'])
-            == (1, 128, 129), 'Changed historical SmallStories hardware workload')
-    fs = 1 / positive(small_metrics['last_step_seconds'])
+    small_spec = importlib.util.spec_from_file_location('simplestories_capacity',
+                Path(__file__).with_name('estimate_training_capacity.py'))
+    small_capacity = importlib.util.module_from_spec(small_spec)
+    small_spec.loader.exec_module(small_capacity)
+    small_inputs = small_capacity.estimate(package)
+    fs = positive(small_inputs['inputs']['fpga_inference_rate_proxy'])
+    require(small_inputs['inputs']['fpga_context_positions'] ==128
+            and small_inputs['inputs']['measured_single_step_repetitions'] ==2,
+            'Changed selected SimpleStories paired fixed-context workload')
+    small_metrics_raw = (package / small_capacity.METRICS_FILE).read_bytes()
     rs = rates['small_fixed']
-    small = {'named_schedule_context128': 801272 * rs / H,
-             'named167_every_cycle': 250e6 * rs / (H * fs),
-             'all692_every_cycle': 3.8e9 * rs / (H * fs),
-             'matrix_schedule_context128': 11488768 * rs / H}
+    credited = small_inputs['scenarios']
+    small = {
+        'named_schedule_context128': credited['fixed_schedule_dynamic_work_allowance']['operations_per_decode_credited'] * rs / H,
+        'named167_every_cycle': credited['dynamic_lanes_full_credit']['operation_rate_proxy'] * rs / (H * fs),
+        'all692_every_cycle': credited['all_mapped_multipliers_full_credit']['operation_rate_proxy'] * rs / (H * fs),
+        'matrix_schedule_context128': credited['weight_enforcement_failure_fixed_schedule']['operations_per_decode_credited'] * rs / H}
     comparison = {}
     for label, key in [('named_schedule', 'named_schedule_context128'),
                        ('all_named_runtime_units_every_cycle', 'named167_every_cycle'),
@@ -153,11 +159,15 @@ def analyze(package_root, evidence_root=None):
                                              'matching_128_output_fpga_measurement_pending': True},
             'small_fpga_context128_single_step_tps': fs,
             'small_fpga_metrics_sha256': hashlib.sha256(small_metrics_raw).hexdigest(),
+            'small_fpga_image_sha256': small_inputs['inputs']['selected_fpga_image_sha256'],
+            'small_fixed_context_step_repetitions': small_inputs['inputs']['measured_single_step_repetitions'],
+            'small_structural_counts': {key: small_inputs['inputs'][key] for key in ('mapped_multiplier_primitives', 'dynamic_multiplier_instances')},
+            'small_capacity_source_sha256': small_inputs['source_sha256'],
             'qwen_fpga_measured_rates': baseline['fpga_measured_rates'],
             'all_cases': all_cases,
             'limitations': ['Achieved parent-model FP16 reference scores, not proven maxima or licensed ratings.',
                             'The conditional arithmetic access is hypothetical; no useful training attack is demonstrated.',
-                            'Both historical FPGA fixed-context rates are single host-timed steps, not measured peaks.',
+                            'FPGA fixed-context intervals are host-timed STEPs; SimpleStories pools two matching intervals. These are not peak ratings.',
                             'Compiled scores use the explicit logit-tolerance policy and retain greedy disagreements.',
                             'The upstream floating-point parents differ from the FPGA numerical functions.']}
 

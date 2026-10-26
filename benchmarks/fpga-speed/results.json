@@ -2,7 +2,7 @@
   "schema": "fpga-common-speed-results-v1",
   "protocol": "greedy-one-token-128-host-v1",
   "timestamp_boundary": "generation_loop_validated_reply",
-  "complete_rows": 3,
+  "complete_rows": 4,
   "total_rows": 6,
   "rows": [
     {
@@ -10,36 +10,84 @@
       "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, authenticated weights",
       "package_status": "Runnable release",
       "identity": {
-        "fpga_image_sha256": "6ba3caa4f88ac58dd30336c3ff4478f836779db0d04309ff457ca065ec1f7f09",
-        "core_clock_mhz": 25
+        "clock_hz": 25000000,
+        "collector": {
+          "bytes": 12527,
+          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v1.py",
+          "sha256": "0e0e0260b441a5e354da11793bc4120cd59b0fdc36f9228dd13902e6d958c08f"
+        },
+        "fpga_image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+        "greedy_link": {
+          "bytes": 11486,
+          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
+          "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
+        },
+        "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+        "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+        "python_executable": "/opt/homebrew/bin/python3.12",
+        "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+        "token_machine_uart": {
+          "bytes": 25318,
+          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
+          "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
+        },
+        "uart_channel": {
+          "bytes": 1939,
+          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
+          "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
+        }
       },
       "eligible_trials": 2,
       "complete": true,
       "rate": {
         "counted_cached_outputs": 254,
-        "cached_host_seconds": 29.000830792000002,
-        "cached_tokens_per_second": 8.758369779877718,
-        "command_only_diagnostic_tokens_per_second": 8.765791736315007,
+        "cached_host_seconds": 25.294664333,
+        "cached_tokens_per_second": 10.041643433418713,
+        "command_only_diagnostic_tokens_per_second": 10.053202978986162,
         "first_step_seconds": [
-          0.06794054189231247,
-          0.06810862489510328
+          0.085237208,
+          0.085324375
         ]
       },
       "missing": null,
       "trials": [
         {
-          "capture_sha256": "5481842f7d7041bf8636116c18b8ebe4ab11a006a59e53f050a376c7a205c902",
+          "capture_sha256": "922c19ff323eb70128da97568974f639fa85c6de0ea2e0444d1309b4c0811acc",
           "prompt_tokens": [
             378
           ],
           "generated_outputs": 128,
           "cached_outputs": 127,
-          "cached_host_seconds": 14.500615292,
-          "cached_command_seconds": 14.488263045204803,
-          "first_step_seconds": 0.06794054189231247,
+          "cached_host_seconds": 12.664356833000001,
+          "cached_command_seconds": 12.649614709,
+          "first_step_seconds": 0.085237208,
           "identity": {
-            "fpga_image_sha256": "6ba3caa4f88ac58dd30336c3ff4478f836779db0d04309ff457ca065ec1f7f09",
-            "core_clock_mhz": 25
+            "clock_hz": 25000000,
+            "collector": {
+              "bytes": 12527,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v1.py",
+              "sha256": "0e0e0260b441a5e354da11793bc4120cd59b0fdc36f9228dd13902e6d958c08f"
+            },
+            "fpga_image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+            "greedy_link": {
+              "bytes": 11486,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
+              "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
+            },
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "python_executable": "/opt/homebrew/bin/python3.12",
+            "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+            "token_machine_uart": {
+              "bytes": 25318,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
+              "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
+            },
+            "uart_channel": {
+              "bytes": 1939,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
+              "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
+            }
           },
           "timestamp_boundary": "generation_loop_validated_reply",
           "greedy": true,
@@ -47,18 +95,42 @@
           "stop_at_eos": false
         },
         {
-          "capture_sha256": "2256868c9c4f63f3d1f7e15015611aca46c1969338737dd97944e8b53cd9cd35",
+          "capture_sha256": "475b42f806e3c7d3fa139d97e2aca50064e1e9f46e87b4dd959e04a827f0c9c6",
           "prompt_tokens": [
             378
           ],
           "generated_outputs": 128,
           "cached_outputs": 127,
-          "cached_host_seconds": 14.5002155,
-          "cached_command_seconds": 14.488012873800471,
-          "first_step_seconds": 0.06810862489510328,
+          "cached_host_seconds": 12.630307499999999,
+          "cached_command_seconds": 12.615964881,
+          "first_step_seconds": 0.085324375,
           "identity": {
-            "fpga_image_sha256": "6ba3caa4f88ac58dd30336c3ff4478f836779db0d04309ff457ca065ec1f7f09",
-            "core_clock_mhz": 25
+            "clock_hz": 25000000,
+            "collector": {
+              "bytes": 12527,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v1.py",
+              "sha256": "0e0e0260b441a5e354da11793bc4120cd59b0fdc36f9228dd13902e6d958c08f"
+            },
+            "fpga_image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+            "greedy_link": {
+              "bytes": 11486,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
+              "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
+            },
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "python_executable": "/opt/homebrew/bin/python3.12",
+            "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+            "token_machine_uart": {
+              "bytes": 25318,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
+              "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
+            },
+            "uart_channel": {
+              "bytes": 1939,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
+              "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
+            }
           },
           "timestamp_boundary": "generation_loop_validated_reply",
           "greedy": true,
@@ -72,36 +144,84 @@
       "label": "Same model, **K/V-protected**",
       "package_status": "Runnable release",
       "identity": {
-        "fpga_image_sha256": "72d5a54e06ed2017e653122f3daecf073f239a917b79f24d1e7b886d68a21a2f",
-        "core_clock_mhz": 25
+        "clock_hz": 25000000,
+        "collector": {
+          "bytes": 12527,
+          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v1.py",
+          "sha256": "0e0e0260b441a5e354da11793bc4120cd59b0fdc36f9228dd13902e6d958c08f"
+        },
+        "fpga_image_sha256": "90ac68150d0c297b666bc1963d05e32d1d2d0d7d69706593e58d48d5ab2e79e2",
+        "greedy_link": {
+          "bytes": 11486,
+          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
+          "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
+        },
+        "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+        "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+        "python_executable": "/opt/homebrew/bin/python3.12",
+        "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+        "token_machine_uart": {
+          "bytes": 25318,
+          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
+          "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
+        },
+        "uart_channel": {
+          "bytes": 1939,
+          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
+          "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
+        }
       },
       "eligible_trials": 2,
       "complete": true,
       "rate": {
         "counted_cached_outputs": 254,
-        "cached_host_seconds": 48.651074083,
-        "cached_tokens_per_second": 5.220850819586622,
-        "command_only_diagnostic_tokens_per_second": 5.226102848256535,
+        "cached_host_seconds": 36.140183707000006,
+        "cached_tokens_per_second": 7.028187849272129,
+        "command_only_diagnostic_tokens_per_second": 7.033278184561002,
         "first_step_seconds": [
-          0.10202137497253716,
-          0.1019368750276044
+          0.101918959,
+          0.102195292
         ]
       },
       "missing": null,
       "trials": [
         {
-          "capture_sha256": "55e171404866e75a491a13335903e932b6f70392fccf9c786684c88c6ad0490d",
+          "capture_sha256": "875662916438ea136d7b9e1319cd8917ec8252feb7dba0e95ae65b859c51d4d2",
           "prompt_tokens": [
             378
           ],
           "generated_outputs": 128,
           "cached_outputs": 127,
-          "cached_host_seconds": 24.308698208,
-          "cached_command_seconds": 24.27831212768797,
-          "first_step_seconds": 0.10202137497253716,
+          "cached_host_seconds": 18.036201666,
+          "cached_command_seconds": 18.025437961,
+          "first_step_seconds": 0.101918959,
           "identity": {
-            "fpga_image_sha256": "72d5a54e06ed2017e653122f3daecf073f239a917b79f24d1e7b886d68a21a2f",
-            "core_clock_mhz": 25
+            "clock_hz": 25000000,
+            "collector": {
+              "bytes": 12527,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v1.py",
+              "sha256": "0e0e0260b441a5e354da11793bc4120cd59b0fdc36f9228dd13902e6d958c08f"
+            },
+            "fpga_image_sha256": "90ac68150d0c297b666bc1963d05e32d1d2d0d7d69706593e58d48d5ab2e79e2",
+            "greedy_link": {
+              "bytes": 11486,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
+              "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
+            },
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "python_executable": "/opt/homebrew/bin/python3.12",
+            "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+            "token_machine_uart": {
+              "bytes": 25318,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
+              "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
+            },
+            "uart_channel": {
+              "bytes": 1939,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
+              "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
+            }
           },
           "timestamp_boundary": "generation_loop_validated_reply",
           "greedy": true,
@@ -109,18 +229,42 @@
           "stop_at_eos": false
         },
         {
-          "capture_sha256": "b5e090da0ec831188702a10baa7aa0d8ee57702e091abbe58a7728aaf5d66d7f",
+          "capture_sha256": "2923ed8d27536ad03ffa3f99ca2a4ce8fb020c34a0de1d569217a31762dab2c3",
           "prompt_tokens": [
             378
           ],
           "generated_outputs": 128,
           "cached_outputs": 127,
-          "cached_host_seconds": 24.342375875,
-          "cached_command_seconds": 24.32386953139212,
-          "first_step_seconds": 0.1019368750276044,
+          "cached_host_seconds": 18.103982041000002,
+          "cached_command_seconds": 18.088589287,
+          "first_step_seconds": 0.102195292,
           "identity": {
-            "fpga_image_sha256": "72d5a54e06ed2017e653122f3daecf073f239a917b79f24d1e7b886d68a21a2f",
-            "core_clock_mhz": 25
+            "clock_hz": 25000000,
+            "collector": {
+              "bytes": 12527,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v1.py",
+              "sha256": "0e0e0260b441a5e354da11793bc4120cd59b0fdc36f9228dd13902e6d958c08f"
+            },
+            "fpga_image_sha256": "90ac68150d0c297b666bc1963d05e32d1d2d0d7d69706593e58d48d5ab2e79e2",
+            "greedy_link": {
+              "bytes": 11486,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
+              "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
+            },
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "python_executable": "/opt/homebrew/bin/python3.12",
+            "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+            "token_machine_uart": {
+              "bytes": 25318,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
+              "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
+            },
+            "uart_channel": {
+              "bytes": 1939,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
+              "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
+            }
           },
           "timestamp_boundary": "generation_loop_validated_reply",
           "greedy": true,
@@ -132,16 +276,136 @@
     {
       "id": "simplestories-encrypted",
       "label": "Same model, **K/V protection + encrypted memory**",
-      "package_status": "Runnable experimental version; public demonstration keys",
+      "package_status": "Runnable release; public demonstration keys",
       "identity": {
-        "fpga_image_sha256": "865e74e692d5978815fe921f11e4fa1b8e2c080401a8be05508dd9775823aecc",
-        "core_clock_mhz": 25
+        "clock_hz": 25000000,
+        "collector": {
+          "bytes": 12776,
+          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v2.py",
+          "sha256": "d9bf57a669b20c4e12bae3589a414d156f5597656e7c8ec1f93d874b50d6a31b"
+        },
+        "fpga_image_sha256": "cfc8a3d8832b4a2959606f0e9f01c511357ec68380f521b5f28a4fc737edf1d2",
+        "greedy_link": {
+          "bytes": 11486,
+          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
+          "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
+        },
+        "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+        "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+        "python_executable": "/opt/homebrew/bin/python3.12",
+        "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+        "token_machine_uart": {
+          "bytes": 25318,
+          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
+          "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
+        },
+        "uart_channel": {
+          "bytes": 1939,
+          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
+          "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
+        }
       },
-      "eligible_trials": 0,
-      "complete": false,
-      "rate": null,
-      "missing": "Two complete trials with generation-loop reply timestamps for the published image.",
-      "trials": []
+      "eligible_trials": 2,
+      "complete": true,
+      "rate": {
+        "counted_cached_outputs": 254,
+        "cached_host_seconds": 42.072727,
+        "cached_tokens_per_second": 6.037165121243508,
+        "command_only_diagnostic_tokens_per_second": 6.040046735366696,
+        "first_step_seconds": [
+          0.118967125,
+          0.118865833
+        ]
+      },
+      "missing": null,
+      "trials": [
+        {
+          "capture_sha256": "c22e576b455bf99c7cfa7bfb514bb0c3f99898cd46b8a3c0e9a6b8fc27914793",
+          "prompt_tokens": [
+            378
+          ],
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 21.027909959,
+          "cached_command_seconds": 21.017759372,
+          "first_step_seconds": 0.118967125,
+          "identity": {
+            "clock_hz": 25000000,
+            "collector": {
+              "bytes": 12776,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v2.py",
+              "sha256": "d9bf57a669b20c4e12bae3589a414d156f5597656e7c8ec1f93d874b50d6a31b"
+            },
+            "fpga_image_sha256": "cfc8a3d8832b4a2959606f0e9f01c511357ec68380f521b5f28a4fc737edf1d2",
+            "greedy_link": {
+              "bytes": 11486,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
+              "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
+            },
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "python_executable": "/opt/homebrew/bin/python3.12",
+            "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+            "token_machine_uart": {
+              "bytes": 25318,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
+              "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
+            },
+            "uart_channel": {
+              "bytes": 1939,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
+              "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
+            }
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
+        },
+        {
+          "capture_sha256": "e2e7371ff51b536c7e199567f37c05915dcb8eaaaae659be0fad1995213cf267",
+          "prompt_tokens": [
+            378
+          ],
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 21.044817041,
+          "cached_command_seconds": 21.034895372,
+          "first_step_seconds": 0.118865833,
+          "identity": {
+            "clock_hz": 25000000,
+            "collector": {
+              "bytes": 12776,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v2.py",
+              "sha256": "d9bf57a669b20c4e12bae3589a414d156f5597656e7c8ec1f93d874b50d6a31b"
+            },
+            "fpga_image_sha256": "cfc8a3d8832b4a2959606f0e9f01c511357ec68380f521b5f28a4fc737edf1d2",
+            "greedy_link": {
+              "bytes": 11486,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
+              "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
+            },
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "python_executable": "/opt/homebrew/bin/python3.12",
+            "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+            "token_machine_uart": {
+              "bytes": 25318,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
+              "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
+            },
+            "uart_channel": {
+              "bytes": 1939,
+              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
+              "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
+            }
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
+        }
+      ]
     },
     {
       "id": "simplestories-seeded-greedy",
@@ -262,14 +526,6 @@
       "sha256": "a236c9912e5da9f12412c3f91f3d619a574fd5dce41f0c630fb78cb6c7dc7fa4",
       "bytes": 13049
     },
-    "evidence/baseline-current/board.json": {
-      "sha256": "e4e37d5fdea5f18ee57e114086fd67dc16a21b5f361f6386d9cf4c49c5926103",
-      "bytes": 30973
-    },
-    "evidence/read-window/board.json": {
-      "sha256": "b8ee366dac1d672fbd5aea3c43de70441fa1c3acc721e3606db6eebd0e151b57",
-      "bytes": 72947
-    },
     "evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json": {
       "sha256": "ae81f740b937068d4dd111010871c557dfa28b62b44a6f95de5a155607bc1bdf",
       "bytes": 206176
@@ -281,6 +537,18 @@
     "demos/qwen3-8b/measurements.json": {
       "sha256": "f888f5189b624931e539d9c160dbf761ac83289af996297287b9f3d6abc91d1b",
       "bytes": 72476
+    },
+    "benchmarks/fpga-speed/captures/baseline-common-speed-20261026-r1/FINISHED.json": {
+      "bytes": 33640,
+      "sha256": "cbe112e9d6b6a6f2390b04383cd4d630185e12c9053ab0824cd7c35112fd71d0"
+    },
+    "benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/FINISHED.json": {
+      "bytes": 33659,
+      "sha256": "8a1837ff09941377d3554116eadc482713d5236c2865d1fb54f37f6ade48b562"
+    },
+    "benchmarks/fpga-speed/captures/encrypted-common-speed-20261026-r1/FINISHED.json": {
+      "bytes": 33722,
+      "sha256": "d811ba7de040ad0357a02247b0a8e8cfdb4d7aaa2f4754316f9096b766dd922a"
     }
   },
   "scope": "Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay."

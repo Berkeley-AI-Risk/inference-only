@@ -41,14 +41,16 @@ in [CURRENT-QUALIFICATION.md](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md
 The table lists **Authenticated-Weight Inference-Only Chip (AWIC) designs**, all implemented on FPGAs.
 
 <!-- COMMON-FPGA-SPEED:START -->
+
 | Model and platform | Common cached generation | Package status |
 | --- | --- | --- |
-| **SimpleStories-V2-5M — Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |
-| Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |
-| Same model, **K/V protection + encrypted memory** | — | Runnable experimental version; public demonstration keys |
+| **SimpleStories-V2-5M — Tang Mega**, authenticated weights | About **10.0 tokens/s** | Runnable release |
+| Same model, **K/V-protected** | About **7.0 tokens/s** | Runnable release |
+| Same model, **K/V protection + encrypted memory** | About **6.0 tokens/s** | Runnable release; public demonstration keys |
 | Same model, **seeded-sampling image at temperature 0**, without K/V integrity | About **10.0 tokens/s** | Runnable release |
 | **Qwen3-1.7B — AWS F2**, authenticated weights | — | Runnable release; public AWS FPGA image |
 | **Qwen3-8B — AWS F2**, authenticated weights | — | Runnable prototype; speed optimization in progress; public AWS FPGA image |
+
 <!-- COMMON-FPGA-SPEED:END -->
 
 The encrypted-memory version retains K/V integrity and replay protection and
@@ -61,14 +63,10 @@ The common benchmark uses **one input token, 128 outputs, greedy decoding and tw
 A dash means that a complete paired record satisfying this protocol is unavailable. Model-specific validation measurements are linked from each guide. The [benchmark protocol and reproducible calculations](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) specify the observation boundary, source identities and eligibility checks. These are workload-specific host-observed rates, not peak ratings.
 
 “Runnable release” means the image, model, app and installation instructions
-are available. The seeded package passed its seven board suites,
-registered scoped scientific completion, fresh model/flash readback, exact
-recipient reload and registration, and twelve ordinary Chrome cases with all
-100 outputs matching the reference. Its
-[current qualification record](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md) separates those results
-from the timing, security and proof limits. No other-owner installation or
-complete-workload guarantee follows.
-No Tang version has complete vendor-DDR timing or physical-security certification.
+are available. Each model's guide states its completed functional checks and
+its timing, security and proof limits. Availability does not guarantee every
+workload or independently attest a loaded device. No Tang version has complete
+vendor-DDR timing or physical-security certification.
 
 At temperature 1, the seeded image's **command-only cached rate** is **9.94 tokens/s**, measured with a one-token prompt and two 128-output trials. This sampled-generation diagnostic excludes inter-command gaps and is separate from the greedy host-loop benchmark. The [qualification record](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md#recorded-timing) gives its workload and timing details.
 

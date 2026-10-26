@@ -1,0 +1,68 @@
+{
+  "full128_generated_byte_equality": {
+    "bytes": 2201,
+    "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/evidence/current-seeded-reference-context-prep-v1/PURE-SOURCE-CHECK.json",
+    "sha256": "101d343ea1bf771b0ad247e766c2cae4fad0337b83830084772045563f4205c7"
+  },
+  "instrumentation_assertions_cuts_query_constructors_unchanged": true,
+  "no_actual_proof_tools_native_board_or_registration_executed": true,
+  "review": {
+    "formal/current-seeded-sampling/connected/audit_connected.py": {
+      "added_source_reference_functions": [
+        "original_baseline_binding"
+      ],
+      "main_AST_identical_after_baseline_derive_helper_extraction": true,
+      "source_origin_functions_changed": [
+        "main"
+      ],
+      "unchanged_function_AST": [
+        "digest",
+        "put",
+        "observer_cone"
+      ]
+    },
+    "formal/current-seeded-sampling/connected/run_connected.py": {
+      "added_source_reference_functions": [],
+      "main_AST_identical_after_only_baseline_driver_origin_normalization": true,
+      "source_origin_functions_changed": [
+        "derive",
+        "main"
+      ],
+      "unchanged_function_AST": [
+        "sha",
+        "encoded",
+        "ports",
+        "instance"
+      ]
+    },
+    "formal/current-seeded-sampling/run_proof.py": {
+      "added_source_reference_functions": [],
+      "source_origin_functions_changed": [
+        "prepare"
+      ],
+      "unchanged_function_AST": [
+        "sha",
+        "source_inputs",
+        "main"
+      ]
+    },
+    "formal/current-seeded-sampling/source_provider.py": {
+      "added_source_reference_functions": [
+        "reference_public_root"
+      ],
+      "source_origin_functions_changed": [
+        "load_packet"
+      ],
+      "unchanged_function_AST": [
+        "sha",
+        "canonical",
+        "safe",
+        "pinned",
+        "source_inputs",
+        "source_binding"
+      ]
+    }
+  },
+  "schema": "minimal-current-seeded-reference-source-review-v1",
+  "source_only": true
+}

@@ -1,16 +1,14 @@
 {
   "source_repository": "https://github.com/Berkeley-AI-Risk/inference-only",
-  "public_rtl_commit": "d784685f3a0a22c87e594702d4dd3c6090785d8d",
-  "variant": "baseline; no K/V integrity guard or encryption",
-  "mapped_image_sha256": "6ba3caa4f88ac58dd30336c3ff4478f836779db0d04309ff457ca065ec1f7f09",
-  "mapped_netlist_sha256": "9f967b3694e5ac89e8aa611c2b7e279a7a21279c71b95a6110df75ff73ef3b1b",
+  "variant": "baseline; no K/V integrity or encryption",
+  "mapped_image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
   "primitive_counts": {
-    "MULTALU27X18": 73,
-    "MULT12X12": 3
+    "MULT12X12": 3,
+    "MULTALU27X18": 87
   },
   "functional_group_counts": {
     "embedding_and_address_support": 5,
-    "dynamic_roles": 5,
+    "dynamic_roles": 19,
     "projection_lanes": 64,
     "projection_scaling": 2
   },
@@ -387,25 +385,90 @@
     },
     {
       "primitive": "MULTALU27X18",
-      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/u_score_lane/behavioral_product_44_s2",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[0].u_score_lane/behavioral_product_44_s2",
       "role": "dynamic_roles"
     },
     {
       "primitive": "MULTALU27X18",
-      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/u_lane/behavioral_product_44_s2",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[0].u_value_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[1].u_score_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[1].u_value_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[2].u_score_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[2].u_value_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[3].u_score_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[3].u_value_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[4].u_score_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[4].u_value_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[5].u_score_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[5].u_value_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[6].u_score_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[6].u_value_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[7].u_score_lane/behavioral_product_44_s2",
+      "role": "dynamic_roles"
+    },
+    {
+      "primitive": "MULTALU27X18",
+      "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_attention/g_mac8[7].u_value_lane/behavioral_product_44_s2",
       "role": "dynamic_roles"
     }
   ],
-  "diagram_scope": "Selected functional paths and bus widths, not every net or the physical ASIC layout. Five dynamic-role units are included within 76 total.",
-  "public_references": [
-    "ARCHITECTURE.md#arithmetic-microarchitecture",
-    "evidence/baseline-current/implementation.json",
-    "hardware/project/top.sv",
-    "hardware/project/shared_token_probe.sv",
-    "hardware/project/cluster-engine.sv",
-    "hardware/project/cluster-tile.sv",
-    "hardware/project/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv",
-    "hardware/project/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv"
-  ],
-  "census_scope": "Recorded classification of the mapped baseline netlist, not a fresh synthesis. The public implementation inventory independently records the aggregate primitive counts; the rendering script checks that association."
+  "source_census": {
+    "path": "evidence/current-greedy/baseline/analysis/mapped-census.json",
+    "bytes": 416446,
+    "sha256": "5ce797c87d11b838e7b990a34a662b15ba3fac221d0201d6d17c8ba849cc65e0"
+  },
+  "source_to_netlist_equivalence_proved": false,
+  "useful_attacker_access_established": false
 }

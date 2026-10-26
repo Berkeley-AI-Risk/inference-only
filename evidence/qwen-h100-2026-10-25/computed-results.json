@@ -48,13 +48,13 @@
     },
     "all_named_runtime_units_every_cycle": {
       "qwen_phi_proxy": 0.23507083149828065,
-      "simplestories_phi_proxy": 0.11409156465868944,
-      "qwen_divided_by_simplestories": 2.0603699511134472
+      "simplestories_phi_proxy": 0.28857087086922767,
+      "qwen_divided_by_simplestories": 0.8146034656589031
     },
     "all_functional_multipliers_every_cycle": {
       "qwen_phi_proxy": 0.9740659604599412,
-      "simplestories_phi_proxy": 1.7341917828120796,
-      "qwen_divided_by_simplestories": 0.5616829523205582
+      "simplestories_phi_proxy": 1.3669146514858153,
+      "qwen_divided_by_simplestories": 0.7126018873242352
     },
     "replace_accepted_weights_same_schedule": {
       "qwen_phi_proxy": 0.21634123563752103,
@@ -74,8 +74,29 @@
     "conditional_phi_proxy": 0.0011112417835554994,
     "matching_128_output_fpga_measurement_pending": true
   },
-  "small_fpga_context128_single_step_tps": 6.538955417866351,
-  "small_fpga_metrics_sha256": "7cce454a3da673e5f1111e20665824a3df1fc1d9ecae2b7a298f3cabb076bc50",
+  "small_fpga_context128_single_step_tps": 9.82410553054161,
+  "small_fpga_metrics_sha256": "4ad893f57af44d1d74d40da894242919feef8b4dfcad1d843daa81b981e1b2f0",
+  "small_fpga_image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+  "small_fixed_context_step_repetitions": 2,
+  "small_structural_counts": {
+    "mapped_multiplier_primitives": {
+      "MULT12X12": 3,
+      "MULTALU27X18": 87
+    },
+    "dynamic_multiplier_instances": 19
+  },
+  "small_capacity_source_sha256": {
+    "evidence/current-greedy/baseline/analysis/metrics.json": "4ad893f57af44d1d74d40da894242919feef8b4dfcad1d843daa81b981e1b2f0",
+    "evidence/current-greedy/baseline/analysis/implementation.json": "d903b6e980ea0966bbe12c44196ab8c71c0103395e0e37f930789a9f1ef55423",
+    "hardware/project/uart_core.sv": "315f5d20fa93a5f974eeef1b26220952c6f9ab4264cd6309a1de7cb35ea1832a",
+    "evidence/current-greedy/baseline/analysis/mapped-census.json": "5ce797c87d11b838e7b990a34a662b15ba3fac221d0201d6d17c8ba849cc65e0",
+    "prebuilt/inference/BUILD.json": "d9f4c40614b90f704190bad934ec2a0624293a3b4b1b0ed736ab4b8787658e5d",
+    "evidence/h100/h100-compiled-fp16-repeat/ctx128-batch32768-float16-compile-graph.json": "1ee780a017f63fca95e377a4cbe67b0817dbb2f25eabaafc750a4b22e3d32808",
+    "evidence/h100/IMPORT.json": "cde9e645b29d191e5d25ad29aee73ed6f4b5bf39bc7715edd62ff69276cfa9fd",
+    "reference/reference/model.py": "58d0d8d6d858a74d9bb11a7103b1574b3a0be8eccd0d149363bd10380ffac049",
+    "evidence/h100/correctness/compiled-rounding-batch1024.json": "2ab6d71fb5fb8aef13cedd51032f36e84aac2ceed509087ee667676830598af2",
+    "tools/estimate_training_capacity.py": "97dbdce9adee834939b7b37a7f6962f48bbdd99f94fe0dc1b9fcf3553b036f8a"
+  },
   "qwen_fpga_measured_rates": {
     "raw_story": {
       "sustained_cached_tps": 9.001196204401383,
@@ -994,7 +1015,7 @@
   "limitations": [
     "Achieved parent-model FP16 reference scores, not proven maxima or licensed ratings.",
     "The conditional arithmetic access is hypothetical; no useful training attack is demonstrated.",
-    "Both historical FPGA fixed-context rates are single host-timed steps, not measured peaks.",
+    "FPGA fixed-context intervals are host-timed STEPs; SimpleStories pools two matching intervals. These are not peak ratings.",
     "Compiled scores use the explicit logit-tolerance policy and retain greedy disagreements.",
     "The upstream floating-point parents differ from the FPGA numerical functions."
   ]

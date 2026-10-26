@@ -1,0 +1,657 @@
+{"bytes_received": 0, "event": "quiet", "monotonic_ns": 342239133903666, "seconds": 0.1, "sequence": 1, "utc": "2026-10-26T05:38:14.728400+00:00"}
+{"event": "command_intent", "hex": "a502000067", "label": "common-clear-before", "monotonic_ns": 342239134090333, "sequence": 2, "utc": "2026-10-26T05:38:14.728600+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a502000067", "monotonic_ns": 342239134166458, "sequence": 3, "utc": "2026-10-26T05:38:14.728677+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a820000bd", "monotonic_ns": 342239140829166, "sequence": 4, "utc": "2026-10-26T05:38:14.735332+00:00"}
+{"event": "decoded", "frame_hex": "5a820000bd", "kind": "normal", "monotonic_ns": 342239140926666, "response": 130, "sequence": 5, "token": 0, "utc": "2026-10-26T05:38:14.735435+00:00"}
+{"event": "command_result", "label": "common-clear-before", "metric": false, "monotonic_ns": 342239140988666, "operand": 0, "operation": "clear", "response": 130, "seconds": 0.006908833, "sequence": 6, "token": 0, "utc": "2026-10-26T05:38:14.735499+00:00"}
+{"event": "command_intent", "hex": "a5007a0196", "label": "common-prompt", "monotonic_ns": 342239141042750, "sequence": 7, "utc": "2026-10-26T05:38:14.735554+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5007a0196", "monotonic_ns": 342239141094791, "sequence": 8, "utc": "2026-10-26T05:38:14.735606+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8000006b", "monotonic_ns": 342239157799541, "sequence": 9, "utc": "2026-10-26T05:38:14.752303+00:00"}
+{"event": "decoded", "frame_hex": "5a8000006b", "kind": "normal", "monotonic_ns": 342239157897541, "response": 128, "sequence": 10, "token": 0, "utc": "2026-10-26T05:38:14.752406+00:00"}
+{"event": "command_result", "label": "common-prompt", "metric": false, "monotonic_ns": 342239157960791, "operand": 378, "operation": "append", "response": 128, "seconds": 0.016920875, "sequence": 11, "token": 0, "utc": "2026-10-26T05:38:14.752472+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-0", "monotonic_ns": 342239158026166, "sequence": 12, "utc": "2026-10-26T05:38:14.752537+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342239158078875, "sequence": 13, "utc": "2026-10-26T05:38:14.752590+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81c80045", "monotonic_ns": 342239276827958, "sequence": 14, "utc": "2026-10-26T05:38:14.871329+00:00"}
+{"event": "decoded", "frame_hex": "5a81c80045", "kind": "normal", "monotonic_ns": 342239276942250, "response": 129, "sequence": 15, "token": 200, "utc": "2026-10-26T05:38:14.871454+00:00"}
+{"event": "command_result", "label": "common-output-0", "metric": true, "monotonic_ns": 342239276991333, "operand": 0, "operation": "step", "response": 129, "seconds": 0.118967125, "sequence": 16, "token": 200, "utc": "2026-10-26T05:38:14.871503+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-1", "monotonic_ns": 342239277050500, "sequence": 17, "utc": "2026-10-26T05:38:14.871561+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342239277109125, "sequence": 18, "utc": "2026-10-26T05:38:14.871621+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342239395823375, "sequence": 19, "utc": "2026-10-26T05:38:14.990325+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342239395938791, "response": 129, "sequence": 20, "token": 15, "utc": "2026-10-26T05:38:14.990448+00:00"}
+{"event": "command_result", "label": "common-output-1", "metric": true, "monotonic_ns": 342239396007916, "operand": 0, "operation": "step", "response": 129, "seconds": 0.11896125, "sequence": 21, "token": 15, "utc": "2026-10-26T05:38:14.990520+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-2", "monotonic_ns": 342239396066333, "sequence": 22, "utc": "2026-10-26T05:38:14.990579+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342239396135875, "sequence": 23, "utc": "2026-10-26T05:38:14.990646+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8167009e", "monotonic_ns": 342239514865708, "sequence": 24, "utc": "2026-10-26T05:38:15.109366+00:00"}
+{"event": "decoded", "frame_hex": "5a8167009e", "kind": "normal", "monotonic_ns": 342239514976041, "response": 129, "sequence": 25, "token": 103, "utc": "2026-10-26T05:38:15.109488+00:00"}
+{"event": "command_result", "label": "common-output-2", "metric": true, "monotonic_ns": 342239515033208, "operand": 0, "operation": "step", "response": 129, "seconds": 0.1189665, "sequence": 26, "token": 103, "utc": "2026-10-26T05:38:15.109544+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-3", "monotonic_ns": 342239515102333, "sequence": 27, "utc": "2026-10-26T05:38:15.109615+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342239515155958, "sequence": 28, "utc": "2026-10-26T05:38:15.109669+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a819d0008", "monotonic_ns": 342239633856666, "sequence": 29, "utc": "2026-10-26T05:38:15.228357+00:00"}
+{"event": "decoded", "frame_hex": "5a819d0008", "kind": "normal", "monotonic_ns": 342239634015750, "response": 129, "sequence": 30, "token": 157, "utc": "2026-10-26T05:38:15.228526+00:00"}
+{"event": "command_result", "label": "common-output-3", "metric": true, "monotonic_ns": 342239634081958, "operand": 0, "operation": "step", "response": 129, "seconds": 0.118982, "sequence": 31, "token": 157, "utc": "2026-10-26T05:38:15.228595+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-4", "monotonic_ns": 342239634148500, "sequence": 32, "utc": "2026-10-26T05:38:15.228661+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342239634234375, "sequence": 33, "utc": "2026-10-26T05:38:15.228740+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a812000ae", "monotonic_ns": 342239752805833, "sequence": 34, "utc": "2026-10-26T05:38:15.347306+00:00"}
+{"event": "decoded", "frame_hex": "5a812000ae", "kind": "normal", "monotonic_ns": 342239752940583, "response": 129, "sequence": 35, "token": 32, "utc": "2026-10-26T05:38:15.347451+00:00"}
+{"event": "command_result", "label": "common-output-4", "metric": true, "monotonic_ns": 342239753011083, "operand": 0, "operation": "step", "response": 129, "seconds": 0.118865542, "sequence": 36, "token": 32, "utc": "2026-10-26T05:38:15.347524+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-5", "monotonic_ns": 342239753071791, "sequence": 37, "utc": "2026-10-26T05:38:15.347586+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342239753152875, "sequence": 38, "utc": "2026-10-26T05:38:15.347664+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a819505bb", "monotonic_ns": 342239888775625, "sequence": 39, "utc": "2026-10-26T05:38:15.483281+00:00"}
+{"event": "decoded", "frame_hex": "5a819505bb", "kind": "normal", "monotonic_ns": 342239888941625, "response": 129, "sequence": 40, "token": 1429, "utc": "2026-10-26T05:38:15.483455+00:00"}
+{"event": "command_result", "label": "common-output-5", "metric": true, "monotonic_ns": 342239888993750, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135925916, "sequence": 41, "token": 1429, "utc": "2026-10-26T05:38:15.483508+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-6", "monotonic_ns": 342239889062083, "sequence": 42, "utc": "2026-10-26T05:38:15.483574+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342239889131125, "sequence": 43, "utc": "2026-10-26T05:38:15.483645+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8173009d", "monotonic_ns": 342240024764041, "sequence": 44, "utc": "2026-10-26T05:38:15.619270+00:00"}
+{"event": "decoded", "frame_hex": "5a8173009d", "kind": "normal", "monotonic_ns": 342240024857958, "response": 129, "sequence": 45, "token": 115, "utc": "2026-10-26T05:38:15.619373+00:00"}
+{"event": "command_result", "label": "common-output-6", "metric": true, "monotonic_ns": 342240024910875, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135855375, "sequence": 46, "token": 115, "utc": "2026-10-26T05:38:15.619426+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-7", "monotonic_ns": 342240025089166, "sequence": 47, "utc": "2026-10-26T05:38:15.619605+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342240025148250, "sequence": 48, "utc": "2026-10-26T05:38:15.619664+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8115031f", "monotonic_ns": 342240160792875, "sequence": 49, "utc": "2026-10-26T05:38:15.755297+00:00"}
+{"event": "decoded", "frame_hex": "5a8115031f", "kind": "normal", "monotonic_ns": 342240160923541, "response": 129, "sequence": 50, "token": 789, "utc": "2026-10-26T05:38:15.755438+00:00"}
+{"event": "command_result", "label": "common-output-7", "metric": true, "monotonic_ns": 342240160990833, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135899042, "sequence": 51, "token": 789, "utc": "2026-10-26T05:38:15.755504+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-8", "monotonic_ns": 342240161060166, "sequence": 52, "utc": "2026-10-26T05:38:15.755576+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342240161119333, "sequence": 53, "utc": "2026-10-26T05:38:15.755633+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342240296804833, "sequence": 54, "utc": "2026-10-26T05:38:15.891310+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342240296955208, "response": 129, "sequence": 55, "token": 15, "utc": "2026-10-26T05:38:15.891462+00:00"}
+{"event": "command_result", "label": "common-output-8", "metric": true, "monotonic_ns": 342240297051750, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135992875, "sequence": 56, "token": 15, "utc": "2026-10-26T05:38:15.891567+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-9", "monotonic_ns": 342240297147333, "sequence": 57, "utc": "2026-10-26T05:38:15.891637+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342240297232500, "sequence": 58, "utc": "2026-10-26T05:38:15.891747+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8167009e", "monotonic_ns": 342240432777541, "sequence": 59, "utc": "2026-10-26T05:38:16.027283+00:00"}
+{"event": "decoded", "frame_hex": "5a8167009e", "kind": "normal", "monotonic_ns": 342240432887416, "response": 129, "sequence": 60, "token": 103, "utc": "2026-10-26T05:38:16.027402+00:00"}
+{"event": "command_result", "label": "common-output-9", "metric": true, "monotonic_ns": 342240432962333, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135844542, "sequence": 61, "token": 103, "utc": "2026-10-26T05:38:16.027479+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-10", "monotonic_ns": 342240433024583, "sequence": 62, "utc": "2026-10-26T05:38:16.027539+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342240433100333, "sequence": 63, "utc": "2026-10-26T05:38:16.027617+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81a50059", "monotonic_ns": 342240568765041, "sequence": 64, "utc": "2026-10-26T05:38:16.163269+00:00"}
+{"event": "decoded", "frame_hex": "5a81a50059", "kind": "normal", "monotonic_ns": 342240568916208, "response": 129, "sequence": 65, "token": 165, "utc": "2026-10-26T05:38:16.163431+00:00"}
+{"event": "command_result", "label": "common-output-10", "metric": true, "monotonic_ns": 342240569020791, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135991, "sequence": 66, "token": 165, "utc": "2026-10-26T05:38:16.163530+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-11", "monotonic_ns": 342240569154500, "sequence": 67, "utc": "2026-10-26T05:38:16.163669+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342240569237833, "sequence": 68, "utc": "2026-10-26T05:38:16.163755+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a815d00e5", "monotonic_ns": 342240704754791, "sequence": 69, "utc": "2026-10-26T05:38:16.299259+00:00"}
+{"event": "decoded", "frame_hex": "5a815d00e5", "kind": "normal", "monotonic_ns": 342240704935375, "response": 129, "sequence": 70, "token": 93, "utc": "2026-10-26T05:38:16.299444+00:00"}
+{"event": "command_result", "label": "common-output-11", "metric": true, "monotonic_ns": 342240705048833, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135896417, "sequence": 71, "token": 93, "utc": "2026-10-26T05:38:16.299564+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-12", "monotonic_ns": 342240705143875, "sequence": 72, "utc": "2026-10-26T05:38:16.299662+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342240705211791, "sequence": 73, "utc": "2026-10-26T05:38:16.299730+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8140015c", "monotonic_ns": 342240840747875, "sequence": 74, "utc": "2026-10-26T05:38:16.435254+00:00"}
+{"event": "decoded", "frame_hex": "5a8140015c", "kind": "normal", "monotonic_ns": 342240840871458, "response": 129, "sequence": 75, "token": 320, "utc": "2026-10-26T05:38:16.435390+00:00"}
+{"event": "command_result", "label": "common-output-12", "metric": true, "monotonic_ns": 342240840939041, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135797625, "sequence": 76, "token": 320, "utc": "2026-10-26T05:38:16.435456+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-13", "monotonic_ns": 342240841016000, "sequence": 77, "utc": "2026-10-26T05:38:16.435535+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342240841065958, "sequence": 78, "utc": "2026-10-26T05:38:16.435585+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8155004d", "monotonic_ns": 342240976752208, "sequence": 79, "utc": "2026-10-26T05:38:16.571259+00:00"}
+{"event": "decoded", "frame_hex": "5a8155004d", "kind": "normal", "monotonic_ns": 342240976882958, "response": 129, "sequence": 80, "token": 85, "utc": "2026-10-26T05:38:16.571402+00:00"}
+{"event": "command_result", "label": "common-output-13", "metric": true, "monotonic_ns": 342240976949166, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135937042, "sequence": 81, "token": 85, "utc": "2026-10-26T05:38:16.571469+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-14", "monotonic_ns": 342240977040375, "sequence": 82, "utc": "2026-10-26T05:38:16.571558+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342240977115208, "sequence": 83, "utc": "2026-10-26T05:38:16.571634+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8189010c", "monotonic_ns": 342241112726750, "sequence": 84, "utc": "2026-10-26T05:38:16.707235+00:00"}
+{"event": "decoded", "frame_hex": "5a8189010c", "kind": "normal", "monotonic_ns": 342241112836958, "response": 129, "sequence": 85, "token": 393, "utc": "2026-10-26T05:38:16.707357+00:00"}
+{"event": "command_result", "label": "common-output-14", "metric": true, "monotonic_ns": 342241112952291, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135917833, "sequence": 86, "token": 393, "utc": "2026-10-26T05:38:16.707471+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-15", "monotonic_ns": 342241113029750, "sequence": 87, "utc": "2026-10-26T05:38:16.707550+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342241113093166, "sequence": 88, "utc": "2026-10-26T05:38:16.707614+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a816303c3", "monotonic_ns": 342241248696708, "sequence": 89, "utc": "2026-10-26T05:38:16.843205+00:00"}
+{"event": "decoded", "frame_hex": "5a816303c3", "kind": "normal", "monotonic_ns": 342241248838041, "response": 129, "sequence": 90, "token": 867, "utc": "2026-10-26T05:38:16.843356+00:00"}
+{"event": "command_result", "label": "common-output-15", "metric": true, "monotonic_ns": 342241248967291, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135938958, "sequence": 91, "token": 867, "utc": "2026-10-26T05:38:16.843488+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-16", "monotonic_ns": 342241249026541, "sequence": 92, "utc": "2026-10-26T05:38:16.843548+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342241249074333, "sequence": 93, "utc": "2026-10-26T05:38:16.843595+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8155004d", "monotonic_ns": 342241384742500, "sequence": 94, "utc": "2026-10-26T05:38:16.979239+00:00"}
+{"event": "decoded", "frame_hex": "5a8155004d", "kind": "normal", "monotonic_ns": 342241384892083, "response": 129, "sequence": 95, "token": 85, "utc": "2026-10-26T05:38:16.979409+00:00"}
+{"event": "command_result", "label": "common-output-16", "metric": true, "monotonic_ns": 342241384980291, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135951875, "sequence": 96, "token": 85, "utc": "2026-10-26T05:38:16.979500+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-17", "monotonic_ns": 342241385078291, "sequence": 97, "utc": "2026-10-26T05:38:16.979597+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342241385153958, "sequence": 98, "utc": "2026-10-26T05:38:16.979675+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81fb028d", "monotonic_ns": 342241520658000, "sequence": 99, "utc": "2026-10-26T05:38:17.115170+00:00"}
+{"event": "decoded", "frame_hex": "5a81fb028d", "kind": "normal", "monotonic_ns": 342241520754250, "response": 129, "sequence": 100, "token": 763, "utc": "2026-10-26T05:38:17.115276+00:00"}
+{"event": "command_result", "label": "common-output-17", "metric": true, "monotonic_ns": 342241520795958, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135726583, "sequence": 101, "token": 763, "utc": "2026-10-26T05:38:17.115318+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-18", "monotonic_ns": 342241520855375, "sequence": 102, "utc": "2026-10-26T05:38:17.115375+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342241520915000, "sequence": 103, "utc": "2026-10-26T05:38:17.115437+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81680253", "monotonic_ns": 342241656656000, "sequence": 104, "utc": "2026-10-26T05:38:17.251166+00:00"}
+{"event": "decoded", "frame_hex": "5a81680253", "kind": "normal", "monotonic_ns": 342241656762625, "response": 129, "sequence": 105, "token": 616, "utc": "2026-10-26T05:38:17.251285+00:00"}
+{"event": "command_result", "label": "common-output-18", "metric": true, "monotonic_ns": 342241656811416, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135961875, "sequence": 106, "token": 616, "utc": "2026-10-26T05:38:17.251334+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-19", "monotonic_ns": 342241656871625, "sequence": 107, "utc": "2026-10-26T05:38:17.251392+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342241656932958, "sequence": 108, "utc": "2026-10-26T05:38:17.251455+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342241792712416, "sequence": 109, "utc": "2026-10-26T05:38:17.387227+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342241792843375, "response": 129, "sequence": 110, "token": 15, "utc": "2026-10-26T05:38:17.387359+00:00"}
+{"event": "command_result", "label": "common-output-19", "metric": true, "monotonic_ns": 342241792925500, "operand": 0, "operation": "step", "response": 129, "seconds": 0.136058875, "sequence": 111, "token": 15, "utc": "2026-10-26T05:38:17.387448+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-20", "monotonic_ns": 342241792979458, "sequence": 112, "utc": "2026-10-26T05:38:17.387503+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342241793080583, "sequence": 113, "utc": "2026-10-26T05:38:17.387602+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8167009e", "monotonic_ns": 342241928749541, "sequence": 114, "utc": "2026-10-26T05:38:17.523259+00:00"}
+{"event": "decoded", "frame_hex": "5a8167009e", "kind": "normal", "monotonic_ns": 342241928876041, "response": 129, "sequence": 115, "token": 103, "utc": "2026-10-26T05:38:17.523399+00:00"}
+{"event": "command_result", "label": "common-output-20", "metric": true, "monotonic_ns": 342241928930541, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135953542, "sequence": 116, "token": 103, "utc": "2026-10-26T05:38:17.523455+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-21", "monotonic_ns": 342241928988500, "sequence": 117, "utc": "2026-10-26T05:38:17.523513+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342241929046750, "sequence": 118, "utc": "2026-10-26T05:38:17.523568+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81d502f5", "monotonic_ns": 342242064718875, "sequence": 119, "utc": "2026-10-26T05:38:17.659229+00:00"}
+{"event": "decoded", "frame_hex": "5a81d502f5", "kind": "normal", "monotonic_ns": 342242064831916, "response": 129, "sequence": 120, "token": 725, "utc": "2026-10-26T05:38:17.659356+00:00"}
+{"event": "command_result", "label": "common-output-21", "metric": true, "monotonic_ns": 342242064891250, "operand": 0, "operation": "step", "response": 129, "seconds": 0.1358995, "sequence": 121, "token": 725, "utc": "2026-10-26T05:38:17.659413+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-22", "monotonic_ns": 342242064965333, "sequence": 122, "utc": "2026-10-26T05:38:17.659490+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342242065022375, "sequence": 123, "utc": "2026-10-26T05:38:17.659547+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a816c010e", "monotonic_ns": 342242200664625, "sequence": 124, "utc": "2026-10-26T05:38:17.795180+00:00"}
+{"event": "decoded", "frame_hex": "5a816c010e", "kind": "normal", "monotonic_ns": 342242200821291, "response": 129, "sequence": 125, "token": 364, "utc": "2026-10-26T05:38:17.795337+00:00"}
+{"event": "command_result", "label": "common-output-22", "metric": true, "monotonic_ns": 342242200920333, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135952583, "sequence": 126, "token": 364, "utc": "2026-10-26T05:38:17.795443+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-23", "monotonic_ns": 342242200998875, "sequence": 127, "utc": "2026-10-26T05:38:17.795524+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342242201060541, "sequence": 128, "utc": "2026-10-26T05:38:17.795585+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8155004d", "monotonic_ns": 342242336666666, "sequence": 129, "utc": "2026-10-26T05:38:17.931183+00:00"}
+{"event": "decoded", "frame_hex": "5a8155004d", "kind": "normal", "monotonic_ns": 342242336806416, "response": 129, "sequence": 130, "token": 85, "utc": "2026-10-26T05:38:17.931332+00:00"}
+{"event": "command_result", "label": "common-output-23", "metric": true, "monotonic_ns": 342242336875333, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135880875, "sequence": 131, "token": 85, "utc": "2026-10-26T05:38:17.931401+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-24", "monotonic_ns": 342242336942250, "sequence": 132, "utc": "2026-10-26T05:38:17.931465+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342242337014791, "sequence": 133, "utc": "2026-10-26T05:38:17.931540+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a817a022e", "monotonic_ns": 342242472634500, "sequence": 134, "utc": "2026-10-26T05:38:18.067151+00:00"}
+{"event": "decoded", "frame_hex": "5a817a022e", "kind": "normal", "monotonic_ns": 342242472858041, "response": 129, "sequence": 135, "token": 634, "utc": "2026-10-26T05:38:18.067382+00:00"}
+{"event": "command_result", "label": "common-output-24", "metric": true, "monotonic_ns": 342242472991541, "operand": 0, "operation": "step", "response": 129, "seconds": 0.1360565, "sequence": 136, "token": 634, "utc": "2026-10-26T05:38:18.067518+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-25", "monotonic_ns": 342242473061583, "sequence": 137, "utc": "2026-10-26T05:38:18.067588+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342242473144291, "sequence": 138, "utc": "2026-10-26T05:38:18.067670+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810d00e9", "monotonic_ns": 342242608643750, "sequence": 139, "utc": "2026-10-26T05:38:18.203157+00:00"}
+{"event": "decoded", "frame_hex": "5a810d00e9", "kind": "normal", "monotonic_ns": 342242608761625, "response": 129, "sequence": 140, "token": 13, "utc": "2026-10-26T05:38:18.203288+00:00"}
+{"event": "command_result", "label": "common-output-25", "metric": true, "monotonic_ns": 342242608825791, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135766375, "sequence": 141, "token": 13, "utc": "2026-10-26T05:38:18.203353+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-26", "monotonic_ns": 342242608891458, "sequence": 142, "utc": "2026-10-26T05:38:18.203419+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342242608954375, "sequence": 143, "utc": "2026-10-26T05:38:18.203482+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a812d055c", "monotonic_ns": 342242744642791, "sequence": 144, "utc": "2026-10-26T05:38:18.339156+00:00"}
+{"event": "decoded", "frame_hex": "5a812d055c", "kind": "normal", "monotonic_ns": 342242744795708, "response": 129, "sequence": 145, "token": 1325, "utc": "2026-10-26T05:38:18.339322+00:00"}
+{"event": "command_result", "label": "common-output-26", "metric": true, "monotonic_ns": 342242744872041, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135981833, "sequence": 146, "token": 1325, "utc": "2026-10-26T05:38:18.339400+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-27", "monotonic_ns": 342242744948000, "sequence": 147, "utc": "2026-10-26T05:38:18.339476+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342242745020375, "sequence": 148, "utc": "2026-10-26T05:38:18.339545+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a819e0037", "monotonic_ns": 342242880633625, "sequence": 149, "utc": "2026-10-26T05:38:18.475151+00:00"}
+{"event": "decoded", "frame_hex": "5a819e0037", "kind": "normal", "monotonic_ns": 342242880758958, "response": 129, "sequence": 150, "token": 158, "utc": "2026-10-26T05:38:18.475284+00:00"}
+{"event": "command_result", "label": "common-output-27", "metric": true, "monotonic_ns": 342242880822958, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135877084, "sequence": 151, "token": 158, "utc": "2026-10-26T05:38:18.475351+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-28", "monotonic_ns": 342242880896333, "sequence": 152, "utc": "2026-10-26T05:38:18.475425+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342242880965500, "sequence": 153, "utc": "2026-10-26T05:38:18.475494+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81200991", "monotonic_ns": 342243016589250, "sequence": 154, "utc": "2026-10-26T05:38:18.611104+00:00"}
+{"event": "decoded", "frame_hex": "5a81200991", "kind": "normal", "monotonic_ns": 342243016755500, "response": 129, "sequence": 155, "token": 2336, "utc": "2026-10-26T05:38:18.611281+00:00"}
+{"event": "command_result", "label": "common-output-28", "metric": true, "monotonic_ns": 342243016856750, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135959416, "sequence": 156, "token": 2336, "utc": "2026-10-26T05:38:18.611383+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-29", "monotonic_ns": 342243017023833, "sequence": 157, "utc": "2026-10-26T05:38:18.611553+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342243017100958, "sequence": 158, "utc": "2026-10-26T05:38:18.611630+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342243169602833, "sequence": 159, "utc": "2026-10-26T05:38:18.764121+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342243169760541, "response": 129, "sequence": 160, "token": 15, "utc": "2026-10-26T05:38:18.764288+00:00"}
+{"event": "command_result", "label": "common-output-29", "metric": true, "monotonic_ns": 342243169853416, "operand": 0, "operation": "step", "response": 129, "seconds": 0.1528345, "sequence": 161, "token": 15, "utc": "2026-10-26T05:38:18.764383+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-30", "monotonic_ns": 342243169932958, "sequence": 162, "utc": "2026-10-26T05:38:18.764463+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342243170012083, "sequence": 163, "utc": "2026-10-26T05:38:18.764540+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8155004d", "monotonic_ns": 342243322602833, "sequence": 164, "utc": "2026-10-26T05:38:18.917120+00:00"}
+{"event": "decoded", "frame_hex": "5a8155004d", "kind": "normal", "monotonic_ns": 342243322730583, "response": 129, "sequence": 165, "token": 85, "utc": "2026-10-26T05:38:18.917259+00:00"}
+{"event": "command_result", "label": "common-output-30", "metric": true, "monotonic_ns": 342243322803250, "operand": 0, "operation": "step", "response": 129, "seconds": 0.1528695, "sequence": 166, "token": 85, "utc": "2026-10-26T05:38:18.917331+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-31", "monotonic_ns": 342243322883041, "sequence": 167, "utc": "2026-10-26T05:38:18.917413+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342243322944875, "sequence": 168, "utc": "2026-10-26T05:38:18.917476+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81500202", "monotonic_ns": 342243475594041, "sequence": 169, "utc": "2026-10-26T05:38:19.070115+00:00"}
+{"event": "decoded", "frame_hex": "5a81500202", "kind": "normal", "monotonic_ns": 342243475727875, "response": 129, "sequence": 170, "token": 592, "utc": "2026-10-26T05:38:19.070256+00:00"}
+{"event": "command_result", "label": "common-output-31", "metric": true, "monotonic_ns": 342243475803041, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152922875, "sequence": 171, "token": 592, "utc": "2026-10-26T05:38:19.070334+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-32", "monotonic_ns": 342243475871333, "sequence": 172, "utc": "2026-10-26T05:38:19.070403+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342243475958875, "sequence": 173, "utc": "2026-10-26T05:38:19.070482+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a814a04c5", "monotonic_ns": 342243611586333, "sequence": 174, "utc": "2026-10-26T05:38:19.206106+00:00"}
+{"event": "decoded", "frame_hex": "5a814a04c5", "kind": "normal", "monotonic_ns": 342243611718583, "response": 129, "sequence": 175, "token": 1098, "utc": "2026-10-26T05:38:19.206250+00:00"}
+{"event": "command_result", "label": "common-output-32", "metric": true, "monotonic_ns": 342243611786583, "operand": 0, "operation": "step", "response": 129, "seconds": 0.135914208, "sequence": 176, "token": 1098, "utc": "2026-10-26T05:38:19.206317+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-33", "monotonic_ns": 342243611866375, "sequence": 177, "utc": "2026-10-26T05:38:19.206398+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342243611933875, "sequence": 178, "utc": "2026-10-26T05:38:19.206466+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81c80045", "monotonic_ns": 342243764571583, "sequence": 179, "utc": "2026-10-26T05:38:19.359092+00:00"}
+{"event": "decoded", "frame_hex": "5a81c80045", "kind": "normal", "monotonic_ns": 342243764693500, "response": 129, "sequence": 180, "token": 200, "utc": "2026-10-26T05:38:19.359226+00:00"}
+{"event": "command_result", "label": "common-output-33", "metric": true, "monotonic_ns": 342243764817125, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152924167, "sequence": 181, "token": 200, "utc": "2026-10-26T05:38:19.359333+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-34", "monotonic_ns": 342243764932458, "sequence": 182, "utc": "2026-10-26T05:38:19.359462+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342243765013041, "sequence": 183, "utc": "2026-10-26T05:38:19.359543+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a815d00e5", "monotonic_ns": 342243917550000, "sequence": 184, "utc": "2026-10-26T05:38:19.512071+00:00"}
+{"event": "decoded", "frame_hex": "5a815d00e5", "kind": "normal", "monotonic_ns": 342243917660083, "response": 129, "sequence": 185, "token": 93, "utc": "2026-10-26T05:38:19.512193+00:00"}
+{"event": "command_result", "label": "common-output-34", "metric": true, "monotonic_ns": 342243917712625, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152788708, "sequence": 186, "token": 93, "utc": "2026-10-26T05:38:19.512246+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-35", "monotonic_ns": 342243917767041, "sequence": 187, "utc": "2026-10-26T05:38:19.512301+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342243917819083, "sequence": 188, "utc": "2026-10-26T05:38:19.512353+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a812000ae", "monotonic_ns": 342244070641333, "sequence": 189, "utc": "2026-10-26T05:38:19.665167+00:00"}
+{"event": "decoded", "frame_hex": "5a812000ae", "kind": "normal", "monotonic_ns": 342244070747500, "response": 129, "sequence": 190, "token": 32, "utc": "2026-10-26T05:38:19.665281+00:00"}
+{"event": "command_result", "label": "common-output-35", "metric": true, "monotonic_ns": 342244070800083, "operand": 0, "operation": "step", "response": 129, "seconds": 0.15303525, "sequence": 191, "token": 32, "utc": "2026-10-26T05:38:19.665334+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-36", "monotonic_ns": 342244070855625, "sequence": 192, "utc": "2026-10-26T05:38:19.665390+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342244070906916, "sequence": 193, "utc": "2026-10-26T05:38:19.665442+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81be0297", "monotonic_ns": 342244223597416, "sequence": 194, "utc": "2026-10-26T05:38:19.818120+00:00"}
+{"event": "decoded", "frame_hex": "5a81be0297", "kind": "normal", "monotonic_ns": 342244223714000, "response": 129, "sequence": 195, "token": 702, "utc": "2026-10-26T05:38:19.818246+00:00"}
+{"event": "command_result", "label": "common-output-36", "metric": true, "monotonic_ns": 342244223774250, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152919958, "sequence": 196, "token": 702, "utc": "2026-10-26T05:38:19.818309+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-37", "monotonic_ns": 342244223829000, "sequence": 197, "utc": "2026-10-26T05:38:19.818364+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342244223879583, "sequence": 198, "utc": "2026-10-26T05:38:19.818406+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342244376550458, "sequence": 199, "utc": "2026-10-26T05:38:19.971076+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342244376644333, "response": 129, "sequence": 200, "token": 15, "utc": "2026-10-26T05:38:19.971179+00:00"}
+{"event": "command_result", "label": "common-output-37", "metric": true, "monotonic_ns": 342244376757500, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152931375, "sequence": 201, "token": 15, "utc": "2026-10-26T05:38:19.971293+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-38", "monotonic_ns": 342244376820250, "sequence": 202, "utc": "2026-10-26T05:38:19.971354+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342244376885750, "sequence": 203, "utc": "2026-10-26T05:38:19.971421+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81a801b7", "monotonic_ns": 342244529569166, "sequence": 204, "utc": "2026-10-26T05:38:20.124092+00:00"}
+{"event": "decoded", "frame_hex": "5a81a801b7", "kind": "normal", "monotonic_ns": 342244529706541, "response": 129, "sequence": 205, "token": 424, "utc": "2026-10-26T05:38:20.124240+00:00"}
+{"event": "command_result", "label": "common-output-38", "metric": true, "monotonic_ns": 342244529775666, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152957792, "sequence": 206, "token": 424, "utc": "2026-10-26T05:38:20.124310+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-39", "monotonic_ns": 342244529841041, "sequence": 207, "utc": "2026-10-26T05:38:20.124377+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342244529912958, "sequence": 208, "utc": "2026-10-26T05:38:20.124449+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810d00e9", "monotonic_ns": 342244682518625, "sequence": 209, "utc": "2026-10-26T05:38:20.277047+00:00"}
+{"event": "decoded", "frame_hex": "5a810d00e9", "kind": "normal", "monotonic_ns": 342244682636541, "response": 129, "sequence": 210, "token": 13, "utc": "2026-10-26T05:38:20.277173+00:00"}
+{"event": "command_result", "label": "common-output-39", "metric": true, "monotonic_ns": 342244682694083, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152852791, "sequence": 211, "token": 13, "utc": "2026-10-26T05:38:20.277228+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-40", "monotonic_ns": 342244682765291, "sequence": 212, "utc": "2026-10-26T05:38:20.277302+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342244682816458, "sequence": 213, "utc": "2026-10-26T05:38:20.277354+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8167009e", "monotonic_ns": 342244835516708, "sequence": 214, "utc": "2026-10-26T05:38:20.430043+00:00"}
+{"event": "decoded", "frame_hex": "5a8167009e", "kind": "normal", "monotonic_ns": 342244836398208, "response": 129, "sequence": 215, "token": 103, "utc": "2026-10-26T05:38:20.430932+00:00"}
+{"event": "command_result", "label": "common-output-40", "metric": true, "monotonic_ns": 342244836472500, "operand": 0, "operation": "step", "response": 129, "seconds": 0.153708041, "sequence": 216, "token": 103, "utc": "2026-10-26T05:38:20.431009+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-41", "monotonic_ns": 342244836542291, "sequence": 217, "utc": "2026-10-26T05:38:20.431080+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342244836603666, "sequence": 218, "utc": "2026-10-26T05:38:20.431141+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81e50002", "monotonic_ns": 342244988599625, "sequence": 219, "utc": "2026-10-26T05:38:20.583127+00:00"}
+{"event": "decoded", "frame_hex": "5a81e50002", "kind": "normal", "monotonic_ns": 342244988714833, "response": 129, "sequence": 220, "token": 229, "utc": "2026-10-26T05:38:20.583253+00:00"}
+{"event": "command_result", "label": "common-output-41", "metric": true, "monotonic_ns": 342244988778583, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152235709, "sequence": 221, "token": 229, "utc": "2026-10-26T05:38:20.583314+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-42", "monotonic_ns": 342244988849583, "sequence": 222, "utc": "2026-10-26T05:38:20.583388+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342244988983291, "sequence": 223, "utc": "2026-10-26T05:38:20.583522+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a812000ae", "monotonic_ns": 342245141540250, "sequence": 224, "utc": "2026-10-26T05:38:20.736067+00:00"}
+{"event": "decoded", "frame_hex": "5a812000ae", "kind": "normal", "monotonic_ns": 342245142138166, "response": 129, "sequence": 225, "token": 32, "utc": "2026-10-26T05:38:20.736667+00:00"}
+{"event": "command_result", "label": "common-output-42", "metric": true, "monotonic_ns": 342245142630041, "operand": 0, "operation": "step", "response": 129, "seconds": 0.15376675, "sequence": 226, "token": 32, "utc": "2026-10-26T05:38:20.737161+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-43", "monotonic_ns": 342245143161041, "sequence": 227, "utc": "2026-10-26T05:38:20.737697+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342245143561166, "sequence": 228, "utc": "2026-10-26T05:38:20.738100+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a817c0442", "monotonic_ns": 342245294503625, "sequence": 229, "utc": "2026-10-26T05:38:20.889032+00:00"}
+{"event": "decoded", "frame_hex": "5a817c0442", "kind": "normal", "monotonic_ns": 342245294647250, "response": 129, "sequence": 230, "token": 1148, "utc": "2026-10-26T05:38:20.889184+00:00"}
+{"event": "command_result", "label": "common-output-43", "metric": true, "monotonic_ns": 342245294723041, "operand": 0, "operation": "step", "response": 129, "seconds": 0.151571042, "sequence": 231, "token": 1148, "utc": "2026-10-26T05:38:20.889263+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-44", "monotonic_ns": 342245294797750, "sequence": 232, "utc": "2026-10-26T05:38:20.889338+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342245294860708, "sequence": 233, "utc": "2026-10-26T05:38:20.889401+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342245447529000, "sequence": 234, "utc": "2026-10-26T05:38:21.042055+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342245447679916, "response": 129, "sequence": 235, "token": 15, "utc": "2026-10-26T05:38:21.042213+00:00"}
+{"event": "command_result", "label": "common-output-44", "metric": true, "monotonic_ns": 342245447783208, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152984375, "sequence": 236, "token": 15, "utc": "2026-10-26T05:38:21.042321+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-45", "monotonic_ns": 342245447869375, "sequence": 237, "utc": "2026-10-26T05:38:21.042409+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342245447949416, "sequence": 238, "utc": "2026-10-26T05:38:21.042489+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8178000a", "monotonic_ns": 342245600474208, "sequence": 239, "utc": "2026-10-26T05:38:21.195004+00:00"}
+{"event": "decoded", "frame_hex": "5a8178000a", "kind": "normal", "monotonic_ns": 342245600613333, "response": 129, "sequence": 240, "token": 120, "utc": "2026-10-26T05:38:21.195154+00:00"}
+{"event": "command_result", "label": "common-output-45", "metric": true, "monotonic_ns": 342245600678708, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152814125, "sequence": 241, "token": 120, "utc": "2026-10-26T05:38:21.195220+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-46", "monotonic_ns": 342245600746416, "sequence": 242, "utc": "2026-10-26T05:38:21.195288+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342245600803250, "sequence": 243, "utc": "2026-10-26T05:38:21.195341+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a817f0061", "monotonic_ns": 342245753484291, "sequence": 244, "utc": "2026-10-26T05:38:21.348013+00:00"}
+{"event": "decoded", "frame_hex": "5a817f0061", "kind": "normal", "monotonic_ns": 342245753676583, "response": 129, "sequence": 245, "token": 127, "utc": "2026-10-26T05:38:21.348218+00:00"}
+{"event": "command_result", "label": "common-output-46", "metric": true, "monotonic_ns": 342245753814333, "operand": 0, "operation": "step", "response": 129, "seconds": 0.153065375, "sequence": 246, "token": 127, "utc": "2026-10-26T05:38:21.348354+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-47", "monotonic_ns": 342245753908125, "sequence": 247, "utc": "2026-10-26T05:38:21.348450+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342245753982291, "sequence": 248, "utc": "2026-10-26T05:38:21.348525+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81560175", "monotonic_ns": 342245906457583, "sequence": 249, "utc": "2026-10-26T05:38:21.500988+00:00"}
+{"event": "decoded", "frame_hex": "5a81560175", "kind": "normal", "monotonic_ns": 342245906602125, "response": 129, "sequence": 250, "token": 342, "utc": "2026-10-26T05:38:21.501142+00:00"}
+{"event": "command_result", "label": "common-output-47", "metric": true, "monotonic_ns": 342245906693375, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152783583, "sequence": 251, "token": 342, "utc": "2026-10-26T05:38:21.501233+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-48", "monotonic_ns": 342245906783458, "sequence": 252, "utc": "2026-10-26T05:38:21.501326+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342245906913333, "sequence": 253, "utc": "2026-10-26T05:38:21.501456+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a815e00da", "monotonic_ns": 342246059553500, "sequence": 254, "utc": "2026-10-26T05:38:21.654086+00:00"}
+{"event": "decoded", "frame_hex": "5a815e00da", "kind": "normal", "monotonic_ns": 342246059731458, "response": 129, "sequence": 255, "token": 94, "utc": "2026-10-26T05:38:21.654263+00:00"}
+{"event": "command_result", "label": "common-output-48", "metric": true, "monotonic_ns": 342246059885083, "operand": 0, "operation": "step", "response": 129, "seconds": 0.153100042, "sequence": 256, "token": 94, "utc": "2026-10-26T05:38:21.654425+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-49", "monotonic_ns": 342246059994750, "sequence": 257, "utc": "2026-10-26T05:38:21.654538+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342246060116875, "sequence": 258, "utc": "2026-10-26T05:38:21.654647+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a814d05a9", "monotonic_ns": 342246212457625, "sequence": 259, "utc": "2026-10-26T05:38:21.806992+00:00"}
+{"event": "decoded", "frame_hex": "5a814d05a9", "kind": "normal", "monotonic_ns": 342246212572208, "response": 129, "sequence": 260, "token": 1357, "utc": "2026-10-26T05:38:21.807116+00:00"}
+{"event": "command_result", "label": "common-output-49", "metric": true, "monotonic_ns": 342246212635916, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152646042, "sequence": 261, "token": 1357, "utc": "2026-10-26T05:38:21.807180+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-50", "monotonic_ns": 342246212714708, "sequence": 262, "utc": "2026-10-26T05:38:21.807259+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342246212778125, "sequence": 263, "utc": "2026-10-26T05:38:21.807322+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a816c0009", "monotonic_ns": 342246365505916, "sequence": 264, "utc": "2026-10-26T05:38:21.960040+00:00"}
+{"event": "decoded", "frame_hex": "5a816c0009", "kind": "normal", "monotonic_ns": 342246365644791, "response": 129, "sequence": 265, "token": 108, "utc": "2026-10-26T05:38:21.960187+00:00"}
+{"event": "command_result", "label": "common-output-50", "metric": true, "monotonic_ns": 342246365717583, "operand": 0, "operation": "step", "response": 129, "seconds": 0.153001625, "sequence": 266, "token": 108, "utc": "2026-10-26T05:38:21.960260+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-51", "monotonic_ns": 342246365891416, "sequence": 267, "utc": "2026-10-26T05:38:21.960436+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342246365946375, "sequence": 268, "utc": "2026-10-26T05:38:21.960491+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a815c04ec", "monotonic_ns": 342246518482458, "sequence": 269, "utc": "2026-10-26T05:38:22.113015+00:00"}
+{"event": "decoded", "frame_hex": "5a815c04ec", "kind": "normal", "monotonic_ns": 342246518611250, "response": 129, "sequence": 270, "token": 1116, "utc": "2026-10-26T05:38:22.113154+00:00"}
+{"event": "command_result", "label": "common-output-51", "metric": true, "monotonic_ns": 342246518683291, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152794833, "sequence": 271, "token": 1116, "utc": "2026-10-26T05:38:22.113228+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-52", "monotonic_ns": 342246518753333, "sequence": 272, "utc": "2026-10-26T05:38:22.113299+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342246518804625, "sequence": 273, "utc": "2026-10-26T05:38:22.113350+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342246671438416, "sequence": 274, "utc": "2026-10-26T05:38:22.265971+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342246671550333, "response": 129, "sequence": 275, "token": 15, "utc": "2026-10-26T05:38:22.266096+00:00"}
+{"event": "command_result", "label": "common-output-52", "metric": true, "monotonic_ns": 342246671604583, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152854083, "sequence": 276, "token": 15, "utc": "2026-10-26T05:38:22.266151+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-53", "monotonic_ns": 342246671781875, "sequence": 277, "utc": "2026-10-26T05:38:22.266326+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342246671840916, "sequence": 278, "utc": "2026-10-26T05:38:22.266387+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8167009e", "monotonic_ns": 342246824374208, "sequence": 279, "utc": "2026-10-26T05:38:22.418910+00:00"}
+{"event": "decoded", "frame_hex": "5a8167009e", "kind": "normal", "monotonic_ns": 342246824486000, "response": 129, "sequence": 280, "token": 103, "utc": "2026-10-26T05:38:22.419033+00:00"}
+{"event": "command_result", "label": "common-output-53", "metric": true, "monotonic_ns": 342246824534625, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152760125, "sequence": 281, "token": 103, "utc": "2026-10-26T05:38:22.419082+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-54", "monotonic_ns": 342246824591666, "sequence": 282, "utc": "2026-10-26T05:38:22.419139+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342246824639375, "sequence": 283, "utc": "2026-10-26T05:38:22.419187+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81a802be", "monotonic_ns": 342246977440875, "sequence": 284, "utc": "2026-10-26T05:38:22.571978+00:00"}
+{"event": "decoded", "frame_hex": "5a81a802be", "kind": "normal", "monotonic_ns": 342246977547916, "response": 129, "sequence": 285, "token": 680, "utc": "2026-10-26T05:38:22.572095+00:00"}
+{"event": "command_result", "label": "common-output-54", "metric": true, "monotonic_ns": 342246977595541, "operand": 0, "operation": "step", "response": 129, "seconds": 0.153005708, "sequence": 286, "token": 680, "utc": "2026-10-26T05:38:22.572143+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-55", "monotonic_ns": 342246977653416, "sequence": 287, "utc": "2026-10-26T05:38:22.572202+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342246977697458, "sequence": 288, "utc": "2026-10-26T05:38:22.572246+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8178000a", "monotonic_ns": 342247130361958, "sequence": 289, "utc": "2026-10-26T05:38:22.724899+00:00"}
+{"event": "decoded", "frame_hex": "5a8178000a", "kind": "normal", "monotonic_ns": 342247130495666, "response": 129, "sequence": 290, "token": 120, "utc": "2026-10-26T05:38:22.725042+00:00"}
+{"event": "command_result", "label": "common-output-55", "metric": true, "monotonic_ns": 342247130559416, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152907791, "sequence": 291, "token": 120, "utc": "2026-10-26T05:38:22.725108+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-56", "monotonic_ns": 342247130619041, "sequence": 292, "utc": "2026-10-26T05:38:22.725168+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342247130678666, "sequence": 293, "utc": "2026-10-26T05:38:22.725226+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81cf0327", "monotonic_ns": 342247283505708, "sequence": 294, "utc": "2026-10-26T05:38:22.878045+00:00"}
+{"event": "decoded", "frame_hex": "5a81cf0327", "kind": "normal", "monotonic_ns": 342247283622083, "response": 129, "sequence": 295, "token": 975, "utc": "2026-10-26T05:38:22.878168+00:00"}
+{"event": "command_result", "label": "common-output-56", "metric": true, "monotonic_ns": 342247283688541, "operand": 0, "operation": "step", "response": 129, "seconds": 0.153071125, "sequence": 296, "token": 975, "utc": "2026-10-26T05:38:22.878237+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-57", "monotonic_ns": 342247283750416, "sequence": 297, "utc": "2026-10-26T05:38:22.878300+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342247283801500, "sequence": 298, "utc": "2026-10-26T05:38:22.878351+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810d00e9", "monotonic_ns": 342247436414750, "sequence": 299, "utc": "2026-10-26T05:38:23.030953+00:00"}
+{"event": "decoded", "frame_hex": "5a810d00e9", "kind": "normal", "monotonic_ns": 342247436541041, "response": 129, "sequence": 300, "token": 13, "utc": "2026-10-26T05:38:23.031088+00:00"}
+{"event": "command_result", "label": "common-output-57", "metric": true, "monotonic_ns": 342247436614291, "operand": 0, "operation": "step", "response": 129, "seconds": 0.152865333, "sequence": 301, "token": 13, "utc": "2026-10-26T05:38:23.031164+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-58", "monotonic_ns": 342247436678416, "sequence": 302, "utc": "2026-10-26T05:38:23.031229+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342247436750125, "sequence": 303, "utc": "2026-10-26T05:38:23.031299+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a815e00da", "monotonic_ns": 342247606418375, "sequence": 304, "utc": "2026-10-26T05:38:23.200956+00:00"}
+{"event": "decoded", "frame_hex": "5a815e00da", "kind": "normal", "monotonic_ns": 342247606544916, "response": 129, "sequence": 305, "token": 94, "utc": "2026-10-26T05:38:23.201095+00:00"}
+{"event": "command_result", "label": "common-output-58", "metric": true, "monotonic_ns": 342247606596875, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169920667, "sequence": 306, "token": 94, "utc": "2026-10-26T05:38:23.201148+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-59", "monotonic_ns": 342247606656458, "sequence": 307, "utc": "2026-10-26T05:38:23.201208+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342247606704541, "sequence": 308, "utc": "2026-10-26T05:38:23.201256+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81a801b7", "monotonic_ns": 342247776429291, "sequence": 309, "utc": "2026-10-26T05:38:23.370968+00:00"}
+{"event": "decoded", "frame_hex": "5a81a801b7", "kind": "normal", "monotonic_ns": 342247776563791, "response": 129, "sequence": 310, "token": 424, "utc": "2026-10-26T05:38:23.371115+00:00"}
+{"event": "command_result", "label": "common-output-59", "metric": true, "monotonic_ns": 342247776630958, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169971875, "sequence": 311, "token": 424, "utc": "2026-10-26T05:38:23.371180+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-60", "monotonic_ns": 342247776793000, "sequence": 312, "utc": "2026-10-26T05:38:23.371344+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342247776868291, "sequence": 313, "utc": "2026-10-26T05:38:23.371418+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a812601d7", "monotonic_ns": 342247946412875, "sequence": 314, "utc": "2026-10-26T05:38:23.540951+00:00"}
+{"event": "decoded", "frame_hex": "5a812601d7", "kind": "normal", "monotonic_ns": 342247946546291, "response": 129, "sequence": 315, "token": 294, "utc": "2026-10-26T05:38:23.541098+00:00"}
+{"event": "command_result", "label": "common-output-60", "metric": true, "monotonic_ns": 342247946618500, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169830333, "sequence": 316, "token": 294, "utc": "2026-10-26T05:38:23.541171+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-61", "monotonic_ns": 342247946686125, "sequence": 317, "utc": "2026-10-26T05:38:23.541239+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342247946749416, "sequence": 318, "utc": "2026-10-26T05:38:23.541302+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81be0099", "monotonic_ns": 342248116358083, "sequence": 319, "utc": "2026-10-26T05:38:23.710901+00:00"}
+{"event": "decoded", "frame_hex": "5a81be0099", "kind": "normal", "monotonic_ns": 342248116486750, "response": 129, "sequence": 320, "token": 190, "utc": "2026-10-26T05:38:23.711038+00:00"}
+{"event": "command_result", "label": "common-output-61", "metric": true, "monotonic_ns": 342248116554833, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169867166, "sequence": 321, "token": 190, "utc": "2026-10-26T05:38:23.711105+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-62", "monotonic_ns": 342248116642458, "sequence": 322, "utc": "2026-10-26T05:38:23.711195+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342248116706291, "sequence": 323, "utc": "2026-10-26T05:38:23.711259+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81ef0692", "monotonic_ns": 342248286320958, "sequence": 324, "utc": "2026-10-26T05:38:23.880861+00:00"}
+{"event": "decoded", "frame_hex": "5a81ef0692", "kind": "normal", "monotonic_ns": 342248286445541, "response": 129, "sequence": 325, "token": 1775, "utc": "2026-10-26T05:38:23.880997+00:00"}
+{"event": "command_result", "label": "common-output-62", "metric": true, "monotonic_ns": 342248286515166, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169876292, "sequence": 326, "token": 1775, "utc": "2026-10-26T05:38:23.881069+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-63", "monotonic_ns": 342248286584125, "sequence": 327, "utc": "2026-10-26T05:38:23.881137+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342248286646666, "sequence": 328, "utc": "2026-10-26T05:38:23.881201+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810d00e9", "monotonic_ns": 342248456363708, "sequence": 329, "utc": "2026-10-26T05:38:24.050905+00:00"}
+{"event": "decoded", "frame_hex": "5a810d00e9", "kind": "normal", "monotonic_ns": 342248456484416, "response": 129, "sequence": 330, "token": 13, "utc": "2026-10-26T05:38:24.051038+00:00"}
+{"event": "command_result", "label": "common-output-63", "metric": true, "monotonic_ns": 342248456555750, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169971542, "sequence": 331, "token": 13, "utc": "2026-10-26T05:38:24.051107+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-64", "monotonic_ns": 342248456652458, "sequence": 332, "utc": "2026-10-26T05:38:24.051207+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342248456805666, "sequence": 333, "utc": "2026-10-26T05:38:24.051360+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a818d005f", "monotonic_ns": 342248626348291, "sequence": 334, "utc": "2026-10-26T05:38:24.220894+00:00"}
+{"event": "decoded", "frame_hex": "5a818d005f", "kind": "normal", "monotonic_ns": 342248626481875, "response": 129, "sequence": 335, "token": 141, "utc": "2026-10-26T05:38:24.221037+00:00"}
+{"event": "command_result", "label": "common-output-64", "metric": true, "monotonic_ns": 342248626557541, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169910125, "sequence": 336, "token": 141, "utc": "2026-10-26T05:38:24.221113+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-65", "monotonic_ns": 342248626637791, "sequence": 337, "utc": "2026-10-26T05:38:24.221191+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342248626711791, "sequence": 338, "utc": "2026-10-26T05:38:24.221267+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81560175", "monotonic_ns": 342248796371250, "sequence": 339, "utc": "2026-10-26T05:38:24.390914+00:00"}
+{"event": "decoded", "frame_hex": "5a81560175", "kind": "normal", "monotonic_ns": 342248796505000, "response": 129, "sequence": 340, "token": 342, "utc": "2026-10-26T05:38:24.391061+00:00"}
+{"event": "command_result", "label": "common-output-65", "metric": true, "monotonic_ns": 342248796574791, "operand": 0, "operation": "step", "response": 129, "seconds": 0.16994325, "sequence": 341, "token": 342, "utc": "2026-10-26T05:38:24.391131+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-66", "monotonic_ns": 342248796663625, "sequence": 342, "utc": "2026-10-26T05:38:24.391217+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342248796750875, "sequence": 343, "utc": "2026-10-26T05:38:24.391305+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a818405f9", "monotonic_ns": 342248966308708, "sequence": 344, "utc": "2026-10-26T05:38:24.560854+00:00"}
+{"event": "decoded", "frame_hex": "5a818405f9", "kind": "normal", "monotonic_ns": 342248966442916, "response": 129, "sequence": 345, "token": 1412, "utc": "2026-10-26T05:38:24.560999+00:00"}
+{"event": "command_result", "label": "common-output-66", "metric": true, "monotonic_ns": 342248966523541, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169861834, "sequence": 346, "token": 1412, "utc": "2026-10-26T05:38:24.561078+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-67", "monotonic_ns": 342248966618416, "sequence": 347, "utc": "2026-10-26T05:38:24.561173+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342248966695208, "sequence": 348, "utc": "2026-10-26T05:38:24.561252+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342249136395333, "sequence": 349, "utc": "2026-10-26T05:38:24.730942+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342249136533583, "response": 129, "sequence": 350, "token": 15, "utc": "2026-10-26T05:38:24.731089+00:00"}
+{"event": "command_result", "label": "common-output-67", "metric": true, "monotonic_ns": 342249136619083, "operand": 0, "operation": "step", "response": 129, "seconds": 0.170004, "sequence": 351, "token": 15, "utc": "2026-10-26T05:38:24.731175+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-68", "monotonic_ns": 342249136718875, "sequence": 352, "utc": "2026-10-26T05:38:24.731276+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342249136788125, "sequence": 353, "utc": "2026-10-26T05:38:24.731346+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a816f0036", "monotonic_ns": 342249306246625, "sequence": 354, "utc": "2026-10-26T05:38:24.900798+00:00"}
+{"event": "decoded", "frame_hex": "5a816f0036", "kind": "normal", "monotonic_ns": 342249306352958, "response": 129, "sequence": 355, "token": 111, "utc": "2026-10-26T05:38:24.900909+00:00"}
+{"event": "command_result", "label": "common-output-68", "metric": true, "monotonic_ns": 342249306514875, "operand": 0, "operation": "step", "response": 129, "seconds": 0.16979875, "sequence": 356, "token": 111, "utc": "2026-10-26T05:38:24.901073+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-69", "monotonic_ns": 342249306575000, "sequence": 357, "utc": "2026-10-26T05:38:24.901134+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342249306624916, "sequence": 358, "utc": "2026-10-26T05:38:24.901184+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a812601d7", "monotonic_ns": 342249476343625, "sequence": 359, "utc": "2026-10-26T05:38:25.070893+00:00"}
+{"event": "decoded", "frame_hex": "5a812601d7", "kind": "normal", "monotonic_ns": 342249476459541, "response": 129, "sequence": 360, "token": 294, "utc": "2026-10-26T05:38:25.071019+00:00"}
+{"event": "command_result", "label": "common-output-69", "metric": true, "monotonic_ns": 342249476508875, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169936417, "sequence": 361, "token": 294, "utc": "2026-10-26T05:38:25.071068+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-70", "monotonic_ns": 342249476570666, "sequence": 362, "utc": "2026-10-26T05:38:25.071130+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342249476627791, "sequence": 363, "utc": "2026-10-26T05:38:25.071185+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a818405f9", "monotonic_ns": 342249646285833, "sequence": 364, "utc": "2026-10-26T05:38:25.240833+00:00"}
+{"event": "decoded", "frame_hex": "5a818405f9", "kind": "normal", "monotonic_ns": 342249646412000, "response": 129, "sequence": 365, "token": 1412, "utc": "2026-10-26T05:38:25.240971+00:00"}
+{"event": "command_result", "label": "common-output-70", "metric": true, "monotonic_ns": 342249646477958, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169908041, "sequence": 366, "token": 1412, "utc": "2026-10-26T05:38:25.241038+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-71", "monotonic_ns": 342249646533791, "sequence": 367, "utc": "2026-10-26T05:38:25.241094+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342249646583375, "sequence": 368, "utc": "2026-10-26T05:38:25.241144+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a812d0140", "monotonic_ns": 342249816272333, "sequence": 369, "utc": "2026-10-26T05:38:25.410824+00:00"}
+{"event": "decoded", "frame_hex": "5a812d0140", "kind": "normal", "monotonic_ns": 342249816374666, "response": 129, "sequence": 370, "token": 301, "utc": "2026-10-26T05:38:25.410935+00:00"}
+{"event": "command_result", "label": "common-output-71", "metric": true, "monotonic_ns": 342249816432333, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169898375, "sequence": 371, "token": 301, "utc": "2026-10-26T05:38:25.410992+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-72", "monotonic_ns": 342249816496208, "sequence": 372, "utc": "2026-10-26T05:38:25.411057+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342249816556375, "sequence": 373, "utc": "2026-10-26T05:38:25.411117+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a812000ae", "monotonic_ns": 342249986314916, "sequence": 374, "utc": "2026-10-26T05:38:25.580864+00:00"}
+{"event": "decoded", "frame_hex": "5a812000ae", "kind": "normal", "monotonic_ns": 342249986464000, "response": 129, "sequence": 375, "token": 32, "utc": "2026-10-26T05:38:25.581023+00:00"}
+{"event": "command_result", "label": "common-output-72", "metric": true, "monotonic_ns": 342249986531875, "operand": 0, "operation": "step", "response": 129, "seconds": 0.170038167, "sequence": 376, "token": 32, "utc": "2026-10-26T05:38:25.581093+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-73", "monotonic_ns": 342249986734708, "sequence": 377, "utc": "2026-10-26T05:38:25.581297+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342249986797541, "sequence": 378, "utc": "2026-10-26T05:38:25.581360+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a818602c6", "monotonic_ns": 342250156267916, "sequence": 379, "utc": "2026-10-26T05:38:25.750820+00:00"}
+{"event": "decoded", "frame_hex": "5a818602c6", "kind": "normal", "monotonic_ns": 342250156379166, "response": 129, "sequence": 380, "token": 646, "utc": "2026-10-26T05:38:25.750941+00:00"}
+{"event": "command_result", "label": "common-output-73", "metric": true, "monotonic_ns": 342250156441916, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169710834, "sequence": 381, "token": 646, "utc": "2026-10-26T05:38:25.751004+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-74", "monotonic_ns": 342250156505500, "sequence": 382, "utc": "2026-10-26T05:38:25.751068+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342250156560583, "sequence": 383, "utc": "2026-10-26T05:38:25.751124+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810e00d6", "monotonic_ns": 342250326268041, "sequence": 384, "utc": "2026-10-26T05:38:25.920820+00:00"}
+{"event": "decoded", "frame_hex": "5a810e00d6", "kind": "normal", "monotonic_ns": 342250326393708, "response": 129, "sequence": 385, "token": 14, "utc": "2026-10-26T05:38:25.920955+00:00"}
+{"event": "command_result", "label": "common-output-74", "metric": true, "monotonic_ns": 342250326460166, "operand": 0, "operation": "step", "response": 129, "seconds": 0.16995625, "sequence": 386, "token": 14, "utc": "2026-10-26T05:38:25.921023+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-75", "monotonic_ns": 342250326519291, "sequence": 387, "utc": "2026-10-26T05:38:25.921083+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342250326580083, "sequence": 388, "utc": "2026-10-26T05:38:25.921144+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a817d014c", "monotonic_ns": 342250496210916, "sequence": 389, "utc": "2026-10-26T05:38:26.090762+00:00"}
+{"event": "decoded", "frame_hex": "5a817d014c", "kind": "normal", "monotonic_ns": 342250496342875, "response": 129, "sequence": 390, "token": 381, "utc": "2026-10-26T05:38:26.090904+00:00"}
+{"event": "command_result", "label": "common-output-75", "metric": true, "monotonic_ns": 342250496422375, "operand": 0, "operation": "step", "response": 129, "seconds": 0.16990425, "sequence": 391, "token": 381, "utc": "2026-10-26T05:38:26.090986+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-76", "monotonic_ns": 342250496486000, "sequence": 392, "utc": "2026-10-26T05:38:26.091050+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342250496544583, "sequence": 393, "utc": "2026-10-26T05:38:26.091109+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81c70086", "monotonic_ns": 342250666282583, "sequence": 394, "utc": "2026-10-26T05:38:26.260833+00:00"}
+{"event": "decoded", "frame_hex": "5a81c70086", "kind": "normal", "monotonic_ns": 342250666430708, "response": 129, "sequence": 395, "token": 199, "utc": "2026-10-26T05:38:26.260992+00:00"}
+{"event": "command_result", "label": "common-output-76", "metric": true, "monotonic_ns": 342250666514958, "operand": 0, "operation": "step", "response": 129, "seconds": 0.170026709, "sequence": 396, "token": 199, "utc": "2026-10-26T05:38:26.261077+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-77", "monotonic_ns": 342250666604583, "sequence": 397, "utc": "2026-10-26T05:38:26.261169+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342250666681125, "sequence": 398, "utc": "2026-10-26T05:38:26.261245+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342250836214666, "sequence": 399, "utc": "2026-10-26T05:38:26.430768+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342250836342416, "response": 129, "sequence": 400, "token": 15, "utc": "2026-10-26T05:38:26.430908+00:00"}
+{"event": "command_result", "label": "common-output-77", "metric": true, "monotonic_ns": 342250836404208, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169803583, "sequence": 401, "token": 15, "utc": "2026-10-26T05:38:26.430970+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-78", "monotonic_ns": 342250836476041, "sequence": 402, "utc": "2026-10-26T05:38:26.431039+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342250836540708, "sequence": 403, "utc": "2026-10-26T05:38:26.431106+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8155004d", "monotonic_ns": 342251006207541, "sequence": 404, "utc": "2026-10-26T05:38:26.600762+00:00"}
+{"event": "decoded", "frame_hex": "5a8155004d", "kind": "normal", "monotonic_ns": 342251006325250, "response": 129, "sequence": 405, "token": 85, "utc": "2026-10-26T05:38:26.600890+00:00"}
+{"event": "command_result", "label": "common-output-78", "metric": true, "monotonic_ns": 342251006390958, "operand": 0, "operation": "step", "response": 129, "seconds": 0.1699215, "sequence": 406, "token": 85, "utc": "2026-10-26T05:38:26.600957+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-79", "monotonic_ns": 342251006454583, "sequence": 407, "utc": "2026-10-26T05:38:26.601021+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342251006502666, "sequence": 408, "utc": "2026-10-26T05:38:26.601070+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a818405f9", "monotonic_ns": 342251176228625, "sequence": 409, "utc": "2026-10-26T05:38:26.770784+00:00"}
+{"event": "decoded", "frame_hex": "5a818405f9", "kind": "normal", "monotonic_ns": 342251176350625, "response": 129, "sequence": 410, "token": 1412, "utc": "2026-10-26T05:38:26.770917+00:00"}
+{"event": "command_result", "label": "common-output-79", "metric": true, "monotonic_ns": 342251176403041, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169951084, "sequence": 411, "token": 1412, "utc": "2026-10-26T05:38:26.770970+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-80", "monotonic_ns": 342251176461500, "sequence": 412, "utc": "2026-10-26T05:38:26.771029+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342251176519333, "sequence": 413, "utc": "2026-10-26T05:38:26.771087+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a817502ed", "monotonic_ns": 342251346242791, "sequence": 414, "utc": "2026-10-26T05:38:26.940801+00:00"}
+{"event": "decoded", "frame_hex": "5a817502ed", "kind": "normal", "monotonic_ns": 342251346357958, "response": 129, "sequence": 415, "token": 629, "utc": "2026-10-26T05:38:26.940923+00:00"}
+{"event": "command_result", "label": "common-output-80", "metric": true, "monotonic_ns": 342251346434625, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169970958, "sequence": 416, "token": 629, "utc": "2026-10-26T05:38:26.941000+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-81", "monotonic_ns": 342251346510125, "sequence": 417, "utc": "2026-10-26T05:38:26.941078+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342251346564833, "sequence": 418, "utc": "2026-10-26T05:38:26.941133+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81a0011f", "monotonic_ns": 342251516113541, "sequence": 419, "utc": "2026-10-26T05:38:27.110671+00:00"}
+{"event": "decoded", "frame_hex": "5a81a0011f", "kind": "normal", "monotonic_ns": 342251516289083, "response": 129, "sequence": 420, "token": 416, "utc": "2026-10-26T05:38:27.110858+00:00"}
+{"event": "command_result", "label": "common-output-81", "metric": true, "monotonic_ns": 342251516345625, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169838792, "sequence": 421, "token": 416, "utc": "2026-10-26T05:38:27.110915+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-82", "monotonic_ns": 342251516421166, "sequence": 422, "utc": "2026-10-26T05:38:27.110988+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342251516496541, "sequence": 423, "utc": "2026-10-26T05:38:27.111063+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8173009d", "monotonic_ns": 342251686261750, "sequence": 424, "utc": "2026-10-26T05:38:27.280821+00:00"}
+{"event": "decoded", "frame_hex": "5a8173009d", "kind": "normal", "monotonic_ns": 342251686371458, "response": 129, "sequence": 425, "token": 115, "utc": "2026-10-26T05:38:27.280941+00:00"}
+{"event": "command_result", "label": "common-output-82", "metric": true, "monotonic_ns": 342251686430333, "operand": 0, "operation": "step", "response": 129, "seconds": 0.17001525, "sequence": 426, "token": 115, "utc": "2026-10-26T05:38:27.281000+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-83", "monotonic_ns": 342251686481916, "sequence": 427, "utc": "2026-10-26T05:38:27.281052+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342251686531333, "sequence": 428, "utc": "2026-10-26T05:38:27.281101+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81be019e", "monotonic_ns": 342251856092166, "sequence": 429, "utc": "2026-10-26T05:38:27.450652+00:00"}
+{"event": "decoded", "frame_hex": "5a81be019e", "kind": "normal", "monotonic_ns": 342251856223916, "response": 129, "sequence": 430, "token": 446, "utc": "2026-10-26T05:38:27.450791+00:00"}
+{"event": "command_result", "label": "common-output-83", "metric": true, "monotonic_ns": 342251856290291, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169809625, "sequence": 431, "token": 446, "utc": "2026-10-26T05:38:27.450861+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-84", "monotonic_ns": 342251856349000, "sequence": 432, "utc": "2026-10-26T05:38:27.450920+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342251856404208, "sequence": 433, "utc": "2026-10-26T05:38:27.450974+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a815e00da", "monotonic_ns": 342252026191458, "sequence": 434, "utc": "2026-10-26T05:38:27.620754+00:00"}
+{"event": "decoded", "frame_hex": "5a815e00da", "kind": "normal", "monotonic_ns": 342252026302166, "response": 129, "sequence": 435, "token": 94, "utc": "2026-10-26T05:38:27.620873+00:00"}
+{"event": "command_result", "label": "common-output-84", "metric": true, "monotonic_ns": 342252026355208, "operand": 0, "operation": "step", "response": 129, "seconds": 0.170009833, "sequence": 436, "token": 94, "utc": "2026-10-26T05:38:27.620927+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-85", "monotonic_ns": 342252026411875, "sequence": 437, "utc": "2026-10-26T05:38:27.620983+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342252026464541, "sequence": 438, "utc": "2026-10-26T05:38:27.621036+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a817606ce", "monotonic_ns": 342252196105708, "sequence": 439, "utc": "2026-10-26T05:38:27.790665+00:00"}
+{"event": "decoded", "frame_hex": "5a817606ce", "kind": "normal", "monotonic_ns": 342252196234375, "response": 129, "sequence": 440, "token": 1654, "utc": "2026-10-26T05:38:27.790805+00:00"}
+{"event": "command_result", "label": "common-output-85", "metric": true, "monotonic_ns": 342252196302375, "operand": 0, "operation": "step", "response": 129, "seconds": 0.169888, "sequence": 441, "token": 1654, "utc": "2026-10-26T05:38:27.790872+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-86", "monotonic_ns": 342252196380125, "sequence": 442, "utc": "2026-10-26T05:38:27.790952+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342252196438541, "sequence": 443, "utc": "2026-10-26T05:38:27.791011+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342252383164375, "sequence": 444, "utc": "2026-10-26T05:38:27.977726+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342252383283333, "response": 129, "sequence": 445, "token": 15, "utc": "2026-10-26T05:38:27.977856+00:00"}
+{"event": "command_result", "label": "common-output-86", "metric": true, "monotonic_ns": 342252383352708, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186977833, "sequence": 446, "token": 15, "utc": "2026-10-26T05:38:27.977926+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-87", "monotonic_ns": 342252383418083, "sequence": 447, "utc": "2026-10-26T05:38:27.977991+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342252383489208, "sequence": 448, "utc": "2026-10-26T05:38:27.978063+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8155004d", "monotonic_ns": 342252570160708, "sequence": 449, "utc": "2026-10-26T05:38:28.164722+00:00"}
+{"event": "decoded", "frame_hex": "5a8155004d", "kind": "normal", "monotonic_ns": 342252570301750, "response": 129, "sequence": 450, "token": 85, "utc": "2026-10-26T05:38:28.164875+00:00"}
+{"event": "command_result", "label": "common-output-87", "metric": true, "monotonic_ns": 342252570377666, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186961709, "sequence": 451, "token": 85, "utc": "2026-10-26T05:38:28.164952+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-88", "monotonic_ns": 342252570445250, "sequence": 452, "utc": "2026-10-26T05:38:28.165019+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342252570510083, "sequence": 453, "utc": "2026-10-26T05:38:28.165084+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a813301c1", "monotonic_ns": 342252757167083, "sequence": 454, "utc": "2026-10-26T05:38:28.351730+00:00"}
+{"event": "decoded", "frame_hex": "5a813301c1", "kind": "normal", "monotonic_ns": 342252757294250, "response": 129, "sequence": 455, "token": 307, "utc": "2026-10-26T05:38:28.351868+00:00"}
+{"event": "command_result", "label": "common-output-88", "metric": true, "monotonic_ns": 342252757351208, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186908459, "sequence": 456, "token": 307, "utc": "2026-10-26T05:38:28.351926+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-89", "monotonic_ns": 342252757416333, "sequence": 457, "utc": "2026-10-26T05:38:28.351991+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342252757472125, "sequence": 458, "utc": "2026-10-26T05:38:28.352047+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a819d0008", "monotonic_ns": 342252944150000, "sequence": 459, "utc": "2026-10-26T05:38:28.538713+00:00"}
+{"event": "decoded", "frame_hex": "5a819d0008", "kind": "normal", "monotonic_ns": 342252944273833, "response": 129, "sequence": 460, "token": 157, "utc": "2026-10-26T05:38:28.538849+00:00"}
+{"event": "command_result", "label": "common-output-89", "metric": true, "monotonic_ns": 342252944326541, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186913083, "sequence": 461, "token": 157, "utc": "2026-10-26T05:38:28.538902+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-90", "monotonic_ns": 342252944380208, "sequence": 462, "utc": "2026-10-26T05:38:28.538956+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342252944517333, "sequence": 463, "utc": "2026-10-26T05:38:28.539093+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a812000ae", "monotonic_ns": 342253131051458, "sequence": 464, "utc": "2026-10-26T05:38:28.725620+00:00"}
+{"event": "decoded", "frame_hex": "5a812000ae", "kind": "normal", "monotonic_ns": 342253131159458, "response": 129, "sequence": 465, "token": 32, "utc": "2026-10-26T05:38:28.725735+00:00"}
+{"event": "command_result", "label": "common-output-90", "metric": true, "monotonic_ns": 342253131219583, "operand": 0, "operation": "step", "response": 129, "seconds": 0.1868415, "sequence": 466, "token": 32, "utc": "2026-10-26T05:38:28.725796+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-91", "monotonic_ns": 342253131277000, "sequence": 467, "utc": "2026-10-26T05:38:28.725854+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342253131335916, "sequence": 468, "utc": "2026-10-26T05:38:28.725913+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81c301d5", "monotonic_ns": 342253318045250, "sequence": 469, "utc": "2026-10-26T05:38:28.912610+00:00"}
+{"event": "decoded", "frame_hex": "5a81c301d5", "kind": "normal", "monotonic_ns": 342253318177375, "response": 129, "sequence": 470, "token": 451, "utc": "2026-10-26T05:38:28.912752+00:00"}
+{"event": "command_result", "label": "common-output-91", "metric": true, "monotonic_ns": 342253318244708, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186969917, "sequence": 471, "token": 451, "utc": "2026-10-26T05:38:28.912822+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-92", "monotonic_ns": 342253318306625, "sequence": 472, "utc": "2026-10-26T05:38:28.912884+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342253318379666, "sequence": 473, "utc": "2026-10-26T05:38:28.912954+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a818104bf", "monotonic_ns": 342253505050916, "sequence": 474, "utc": "2026-10-26T05:38:29.099620+00:00"}
+{"event": "decoded", "frame_hex": "5a818104bf", "kind": "normal", "monotonic_ns": 342253505170250, "response": 129, "sequence": 475, "token": 1153, "utc": "2026-10-26T05:38:29.099748+00:00"}
+{"event": "command_result", "label": "common-output-92", "metric": true, "monotonic_ns": 342253505238291, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186934917, "sequence": 476, "token": 1153, "utc": "2026-10-26T05:38:29.099817+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-93", "monotonic_ns": 342253505305166, "sequence": 477, "utc": "2026-10-26T05:38:29.099884+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342253505361750, "sequence": 478, "utc": "2026-10-26T05:38:29.099940+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342253692074666, "sequence": 479, "utc": "2026-10-26T05:38:29.286644+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342253692196875, "response": 129, "sequence": 480, "token": 15, "utc": "2026-10-26T05:38:29.286773+00:00"}
+{"event": "command_result", "label": "common-output-93", "metric": true, "monotonic_ns": 342253692276125, "operand": 0, "operation": "step", "response": 129, "seconds": 0.18697325, "sequence": 481, "token": 15, "utc": "2026-10-26T05:38:29.286855+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-94", "monotonic_ns": 342253692344125, "sequence": 482, "utc": "2026-10-26T05:38:29.286924+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342253692417958, "sequence": 483, "utc": "2026-10-26T05:38:29.286994+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8167009e", "monotonic_ns": 342253879136583, "sequence": 484, "utc": "2026-10-26T05:38:29.473704+00:00"}
+{"event": "decoded", "frame_hex": "5a8167009e", "kind": "normal", "monotonic_ns": 342253879268708, "response": 129, "sequence": 485, "token": 103, "utc": "2026-10-26T05:38:29.473848+00:00"}
+{"event": "command_result", "label": "common-output-94", "metric": true, "monotonic_ns": 342253879349458, "operand": 0, "operation": "step", "response": 129, "seconds": 0.187003916, "sequence": 486, "token": 103, "utc": "2026-10-26T05:38:29.473927+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-95", "monotonic_ns": 342253879447500, "sequence": 487, "utc": "2026-10-26T05:38:29.474025+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342253879535291, "sequence": 488, "utc": "2026-10-26T05:38:29.474115+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81d20197", "monotonic_ns": 342254066029041, "sequence": 489, "utc": "2026-10-26T05:38:29.660600+00:00"}
+{"event": "decoded", "frame_hex": "5a81d20197", "kind": "normal", "monotonic_ns": 342254066171833, "response": 129, "sequence": 490, "token": 466, "utc": "2026-10-26T05:38:29.660752+00:00"}
+{"event": "command_result", "label": "common-output-95", "metric": true, "monotonic_ns": 342254066249583, "operand": 0, "operation": "step", "response": 129, "seconds": 0.18681025, "sequence": 491, "token": 466, "utc": "2026-10-26T05:38:29.660831+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-96", "monotonic_ns": 342254066325791, "sequence": 492, "utc": "2026-10-26T05:38:29.660904+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342254066413375, "sequence": 493, "utc": "2026-10-26T05:38:29.660994+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8155004d", "monotonic_ns": 342254253163000, "sequence": 494, "utc": "2026-10-26T05:38:29.847731+00:00"}
+{"event": "decoded", "frame_hex": "5a8155004d", "kind": "normal", "monotonic_ns": 342254253323208, "response": 129, "sequence": 495, "token": 85, "utc": "2026-10-26T05:38:29.847902+00:00"}
+{"event": "command_result", "label": "common-output-96", "metric": true, "monotonic_ns": 342254253393708, "operand": 0, "operation": "step", "response": 129, "seconds": 0.187075042, "sequence": 496, "token": 85, "utc": "2026-10-26T05:38:29.847975+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-97", "monotonic_ns": 342254253464041, "sequence": 497, "utc": "2026-10-26T05:38:29.848046+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342254253521125, "sequence": 498, "utc": "2026-10-26T05:38:29.848103+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8189010c", "monotonic_ns": 342254439963208, "sequence": 499, "utc": "2026-10-26T05:38:30.034535+00:00"}
+{"event": "decoded", "frame_hex": "5a8189010c", "kind": "normal", "monotonic_ns": 342254440103833, "response": 129, "sequence": 500, "token": 393, "utc": "2026-10-26T05:38:30.034684+00:00"}
+{"event": "command_result", "label": "common-output-97", "metric": true, "monotonic_ns": 342254440238833, "operand": 0, "operation": "step", "response": 129, "seconds": 0.18677725, "sequence": 501, "token": 393, "utc": "2026-10-26T05:38:30.034821+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-98", "monotonic_ns": 342254440331916, "sequence": 502, "utc": "2026-10-26T05:38:30.034912+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342254440465875, "sequence": 503, "utc": "2026-10-26T05:38:30.035046+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a817f0061", "monotonic_ns": 342254627028875, "sequence": 504, "utc": "2026-10-26T05:38:30.221601+00:00"}
+{"event": "decoded", "frame_hex": "5a817f0061", "kind": "normal", "monotonic_ns": 342254627181708, "response": 129, "sequence": 505, "token": 127, "utc": "2026-10-26T05:38:30.221762+00:00"}
+{"event": "command_result", "label": "common-output-98", "metric": true, "monotonic_ns": 342254627273291, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186945166, "sequence": 506, "token": 127, "utc": "2026-10-26T05:38:30.221854+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-99", "monotonic_ns": 342254627366500, "sequence": 507, "utc": "2026-10-26T05:38:30.221949+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342254627439541, "sequence": 508, "utc": "2026-10-26T05:38:30.222023+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81be0099", "monotonic_ns": 342254813987708, "sequence": 509, "utc": "2026-10-26T05:38:30.408558+00:00"}
+{"event": "decoded", "frame_hex": "5a81be0099", "kind": "normal", "monotonic_ns": 342254814122666, "response": 129, "sequence": 510, "token": 190, "utc": "2026-10-26T05:38:30.408706+00:00"}
+{"event": "command_result", "label": "common-output-99", "metric": true, "monotonic_ns": 342254814187958, "operand": 0, "operation": "step", "response": 129, "seconds": 0.18682625, "sequence": 511, "token": 190, "utc": "2026-10-26T05:38:30.408773+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-100", "monotonic_ns": 342254814263250, "sequence": 512, "utc": "2026-10-26T05:38:30.408848+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342254814319583, "sequence": 513, "utc": "2026-10-26T05:38:30.408904+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81e70226", "monotonic_ns": 342255001011958, "sequence": 514, "utc": "2026-10-26T05:38:30.595585+00:00"}
+{"event": "decoded", "frame_hex": "5a81e70226", "kind": "normal", "monotonic_ns": 342255001152333, "response": 129, "sequence": 515, "token": 743, "utc": "2026-10-26T05:38:30.595737+00:00"}
+{"event": "command_result", "label": "common-output-100", "metric": true, "monotonic_ns": 342255001234375, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186969208, "sequence": 516, "token": 743, "utc": "2026-10-26T05:38:30.595817+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-101", "monotonic_ns": 342255001326416, "sequence": 517, "utc": "2026-10-26T05:38:30.595911+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342255001403000, "sequence": 518, "utc": "2026-10-26T05:38:30.595988+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a818d005f", "monotonic_ns": 342255188005333, "sequence": 519, "utc": "2026-10-26T05:38:30.782580+00:00"}
+{"event": "decoded", "frame_hex": "5a818d005f", "kind": "normal", "monotonic_ns": 342255188148916, "response": 129, "sequence": 520, "token": 141, "utc": "2026-10-26T05:38:30.782734+00:00"}
+{"event": "command_result", "label": "common-output-101", "metric": true, "monotonic_ns": 342255188234666, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186908666, "sequence": 521, "token": 141, "utc": "2026-10-26T05:38:30.782818+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-102", "monotonic_ns": 342255188347708, "sequence": 522, "utc": "2026-10-26T05:38:30.782931+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342255188437416, "sequence": 523, "utc": "2026-10-26T05:38:30.783021+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8155004d", "monotonic_ns": 342255374992208, "sequence": 524, "utc": "2026-10-26T05:38:30.969568+00:00"}
+{"event": "decoded", "frame_hex": "5a8155004d", "kind": "normal", "monotonic_ns": 342255375145208, "response": 129, "sequence": 525, "token": 85, "utc": "2026-10-26T05:38:30.969732+00:00"}
+{"event": "command_result", "label": "common-output-102", "metric": true, "monotonic_ns": 342255375214666, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186875541, "sequence": 526, "token": 85, "utc": "2026-10-26T05:38:30.969802+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-103", "monotonic_ns": 342255375278625, "sequence": 527, "utc": "2026-10-26T05:38:30.969866+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342255375341000, "sequence": 528, "utc": "2026-10-26T05:38:30.969928+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a817c0357", "monotonic_ns": 342255561943291, "sequence": 529, "utc": "2026-10-26T05:38:31.156522+00:00"}
+{"event": "decoded", "frame_hex": "5a817c0357", "kind": "normal", "monotonic_ns": 342255562083166, "response": 129, "sequence": 530, "token": 892, "utc": "2026-10-26T05:38:31.156670+00:00"}
+{"event": "command_result", "label": "common-output-103", "metric": true, "monotonic_ns": 342255562153416, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186872542, "sequence": 531, "token": 892, "utc": "2026-10-26T05:38:31.156739+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-104", "monotonic_ns": 342255562250583, "sequence": 532, "utc": "2026-10-26T05:38:31.156838+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342255562317083, "sequence": 533, "utc": "2026-10-26T05:38:31.156905+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8173009d", "monotonic_ns": 342255748961208, "sequence": 534, "utc": "2026-10-26T05:38:31.343537+00:00"}
+{"event": "decoded", "frame_hex": "5a8173009d", "kind": "normal", "monotonic_ns": 342255749092708, "response": 129, "sequence": 535, "token": 115, "utc": "2026-10-26T05:38:31.343681+00:00"}
+{"event": "command_result", "label": "common-output-104", "metric": true, "monotonic_ns": 342255749150791, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186903209, "sequence": 536, "token": 115, "utc": "2026-10-26T05:38:31.343740+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-105", "monotonic_ns": 342255749217375, "sequence": 537, "utc": "2026-10-26T05:38:31.343806+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342255749276208, "sequence": 538, "utc": "2026-10-26T05:38:31.343865+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a819c001d", "monotonic_ns": 342255935878708, "sequence": 539, "utc": "2026-10-26T05:38:31.530457+00:00"}
+{"event": "decoded", "frame_hex": "5a819c001d", "kind": "normal", "monotonic_ns": 342255936129458, "response": 129, "sequence": 540, "token": 156, "utc": "2026-10-26T05:38:31.530718+00:00"}
+{"event": "command_result", "label": "common-output-105", "metric": true, "monotonic_ns": 342255936195875, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186981292, "sequence": 541, "token": 156, "utc": "2026-10-26T05:38:31.530786+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-106", "monotonic_ns": 342255936256750, "sequence": 542, "utc": "2026-10-26T05:38:31.530847+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342255936308750, "sequence": 543, "utc": "2026-10-26T05:38:31.530899+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81c70086", "monotonic_ns": 342256122936958, "sequence": 544, "utc": "2026-10-26T05:38:31.717519+00:00"}
+{"event": "decoded", "frame_hex": "5a81c70086", "kind": "normal", "monotonic_ns": 342256123045416, "response": 129, "sequence": 545, "token": 199, "utc": "2026-10-26T05:38:31.717636+00:00"}
+{"event": "command_result", "label": "common-output-106", "metric": true, "monotonic_ns": 342256123114166, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186855167, "sequence": 546, "token": 199, "utc": "2026-10-26T05:38:31.717702+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-107", "monotonic_ns": 342256123192666, "sequence": 547, "utc": "2026-10-26T05:38:31.717783+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342256123259875, "sequence": 548, "utc": "2026-10-26T05:38:31.717850+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342256309922916, "sequence": 549, "utc": "2026-10-26T05:38:31.904503+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342256310054000, "response": 129, "sequence": 550, "token": 15, "utc": "2026-10-26T05:38:31.904645+00:00"}
+{"event": "command_result", "label": "common-output-107", "metric": true, "monotonic_ns": 342256310124541, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186932875, "sequence": 551, "token": 15, "utc": "2026-10-26T05:38:31.904713+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-108", "monotonic_ns": 342256310213666, "sequence": 552, "utc": "2026-10-26T05:38:31.904805+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342256310282041, "sequence": 553, "utc": "2026-10-26T05:38:31.904874+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8167009e", "monotonic_ns": 342256496890791, "sequence": 554, "utc": "2026-10-26T05:38:32.091473+00:00"}
+{"event": "decoded", "frame_hex": "5a8167009e", "kind": "normal", "monotonic_ns": 342256496995625, "response": 129, "sequence": 555, "token": 103, "utc": "2026-10-26T05:38:32.091587+00:00"}
+{"event": "command_result", "label": "common-output-108", "metric": true, "monotonic_ns": 342256497065625, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186856416, "sequence": 556, "token": 103, "utc": "2026-10-26T05:38:32.091658+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-109", "monotonic_ns": 342256497151708, "sequence": 557, "utc": "2026-10-26T05:38:32.091744+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342256497299166, "sequence": 558, "utc": "2026-10-26T05:38:32.091889+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810802a6", "monotonic_ns": 342256683871958, "sequence": 559, "utc": "2026-10-26T05:38:32.278453+00:00"}
+{"event": "decoded", "frame_hex": "5a810802a6", "kind": "normal", "monotonic_ns": 342256683994416, "response": 129, "sequence": 560, "token": 520, "utc": "2026-10-26T05:38:32.278586+00:00"}
+{"event": "command_result", "label": "common-output-109", "metric": true, "monotonic_ns": 342256684063791, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186914417, "sequence": 561, "token": 520, "utc": "2026-10-26T05:38:32.278657+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-110", "monotonic_ns": 342256684142208, "sequence": 562, "utc": "2026-10-26T05:38:32.278736+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342256684208125, "sequence": 563, "utc": "2026-10-26T05:38:32.278802+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8155004d", "monotonic_ns": 342256870835500, "sequence": 564, "utc": "2026-10-26T05:38:32.465423+00:00"}
+{"event": "decoded", "frame_hex": "5a8155004d", "kind": "normal", "monotonic_ns": 342256870941583, "response": 129, "sequence": 565, "token": 85, "utc": "2026-10-26T05:38:32.465536+00:00"}
+{"event": "command_result", "label": "common-output-110", "metric": true, "monotonic_ns": 342256871003583, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186864833, "sequence": 566, "token": 85, "utc": "2026-10-26T05:38:32.465598+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-111", "monotonic_ns": 342256871056958, "sequence": 567, "utc": "2026-10-26T05:38:32.465652+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342256871106208, "sequence": 568, "utc": "2026-10-26T05:38:32.465701+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a818405f9", "monotonic_ns": 342257074918583, "sequence": 569, "utc": "2026-10-26T05:38:32.669504+00:00"}
+{"event": "decoded", "frame_hex": "5a818405f9", "kind": "normal", "monotonic_ns": 342257075095791, "response": 129, "sequence": 570, "token": 1412, "utc": "2026-10-26T05:38:32.669691+00:00"}
+{"event": "command_result", "label": "common-output-111", "metric": true, "monotonic_ns": 342257075153333, "operand": 0, "operation": "step", "response": 129, "seconds": 0.204099041, "sequence": 571, "token": 1412, "utc": "2026-10-26T05:38:32.669749+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-112", "monotonic_ns": 342257075221875, "sequence": 572, "utc": "2026-10-26T05:38:32.669817+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342257075279000, "sequence": 573, "utc": "2026-10-26T05:38:32.669874+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a815e00da", "monotonic_ns": 342257261874125, "sequence": 574, "utc": "2026-10-26T05:38:32.856457+00:00"}
+{"event": "decoded", "frame_hex": "5a815e00da", "kind": "normal", "monotonic_ns": 342257262024208, "response": 129, "sequence": 575, "token": 94, "utc": "2026-10-26T05:38:32.856617+00:00"}
+{"event": "command_result", "label": "common-output-112", "metric": true, "monotonic_ns": 342257262101791, "operand": 0, "operation": "step", "response": 129, "seconds": 0.186880791, "sequence": 576, "token": 94, "utc": "2026-10-26T05:38:32.856697+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-113", "monotonic_ns": 342257262178583, "sequence": 577, "utc": "2026-10-26T05:38:32.856775+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342257262249916, "sequence": 578, "utc": "2026-10-26T05:38:32.856846+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a812002a0", "monotonic_ns": 342257448767000, "sequence": 579, "utc": "2026-10-26T05:38:33.043353+00:00"}
+{"event": "decoded", "frame_hex": "5a812002a0", "kind": "normal", "monotonic_ns": 342257451219875, "response": 129, "sequence": 580, "token": 544, "utc": "2026-10-26T05:38:33.045813+00:00"}
+{"event": "command_result", "label": "common-output-113", "metric": true, "monotonic_ns": 342257451314166, "operand": 0, "operation": "step", "response": 129, "seconds": 0.189142584, "sequence": 581, "token": 544, "utc": "2026-10-26T05:38:33.045911+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-114", "monotonic_ns": 342257451393541, "sequence": 582, "utc": "2026-10-26T05:38:33.045990+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342257451466875, "sequence": 583, "utc": "2026-10-26T05:38:33.046061+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81f7007f", "monotonic_ns": 342257652790250, "sequence": 584, "utc": "2026-10-26T05:38:33.247378+00:00"}
+{"event": "decoded", "frame_hex": "5a81f7007f", "kind": "normal", "monotonic_ns": 342257652916875, "response": 129, "sequence": 585, "token": 247, "utc": "2026-10-26T05:38:33.247511+00:00"}
+{"event": "command_result", "label": "common-output-114", "metric": true, "monotonic_ns": 342257652983916, "operand": 0, "operation": "step", "response": 129, "seconds": 0.201593291, "sequence": 586, "token": 247, "utc": "2026-10-26T05:38:33.247581+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-115", "monotonic_ns": 342257653050541, "sequence": 587, "utc": "2026-10-26T05:38:33.247648+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342257653110291, "sequence": 588, "utc": "2026-10-26T05:38:33.247708+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342257856782250, "sequence": 589, "utc": "2026-10-26T05:38:33.451369+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342257856939166, "response": 129, "sequence": 590, "token": 15, "utc": "2026-10-26T05:38:33.451535+00:00"}
+{"event": "command_result", "label": "common-output-115", "metric": true, "monotonic_ns": 342257857026125, "operand": 0, "operation": "step", "response": 129, "seconds": 0.203975834, "sequence": 591, "token": 15, "utc": "2026-10-26T05:38:33.451623+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-116", "monotonic_ns": 342257857109041, "sequence": 592, "utc": "2026-10-26T05:38:33.451707+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342257857174583, "sequence": 593, "utc": "2026-10-26T05:38:33.451773+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a816f0036", "monotonic_ns": 342258060831833, "sequence": 594, "utc": "2026-10-26T05:38:33.655420+00:00"}
+{"event": "decoded", "frame_hex": "5a816f0036", "kind": "normal", "monotonic_ns": 342258060952500, "response": 129, "sequence": 595, "token": 111, "utc": "2026-10-26T05:38:33.655551+00:00"}
+{"event": "command_result", "label": "common-output-116", "metric": true, "monotonic_ns": 342258061028541, "operand": 0, "operation": "step", "response": 129, "seconds": 0.203919458, "sequence": 596, "token": 111, "utc": "2026-10-26T05:38:33.655626+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-117", "monotonic_ns": 342258061118791, "sequence": 597, "utc": "2026-10-26T05:38:33.655718+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342258061215791, "sequence": 598, "utc": "2026-10-26T05:38:33.655815+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a812601d7", "monotonic_ns": 342258264836000, "sequence": 599, "utc": "2026-10-26T05:38:33.859424+00:00"}
+{"event": "decoded", "frame_hex": "5a812601d7", "kind": "normal", "monotonic_ns": 342258264978500, "response": 129, "sequence": 600, "token": 294, "utc": "2026-10-26T05:38:33.859578+00:00"}
+{"event": "command_result", "label": "common-output-117", "metric": true, "monotonic_ns": 342258265056041, "operand": 0, "operation": "step", "response": 129, "seconds": 0.203940166, "sequence": 601, "token": 294, "utc": "2026-10-26T05:38:33.859657+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-118", "monotonic_ns": 342258265139958, "sequence": 602, "utc": "2026-10-26T05:38:33.859741+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342258265211333, "sequence": 603, "utc": "2026-10-26T05:38:33.859809+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81be0099", "monotonic_ns": 342258468807333, "sequence": 604, "utc": "2026-10-26T05:38:34.063396+00:00"}
+{"event": "decoded", "frame_hex": "5a81be0099", "kind": "normal", "monotonic_ns": 342258468947166, "response": 129, "sequence": 605, "token": 190, "utc": "2026-10-26T05:38:34.063547+00:00"}
+{"event": "command_result", "label": "common-output-118", "metric": true, "monotonic_ns": 342258469006750, "operand": 0, "operation": "step", "response": 129, "seconds": 0.203869833, "sequence": 606, "token": 190, "utc": "2026-10-26T05:38:34.063608+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-119", "monotonic_ns": 342258469081500, "sequence": 607, "utc": "2026-10-26T05:38:34.063683+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342258469137625, "sequence": 608, "utc": "2026-10-26T05:38:34.063740+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81e70226", "monotonic_ns": 342258672778583, "sequence": 609, "utc": "2026-10-26T05:38:34.267370+00:00"}
+{"event": "decoded", "frame_hex": "5a81e70226", "kind": "normal", "monotonic_ns": 342258672906041, "response": 129, "sequence": 610, "token": 743, "utc": "2026-10-26T05:38:34.267508+00:00"}
+{"event": "command_result", "label": "common-output-119", "metric": true, "monotonic_ns": 342258672970666, "operand": 0, "operation": "step", "response": 129, "seconds": 0.203891917, "sequence": 611, "token": 743, "utc": "2026-10-26T05:38:34.267573+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-120", "monotonic_ns": 342258673046500, "sequence": 612, "utc": "2026-10-26T05:38:34.267649+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342258673106541, "sequence": 613, "utc": "2026-10-26T05:38:34.267709+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a818d005f", "monotonic_ns": 342258876743458, "sequence": 614, "utc": "2026-10-26T05:38:34.471333+00:00"}
+{"event": "decoded", "frame_hex": "5a818d005f", "kind": "normal", "monotonic_ns": 342258876898500, "response": 129, "sequence": 615, "token": 141, "utc": "2026-10-26T05:38:34.471501+00:00"}
+{"event": "command_result", "label": "common-output-120", "metric": true, "monotonic_ns": 342258876958375, "operand": 0, "operation": "step", "response": 129, "seconds": 0.203913875, "sequence": 616, "token": 141, "utc": "2026-10-26T05:38:34.471562+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-121", "monotonic_ns": 342258877020083, "sequence": 617, "utc": "2026-10-26T05:38:34.471624+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342258877096708, "sequence": 618, "utc": "2026-10-26T05:38:34.471697+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a817c0357", "monotonic_ns": 342259080712000, "sequence": 619, "utc": "2026-10-26T05:38:34.675303+00:00"}
+{"event": "decoded", "frame_hex": "5a817c0357", "kind": "normal", "monotonic_ns": 342259080843208, "response": 129, "sequence": 620, "token": 892, "utc": "2026-10-26T05:38:34.675447+00:00"}
+{"event": "command_result", "label": "common-output-121", "metric": true, "monotonic_ns": 342259080909000, "operand": 0, "operation": "step", "response": 129, "seconds": 0.203891791, "sequence": 621, "token": 892, "utc": "2026-10-26T05:38:34.675514+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-122", "monotonic_ns": 342259080975333, "sequence": 622, "utc": "2026-10-26T05:38:34.675580+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342259081024416, "sequence": 623, "utc": "2026-10-26T05:38:34.675629+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a810f00c3", "monotonic_ns": 342259284673875, "sequence": 624, "utc": "2026-10-26T05:38:34.879268+00:00"}
+{"event": "decoded", "frame_hex": "5a810f00c3", "kind": "normal", "monotonic_ns": 342259284803916, "response": 129, "sequence": 625, "token": 15, "utc": "2026-10-26T05:38:34.879406+00:00"}
+{"event": "command_result", "label": "common-output-122", "metric": true, "monotonic_ns": 342259284876041, "operand": 0, "operation": "step", "response": 129, "seconds": 0.203903375, "sequence": 626, "token": 15, "utc": "2026-10-26T05:38:34.879481+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-123", "monotonic_ns": 342259284950000, "sequence": 627, "utc": "2026-10-26T05:38:34.879556+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342259285018041, "sequence": 628, "utc": "2026-10-26T05:38:34.879624+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8155004d", "monotonic_ns": 342259488710500, "sequence": 629, "utc": "2026-10-26T05:38:35.083306+00:00"}
+{"event": "decoded", "frame_hex": "5a8155004d", "kind": "normal", "monotonic_ns": 342259488840541, "response": 129, "sequence": 630, "token": 85, "utc": "2026-10-26T05:38:35.083444+00:00"}
+{"event": "command_result", "label": "common-output-123", "metric": true, "monotonic_ns": 342259488979958, "operand": 0, "operation": "step", "response": 129, "seconds": 0.204032083, "sequence": 631, "token": 85, "utc": "2026-10-26T05:38:35.083586+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-124", "monotonic_ns": 342259489046333, "sequence": 632, "utc": "2026-10-26T05:38:35.083653+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342259489128041, "sequence": 633, "utc": "2026-10-26T05:38:35.083735+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a813301c1", "monotonic_ns": 342259692661666, "sequence": 634, "utc": "2026-10-26T05:38:35.287254+00:00"}
+{"event": "decoded", "frame_hex": "5a813301c1", "kind": "normal", "monotonic_ns": 342259692799833, "response": 129, "sequence": 635, "token": 307, "utc": "2026-10-26T05:38:35.287406+00:00"}
+{"event": "command_result", "label": "common-output-124", "metric": true, "monotonic_ns": 342259692867041, "operand": 0, "operation": "step", "response": 129, "seconds": 0.203823459, "sequence": 636, "token": 307, "utc": "2026-10-26T05:38:35.287474+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-125", "monotonic_ns": 342259692945916, "sequence": 637, "utc": "2026-10-26T05:38:35.287554+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342259693019250, "sequence": 638, "utc": "2026-10-26T05:38:35.287627+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a81f0031d", "monotonic_ns": 342259896681166, "sequence": 639, "utc": "2026-10-26T05:38:35.491279+00:00"}
+{"event": "decoded", "frame_hex": "5a81f0031d", "kind": "normal", "monotonic_ns": 342259898408833, "response": 129, "sequence": 640, "token": 1008, "utc": "2026-10-26T05:38:35.493015+00:00"}
+{"event": "command_result", "label": "common-output-125", "metric": true, "monotonic_ns": 342259898486208, "operand": 0, "operation": "step", "response": 129, "seconds": 0.20554175, "sequence": 641, "token": 1008, "utc": "2026-10-26T05:38:35.493094+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-126", "monotonic_ns": 342259898560666, "sequence": 642, "utc": "2026-10-26T05:38:35.493169+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342259898637208, "sequence": 643, "utc": "2026-10-26T05:38:35.493242+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a819500a0", "monotonic_ns": 342260100657333, "sequence": 644, "utc": "2026-10-26T05:38:35.695255+00:00"}
+{"event": "decoded", "frame_hex": "5a819500a0", "kind": "normal", "monotonic_ns": 342260100792791, "response": 129, "sequence": 645, "token": 149, "utc": "2026-10-26T05:38:35.695401+00:00"}
+{"event": "command_result", "label": "common-output-126", "metric": true, "monotonic_ns": 342260100850541, "operand": 0, "operation": "step", "response": 129, "seconds": 0.202294209, "sequence": 646, "token": 149, "utc": "2026-10-26T05:38:35.695460+00:00"}
+{"event": "command_intent", "hex": "a5010000da", "label": "common-output-127", "monotonic_ns": 342260100928916, "sequence": 647, "utc": "2026-10-26T05:38:35.695538+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a5010000da", "monotonic_ns": 342260100983625, "sequence": 648, "utc": "2026-10-26T05:38:35.695593+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a8155004d", "monotonic_ns": 342260304700458, "sequence": 649, "utc": "2026-10-26T05:38:35.899300+00:00"}
+{"event": "decoded", "frame_hex": "5a8155004d", "kind": "normal", "monotonic_ns": 342260304829500, "response": 129, "sequence": 650, "token": 85, "utc": "2026-10-26T05:38:35.899439+00:00"}
+{"event": "command_result", "label": "common-output-127", "metric": true, "monotonic_ns": 342260304888958, "operand": 0, "operation": "step", "response": 129, "seconds": 0.203964041, "sequence": 651, "token": 85, "utc": "2026-10-26T05:38:35.899499+00:00"}
+{"event": "command_intent", "hex": "a502000067", "label": "common-final-clear", "monotonic_ns": 342260304969750, "sequence": 652, "utc": "2026-10-26T05:38:35.899580+00:00"}
+{"direction": "tx", "event": "raw_chunk", "hex": "a502000067", "monotonic_ns": 342260305036333, "sequence": 653, "utc": "2026-10-26T05:38:35.899647+00:00"}
+{"direction": "rx", "event": "raw_chunk", "hex": "5a820000bd", "monotonic_ns": 342260321677375, "sequence": 654, "utc": "2026-10-26T05:38:35.916280+00:00"}
+{"event": "decoded", "frame_hex": "5a820000bd", "kind": "normal", "monotonic_ns": 342260321789833, "response": 130, "sequence": 655, "token": 0, "utc": "2026-10-26T05:38:35.916400+00:00"}
+{"event": "command_result", "label": "common-final-clear", "metric": false, "monotonic_ns": 342260321857666, "operand": 0, "operation": "clear", "response": 130, "seconds": 0.016890333, "sequence": 656, "token": 0, "utc": "2026-10-26T05:38:35.916468+00:00"}
+{"bytes_received": 0, "event": "quiet", "monotonic_ns": 342260426962666, "seconds": 0.1, "sequence": 657, "utc": "2026-10-26T05:38:36.021561+00:00"}

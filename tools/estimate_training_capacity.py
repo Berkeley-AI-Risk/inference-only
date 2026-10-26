@@ -18,6 +18,10 @@ ILLUSTRATIVE_TARGETS = (0.01, 0.001, 0.0001)
 REFERENCE_FILE = 'evidence/h100/h100-compiled-fp16-repeat/ctx128-batch32768-float16-compile-graph.json'
 GEOMETRY_FILE = 'reference/reference/model.py'
 ROUNDING_FILE = 'evidence/h100/correctness/compiled-rounding-batch1024.json'
+METRICS_FILE = 'evidence/current-greedy/baseline/analysis/metrics.json'
+IMPLEMENTATION_FILE = 'evidence/current-greedy/baseline/analysis/implementation.json'
+CENSUS_FILE = 'evidence/current-greedy/baseline/analysis/mapped-census.json'
+SELECTED_IMAGE = '01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57'
 
 
 def positive(value):
@@ -87,12 +91,19 @@ def estimate(package, reference_rates=None):
     checker = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(checker)
     verified_reference = checker.verify(package)
-    relative_inputs = ('evidence/baseline-current/metrics.json', 'evidence/baseline-current/implementation.json',
-                       'hardware/project/uart_core.sv', REFERENCE_FILE, 'evidence/h100/IMPORT.json',
+    relative_inputs = (METRICS_FILE, IMPLEMENTATION_FILE,
+                       'hardware/project/uart_core.sv', CENSUS_FILE, 'prebuilt/inference/BUILD.json', REFERENCE_FILE, 'evidence/h100/IMPORT.json',
                        GEOMETRY_FILE, ROUNDING_FILE, 'tools/estimate_training_capacity.py')
     raw = {name: (package / name).read_bytes() for name in relative_inputs}
     physical = json.loads(raw[relative_inputs[0]])
     implementation = json.loads(raw[relative_inputs[1]])
+    census = json.loads(raw[CENSUS_FILE])
+    build = json.loads(raw['prebuilt/inference/BUILD.json'])
+    if not (physical['image_sha256'] == implementation['image_sha256']
+            == census['image_sha256'] == build['image_sha256'] == SELECTED_IMAGE
+            and census['passed'] is True and not census['unclassified_multiplier_cells']
+            and not census['unknown_multiplier_types']):
+        raise ValueError('Selected baseline source, metrics or complete mapped census differ')
     benchmark = json.loads(raw[REFERENCE_FILE])
     rounding = json.loads(raw[ROUNDING_FILE])
     geometry = model_geometry(raw[GEOMETRY_FILE].decode())
@@ -110,7 +121,10 @@ def estimate(package, reference_rates=None):
     measured = physical['metrics']['around128']
     if (measured['prompt_tokens'], measured['generated_tokens'], measured['occupied_tape']) != (1, 128, 129):
         raise ValueError('Expected last STEP at 128 input positions')
-    seconds = positive(measured['last_step_seconds'])
+    repeated = physical['metrics']['around128-repeat']
+    if (repeated['prompt_tokens'], repeated['generated_tokens'], repeated['occupied_tape']) != (1, 128, 129):
+        raise ValueError('Missing matching repeated128-position STEP')
+    seconds = (positive(measured['last_step_seconds']) + positive(repeated['last_step_seconds'])) / 2
     fpga_tps = 1.0 / seconds
     uart_baud = core_hz / 217.0
     # Five bytes/frame, one token at most. Each accepted RX byte needs eight
@@ -118,9 +132,11 @@ def estimate(package, reference_rates=None):
     # omit start/stop and all controller/ACK waits, and saturate both directions.
     wire_token_rate = 2.0 * uart_baud / (8 * 5)
     tape_slots = 2049  # Includes the last output beyond the 2048-input limit.
-    dynamic_lanes = 5  # Two attention, one gate product, two RMSNorm square lanes.
+    dynamic_lanes = census['dynamic_scheduled_role_instances']
+    if dynamic_lanes != 19 or implementation['dynamic_scheduled_role_instances'] != dynamic_lanes:
+        raise ValueError('Scheduled runtime-operand role census changed; re-audit the conditional credit')
     primitives = implementation['mapped_multiplier_primitives']
-    if primitives != {'MULTALU27X18': 73, 'MULT12X12': 3}:
+    if primitives != census['primitive_counts'] or primitives != {'MULTALU27X18': 87, 'MULT12X12': 3}:
         raise ValueError('Mapped census changed; re-audit this calculation')
     scenarios = {
         'token_channel_wire_ceiling': {
@@ -129,11 +145,11 @@ def estimate(package, reference_rates=None):
             'access_assumption': 'Host software and token interface; unchanged implementation, protocol and nominal clock. Only explicit matrix I/O is counted.',
             'kind': 'Conditional communication ceiling for explicit dense matrix I/O through tokens only.',
         },
-        'five_dynamic_lanes_full_credit': {
+        'dynamic_lanes_full_credit': {
             'operation_rate_proxy': 2.0 * dynamic_lanes * core_hz,
             'access_model': 'physical_dynamic_unit_stress',
             'access_assumption': 'Accepted weights remain fixed; useful access to every named dynamic unit is granted, not software-exposed or established by DDR access alone.',
-            'kind': 'MAC-equivalent over-credit of five internal integer multipliers at nominal clock; not demonstrated GEMM access.',
+            'kind': f'MAC-equivalent over-credit of {dynamic_lanes} internal integer multiplier roles at nominal clock; not demonstrated GEMM access or a proved simultaneous useful rate.',
         },
         'all_mapped_multipliers_full_credit': {
             'operation_rate_proxy': 2.0 * sum(primitives.values()) * core_hz,
@@ -190,6 +206,9 @@ def estimate(package, reference_rates=None):
         'schema': 'conditional-training-capacity-v4',
         'source_sha256': {name: hashlib.sha256(data).hexdigest() for name, data in raw.items()},
         'inputs': {
+            'selected_fpga_image_sha256': SELECTED_IMAGE,
+            'mapped_census_file': CENSUS_FILE,
+            'mapped_role_observations_establish_attacker_access': False,
             'core_clock_hz': core_hz, 'uart_clocks_per_bit': 217, 'uart_frame_bytes': 5,
             'uart_data_bits_per_byte_credited': 8, 'uart_framing_bits_omitted': True,
             'uart_directions_credited': 2,
@@ -201,7 +220,8 @@ def estimate(package, reference_rates=None):
             'model_geometry': geometry,
             'fpga_context_positions': 128, 'measured_single_step_seconds': seconds,
             'fpga_inference_rate_proxy': fpga_tps,
-            'fpga_rate_scope': 'Reciprocal of one measured last STEP, including host overhead; not sustained peak or a licensed rating.',
+            'measured_single_step_repetitions': 2,
+            'fpga_rate_scope': 'Two measured128-position last STEPs pooled as2 outputs over their summed request/reply time; includes host overhead. A fixed-context comparison, not the growing-context headline or a certified rating.',
             'reference_tps_are_sensitivity_inputs_not_measurements': custom_rates,
         },
         'measured_reference': {

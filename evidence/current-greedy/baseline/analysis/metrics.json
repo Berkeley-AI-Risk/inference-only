@@ -1,0 +1,80 @@
+{
+  "common_pooled_cached_tokens_per_second": 10.041643433418713,
+  "image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+  "metrics": {
+    "around128": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 0.085237208,
+      "generated_tokens": 128,
+      "last_step_seconds": 0.101706167,
+      "occupied_tape": 129,
+      "prompt_tokens": 1,
+      "source_case": "one-token-128-trial1",
+      "streaming_tokens_per_second_excluding_first": 10.028144474662245,
+      "timestamp_boundary": "generation_loop_validated_reply"
+    },
+    "around128-repeat": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 0.085324375,
+      "generated_tokens": 128,
+      "last_step_seconds": 0.101874708,
+      "occupied_tape": 129,
+      "prompt_tokens": 1,
+      "source_case": "one-token-128-trial2",
+      "streaming_tokens_per_second_excluding_first": 10.055178783256068,
+      "timestamp_boundary": "generation_loop_validated_reply"
+    },
+    "prefix128": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 10.012547041,
+      "generated_tokens": 128,
+      "last_step_seconds": 0.118947709,
+      "occupied_tape": 256,
+      "prompt_tokens": 128,
+      "source_case": "prefix128",
+      "streaming_tokens_per_second_excluding_first": null
+    },
+    "prefix2047": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 351.897563584,
+      "generated_tokens": 2,
+      "last_step_seconds": 0.289186084,
+      "occupied_tape": 2049,
+      "prompt_tokens": 2047,
+      "source_case": "prefix2047",
+      "streaming_tokens_per_second_excluding_first": null
+    },
+    "prefix2048": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 352.169485958,
+      "generated_tokens": 1,
+      "last_step_seconds": null,
+      "occupied_tape": 2049,
+      "prompt_tokens": 2048,
+      "source_case": "prefix2048",
+      "streaming_tokens_per_second_excluding_first": null
+    },
+    "prefix512": {
+      "all_tokens_match_integer_reference": true,
+      "first_step_seconds_including_prompt_evaluation": 49.5862185,
+      "generated_tokens": 4,
+      "last_step_seconds": 0.135797333,
+      "occupied_tape": 516,
+      "prompt_tokens": 512,
+      "source_case": "prefix512",
+      "streaming_tokens_per_second_excluding_first": null
+    }
+  },
+  "scope": "Current selected baseline only. STEP request/reply latencies for fixed-context accounting are distinct from the common host-loop cached headline. Context streaming rates are not inferred by summing command durations.",
+  "source_common_pair": {
+    "bytes": 33640,
+    "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-common-speed-20261026-r1/FINISHED.json",
+    "sha256": "cbe112e9d6b6a6f2390b04383cd4d630185e12c9053ab0824cd7c35112fd71d0"
+  },
+  "source_physical": {
+    "bytes": 1172593,
+    "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/build/baseline-board-campaign-20261024-r1/FINISHED.json",
+    "sha256": "2665e2b6d71cdc5f6660001729b3eee0c153bc78fad37ebca76b7cad5f97005d"
+  },
+  "source_physical_sha256": "2665e2b6d71cdc5f6660001729b3eee0c153bc78fad37ebca76b7cad5f97005d"
+}

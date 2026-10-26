@@ -1,4 +1,4 @@
-# Encrypted external memory: a third experimental version
+# K/V protection and encrypted external memory
 
 `encrypted-memory` runs the same fixed SimpleStories-V2-5M approximation,
 greedy decoding and three commands as the baseline and K/V-protected configurations.
@@ -50,7 +50,7 @@ page check succeeds. Decryption and hashing overlap, without another
 whole-page buffer or an early permission to use unverified data.
 AES and CTR follow [FIPS 197](https://csrc.nist.gov/pubs/fips/197/final)
 and [SP 800-38A](https://csrc.nist.gov/pubs/sp/800/38/a/final).
-The [design references](REFERENCES.md#arithmetic-implementations-and-cryptographic-specifications)
+The [design references](docs/REFERENCES.md#arithmetic-implementations-and-cryptographic-specifications)
 also credit the directly adapted AES S-box circuit.
 
 The private AES circuit retains all 14 AES-256 rounds and processes them in
@@ -110,91 +110,34 @@ remove any digest check.
 
 ## Evidence and limits
 
-The selected image completed placement and routing. The reported inference
-clock setup margin is **+0.084 ns** and hold margin **+0.144 ns** at 25 MHz.
-The setup margin is very small. There are 161 setup/recovery and two
-hold/removal violated endpoints within vendor DDR. A positive inference
-margin does not qualify the entire design or establish that all controller
-timing exceptions are correct. This remains an exploratory board image.
+The selected image measured **6.04 tokens/s** on the common one-token prompt
+and two 128-output greedy trials, with all 256 IDs matching the fixed numerical
+reference. The pooled 254-output rate uses validated-reply timestamps and
+includes host control and inter-command gaps. Prompt processing and the first
+output have separate recorded timings. See the
+[common benchmark](docs/benchmarks/FPGA-SPEED-BENCHMARK.md).
 
-The current physical installation/readback/inference/restoration test checked
-six generated tokens, including CLEAR/replay, against the integer reference.
-The encrypted image delivered **7.68 tokens/s** on this short sequence.
-These timings include first-token work;
-they are not long-stream benchmarks or an isolated measurement of AES cost.
-The [current measurement summary](evidence/speed-2026-10-02/board.json)
-retains exact per-STEP times. Its checker recomputes the arithmetic and
-checks the selected source/image association. The
-[current native summary](evidence/speed-2026-10-02/native.json) records
-the inference margins and remaining global violations.
+The selected source/model/native/mapped records, ten-case CLI campaign and
+seven-case browser campaign are described in
+[greedy qualification](demos/simplestories-v2-5m/GREEDY-QUALIFICATION.md).
+The campaigns include full-context operation, boundary rejection, CLEAR races,
+Stop while a long STEP is pending and resumed generation. Full-array ciphertext
+readback and plaintext restoration have separate guarded records.
 
-The broader physical campaign passed eight cases with **522 main-case
-generated tokens**, plus 12 known-answer tokens around each case. Those
-before/after CLEAR sequences are counted separately from the measurements
-below. Every returned token matched the fixed integer reference.
+The current image has 100 build inputs, including four separately acquired
+vendor inputs. It completed native placement/routing, but its BUILD.json
+retains `timing_qualified: false`. Functional qualification does not establish
+complete vendor-DDR or external-I/O timing signoff.
 
-| Case | Prompt tokens | Generated tokens | First STEP (s) | Later decode (tokens/s) |
-| --- | ---: | ---: | ---: | ---: |
-| `around128` | 1 | 128 | 0.119 | 4.266 |
-| `fox128` | 8 | 128 | 0.884 | 4.073 |
-| `help64` | 7 | 64 | 0.782 | 5.230 |
-| `moon64` | 9 | 64 | 1.003 | 5.142 |
-| `prefix128` | 128 | 128 | 26.638 | 2.253 |
-| `prefix512` | 512 | 4 | 268.551 | 1.032 |
-| `prefix1024` | 1024 | 4 | 969.405 | 0.550 |
-| `prefix2047` | 2047 | 2 | 3664.520 | 0.286 |
-
-The first STEP includes prompt processing; later decode is the number of
-remaining STEP replies divided by their total elapsed time, not an
-average of per-token rates. Connection setup, prompt upload, CLEAR and
-the surrounding known-answer checks are excluded. The long-context
-cases have only one or three later replies, not long steady streams.
-
-For comparison with the faster plaintext protected image, see
-[K/V-protected measurements](KV-PROTECTION.md#measured-performance).
-The two images were measured in separate campaigns.
-
-The `prefix2047` case appended 2,047 prompt tokens and accepted two STEP
-requests, evaluating model positions through 2,047. The last returned
-token leaves 2,049 tokens on the tape; this is **2,048 model-input positions**,
-not a 2,049-token model context. APPEND at the input limit and both
-APPEND/STEP after the final output slot were rejected; CLEAR and the
-following short replays passed without reloading.
-
-These board tests used the UART test client, not the browser or the app's
-qualification API. Full flash readback and restoration also passed.
-
-The [current measurement summary](evidence/speed-2026-10-02/board.json)
-retains exact timings, reference tokens and source/receipt hashes. Its
-offline checker validates those associations and arithmetic; it does
-not replay withheld private UART/recovery records or attest the chip.
-
-Separate connected simulations checked six full-model cases and 18 tokens,
-with genuine ciphertext boot, CLEAR/replay and corruption refusals. Those
-are simulations, not measurements of the physical controller under every
-reset or fault condition.
-The [recorded simulation summary](evidence/encrypted-memory/current-validation.json)
-binds 71 production modules to the supplied hardware sources. It also records
-AES component tests and a limited key-selector proof for the byte-identical AES
-primitives, plus separate K/V-guard tests with stalls, cancellation and fault
-cases. These are not proofs of AES or of the encrypted machine. Its offline
-checker validates file identities and summary consistency; it does not rerun
-the private simulations.
-
-The native resource report counts 65 `MULTALU27X18` and three `MULT12X12`
-primitives. The design also uses DSP primitives as fixed SHA-256 adders,
-with a multiplier input tied to one and controls fixed in the circuit.
-These resources do not add a public multiplication operation. A primitive
-count alone does not show how much reusable multiplication hardware an
-attacker could obtain; the training-capacity estimates below do not cover
-this encrypted configuration.
-
-The existing [formal receipts](FORMAL-STATUS.md) and
-[training-capacity estimates](TRAINING-CAPACITY.md) retain their stated
-baseline/protected scope. They do not cover this encrypted
-configuration, its cache or its latency. Encryption does not by itself
-establish a smaller residual training factor. All versions retain the same conceptual
-inference-only restriction under the frozen-configuration assumption.
+Its attention source bridge rechecks 34 assertions through six byte-identical
+isolated sources. It adds no assertions and does not prove the encrypted guard,
+AES-SIV, numerical attention, concrete private-memory composition or the whole
+machine. The AES component records apply only to the two byte-identical primitive
+sources and retain their separate scope. [Formal status](demos/simplestories-v2-5m/FORMAL-STATUS.md) distinguishes
+these results from universal arithmetic or cryptographic theorems.
+The [capacity assessment](demos/simplestories-v2-5m/TRAINING-CAPACITY.md)
+is explicitly bound to the plaintext baseline; encryption does not establish
+a smaller residual training factor.
 
 For a deployed confidential design, keys and configuration would need a
 protected provisioning/storage path, with debug/configuration access and
@@ -203,7 +146,7 @@ depends on intact private state. No such resistance is certified here.
 
 ## Reproduce and inspect the package
 
-The third variant ships its exact 96 redistributable inputs, the four pinned
+This variant ships its exact 96 redistributable inputs, the four pinned
 vendor dependency identities, and the selected prebuilt image. No vendor
 primitive simulation-library sources are bundled. The existing vendor
 download/build instructions and license boundaries still apply.
@@ -214,13 +157,12 @@ The first command uses `--strict` to check all listed files and reject any
 extras, including local Python environments and generated build files.
 If you have already used this checkout, omit `--strict` to verify the listed
 files while allowing those extras; do not delete your local files just to
-run the check. See [release checks](REPRODUCE.md#release-analysis-and-helper-tests).
+run the check. See [release checks](demos/simplestories-v2-5m/REPRODUCE.md).
 
 ```sh
 python3.12 -I -S -B tools/verify_release.py --strict
-python3.12 -I -S -B tools/check_encrypted_memory.py
-python3.12 -I -S -B tools/check_encrypted_validation.py
-python3.12 -I -S -B tools/check_encrypted_board_evidence.py
+python3.12 -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
+python3.12 -I -S -B tools/check_encrypted_inherited_components_v1.py
 python3.12 -I -S -B tools/encrypt_model_image.py --openssl /absolute/path/to/openssl
 ```
 
@@ -228,7 +170,7 @@ The final command independently reproduces every ciphertext byte with
 OpenSSL and decrypts it back to the exact supplied plaintext model. It is
 offline, uses only public test constants, and never accesses a board. Add
 `--output /fresh/path/model.bin` to save the reproduced ciphertext; existing
-files are refused. The unchanged [model reconstruction](REPRODUCE.md)
+files are refused. The unchanged [model reconstruction](demos/simplestories-v2-5m/REPRODUCE.md)
 produces the plaintext starting point.
 
 Source locations:
@@ -284,24 +226,22 @@ independent read. The checker verifies a file, not its physical provenance.
 
 After a successful readback, use section 5's SRAM operation with
 `--fsFile "$FPGA_PACKAGE/prebuilt/encrypted-memory/project/impl/pnr/shared_product.fs"`.
-Keep power on, allow at least 60 seconds for boot, and run the host guide's
+Keep power on, allow at least 120 seconds for boot, and run the host guide's
 known-answer qualification with `prebuilt/encrypted-memory/BUILD.json`.
 Use its explicit exploratory-timing acknowledgement. Requalify after every
 power cycle/reload. The browser does not install, select or switch hardware.
 
-The browser's current limit remains **128 prompt tokens and 128 generated
-tokens**, with a 120-second command deadline. It is not a full-context test
-interface. For a deliberately long prompt, the low-level token CLI accepts
-`--timeout 14400` before its subcommand, allowing four hours for a command
-response. This changes only the host's wait, not RTL watchdogs or the model's
-context. A timeout does not prove a command was not accepted; stop and
-investigate instead of blindly repeating it. The [measured table](#evidence-and-limits) reports the deliberately long
-CLI cases; those checks do not extend the browser's 128-prompt-token limit.
+The browser supports 2,048 prompt tokens, 128 generated tokens and 2,049
+combined tokens, within 32,768 input characters. A full-context first STEP can
+take many minutes. Stop drains an already active STEP before clearing the tape;
+it cannot interrupt that hardware command. A timeout does not prove a command
+was not accepted: investigate rather than repeating it blindly. See the
+[host guide](host-app/README.md) for command deadlines and connection ownership.
 
-To return to either original configuration, **restore the matching plaintext
+To return to a plaintext-memory configuration, **restore the matching plaintext
 flash image as well as its SRAM image**. Section 6 restores your own verified
 full backup and independently compares every byte. If that backup predates
 model installation, it restores the factory contents instead: use the
-original model-install/readback workflow before loading an original
+original model-install/readback workflow before loading its matching
 inference image. Never use another person's flash backup. Keep all recovery
 files private; do not use OTP, fuse, key-lock or unrelated flash-mode options.

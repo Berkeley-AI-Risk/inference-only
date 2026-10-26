@@ -1,4 +1,4 @@
-# Two versions: speed and attention-cache integrity
+# K/V integrity protection
 
 This comparison covers two plaintext-memory FPGA configurations. **Baseline** is
 the design without K/V integrity checks. **K/V-protected** is
@@ -7,9 +7,8 @@ SimpleStories-V2-5M, authenticate the same fixed model weights, and expose only
 `APPEND`, `STEP` and `CLEAR`. Both support 2,048 input positions, with one final
 output slot. Changing configurations is a development-board programming step,
 not an operation offered by either frozen inference circuit. Both use
-packed attention storage. The weight-page checker performs four SHA-256
-rounds per cycle in the baseline and two in the protected configuration;
-both retain all 64 rounds.
+private parallel attention and packed storage. Each selected image has its own
+source inventory, native route and full-context qualification.
 The third [encrypted-memory configuration](../../ENCRYPTED-MEMORY.md)
 retains K/V integrity and adds encryption with public test keys.
 
@@ -142,103 +141,44 @@ the computation.
 
 ## Measured performance
 
-These are **workload-specific FPGA trials**, not performance guarantees. The table
-compares the same workloads, but the baseline and current protected image
-were measured in separate campaigns. Rates divide the number of replies
-after the first by the sum of their STEP durations. They include host/UART
-reply overhead, but not gaps between commands. Prompt length describes the
-start of the run; context grows with generation.
+The baseline measured **10.04 tokens/s** and the K/V-protected design
+**7.03 tokens/s** on the common one-token prompt, two 128-output greedy trials.
+All 256 outputs per design matched the fixed numerical reference. The pooled
+rate is 254 divided by the two summed intervals from validated output 1 to
+validated output 128; it includes host control and inter-command gaps.
+Prompt evaluation, upload and the first output are separate timing scopes.
 
-| Prompt / generated tokens | Baseline cached tokens/s | Protected cached tokens/s | Baseline first STEP | Protected first STEP |
-| --- | ---: | ---: | ---: | ---: |
-| 1 / 128 | 8.766 | 5.231 | 0.068 s | 0.102 s |
-| 128 / 128 | 5.354 | 2.695 | 12.359 s | 21.742 s |
-| 512 / 4 | 2.675 | 1.209 | 106.074 s | 226.139 s |
-| 2,047 / 2 (one cached STEP) | 0.795 | 0.334 | 1,329.104 s | 2,842.045 s |
-| 2,048 / 1 (no cached STEP) | — | — | 1,330.345 s | 3,131.615 s |
-
-Repeating the 1/128 trial gave **8.766 baseline** and **5.221 protected tokens/s**.
-The protected version's first six steps reached **9.83 tokens/s**.
-That is a short-context result, not a sustained rate for long stories;
-the full 128-output continuation averages **5.22–5.23 cached tokens/s**.
-
-The weight-page SHA-256 engine performs four rounds per cycle in the baseline
-and two in the protected version. Both retain all 64 SHA-256 rounds and pack
-eight attention-value coordinates into each 128-bit row. Both overlap up to
-eight private projection-weight reads. The baseline additionally prefetches
-the next 512-bit hash block while the current block is being checked.
-These are private implementation choices, not additional user commands or
-approximations to the numerical model. The protected version also has a
-separate K/V hash engine.
-
-Short STEP times cluster near multiples of an approximately 17 ms host
-reply-delivery interval. Small compute changes can appear as a one-interval
-jump or no change. The underlying cause is not established. These host timings
-are not precise measurements of compute-only speed. See
-[the host-timing record](../../evidence/leaf-speed/host-timing.json).
-
-Both images passed full-window, boundary-rejection and CLEAR/replay tests,
-including separate 2,047- and 2,048-token prompts. Their capacity is 2,048
-model-input positions plus one final output slot. The two full-window rows
-are boundary checks, not sustained-generation benchmarks. In particular,
-the protected 2,048-token prompt took about 52 minutes to evaluate.
-
-The [current baseline and protected measurements](../../evidence/read-window/board.json)
-retain unrounded times, exact reference tokens and original record hashes.
-They are curated summaries of audited private logs, not bundled raw-log replays.
-At longer contexts, attention rereads more cache data, so K/V protection's
-cost grows with context length.
-
-| Full-product resource | Baseline | Protected |
-| --- | ---: | ---: |
-| Logic elements | 86,667 | 87,905 |
-| Registers | 46,925 | 52,068 |
-| Occupied CLS | 58,233 | 59,946 |
-| BSRAM blocks, out of 340 | 196 | 278 |
-| DSP blocks, vendor accounting | 74.5 | 74.5 |
-
-These are whole-product implementation differences, including transport/reset
-changes and physical packing; they do not isolate the hash engine's cost.
-Both inference clocks remain 25 MHz. See the
-[current native summaries](../../evidence/read-window/native.json).
+The [common benchmark](../../docs/benchmarks/FPGA-SPEED-BENCHMARK.md) identifies
+the selected images and timestamp arrays. [Greedy qualification](GREEDY-QUALIFICATION.md)
+links the ten-case CLI campaigns and seven-case browser campaigns for both
+designs, including 2,047/2,048-token contexts, boundary refusals, CLEAR races,
+Stop during an active STEP and a successful new connection afterward.
+The protected browser's full 2,048-token prompt took about 22 minutes to its
+first output in that test; full-window checks are latency checks rather than
+sustained-throughput estimates.
 
 ## Evidence and limits
 
-- The baseline's public full-model replay runs four cases: ordinary and
-  stalled inference with ten exact STEP results in total, and two
-  corrupted-weight rejections. Protected guard simulations and controller
-  proofs have the separate scopes below; they are not full-model proofs.
-- A [portable guard replay](../../simulation/kv-protected/README.md) runs the exact
-  shipped guard, hash wrapper and SHA circuit against independent model-derived
-  data. It exercises corruption, wrong-location/stale data, sealed reads and
-  CLEAR. A separate full-geometry run populates all 2,048 positions in all six
-  layers through ordinary writes. This is component simulation, not a theorem.
-- **The current image passed six physical trials totaling 391 main-case
-  outputs**, plus 72 CLEAR/replay outputs. These include a repeated 128-output
-  continuation and both full-context boundary cases. **Deliberately corrupted DDR was tested in simulation**, not by
-  physically modifying the board's memory or bus. Do not describe the latter
-  as a demonstrated physical attack-rejection test.
-- [Source-bound formal checks](../../formal/kv-integrity/README.md) prove
-  guard/hash-framing history, its connection to the atomic cache through
-  selected real parent gates, and a separate attention capture/use theorem.
-  Both solvers complete each result. SHA compression and parts of the
-  surrounding computation are abstracted; this is not a whole-machine or
-  cryptographic-security theorem. The baseline token-shell and connected
-  proofs were also replayed against the supplied sources. See
-  [all formal scopes](FORMAL-STATUS.md).
-- The baseline report has 145 setup/recovery and ten hold/removal violated endpoints;
-  the selected protected report has 152 and ten, within the vendor DDR hierarchy.
-  The complete reported-endpoint census finds no negative path with an end
-  outside vendor DDR. This census comes from private vendor reports; the
-  public native summary includes report hashes, not the full reports.
-  The baseline inference-clock setup/hold slacks are +0.018/+0.144 ns, leaving
-  very little reported setup margin. The protected inference-clock
-  setup/hold margins are +0.228/+0.116 ns. Seven DLL
-  hold violations of −0.010 to −0.075 ns and other DDR/reset paths remain
-  unresolved. No timing exception or waiver is applied. The custom-logic screen,
-  correct outputs and different violation counts do not establish complete
-  timing signoff. Vendor hard-block/startup contracts and board I/O timing
-  information are still needed. The startup qualifier does not waive them.
+The current protected source association includes a joint cache proof with
+357 assertions including support and a separate 34-assertion attention scope.
+Private scheduling and SHA replies remain arbitrary at the declared boundaries.
+These counts overlap with component scopes and must not be added. See
+[FORMAL-STATUS.md](FORMAL-STATUS.md) for precise properties and cuts.
+
+The [guard simulation](../../simulation/kv-protected/README.md) exercises
+corruption, stale/wrong-location records, sealed-copy reads, stalls and CLEAR.
+It is component simulation with its named source association. Deliberately
+corrupted DDR was not tested by physically modifying the board's memory or bus.
+The full-model and board comparisons are finite functional checks, not proofs
+of cryptographic security, numerical correctness for every prompt or useful
+training capacity bounds.
+
+The two selected images have their own source/model/native/mapped records.
+Both retain `timing_qualified: false`; the native route, reported custom-logic
+paths and correct outputs do not provide complete vendor-DDR or external-I/O
+timing signoff. The protected image has 93 build inputs, including four pinned
+vendor inputs acquired separately. No older image's timing or whole-controller
+proof is silently assigned to this image.
 
 ## Run or rebuild
 

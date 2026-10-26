@@ -4,7 +4,7 @@
 Run from any directory: python3 simplestories-hardware-architecture.py
 Requires matplotlib. Checks the recorded census against the public image and
 implementation inventory; does not rerun synthesis or require private artifacts.
-Public RTL: Berkeley-AI-Risk/inference-only, commit d784685f3a0a22c87e594702d4dd3c6090785d8d.
+Public RTL: Berkeley-AI-Risk/inference-only; selected inventory in MANIFEST.json.
 """
 from pathlib import Path
 from collections import Counter
@@ -19,25 +19,32 @@ from matplotlib.lines import Line2D
 
 ROOT = Path(__file__).resolve().parents[1]
 STEM = Path(__file__).resolve().with_suffix("")
-EXPECTED_IMAGE = "6ba3caa4f88ac58dd30336c3ff4478f836779db0d04309ff457ca065ec1f7f09"
-COMMIT = "d784685f3a0a22c87e594702d4dd3c6090785d8d"
+EXPECTED_IMAGE = "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57"
+COMMIT = "selected source inventory in MANIFEST.json"
 
 
 def inventory():
     data = json.loads(STEM.with_suffix(".inventory.json").read_text())
-    implementation = json.loads((ROOT / "evidence/baseline-current/implementation.json").read_text())
+    implementation = json.loads((ROOT / "evidence/current-greedy/baseline/analysis/implementation.json").read_text())
     build = json.loads((ROOT / "prebuilt/inference/BUILD.json").read_text())
     assert data["mapped_image_sha256"] == implementation["image_sha256"] == build["image_sha256"] == EXPECTED_IMAGE
     assert data["primitive_counts"] == implementation["mapped_multiplier_primitives"]
     assert dict(Counter(e["primitive"] for e in data["mapped_instances"])) == data["primitive_counts"]
     assert dict(Counter(e["role"] for e in data["mapped_instances"])) == data["functional_group_counts"]
     assert data["functional_group_counts"] == {"projection_lanes": 64, "projection_scaling": 2,
-                                               "dynamic_roles": 5, "embedding_and_address_support": 5}
+                                               "dynamic_roles": 19, "embedding_and_address_support": 5}
+    census_raw = (ROOT / data["source_census"]["path"]).read_bytes()
+    assert len(census_raw) == data["source_census"]["bytes"]
+    assert hashlib.sha256(census_raw).hexdigest() == data["source_census"]["sha256"]
+    census = json.loads(census_raw)
+    assert census["image_sha256"] == EXPECTED_IMAGE and census["total_multiplier_instances"] == 90
+    assert census["dynamic_scheduled_role_instances"] == 19
+    assert [(r["instance"], r["primitive"]) for r in data["mapped_instances"]] == [(r["instance"], r["primitive"]) for r in census["mapped_instances"]]
     return data
 
 
 data = inventory()
-assert sum(data["functional_group_counts"].values()) == 76
+assert sum(data["functional_group_counts"].values()) == 90
 
 # Logical drawing units are pixels; export at 1.5x for comfortable zooming.
 W, H = 3600, 2950
@@ -111,8 +118,8 @@ def badge(x, y, s, w=80, kind="dynamic"):
 text(60, 40, "Inside a fixed-model inference chip", 47, weight="bold")
 text(60, 108, "SimpleStories-V2-5M  •  released baseline  •  controllers, private buses, memories and multiplier resources", 25, C["muted"])
 rect(60, 165, 3480, 126, "#f4f7fb", "#c4d0dc")
-text(88, 182, "76 mapped multipliers = 64 projection + 2 projection-scaling + 5 dynamic-role + 5 supporting units", 28, weight="bold")
-text(88, 235, "The five dynamic units are included in the 76. Both operands are runtime values in at least one scheduled role; the units are not user-programmable.", 21, C["muted"])
+text(88, 182, "90 mapped multipliers = 64 projection + 2 projection-scaling + 19 runtime-role + 5 supporting units", 28, weight="bold")
+text(88, 235, "The 19 runtime-role units are included in the 90. Both operands are runtime values in at least one scheduled role; the units are not user-programmable.", 21, C["muted"])
 
 # Two panels provide a readable architectural overview and a count-complete expansion.
 rect(50, 335, 1510, 2205, C["panel"], radius=18)
@@ -202,15 +209,15 @@ line([(2575,1147),(2145,1147),(2145,1150)],"data")
 line([(2575,1147),(3005,1147),(3005,1150)],"data")
 text(1695,1260,"35-bit lane accumulators → one row at a time → scaled 50-bit result → private vector normalization.",18)
 
-# Panel 2B: five clearly marked dynamic roles, with the attention path shown explicitly.
+# Panel 2B: nineteen mapped units grouped by their dynamic roles, with the attention path shown explicitly.
 rect(1660, 1320, 1850, 650,"white",C["dynamic"],lw=2)
-text(1690,1344,"5  Dynamic-role multipliers — highlighted in pink",27,weight="bold",color=C["dynamic"])
-text(1690,1390,"These are five individual multipliers distributed across attention, feed-forward and normalization hardware.",20)
+text(1690,1344,"19  Runtime-role multipliers — highlighted in pink",27,weight="bold",color=C["dynamic"])
+text(1690,1390,"Sixteen attention multipliers, one feed-forward multiplier and two normalization multipliers follow fixed schedules.",20)
 text(1690,1426,"Queries, attention probabilities and intermediate results stay in private on-chip memory.",19,C["muted"])
 
-box(1730,1500,500,155,"D1  Attention score  ×","query Q × cached key K\n16-bit × 16-bit; accumulate Q·K","dynamic",title_size=23,body_size=21,rtl="u_attention.u_score_lane")
+box(1730,1500,500,155,"D1  Attention scores  ×8","query Q × cached key K\n16-bit × 16-bit; accumulate Q·K","dynamic",title_size=23,body_size=21,rtl="u_attention: eight private score lanes")
 box(2300,1500,490,155,"Score RAM + softmax","Converts scores into attention\nprobabilities (the A values).","data",title_size=23,body_size=21,rtl="No multiplier counted in this box")
-box(2860,1500,570,155,"D2  Weighted value  ×","attention probability A × cached value V\n16-bit × 16-bit; accumulate weighted values","dynamic",title_size=23,body_size=20,rtl="u_attention.u_lane")
+box(2860,1500,570,155,"D2  Weighted values  ×8","attention probability A × cached value V\n16-bit × 16-bit; accumulate weighted values","dynamic",title_size=23,body_size=20,rtl="u_attention: eight private value lanes")
 line([(2230,1575),(2300,1575)],"data")
 line([(2790,1575),(2860,1575)],"data")
 label(1750,1460,"Q from private state; K from cache", "data",17)
@@ -223,7 +230,7 @@ box(2890,1740,540,185,"D5  Final normalization  ×","A separate x × x unit in t
 # Panel 2C: the remaining five mapped multipliers are support work, not hidden GEMM lanes.
 rect(1660,2010,1850,370,"white",C["gray"])
 text(1690,2032,"5  Supporting multipliers — embedding conversion and address generation",25,weight="bold")
-text(1690,2079,"These are part of the 76 even though they do not form the main matrix engine.",20,C["muted"])
+text(1690,2079,"These are part of the 90 even though they do not form the main matrix engine.",20,C["muted"])
 support=[
     ("S1  ×","Embedding value\n× fixed row scale","1 large primitive"),
     ("S2  ×","Layer number\n× weight-block stride","1 large primitive"),
@@ -233,8 +240,8 @@ support=[
 ]
 for i,(title,body,rtl) in enumerate(support):
     box(1720+i*350,2140,320,190,title,body,"gray",title_size=23,body_size=20,rtl=rtl)
-text(1690,2410,"Mapped-resource check: 73 large MULTALU27X18 + 3 small MULT12X12 = 76 instances.",23,weight="bold")
-text(1690,2455,"A large primitive can include an adder / accumulator. Vendor DSP accounting is 74.5 blocks.",20,C["muted"])
+text(1690,2410,"Mapped-resource check: 87 large MULTALU27X18 + 3 small MULT12X12 = 90 instances.",23,weight="bold")
+text(1690,2455,"A large primitive can include an adder / accumulator. Vendor DSP accounting is 88.5 blocks.",20,C["muted"])
 
 # Footer: decoding the colors, ordinary-language definitions, and evidence boundaries.
 text(65,2590,"How to read this diagram",27,weight="bold")
@@ -245,8 +252,8 @@ for i,(kind,s) in enumerate(legend):
     text(x+125,y-4,s,22)
 text(65,2760,"Weight = a learned model number.  Activation = a number computed while processing tokens.  Controller = fixed logic that chooses the next operation.",20)
 text(65,2800,"Bus = a group of wires carrying data; labels give the payload width. Arrows summarize selected transfers, including requests and returns where marked.",20)
-text(65,2840,"Scope: baseline architecture with a frozen circuit assumed. The 76 count is verified in the mapped FPGA build; ASIC synthesis may map the arithmetic differently.",19,C["muted"])
-text(65,2880,"Sources: Berkeley-AI-Risk/inference-only @ d784685 • ARCHITECTURE.md; evidence/baseline-current/implementation.json; matching mapped netlist / image 6ba3caa4…",18,C["muted"])
+text(65,2840,"Scope: baseline architecture with a frozen circuit assumed. The 90 count is verified in the mapped FPGA build; ASIC synthesis may map the arithmetic differently.",19,C["muted"])
+text(65,2880,"Sources: selected baseline inventory • demos/simplestories-v2-5m/HARDWARE.md • current mapped census / image 01b040cb…",18,C["muted"])
 
 # Detect accidental text overflow in node boxes before producing the deliverables.
 fig.canvas.draw()
@@ -259,4 +266,4 @@ for title,x,y,w,h,items in text_boxes:
 
 fig.savefig(STEM.with_suffix(".svg"),format="svg",facecolor="white",metadata={"Date":None,"Title":"SimpleStories hardware architecture and multiplier inventory","Description":f"Source {COMMIT}; baseline image {EXPECTED_IMAGE}"})
 fig.savefig(STEM.with_suffix(".png"),dpi=150,facecolor="white",metadata={"Title":"SimpleStories hardware architecture and multiplier inventory","Source":f"Berkeley-AI-Risk/inference-only @ {COMMIT}; image {EXPECTED_IMAGE}"})
-print(json.dumps({"png":str(STEM.with_suffix('.png')),"svg":str(STEM.with_suffix('.svg')),"size_pixels":[5400,4425],"mapped_multipliers":76,"dynamic_roles":5}))
+print(json.dumps({"png":str(STEM.with_suffix('.png')),"svg":str(STEM.with_suffix('.svg')),"size_pixels":[5400,4425],"mapped_multipliers":90,"dynamic_roles":19}))
