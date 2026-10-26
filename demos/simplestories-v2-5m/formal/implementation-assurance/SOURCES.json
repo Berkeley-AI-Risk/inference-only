@@ -1,0 +1,82 @@
+{
+  "basis_commit": "1eb4d60437cefcb896cb3aaddf38b9a225a26c4a",
+  "schema": "current-simplestories-formal-source-pins-v1",
+  "variants": {
+    "baseline": {
+      "hardware_root": "hardware",
+      "image": "prebuilt/inference/project/impl/pnr/shared_product.fs",
+      "image_bytes": 42197772,
+      "image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+      "kv_base": 227072,
+      "kv_limit": 448256,
+      "model_words": 227062,
+      "native_inputs": 90,
+      "native_inventory": "host-app/hardware-inputs.json",
+      "native_inventory_bytes": 13338,
+      "native_inventory_sha256": "61f1f05df3c87f0e2bb1b5e708eb6e4dc1a01252b310a572dd6eacb93215fe41",
+      "omitted_vendor_inputs": {
+        "project/official/ddr3_memory_interface.v": "d7cae5a16467ca35ee3f95411537344ae3702e1dba86a06571530e3dd0180c57",
+        "project/official/gowin_pll.v": "982ca6387f42086e88b4c858490eb00954a80a3284e0f07d959311d0975d7536",
+        "project/official/gowin_pll_mod.v": "07398632b56749dbe52f6e5d739a526c7ca5e71c4060c7d062a64dada6e1a953",
+        "project/official/pll_init.v": "502436115e507453e2c139a073f5b56484421311ef57088ce1a16140347957f5"
+      }
+    },
+    "encrypted-memory": {
+      "hardware_root": "variants/encrypted-memory/hardware",
+      "image": "prebuilt/encrypted-memory/project/impl/pnr/shared_product.fs",
+      "image_bytes": 42303596,
+      "image_sha256": "cfc8a3d8832b4a2959606f0e9f01c511357ec68380f521b5f28a4fc737edf1d2",
+      "kv_base": 227072,
+      "kv_limit": 472832,
+      "model_words": 227062,
+      "native_inputs": 100,
+      "native_inventory": "host-app/hardware-inputs-encrypted-memory.json",
+      "native_inventory_bytes": 14397,
+      "native_inventory_sha256": "f99d09dcf89439948d4e8a4a2117006c2c740393ef5f60d6a8f94ca254d09aa3",
+      "omitted_vendor_inputs": {
+        "project/official/ddr3_memory_interface.v": "d7cae5a16467ca35ee3f95411537344ae3702e1dba86a06571530e3dd0180c57",
+        "project/official/gowin_pll.v": "982ca6387f42086e88b4c858490eb00954a80a3284e0f07d959311d0975d7536",
+        "project/official/gowin_pll_mod.v": "07398632b56749dbe52f6e5d739a526c7ca5e71c4060c7d062a64dada6e1a953",
+        "project/official/pll_init.v": "502436115e507453e2c139a073f5b56484421311ef57088ce1a16140347957f5"
+      }
+    },
+    "kv-protected": {
+      "hardware_root": "variants/kv-protected/hardware",
+      "image": "prebuilt/kv-protected/project/impl/pnr/shared_product.fs",
+      "image_bytes": 42303596,
+      "image_sha256": "90ac68150d0c297b666bc1963d05e32d1d2d0d7d69706593e58d48d5ab2e79e2",
+      "kv_base": 227072,
+      "kv_limit": 472832,
+      "model_words": 227062,
+      "native_inputs": 93,
+      "native_inventory": "host-app/hardware-inputs-kv-protected.json",
+      "native_inventory_bytes": 13663,
+      "native_inventory_sha256": "dd439540f3933d511d23665196430b9d4ad31b28f0906af47ef445fc2d458463",
+      "omitted_vendor_inputs": {
+        "project/official/ddr3_memory_interface.v": "d7cae5a16467ca35ee3f95411537344ae3702e1dba86a06571530e3dd0180c57",
+        "project/official/gowin_pll.v": "982ca6387f42086e88b4c858490eb00954a80a3284e0f07d959311d0975d7536",
+        "project/official/gowin_pll_mod.v": "07398632b56749dbe52f6e5d739a526c7ca5e71c4060c7d062a64dada6e1a953",
+        "project/official/pll_init.v": "502436115e507453e2c139a073f5b56484421311ef57088ce1a16140347957f5"
+      }
+    },
+    "seeded-sampling": {
+      "hardware_root": "variants/seeded-sampling/hardware",
+      "image": "prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs",
+      "image_bytes": 42070540,
+      "image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
+      "kv_base": 227072,
+      "kv_limit": 448256,
+      "model_words": 227062,
+      "native_inputs": 91,
+      "native_inventory": "host-app/hardware-inputs-seeded-sampling.json",
+      "native_inventory_bytes": 13450,
+      "native_inventory_sha256": "679774e3237d8efdc56817ca00ea60c0b9d8063693736aec8a228be54297ea83",
+      "omitted_vendor_inputs": {
+        "project/official/ddr3_memory_interface.v": "d7cae5a16467ca35ee3f95411537344ae3702e1dba86a06571530e3dd0180c57",
+        "project/official/gowin_pll.v": "982ca6387f42086e88b4c858490eb00954a80a3284e0f07d959311d0975d7536",
+        "project/official/gowin_pll_mod.v": "07398632b56749dbe52f6e5d739a526c7ca5e71c4060c7d062a64dada6e1a953",
+        "project/official/pll_init.v": "502436115e507453e2c139a073f5b56484421311ef57088ce1a16140347957f5"
+      }
+    }
+  }
+}

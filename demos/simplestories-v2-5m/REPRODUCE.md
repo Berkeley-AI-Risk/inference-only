@@ -87,3 +87,7 @@ output directories in a disposable copy; preserve the delivered manifest and
 captured evidence. Greedy portable checks recheck the supplied named proof
 queries and outcomes; they do not imply a new solver execution or a
 whole-machine proof.
+
+## Inference-only implementation checks
+
+The [implementation-assurance guide](formal/implementation-assurance/README.md) provides a portable recorded-evidence check and separate commands for fresh RTL compilation, solver phases and exact source/query reproduction. These checks do not access the FPGA.

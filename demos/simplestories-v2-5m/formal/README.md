@@ -18,3 +18,5 @@ python3.12 -I -S -B formal/current-seeded-sampling/check_recorded.py --require-c
 The whole-repository integrity and common benchmark checks remain at the
 repository root. New solver runs and hardware qualification are distinct from
 replaying these recorded results.
+
+The current [implementation-assurance checks](implementation-assurance/README.md) cover the boot/runtime handoff, fixed-length boot controller, QSPI reader, real FIFOs and transport, and the greedy public controllers. Their source-bound component results and remaining composition limits are stated together.

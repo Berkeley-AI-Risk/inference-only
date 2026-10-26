@@ -41,15 +41,17 @@ in [CURRENT-QUALIFICATION.md](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md
 The table lists **Authenticated-Weight Inference-Only Chip (AWIC) designs**, all implemented on FPGAs.
 
 <!-- COMMON-FPGA-SPEED:START -->
-| Model and platform | Common cached generation | Package status |
-| --- | --- | --- |
-| **SimpleStories-V2-5M — Tang Mega**, authenticated weights | ~**10.0 tokens/s** | Runnable release |
-| Same model, **K/V-protected** | ~**7.0 tokens/s** | Runnable release |
-| Same model, **K/V protection + encrypted memory** | ~**6.0 tokens/s** | Runnable release; public demonstration keys |
-| Same model, **seeded-sampling at temperature 1**, without K/V integrity | ~**9.9 tokens/s** | Runnable release |
-| **Qwen3-1.7B — AWS F2**, authenticated weights | ~**9.0 tokens/s** | Runnable release; public AWS FPGA image |
-| **Qwen3-8B — AWS F2**, authenticated weights | ~**1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
+| Model and platform | Inference clock (MHz) | Common cached generation | Package status |
+| --- | --- | --- | --- |
+| **SimpleStories-V2-5M — Tang Mega**, authenticated weights | 25 | ~**10.0 tokens/s** | Runnable release |
+| Same model, **K/V-protected** | 25 | ~**7.0 tokens/s** | Runnable release |
+| Same model, **K/V protection + encrypted memory** | 25 | ~**6.0 tokens/s** | Runnable release; public demonstration keys |
+| Same model, **seeded-sampling at temperature 1**, without K/V integrity | 25 | ~**9.9 tokens/s** | Runnable release |
+| **Qwen3-1.7B — AWS F2**, authenticated weights | 100 | ~**9.0 tokens/s** | Runnable release; public AWS FPGA image |
+| **Qwen3-8B — AWS F2**, authenticated weights | 100 | ~**1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
 <!-- COMMON-FPGA-SPEED:END -->
+
+The clock column gives each image’s configured inference/core clock. Memory and interface blocks use other clock domains.
 
 The encrypted-memory version retains K/V integrity and replay protection and
 also encrypts both weights and K/V; its supplied keys are public demonstration

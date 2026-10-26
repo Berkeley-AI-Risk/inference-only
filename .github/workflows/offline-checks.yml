@@ -42,6 +42,9 @@ jobs:
         run: |
           python -I -S -B formal/current-seeded-sampling/check_recorded.py --require-complete
           python -I -S -B -m unittest discover -s formal/current-seeded-sampling -p 'test_*.py' -v
+      - name: Check current inference-only implementation evidence (recorded only)
+        working-directory: demos/simplestories-v2-5m
+        run: python -I -S -B tools/check_implementation_assurance.py
       - name: Check the independent seeded model reference and client fixtures
         working-directory: demos/simplestories-v2-5m
         run: |

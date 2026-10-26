@@ -24,6 +24,33 @@ executions and remain distinct evidence.
 The current results are scoped control and component proofs. They do not prove
 that the entire FPGA implements the fixed model's numerical next-token function.
 
+## Current implementation checks for inference-only enforcement
+
+The [implementation-assurance package](formal/implementation-assurance/README.md)
+checks the actual released RTL, with full native address and queue dimensions.
+Its source-bound results apply to the named current images; the FPGA images,
+numerical model and measured benchmark records are unchanged.
+
+| Checked boundary | Current result | Main limit |
+| --- | --- | --- |
+| Boot/runtime handoff and enclosing runtime adapter | 30 overlapping assertions pass Z3 and cvc5 for all four designs | The boot module’s 14 outputs remain arbitrary at this boundary. |
+| Fixed-length boot controller | 41 assertions pass Z3 and cvc5; load/readback counts retain all 227,062 words | Digest flags and responses below this component remain arbitrary; no SHA or complete boot/DDR composition theorem. |
+| QSPI model reader | 24 assertions pass both solvers; the fixed READ03 command and address range are checked | Vendor I/O behavior and physical flash protection are outside the theorem. |
+| Actual command and return FIFOs | 28 assertions per full-size channel pass Z3; four of six distinct channel proofs also pass cvc5 induction | Two encrypted-channel secondary inductions remain unresolved. All four traffic goals are reached per channel. Digital CDC only. |
+| Transport with both actual FIFOs | 56 parent/range/field assertions pass Z3 for each distinct transport; 52 reused FIFO invariants are separately proved | cvc5 base checks pass; its induction and coverage remain unresolved. No external protocol assumption is added. |
+| Connected greedy UART/core/shell | 134 assertions pass Z3 for each of the three greedy designs | 37 private semantic-layer outputs remain arbitrary; secondary induction is incomplete. The seeded composition has its separate result below. |
+
+The package retains original secondary timeouts, semantic corruption controls,
+source audits and auditor tampering controls. The counts overlap and are not
+additive. A portable recorded-evidence check runs without vendor or solver tools;
+separate commands reproduce compiler/query audits or run fresh solver checks.
+
+The top-level wiring audit joins the named components structurally. The complete
+temporal argument from authenticated boot through runtime ownership and queued
+physical DDR commands remains open, including the drain of earlier boot writes.
+These component results therefore strengthen the inference-only argument without
+establishing a whole-machine or RTL-to-bitstream theorem.
+
 ## Current seeded RTL replay
 
 The seeded-sampling image is

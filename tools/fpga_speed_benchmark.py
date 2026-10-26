@@ -266,11 +266,21 @@ def calculate(root):
             'scope': 'Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay.'}
 
 
+def inference_clock_mhz(row):
+    identity = row['identity']
+    if 'clock_hz' in identity:
+        return identity['clock_hz'] / 1_000_000
+    if 'core_clock_mhz' in identity:
+        return identity['core_clock_mhz']
+    return identity['clocks_mhz']['core']
+
+
 def table(result):
-    lines = ['| Model and platform | Common cached generation | Package status |', '| --- | --- | --- |']
+    lines = ['| Model and platform | Inference clock (MHz) | Common cached generation | Package status |', '| --- | --- | --- | --- |']
     for row in result['rows']:
         speed = f"~**{row['rate']['cached_tokens_per_second']:.1f} tokens/s**" if row['complete'] else '—'
-        lines.append(f"| {row['label']} | {speed} | {row['package_status']} |")
+        clock = f"{inference_clock_mhz(row):g}"
+        lines.append(f"| {row['label']} | {clock} | {speed} | {row['package_status']} |")
     return '\n'.join(lines)
 
 
