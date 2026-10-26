@@ -32,7 +32,9 @@ and reset conditions. This can rule out entire classes of unauthorized
 commands, stale-state use or mismatched replies within that scope. It does
 not establish eventual completion or properties omitted from the model.
 
-## What is checked now, and what it implies
+<a id="what-is-checked-now-and-what-it-implies"></a>
+
+## Verified properties and scope
 
 There are two complementary kinds of formal work here. **Lean checks the
 abstract transaction specification**, including command effects, tape bounds
@@ -163,13 +165,12 @@ The inventory and recorded counts below describe the archived 0e6 release.
 The current capsule/results above have separate source/image bindings and do
 not relabel the old PASS records.
 
-The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) now has
+The optional [seeded-sampling configuration](STOCHASTIC-GENERATION.md) has
 [separate source-bound proofs and public replay](../../formal/seeded-sampling/README.md)
 for SETTINGS, sampler/seed ownership and CLEAR/replay. Its connected Z3 proof
 passes 196 assertions; cvc5 checks the base and 194 conclusions, with two CRC
-conclusions unresolved by that second solver. These new results are separate
-from the original three-command receipts and retain scoped component/private
-computation boundaries. No whole-machine or numerical-distribution theorem is
+conclusions unresolved by that second solver. These results apply to the seeded controller and its scoped component/private
+computation boundaries; the three-command controller has separate receipts. No whole-machine or numerical-distribution theorem is
 claimed.
 
 The [portable seeded replay](../../formal/seeded-sampling/README.md) checks the exact

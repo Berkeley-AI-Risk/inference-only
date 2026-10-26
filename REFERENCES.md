@@ -1,6 +1,6 @@
 # Design references and prior work
 
-The full document is now at [Design references and prior work](docs/REFERENCES.md). This link page preserves references from pinned guides and recorded evidence.
+Read [Design references and prior work](docs/REFERENCES.md).
 
 <a id="models-and-inference-algorithms"></a>
 

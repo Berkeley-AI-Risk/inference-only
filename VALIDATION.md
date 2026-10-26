@@ -1,6 +1,6 @@
 # Validation and known limits
 
-The full document is now at [Validation and known limits](demos/simplestories-v2-5m/VALIDATION.md). This link page preserves references from pinned guides and recorded evidence.
+Read [Validation and known limits](demos/simplestories-v2-5m/VALIDATION.md).
 
 <a id="optimized-seeded-image-current-record"></a>
 

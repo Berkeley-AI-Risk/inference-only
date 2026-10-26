@@ -113,12 +113,11 @@ or encryption. Temperatures remain 0, 0.5, 1 and 2 with a public 128-bit seed;
 temperature 0 preserves the greedy rule. The three original greedy hardware
 configurations above are separate images, not different neural models.
 
-Current package status is **Runnable release**. See the
-[current qualification record](CURRENT-QUALIFICATION.md) for actual
-full-seven-suite, clean-recipient, twelve-case browser and current scoped
-replay completion. The archived 0e6 image's 1,316-file/ten-browser-case record
-remains historical and does not qualify this image. Installation on another
-owner's setup and other host platforms remain untested.
+Package status is **Runnable release**. The
+[qualification record](CURRENT-QUALIFICATION.md) describes the seven board
+suites, clean-recipient checks, twelve browser cases and scoped replay results
+for this image. Installation on another owner's setup and other host platforms
+is untested.
 
 ## Inference-only scope
 
@@ -153,9 +152,8 @@ tokens, the cached command rates are **8.77 tokens/s for the baseline,
 5.22–5.23 for K/V-protected, and 4.27 for encrypted memory**. These rates include
 host/UART reply overhead but exclude gaps between commands.
 
-The optimized seeded image recorded **9.94 cached tokens/s** at temperature 1,
-compared with **8.67 tokens/s** for the archived seeded image. Both measurements
-use the same one-token prompt and two 128-output trials and exclude the first
+The optimized seeded image measured **9.94 cached tokens/s** at temperature 1
+with a one-token prompt and two 128-output trials, excluding the first
 hardware STEP. See the [qualification and timing details](CURRENT-QUALIFICATION.md#recorded-timing)
 for the exact measurements, full workload and longer-prompt results.
 

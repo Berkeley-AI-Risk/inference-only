@@ -43,7 +43,7 @@ guide's fresh scan. For its tested cable index 4:
 
 Require the intended target, successful **SRAM Program**, successful tool exit
 and `Finished.`. Keep the board powered and wait at least 120 seconds after actual
-SRAM load completes. The new image is volatile; reload it after power loss.
+SRAM load completes. The FPGA configuration is volatile; reload it after power loss.
 Its SHA-256 is
 `d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725`;
 [BUILD.json](../../prebuilt/seeded-sampling/BUILD.json) binds it to the selected
@@ -101,7 +101,7 @@ tokenized prompt and streams the continuation. Completion and Stop finish
 with CLEAR. Repeating the same prompt, temperature and seed reproduces the
 continuation. The tokenizer and conservative browser limits are unchanged:
 at most 2,048 prompt tokens, 128 new tokens and 2,049 combined tokens for seeded sampling. The three original greedy profiles retain 128 prompt tokens, 128 new tokens and 256 combined tokens. These limits do not
-constitute a full-context test of the new image.
+constitute a full-context test of the seeded image.
 
 CLEAR retains temperature and seed and restarts the generator from that seed.
 Reset restores temperature 0. A different seed can produce a different
@@ -209,8 +209,8 @@ Their 1,024 main outputs and 96 probe outputs all matched the reference;
 three final greedy outputs checked restoration. Together with the 16 context
 cases, this is **24 baseline-style qualification trials, 1,564 main outputs
 and 288 per-trial replay outputs**, four times the baseline's six-trial
-matrix. These control trials are separate from the earlier performance
-benchmark; its measured rates and original captures remain unchanged.
+matrix. The control trials and performance benchmark have separate captures and
+measurement scopes.
 
 The [additional seed campaign](../../evidence/seeded-sampling/seed-domain.json)
 passed 12 cases: a second fixed seed with one-token and 128-token prompts
@@ -333,7 +333,7 @@ The generator is xoroshiro128++; seed zero maps to the nonzero initial state
 commits when its selected token is accepted; CLEAR discards uncommitted work
 and rewinds to the configured seed. Faults remain terminal through CLEAR.
 
-The new image adds `SETTINGS` (opcode 03) alongside the original five-byte
+The seeded image accepts `SETTINGS` (opcode 03) alongside five-byte
 APPEND/STEP/CLEAR frames. Its 20-byte request contains magic `A5`, opcode,
 temperature code (0=greedy, 1=0.5, 2=1, 3=2), the 16-byte little-endian seed
 and CRC8. Acceptance replies with kind `83` and the temperature code;
@@ -354,7 +354,7 @@ The pinned 91-input inventory is
 four vendor files must be acquired separately under
 [VENDOR-SETUP.md](../../VENDOR-SETUP.md). The original three-command receipts do not
 cover the changed controller. Separate [seeded formal proofs and public replay](../../formal/seeded-sampling/README.md)
-now check SETTINGS, sampler/seed ownership and CLEAR/replay with the stated
+check SETTINGS, sampler/seed ownership and CLEAR/replay with the stated
 private-service boundaries. The connected Z3 proof passes 196 assertions;
 cvc5 passes its base and 194 conclusions, with two CRC conclusions unresolved.
 The public replay verifies 87 distributed source files and image bytes; it does

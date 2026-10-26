@@ -1,6 +1,6 @@
 # Single-H100 reference inference benchmark
 
-The full document is now at [Single-H100 reference inference benchmark](docs/benchmarks/H100-BENCHMARK.md#historical-simplestories-campaign). This link page preserves references from pinned guides and recorded evidence.
+Read [Single-H100 reference inference benchmark](docs/benchmarks/H100-BENCHMARK.md#historical-simplestories-campaign).
 
 <a id="results"></a>
 

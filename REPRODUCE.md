@@ -1,6 +1,6 @@
 # Reproduce the model assets and scoped proofs
 
-The full document is now at [Reproduce the model assets and scoped proofs](demos/simplestories-v2-5m/REPRODUCE.md). This link page preserves references from pinned guides and recorded evidence.
+Read [Reproduce the model assets and scoped proofs](demos/simplestories-v2-5m/REPRODUCE.md).
 
 <a id="prerequisites"></a>
 

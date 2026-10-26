@@ -1,22 +1,10 @@
 # Residual training capacity of SimpleStories on Tang Mega
 
-The sections below analyze **SimpleStories-V2-5M on Tang Mega**. The separate
-[Qwen3-1.7B analysis on AWS F2](../qwen3-1.7b/TRAINING-CAPACITY.md)
-reconciles its arithmetic inventory, derives workload-dependent counts and
-applies the measured H100 reference. The
-[shared-method H100 comparison](../../docs/benchmarks/H100-BENCHMARK.md) supplies new
-Qwen and SimpleStories reference scores and compares their conditional ratios. The
-[shared methodology](../../docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md) describes the evidence
-needed to turn such comparisons into a reliable residual training assessment.
+This assessment calculates conditional training-capacity allowances for **SimpleStories-V2-5M on Tang Mega**, using the baseline without K/V integrity checks. Its H100 inference reference is the FP16 parent measured with Transformers 4.48.3 at 128 input positions.
 
-The historical SimpleStories GPU measurements and factors below are preserved.
-For comparisons with Qwen, use the new shared-method calibration in the linked
-report; its faster SimpleStories reference changes those conditional ratios.
+The [shared comparison](../../TRAINING-CAPACITY.md) uses a common Transformers 5.17.0 benchmark method for SimpleStories and Qwen. The [H100 report](../../docs/benchmarks/H100-BENCHMARK.md) specifies both implementations and their measurements; their reference rates are implementation-specific. The [methodology](../../docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md) defines the evidence needed for a residual training assessment, and the [Qwen analysis](../qwen3-1.7b/TRAINING-CAPACITY.md) describes that circuit's separate inventory and assumptions.
 
-The measured rates and conditional factors below use the faster baseline.
-They have not been recomputed for the third
-[encrypted-memory version](../../ENCRYPTED-MEMORY.md). Encryption alone does not
-establish a smaller training-capacity bound.
+These numerical factors do not apply to the [encrypted-memory configuration](../../ENCRYPTED-MEMORY.md). Encryption alone does not establish a smaller training-capacity bound.
 
 **Version scope:** the numerical estimates in this document use the supplied
 baseline **without K/V integrity checks** and its recorded inference rates.

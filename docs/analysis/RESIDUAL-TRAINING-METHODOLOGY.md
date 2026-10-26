@@ -2,7 +2,7 @@
 
 A residual training assessment needs two kinds of evidence: how an adversary could obtain useful training arithmetic, and how much inference service the same hardware supplies. An arithmetic inventory answers only part of the first question. GPU benchmarking supplies the inference reference; it does not demonstrate or exclude a training attack.
 
-Use this method for each released circuit and numerical model separately. The [Qwen3 1.7B assessment](../../demos/qwen3-1.7b/TRAINING-CAPACITY.md) applies it to AWS F2. The [SimpleStories calculations](../../demos/simplestories-v2-5m/TRAINING-CAPACITY.md) retain their historical measurements and assumptions. The [October 25 shared-method H100 campaign](../benchmarks/H100-BENCHMARK.md) applies this procedure to both models and preserves its numerical acceptance failures.
+Use this method for each released circuit and numerical model separately. The [Qwen3 1.7B assessment](../../demos/qwen3-1.7b/TRAINING-CAPACITY.md) applies it to AWS F2. The [SimpleStories assessment](../../demos/simplestories-v2-5m/TRAINING-CAPACITY.md) states its measurements and access assumptions. The [H100 benchmark report](../benchmarks/H100-BENCHMARK.md) describes the reference measurements and numerical acceptance policies for both models.
 
 ## Define the quantity and rating workload
 

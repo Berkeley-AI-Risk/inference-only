@@ -1,6 +1,6 @@
 # Hardware architecture and implementation notes
 
-The full document is now at [Hardware architecture and implementation notes](demos/simplestories-v2-5m/HARDWARE.md). This link page preserves references from pinned guides and recorded evidence.
+Read [Hardware architecture and implementation notes](demos/simplestories-v2-5m/HARDWARE.md).
 
 <a id="scope-of-the-optimized-seeded-circuit"></a>
 

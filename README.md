@@ -7,6 +7,13 @@ chips in both an idealized sense and a practical, operational sense.
 language models behind a restricted hardware interface, rather than a
 general-purpose accelerator whose restrictions depend on its host software.
 
+The paper distinguishes two approaches:
+
+- **Authenticated-Weight Inference-Only Chips (AWICs)** fix the model architecture and inference function in hardware and authenticate weights stored in memory against fixed cryptographic digests.
+- **Hardwired-Weight Inference-Only Chips (HWICs)** encode both the model architecture and its weights directly in the circuit.
+
+**All designs documented in this repository are AWIC designs implemented on FPGAs. HWIC designs are in progress.**
+
 *Inference* uses an already-trained model to produce outputs without changing
 its learned weights. The idealized machine permits models from a fixed set
 and only three user operations: add input tokens to a model's tape, generate
@@ -30,9 +37,7 @@ An optional [seeded-sampling version of SimpleStories-V2-5M](demos/simplestories
 also accepts a bounded temperature and public seed while its tape is empty and
 idle. The optimized seeded image runs the same numerical model on the same Tang
 Mega board. Its current evidence and qualification limits are stated
-in [CURRENT-QUALIFICATION.md](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md). The original three
-greedy images retain their own recorded evidence; the archived seeded 0e6
-release is separate provenance.
+in [CURRENT-QUALIFICATION.md](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md). Each hardware configuration has its own validation record.
 
 ## The demonstrated designs and measurements
 
@@ -75,14 +80,12 @@ registered scoped scientific completion, fresh model/flash readback, exact
 recipient reload and registration, and twelve ordinary Chrome cases with all
 100 outputs matching the reference. Its
 [current qualification record](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md) separates those results
-from the remaining timing, security and proof limits. The archived seeded 0e6
-ten-case rehearsal is historical. No other-owner installation or
+from the timing, security and proof limits. No other-owner installation or
 complete-workload guarantee follows.
 No Tang version has complete vendor-DDR timing or physical-security certification.
 
-The optimized seeded image recorded **9.94 cached tokens/s** at temperature 1,
-compared with **8.67 tokens/s** for the archived seeded image. Both measurements
-use the same one-token prompt and two 128-output trials and exclude the first
+The optimized seeded image measured **9.94 cached tokens/s** at temperature 1
+with a one-token prompt and two 128-output trials, excluding the first
 hardware STEP. See the [qualification and timing details](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md#recorded-timing)
 for the exact measurements, full workload and longer-prompt results.
 
@@ -112,13 +115,10 @@ application-specific integrated circuit (ASIC). Reprogramming the development
 FPGA is outside that assessment; resistance to other physical tampering is
 not established by this assumption.
 
-These designs illustrate the paper's **Authenticated-Weight Inference-Only
-Chip (AWIC)** approach: architecture and inference function are fixed in
-circuitry, while hardware authenticates the weights read from memory against
-fixed cryptographic digests. The checked on-chip copies, not unchecked later
-reads from external memory, supply arithmetic. No signing secret or
-manufacturer weight-update command is needed. This differs from hardwiring
-the weight bits themselves into model-specific silicon.
+The AWIC implementations authenticate weights read from memory against fixed
+cryptographic digests. The checked on-chip copies, not unchecked later reads
+from external memory, supply arithmetic. No signing secret or manufacturer
+weight-update command is needed.
 
 Internal multiplication is not an exposed general-purpose service. Attention
 uses internally produced queries and probabilities, and sends its results to

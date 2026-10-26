@@ -1,6 +1,6 @@
 # Seeded SimpleStories generation on Tang Mega
 
-The full document is now at [Seeded SimpleStories generation on Tang Mega](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md). This link page preserves references from pinned guides and recorded evidence.
+Read [Seeded SimpleStories generation on Tang Mega](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md).
 
 <a id="load-and-check-the-seeded-image"></a>
 

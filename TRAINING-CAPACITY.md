@@ -6,19 +6,19 @@ Residual training analysis asks how much useful training arithmetic an adversary
 
 | Demonstration | Detailed assessment | Scope |
 | --- | --- | --- |
-| SimpleStories-V2-5M on Tang Mega | [Training capacity](demos/simplestories-v2-5m/TRAINING-CAPACITY.md) | Arithmetic and hypothetical access scenarios for the recorded baseline; historical measurements are retained. |
+| SimpleStories-V2-5M on Tang Mega | [Training capacity](demos/simplestories-v2-5m/TRAINING-CAPACITY.md) | Arithmetic and hypothetical access scenarios for the baseline without K/V integrity checks. |
 | Qwen3-1.7B on AWS F2 | [Training capacity](demos/qwen3-1.7b/TRAINING-CAPACITY.md) | Mapped arithmetic inventory, workload-dependent counts and measured H100 parent-model references. |
 | Qwen3-8B on AWS F2 | [Demonstration and limitations](demos/qwen3-8b/README.md) | A corresponding residual-training assessment has not been completed. |
 
 ## Method and reference measurements
 
-The [shared methodology](docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md) defines the access assumptions, workload, operation counts, reference measurement and evidence needed for an assessment. The [architecture-dependent analysis](docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md) explains scheduled work, utilization and context effects, using historical SimpleStories measurements and a larger-model example.
+The [shared methodology](docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md) defines the access assumptions, workload, operation counts, reference measurement and evidence needed for an assessment. The [architecture-dependent analysis](docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md) explains scheduled work, utilization and context effects, using SimpleStories measurements and a larger-model example.
 
-The [H100 benchmark report](docs/benchmarks/H100-BENCHMARK.md) separates the October 25 shared-method campaign from the historical SimpleStories campaign. At 128 input positions, the selected repeated FP16 references are 61,655.709 evaluations/s for Qwen and 2,951,332.875/s for SimpleStories. The compiled references use the stated logit-tolerance policy and retain greedy disagreements; GPU parents differ from the FPGA numerical functions.
+The [H100 benchmark report](docs/benchmarks/H100-BENCHMARK.md) specifies the software, workloads and acceptance policies for each reference implementation. At 128 input positions, the selected repeated FP16 references are 61,655.709 evaluations/s for Qwen and 2,951,332.875/s for SimpleStories. The compiled references use the stated logit-tolerance policy and retain greedy disagreements; GPU parents differ from the FPGA numerical functions.
 
 ## Conditional comparison
 
-These alternative access assumptions overlap and must not be added. They grant useful access that has not been demonstrated, and use identified historical FPGA steps rather than licensed peak ratings.
+These alternative access assumptions overlap and must not be added. They grant useful access that has not been demonstrated, and use identified single FPGA steps rather than licensed peak ratings.
 
 | Hypothetical access and schedule | Qwen `phi_proxy` | SimpleStories `phi_proxy` |
 | --- | ---: | ---: |
@@ -27,7 +27,7 @@ These alternative access assumptions overlap and must not be added. They grant u
 | Useful MAC every cycle from all functional multipliers | 0.974066 | 1.73419 |
 | Chosen accepted weights make all counted matrix work useful | 0.216341 | 0.0342843 |
 
-Qwen's scheduled-work proxy is about 16% lower, while its full-use-of-runtime-units proxy is about twice as high. The assumed access and schedule therefore determine the ordering. The [benchmark report](docs/benchmarks/H100-BENCHMARK.md#conditional-capacity-comparison) gives the inputs, numerical acceptance policies and remaining qualifications. The historical factors in the SimpleStories assessment retain their original reference rate and are distinct from this shared-method comparison.
+Qwen's scheduled-work proxy is about 16% lower, while its full-use-of-runtime-units proxy is about twice as high. The assumed access and schedule therefore determine the ordering. The [benchmark report](docs/benchmarks/H100-BENCHMARK.md#conditional-capacity-comparison) gives the inputs, numerical acceptance policies and remaining qualifications. The SimpleStories assessment uses a Transformers 4.48.3 reference; this comparison uses Transformers 5.17.0 for both models. Those reference rates are implementation-specific.
 
 ## Reproduce the calculations
 

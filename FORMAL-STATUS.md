@@ -1,6 +1,6 @@
 # What has—and has not—been formally proved
 
-The full document is now at [What has—and has not—been formally proved](demos/simplestories-v2-5m/FORMAL-STATUS.md). This link page preserves references from pinned guides and recorded evidence.
+Read [What has—and has not—been formally proved](demos/simplestories-v2-5m/FORMAL-STATUS.md).
 
 <a id="what-the-formalization-is-meant-to-establish"></a>
 
@@ -8,7 +8,7 @@ The full document is now at [What has—and has not—been formally proved](demo
 
 <a id="what-is-checked-now-and-what-it-implies"></a>
 
-[What is checked now, and what it implies](demos/simplestories-v2-5m/FORMAL-STATUS.md#what-is-checked-now-and-what-it-implies)
+[Verified properties and scope](demos/simplestories-v2-5m/FORMAL-STATUS.md#what-is-checked-now-and-what-it-implies)
 
 <a id="detailed-proof-inventory-and-source-scope"></a>
 

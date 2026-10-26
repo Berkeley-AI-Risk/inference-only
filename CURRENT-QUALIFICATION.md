@@ -1,6 +1,6 @@
 # Current optimized seeded image
 
-The full document is now at [Current optimized seeded image](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md). This link page preserves references from pinned guides and recorded evidence.
+Read [Current optimized seeded image](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md).
 
 <a id="recorded-timing"></a>
 

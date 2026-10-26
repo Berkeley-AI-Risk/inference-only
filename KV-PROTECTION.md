@@ -1,6 +1,6 @@
 # Two versions: speed and attention-cache integrity
 
-The full document is now at [Two versions: speed and attention-cache integrity](demos/simplestories-v2-5m/KV-PROTECTION.md). This link page preserves references from pinned guides and recorded evidence.
+Read [Two versions: speed and attention-cache integrity](demos/simplestories-v2-5m/KV-PROTECTION.md).
 
 <a id="why-use-the-protected-version"></a>
 
