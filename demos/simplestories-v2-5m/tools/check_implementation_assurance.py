@@ -19,7 +19,7 @@ import subprocess
 import sys
 import tempfile
 
-EXPECTED_INDEX_SHA256='36ee9b8de68369b0316d1b277500d50259a354341f0d743fb8ff4497083424ae'
+EXPECTED_INDEX_SHA256='d92265b8cc7693be86157ab8b9ca578665cd2c737b08a5e444d6ca4d43b86386'
 
 
 def sha(raw):return hashlib.sha256(raw).hexdigest()
@@ -42,8 +42,8 @@ def materialize(model,evidence,work):
     raw=(evidence/'INDEX.json').read_bytes();need(sha(raw)==EXPECTED_INDEX_SHA256,'Implementation evidence index changed')
     index=json.loads(raw)
     need(index['schema']=='current-simplestories-implementation-assurance-evidence-v1','Unknown evidence schema')
-    need(len(index['files'])<=3000 and len(index['runs'])==43,'Evidence inventory changed')
-    need(sum(r['bytes']for r in index['files'].values())==index['raw_total_bytes']<=2_000_000_000,'Raw evidence budget changed')
+    need(len(index['files'])<=3000 and len(index['runs'])==59,'Evidence inventory changed')
+    need(sum(r['bytes']for r in index['files'].values())==index['raw_total_bytes']<=3_000_000_000,'Raw evidence budget changed')
     cache=work/'_objects';cache.mkdir();seen={}
     for logical,row in index['files'].items():
         digest=row['sha256'];need(re.fullmatch('[0-9a-f]{64}',digest),'Invalid object digest')
@@ -76,10 +76,18 @@ def recorded_rows(work,index):
     reports={
         'fifo':read(work/'audit-probes/transport-source-audit-r3-checked/fifo-premise-recheck/FINISHED.json'),
         'transport':read(work/'audit-probes/transport-source-audit-r3-checked/FINISHED.json'),
-        'boot-order':read(work/'audit-probes/boot-order-source-audit-r1/FINISHED.json')}
+        'boot-order':read(work/'audit-probes/boot-order-source-audit-r1/FINISHED.json'),
+        'boot-boundary':read(work/'audit-probes/boot-boundary-source-audit-r1/FINISHED.json'),
+        'boot-path':read(work/'audit-probes/transport-epoch-source-audit-r6-complete/source-premise-recheck/FINISHED.json'),
+        'transport-epoch':read(work/'audit-probes/transport-epoch-source-audit-r6-complete/FINISHED.json')}
+    reset=read(work/'audit-probes/transport-epoch-source-audit-r6-complete/reset-premise-recheck/FINISHED.json')
+    reports['reset-correspondence']=dict(reset,runs=[dict(reset,run='reset-correspondence-r1')])
+    checkers={'fifo':'audit_fifo.py','transport':'audit_transport.py','boot-order':'audit_boot_order.py',
+        'boot-boundary':'audit_boot_boundary.py','boot-path':'audit_boot_path.py',
+        'transport-epoch':'audit_transport_epoch.py','reset-correspondence':'audit_reset_correspondence.py'}
     for kind,record in reports.items():
         need(record['passed'],'Incomplete recorded source audit: '+kind)
-        need(record['checker_sha256']==index['source_tools']['audit_'+('boot_order'if kind=='boot-order'else kind)+'.py']['sha256'],
+        need(record['checker_sha256']==index['source_tools'][checkers[kind]]['sha256'],
             'Recorded source audit/tool binding changed: '+kind)
     rows={r['run']:(kind,r)for kind,record in reports.items()for r in record['runs']}
     for item in index['runs']:
@@ -180,6 +188,7 @@ def check(package,evidence,work):
 def check_materialized(package,index,work):
     reports=recorded_rows(work,index)
     bindings=recover_current_sources(work,package,index)
+    epoch=load(work,'recorded_epoch_sources').recover(work,package,index,reports['transport-epoch'])
     # These two source audits are already entirely recorded-only. They recover
     # the actual parent/controller instrumentation and inspect raw outcomes.
     for name,destination in [('audit','fixed-audit.json'),('audit_control','control-audit.json')]:
@@ -199,11 +208,15 @@ def check_materialized(package,index,work):
     for name in ('fifo-audit-sensitivity-r3-current','transport-audit-sensitivity-r1'):
         record=read(work/('audit-probes/'+name+'/FINISHED.json'))
         need(record['passed']and len(record['controls'])==5 and all(r['rejected']for r in record['controls']),'Auditor sensitivity controls changed')
+    for name,count in [('boot-boundary-audit-sensitivity-r1',5),('transport-epoch-audit-sensitivity-r2',7)]:
+        record=read(work/('audit-probes/'+name+'/FINISHED.json'))
+        need(record['passed']and len(record['controls'])==count and all(r['rejected']for r in record['controls']),'New auditor sensitivity controls changed')
     result=dict(recorded_evidence_checks_passed=True,selected_runs=len(index['runs']),
         native_designs=len(bindings),current_source_instrumentation_recovered=True,
         full_compiler_and_query_reproduction_report_bindings_checked=True,
         compiler_or_solver_executed=False,hardware_access=False,whole_machine_theorem=False,
-        boot_runtime_transport_temporal_join_proved=False,source_to_bitstream_equivalence=False,
+        boot_runtime_transport_temporal_join_proved=True,source_to_bitstream_equivalence=False,
+        new_source_and_contract_binding=epoch,
         raw_evidence_bytes=index['raw_total_bytes'],secondary_timeouts_retained=True)
     return result
 

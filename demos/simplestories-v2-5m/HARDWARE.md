@@ -334,12 +334,13 @@ different counts. [The current capacity assessment](TRAINING-CAPACITY.md)
 keeps these observations separate from usable attacker access or a certified
 training bound.
 
-Formal work covers components of the actual command/controller/cache path,
-as detailed in [FORMAL-STATUS.md](FORMAL-STATUS.md). Whole-machine refinement,
-full numerical correctness, complete external-memory epoch isolation, mapped
-implementation equivalence, correctness for every permitted prompt and invasive
-tamper resistance remain distinct open obligations. No proof of all of them
-is implied by the architecture described here.
+Formal work joins the actual boot/source path, reset logic and full-size
+transport to prove that, after runtime LOCK, writes at the vendor DDR application
+interface stay in the permitted runtime K/V region until the common hard reset.
+Previously queued boot writes are included. [FORMAL-STATUS.md](FORMAL-STATUS.md)
+states the exact source, solver and abstraction boundaries. Vendor DDR behavior,
+physical epoch isolation, whole-machine numerical refinement, mapped equivalence
+and invasive tamper resistance remain separate obligations.
 
 ## Reproducibility identities
 
