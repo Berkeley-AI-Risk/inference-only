@@ -29,6 +29,46 @@ class CommonSpeedTests(unittest.TestCase):
         self.assertAlmostEqual(result['cached_tokens_per_second'], 254/381)
         self.assertNotEqual(result['cached_tokens_per_second'], (1+0.5)/2)
 
+    def sampled_trial(self, **kwargs):
+        values=dict(profile='seeded-temperature1',decoding='seeded-sampling',temperature=1,
+                    seed='0x'+'1'*32)
+        values.update(kwargs)
+        return self.make_trial(**values)
+
+    def test_declared_temperature1_uses_same_elapsed_time_accounting(self):
+        a=self.sampled_trial();b=self.sampled_trial(spacing=2)
+        self.assertFalse(a['greedy'])
+        self.assertEqual(a['temperature'],1)
+        self.assertAlmostEqual(bench.pool([a,b])['cached_tokens_per_second'],254/381)
+
+    def test_mixed_greedy_sampled_trials_and_mixed_seeds_rejected(self):
+        for pair in ([self.make_trial(),self.sampled_trial()],
+                     [self.sampled_trial(),self.sampled_trial(seed='0x'+'2'*32)]):
+            with self.assertRaises(ValueError):bench.pool(pair)
+
+    def sampled_recorded_fixture(self):
+        selection=json.loads((ROOT/bench.SELECTION).read_text())
+        row=next(r for r in selection['rows'] if r.get('decoding')=='seeded-sampling')
+        return copy.deepcopy(row),bench.read_sources(ROOT,selection)
+
+    def test_temperature0_capture_cannot_be_relabelled_as_sampling(self):
+        row,sources=self.sampled_recorded_fixture()
+        row['cases']=[name.replace('-t2-','-t0-') for name in row['cases']]
+        with self.assertRaisesRegex(ValueError,'temperature-1 trials'):
+            bench.verify_sampled_wire(ROOT,row,sources)
+
+    def test_sampled_golden_must_match_actual_wire_seed(self):
+        row,sources=self.sampled_recorded_fixture()
+        sources[row['reference_source']]=dict(sources[row['reference_source']],seed='0x'+'0'*32)
+        with self.assertRaisesRegex(ValueError,'sampling temperature or seed'):
+            bench.verify_sampled_wire(ROOT,row,sources)
+
+    def test_sampled_trial_requires_temperature1_numerical_reference(self):
+        row,sources=self.sampled_recorded_fixture()
+        sources[row['reference_source']]=dict(sources[row['reference_source']],temperature='0')
+        with self.assertRaisesRegex(ValueError,'numerical reference'):
+            bench.selected_trials(row,sources,[])
+
     def test_excludes_first_output_and_timestamp_origin(self):
         a = self.make_trial()
         b = self.make_trial(arrivals=[1000+i for i in range(128)], first_step=999)

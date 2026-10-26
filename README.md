@@ -46,7 +46,7 @@ The table lists **Authenticated-Weight Inference-Only Chip (AWIC) designs**, all
 | **SimpleStories-V2-5M — Tang Mega**, authenticated weights | ~**10.0 tokens/s** | Runnable release |
 | Same model, **K/V-protected** | ~**7.0 tokens/s** | Runnable release |
 | Same model, **K/V protection + encrypted memory** | ~**6.0 tokens/s** | Runnable release; public demonstration keys |
-| Same model, **seeded-sampling at temperature 0**, without K/V integrity | ~**10.0 tokens/s** | Runnable release |
+| Same model, **seeded-sampling at temperature 1**, without K/V integrity | ~**9.9 tokens/s** | Runnable release |
 | **Qwen3-1.7B — AWS F2**, authenticated weights | ~**9.0 tokens/s** | Runnable release; public AWS FPGA image |
 | **Qwen3-8B — AWS F2**, authenticated weights | ~**1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
 <!-- COMMON-FPGA-SPEED:END -->
@@ -56,9 +56,7 @@ also encrypts both weights and K/V; its supplied keys are public demonstration
 keys. Seeded sampling uses the baseline's authenticated weights, without K/V
 integrity or encryption.
 
-The common benchmark uses **one input token, 128 outputs, greedy decoding and two repetitions** for every design. Its cached rate is **254 divided by the sum of the two first-to-last reply durations**, measured on the local control host after validated replies return to the generation loop. It includes gaps between replies and excludes the first output. First-STEP latency and command-only timing are separate measurements.
-
-The seeded-sampling design measures **9.93 cached tokens/s at temperature 1, with sampling enabled**, using the same one-token prompt, two 128-output trials and host-loop timing boundary. Its **10.02 tokens/s at temperature 0** provides the greedy comparison in the table. The [recorded sampling trials](evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json) include temperatures 0.5, 1 and 2; the [qualification record](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md#recorded-timing) separately reports command-only diagnostics.
+The common benchmark uses **one input token, 128 outputs and two repetitions** for every design. The seeded-sampling row uses its stated temperature; the other rows use greedy decoding. Its cached rate is **254 divided by the sum of the two first-to-last reply durations**, measured on the local control host after validated replies return to the generation loop. It includes gaps between replies and excludes the first output. First-STEP latency and command-only timing are separate measurements.
 
 A dash means that a complete paired record satisfying this protocol is unavailable. Model-specific validation measurements are linked from each guide. The [benchmark protocol and reproducible calculations](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) specify the observation boundary, source identities and eligibility checks. These are workload-specific host-observed rates, not peak ratings.
 

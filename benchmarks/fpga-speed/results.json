@@ -1,6 +1,6 @@
 {
   "schema": "fpga-common-speed-results-v1",
-  "protocol": "greedy-one-token-128-host-v1",
+  "protocol": "one-token-128-host-v2",
   "timestamp_boundary": "generation_loop_validated_reply",
   "complete_rows": 6,
   "total_rows": 6,
@@ -408,8 +408,8 @@
       ]
     },
     {
-      "id": "simplestories-seeded-greedy",
-      "label": "Same model, **seeded-sampling at temperature 0**, without K/V integrity",
+      "id": "simplestories-seeded-sampling",
+      "label": "Same model, **seeded-sampling at temperature 1**, without K/V integrity",
       "package_status": "Runnable release",
       "identity": {
         "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
@@ -419,53 +419,59 @@
       "complete": true,
       "rate": {
         "counted_cached_outputs": 254,
-        "cached_host_seconds": 25.345569541997975,
-        "cached_tokens_per_second": 10.021475334342687,
-        "command_only_diagnostic_tokens_per_second": 10.033348387712575,
+        "cached_host_seconds": 25.583678042021347,
+        "cached_tokens_per_second": 9.928204990025415,
+        "command_only_diagnostic_tokens_per_second": 9.942238076431886,
         "first_step_seconds": [
-          0.08497145801084116,
-          0.0850487090065144
+          0.08490541600622237,
+          0.08474962500622496
         ]
       },
       "missing": null,
       "trials": [
         {
-          "capture_sha256": "ad1488620f73a482146723a34117dacc7e67b468ed938c4c9e0d58f646f3fe14",
+          "capture_sha256": "97b6e5b160688153d37b749a6ee44976676cf731f88089487065c025607acfca",
           "prompt_tokens": [
             378
           ],
           "generated_outputs": 128,
           "cached_outputs": 127,
-          "cached_host_seconds": 12.63035387499258,
-          "cached_command_seconds": 12.617855251824949,
-          "first_step_seconds": 0.08497145801084116,
+          "cached_host_seconds": 12.80031154199969,
+          "cached_command_seconds": 12.782095956092235,
+          "first_step_seconds": 0.08490541600622237,
           "identity": {
             "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
             "core_clock_mhz": 25
           },
           "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": true,
+          "greedy": false,
           "clear_before": true,
-          "stop_at_eos": false
+          "stop_at_eos": false,
+          "decoding": "seeded-sampling",
+          "temperature": 1,
+          "seed": "0x99aabbccddeeff001122334455667788"
         },
         {
-          "capture_sha256": "4dac71d93f933cf37c44328d2877088fe1a06337d8a3e9224b42721db5764658",
+          "capture_sha256": "5a9e3375af68d4436566e895855be579c4c99fcfcd9d38e388159c45ebe1b018",
           "prompt_tokens": [
             378
           ],
           "generated_outputs": 128,
           "cached_outputs": 127,
-          "cached_host_seconds": 12.715215667005396,
-          "cached_command_seconds": 12.69772138170083,
-          "first_step_seconds": 0.0850487090065144,
+          "cached_host_seconds": 12.783366500021657,
+          "cached_command_seconds": 12.765471708989935,
+          "first_step_seconds": 0.08474962500622496,
           "identity": {
             "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
             "core_clock_mhz": 25
           },
           "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": true,
+          "greedy": false,
           "clear_before": true,
-          "stop_at_eos": false
+          "stop_at_eos": false,
+          "decoding": "seeded-sampling",
+          "temperature": 1,
+          "seed": "0x99aabbccddeeff001122334455667788"
         }
       ]
     },
@@ -770,6 +776,10 @@
     "demos/qwen3-8b/evidence/common-speed-2026-10-26/source-review.json": {
       "bytes": 6517,
       "sha256": "17b9ab6c8e51bfc350b533bc735c12458953c97ff1fa9c3b635ad2412783e50d"
+    },
+    "reference/seeded-sampling/goldens/around128-t2-seed-a.json": {
+      "bytes": 11062,
+      "sha256": "65352789f3acd613e2104d8515a51d6873ca15e041ce683d12bc7d2afb345d7b"
     }
   },
   "scope": "Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay."

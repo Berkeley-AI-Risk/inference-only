@@ -1,6 +1,6 @@
 {
   "schema": "fpga-common-speed-selection-v1",
-  "protocol": "greedy-one-token-128-host-v1",
+  "protocol": "one-token-128-host-v2",
   "timestamp_boundary": "generation_loop_validated_reply",
   "repetitions": 2,
   "generated_outputs": 128,
@@ -49,6 +49,10 @@
     "demos/qwen3-8b/evidence/common-speed-2026-10-26/source-review.json": {
       "bytes": 6517,
       "sha256": "17b9ab6c8e51bfc350b533bc735c12458953c97ff1fa9c3b635ad2412783e50d"
+    },
+    "reference/seeded-sampling/goldens/around128-t2-seed-a.json": {
+      "bytes": 11062,
+      "sha256": "65352789f3acd613e2104d8515a51d6873ca15e041ce683d12bc7d2afb345d7b"
     }
   },
   "rows": [
@@ -182,8 +186,8 @@
       "source": "benchmarks/fpga-speed/captures/encrypted-common-speed-20261026-r1/FINISHED.json"
     },
     {
-      "id": "simplestories-seeded-greedy",
-      "label": "Same model, **seeded-sampling at temperature 0**, without K/V integrity",
+      "id": "simplestories-seeded-sampling",
+      "label": "Same model, **seeded-sampling at temperature 1**, without K/V integrity",
       "status": "Runnable release",
       "format": "seeded_timing",
       "source": "evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json",
@@ -195,10 +199,13 @@
         "core_clock_mhz": 25
       },
       "cases": [
-        "matched128/around128-t0-run1",
-        "matched128/around128-t0-run2"
+        "matched128/around128-t2-run1",
+        "matched128/around128-t2-run2"
       ],
-      "artifact": "prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs"
+      "artifact": "prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs",
+      "decoding": "seeded-sampling",
+      "temperature": 1,
+      "reference_source": "reference/seeded-sampling/goldens/around128-t2-seed-a.json"
     },
     {
       "id": "qwen3-1.7b",
