@@ -124,8 +124,7 @@ def check(package):
     low, high = result['sustained_cached_tokens_per_second']
     rounded_low, rounded_high = f'{low:.1f}', f'{high:.1f}'
     headline = rounded_low if rounded_low == rounded_high else f'{rounded_low}–{rounded_high}'
-    need(f'About **{headline} tokens/s**' in (package / 'README.md').read_text(),
-         'Overview rate differs from evidence')
+    # Overview rates are checked by fpga_speed_benchmark.py against the common workload.
     guide = (package / 'demos/qwen3-1.7b/README.md').read_text()
     need(f'about {headline} sustained cached tokens/s' in guide and '852' in guide,
          'Qwen guide summary differs from evidence')

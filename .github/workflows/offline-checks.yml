@@ -73,6 +73,8 @@ jobs:
         run: python -I -S -B tools/architecture_work_counts.py --check
       - name: Check the recorded H100 evidence
         run: python -I -S -B tools/check_h100_reference.py
+      - name: Check common FPGA benchmark workload and host-loop timing
+        run: python -I -S -B tools/fpga_speed_benchmark.py --check
       - name: Replay the recorded Qwen token and timing measurements (no AWS access)
         run: python -I -S -B tools/check_qwen_measurements.py
       - name: Check Qwen frozen sources, implementation reports and reference records

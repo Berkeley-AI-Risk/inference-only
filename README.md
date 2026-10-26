@@ -7,7 +7,7 @@ chips in both an idealized sense and a practical, operational sense.
 language models behind a restricted hardware interface, rather than a
 general-purpose accelerator whose restrictions depend on its host software.
 
-The paper distinguishes two approaches:
+The paper distinguishes two approaches in Section 4.3:
 
 - **Authenticated-Weight Inference-Only Chips (AWICs)** fix the model architecture and inference function in hardware and authenticate weights stored in memory against fixed cryptographic digests.
 - **Hardwired-Weight Inference-Only Chips (HWICs)** encode both the model architecture and its weights directly in the circuit.
@@ -33,51 +33,35 @@ controllers own the inference schedule and memory addresses; the user supplies
 tokens, not tensor pointers. Startup loaders, status and transport handling
 are described separately in each model's guide.
 
-An optional [seeded-sampling version of SimpleStories-V2-5M](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md)
-also accepts a bounded temperature and public seed while its tape is empty and
-idle. The optimized seeded image runs the same numerical model on the same Tang
-Mega board. Its current evidence and qualification limits are stated
+The [seeded-sampling configuration](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md) runs SimpleStories-V2-5M on Tang Mega with authenticated weights and without K/V integrity protection. Temperature and a public seed can be configured while its tape is empty and idle. Its current evidence and qualification limits are stated
 in [CURRENT-QUALIFICATION.md](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md). Each hardware configuration has its own validation record.
 
 ## The demonstrated designs and measurements
 
 The table lists **Authenticated-Weight Inference-Only Chip (AWIC) designs**, all implemented on FPGAs.
 
-| Model and platform | Measured cached generation | Package status |
+<!-- COMMON-FPGA-SPEED:START -->
+| Model and platform | Common cached generation | Package status |
 | --- | --- | --- |
 | **SimpleStories-V2-5M — Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |
 | Same model, **K/V-protected** | About **5.2 tokens/s** | Runnable release |
-| Same model, **K/V protection + encrypted memory** | About **4.3 tokens/s** | Runnable experimental version; public demonstration keys |
-| Same model, **seeded sampling**, without K/V integrity | About **9.9 tokens/s** at temperature 1 | Runnable release |
-| **Qwen3-1.7B — AWS F2**, authenticated weights | About **9.0 tokens/s** | Runnable release; public AWS FPGA image |
-| **Qwen3-8B — AWS F2**, authenticated weights | About **1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
+| Same model, **K/V protection + encrypted memory** | — | Runnable experimental version; public demonstration keys |
+| Same model, **seeded-sampling image at temperature 0**, without K/V integrity | About **10.0 tokens/s** | Runnable release |
+| **Qwen3-1.7B — AWS F2**, authenticated weights | — | Runnable release; public AWS FPGA image |
+| **Qwen3-8B — AWS F2**, authenticated weights | — | Runnable prototype; speed optimization in progress; public AWS FPGA image |
+<!-- COMMON-FPGA-SPEED:END -->
 
 The encrypted-memory version retains K/V integrity and replay protection and
 also encrypts both weights and K/V; its supplied keys are public demonstration
 keys. Seeded sampling uses the baseline's authenticated weights, without K/V
 integrity or encryption.
 
-These rates come from separate validation campaigns with different workloads:
+The common benchmark uses **one input token, 128 outputs, greedy decoding and two repetitions** for every design. Its cached rate is **254 divided by the sum of the two first-to-last reply durations**, measured on the local control host after validated replies return to the generation loop. It includes gaps between replies and excludes the first output. First-STEP latency and command-only timing are separate measurements.
 
-- **SimpleStories-V2-5M:** all four quoted configurations use a one-token
-  prompt and 128 generated tokens. The optimized seeded campaign retained its
-  parent's eight trials: twice at each temperature 0, 0.5, 1 and 2. Its
-  table rate is the weighted cached command rate at temperature 1.
-- **Qwen3-1.7B:** three prompts of 4, 5 and 15 tokens each generate 128 tokens;
-  the complete three-prompt suite was run twice.
-- **Qwen3-8B:** the quoted sustained case uses a one-token prompt and
-  128 generated tokens.
-
-The records report what each campaign tested; they are **not a matched
-comparison between the SimpleStories and Qwen models**, or evidence that
-sampling makes SimpleStories faster. Models, tokenizers, hardware and timing
-methods differ. Cached rates exclude the first token; the SimpleStories
-rates sum command/reply times, while Qwen's also include gaps between replies.
-Longer prompts take longer to produce the first token, and growing context
-slows subsequent generation. These are measured rates, not peak ratings.
+A dash means that a complete paired record satisfying this protocol is unavailable. Model-specific validation measurements are linked from each guide. The [benchmark protocol and reproducible calculations](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) specify the observation boundary, source identities and eligibility checks. These are workload-specific host-observed rates, not peak ratings.
 
 “Runnable release” means the image, model, app and installation instructions
-are available. The optimized seeded package passed its seven board suites,
+are available. The seeded package passed its seven board suites,
 registered scoped scientific completion, fresh model/flash readback, exact
 recipient reload and registration, and twelve ordinary Chrome cases with all
 100 outputs matching the reference. Its
@@ -86,10 +70,7 @@ from the timing, security and proof limits. No other-owner installation or
 complete-workload guarantee follows.
 No Tang version has complete vendor-DDR timing or physical-security certification.
 
-The optimized seeded image measured **9.94 cached tokens/s** at temperature 1
-with a one-token prompt and two 128-output trials, excluding the first
-hardware STEP. See the [qualification and timing details](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md#recorded-timing)
-for the exact measurements, full workload and longer-prompt results.
+At temperature 1, the seeded image's **command-only cached rate** is **9.94 tokens/s**, measured with a one-token prompt and two 128-output trials. This sampled-generation diagnostic excludes inter-command gaps and is separate from the greedy host-loop benchmark. The [qualification record](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md#recorded-timing) gives its workload and timing details.
 
 - **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** board selection,
   the three greedy versions, optional seeded sampling, browser app,
@@ -189,15 +170,20 @@ those antecedents from directly reused components.
 
 Start with the guide for [SimpleStories on Tang Mega](demos/simplestories-v2-5m/README.md), [Qwen3-1.7B on AWS F2](demos/qwen3-1.7b/README.md), or [Qwen3-8B on AWS F2](demos/qwen3-8b/README.md). Each guide links to its implementation, installation and evidence.
 
-| Subject | Documentation |
+| Shared subject | Documentation |
 | --- | --- |
-| Residual training assessment and model comparison | [Shared overview](TRAINING-CAPACITY.md), [methodology](docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md), [architecture and workload analysis](docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md) |
-| GPU reference measurements | [H100 campaigns and reproduction](docs/benchmarks/H100-BENCHMARK.md) |
-| SimpleStories implementation | [Hardware](demos/simplestories-v2-5m/HARDWARE.md), [inference-only assessment](demos/simplestories-v2-5m/INFERENCE-ONLY.md), [formal scope](demos/simplestories-v2-5m/FORMAL-STATUS.md), [validation](demos/simplestories-v2-5m/VALIDATION.md), [current qualification](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md) |
-| SimpleStories configurations and reproduction | [K/V protection](demos/simplestories-v2-5m/KV-PROTECTION.md), [seeded generation](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md), [reproduction](demos/simplestories-v2-5m/REPRODUCE.md); [installation](PROGRAMMING.md), [encrypted memory](ENCRYPTED-MEMORY.md) and [vendor setup](VENDOR-SETUP.md) |
+| Residual training assessment and model comparison | [Overview](TRAINING-CAPACITY.md), [methodology](docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md), [architecture and workload analysis](docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md) |
+| FPGA speed comparison | [Common workload, timing and recorded results](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) |
+| GPU reference measurements | [H100 benchmarks and reproduction](docs/benchmarks/H100-BENCHMARK.md) |
 | Design references and prior work | [References](docs/REFERENCES.md) |
 
-The SimpleStories proof and measurement records apply to their named Tang Mega circuits. The Qwen guides state their separate evidence and limitations.
+| Model | Run and install | Hardware | Evidence and reproduction |
+| --- | --- | --- | --- |
+| SimpleStories-V2-5M / Tang Mega | [Guide](demos/simplestories-v2-5m/README.md), [installation](PROGRAMMING.md) | [Hardware](demos/simplestories-v2-5m/HARDWARE.md) | [Validation](demos/simplestories-v2-5m/VALIDATION.md), [formal scope](demos/simplestories-v2-5m/FORMAL-STATUS.md), [reproduction](demos/simplestories-v2-5m/REPRODUCE.md) |
+| Qwen3-1.7B / AWS F2 | [Guide](demos/qwen3-1.7b/README.md), [installation](demos/qwen3-1.7b/INSTALL.md) | [Hardware](demos/qwen3-1.7b/HARDWARE.md) | [Numerical reference](demos/qwen3-1.7b/reference/README.md), [training-capacity assessment](demos/qwen3-1.7b/TRAINING-CAPACITY.md) |
+| Qwen3-8B / AWS F2 | [Guide](demos/qwen3-8b/README.md), [installation](demos/qwen3-8b/INSTALL.md) | [Hardware](demos/qwen3-8b/HARDWARE.md) | [Numerical reference](demos/qwen3-8b/reference/), [recorded measurements](demos/qwen3-8b/measurements.json) |
+
+Each model's guide links to its configurations, recorded checks and limitations. Proofs and measurements apply only to their named circuits and assumptions.
 
 Project-owned code, documentation and the photograph are Apache-2.0; the
 packaged SimpleStories model assets use the upstream MIT declaration.

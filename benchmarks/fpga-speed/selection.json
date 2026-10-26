@@ -1,0 +1,147 @@
+{
+  "schema": "fpga-common-speed-selection-v1",
+  "protocol": "greedy-one-token-128-host-v1",
+  "timestamp_boundary": "generation_loop_validated_reply",
+  "repetitions": 2,
+  "generated_outputs": 128,
+  "cached_outputs_per_trial": 127,
+  "sources": {
+    "tests/reference-cases.json": {
+      "sha256": "a236c9912e5da9f12412c3f91f3d619a574fd5dce41f0c630fb78cb6c7dc7fa4",
+      "bytes": 13049
+    },
+    "evidence/baseline-current/board.json": {
+      "sha256": "e4e37d5fdea5f18ee57e114086fd67dc16a21b5f361f6386d9cf4c49c5926103",
+      "bytes": 30973
+    },
+    "evidence/read-window/board.json": {
+      "sha256": "b8ee366dac1d672fbd5aea3c43de70441fa1c3acc721e3606db6eebd0e151b57",
+      "bytes": 72947
+    },
+    "evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json": {
+      "sha256": "ae81f740b937068d4dd111010871c557dfa28b62b44a6f95de5a155607bc1bdf",
+      "bytes": 206176
+    },
+    "demos/qwen3-1.7b/measurements.json": {
+      "sha256": "8266c1a3e9057302af4cc1cdf5085ca496d688541d04feffe07d041ab3b7140b",
+      "bytes": 146173
+    },
+    "demos/qwen3-8b/measurements.json": {
+      "sha256": "f888f5189b624931e539d9c160dbf761ac83289af996297287b9f3d6abc91d1b",
+      "bytes": 72476
+    }
+  },
+  "rows": [
+    {
+      "id": "simplestories-baseline",
+      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, authenticated weights",
+      "status": "Runnable release",
+      "format": "tang_board",
+      "source": "evidence/baseline-current/board.json",
+      "variant": null,
+      "prompt_tokens": [
+        378
+      ],
+      "identity": {
+        "fpga_image_sha256": "6ba3caa4f88ac58dd30336c3ff4478f836779db0d04309ff457ca065ec1f7f09",
+        "core_clock_mhz": 25
+      },
+      "cases": [
+        "around128",
+        "around128-repeat"
+      ],
+      "artifact": "prebuilt/inference/project/impl/pnr/shared_product.fs"
+    },
+    {
+      "id": "simplestories-kv-protected",
+      "label": "Same model, **K/V-protected**",
+      "status": "Runnable release",
+      "format": "tang_board",
+      "source": "evidence/read-window/board.json",
+      "variant": "kv-protected",
+      "prompt_tokens": [
+        378
+      ],
+      "identity": {
+        "fpga_image_sha256": "72d5a54e06ed2017e653122f3daecf073f239a917b79f24d1e7b886d68a21a2f",
+        "core_clock_mhz": 25
+      },
+      "cases": [
+        "around128",
+        "around128-repeat"
+      ],
+      "artifact": "prebuilt/kv-protected/project/impl/pnr/shared_product.fs"
+    },
+    {
+      "id": "simplestories-encrypted",
+      "label": "Same model, **K/V protection + encrypted memory**",
+      "status": "Runnable experimental version; public demonstration keys",
+      "format": "pending",
+      "prompt_tokens": [
+        378
+      ],
+      "identity": {
+        "fpga_image_sha256": "865e74e692d5978815fe921f11e4fa1b8e2c080401a8be05508dd9775823aecc",
+        "core_clock_mhz": 25
+      },
+      "cases": [],
+      "missing": "Two complete trials with generation-loop reply timestamps for the published image.",
+      "artifact": "prebuilt/encrypted-memory/project/impl/pnr/shared_product.fs"
+    },
+    {
+      "id": "simplestories-seeded-greedy",
+      "label": "Same model, **seeded-sampling image at temperature 0**, without K/V integrity",
+      "status": "Runnable release",
+      "format": "seeded_timing",
+      "source": "evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json",
+      "prompt_tokens": [
+        378
+      ],
+      "identity": {
+        "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
+        "core_clock_mhz": 25
+      },
+      "cases": [
+        "matched128/around128-t0-run1",
+        "matched128/around128-t0-run2"
+      ],
+      "artifact": "prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs"
+    },
+    {
+      "id": "qwen3-1.7b",
+      "label": "**Qwen3-1.7B \u2014 AWS F2**, authenticated weights",
+      "status": "Runnable release; public AWS FPGA image",
+      "format": "pending",
+      "source": "demos/qwen3-1.7b/measurements.json",
+      "prompt_tokens": [
+        9707
+      ],
+      "identity": {
+        "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
+        "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
+        "core_clock_mhz": 100
+      },
+      "cases": [],
+      "missing": "Two complete one-token/128-output trials; one-token smoke records contain three outputs."
+    },
+    {
+      "id": "qwen3-8b",
+      "label": "**Qwen3-8B \u2014 AWS F2**, authenticated weights",
+      "status": "Runnable prototype; speed optimization in progress; public AWS FPGA image",
+      "format": "qwen_rows",
+      "source": "demos/qwen3-8b/measurements.json",
+      "prompt_tokens": [
+        9707
+      ],
+      "identity": {
+        "model_image_sha256": "a1e8a91912dfa79fb602601e256a4a07da64c57dda146529c08886532d42f833",
+        "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
+        "core_clock_mhz": 100
+      },
+      "cases": [
+        "single-token-128-output"
+      ],
+      "missing": "A second complete 128-output trial; the named clear/replay capture has three outputs."
+    }
+  ]
+}

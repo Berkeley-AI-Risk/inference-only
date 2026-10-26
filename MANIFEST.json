@@ -1,4 +1,11 @@
 {
+  "common_fpga_speed_benchmark": {
+    "all_designs_have_complete_paired_records": false,
+    "protocol": "docs/benchmarks/FPGA-SPEED-BENCHMARK.md",
+    "results": "benchmarks/fpga-speed/results.json",
+    "selection": "benchmarks/fpga-speed/selection.json",
+    "timing_boundary": "generation_loop_validated_reply"
+  },
   "conditional_training_capacity_analysis": true,
   "demonstrations": {
     "qwen3-1.7b": {
@@ -65,8 +72,8 @@
       "sha256": "797c5975a20a3b09d5101f84f7e3343261916da1a7f0a70baf92922591895055"
     },
     ".github/workflows/offline-checks.yml": {
-      "bytes": 5743,
-      "sha256": "06776e4f658a3f800ba39a55644e8a26a5513991a0a63bdc1d3e16b58f08e529"
+      "bytes": 5882,
+      "sha256": "69571233a4ac3db541b71b05581b0f861f4d06f864156afb3660a3d48a0f3c11"
     },
     ".gitignore": {
       "bytes": 502,
@@ -137,8 +144,8 @@
       "sha256": "cff1d86bee2e55627db895e80ebe1fabd693314809b2ed17ae2054d7001acb6a"
     },
     "README.md": {
-      "bytes": 13645,
-      "sha256": "b06ef514b6b1a3f1d0ce3cd835870ff40d8313fe9e2248663932998c84ccb16e"
+      "bytes": 13796,
+      "sha256": "bff27c0136fd732c6706c78191a102a6854d54069217f8d9c229c8a0fcaf323b"
     },
     "REFERENCES.md": {
       "bytes": 613,
@@ -179,6 +186,14 @@
     "assets/board1-real-semantic-image2048.bin": {
       "bytes": 7265984,
       "sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0"
+    },
+    "benchmarks/fpga-speed/results.json": {
+      "bytes": 10650,
+      "sha256": "a28b364670734749ea35b7202a92c10cc277ef0aadf4376e3b145694235a5a49"
+    },
+    "benchmarks/fpga-speed/selection.json": {
+      "bytes": 5217,
+      "sha256": "b952213d1d034f6a3985c0621cde956f34249b5fedf8315fba50ced2bf626d33"
     },
     "benchmarks/h100/README.md": {
       "bytes": 4735,
@@ -1859,6 +1874,10 @@
     "docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md": {
       "bytes": 9752,
       "sha256": "79365e8930766b7ea2cc62da148973d1b3e421504ce9c80f3c5d3d7655879440"
+    },
+    "docs/benchmarks/FPGA-SPEED-BENCHMARK.md": {
+      "bytes": 5587,
+      "sha256": "7c9001c92f425af73cdb1e50aec292e761da4dbe7bba6f8741b9ada5ceabd6f9"
     },
     "docs/benchmarks/H100-BENCHMARK.md": {
       "bytes": 22620,
@@ -6157,8 +6176,8 @@
       "sha256": "bc937ff36764918eba6223c41dfe8a72737def044ca53418b08cb405556ec116"
     },
     "tools/check_qwen_measurements.py": {
-      "bytes": 9358,
-      "sha256": "d7b6c50f5096c37eb4b2af85d9e4716986a2b9be6fdb1cdb5e8f4c1bc72afdc0"
+      "bytes": 9317,
+      "sha256": "18ab7565c5e3c5486cbf68ed01e4c3f415572780e1b4ebfa91e034293a1ff55a"
     },
     "tools/check_qwen_package.py": {
       "bytes": 8859,
@@ -6248,6 +6267,10 @@
       "bytes": 10547,
       "sha256": "8e1eed1df388dc720a4509df297297647e9eb36b93b4b25e49069b3950e500a0"
     },
+    "tools/fpga_speed_benchmark.py": {
+      "bytes": 11527,
+      "sha256": "3b05449e4c0e84515d1c475ffb94b5912fead8ee6b36bad5807e278b864905d1"
+    },
     "tools/materialize_image.py": {
       "bytes": 12685,
       "sha256": "ca1a2100591975364b1dc3b5b54d1b3b5b5af9b784d8e567150ba6b93ae16ea5"
@@ -6299,6 +6322,10 @@
     "tools/test_flash_layout.py": {
       "bytes": 3504,
       "sha256": "1746bff05ff8078aecc3286f315831d4d9d332c7cf8641a003d54e5e7475f4f4"
+    },
+    "tools/test_fpga_speed_benchmark.py": {
+      "bytes": 5112,
+      "sha256": "bf0ec4d13d49a62790f83b1d89a5dbeb01fb7048d23bda8a73b65c4d12b0152d"
     },
     "tools/test_h100_reference.py": {
       "bytes": 2232,
