@@ -72,7 +72,46 @@
   "qwen_one_token_named_schedule": {
     "mean_ops_per_cached_token": 17573504.0,
     "conditional_phi_proxy": 0.0011112417835554994,
-    "matching_128_output_fpga_measurement_pending": true
+    "matching_128_output_fpga_measurement_pending": false,
+    "matching_fpga_measurement": {
+      "source": "benchmarks/fpga-speed/results.json",
+      "identity": {
+        "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
+        "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+        "clock_scope": "Fixed released A0/B0/C2/H1 recipe. Clockgen probe unsupported (29); configured clock identity, not an independent frequency measurement.",
+        "clocks_mhz": {
+          "core": 100,
+          "memory_axi": 125,
+          "shell": 250
+        },
+        "collection_conditions": "One FPGA sequence; no competing FPGA workload. CPU routing finished and its final backup verified. Local Linux host monotonic generation-loop validated-return timing; no clock-setting changes.",
+        "fpga_image_global_id": "agfi-0d92b2f41b8f8b620",
+        "fpga_image_regional_id": "afi-04aa2e77774fbba29",
+        "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+        "host_platform": {
+          "kernel": "6.8.0-1021-aws",
+          "machine": "x86_64",
+          "sdk_commit": "b603a81f65666e0cf7a67ee5cf18b148eb6b08c3"
+        },
+        "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9",
+        "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
+        "loaded_image_record_sha256": "0b12c7c6e9ae096266670071db2942eb6f89f15d4142db6ff8b25972bff4c89d",
+        "model": "qwen3-1.7b",
+        "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
+        "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
+        "runtime_clock_probe_supported": false
+      },
+      "rate": {
+        "counted_cached_outputs": 254,
+        "cached_host_seconds": 28.191061175999998,
+        "cached_tokens_per_second": 9.009948168117871,
+        "command_only_diagnostic_tokens_per_second": 9.010895087085421,
+        "first_step_seconds": [
+          0.108920611,
+          0.108772231
+        ]
+      }
+    }
   },
   "small_fpga_context128_single_step_tps": 9.82410553054161,
   "small_fpga_metrics_sha256": "4ad893f57af44d1d74d40da894242919feef8b4dfcad1d843daa81b981e1b2f0",

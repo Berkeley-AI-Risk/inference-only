@@ -1,0 +1,30 @@
+{
+  "actual_exit": 0,
+  "binary_bytes": 523440,
+  "binary_sha256": "897e0f4604cf045f84a153cc5b9b37b2203481766ada2b5f1540c1d178eb3cae",
+  "command": [
+    "/usr/bin/g++",
+    "-I/home/ubuntu/qwen-first-test/aws-fpga/sdk/userspace/include",
+    "-O2",
+    "-g",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pthread",
+    "qwen_host.cpp",
+    "-L/home/ubuntu/qwen-first-test/aws-fpga/sdk/userspace/lib/so",
+    "-Wl,-rpath,/home/ubuntu/qwen-first-test/aws-fpga/sdk/userspace/lib/so",
+    "-lfpga_mgmt",
+    "-lcrypto",
+    "-pthread",
+    "-o",
+    "qwen_host"
+  ],
+  "compiler_version": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "elapsed_ns": 1417260418,
+  "finished_utc": "2026-10-26T07:29:41.976315+00:00",
+  "started_utc": "2026-10-26T07:29:40.559064+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

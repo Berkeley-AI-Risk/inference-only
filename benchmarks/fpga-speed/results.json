@@ -2,7 +2,7 @@
   "schema": "fpga-common-speed-results-v1",
   "protocol": "greedy-one-token-128-host-v1",
   "timestamp_boundary": "generation_loop_validated_reply",
-  "complete_rows": 4,
+  "complete_rows": 6,
   "total_rows": 6,
   "rows": [
     {
@@ -474,44 +474,249 @@
       "label": "**Qwen3-1.7B \u2014 AWS F2**, authenticated weights",
       "package_status": "Runnable release; public AWS FPGA image",
       "identity": {
-        "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
         "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
-        "core_clock_mhz": 100
+        "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+        "clock_scope": "Fixed released A0/B0/C2/H1 recipe. Clockgen probe unsupported (29); configured clock identity, not an independent frequency measurement.",
+        "clocks_mhz": {
+          "core": 100,
+          "memory_axi": 125,
+          "shell": 250
+        },
+        "collection_conditions": "One FPGA sequence; no competing FPGA workload. CPU routing finished and its final backup verified. Local Linux host monotonic generation-loop validated-return timing; no clock-setting changes.",
+        "fpga_image_global_id": "agfi-0d92b2f41b8f8b620",
+        "fpga_image_regional_id": "afi-04aa2e77774fbba29",
+        "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+        "host_platform": {
+          "kernel": "6.8.0-1021-aws",
+          "machine": "x86_64",
+          "sdk_commit": "b603a81f65666e0cf7a67ee5cf18b148eb6b08c3"
+        },
+        "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9",
+        "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
+        "loaded_image_record_sha256": "0b12c7c6e9ae096266670071db2942eb6f89f15d4142db6ff8b25972bff4c89d",
+        "model": "qwen3-1.7b",
+        "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
+        "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
+        "runtime_clock_probe_supported": false
       },
-      "eligible_trials": 0,
-      "complete": false,
-      "rate": null,
-      "missing": "Two complete one-token/128-output trials; one-token smoke records contain three outputs.",
-      "trials": []
+      "eligible_trials": 2,
+      "complete": true,
+      "rate": {
+        "counted_cached_outputs": 254,
+        "cached_host_seconds": 28.191061175999998,
+        "cached_tokens_per_second": 9.009948168117871,
+        "command_only_diagnostic_tokens_per_second": 9.010895087085421,
+        "first_step_seconds": [
+          0.108920611,
+          0.108772231
+        ]
+      },
+      "missing": null,
+      "trials": [
+        {
+          "capture_sha256": "5b3cda2ed08eb8ff2e469f3c949d2ab58835136bbb919f6ecb4feaeaaffc4ad5",
+          "prompt_tokens": [
+            9707
+          ],
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 14.096516237,
+          "cached_command_seconds": 14.094837916,
+          "first_step_seconds": 0.108920611,
+          "identity": {
+            "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
+            "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+            "clock_scope": "Fixed released A0/B0/C2/H1 recipe. Clockgen probe unsupported (29); configured clock identity, not an independent frequency measurement.",
+            "clocks_mhz": {
+              "core": 100,
+              "memory_axi": 125,
+              "shell": 250
+            },
+            "collection_conditions": "One FPGA sequence; no competing FPGA workload. CPU routing finished and its final backup verified. Local Linux host monotonic generation-loop validated-return timing; no clock-setting changes.",
+            "fpga_image_global_id": "agfi-0d92b2f41b8f8b620",
+            "fpga_image_regional_id": "afi-04aa2e77774fbba29",
+            "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+            "host_platform": {
+              "kernel": "6.8.0-1021-aws",
+              "machine": "x86_64",
+              "sdk_commit": "b603a81f65666e0cf7a67ee5cf18b148eb6b08c3"
+            },
+            "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9",
+            "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
+            "loaded_image_record_sha256": "0b12c7c6e9ae096266670071db2942eb6f89f15d4142db6ff8b25972bff4c89d",
+            "model": "qwen3-1.7b",
+            "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
+            "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
+            "runtime_clock_probe_supported": false
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
+        },
+        {
+          "capture_sha256": "77bf0cf3ec008c0adf62b366a45340a2157949a694a84566a242592b5cf54211",
+          "prompt_tokens": [
+            9707
+          ],
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 14.094544939,
+          "cached_command_seconds": 14.093260774,
+          "first_step_seconds": 0.108772231,
+          "identity": {
+            "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
+            "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+            "clock_scope": "Fixed released A0/B0/C2/H1 recipe. Clockgen probe unsupported (29); configured clock identity, not an independent frequency measurement.",
+            "clocks_mhz": {
+              "core": 100,
+              "memory_axi": 125,
+              "shell": 250
+            },
+            "collection_conditions": "One FPGA sequence; no competing FPGA workload. CPU routing finished and its final backup verified. Local Linux host monotonic generation-loop validated-return timing; no clock-setting changes.",
+            "fpga_image_global_id": "agfi-0d92b2f41b8f8b620",
+            "fpga_image_regional_id": "afi-04aa2e77774fbba29",
+            "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+            "host_platform": {
+              "kernel": "6.8.0-1021-aws",
+              "machine": "x86_64",
+              "sdk_commit": "b603a81f65666e0cf7a67ee5cf18b148eb6b08c3"
+            },
+            "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9",
+            "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
+            "loaded_image_record_sha256": "0b12c7c6e9ae096266670071db2942eb6f89f15d4142db6ff8b25972bff4c89d",
+            "model": "qwen3-1.7b",
+            "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
+            "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
+            "runtime_clock_probe_supported": false
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
+        }
+      ]
     },
     {
       "id": "qwen3-8b",
       "label": "**Qwen3-8B \u2014 AWS F2**, authenticated weights",
       "package_status": "Runnable prototype; speed optimization in progress; public AWS FPGA image",
       "identity": {
-        "model_image_sha256": "a1e8a91912dfa79fb602601e256a4a07da64c57dda146529c08886532d42f833",
         "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
-        "core_clock_mhz": 100
+        "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+        "clock_scope": "Fixed released A0/B0/C2/H1 recipe. Clockgen probe unsupported (29); configured clock identity, not an independent frequency measurement.",
+        "clocks_mhz": {
+          "core": 100,
+          "memory_axi": 125,
+          "shell": 250
+        },
+        "collection_conditions": "One FPGA sequence; no competing FPGA workload. CPU routing finished and its final backup verified. Local Linux host monotonic generation-loop validated-return timing; no clock-setting changes.",
+        "fpga_image_global_id": "agfi-0b8b13da723c187a7",
+        "fpga_image_regional_id": "afi-0e6c7942e44ab3234",
+        "host_binary_sha256": "897e0f4604cf045f84a153cc5b9b37b2203481766ada2b5f1540c1d178eb3cae",
+        "host_platform": {
+          "kernel": "6.8.0-1021-aws",
+          "machine": "x86_64",
+          "sdk_commit": "b603a81f65666e0cf7a67ee5cf18b148eb6b08c3"
+        },
+        "host_protocol_sha256": "fc2c476fc5984dac0ea8e4cd17b4b605ca6d655e3b4fe8079150d885225baf46",
+        "host_source_sha256": "d32eea48183495ce035b21e1036b9eff33959324e30012ac3c351cc16c09c55b",
+        "loaded_image_record_sha256": "b4f199b12ef86758c72364d6fd6f818d9287cbf561664df83559977c5529b238",
+        "model": "qwen3-8b",
+        "model_image_sha256": "a1e8a91912dfa79fb602601e256a4a07da64c57dda146529c08886532d42f833",
+        "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
+        "runtime_clock_probe_supported": false
       },
-      "eligible_trials": 1,
-      "complete": false,
-      "rate": null,
-      "missing": "A second complete 128-output trial; the named clear/replay capture has three outputs.",
+      "eligible_trials": 2,
+      "complete": true,
+      "rate": {
+        "counted_cached_outputs": 254,
+        "cached_host_seconds": 226.426331573,
+        "cached_tokens_per_second": 1.1217776582584003,
+        "command_only_diagnostic_tokens_per_second": 1.1218040674095815,
+        "first_step_seconds": [
+          0.885920814,
+          0.885697971
+        ]
+      },
+      "missing": null,
       "trials": [
         {
-          "capture_sha256": "b2741e6124a441f8da1af2426a11e396c87de0046610b2cd1d76c9d6cddc15d4",
+          "capture_sha256": "f60df41712e946521af2ea7e553dc81618b8c01d7dafdc3b9acc8aa9cec533b1",
           "prompt_tokens": [
             9707
           ],
           "generated_outputs": 128,
           "cached_outputs": 127,
-          "cached_host_seconds": 113.156941089,
-          "cached_command_seconds": 113.154569428,
-          "first_step_seconds": 0.885340303,
+          "cached_host_seconds": 113.221083501,
+          "cached_command_seconds": 113.218455156,
+          "first_step_seconds": 0.885920814,
           "identity": {
-            "model_image_sha256": "a1e8a91912dfa79fb602601e256a4a07da64c57dda146529c08886532d42f833",
             "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
-            "core_clock_mhz": 100
+            "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+            "clock_scope": "Fixed released A0/B0/C2/H1 recipe. Clockgen probe unsupported (29); configured clock identity, not an independent frequency measurement.",
+            "clocks_mhz": {
+              "core": 100,
+              "memory_axi": 125,
+              "shell": 250
+            },
+            "collection_conditions": "One FPGA sequence; no competing FPGA workload. CPU routing finished and its final backup verified. Local Linux host monotonic generation-loop validated-return timing; no clock-setting changes.",
+            "fpga_image_global_id": "agfi-0b8b13da723c187a7",
+            "fpga_image_regional_id": "afi-0e6c7942e44ab3234",
+            "host_binary_sha256": "897e0f4604cf045f84a153cc5b9b37b2203481766ada2b5f1540c1d178eb3cae",
+            "host_platform": {
+              "kernel": "6.8.0-1021-aws",
+              "machine": "x86_64",
+              "sdk_commit": "b603a81f65666e0cf7a67ee5cf18b148eb6b08c3"
+            },
+            "host_protocol_sha256": "fc2c476fc5984dac0ea8e4cd17b4b605ca6d655e3b4fe8079150d885225baf46",
+            "host_source_sha256": "d32eea48183495ce035b21e1036b9eff33959324e30012ac3c351cc16c09c55b",
+            "loaded_image_record_sha256": "b4f199b12ef86758c72364d6fd6f818d9287cbf561664df83559977c5529b238",
+            "model": "qwen3-8b",
+            "model_image_sha256": "a1e8a91912dfa79fb602601e256a4a07da64c57dda146529c08886532d42f833",
+            "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
+            "runtime_clock_probe_supported": false
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
+        },
+        {
+          "capture_sha256": "c654b27574c54b4ba106ad0ca2938081b81f787e3893db65cad7220e655006dd",
+          "prompt_tokens": [
+            9707
+          ],
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 113.205248072,
+          "cached_command_seconds": 113.202545961,
+          "first_step_seconds": 0.885697971,
+          "identity": {
+            "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
+            "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+            "clock_scope": "Fixed released A0/B0/C2/H1 recipe. Clockgen probe unsupported (29); configured clock identity, not an independent frequency measurement.",
+            "clocks_mhz": {
+              "core": 100,
+              "memory_axi": 125,
+              "shell": 250
+            },
+            "collection_conditions": "One FPGA sequence; no competing FPGA workload. CPU routing finished and its final backup verified. Local Linux host monotonic generation-loop validated-return timing; no clock-setting changes.",
+            "fpga_image_global_id": "agfi-0b8b13da723c187a7",
+            "fpga_image_regional_id": "afi-0e6c7942e44ab3234",
+            "host_binary_sha256": "897e0f4604cf045f84a153cc5b9b37b2203481766ada2b5f1540c1d178eb3cae",
+            "host_platform": {
+              "kernel": "6.8.0-1021-aws",
+              "machine": "x86_64",
+              "sdk_commit": "b603a81f65666e0cf7a67ee5cf18b148eb6b08c3"
+            },
+            "host_protocol_sha256": "fc2c476fc5984dac0ea8e4cd17b4b605ca6d655e3b4fe8079150d885225baf46",
+            "host_source_sha256": "d32eea48183495ce035b21e1036b9eff33959324e30012ac3c351cc16c09c55b",
+            "loaded_image_record_sha256": "b4f199b12ef86758c72364d6fd6f818d9287cbf561664df83559977c5529b238",
+            "model": "qwen3-8b",
+            "model_image_sha256": "a1e8a91912dfa79fb602601e256a4a07da64c57dda146529c08886532d42f833",
+            "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
+            "runtime_clock_probe_supported": false
           },
           "timestamp_boundary": "generation_loop_validated_reply",
           "greedy": true,
@@ -549,6 +754,22 @@
     "benchmarks/fpga-speed/captures/encrypted-common-speed-20261026-r1/FINISHED.json": {
       "bytes": 33722,
       "sha256": "d811ba7de040ad0357a02247b0a8e8cfdb4d7aaa2f4754316f9096b766dd922a"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/capture.json": {
+      "bytes": 69517,
+      "sha256": "b33978a728384295eff34b7bd35f9f4bd093c80c12b5790c6c91b426dc7ecdec"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/source-review.json": {
+      "bytes": 5802,
+      "sha256": "d8911fd9119ff8fcdf0b08138bde93f0412e15f753417357fb138c2e9f35109b"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/capture.json": {
+      "bytes": 69934,
+      "sha256": "a8e899ef0c5019eb00782165bfa674006b919674002876b6943098189d1377a8"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/source-review.json": {
+      "bytes": 6517,
+      "sha256": "17b9ab6c8e51bfc350b533bc735c12458953c97ff1fa9c3b635ad2412783e50d"
     }
   },
   "scope": "Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay."

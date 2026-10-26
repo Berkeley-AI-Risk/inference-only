@@ -1,6 +1,6 @@
 {
   "common_fpga_speed_benchmark": {
-    "all_designs_have_complete_paired_records": false,
+    "all_designs_have_complete_paired_records": true,
     "protocol": "docs/benchmarks/FPGA-SPEED-BENCHMARK.md",
     "results": "benchmarks/fpga-speed/results.json",
     "selection": "benchmarks/fpga-speed/selection.json",
@@ -32,6 +32,7 @@
   "demonstrations": {
     "qwen3-1.7b": {
       "clean_recipient_rehearsal_complete": true,
+      "common_speed_paired_record_included": true,
       "exact_source_inputs_included": true,
       "guide": "demos/qwen3-1.7b/README.md",
       "implementation_reports_included": true,
@@ -43,6 +44,7 @@
     },
     "qwen3-8b": {
       "clean_recipient_rehearsal_complete": true,
+      "common_speed_paired_record_included": true,
       "exact_source_inputs_included": true,
       "guide": "demos/qwen3-8b/README.md",
       "implementation_reports_included": true,
@@ -166,8 +168,8 @@
       "sha256": "52affeae60d2d9e6e66eb6accdd5041700957688b2037e01bdd56a4d9553b517"
     },
     "README.md": {
-      "bytes": 13533,
-      "sha256": "84a11c8d1a6a7b5591e01d3835ca7b186e07bd64fdd519358e5edef80388b507"
+      "bytes": 13569,
+      "sha256": "5f93eb5e75f2d1a9f4538b46bfdb677e4aff52a17752be24c7e8cca1a0ebe7fa"
     },
     "REFERENCES.md": {
       "bytes": 613,
@@ -306,12 +308,12 @@
       "sha256": "391c96b22ce41736d063b44ee58d5305066cbb40b0c3d8924816f8054a3308a5"
     },
     "benchmarks/fpga-speed/results.json": {
-      "bytes": 27340,
-      "sha256": "49db487279c6d512f599d471092cdb0d7195b95b1b4da465576b4be206420007"
+      "bytes": 40027,
+      "sha256": "6a8925961ba48e2846737ca54f7e23f2f726d1e9ff5866daed1a68fa7344500e"
     },
     "benchmarks/fpga-speed/selection.json": {
-      "bytes": 10374,
-      "sha256": "76170d8e78385e3673ca618bfe2c8db5a06213495d92c8efe5fca439d7d05970"
+      "bytes": 14100,
+      "sha256": "7c6900eacb7ad1f7c6a04aff9c8f0cf88a02a21b882006b39480ff7a06dc5643"
     },
     "benchmarks/h100/README.md": {
       "bytes": 4735,
@@ -414,20 +416,104 @@
       "sha256": "53627fe82c55b2d4ee00570e72dd7c979f4136d0f7034c5590838afd640d568b"
     },
     "demos/qwen3-1.7b/README.md": {
-      "bytes": 10499,
-      "sha256": "735ece0a200b954c6b09d5f05e25c10f962994544332ee424d11790f9691c4b1"
+      "bytes": 11768,
+      "sha256": "5c2ee76862fe94231495c10dd090afe12edb78acbf769061809de7b395ee36c4"
     },
     "demos/qwen3-1.7b/SOURCE-INPUTS.json": {
       "bytes": 17321,
       "sha256": "ef224b5e0fbb4e6a86b64ff8a42034d0db9f18e72c4e52a192fa1f30312aa0f5"
     },
     "demos/qwen3-1.7b/TRAINING-CAPACITY.md": {
-      "bytes": 14008,
-      "sha256": "c89fbcbe7387c095769afff8f1ef82623c60a47ddb2b7bfae1891a4891ed0b90"
+      "bytes": 14172,
+      "sha256": "97731b3a89514e1b42c2ed9d4c6d6dd4df07b7016ef03c21e2bcada6222e49a8"
     },
     "demos/qwen3-1.7b/deployment.json": {
       "bytes": 1137,
       "sha256": "306f7b60468627da67e00169f9c09c0fcdfec771d16327cf5fe85c32fb0b3c1b"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/capture.json": {
+      "bytes": 69517,
+      "sha256": "b33978a728384295eff34b7bd35f9f4bd093c80c12b5790c6c91b426dc7ecdec"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/host/BUILD.json": {
+      "bytes": 1172,
+      "sha256": "dea20283f3b1b4dac7d3ff0e1293ee25323c49b39204e3510a9b8d2b890f5431"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/host/qwen_host.bin": {
+      "bytes": 518400,
+      "sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/host/qwen_host.cpp": {
+      "bytes": 9805,
+      "sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/host/qwen_host_protocol.h": {
+      "bytes": 8011,
+      "sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/after-image.exit.json": {
+      "bytes": 267,
+      "sha256": "3b2097638c58bb818b70c7d4eaa43f030c698187d23c623ae61577e004bd66f9"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/after-image.log": {
+      "bytes": 323,
+      "sha256": "0b12c7c6e9ae096266670071db2942eb6f89f15d4142db6ff8b25972bff4c89d"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/clock-observation.exit.json": {
+      "bytes": 269,
+      "sha256": "3419969436d09b80c8e3bf94127dc50fc4a8cc85fa7394278dacb5fab5423aab"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/clock-observation.log": {
+      "bytes": 32,
+      "sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/loaded-image.exit.json": {
+      "bytes": 267,
+      "sha256": "2e0e1aa00bccbd3b70ea7787ff44482ba627b20ebfbc55d52deb4c4e6620776c"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/loaded-image.log": {
+      "bytes": 323,
+      "sha256": "0b12c7c6e9ae096266670071db2942eb6f89f15d4142db6ff8b25972bff4c89d"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/model-load.exit.json": {
+      "bytes": 265,
+      "sha256": "e5ed646e58e70be9d9a8f403a4706688e5576a12d88acb3c645a35b87285bf42"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/model-load.log": {
+      "bytes": 1422,
+      "sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/reference.exit.json": {
+      "bytes": 705,
+      "sha256": "e5a88826f3c7e385b72b7e7d18b90ab3e02c1fd02d5c5d7ff35002e4762709f4"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/reference.stdout.jsonl": {
+      "bytes": 7738,
+      "sha256": "80635f43c148fc33530f79d0be4099a2ced5a353bedde49c4e8cb34dc3a0142b"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/trial-1.exit.json": {
+      "bytes": 266,
+      "sha256": "65a699d4146ed65499a0e13d2016d97d7a34dd1eee1038ecfc0470f572e069c0"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/trial-1.log": {
+      "bytes": 14398,
+      "sha256": "5b3cda2ed08eb8ff2e469f3c949d2ab58835136bbb919f6ecb4feaeaaffc4ad5"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/trial-2.exit.json": {
+      "bytes": 266,
+      "sha256": "d1446fc8bac43760d9aa4ee8828a389b57ff33fb484e3b52ced494933bde4ae3"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/trial-2.log": {
+      "bytes": 14400,
+      "sha256": "77bf0cf3ec008c0adf62b366a45340a2157949a694a84566a242592b5cf54211"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/reference.json": {
+      "bytes": 6068,
+      "sha256": "12512990ef179df64494aa3381ea0f9aff764df9bf5975377eac9fdeed211516"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/source-review.json": {
+      "bytes": 5802,
+      "sha256": "d8911fd9119ff8fcdf0b08138bde93f0412e15f753417357fb138c2e9f35109b"
     },
     "demos/qwen3-1.7b/evidence/implementation/REPORTS.json": {
       "bytes": 7849,
@@ -1126,8 +1212,8 @@
       "sha256": "deda2e5beaf287e0880c1951b40ae4e9ba9926d9d87c858430864b3d6ff43597"
     },
     "demos/qwen3-8b/README.md": {
-      "bytes": 5746,
-      "sha256": "bcfe7586869244015c6bc007185de5900b5ca92577dd14b9ce30f51f11a62c40"
+      "bytes": 7205,
+      "sha256": "2262fec062f02447b49d9fcda815e151fd10ed33a1633a80cfcb24557966c164"
     },
     "demos/qwen3-8b/SOURCE-INPUTS.json": {
       "bytes": 26865,
@@ -1136,6 +1222,98 @@
     "demos/qwen3-8b/deployment.json": {
       "bytes": 970,
       "sha256": "2565b2c030c6f5e896cc8509e185602a24cd676accf82a34d80697a928fdd8dc"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/capture.json": {
+      "bytes": 69934,
+      "sha256": "a8e899ef0c5019eb00782165bfa674006b919674002876b6943098189d1377a8"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/host/BUILD.json": {
+      "bytes": 1172,
+      "sha256": "170ce41eaa6f71fe4168972a1bcfc86e82b380178a7a596a3e2ab52a2c18c386"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/host/qwen_host.bin": {
+      "bytes": 523440,
+      "sha256": "897e0f4604cf045f84a153cc5b9b37b2203481766ada2b5f1540c1d178eb3cae"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/host/qwen_host.cpp": {
+      "bytes": 9455,
+      "sha256": "d32eea48183495ce035b21e1036b9eff33959324e30012ac3c351cc16c09c55b"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/host/qwen_host_protocol.h": {
+      "bytes": 8508,
+      "sha256": "fc2c476fc5984dac0ea8e4cd17b4b605ca6d655e3b4fe8079150d885225baf46"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/raw/after-image.exit.json": {
+      "bytes": 267,
+      "sha256": "17ab5a0a2a8a9813a225735c5a7300f9489887079d348cd12d67264d5e4847f4"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/raw/after-image.log": {
+      "bytes": 323,
+      "sha256": "b4f199b12ef86758c72364d6fd6f818d9287cbf561664df83559977c5529b238"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/raw/clock-observation.exit.json": {
+      "bytes": 269,
+      "sha256": "64aafcdd555f42047b45c2528af07fe988e746ad984d092d93246f9ac8d5ae45"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/raw/clock-observation.log": {
+      "bytes": 32,
+      "sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/raw/loaded-image.exit.json": {
+      "bytes": 266,
+      "sha256": "2165bb9bb846fff82d1759b6f71cf8c9e97f5aae0defd10d9a83dc45858b5d9f"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/raw/loaded-image.log": {
+      "bytes": 323,
+      "sha256": "b4f199b12ef86758c72364d6fd6f818d9287cbf561664df83559977c5529b238"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/raw/model-load.exit.json": {
+      "bytes": 265,
+      "sha256": "5f38890a87536ebaf6f1cd27c4587d221730d363f746533e5404fdada6797f73"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/raw/model-load.log": {
+      "bytes": 5166,
+      "sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/raw/trial-1.exit.json": {
+      "bytes": 266,
+      "sha256": "4516227f22dcaa76ca1befdef15a5cbd1cd7999be0bfce6269472584b9fdbe8e"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/raw/trial-1.log": {
+      "bytes": 14568,
+      "sha256": "f60df41712e946521af2ea7e553dc81618b8c01d7dafdc3b9acc8aa9cec533b1"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/raw/trial-2.exit.json": {
+      "bytes": 265,
+      "sha256": "b96979c89b94ba837a6b940cd1464bf6bd89d4083cababd7f2805cf59840099d"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/raw/trial-2.log": {
+      "bytes": 14570,
+      "sha256": "c654b27574c54b4ba106ad0ca2938081b81f787e3893db65cad7220e655006dd"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/reference-source/FINISHED.json": {
+      "bytes": 18197,
+      "sha256": "944e1d1002886b645dbe72a62437a363a7cefecb93e795fbf0c53a10d5572dd8"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/reference-source/dense_qwen_reference.py": {
+      "bytes": 10094,
+      "sha256": "fa21d5fcf5030dbbff4657eb081237e7b36da24ff70f54fce493d443f4fa017f"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/reference-source/model_geometry.py": {
+      "bytes": 11143,
+      "sha256": "1259bc9ec0924c354b7a96f60f69bcdb7da6befa09f743a36298a35797f1aa56"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/reference-source/prepare_hardware_vectors.py": {
+      "bytes": 4825,
+      "sha256": "0f45fa8bc1258409b70f7dcc26c0790bc49c41f394d204b7a702aecf4bc5799a"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/reference.json": {
+      "bytes": 7292,
+      "sha256": "a90f01738be225e794cbd2ca9833d0a7fba2c7d09a6ecb994192c9f345140f80"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/source-review.json": {
+      "bytes": 6517,
+      "sha256": "17b9ab6c8e51bfc350b533bc735c12458953c97ff1fa9c3b635ad2412783e50d"
     },
     "demos/qwen3-8b/evidence/implementation/REPORTS.json": {
       "bytes": 7328,
@@ -2002,8 +2180,8 @@
       "sha256": "7c9001c92f425af73cdb1e50aec292e761da4dbe7bba6f8741b9ada5ceabd6f9"
     },
     "docs/benchmarks/H100-BENCHMARK.md": {
-      "bytes": 22702,
-      "sha256": "906e3e11e72435a47f525e6beb761dedd9303342b34d9536d1c7efe885def948"
+      "bytes": 23053,
+      "sha256": "a045101b6e2f4ab4504883d5d3a7ab9d5e29c734f4f796325530bda609c82864"
     },
     "evidence/README.md": {
       "bytes": 2827,
@@ -9154,8 +9332,8 @@
       "sha256": "f2dc971d2a8b654481a17c738bd8a4f9453c2f3e5d72c7c0751871e1aa4a468e"
     },
     "evidence/qwen-h100-2026-10-25/computed-results.json": {
-      "bytes": 37619,
-      "sha256": "ba8fae25534a7a62efff5b165a30ba43e5950a4c66616c547b91dd439597ffc5"
+      "bytes": 39750,
+      "sha256": "a38f6d46a183de56908a5658c291039e1faaba49842a58e67f4f23d6a27a83dc"
     },
     "evidence/qwen-h100-2026-10-25/raw-evidence.tar.gz": {
       "bytes": 2427275,
@@ -13094,8 +13272,8 @@
       "sha256": "0f43d1387cc51bfc32243ed60252a8a53a7051dbd3e6e64693ff99ef4c9fa935"
     },
     "tools/check_current_three_greedy_v15_v4.py": {
-      "bytes": 1195177,
-      "sha256": "a772ea837c118fa9883cc9196b66ffb981f8456dc6a498bdc1c74af320e6aab7"
+      "bytes": 1207851,
+      "sha256": "fed819b7a6fb2e371d63dd1e049d281367853ed5ef6ba94ff81487fae95bf417"
     },
     "tools/check_encrypted_flash.py": {
       "bytes": 1848,
@@ -13258,16 +13436,20 @@
       "sha256": "511c109fafdca81243acc422d46033a6ba7e228b44582b7c6640d722ded329d7"
     },
     "tools/fpga_speed_benchmark.py": {
-      "bytes": 11741,
-      "sha256": "b19d2c0818919a0e6b81e5ec64c48d30d830bb7fe40485547e316db5dfd72930"
+      "bytes": 12271,
+      "sha256": "397452ec15744f664eb918d80f8f2d0c95fae7814700719eba70c87fd91f6eb5"
     },
     "tools/materialize_image.py": {
       "bytes": 12685,
       "sha256": "ca1a2100591975364b1dc3b5b54d1b3b5b5af9b784d8e567150ba6b93ae16ea5"
     },
+    "tools/qwen_common_speed_evidence.py": {
+      "bytes": 8722,
+      "sha256": "6902cc22957fac5b64ec6c20b94cc0844b094ced07e3b6ebfaae681628252b85"
+    },
     "tools/qwen_h100_results.py": {
-      "bytes": 11792,
-      "sha256": "a7c82540f17d93bca053a9c56bebce93e4277b4810511ef120e1825f88dd2d61"
+      "bytes": 12449,
+      "sha256": "e9ba66d537eae93d0582ab9084175c3860a8d2a8feb0e57e87c4257e3d93e7c1"
     },
     "tools/replay_diagnostics.py": {
       "bytes": 2791,
@@ -13302,8 +13484,8 @@
       "sha256": "1746bff05ff8078aecc3286f315831d4d9d332c7cf8641a003d54e5e7475f4f4"
     },
     "tools/test_fpga_speed_benchmark.py": {
-      "bytes": 6939,
-      "sha256": "53f770ca125ab258142f173992a081d4c52ed324617b5e8166e3d5767f731bda"
+      "bytes": 8989,
+      "sha256": "0ea2cbd39e0302d06c9602b72611bf295610a036fa88b4a34ce262d18d607cea"
     },
     "tools/test_h100_reference.py": {
       "bytes": 2232,

@@ -3,7 +3,7 @@
 [Project overview](../../README.md) · [SimpleStories-V2-5M on Tang Mega](../simplestories-v2-5m/README.md)
 
 **A fixed numerical version of Qwen3-1.7B runs on one physical AWS F2 FPGA
-at about 9.0 sustained cached tokens/s in the tested short-prompt workloads.**
+at about 9.0 sustained cached tokens/s under the common one-token benchmark.**
 The FPGA performs inference; the host uploads the fixed model, sends token
 commands and records the replies. This is a billion-parameter demonstration
 of the same authenticated-weight, fixed-inference approach as Tang Mega.
@@ -85,6 +85,27 @@ measurement plan. The [shared methodology](../../docs/analysis/RESIDUAL-TRAINING
 sets out the evidence needed for a reliable factor assessment.
 
 ## Measured generation speed
+
+The [common FPGA benchmark](../../docs/benchmarks/FPGA-SPEED-BENCHMARK.md) uses
+one input token `[9707]`, 128 greedy feedback-dependent outputs and two complete
+trials, each preceded by CLEAR. All **256 outputs match the independent CPU
+reference for the released fixed numerical model**, including outputs after EOS.
+
+The pooled cached rate is **9.00995 tokens/s**: 254 outputs divided by
+**28.191061176 seconds** across the two first-to-last reply intervals. Each
+reply is timestamped immediately after its validated return to the generation
+loop, so the rate includes host work and gaps between replies. First-STEP
+request/reply times are **0.108921 s** and **0.108772 s**; prompt upload is separate.
+
+The [capture](evidence/common-speed-2026-10-26/capture.json),
+[raw replies and source bindings](evidence/common-speed-2026-10-26/source-review.json)
+and [CPU reference record](evidence/common-speed-2026-10-26/reference.json)
+identify the published FPGA image, model, host binary, source and SDK revision.
+The configured recipe uses a 100 MHz core, 125 MHz memory AXI and 250 MHz shell.
+The runtime clock probe is unsupported on this image, so these are configuration
+identities rather than independent frequency measurements.
+
+### Additional validation workloads
 
 The following are two runs of the same three 128-output workloads on the
 same loaded image. Each cached rate uses the **127 intervals after the first

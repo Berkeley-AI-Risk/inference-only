@@ -41,7 +41,7 @@ Qwen's primary continuation starts with the single token `[9707]` and produces a
 
 At batch 2,048, the repeat supplies 30.536 tokens/s per sequence. Row zero uses `[9707]`; the other rows have independently generated one-token prompts and disjoint caches. All 262,144 primary output-token comparisons against eager execution agree in the aggregate repeat; the separate changed-prefix trajectory check also passes. The batch-one GPU first-output median is 19.8 ms and the full 128-output median is 0.597 s, with preloaded weights and no CPU token delivery.
 
-The three recorded FPGA prompts pass full GPU eager/graph trajectory comparisons at about 219 tokens/s each. The roughly 9 tokens/s FPGA result uses those three prompts, of 4, 5 and 15 tokens. A matching one-token, 128-output **FPGA** measurement is not available.
+The three recorded FPGA prompts pass full GPU eager/graph trajectory comparisons at about 219 tokens/s each. The [common FPGA benchmark](../../demos/qwen3-1.7b/evidence/common-speed-2026-10-26/capture.json) uses one token `[9707]`, 128 outputs and two complete trials. Its pooled host-loop cached rate is **9.00995 tokens/s**, with all 256 outputs matching the independent CPU reference for the FPGA numerical function. The common protocol aligns workload geometry; the FPGA fixed numerical function and host timing boundary differ from the FP16 GPU reference and its timing boundary.
 
 Longer-context graph panels pass separately: 24,676.920 evaluations/s at context 512/batch 512; 7,301.526/s at 2,048/batch 128; and 1,893.382/s at 8,192/batch 32. These GPU panels do not extend FPGA hardware qualification or establish a maximum over attacker workloads.
 
@@ -74,7 +74,7 @@ The following alternatives use the shared-method repeated H100 references above.
 
 The counts in the named scheduled-work row are 32,080,640 and 801,272 operations/decode. Under that row's matched-workload assumption, `T=C*F` and device speed cancels. The every-cycle runtime row grants 33.4 billion operations/s for Qwen's 167 named units and 950 million/s for SimpleStories' 19 scheduled runtime-operand instances. Its inferred ratio depends on both the FPGA rate and GPU reference. A value near 0.24 describes credited training arithmetic per unit of inference service; it does not say one FPGA supplies 24% of an H100's raw training arithmetic.
 
-Qwen's smaller attention-work share is therefore an architectural advantage, but it does not establish a smaller whole-system residual training factor. The outcome depends on accessible arithmetic, its schedule, the reference implementation, workload and numerical-function standard. The one-token continuation's conditional named-work identity is separately 0.00111124, using 17,573,504 average operations per cached token; it does not supply the missing FPGA measurement or a device-wide bound.
+Qwen's smaller attention-work share is therefore an architectural advantage, but it does not establish a smaller whole-system residual training factor. The outcome depends on accessible arithmetic, its schedule, the reference implementation, workload and numerical-function standard. The one-token continuation's conditional named-work identity is separately 0.00111124, using 17,573,504 average operations per cached token; the matching FPGA measurement does not establish the assumed arithmetic access or a device-wide bound.
 
 ### Evidence and reproduction
 

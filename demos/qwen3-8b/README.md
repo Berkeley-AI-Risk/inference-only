@@ -3,7 +3,7 @@
 [Installation](INSTALL.md) · [Hardware and source build](HARDWARE.md) · [Recorded evidence](measurements.json)
 
 A fixed numerical version of **Qwen3-8B runs on one physical AWS F2 FPGA at
-about 1.1 sustained cached tokens/s** in the measured short-prompt workload.
+about 1.1 sustained cached tokens/s** under the common one-token benchmark.
 The FPGA performs inference; the host loads the fixed model and exchanges
 token commands. Work on a faster implementation is ongoing. No projected
 speedup is included in the measurements below.
@@ -56,6 +56,30 @@ physical-tampering certification or measured residual training fraction is
 claimed for this 8B implementation.
 
 ## Measured performance
+
+The [common FPGA benchmark](../../docs/benchmarks/FPGA-SPEED-BENCHMARK.md) uses
+one input token `[9707]`, 128 greedy feedback-dependent outputs and two complete
+trials, each preceded by CLEAR. All **256 outputs match the independent CPU
+reference for the released fixed numerical model**, including outputs after EOS.
+
+The pooled cached rate is **1.12178 tokens/s**: 254 outputs divided by
+**226.426331573 seconds** across the two first-to-last reply intervals. Reply
+timestamps are taken after validated returns to the generation loop, including
+host work and gaps between replies. First-STEP request/reply times are
+**0.885921 s** and **0.885698 s**; prompt upload is separate.
+
+The [capture](evidence/common-speed-2026-10-26/capture.json),
+[raw replies and source bindings](evidence/common-speed-2026-10-26/source-review.json)
+and [CPU reference record](evidence/common-speed-2026-10-26/reference.json)
+identify the image, model, host binary and source. The CPU reference is a
+preserved independent 128-output run, reconciled with the released model and
+numerical source; it is not a new reference execution. Its completion record
+is retained, with the absence of an outer process-exit record stated explicitly.
+The configured recipe uses a 100 MHz core, 125 MHz memory AXI and 250 MHz shell.
+The runtime clock probe is unsupported, so these are configuration identities
+rather than independent frequency measurements.
+
+### Additional validation workloads
 
 | Prompt tokens | Generated tokens | Time to first token | Cached tokens/s |
 | ---: | ---: | ---: | ---: |

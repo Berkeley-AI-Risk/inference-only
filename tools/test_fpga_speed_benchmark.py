@@ -110,6 +110,41 @@ class CommonSpeedTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'raw capture identity'):
             bench.selected_trials(row,{'capture.json':source},[])
 
+    def qwen_recorded_review(self, model='qwen3-1.7b'):
+        selection=json.loads((ROOT/bench.SELECTION).read_text())
+        row=next(x for x in selection['rows'] if x['id']==model)
+        sources=bench.read_sources(ROOT,selection)
+        spec=importlib.util.spec_from_file_location('qwen_raw',ROOT/'tools/qwen_common_speed_evidence.py')
+        verifier=importlib.util.module_from_spec(spec);spec.loader.exec_module(verifier)
+        return verifier,row,sources[row['source']],sources[row['evidence_review']]
+
+    def test_recorded_qwen_raw_timestamps_cannot_be_replaced(self):
+        verifier,row,capture,review=self.qwen_recorded_review()
+        capture=copy.deepcopy(capture)
+        capture['cases'][0]['reply_elapsed_seconds'][1]+=0.00001
+        with self.assertRaisesRegex(ValueError,'raw/canonical timings'):
+            verifier.verify(ROOT,row,capture,review)
+
+    def test_recorded_qwen_reference_cannot_be_replaced_with_self_agreement(self):
+        verifier,row,capture,review=self.qwen_recorded_review()
+        capture=copy.deepcopy(capture)
+        for field in ('generated_tokens','expected_tokens'):capture['cases'][0][field][1]+=1
+        with self.assertRaisesRegex(ValueError,'raw/reference token'):
+            verifier.verify(ROOT,row,capture,review)
+
+    def test_recorded_qwen_loaded_image_is_required(self):
+        verifier,row,capture,review=self.qwen_recorded_review()
+        row,capture=copy.deepcopy(row),copy.deepcopy(capture)
+        row['identity']['fpga_image_global_id']=capture['identity']['fpga_image_global_id']='agfi-'+'0'*17
+        with self.assertRaisesRegex(ValueError,'Published Qwen image differs'):
+            verifier.verify(ROOT,row,capture,review)
+
+    def test_recorded_qwen8_cpu_completion_cannot_be_omitted(self):
+        verifier,row,capture,review=self.qwen_recorded_review('qwen3-8b')
+        review=copy.deepcopy(review);review.pop('reference_completion')
+        with self.assertRaisesRegex(ValueError,'numerical completion'):
+            verifier.verify(ROOT,row,capture,review)
+
     def test_changed_source_identity_rejected(self):
         selection=json.loads((ROOT/bench.SELECTION).read_text())
         name=next(iter(selection['sources']))

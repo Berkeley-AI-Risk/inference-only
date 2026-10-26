@@ -5,6 +5,7 @@ Standard library only. No hardware, network, model inference or file writes.
 """
 import argparse
 import hashlib
+import importlib.util
 import json
 import math
 from pathlib import Path, PurePosixPath
@@ -150,6 +151,12 @@ def calculate(root):
     manifest = json.loads((root / 'MANIFEST.json').read_text())
     rows = []
     for row in selection['rows']:
+        if row['id'].startswith('qwen') and row['format'] == 'canonical':
+            need(row.get('evidence_review') in sources, 'Missing Qwen raw evidence review')
+            spec = importlib.util.spec_from_file_location('qwen_common_speed_evidence',
+                root / 'tools/qwen_common_speed_evidence.py')
+            verifier = importlib.util.module_from_spec(spec); spec.loader.exec_module(verifier)
+            verifier.verify(root, row, sources[row['source']], sources[row['evidence_review']])
         if row.get('artifact'):
             need(manifest['files'][row['artifact']]['sha256'] == row['identity']['fpga_image_sha256'],
                  'Benchmark does not describe the selected published FPGA image')

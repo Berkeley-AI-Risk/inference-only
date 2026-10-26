@@ -145,6 +145,14 @@ def analyze(package_root, evidence_root=None):
                             'main_greedy_comparisons': check['token_comparisons'],
                             'member': selection['cases'][role]['member'],
                             'sha256': selection['cases'][role]['sha256']}
+    speed_spec = importlib.util.spec_from_file_location('common_fpga_speed',
+                Path(__file__).with_name('fpga_speed_benchmark.py'))
+    speed = importlib.util.module_from_spec(speed_spec)
+    speed_spec.loader.exec_module(speed)
+    matched = next(row for row in speed.calculate(package)['rows'] if row['id'] == 'qwen3-1.7b')
+    matched_record = ({'source': 'benchmarks/fpga-speed/results.json',
+                       'identity': matched['identity'], 'rate': matched['rate']}
+                      if matched['complete'] else None)
     primary_named_mean = sum(capacity.work_counts(n)['named_dynamic_mac_equivalent_operations']
                              for n in range(2, 129)) / 127
     return {'schema': 'qwen-h100-conditional-comparison-v1',
@@ -156,7 +164,8 @@ def analyze(package_root, evidence_root=None):
             'qwen_fixed_context_phi_proxy': q,
             'qwen_one_token_named_schedule': {'mean_ops_per_cached_token': primary_named_mean,
                                              'conditional_phi_proxy': primary_named_mean * rates['qwen_primary'] / H,
-                                             'matching_128_output_fpga_measurement_pending': True},
+                                             'matching_128_output_fpga_measurement_pending': not matched['complete'],
+                                             'matching_fpga_measurement': matched_record},
             'small_fpga_context128_single_step_tps': fs,
             'small_fpga_metrics_sha256': hashlib.sha256(small_metrics_raw).hexdigest(),
             'small_fpga_image_sha256': small_inputs['inputs']['selected_fpga_image_sha256'],
