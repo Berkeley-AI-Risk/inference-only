@@ -117,8 +117,8 @@ also rejected any run with more than one visible device. GPU 1 was not used.
 
 The raw `nvidia-smi` inventory lists both GPUs installed in the server;
 it does not describe CUDA visibility for the benchmark process. The
-[runner](../../benchmarks/h100/benchmark.py) checks that `torch.cuda.device_count()`
-is exactly one. The separate [replay record](../../evidence/h100/correctness/replay-compile-graph.json)
+[runner](../../demos/simplestories-v2-5m/benchmarks/h100/benchmark.py) checks that `torch.cuda.device_count()`
+is exactly one. The separate [replay record](../../demos/simplestories-v2-5m/evidence/h100/correctness/replay-compile-graph.json)
 also records `cuda_visible_devices = "0"`.
 
 | Implementation | Independent sequences | Aggregate evaluations/s | Acceptance |
@@ -130,11 +130,11 @@ also records `cuda_visible_devices = "0"`.
 | Compiled CUDA graph | 32,768 | 1,017,925 | FP16 reference |
 | Compiled CUDA graph, new-prompt repeat | 32,768 | **1,018,048** | FP16 reference |
 
-The [selected repeat](../../evidence/h100/h100-compiled-fp16-repeat/ctx128-batch32768-float16-compile-graph.json)
+The [selected repeat](../../demos/simplestories-v2-5m/evidence/h100/h100-compiled-fp16-repeat/ctx128-batch32768-float16-compile-graph.json)
 used five approximately three-second trials. Its median rate was
 1,018,047.545/s, with trial rates between 1,018,035 and 1,018,145/s. At that
 batch size, a step took 32.19 ms: about **31.1 evaluations/s per sequence**.
-The [initial large-batch result](../../evidence/h100/h100-compiled-fp16-reference/ctx128-batch32768-float16-compile-graph.json)
+The [initial large-batch result](../../demos/simplestories-v2-5m/evidence/h100/h100-compiled-fp16-reference/ctx128-batch32768-float16-compile-graph.json)
 was 1,017,924.918/s. The large-batch compiled rate improved by only about 2.1%
 from batch 8,192 to 32,768; that suggests a plateau for this implementation,
 not a limit on all possible GPU implementations.
@@ -175,9 +175,9 @@ The strict acceptance policy requires all logits to meet `rtol=0.005, atol=0.05`
 relative to same-precision eager inference **and** every greedy token to
 match. Compiled batches 256 and 1,024 passed the logit comparison but failed
 the exact-token check. Their failed results and worker records are
-in [the strict sweep](../../evidence/h100/h100-context128/summary.json).
+in [the strict sweep](../../demos/simplestories-v2-5m/evidence/h100/h100-context128/summary.json).
 
-The [rounding diagnostic](../../evidence/h100/correctness/compiled-rounding-batch1024.json)
+The [rounding diagnostic](../../demos/simplestories-v2-5m/evidence/h100/correctness/compiled-rounding-batch1024.json)
 found four different greedy tokens in batch 1,024, all near ties. Eager's
 top-two gap was zero on three rows and 0.0078125 on the fourth. Compiled FP16
 agreed with uncached FP32 on three of these rows; eager FP16 agreed on one.
@@ -227,7 +227,7 @@ driver 580.105.08, PyTorch 2.10.0+cu126, Transformers 4.48.3, tokenizers
 reduction were disabled. Cases ran sequentially in fresh processes, and the
 records report eight CPU execution threads.
 
-The [original setup notes](../../benchmarks/h100/source-versions/fp16-reference/README.txt)
+The [original setup notes](../../demos/simplestories-v2-5m/benchmarks/h100/source-versions/fp16-reference/README.txt)
 identify Ubuntu 22.04, but the timing records do not save the OS release.
 The worker launcher defaults to four compilation threads unless an existing
 environment setting overrides it; the effective setting was not recorded
@@ -243,11 +243,11 @@ and the runner enforces one visible H100. The `nvidia-smi` clock readings are
 snapshots outside the timed window, not clock/power telemetry throughout it.
 These are reproducibility limits, not evidence of measured utilization.
 
-[Benchmark instructions and scripts](../../benchmarks/h100/README.md) are included.
+[Benchmark instructions and scripts](../../demos/simplestories-v2-5m/benchmarks/h100/README.md) are included.
 Model weights and GPU software are obtained separately under their own terms;
 they are unnecessary for inspecting the recorded data or running the FPGA.
 
-[`evidence/h100/IMPORT.json`](../../evidence/h100/IMPORT.json) binds the published
+[`evidence/h100/IMPORT.json`](../../demos/simplestories-v2-5m/evidence/h100/IMPORT.json) binds the published
 files to their original identities. Measurement JSON is unchanged. Worker
 logs are included as `.txt` with only machine-local benchmark-directory paths
 replaced where present; both original and released digests are recorded.
@@ -257,8 +257,8 @@ are not included.
 Offline verification requires only Python 3.12:
 
 ```sh
-python3.12 -I -S -B tools/check_h100_reference.py
-python3.12 -I -S -B tools/estimate_training_capacity.py --check
+python3.12 -I -S -B demos/simplestories-v2-5m/tools/check_h100_reference.py
+python3.12 -I -S -B demos/simplestories-v2-5m/tools/estimate_training_capacity.py --check
 ```
 
 ### Performance headroom

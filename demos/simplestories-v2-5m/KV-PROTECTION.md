@@ -9,7 +9,7 @@ output slot. Changing configurations is a development-board programming step,
 not an operation offered by either frozen inference circuit. Both use
 private parallel attention and packed storage. Each selected image has its own
 source inventory, native route and full-context qualification.
-The third [encrypted-memory configuration](../../ENCRYPTED-MEMORY.md)
+The third [encrypted-memory configuration](ENCRYPTED-MEMORY.md)
 retains K/V integrity and adds encryption with public test keys.
 
 Checking untrusted external memory against protected on-chip state has a long
@@ -65,7 +65,7 @@ vendor-DDR timing signoff.
 
 ## What K/V protection adds
 
-![Both versions check weights against fixed model digests. Only the protected version checks cache reads against digests saved by the circuit. External data remain unencrypted.](../../diagrams/memory-integrity.svg)
+![Both versions check weights against fixed model digests. Only the protected version checks cache reads against digests saved by the circuit. External data remain unencrypted.](diagrams/memory-integrity.svg)
 
 *Read paths, with transport and buffering details simplified. Cache writes
 come from the fixed inference circuit, not from host-supplied tensors.
@@ -165,7 +165,7 @@ Private scheduling and SHA replies remain arbitrary at the declared boundaries.
 These counts overlap with component scopes and must not be added. See
 [FORMAL-STATUS.md](FORMAL-STATUS.md) for precise properties and cuts.
 
-The [guard simulation](../../simulation/kv-protected/README.md) exercises
+The [guard simulation](simulation/kv-protected/README.md) exercises
 corruption, stale/wrong-location records, sealed-copy reads, stalls and CLEAR.
 It is component simulation with its named source association. Deliberately
 corrupted DDR was not tested by physically modifying the board's memory or bus.
@@ -188,14 +188,14 @@ The two prebuilt images are:
 - Protected: `prebuilt/kv-protected/project/impl/pnr/shared_product.fs`.
 
 Use the matching `BUILD.json` in the same prebuilt directory. Follow
-[PROGRAMMING.md](../../PROGRAMMING.md) to load one image into SRAM, then perform
-the [local known-answer check](../../host-app/README.md). Switching variants does
+[PROGRAMMING.md](PROGRAMMING.md) to load one image into SRAM, then perform
+the [local known-answer check](host-app/README.md). Switching variants does
 not require reinstalling the unchanged model in flash. A successful short
 check is not independent attestation of the FPGA's configuration.
 
 The protected custom project is in `variants/kv-protected/hardware/`. For an
 optional source build, add `--variant kv-protected` to the existing
-[build command](../../VENDOR-SETUP.md#check-then-build). Both variants use the same
+[build command](VENDOR-SETUP.md#check-then-build). Both variants use the same
 four separately acquired Gowin source-IP dependencies and tool installation.
 Both supplied images have been tested on the board. A recipient-side source
 build produces its own route and requires its own validation.

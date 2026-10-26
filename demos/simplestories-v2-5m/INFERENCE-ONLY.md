@@ -3,12 +3,12 @@
 This assessment and its proof/capacity receipts concern the **Tang Mega** baseline and
 K/V-protected configurations. Its architectural principles also inform the
 [Qwen experiment](../qwen3-1.7b/README.md), but the proofs, arithmetic inventory
-and numerical capacity estimates here are not evidence about that circuit. The [encrypted-memory version](../../ENCRYPTED-MEMORY.md)
+and numerical capacity estimates here are not evidence about that circuit. The [encrypted-memory version](ENCRYPTED-MEMORY.md)
 preserves the same public operations, but has separate circuitry and test
 coverage; it has no whole-machine proof or certified training-capacity rating.
 The optional [seeded-sampling version](STOCHASTIC-GENERATION.md) also has separate
 evidence: it adds bounded generation settings and has
-[extended scoped control proofs](../../formal/seeded-sampling/README.md). The capacity
+[extended scoped control proofs](formal/seeded-sampling/README.md). The capacity
 estimates for the configurations below have not been transferred to it.
 
 *The Feasibility of a Hardwired Pause of Frontier AI Training* introduces both
@@ -72,7 +72,7 @@ For a chosen temperature and seed, generation is deterministic. CLEAR retains
 the settings and rewinds the generator; reset restores greedy defaults. This
 is a bounded family of inference behaviors, with unchanged accepted weights
 and private model arithmetic. Its additional command and state have a
-[separate specification and control proof](../../formal/seeded-sampling/README.md),
+[separate specification and control proof](formal/seeded-sampling/README.md),
 at the declared RTL boundaries and arbitrary private numerical services. Its board
 campaigns and integer references are also recorded separately. The finite
 greedy capacity estimates have not been extended to sampling.
@@ -179,7 +179,7 @@ digests retained in private on-chip memory. It binds data to location and
 current logical context, stages and verifies external reads, and releases
 the sealed verified copy. Changing external K/V alone therefore does not
 supply chosen cache operands under the guard's integrity and trusted-on-chip
-assumptions. [Scoped source-bound proofs](../../formal/kv-integrity/README.md) check
+assumptions. [Scoped source-bound proofs](formal/kv-integrity/README.md) check
 private write/tag history, guard-to-cache data and identity, and separately
 attention capture/use. SHA implementation correctness and whole-machine
 composition remain unproved. Corruption, stale data and CLEAR handling have

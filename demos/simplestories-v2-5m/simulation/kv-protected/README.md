@@ -11,7 +11,7 @@ The historical `role-pages-v2/model.py` reference in the hash RTL's comment
 corresponds to the model supplied here as [role-pages/model.py](role-pages/model.py).
 The RTL comment is retained to preserve the source identity of the tested image.
 
-From the repository root, with Python 3.12, Icarus Verilog (`iverilog`, `vvp`)
+From the SimpleStories demo directory (`demos/simplestories-v2-5m/`), with Python 3.12, Icarus Verilog (`iverilog`, `vvp`)
 and Verilator 5.050 available on `PATH`:
 
 ```sh

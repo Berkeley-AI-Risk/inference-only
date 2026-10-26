@@ -113,15 +113,16 @@ def analyze(package_root, evidence_root=None):
     q = {name: value * rates['qwen_fixed'] for name, value in q_coefficients.items()
          if name != 'named_schedule_story_continuation'}
     small_spec = importlib.util.spec_from_file_location('simplestories_capacity',
-                Path(__file__).with_name('estimate_training_capacity.py'))
+                package / 'demos/simplestories-v2-5m/tools/estimate_training_capacity.py')
     small_capacity = importlib.util.module_from_spec(small_spec)
     small_spec.loader.exec_module(small_capacity)
-    small_inputs = small_capacity.estimate(package)
+    small_package = package / 'demos/simplestories-v2-5m'
+    small_inputs = small_capacity.estimate(small_package)
     fs = positive(small_inputs['inputs']['fpga_inference_rate_proxy'])
     require(small_inputs['inputs']['fpga_context_positions'] ==128
             and small_inputs['inputs']['measured_single_step_repetitions'] ==2,
             'Changed selected SimpleStories paired fixed-context workload')
-    small_metrics_raw = (package / small_capacity.METRICS_FILE).read_bytes()
+    small_metrics_raw = (small_package / small_capacity.METRICS_FILE).read_bytes()
     rs = rates['small_fixed']
     credited = small_inputs['scenarios']
     small = {

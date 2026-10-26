@@ -17,19 +17,19 @@ installation and generation instructions below.
 ## Load and check the seeded image
 
 Use the same supported Tang Mega 138K non-Pro/device-C board and 16-MiB flash
-as the [standard installation](../../PROGRAMMING.md). For a first installation,
+as the [standard installation](PROGRAMMING.md). For a first installation,
 complete that guide's identity, backup, plaintext-model installation and full
 readback checks. Its model-installation step erases flash. If the plaintext
 model is already installed and verified, switching from the baseline to this
 image requires only an SRAM load; it does not require a flash write.
 An encrypted-memory installation has different flash contents; follow
-[its restoration guide](../../ENCRYPTED-MEMORY.md#install-or-restore) before using a
+[its restoration guide](ENCRYPTED-MEMORY.md#install-or-restore) before using a
 plaintext image.
 
-From the repository root, verify the package:
+From the SimpleStories demo directory (`demos/simplestories-v2-5m/`), verify the package:
 
 ```sh
-python3.12 -I -S -B tools/verify_release.py
+python3.12 -I -S -B ../../tools/verify_release.py
 ```
 
 Stop the browser app and every other serial/JTAG user. Retain the exact
@@ -46,15 +46,15 @@ and `Finished.`. Keep the board powered and wait at least 120 seconds after actu
 SRAM load completes. The FPGA configuration is volatile; reload it after power loss.
 Its SHA-256 is
 `d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725`;
-[BUILD.json](../../prebuilt/seeded-sampling/BUILD.json) binds it to the selected
+[BUILD.json](prebuilt/seeded-sampling/BUILD.json) binds it to the selected
 sources. Its scope field records the qualification status at native-build
 time; later board, browser and proof results are recorded separately in
 [VALIDATION.md](VALIDATION.md) and the
-[qualification record](../../variants/seeded-sampling/QUALIFICATION.md). These
+[qualification record](variants/seeded-sampling/QUALIFICATION.md). These
 identities do not independently attest a connected FPGA.
 
 Install the host app dependencies as described in
-[host-app/README.md](../../host-app/README.md), then register the loaded seeded image
+[host-app/README.md](host-app/README.md), then register the loaded seeded image
 from the `host-app` directory:
 
 ```sh
@@ -112,7 +112,7 @@ or a source of independent physical randomness.
 ## Optional token-ID diagnostics
 
 The CLI is for direct wire tests and diagnostics. Stop or disconnect the
-browser app before using the same serial device. From the repository root,
+browser app before using the same serial device. From the SimpleStories demo directory (`demos/simplestories-v2-5m/`),
 prepare a known-answer request without opening a device:
 
 ```sh
@@ -199,11 +199,11 @@ apply settings; after timeout and reply drain, a later valid legacy frame can
 be parsed as a new request. Do not continue an abandoned frame or interleave
 requests. The CLI implements this framing and stops on faults.
 
-The source is in [variants/seeded-sampling/hardware](../../variants/seeded-sampling/hardware).
+The source is in [variants/seeded-sampling/hardware](variants/seeded-sampling/hardware).
 The pinned 91-input inventory is
-[hardware-inputs-seeded-sampling.json](../../host-app/hardware-inputs-seeded-sampling.json);
+[hardware-inputs-seeded-sampling.json](host-app/hardware-inputs-seeded-sampling.json);
 four vendor files must be acquired separately under
-[VENDOR-SETUP.md](../../VENDOR-SETUP.md). Its settings and sampler controller have their own scoped RTL results. Separate [seeded formal proofs and public replay](../../formal/seeded-sampling/README.md)
+[VENDOR-SETUP.md](VENDOR-SETUP.md). Its settings and sampler controller have their own scoped RTL results. Separate [seeded formal proofs and public replay](formal/seeded-sampling/README.md)
 check SETTINGS, sampler/seed ownership and CLEAR/replay with the stated
 private-service boundaries. The connected Z3 proof passes 196 assertions;
 cvc5 passes its base and 194 conclusions, with two CRC conclusions unresolved.

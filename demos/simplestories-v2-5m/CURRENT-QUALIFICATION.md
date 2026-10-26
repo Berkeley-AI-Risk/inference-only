@@ -51,7 +51,7 @@ STEP measurement above; it is not a cached generation rate.
   solvers, real 32,768-bit RAM and arbitrary 258-bit SHA replies, plus ten
   directed scenarios and five faulty controls.
 - The named current formal completion is registered in the clean recipient's
-  [CURRENT-REPLAY.json](../../formal/current-seeded-sampling/CURRENT-REPLAY.json).
+  [CURRENT-REPLAY.json](formal/current-seeded-sampling/CURRENT-REPLAY.json).
   Construction/source-action false flags remain unchanged.
 - One fresh read of all 16,777,216 flash bytes passed: the 7,265,984-byte fixed
   model matched exactly, and every other byte was `FF`. The reader used the

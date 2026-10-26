@@ -78,11 +78,11 @@ The release preparation verified unauthenticated downloads against the exact
 selected inputs. No private supplier response or regenerated substitute is
 needed. `VENDOR-DEPENDENCIES.json` lists the URLs, sizes and hashes.
 
-From the repository root:
+From the SimpleStories demo directory (`demos/simplestories-v2-5m/`):
 
 ```sh
-python3.12 -I -S -B tools/fetch_vendor.py ../fpga-vendor-inputs --confirm-permitted-vendor-use
-python3.12 -I -S -B tools/fetch_vendor.py ../fpga-vendor-inputs --check
+python3.12 -I -S -B tools/fetch_vendor.py ../../../fpga-vendor-inputs --confirm-permitted-vendor-use
+python3.12 -I -S -B tools/fetch_vendor.py ../../../fpga-vendor-inputs --check
 ```
 
 The first command downloads only those four files and never executes them.

@@ -50,4 +50,4 @@ training factor. See [the inference-only assessment](INFERENCE-ONLY.md).
 
 For offline integrity and recorded-evidence checks, follow
 [REPRODUCE.md](REPRODUCE.md). For guarded board installation and recovery, read
-[PROGRAMMING.md](../../PROGRAMMING.md) and the [host guide](../../host-app/README.md).
+[PROGRAMMING.md](PROGRAMMING.md) and the [host guide](host-app/README.md).

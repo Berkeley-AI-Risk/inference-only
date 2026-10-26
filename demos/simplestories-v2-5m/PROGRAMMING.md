@@ -52,10 +52,10 @@ Set the flash capacity in both required `spi.ini` sections as specified in
 [VENDOR-SETUP.md](VENDOR-SETUP.md) before continuing; the tested flash is
 128 Mbit, not 64 Mbit.
 
-From the release repository root, first check all supplied files:
+From the SimpleStories demo directory (`demos/simplestories-v2-5m/`), first check all supplied files:
 
 ```sh
-python3.12 -I -S -B tools/verify_release.py
+python3.12 -I -S -B ../../tools/verify_release.py
 ```
 
 Set these shell variables to **your actual paths and device**, not another

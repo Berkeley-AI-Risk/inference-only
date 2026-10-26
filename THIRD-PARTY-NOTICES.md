@@ -29,7 +29,7 @@ the original floating-point checkpoint can be fetched for reproduction.
 | `hardware/project/digests32.memh` | SHA-256 integrity values computed from the serialized model, including specified page padding; not an additional copy of its weight tensors. |
 | `hardware/project/model_rtl_evidence/attention_sublayer/exp_neg_q30.memh` | Numerical exponential lookup generated from the project's fixed-point formula, not learned weights. |
 
-`tools/materialize_image.py` regenerates the image and all four tables.
+`demos/simplestories-v2-5m/tools/materialize_image.py` regenerates the image and all four tables.
 Their identities are in `MANIFEST.json`. Model derivation does not become
 wholly original project authorship merely because a file is small or generated.
 
@@ -92,7 +92,7 @@ retain their respective third-party rights. See [LICENSING.md](LICENSING.md)
 for the output-distribution judgment and its scope.
 
 GOWIN software, vendor libraries, encrypted source IP and flattened netlists
-are not bundled. [VENDOR-DEPENDENCIES.json](VENDOR-DEPENDENCIES.json) identifies
+are not bundled. [VENDOR-DEPENDENCIES.json](demos/simplestories-v2-5m/VENDOR-DEPENDENCIES.json) identifies
 the four separately fetched source files. Their original notices must be
 retained when obtaining them. The downloader checks identity, not permission.
 Python packages, numerical libraries and verification tools are likewise

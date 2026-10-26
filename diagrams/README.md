@@ -6,7 +6,7 @@ weights, activations, K/V state and control in both demonstrations.
 
 | Detailed drawing | Technical explanation | Download |
 | --- | --- | --- |
-| SimpleStories-V2-5M baseline | [Architecture guide](../demos/simplestories-v2-5m/HARDWARE.md#detailed-baseline-diagram) | [SVG](simplestories-hardware-architecture.svg) · [PNG](simplestories-hardware-architecture.png) |
+| SimpleStories-V2-5M baseline | [Architecture guide](../demos/simplestories-v2-5m/HARDWARE.md#detailed-baseline-diagram) | [SVG](../demos/simplestories-v2-5m/diagrams/simplestories-hardware-architecture.svg) · [PNG](../demos/simplestories-v2-5m/diagrams/simplestories-hardware-architecture.png) |
 | Qwen3-1.7B AWS F2 baseline | [Hardware guide](../demos/qwen3-1.7b/HARDWARE.md#detailed-hardware-diagram) | [SVG](qwen-hardware-architecture.svg) · [PNG](qwen-hardware-architecture.png) |
 
 These are functional diagrams, not chip floorplans. Arrows summarize selected
@@ -18,12 +18,12 @@ resistance to physical tampering.
 ## Sources and count conventions
 
 The SimpleStories drawing describes the baseline image identified in
-[implementation.json](../evidence/current-greedy/baseline/analysis/implementation.json).
+[implementation.json](../demos/simplestories-v2-5m/evidence/current-greedy/baseline/analysis/implementation.json).
 Its 90 mapped multiplier primitives include 64 projection lanes, two projection
 scaling units, 19 scheduled runtime-operand units, and five supporting units. A dynamic role
 uses runtime values for both operands in at least one scheduled operation; the
 same unit can also perform fixed-coefficient work. Its
-[recorded census](simplestories-hardware-architecture.inventory.json) lists the
+[recorded census](../demos/simplestories-v2-5m/diagrams/simplestories-hardware-architecture.inventory.json) lists the
 mapped instances and the source-census identity. The renderer checks the census totals against
 the public implementation record and image identity; it does not rerun synthesis
 or independently reconstruct the census from RTL. The protected variant is

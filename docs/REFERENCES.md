@@ -83,7 +83,7 @@ not secrecy from someone who has the package.
 [*Simulation and Synthesis Techniques for Asynchronous FIFO Design* (SNUG San Jose 2002)](https://web.archive.org/web/20240304004420/http://www.sunburst-design.com/papers/CummingsSNUG2002SJ_FIFO1.pdf),
 describes Gray-coded pointers synchronized between clock domains. This is
 established background for the technique used by our
-[private transport FIFOs](../hardware/project/fifo.sv), not a claim that the
+[private transport FIFOs](../demos/simplestories-v2-5m/hardware/project/fifo.sv), not a claim that the
 project's FIFO RTL was copied from that paper. Reset, draining, physical
 constraints and implementation checks remain specific obligations.
 

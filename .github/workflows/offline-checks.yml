@@ -30,29 +30,34 @@ jobs:
       - name: Check the clean selected release inventory
         run: python -I -S -B tools/verify_release.py --strict
       - name: Reproduce the unchanged public-key ciphertext
+        working-directory: demos/simplestories-v2-5m
         run: |
           python -I -S -B tools/encrypt_model_image.py
           python -I -S -B tools/check_encrypted_inherited_components_v1.py
       - name: Check recorded seeded evidence in its original host source context
+        working-directory: demos/simplestories-v2-5m
         run: python -I -S -B tools/check_current_seeded_recorded_v1.py --require-complete
       - name: Check registered current RTL control proof completion (no solver replay)
+        working-directory: demos/simplestories-v2-5m
         run: |
           python -I -S -B formal/current-seeded-sampling/check_recorded.py --require-complete
           python -I -S -B -m unittest discover -s formal/current-seeded-sampling -p 'test_*.py' -v
       - name: Check the independent seeded model reference and client fixtures
+        working-directory: demos/simplestories-v2-5m
         run: |
           python -I -S -B reference/seeded-sampling/check_package.py
           python -I -S -B -m unittest discover -s variants/seeded-sampling/tests -p 'test_*.py' -v
       - name: Check the photograph for embedded metadata
+        working-directory: demos/simplestories-v2-5m
         run: python -I -S -B tools/check_photo_metadata.py
       - name: Recompute selected-image conditional capacity calculations
         # Explicit conditional assumptions; no training attack or certified bound.
         run: |
-          python -I -S -B tools/estimate_training_capacity.py --check
+          python -I -S -B demos/simplestories-v2-5m/tools/estimate_training_capacity.py --check
           python -I -S -B tools/architecture_work_counts.py --check
       - name: Check recorded H100 and Qwen evidence
         run: |
-          python -I -S -B tools/check_h100_reference.py
+          python -I -S -B demos/simplestories-v2-5m/tools/check_h100_reference.py
           python -I -S -B tools/check_qwen_measurements.py
           python -I -S -B tools/qwen_h100_results.py --check
           python -I -S -B tools/fpga_speed_benchmark.py --check
@@ -62,12 +67,16 @@ jobs:
       - name: Test retained independent helper boundaries
         # Explicit module list avoids importing old-release ZIP dispatchers.
         run: |
-          for test in test_architecture_work_counts.py test_fetch_vendor.py test_flash_layout.py test_h100_reference.py test_kv_integrity_runner.py test_model_rtl.py test_photo_metadata.py test_qwen_measurements.py test_replay_diagnostics.py test_training_capacity.py test_verify_release.py test_current_seeded_recorded_v1.py test_encrypted_inherited_components_v1.py test_fpga_speed_benchmark.py test_qwen_h100_results.py test_qwen_training_capacity.py; do
+          for test in test_architecture_work_counts.py test_qwen_measurements.py test_verify_release.py test_fpga_speed_benchmark.py test_qwen_h100_results.py test_qwen_training_capacity.py; do
             python -I -S -B -m unittest discover -s tools -p "$test" -v
+          done
+          for test in test_fetch_vendor.py test_flash_layout.py test_h100_reference.py test_kv_integrity_runner.py test_model_rtl.py test_photo_metadata.py test_replay_diagnostics.py test_training_capacity.py test_current_seeded_recorded_v1.py test_encrypted_inherited_components_v1.py; do
+            python -I -S -B -m unittest discover -s demos/simplestories-v2-5m/tools -p "$test" -v
           done
       - name: Test proof-log and constraint validators (no formal tools)
         # Generic validator refusal fixtures do not credit old image proofs to
         # any current circuit. Current-design proof bindings are checked below.
+        working-directory: demos/simplestories-v2-5m
         run: python -I -S -B -m unittest discover -s formal/kv-integrity -p test_contract_auditor.py -v
       - name: Confirm that the checks left the release unchanged
         run: python -I -S -B tools/verify_release.py --strict
@@ -90,10 +99,12 @@ jobs:
       - name: Test the Qwen browser and runtime with fixture replies
         run: python -B -m unittest discover -s demos/qwen3-1.7b/host -p 'test_*.py' -v
       - name: Test the common SimpleStories host and seeded controls with fixture replies
+        working-directory: demos/simplestories-v2-5m
         run: python -B -m unittest discover -s host-app -p 'test_*.py' -v
       - name: Derive all three current greedy capsule results and exact shared host bindings
         # tokenizers0.23.2 is required to independently decode recorded browser
         # text. Keep site packages available; never add -S to this invocation.
+        working-directory: demos/simplestories-v2-5m
         run: python -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
       - name: Confirm that the checks left the release unchanged
         run: python -I -S -B tools/verify_release.py --strict

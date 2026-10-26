@@ -10,6 +10,10 @@ import json
 from pathlib import Path, PurePosixPath
 import stat
 
+MODEL_MANIFEST = 'demos/simplestories-v2-5m/MANIFEST.json'
+ROOT_CONTRACT = 'tools/release-contract.json'
+ROOT_CONTRACT_SHA = '4a4bf326d6270a3f46895476b0ab60b11da64eba968b3c0f18c7937d7265a747'
+
 ASSETS = {'prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs': (42070540,
                                                                  'd271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725'),
  'prebuilt/encrypted-memory/project/impl/pnr/shared_product.fs': (42303596,
@@ -89,9 +93,45 @@ def inventory(package, strict=False):
     return manifest
 
 
+def verify_repository_contract(package, manifest):
+    contract_path = checked_path(package, ROOT_CONTRACT)
+    if file_identity(contract_path)['sha256'] != ROOT_CONTRACT_SHA:
+        raise ValueError('Reviewed whole-repository byte contract changed')
+    contract = json.loads(contract_path.read_text())
+    if contract.get('schema') != 'reviewed-whole-repository-byte-contract-v1':
+        raise ValueError('Unexpected whole-repository byte contract')
+    self_name = 'tools/verify_release.py'
+    self_path = checked_path(package, self_name)
+    if not self_path.samefile(Path(__file__).resolve()):
+        raise ValueError('Shared release checker is outside the selected repository')
+    wanted = dict(contract['files'])
+    if any(name in wanted for name in (ROOT_CONTRACT, self_name, 'MANIFEST.json')):
+        raise ValueError('Whole-repository byte-contract cycle')
+    wanted[ROOT_CONTRACT] = file_identity(contract_path)
+    wanted[self_name] = file_identity(self_path)
+    if manifest['files'] != wanted:
+        raise ValueError('Repository manifest differs from reviewed member contract')
+
+
 def verify(package, strict=False):
     package = Path(package).resolve(strict=True)
     manifest = inventory(package, strict)
+    top_manifest = manifest
+    top_package = package
+    if (package / MODEL_MANIFEST).is_file():
+        if manifest.get('model_packages') != {'simplestories-v2-5m': MODEL_MANIFEST}:
+            raise ValueError('Unexpected model-package namespace')
+        verify_repository_contract(package, manifest)
+        model_path = checked_path(package, MODEL_MANIFEST)
+        if manifest['files'].get(MODEL_MANIFEST) != file_identity(model_path):
+            raise ValueError('Model-package manifest changed')
+        package = model_path.parent
+        manifest = inventory(package, strict)
+        if manifest.get('model_scope') != 'simplestories-v2-5m':
+            raise ValueError('Unexpected SimpleStories model scope')
+        prefix = package.relative_to(top_package).as_posix() + '/'
+        if any(top_manifest['files'].get(prefix+name) != row for name,row in manifest['files'].items()):
+            raise ValueError('Model and repository manifests disagree')
     for name, (size, digest) in ASSETS.items():
         if manifest['files'].get(name) != {'bytes': size, 'sha256': digest}:
             raise ValueError('Missing or unexpected selected asset: ' + name)
@@ -121,8 +161,8 @@ def verify(package, strict=False):
         if external != vendor:
             raise ValueError('Unexpected vendor inputs: ' + variant)
         counts[variant] = len(inputs)
-    return {'passed': True, 'files': len(manifest['files']) + 1, 'selected_assets': len(ASSETS),
-        'hardware_inputs': counts, 'manifest_sha256': file_identity(package / 'MANIFEST.json')['sha256'],
+    return {'passed': True, 'files': len(top_manifest['files']) + 1, 'selected_assets': len(ASSETS),
+        'hardware_inputs': counts, 'manifest_sha256': file_identity(top_package / 'MANIFEST.json')['sha256'],
         'hardware_access': False, 'network_access': False, 'timing_qualified': False,
         'scope': 'Local release-file integrity and selected build/source association, not physical attestation or whole-chip certification.'}
 

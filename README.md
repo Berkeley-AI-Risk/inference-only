@@ -77,7 +77,7 @@ vendor-DDR timing or physical-security certification.
   prototype, measured prompt/decode speeds, installation with a token-ID client,
   hardware sources and numerical reference. A browser app is not yet included.
 
-<img src="fpga.jpeg" alt="The Tang Mega 138K board used for the SimpleStories inference-only demonstration, connected by USB." width="720">
+<img src="demos/simplestories-v2-5m/fpga.jpeg" alt="The Tang Mega 138K board used for the SimpleStories inference-only demonstration, connected by USB." width="720">
 
 *The physical Tang Mega board used for the small-model demo. We used the
 [138K Basic Package](https://www.aliexpress.us/item/3256807078990410.html).
@@ -173,7 +173,7 @@ Start with the guide for [SimpleStories on Tang Mega](demos/simplestories-v2-5m/
 
 | Model | Run and install | Hardware | Evidence and reproduction |
 | --- | --- | --- | --- |
-| SimpleStories-V2-5M / Tang Mega | [Guide](demos/simplestories-v2-5m/README.md), [installation](PROGRAMMING.md) | [Hardware](demos/simplestories-v2-5m/HARDWARE.md) | [Validation](demos/simplestories-v2-5m/VALIDATION.md), [formal scope](demos/simplestories-v2-5m/FORMAL-STATUS.md), [reproduction](demos/simplestories-v2-5m/REPRODUCE.md) |
+| SimpleStories-V2-5M / Tang Mega | [Guide](demos/simplestories-v2-5m/README.md), [installation](demos/simplestories-v2-5m/PROGRAMMING.md) | [Hardware](demos/simplestories-v2-5m/HARDWARE.md) | [Validation](demos/simplestories-v2-5m/VALIDATION.md), [formal scope](demos/simplestories-v2-5m/FORMAL-STATUS.md), [reproduction](demos/simplestories-v2-5m/REPRODUCE.md) |
 | Qwen3-1.7B / AWS F2 | [Guide](demos/qwen3-1.7b/README.md), [installation](demos/qwen3-1.7b/INSTALL.md) | [Hardware](demos/qwen3-1.7b/HARDWARE.md) | [Numerical reference](demos/qwen3-1.7b/reference/README.md), [training-capacity assessment](demos/qwen3-1.7b/TRAINING-CAPACITY.md) |
 | Qwen3-8B / AWS F2 | [Guide](demos/qwen3-8b/README.md), [installation](demos/qwen3-8b/INSTALL.md) | [Hardware](demos/qwen3-8b/HARDWARE.md) | [Numerical reference](demos/qwen3-8b/reference/), [recorded measurements](demos/qwen3-8b/measurements.json) |
 

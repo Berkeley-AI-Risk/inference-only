@@ -50,7 +50,7 @@ page check succeeds. Decryption and hashing overlap, without another
 whole-page buffer or an early permission to use unverified data.
 AES and CTR follow [FIPS 197](https://csrc.nist.gov/pubs/fips/197/final)
 and [SP 800-38A](https://csrc.nist.gov/pubs/sp/800/38/a/final).
-The [design references](docs/REFERENCES.md#arithmetic-implementations-and-cryptographic-specifications)
+The [design references](../../docs/REFERENCES.md#arithmetic-implementations-and-cryptographic-specifications)
 also credit the directly adapted AES S-box circuit.
 
 The private AES circuit retains all 14 AES-256 rounds and processes them in
@@ -115,11 +115,11 @@ and two 128-output greedy trials, with all 256 IDs matching the fixed numerical
 reference. The pooled 254-output rate uses validated-reply timestamps and
 includes host control and inter-command gaps. Prompt processing and the first
 output have separate recorded timings. See the
-[common benchmark](docs/benchmarks/FPGA-SPEED-BENCHMARK.md).
+[common benchmark](../../docs/benchmarks/FPGA-SPEED-BENCHMARK.md).
 
 The selected source/model/native/mapped records, ten-case CLI campaign and
 seven-case browser campaign are described in
-[greedy qualification](demos/simplestories-v2-5m/GREEDY-QUALIFICATION.md).
+[greedy qualification](GREEDY-QUALIFICATION.md).
 The campaigns include full-context operation, boundary rejection, CLEAR races,
 Stop while a long STEP is pending and resumed generation. Full-array ciphertext
 readback and plaintext restoration have separate guarded records.
@@ -133,9 +133,9 @@ Its attention source bridge rechecks 34 assertions through six byte-identical
 isolated sources. It adds no assertions and does not prove the encrypted guard,
 AES-SIV, numerical attention, concrete private-memory composition or the whole
 machine. The AES component records apply only to the two byte-identical primitive
-sources and retain their separate scope. [Formal status](demos/simplestories-v2-5m/FORMAL-STATUS.md) distinguishes
+sources and retain their separate scope. [Formal status](FORMAL-STATUS.md) distinguishes
 these results from universal arithmetic or cryptographic theorems.
-The [capacity assessment](demos/simplestories-v2-5m/TRAINING-CAPACITY.md)
+The [capacity assessment](TRAINING-CAPACITY.md)
 is explicitly bound to the plaintext baseline; encryption does not establish
 a smaller residual training factor.
 
@@ -157,10 +157,10 @@ The first command uses `--strict` to check all listed files and reject any
 extras, including local Python environments and generated build files.
 If you have already used this checkout, omit `--strict` to verify the listed
 files while allowing those extras; do not delete your local files just to
-run the check. See [release checks](demos/simplestories-v2-5m/REPRODUCE.md).
+run the check. See [release checks](REPRODUCE.md).
 
 ```sh
-python3.12 -I -S -B tools/verify_release.py --strict
+python3.12 -I -S -B ../../tools/verify_release.py --strict
 python3.12 -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
 python3.12 -I -S -B tools/check_encrypted_inherited_components_v1.py
 python3.12 -I -S -B tools/encrypt_model_image.py --openssl /absolute/path/to/openssl
@@ -170,7 +170,7 @@ The final command independently reproduces every ciphertext byte with
 OpenSSL and decrypts it back to the exact supplied plaintext model. It is
 offline, uses only public test constants, and never accesses a board. Add
 `--output /fresh/path/model.bin` to save the reproduced ciphertext; existing
-files are refused. The unchanged [model reconstruction](demos/simplestories-v2-5m/REPRODUCE.md)
+files are refused. The unchanged [model reconstruction](REPRODUCE.md)
 produces the plaintext starting point.
 
 Source locations:

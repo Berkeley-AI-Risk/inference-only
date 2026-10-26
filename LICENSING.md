@@ -64,7 +64,7 @@ libraries are not bundled here. The four
 exact DDR/clock source dependencies needed only for a source rebuild are
 fetched directly from Sipeed's public repository with hash verification;
 they are not rebundled here. Their availability has been checked, not assumed.
-See [VENDOR-SETUP.md](VENDOR-SETUP.md).
+See [VENDOR-SETUP.md](demos/simplestories-v2-5m/VENDOR-SETUP.md).
 
 No paid hardware-development license is needed for the documented **prebuilt
 run** workflow. Rebuilding requires the separately obtained vendor tools and
@@ -77,4 +77,4 @@ in GOWIN's independently supplied components.
 
 This is an experimental hardware release without warranties. Licensing does
 not certify timing, security, electrical safety, or resistance to physical
-tampering. Read [PROGRAMMING.md](PROGRAMMING.md) before altering a board.
+tampering. Read [PROGRAMMING.md](demos/simplestories-v2-5m/PROGRAMMING.md) before altering a board.

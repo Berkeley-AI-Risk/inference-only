@@ -20,12 +20,12 @@ def load(name, filename):
 
 
 COUNTS = load('architecture_counts', 'architecture_work_counts.py')
-CAPACITY = load('existing_capacity', 'estimate_training_capacity.py')
+CAPACITY = load('existing_capacity', '../demos/simplestories-v2-5m/tools/estimate_training_capacity.py')
 
 
 class ArchitectureCountsTests(unittest.TestCase):
     def test_tiny_geometry_matches_pinned_model(self):
-        source = (HERE.parent / CAPACITY.GEOMETRY_FILE).read_text(encoding='utf-8')
+        source = (HERE.parent / 'demos/simplestories-v2-5m' / CAPACITY.GEOMETRY_FILE).read_text(encoding='utf-8')
         self.assertEqual(COUNTS.TINY, CAPACITY.model_geometry(source))
 
     def test_tiny_counts_match_existing_calculator(self):
@@ -172,7 +172,7 @@ class ArchitectureCountsTests(unittest.TestCase):
         self.assertEqual(no_logits['normalization_squares'], 12*256)
 
     def test_proxy_decomposition_matches_saved_scheduled_row(self):
-        report = CAPACITY.estimate(HERE.parent)
+        report = CAPACITY.estimate(HERE.parent / 'demos/simplestories-v2-5m')
         row = COUNTS.work_counts(COUNTS.TINY, cached_tokens=127)
         dynamic = row['named_dynamic_mac_equivalent_operations']
         total = row['matrix_plus_named_extra_operations']
@@ -185,7 +185,7 @@ class ArchitectureCountsTests(unittest.TestCase):
         self.assertAlmostEqual((dynamic/total)*(total*rate/CAPACITY.H100_DENSE_FLOPS), expected, places=15)
 
     def test_weight_replacement_proxy_equals_matrix_only_reference_efficiency(self):
-        report = CAPACITY.estimate(HERE.parent)
+        report = CAPACITY.estimate(HERE.parent / 'demos/simplestories-v2-5m')
         row = COUNTS.work_counts(COUNTS.TINY, cached_tokens=127)
         rate = report['measured_reference']['aggregate_tokens_per_second']
         efficiency = row['matrix_operations']*rate/CAPACITY.H100_DENSE_FLOPS
@@ -194,7 +194,7 @@ class ArchitectureCountsTests(unittest.TestCase):
         self.assertAlmostEqual(efficiency, expected, places=15)
 
     def test_document_worked_decomposition_matches_counts(self):
-        report = CAPACITY.estimate(HERE.parent)
+        report = CAPACITY.estimate(HERE.parent / 'demos/simplestories-v2-5m')
         row = COUNTS.work_counts(COUNTS.TINY, cached_tokens=127)
         dynamic = row['named_dynamic_mac_equivalent_operations']
         matrix = row['matrix_operations']
@@ -212,7 +212,7 @@ class ArchitectureCountsTests(unittest.TestCase):
         self.assertIn(expected, text)
 
     def test_recorded_workloads_use_fixed_inference_comparison(self):
-        report = CAPACITY.estimate(HERE.parent)
+        report = CAPACITY.estimate(HERE.parent / 'demos/simplestories-v2-5m')
         rows = COUNTS.recorded_workload_comparison(HERE.parent)
         expected = ((1, 127, 801272, 0.1017904375, 0.000824805856941451), (1, 254, 1581560, 0.118947709, 0.001393183560497634), (512, 0, 814215680, 49.5862185, 0.0017205100835338569), (128, 0, 52559360, 10.012547041, 0.0005500273043224096))
         self.assertEqual(len(rows), len(expected))
@@ -231,9 +231,9 @@ class ArchitectureCountsTests(unittest.TestCase):
         self.assertGreater(rows[2]['conditional_proxy'], 0.001)
 
     def test_mismatched_recorded_reference_is_rejected(self):
-        report = CAPACITY.estimate(HERE.parent)
+        report = CAPACITY.estimate(HERE.parent / 'demos/simplestories-v2-5m')
         report['inputs']['fpga_context_positions'] = 255
-        physical = (HERE.parent / 'evidence/current-greedy/baseline/analysis/metrics.json').read_text(encoding='utf-8')
+        physical = (HERE.parent / 'demos/simplestories-v2-5m/evidence/current-greedy/baseline/analysis/metrics.json').read_text(encoding='utf-8')
         with mock.patch.object(Path, 'read_text', side_effect=[physical, json.dumps(report)]):
             with self.assertRaisesRegex(ValueError, '128-position reference'):
                 COUNTS.recorded_workload_comparison(HERE.parent)

@@ -7,10 +7,10 @@ and [seeded qualification](CURRENT-QUALIFICATION.md). All use the same pinned
 SimpleStories-V2-5M numerical model. Their proof boundaries are separate.
 
 For running the prebuilt web demonstration, follow
-[PROGRAMMING.md](../../PROGRAMMING.md) and the [host guide](../../host-app/README.md).
+[PROGRAMMING.md](PROGRAMMING.md) and the [host guide](host-app/README.md).
 Offline record checks below operate no FPGA, programmer, network or solver.
 Fresh asset reconstruction and fresh proof commands are explicitly separate.
-Run all examples from the repository root.
+Run all examples from the SimpleStories demo directory (`demos/simplestories-v2-5m/`).
 
 ## Check the supplied release and recorded results
 
@@ -18,13 +18,13 @@ Use Python 3.12 and install the pinned host dependencies for tokenizer checks.
 On a clean copy, run:
 
 ```sh
-python3.12 -I -S -B tools/verify_release.py --strict
+python3.12 -I -S -B ../../tools/verify_release.py --strict
 python3.12 -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
 python3.12 -I -S -B tools/check_current_seeded_recorded_v1.py --require-complete
 python3.12 -I -S -B formal/current-seeded-sampling/check_recorded.py --require-complete
-python3.12 -I -S -B tools/fpga_speed_benchmark.py --check
+python3.12 -I -S -B ../../tools/fpga_speed_benchmark.py --check
 python3.12 -I -S -B tools/estimate_training_capacity.py --check
-python3.12 -I -S -B tools/architecture_work_counts.py --check
+python3.12 -I -S -B ../../tools/architecture_work_counts.py --check
 ```
 
 `--strict` rejects unlisted extras, including local environments and generated
@@ -71,17 +71,17 @@ encrypted memory 100 and seeded sampling 91. Each includes four pinned vendor
 inputs acquired separately. Source-to-mapped equivalence and complete
 vendor-DDR timing signoff are not established.
 
-For a recipient source build, use [VENDOR-SETUP.md](../../VENDOR-SETUP.md).
+For a recipient source build, use [VENDOR-SETUP.md](VENDOR-SETUP.md).
 A new route needs its own functional and physical checks; the supplied image's
 recorded results do not automatically qualify a rebuilt image.
 For byte-exact ciphertext reconstruction with public demonstration keys, use
-[encrypted-memory reproduction](../../ENCRYPTED-MEMORY.md#reproduce-and-inspect-the-package).
+[encrypted-memory reproduction](ENCRYPTED-MEMORY.md#reproduce-and-inspect-the-package).
 
 ## Fresh scoped RTL proofs
 
 [FORMAL-STATUS.md](FORMAL-STATUS.md) names each current theorem, unrestricted
 private-service boundary and unresolved conclusion. The seeded
-[replay guide](../../formal/current-seeded-sampling/README.md) gives its pinned
+[replay guide](formal/current-seeded-sampling/README.md) gives its pinned
 toolchain and complete primary/secondary and page-bank commands. Use fresh
 output directories in a disposable copy; preserve the delivered manifest and
 captured evidence. Greedy portable checks recheck the supplied named proof

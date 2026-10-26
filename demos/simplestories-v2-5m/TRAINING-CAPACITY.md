@@ -4,8 +4,8 @@ This assessment applies to the SimpleStories-V2-5M baseline with authenticated
 weights and without K/V integrity protection, image
 `01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57`.
 Its [implementation](HARDWARE.md), [qualification](GREEDY-QUALIFICATION.md),
-[mapped census](../../evidence/current-greedy/baseline/analysis/mapped-census.json)
-and [timings](../../evidence/current-greedy/baseline/analysis/metrics.json)
+[mapped census](evidence/current-greedy/baseline/analysis/mapped-census.json)
+and [timings](evidence/current-greedy/baseline/analysis/metrics.json)
 bind the inputs. Other hardware configurations require their own assessment.
 
 The question is how much useful training arithmetic an adversary could obtain
@@ -73,7 +73,7 @@ The scenarios overlap and must not be added:
 
 The comparison targets 0.01,0.001 and0.0001 are illustrative paper values,
 not certification thresholds. The source and all computed quantities are in
-[the calculation record](../../evidence/training-capacity-estimates.json).
+[the calculation record](evidence/training-capacity-estimates.json).
 
 ### Explicit matrix arithmetic through tokens
 
@@ -150,9 +150,9 @@ A faster GPU reference increases the proxy; the measurements do not establish
 a maximum reference rate. Ideal arithmetic/bandwidth roofs in the calculation
 record are sensitivity models, not achieved performance or forecasts.
 
-From the repository root, without hardware or network access:
+From the SimpleStories demo directory (`demos/simplestories-v2-5m/`), without hardware or network access:
 
 ```sh
 python3 -I -S -B tools/estimate_training_capacity.py --check
-python3 -I -S -B tools/architecture_work_counts.py --check
+python3 -I -S -B ../../tools/architecture_work_counts.py --check
 ```

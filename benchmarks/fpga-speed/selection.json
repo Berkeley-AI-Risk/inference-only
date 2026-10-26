@@ -1,70 +1,17 @@
 {
-  "schema": "fpga-common-speed-selection-v1",
-  "protocol": "one-token-128-host-v2",
-  "timestamp_boundary": "generation_loop_validated_reply",
-  "repetitions": 2,
-  "generated_outputs": 128,
   "cached_outputs_per_trial": 127,
-  "sources": {
-    "tests/reference-cases.json": {
-      "sha256": "a236c9912e5da9f12412c3f91f3d619a574fd5dce41f0c630fb78cb6c7dc7fa4",
-      "bytes": 13049
-    },
-    "evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json": {
-      "sha256": "ae81f740b937068d4dd111010871c557dfa28b62b44a6f95de5a155607bc1bdf",
-      "bytes": 206176
-    },
-    "demos/qwen3-1.7b/measurements.json": {
-      "sha256": "8266c1a3e9057302af4cc1cdf5085ca496d688541d04feffe07d041ab3b7140b",
-      "bytes": 146173
-    },
-    "demos/qwen3-8b/measurements.json": {
-      "sha256": "f888f5189b624931e539d9c160dbf761ac83289af996297287b9f3d6abc91d1b",
-      "bytes": 72476
-    },
-    "benchmarks/fpga-speed/captures/baseline-common-speed-20261026-r1/FINISHED.json": {
-      "bytes": 33640,
-      "sha256": "cbe112e9d6b6a6f2390b04383cd4d630185e12c9053ab0824cd7c35112fd71d0"
-    },
-    "benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/FINISHED.json": {
-      "bytes": 33659,
-      "sha256": "8a1837ff09941377d3554116eadc482713d5236c2865d1fb54f37f6ade48b562"
-    },
-    "benchmarks/fpga-speed/captures/encrypted-common-speed-20261026-r1/FINISHED.json": {
-      "bytes": 33722,
-      "sha256": "d811ba7de040ad0357a02247b0a8e8cfdb4d7aaa2f4754316f9096b766dd922a"
-    },
-    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/capture.json": {
-      "bytes": 69517,
-      "sha256": "b33978a728384295eff34b7bd35f9f4bd093c80c12b5790c6c91b426dc7ecdec"
-    },
-    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/source-review.json": {
-      "bytes": 5802,
-      "sha256": "d8911fd9119ff8fcdf0b08138bde93f0412e15f753417357fb138c2e9f35109b"
-    },
-    "demos/qwen3-8b/evidence/common-speed-2026-10-26/capture.json": {
-      "bytes": 69934,
-      "sha256": "a8e899ef0c5019eb00782165bfa674006b919674002876b6943098189d1377a8"
-    },
-    "demos/qwen3-8b/evidence/common-speed-2026-10-26/source-review.json": {
-      "bytes": 6517,
-      "sha256": "17b9ab6c8e51bfc350b533bc735c12458953c97ff1fa9c3b635ad2412783e50d"
-    },
-    "reference/seeded-sampling/goldens/around128-t2-seed-a.json": {
-      "bytes": 11062,
-      "sha256": "65352789f3acd613e2104d8515a51d6873ca15e041ce683d12bc7d2afb345d7b"
-    }
-  },
+  "generated_outputs": 128,
+  "protocol": "one-token-128-host-v2",
+  "repetitions": 2,
   "rows": [
     {
-      "id": "simplestories-baseline",
-      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, authenticated weights",
-      "status": "Runnable release",
-      "format": "canonical",
-      "source": "benchmarks/fpga-speed/captures/baseline-common-speed-20261026-r1/FINISHED.json",
-      "prompt_tokens": [
-        378
+      "artifact": "demos/simplestories-v2-5m/prebuilt/inference/project/impl/pnr/shared_product.fs",
+      "cases": [
+        "one-token-128-trial1",
+        "one-token-128-trial2"
       ],
+      "format": "canonical",
+      "id": "simplestories-baseline",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -93,21 +40,21 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
+      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, authenticated weights",
+      "prompt_tokens": [
+        378
+      ],
+      "source": "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/baseline-common-speed-20261026-r1/FINISHED.json",
+      "status": "Runnable release"
+    },
+    {
+      "artifact": "demos/simplestories-v2-5m/prebuilt/kv-protected/project/impl/pnr/shared_product.fs",
       "cases": [
         "one-token-128-trial1",
         "one-token-128-trial2"
       ],
-      "artifact": "prebuilt/inference/project/impl/pnr/shared_product.fs"
-    },
-    {
-      "id": "simplestories-kv-protected",
-      "label": "Same model, **K/V-protected**",
-      "status": "Runnable release",
       "format": "canonical",
-      "source": "benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/FINISHED.json",
-      "prompt_tokens": [
-        378
-      ],
+      "id": "simplestories-kv-protected",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -136,20 +83,21 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
+      "label": "Same model, **K/V-protected**",
+      "prompt_tokens": [
+        378
+      ],
+      "source": "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/FINISHED.json",
+      "status": "Runnable release"
+    },
+    {
+      "artifact": "demos/simplestories-v2-5m/prebuilt/encrypted-memory/project/impl/pnr/shared_product.fs",
       "cases": [
         "one-token-128-trial1",
         "one-token-128-trial2"
       ],
-      "artifact": "prebuilt/kv-protected/project/impl/pnr/shared_product.fs"
-    },
-    {
-      "id": "simplestories-encrypted",
-      "label": "Same model, **K/V protection + encrypted memory**",
-      "status": "Runnable release; public demonstration keys",
       "format": "canonical",
-      "prompt_tokens": [
-        378
-      ],
+      "id": "simplestories-encrypted",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -178,44 +126,43 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "cases": [
-        "one-token-128-trial1",
-        "one-token-128-trial2"
-      ],
-      "artifact": "prebuilt/encrypted-memory/project/impl/pnr/shared_product.fs",
-      "source": "benchmarks/fpga-speed/captures/encrypted-common-speed-20261026-r1/FINISHED.json"
-    },
-    {
-      "id": "simplestories-seeded-sampling",
-      "label": "Same model, **seeded-sampling at temperature 1**, without K/V integrity",
-      "status": "Runnable release",
-      "format": "seeded_timing",
-      "source": "evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json",
+      "label": "Same model, **K/V protection + encrypted memory**",
       "prompt_tokens": [
         378
       ],
-      "identity": {
-        "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
-        "core_clock_mhz": 25
-      },
+      "source": "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/encrypted-common-speed-20261026-r1/FINISHED.json",
+      "status": "Runnable release; public demonstration keys"
+    },
+    {
+      "artifact": "demos/simplestories-v2-5m/prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs",
       "cases": [
         "matched128/around128-t2-run1",
         "matched128/around128-t2-run2"
       ],
-      "artifact": "prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs",
       "decoding": "seeded-sampling",
-      "temperature": 1,
-      "reference_source": "reference/seeded-sampling/goldens/around128-t2-seed-a.json"
+      "format": "seeded_timing",
+      "id": "simplestories-seeded-sampling",
+      "identity": {
+        "core_clock_mhz": 25,
+        "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
+      },
+      "label": "Same model, **seeded-sampling at temperature 1**, without K/V integrity",
+      "prompt_tokens": [
+        378
+      ],
+      "reference_source": "demos/simplestories-v2-5m/reference/seeded-sampling/goldens/around128-t2-seed-a.json",
+      "source": "demos/simplestories-v2-5m/evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json",
+      "status": "Runnable release",
+      "temperature": 1
     },
     {
-      "id": "qwen3-1.7b",
-      "label": "**Qwen3-1.7B \u2014 AWS F2**, authenticated weights",
-      "status": "Runnable release; public AWS FPGA image",
-      "format": "canonical",
-      "source": "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/capture.json",
-      "prompt_tokens": [
-        9707
+      "cases": [
+        "trial-1",
+        "trial-2"
       ],
+      "evidence_review": "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/source-review.json",
+      "format": "canonical",
+      "id": "qwen3-1.7b",
       "identity": {
         "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
         "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -242,21 +189,21 @@
         "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
         "runtime_clock_probe_supported": false
       },
+      "label": "**Qwen3-1.7B \u2014 AWS F2**, authenticated weights",
+      "prompt_tokens": [
+        9707
+      ],
+      "source": "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/capture.json",
+      "status": "Runnable release; public AWS FPGA image"
+    },
+    {
       "cases": [
         "trial-1",
         "trial-2"
       ],
-      "evidence_review": "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/source-review.json"
-    },
-    {
-      "id": "qwen3-8b",
-      "label": "**Qwen3-8B \u2014 AWS F2**, authenticated weights",
-      "status": "Runnable prototype; speed optimization in progress; public AWS FPGA image",
+      "evidence_review": "demos/qwen3-8b/evidence/common-speed-2026-10-26/source-review.json",
       "format": "canonical",
-      "source": "demos/qwen3-8b/evidence/common-speed-2026-10-26/capture.json",
-      "prompt_tokens": [
-        9707
-      ],
+      "id": "qwen3-8b",
       "identity": {
         "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
         "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -283,11 +230,64 @@
         "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
         "runtime_clock_probe_supported": false
       },
-      "cases": [
-        "trial-1",
-        "trial-2"
+      "label": "**Qwen3-8B \u2014 AWS F2**, authenticated weights",
+      "prompt_tokens": [
+        9707
       ],
-      "evidence_review": "demos/qwen3-8b/evidence/common-speed-2026-10-26/source-review.json"
+      "source": "demos/qwen3-8b/evidence/common-speed-2026-10-26/capture.json",
+      "status": "Runnable prototype; speed optimization in progress; public AWS FPGA image"
     }
-  ]
+  ],
+  "schema": "fpga-common-speed-selection-v1",
+  "sources": {
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/capture.json": {
+      "bytes": 69517,
+      "sha256": "b33978a728384295eff34b7bd35f9f4bd093c80c12b5790c6c91b426dc7ecdec"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/source-review.json": {
+      "bytes": 5802,
+      "sha256": "d8911fd9119ff8fcdf0b08138bde93f0412e15f753417357fb138c2e9f35109b"
+    },
+    "demos/qwen3-1.7b/measurements.json": {
+      "bytes": 146173,
+      "sha256": "8266c1a3e9057302af4cc1cdf5085ca496d688541d04feffe07d041ab3b7140b"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/capture.json": {
+      "bytes": 69934,
+      "sha256": "a8e899ef0c5019eb00782165bfa674006b919674002876b6943098189d1377a8"
+    },
+    "demos/qwen3-8b/evidence/common-speed-2026-10-26/source-review.json": {
+      "bytes": 6517,
+      "sha256": "17b9ab6c8e51bfc350b533bc735c12458953c97ff1fa9c3b635ad2412783e50d"
+    },
+    "demos/qwen3-8b/measurements.json": {
+      "bytes": 72476,
+      "sha256": "f888f5189b624931e539d9c160dbf761ac83289af996297287b9f3d6abc91d1b"
+    },
+    "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/baseline-common-speed-20261026-r1/FINISHED.json": {
+      "bytes": 33640,
+      "sha256": "cbe112e9d6b6a6f2390b04383cd4d630185e12c9053ab0824cd7c35112fd71d0"
+    },
+    "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/encrypted-common-speed-20261026-r1/FINISHED.json": {
+      "bytes": 33722,
+      "sha256": "d811ba7de040ad0357a02247b0a8e8cfdb4d7aaa2f4754316f9096b766dd922a"
+    },
+    "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/FINISHED.json": {
+      "bytes": 33659,
+      "sha256": "8a1837ff09941377d3554116eadc482713d5236c2865d1fb54f37f6ade48b562"
+    },
+    "demos/simplestories-v2-5m/evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json": {
+      "bytes": 206176,
+      "sha256": "ae81f740b937068d4dd111010871c557dfa28b62b44a6f95de5a155607bc1bdf"
+    },
+    "demos/simplestories-v2-5m/reference/seeded-sampling/goldens/around128-t2-seed-a.json": {
+      "bytes": 11062,
+      "sha256": "65352789f3acd613e2104d8515a51d6873ca15e041ce683d12bc7d2afb345d7b"
+    },
+    "demos/simplestories-v2-5m/tests/reference-cases.json": {
+      "bytes": 13049,
+      "sha256": "a236c9912e5da9f12412c3f91f3d619a574fd5dce41f0c630fb78cb6c7dc7fa4"
+    }
+  },
+  "timestamp_boundary": "generation_loop_validated_reply"
 }

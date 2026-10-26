@@ -1,14 +1,11 @@
 {
-  "schema": "fpga-common-speed-results-v1",
-  "protocol": "one-token-128-host-v2",
-  "timestamp_boundary": "generation_loop_validated_reply",
   "complete_rows": 6,
-  "total_rows": 6,
+  "protocol": "one-token-128-host-v2",
   "rows": [
     {
+      "complete": true,
+      "eligible_trials": 2,
       "id": "simplestories-baseline",
-      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, authenticated weights",
-      "package_status": "Runnable release",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -37,30 +34,29 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "eligible_trials": 2,
-      "complete": true,
+      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, authenticated weights",
+      "missing": null,
+      "package_status": "Runnable release",
       "rate": {
-        "counted_cached_outputs": 254,
         "cached_host_seconds": 25.294664333,
         "cached_tokens_per_second": 10.041643433418713,
         "command_only_diagnostic_tokens_per_second": 10.053202978986162,
+        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.085237208,
           0.085324375
         ]
       },
-      "missing": null,
       "trials": [
         {
-          "capture_sha256": "922c19ff323eb70128da97568974f639fa85c6de0ea2e0444d1309b4c0811acc",
-          "prompt_tokens": [
-            378
-          ],
-          "generated_outputs": 128,
-          "cached_outputs": 127,
-          "cached_host_seconds": 12.664356833000001,
           "cached_command_seconds": 12.649614709,
+          "cached_host_seconds": 12.664356833000001,
+          "cached_outputs": 127,
+          "capture_sha256": "922c19ff323eb70128da97568974f639fa85c6de0ea2e0444d1309b4c0811acc",
+          "clear_before": true,
           "first_step_seconds": 0.085237208,
+          "generated_outputs": 128,
+          "greedy": true,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -89,21 +85,21 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": true,
-          "clear_before": true,
-          "stop_at_eos": false
+          "prompt_tokens": [
+            378
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
         },
         {
-          "capture_sha256": "475b42f806e3c7d3fa139d97e2aca50064e1e9f46e87b4dd959e04a827f0c9c6",
-          "prompt_tokens": [
-            378
-          ],
-          "generated_outputs": 128,
-          "cached_outputs": 127,
-          "cached_host_seconds": 12.630307499999999,
           "cached_command_seconds": 12.615964881,
+          "cached_host_seconds": 12.630307499999999,
+          "cached_outputs": 127,
+          "capture_sha256": "475b42f806e3c7d3fa139d97e2aca50064e1e9f46e87b4dd959e04a827f0c9c6",
+          "clear_before": true,
           "first_step_seconds": 0.085324375,
+          "generated_outputs": 128,
+          "greedy": true,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -132,17 +128,18 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": true,
-          "clear_before": true,
-          "stop_at_eos": false
+          "prompt_tokens": [
+            378
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
         }
       ]
     },
     {
+      "complete": true,
+      "eligible_trials": 2,
       "id": "simplestories-kv-protected",
-      "label": "Same model, **K/V-protected**",
-      "package_status": "Runnable release",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -171,30 +168,29 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "eligible_trials": 2,
-      "complete": true,
+      "label": "Same model, **K/V-protected**",
+      "missing": null,
+      "package_status": "Runnable release",
       "rate": {
-        "counted_cached_outputs": 254,
         "cached_host_seconds": 36.140183707000006,
         "cached_tokens_per_second": 7.028187849272129,
         "command_only_diagnostic_tokens_per_second": 7.033278184561002,
+        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.101918959,
           0.102195292
         ]
       },
-      "missing": null,
       "trials": [
         {
-          "capture_sha256": "875662916438ea136d7b9e1319cd8917ec8252feb7dba0e95ae65b859c51d4d2",
-          "prompt_tokens": [
-            378
-          ],
-          "generated_outputs": 128,
-          "cached_outputs": 127,
-          "cached_host_seconds": 18.036201666,
           "cached_command_seconds": 18.025437961,
+          "cached_host_seconds": 18.036201666,
+          "cached_outputs": 127,
+          "capture_sha256": "875662916438ea136d7b9e1319cd8917ec8252feb7dba0e95ae65b859c51d4d2",
+          "clear_before": true,
           "first_step_seconds": 0.101918959,
+          "generated_outputs": 128,
+          "greedy": true,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -223,21 +219,21 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": true,
-          "clear_before": true,
-          "stop_at_eos": false
+          "prompt_tokens": [
+            378
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
         },
         {
-          "capture_sha256": "2923ed8d27536ad03ffa3f99ca2a4ce8fb020c34a0de1d569217a31762dab2c3",
-          "prompt_tokens": [
-            378
-          ],
-          "generated_outputs": 128,
-          "cached_outputs": 127,
-          "cached_host_seconds": 18.103982041000002,
           "cached_command_seconds": 18.088589287,
+          "cached_host_seconds": 18.103982041000002,
+          "cached_outputs": 127,
+          "capture_sha256": "2923ed8d27536ad03ffa3f99ca2a4ce8fb020c34a0de1d569217a31762dab2c3",
+          "clear_before": true,
           "first_step_seconds": 0.102195292,
+          "generated_outputs": 128,
+          "greedy": true,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -266,17 +262,18 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": true,
-          "clear_before": true,
-          "stop_at_eos": false
+          "prompt_tokens": [
+            378
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
         }
       ]
     },
     {
+      "complete": true,
+      "eligible_trials": 2,
       "id": "simplestories-encrypted",
-      "label": "Same model, **K/V protection + encrypted memory**",
-      "package_status": "Runnable release; public demonstration keys",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -305,30 +302,29 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "eligible_trials": 2,
-      "complete": true,
+      "label": "Same model, **K/V protection + encrypted memory**",
+      "missing": null,
+      "package_status": "Runnable release; public demonstration keys",
       "rate": {
-        "counted_cached_outputs": 254,
         "cached_host_seconds": 42.072727,
         "cached_tokens_per_second": 6.037165121243508,
         "command_only_diagnostic_tokens_per_second": 6.040046735366696,
+        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.118967125,
           0.118865833
         ]
       },
-      "missing": null,
       "trials": [
         {
-          "capture_sha256": "c22e576b455bf99c7cfa7bfb514bb0c3f99898cd46b8a3c0e9a6b8fc27914793",
-          "prompt_tokens": [
-            378
-          ],
-          "generated_outputs": 128,
-          "cached_outputs": 127,
-          "cached_host_seconds": 21.027909959,
           "cached_command_seconds": 21.017759372,
+          "cached_host_seconds": 21.027909959,
+          "cached_outputs": 127,
+          "capture_sha256": "c22e576b455bf99c7cfa7bfb514bb0c3f99898cd46b8a3c0e9a6b8fc27914793",
+          "clear_before": true,
           "first_step_seconds": 0.118967125,
+          "generated_outputs": 128,
+          "greedy": true,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -357,21 +353,21 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": true,
-          "clear_before": true,
-          "stop_at_eos": false
+          "prompt_tokens": [
+            378
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
         },
         {
-          "capture_sha256": "e2e7371ff51b536c7e199567f37c05915dcb8eaaaae659be0fad1995213cf267",
-          "prompt_tokens": [
-            378
-          ],
-          "generated_outputs": 128,
-          "cached_outputs": 127,
-          "cached_host_seconds": 21.044817041,
           "cached_command_seconds": 21.034895372,
+          "cached_host_seconds": 21.044817041,
+          "cached_outputs": 127,
+          "capture_sha256": "e2e7371ff51b536c7e199567f37c05915dcb8eaaaae659be0fad1995213cf267",
+          "clear_before": true,
           "first_step_seconds": 0.118865833,
+          "generated_outputs": 128,
+          "greedy": true,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -400,85 +396,86 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": true,
-          "clear_before": true,
-          "stop_at_eos": false
+          "prompt_tokens": [
+            378
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
         }
       ]
     },
     {
-      "id": "simplestories-seeded-sampling",
-      "label": "Same model, **seeded-sampling at temperature 1**, without K/V integrity",
-      "package_status": "Runnable release",
-      "identity": {
-        "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
-        "core_clock_mhz": 25
-      },
-      "eligible_trials": 2,
       "complete": true,
+      "eligible_trials": 2,
+      "id": "simplestories-seeded-sampling",
+      "identity": {
+        "core_clock_mhz": 25,
+        "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
+      },
+      "label": "Same model, **seeded-sampling at temperature 1**, without K/V integrity",
+      "missing": null,
+      "package_status": "Runnable release",
       "rate": {
-        "counted_cached_outputs": 254,
         "cached_host_seconds": 25.583678042021347,
         "cached_tokens_per_second": 9.928204990025415,
         "command_only_diagnostic_tokens_per_second": 9.942238076431886,
+        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.08490541600622237,
           0.08474962500622496
         ]
       },
-      "missing": null,
       "trials": [
         {
+          "cached_command_seconds": 12.782095956092235,
+          "cached_host_seconds": 12.80031154199969,
+          "cached_outputs": 127,
           "capture_sha256": "97b6e5b160688153d37b749a6ee44976676cf731f88089487065c025607acfca",
+          "clear_before": true,
+          "decoding": "seeded-sampling",
+          "first_step_seconds": 0.08490541600622237,
+          "generated_outputs": 128,
+          "greedy": false,
+          "identity": {
+            "core_clock_mhz": 25,
+            "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
+          },
           "prompt_tokens": [
             378
           ],
-          "generated_outputs": 128,
-          "cached_outputs": 127,
-          "cached_host_seconds": 12.80031154199969,
-          "cached_command_seconds": 12.782095956092235,
-          "first_step_seconds": 0.08490541600622237,
-          "identity": {
-            "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
-            "core_clock_mhz": 25
-          },
-          "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": false,
-          "clear_before": true,
+          "seed": "0x99aabbccddeeff001122334455667788",
           "stop_at_eos": false,
-          "decoding": "seeded-sampling",
           "temperature": 1,
-          "seed": "0x99aabbccddeeff001122334455667788"
+          "timestamp_boundary": "generation_loop_validated_reply"
         },
         {
+          "cached_command_seconds": 12.765471708989935,
+          "cached_host_seconds": 12.783366500021657,
+          "cached_outputs": 127,
           "capture_sha256": "5a9e3375af68d4436566e895855be579c4c99fcfcd9d38e388159c45ebe1b018",
+          "clear_before": true,
+          "decoding": "seeded-sampling",
+          "first_step_seconds": 0.08474962500622496,
+          "generated_outputs": 128,
+          "greedy": false,
+          "identity": {
+            "core_clock_mhz": 25,
+            "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
+          },
           "prompt_tokens": [
             378
           ],
-          "generated_outputs": 128,
-          "cached_outputs": 127,
-          "cached_host_seconds": 12.783366500021657,
-          "cached_command_seconds": 12.765471708989935,
-          "first_step_seconds": 0.08474962500622496,
-          "identity": {
-            "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
-            "core_clock_mhz": 25
-          },
-          "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": false,
-          "clear_before": true,
+          "seed": "0x99aabbccddeeff001122334455667788",
           "stop_at_eos": false,
-          "decoding": "seeded-sampling",
           "temperature": 1,
-          "seed": "0x99aabbccddeeff001122334455667788"
+          "timestamp_boundary": "generation_loop_validated_reply"
         }
       ]
     },
     {
+      "complete": true,
+      "eligible_trials": 2,
       "id": "qwen3-1.7b",
-      "label": "**Qwen3-1.7B \u2014 AWS F2**, authenticated weights",
-      "package_status": "Runnable release; public AWS FPGA image",
       "identity": {
         "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
         "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -505,30 +502,29 @@
         "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
         "runtime_clock_probe_supported": false
       },
-      "eligible_trials": 2,
-      "complete": true,
+      "label": "**Qwen3-1.7B \u2014 AWS F2**, authenticated weights",
+      "missing": null,
+      "package_status": "Runnable release; public AWS FPGA image",
       "rate": {
-        "counted_cached_outputs": 254,
         "cached_host_seconds": 28.191061175999998,
         "cached_tokens_per_second": 9.009948168117871,
         "command_only_diagnostic_tokens_per_second": 9.010895087085421,
+        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.108920611,
           0.108772231
         ]
       },
-      "missing": null,
       "trials": [
         {
-          "capture_sha256": "5b3cda2ed08eb8ff2e469f3c949d2ab58835136bbb919f6ecb4feaeaaffc4ad5",
-          "prompt_tokens": [
-            9707
-          ],
-          "generated_outputs": 128,
-          "cached_outputs": 127,
-          "cached_host_seconds": 14.096516237,
           "cached_command_seconds": 14.094837916,
+          "cached_host_seconds": 14.096516237,
+          "cached_outputs": 127,
+          "capture_sha256": "5b3cda2ed08eb8ff2e469f3c949d2ab58835136bbb919f6ecb4feaeaaffc4ad5",
+          "clear_before": true,
           "first_step_seconds": 0.108920611,
+          "generated_outputs": 128,
+          "greedy": true,
           "identity": {
             "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -555,21 +551,21 @@
             "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
             "runtime_clock_probe_supported": false
           },
-          "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": true,
-          "clear_before": true,
-          "stop_at_eos": false
+          "prompt_tokens": [
+            9707
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
         },
         {
-          "capture_sha256": "77bf0cf3ec008c0adf62b366a45340a2157949a694a84566a242592b5cf54211",
-          "prompt_tokens": [
-            9707
-          ],
-          "generated_outputs": 128,
-          "cached_outputs": 127,
-          "cached_host_seconds": 14.094544939,
           "cached_command_seconds": 14.093260774,
+          "cached_host_seconds": 14.094544939,
+          "cached_outputs": 127,
+          "capture_sha256": "77bf0cf3ec008c0adf62b366a45340a2157949a694a84566a242592b5cf54211",
+          "clear_before": true,
           "first_step_seconds": 0.108772231,
+          "generated_outputs": 128,
+          "greedy": true,
           "identity": {
             "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -596,17 +592,18 @@
             "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
             "runtime_clock_probe_supported": false
           },
-          "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": true,
-          "clear_before": true,
-          "stop_at_eos": false
+          "prompt_tokens": [
+            9707
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
         }
       ]
     },
     {
+      "complete": true,
+      "eligible_trials": 2,
       "id": "qwen3-8b",
-      "label": "**Qwen3-8B \u2014 AWS F2**, authenticated weights",
-      "package_status": "Runnable prototype; speed optimization in progress; public AWS FPGA image",
       "identity": {
         "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
         "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -633,30 +630,29 @@
         "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
         "runtime_clock_probe_supported": false
       },
-      "eligible_trials": 2,
-      "complete": true,
+      "label": "**Qwen3-8B \u2014 AWS F2**, authenticated weights",
+      "missing": null,
+      "package_status": "Runnable prototype; speed optimization in progress; public AWS FPGA image",
       "rate": {
-        "counted_cached_outputs": 254,
         "cached_host_seconds": 226.426331573,
         "cached_tokens_per_second": 1.1217776582584003,
         "command_only_diagnostic_tokens_per_second": 1.1218040674095815,
+        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.885920814,
           0.885697971
         ]
       },
-      "missing": null,
       "trials": [
         {
-          "capture_sha256": "f60df41712e946521af2ea7e553dc81618b8c01d7dafdc3b9acc8aa9cec533b1",
-          "prompt_tokens": [
-            9707
-          ],
-          "generated_outputs": 128,
-          "cached_outputs": 127,
-          "cached_host_seconds": 113.221083501,
           "cached_command_seconds": 113.218455156,
+          "cached_host_seconds": 113.221083501,
+          "cached_outputs": 127,
+          "capture_sha256": "f60df41712e946521af2ea7e553dc81618b8c01d7dafdc3b9acc8aa9cec533b1",
+          "clear_before": true,
           "first_step_seconds": 0.885920814,
+          "generated_outputs": 128,
+          "greedy": true,
           "identity": {
             "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -683,21 +679,21 @@
             "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
             "runtime_clock_probe_supported": false
           },
-          "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": true,
-          "clear_before": true,
-          "stop_at_eos": false
+          "prompt_tokens": [
+            9707
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
         },
         {
-          "capture_sha256": "c654b27574c54b4ba106ad0ca2938081b81f787e3893db65cad7220e655006dd",
-          "prompt_tokens": [
-            9707
-          ],
-          "generated_outputs": 128,
-          "cached_outputs": 127,
-          "cached_host_seconds": 113.205248072,
           "cached_command_seconds": 113.202545961,
+          "cached_host_seconds": 113.205248072,
+          "cached_outputs": 127,
+          "capture_sha256": "c654b27574c54b4ba106ad0ca2938081b81f787e3893db65cad7220e655006dd",
+          "clear_before": true,
           "first_step_seconds": 0.885697971,
+          "generated_outputs": 128,
+          "greedy": true,
           "identity": {
             "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -724,43 +720,18 @@
             "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
             "runtime_clock_probe_supported": false
           },
-          "timestamp_boundary": "generation_loop_validated_reply",
-          "greedy": true,
-          "clear_before": true,
-          "stop_at_eos": false
+          "prompt_tokens": [
+            9707
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
         }
       ]
     }
   ],
+  "schema": "fpga-common-speed-results-v1",
+  "scope": "Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay.",
   "source_sha256": {
-    "tests/reference-cases.json": {
-      "sha256": "a236c9912e5da9f12412c3f91f3d619a574fd5dce41f0c630fb78cb6c7dc7fa4",
-      "bytes": 13049
-    },
-    "evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json": {
-      "sha256": "ae81f740b937068d4dd111010871c557dfa28b62b44a6f95de5a155607bc1bdf",
-      "bytes": 206176
-    },
-    "demos/qwen3-1.7b/measurements.json": {
-      "sha256": "8266c1a3e9057302af4cc1cdf5085ca496d688541d04feffe07d041ab3b7140b",
-      "bytes": 146173
-    },
-    "demos/qwen3-8b/measurements.json": {
-      "sha256": "f888f5189b624931e539d9c160dbf761ac83289af996297287b9f3d6abc91d1b",
-      "bytes": 72476
-    },
-    "benchmarks/fpga-speed/captures/baseline-common-speed-20261026-r1/FINISHED.json": {
-      "bytes": 33640,
-      "sha256": "cbe112e9d6b6a6f2390b04383cd4d630185e12c9053ab0824cd7c35112fd71d0"
-    },
-    "benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/FINISHED.json": {
-      "bytes": 33659,
-      "sha256": "8a1837ff09941377d3554116eadc482713d5236c2865d1fb54f37f6ade48b562"
-    },
-    "benchmarks/fpga-speed/captures/encrypted-common-speed-20261026-r1/FINISHED.json": {
-      "bytes": 33722,
-      "sha256": "d811ba7de040ad0357a02247b0a8e8cfdb4d7aaa2f4754316f9096b766dd922a"
-    },
     "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/capture.json": {
       "bytes": 69517,
       "sha256": "b33978a728384295eff34b7bd35f9f4bd093c80c12b5790c6c91b426dc7ecdec"
@@ -768,6 +739,10 @@
     "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/source-review.json": {
       "bytes": 5802,
       "sha256": "d8911fd9119ff8fcdf0b08138bde93f0412e15f753417357fb138c2e9f35109b"
+    },
+    "demos/qwen3-1.7b/measurements.json": {
+      "bytes": 146173,
+      "sha256": "8266c1a3e9057302af4cc1cdf5085ca496d688541d04feffe07d041ab3b7140b"
     },
     "demos/qwen3-8b/evidence/common-speed-2026-10-26/capture.json": {
       "bytes": 69934,
@@ -777,10 +752,35 @@
       "bytes": 6517,
       "sha256": "17b9ab6c8e51bfc350b533bc735c12458953c97ff1fa9c3b635ad2412783e50d"
     },
-    "reference/seeded-sampling/goldens/around128-t2-seed-a.json": {
+    "demos/qwen3-8b/measurements.json": {
+      "bytes": 72476,
+      "sha256": "f888f5189b624931e539d9c160dbf761ac83289af996297287b9f3d6abc91d1b"
+    },
+    "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/baseline-common-speed-20261026-r1/FINISHED.json": {
+      "bytes": 33640,
+      "sha256": "cbe112e9d6b6a6f2390b04383cd4d630185e12c9053ab0824cd7c35112fd71d0"
+    },
+    "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/encrypted-common-speed-20261026-r1/FINISHED.json": {
+      "bytes": 33722,
+      "sha256": "d811ba7de040ad0357a02247b0a8e8cfdb4d7aaa2f4754316f9096b766dd922a"
+    },
+    "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/FINISHED.json": {
+      "bytes": 33659,
+      "sha256": "8a1837ff09941377d3554116eadc482713d5236c2865d1fb54f37f6ade48b562"
+    },
+    "demos/simplestories-v2-5m/evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json": {
+      "bytes": 206176,
+      "sha256": "ae81f740b937068d4dd111010871c557dfa28b62b44a6f95de5a155607bc1bdf"
+    },
+    "demos/simplestories-v2-5m/reference/seeded-sampling/goldens/around128-t2-seed-a.json": {
       "bytes": 11062,
       "sha256": "65352789f3acd613e2104d8515a51d6873ca15e041ce683d12bc7d2afb345d7b"
+    },
+    "demos/simplestories-v2-5m/tests/reference-cases.json": {
+      "bytes": 13049,
+      "sha256": "a236c9912e5da9f12412c3f91f3d619a574fd5dce41f0c630fb78cb6c7dc7fa4"
     }
   },
-  "scope": "Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay."
+  "timestamp_boundary": "generation_loop_validated_reply",
+  "total_rows": 6
 }

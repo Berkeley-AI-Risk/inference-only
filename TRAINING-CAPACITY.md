@@ -34,7 +34,7 @@ With these grants, Qwen's scheduled-work proxy is about 16% lower and its full-u
 Run these commands from the repository root; they require no hardware or network:
 
 ```sh
-python3 -I -S -B tools/estimate_training_capacity.py --check
+python3 -I -S -B demos/simplestories-v2-5m/tools/estimate_training_capacity.py --check
 python3 -I -S -B tools/architecture_work_counts.py --check
 python3 -I -S -B tools/qwen_h100_results.py --check
 ```

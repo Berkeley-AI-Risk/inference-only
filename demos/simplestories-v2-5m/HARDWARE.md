@@ -13,7 +13,7 @@ protection; the seeded design adds a bounded on-chip sampler.
 
 The encrypted design encrypts both weights and K/V with public demonstration
 keys; it retains K/V integrity and replay checks. See
-[encrypted memory](../../ENCRYPTED-MEMORY.md),
+[encrypted memory](ENCRYPTED-MEMORY.md),
 [K/V protection](KV-PROTECTION.md) and [seeded generation](STOCHASTIC-GENERATION.md).
 
 The source links and detailed diagram below describe the supplied baseline.
@@ -54,7 +54,7 @@ because the underlying real-valued transformer equation is unchanged.
 
 The verification target is the project's pinned integer reference, not equality
 with every output of the original floating-point model. The packaged
-[reference model](../../reference/reference/model.py), quantization
+[reference model](reference/reference/model.py), quantization
 code and asset manifests define the reproducible model conversion.
 
 The optional seeded version preserves these model logits, weight checks,
@@ -71,9 +71,9 @@ The public path is UART receiver/bridge → three-operation adapter → token
 shell → fixed six-layer computation and tied output head → token reply.
 The Mac performs tokenization and display, not model inference.
 
-The [runtime overview diagram](../../diagrams/inference-machine.svg) shows these
+The [runtime overview diagram](diagrams/inference-machine.svg) shows these
 functional boundaries without clock-domain or transport detail. The
-[memory-integrity comparison](../../diagrams/memory-integrity.svg) distinguishes
+[memory-integrity comparison](diagrams/memory-integrity.svg) distinguishes
 fixed-weight verification from the additional K/V checks in the protected
 configuration. The two DDR regions in the overview represent address
 regions in one external memory, not separate devices.
@@ -87,14 +87,14 @@ inference schedule; the count does not establish useful attacker access.
 The encrypted-memory variant has a different projection engine and is not
 represented by this resource count.
 
-![Detailed SimpleStories baseline: fixed token and layer controllers, checked weight buffers, private attention paths, and the 90 mapped multiplier instances.](../../diagrams/simplestories-hardware-architecture.svg)
+![Detailed SimpleStories baseline: fixed token and layer controllers, checked weight buffers, private attention paths, and the 90 mapped multiplier instances.](diagrams/simplestories-hardware-architecture.svg)
 
-[Open the full-size SVG](../../diagrams/simplestories-hardware-architecture.svg) ·
-[PNG](../../diagrams/simplestories-hardware-architecture.png) ·
+[Open the full-size SVG](diagrams/simplestories-hardware-architecture.svg) ·
+[PNG](diagrams/simplestories-hardware-architecture.png) ·
 [Sources and regeneration](../../diagrams/README.md) ·
 [Qwen hardware diagram](../qwen3-1.7b/HARDWARE.md#detailed-hardware-diagram)
 
-The [physical top](../../hardware/project/top.sv) connects this path
+The [physical top](hardware/project/top.sv) connects this path
 to a flash boot loader, private model/KV memory system, thin DDR transport,
 and GOWIN DDR3 controller. Application semantics and memory-access policy
 remain in the 25 MHz core domain. The 100 MHz DDR application domain handles
@@ -112,11 +112,11 @@ The clock tree also contains the PLL's 50 MHz output. Signal names
 such as `trusted_clk_25mhz_o` are not authoritative frequency specifications:
 the selected divider on that path is /4, giving 12.5 MHz. Likewise, some
 reused modules have an `app_clk_i` port wired to the core clock. Inspect the
-actual top-level connections and [constraints](../../hardware/project/constraints/product.sdc).
+actual top-level connections and [constraints](hardware/project/constraints/product.sdc).
 In particular, the boot/runtime DDR adapters and private arbiter use the core
 clock despite that port name; the boot-image readback hash uses the trusted clock.
 
-The [thin transport](../../hardware/project/thin_transport.sv) uses
+The [thin transport](hardware/project/thin_transport.sv) uses
 Gray-pointer asynchronous FIFOs
 ([established CDC background](../../docs/REFERENCES.md#hardware-and-memory-protection-antecedents)),
 a 32-command queue, a 64-entry return FIFO,
@@ -129,7 +129,7 @@ qualification.
 
 ## Public protocol and token controller
 
-The [UART wrapper](../../hardware/project/uart_core.sv) selects
+The [UART wrapper](hardware/project/uart_core.sv) selects
 217 core clocks per bit, approximately 115,207 baud. Its fixed five-byte
 frames carry command/reply information and CRC-8. CRC checks framing integrity,
 not adversarial authenticity. There is no public tensor, address, layer/job,
@@ -141,7 +141,7 @@ tied vocabulary head, stores the winning token, and returns its ID. It does
 not run the vocabulary head after every prompt position. Later `STEP`s reuse
 the committed K/V prefix rather than reevaluating the whole prior prompt.
 
-The [token shell](../../hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv)
+The [token shell](hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv)
 tracks tape length, replay position, committed prefix and held-output state.
 `CLEAR` invalidates logical tape/cache state and cancels or drains work according
 to ownership. It is not a bulk RAM zeroization operation and does not reopen
@@ -163,16 +163,16 @@ internally; their presence on module ports is not a host programming interface.
 ### Weight projections and tied head
 
 The live implementation is the clustered engine in
-[cluster-adapter.sv](../../hardware/project/cluster-adapter.sv) and
-[cluster-engine.sv](../../hardware/project/cluster-engine.sv).
+[cluster-adapter.sv](hardware/project/cluster-adapter.sv) and
+[cluster-engine.sv](hardware/project/cluster-engine.sv).
 `board1_fixed_group_projection_scale_job` instantiates
 `board1_shared_projection_scale_group_adapter`, which instantiates
 `board1_clustered_projection_scale2`.
 
 It processes groups of up to 64 output rows. Four
-[16-lane tiles](../../hardware/project/cluster-tile.sv) combine a scalar 16-bit
+[16-lane tiles](hardware/project/cluster-tile.sv) combine a scalar 16-bit
 activation with a 640-bit weight beat (64 × 10 bits). Each lane uses an exact
-[W10 × A16 multiplier](../../hardware/project/cluster-mul.sv), a product register
+[W10 × A16 multiplier](hardware/project/cluster-mul.sv), a product register
 and a signed 35-bit accumulator. After the last weight beat, rows are read
 one per cycle. Two fixed 27 × 18 multipliers separately scale the low 25 and
 high 10 bits of the dot product by its 16-bit row multiplier; their results
@@ -213,11 +213,11 @@ is buffering, not a software-addressable tensor interface.
 ### Other runtime arithmetic
 
 Attention is not the only multiplication with runtime operands. The
-[elementwise lane](../../hardware/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv)
+[elementwise lane](hardware/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv)
 multiplies the internally computed feed-forward gate and up-projection values.
 The same multiplier also applies the fixed rotary-position tables in other
 scheduled phases.
-The [RMSNorm service](../../hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv)
+The [RMSNorm service](hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv)
 uses a shared, mode-selected multiplier: it squares each runtime vector
 element, then in other phases multiplies normalized values by fixed ROM
 weights and applies fixed row scales. The service has two live instances:
@@ -231,9 +231,9 @@ services. The two operands of each RMSNorm square are tied to the same value.
 The [capacity analysis](TRAINING-CAPACITY.md) explicitly distinguishes this
 inventory from an attacker having useful general multiplication access.
 
-The [semantic datapath](../../hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv)
+The [semantic datapath](hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv)
 owns query, key, value, hidden-state and intermediate vector/scratch RAMs.
-The [attention engine](../../hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv)
+The [attention engine](hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv)
 owns its query, score/probability and output workspaces. Memory write ports
 are deliberately organized for native block-RAM inference. Payload RAMs need
 not be physically reset: validity, overwrite-before-use and outstanding-work
@@ -243,7 +243,7 @@ initial contents.
 ## Model storage, authentication and K/V memory
 
 The fixed model payload is read from flash during boot into DDR. Runtime
-model reads go through the [verified page service](../../hardware/project/service.sv).
+model reads go through the [verified page service](hardware/project/service.sv).
 The selected product instantiates four 4 KiB page banks, not the eight-bank
 default visible in some reusable module declarations. Each bank fills its
 actual on-chip RAM, seals and hashes that copy, compares against a fixed
@@ -354,5 +354,5 @@ See the packaged [input manifest](../../MANIFEST.json) and
 [reproduction instructions](REPRODUCE.md). File hashes identify
 inputs and outputs; they are not remote attestation of the FPGA or permission
 to redistribute vendor files. Each selected image has its own `BUILD.json`
-and hardware-input inventory. See [the evidence guide](../../evidence/README.md)
-and [programming guide](../../PROGRAMMING.md); no board action is performed by this document.
+and hardware-input inventory. See [the evidence guide](evidence/README.md)
+and [programming guide](PROGRAMMING.md); no board action is performed by this document.

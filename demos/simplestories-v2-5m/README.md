@@ -1,5 +1,13 @@
 # SimpleStories-V2-5M on Tang Mega
 
+
+Run model-specific commands from this directory after cloning the repository:
+
+```sh
+cd inference-only/demos/simplestories-v2-5m
+```
+
+The model hardware, browser app, tools, proofs and evidence are all here. Shared release and cross-model benchmark checks remain at the repository root.
 This demonstration runs a fixed W10/A16/KV16 approximation of
 SimpleStories-V2-5M entirely on a Tang Mega 138K FPGA. The computer tokenizes
 the prompt and displays generated text in the local web interface. The FPGA
@@ -32,9 +40,9 @@ public demonstration values, so they do not provide deployed confidentiality.
 
 ## Run the web demonstration
 
-Read [PROGRAMMING.md](../../PROGRAMMING.md) completely for the supported board,
+Read [PROGRAMMING.md](PROGRAMMING.md) completely for the supported board,
 matching model/image installation and guarded backup/restoration. Then follow
-the [host application guide](../../host-app/README.md) to qualify the loaded
+the [host application guide](host-app/README.md) to qualify the loaded
 image, launch the local web interface, connect USB and generate a story.
 Changing designs requires the matching FPGA configuration; encrypted memory
 also requires the matching ciphertext flash payload. The web app does not
@@ -43,12 +51,12 @@ reprogram the board or select a different model.
 ## Implementation and evidence
 
 - [Hardware architecture](HARDWARE.md), [K/V protection](KV-PROTECTION.md) and
-  [encrypted memory](../../ENCRYPTED-MEMORY.md).
+  [encrypted memory](ENCRYPTED-MEMORY.md).
 - [Greedy qualification](GREEDY-QUALIFICATION.md), [seeded qualification](CURRENT-QUALIFICATION.md)
   and [validation and limits](VALIDATION.md).
 - [Inference-only assessment](INFERENCE-ONLY.md), [formal scope](FORMAL-STATUS.md)
   and [conditional training-capacity estimates](TRAINING-CAPACITY.md).
-- [Reproduction](REPRODUCE.md), [vendor setup](../../VENDOR-SETUP.md) and
+- [Reproduction](REPRODUCE.md), [vendor setup](VENDOR-SETUP.md) and
   [source/license inventory](../../MANIFEST.json).
 
 The model has six transformer layers, width 256, feed-forward width 682,

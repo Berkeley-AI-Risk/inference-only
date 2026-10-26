@@ -7,9 +7,9 @@ inference clock. Model image SHA-256:
 
 | Configuration | Cached host rate | Selected image SHA-256 |
 | --- | ---: | --- |
-| Authenticated weights | **10.04 tokens/s** | [01b040cb830cd4c5…](../../prebuilt/inference/BUILD.json) |
-| K/V protection | **7.03 tokens/s** | [90ac68150d0c297b…](../../prebuilt/kv-protected/BUILD.json) |
-| K/V protection + encrypted memory | **6.04 tokens/s** | [cfc8a3d8832b4a29…](../../prebuilt/encrypted-memory/BUILD.json) |
+| Authenticated weights | **10.04 tokens/s** | [01b040cb830cd4c5…](prebuilt/inference/BUILD.json) |
+| K/V protection | **7.03 tokens/s** | [90ac68150d0c297b…](prebuilt/kv-protected/BUILD.json) |
+| K/V protection + encrypted memory | **6.04 tokens/s** | [cfc8a3d8832b4a29…](prebuilt/encrypted-memory/BUILD.json) |
 
 The encrypted-memory configuration retains K/V integrity and replay checks
 and encrypts both weights and K/V. Its supplied keys are public demonstration
@@ -103,9 +103,9 @@ refinement, cryptographic security or physical-security certification.
 From a clean repository copy, install the pinned host dependencies, then run:
 
 ```sh
-python3.12 -I -S -B tools/verify_release.py --strict
+python3.12 -I -S -B ../../tools/verify_release.py --strict
 python3.12 -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
-python3.12 -I -S -B tools/fpga_speed_benchmark.py --check
+python3.12 -I -S -B ../../tools/fpga_speed_benchmark.py --check
 ```
 
 These commands recheck recorded bytes, source associations and outcomes. They

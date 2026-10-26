@@ -101,8 +101,9 @@ def recorded_workload_comparison(package):
     workload credited in the numerator. No extrapolation or new measurements.
     """
     package = Path(package)
-    metrics = json.loads((package / 'evidence/current-greedy/baseline/analysis/metrics.json').read_text(encoding='utf-8'))['metrics']
-    capacity = json.loads((package / 'evidence/training-capacity-estimates.json').read_text(encoding='utf-8'))
+    model = package / 'demos/simplestories-v2-5m'
+    metrics = json.loads((model / 'evidence/current-greedy/baseline/analysis/metrics.json').read_text(encoding='utf-8'))['metrics']
+    capacity = json.loads((model / 'evidence/training-capacity-estimates.json').read_text(encoding='utf-8'))
     inputs = capacity['inputs']
     reference = capacity['measured_reference']
     baseline = metrics['around128']
@@ -166,7 +167,7 @@ def cycle_fraction(package):
     """Counted dynamic work divided by the named scheduled units' credited nominal cycle budget."""
     package = Path(package)
     row = recorded_workload_comparison(package)[0]
-    inputs = json.loads((package / 'evidence/training-capacity-estimates.json').read_text(encoding='utf-8'))['inputs']
+    inputs = json.loads((package / 'demos/simplestories-v2-5m/evidence/training-capacity-estimates.json').read_text(encoding='utf-8'))['inputs']
     peak = (inputs['core_clock_hz'] * inputs['dynamic_multiplier_instances']
             * inputs['credited_operations_per_multiply'])
     return row['credited_operations_per_second'] / peak

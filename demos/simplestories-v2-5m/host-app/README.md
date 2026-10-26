@@ -17,8 +17,8 @@ The three greedy designs each passed seven ordinary Chrome cases and 26 exact
 outputs with this common host implementation, including full contexts,
 pending-STEP Stop and generation on a new connection. The shared host passed
 79 offline fixture tests. Fixture tests do not count as a physical browser or
-board campaign. See [greedy qualification](../demos/simplestories-v2-5m/GREEDY-QUALIFICATION.md).
-The seeded image has its own [recorded browser qualification](../demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md)
+board campaign. See [greedy qualification](../GREEDY-QUALIFICATION.md).
+The seeded image has its own [recorded browser qualification](../CURRENT-QUALIFICATION.md)
 in its named host-source context; the common-host fixture checks do not grant
 it a fresh browser campaign.
 

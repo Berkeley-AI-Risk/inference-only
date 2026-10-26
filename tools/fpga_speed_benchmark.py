@@ -15,6 +15,7 @@ SELECTION = 'benchmarks/fpga-speed/selection.json'
 RESULTS = 'benchmarks/fpga-speed/results.json'
 BOUNDARY = 'generation_loop_validated_reply'
 PROTOCOL = 'one-token-128-host-v2'
+MODEL = 'demos/simplestories-v2-5m'
 START, END = '<!-- COMMON-FPGA-SPEED:START -->', '<!-- COMMON-FPGA-SPEED:END -->'
 
 
@@ -188,7 +189,9 @@ def verify_sampled_wire(root, row, sources):
         campaigns.add(case['source_campaign']['sha256'])
         pin = case['selected_events']; path = PurePosixPath(pin['path'])
         need(not path.is_absolute() and '..' not in path.parts, 'Unsafe sampled event path')
-        raw = (root / path).read_bytes()
+        # Event paths inside the immutable SimpleStories capture are relative
+        # to its model package, as they were at collection time.
+        raw = (root / MODEL / path).read_bytes()
         need(len(raw) == pin['bytes'] and hashlib.sha256(raw).hexdigest() == pin['sha256'],
              'Changed sampled event capture')
         need(pin['uncompressed_bytes'] < 1024 * 1024, 'Oversized sampled event capture')
@@ -231,7 +234,7 @@ def calculate(root):
          and (selection['repetitions'], selection['generated_outputs'], selection['cached_outputs_per_trial']) == (2, 128, 127),
          'Changed benchmark protocol')
     sources = read_sources(root, selection)
-    reference = sources['tests/reference-cases.json']['around128']
+    reference = sources[MODEL+'/tests/reference-cases.json']['around128']
     need(reference['prompt_tokens'] == [378], 'Changed SimpleStories input')
     manifest = json.loads((root / 'MANIFEST.json').read_text())
     rows = []

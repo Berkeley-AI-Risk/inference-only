@@ -28,8 +28,8 @@ that the entire FPGA implements the fixed model's numerical next-token function.
 
 The seeded-sampling image is
 `d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725`.
-Its [current replay](../../formal/current-seeded-sampling/README.md) and named
-[completion record](../../formal/current-seeded-sampling/CURRENT-REPLAY.json) identify
+Its [current replay](formal/current-seeded-sampling/README.md) and named
+[completion record](formal/current-seeded-sampling/CURRENT-REPLAY.json) identify
 the exact checked models, queries, tools and outcomes. The completion uses
 schema `current-seeded-rtl-formal-replay-completion-v2` and records the actual
 fresh RTL-only campaign; registering it does not execute a solver again.
@@ -86,7 +86,7 @@ cache-stage evidence does not establish full cache equivalence, unconditional
 terminal-failure write drain or physical erasure. The named fresh
 completion above records the actual controller and bank replay separately.
 
-The replay audits its [98-member support-source inventory](../../reference/baseline-formal-354/REFERENCE-SOURCES.json), including the monitor support and boundary derivation inputs. Source regeneration checks 128 model/source members and their complete source/binding map byte for byte. These source checks run no solver and grant no additional proof scope.
+The replay audits its [98-member support-source inventory](reference/baseline-formal-354/REFERENCE-SOURCES.json), including the monitor support and boundary derivation inputs. Source regeneration checks 128 model/source members and their complete source/binding map byte for byte. These source checks run no solver and grant no additional proof scope.
 
 ## Greedy design scope
 

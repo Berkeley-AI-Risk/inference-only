@@ -2,7 +2,7 @@
 
 This optional benchmark runs the pinned **original FP16 SimpleStories-V2-5M
 checkpoint** on one H100 SXM 80 GB. It does not operate the FPGA or change its
-model. Read [the measurement report](../../H100-BENCHMARK.md) before interpreting
+model. Read [the measurement report](../../../../H100-BENCHMARK.md) before interpreting
 its results, particularly the distinction between aggregate capacity, one-user
 latency and the FPGA's different numerical rules.
 
@@ -16,7 +16,7 @@ CPU-only checks were also exercised on Python 3.12. Other GPU types must not
 silently substitute for this SXM reference.
 
 Keep environments, model downloads and new results **outside the clean release**.
-From the repository root, with a fresh sibling directory:
+From the SimpleStories demo directory (`demos/simplestories-v2-5m/`), with a fresh sibling directory:
 
 ```sh
 mkdir ../h100-work

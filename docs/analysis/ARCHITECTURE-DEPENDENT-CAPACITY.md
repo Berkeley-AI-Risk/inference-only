@@ -97,7 +97,7 @@ costs of preparing and repeating workloads.
 The following examples keep the inference comparison fixed at the packaged
 128-position decode and H100 reference. The counts come from the formulas
 below; elapsed times come from the saved
-[selected baseline measurements](../../evidence/current-greedy/baseline/analysis/metrics.json).
+[selected baseline measurements](../../demos/simplestories-v2-5m/evidence/current-greedy/baseline/analysis/metrics.json).
 
 <!-- architecture-workload-table:start -->
 | Recorded workload | Credited dynamic operations | Time (s) | Credited rate (million/s) | Proxy using the 128-position inference comparison |
