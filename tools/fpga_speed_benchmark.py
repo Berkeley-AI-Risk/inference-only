@@ -177,7 +177,7 @@ def calculate(root):
 def table(result):
     lines = ['| Model and platform | Common cached generation | Package status |', '| --- | --- | --- |']
     for row in result['rows']:
-        speed = f"About **{row['rate']['cached_tokens_per_second']:.1f} tokens/s**" if row['complete'] else '—'
+        speed = f"~**{row['rate']['cached_tokens_per_second']:.1f} tokens/s**" if row['complete'] else '—'
         lines.append(f"| {row['label']} | {speed} | {row['package_status']} |")
     return '\n'.join(lines)
 

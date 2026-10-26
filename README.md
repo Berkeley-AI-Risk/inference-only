@@ -43,12 +43,12 @@ The table lists **Authenticated-Weight Inference-Only Chip (AWIC) designs**, all
 <!-- COMMON-FPGA-SPEED:START -->
 | Model and platform | Common cached generation | Package status |
 | --- | --- | --- |
-| **SimpleStories-V2-5M — Tang Mega**, authenticated weights | About **10.0 tokens/s** | Runnable release |
-| Same model, **K/V-protected** | About **7.0 tokens/s** | Runnable release |
-| Same model, **K/V protection + encrypted memory** | About **6.0 tokens/s** | Runnable release; public demonstration keys |
-| Same model, **seeded-sampling image at temperature 0**, without K/V integrity | About **10.0 tokens/s** | Runnable release |
-| **Qwen3-1.7B — AWS F2**, authenticated weights | About **9.0 tokens/s** | Runnable release; public AWS FPGA image |
-| **Qwen3-8B — AWS F2**, authenticated weights | About **1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
+| **SimpleStories-V2-5M — Tang Mega**, authenticated weights | ~**10.0 tokens/s** | Runnable release |
+| Same model, **K/V-protected** | ~**7.0 tokens/s** | Runnable release |
+| Same model, **K/V protection + encrypted memory** | ~**6.0 tokens/s** | Runnable release; public demonstration keys |
+| Same model, **seeded-sampling at temperature 0**, without K/V integrity | ~**10.0 tokens/s** | Runnable release |
+| **Qwen3-1.7B — AWS F2**, authenticated weights | ~**9.0 tokens/s** | Runnable release; public AWS FPGA image |
+| **Qwen3-8B — AWS F2**, authenticated weights | ~**1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
 <!-- COMMON-FPGA-SPEED:END -->
 
 The encrypted-memory version retains K/V integrity and replay protection and
@@ -58,6 +58,8 @@ integrity or encryption.
 
 The common benchmark uses **one input token, 128 outputs, greedy decoding and two repetitions** for every design. Its cached rate is **254 divided by the sum of the two first-to-last reply durations**, measured on the local control host after validated replies return to the generation loop. It includes gaps between replies and excludes the first output. First-STEP latency and command-only timing are separate measurements.
 
+The seeded-sampling design measures **9.93 cached tokens/s at temperature 1, with sampling enabled**, using the same one-token prompt, two 128-output trials and host-loop timing boundary. Its **10.02 tokens/s at temperature 0** provides the greedy comparison in the table. The [recorded sampling trials](evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json) include temperatures 0.5, 1 and 2; the [qualification record](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md#recorded-timing) separately reports command-only diagnostics.
+
 A dash means that a complete paired record satisfying this protocol is unavailable. Model-specific validation measurements are linked from each guide. The [benchmark protocol and reproducible calculations](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) specify the observation boundary, source identities and eligibility checks. These are workload-specific host-observed rates, not peak ratings.
 
 “Runnable release” means the image, model, app and installation instructions
@@ -65,8 +67,6 @@ are available. Each model's guide states its completed functional checks and
 its timing, security and proof limits. Availability does not guarantee every
 workload or independently attest a loaded device. No Tang version has complete
 vendor-DDR timing or physical-security certification.
-
-At temperature 1, the seeded image's **command-only cached rate** is **9.94 tokens/s**, measured with a one-token prompt and two 128-output trials. This sampled-generation diagnostic excludes inter-command gaps and is separate from the greedy host-loop benchmark. The [qualification record](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md#recorded-timing) gives its workload and timing details.
 
 - **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** board selection,
   the three greedy versions, optional seeded sampling, browser app,
