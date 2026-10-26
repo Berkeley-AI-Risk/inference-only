@@ -41,6 +41,8 @@ in [CURRENT-QUALIFICATION.md](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md
 
 ## The demonstrated designs and measurements
 
+The table lists **Authenticated-Weight Inference-Only Chip (AWIC) designs**, all implemented on FPGAs.
+
 | Model and platform | Measured cached generation | Package status |
 | --- | --- | --- |
 | **SimpleStories-V2-5M — Tang Mega**, authenticated weights | About **8.8 tokens/s** | Runnable release |
