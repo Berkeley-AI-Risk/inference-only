@@ -16,6 +16,26 @@ checks; its unbounded transport proof remains incomplete. This is a proved
 restriction on issued commands, not a proof of the contents or physical behavior
 of DRAM.
 
+## How this supports the inference-only claim
+
+An inference-only machine serves a fixed permitted model while allowing the
+temporary state needed for inference to change. Training normally changes learned
+parameters; inference changes the token tape, activations and K/V cache. This
+result supports the **fixed-model requirement**: after LOCK, the checked RTL
+cannot issue writes that update stored model weights through this interface,
+while permitting the K/V state needed for inference to evolve. Checking the
+underlying write path establishes hardware enforcement of that restriction.
+
+This is one part of the inference-only argument. Immutable weights alone do not
+rule out using the device's arithmetic or mutable state to help train another
+model. Establishing low residual training capacity requires additional guarantees
+about access to arithmetic and intermediate state, authentication and physical
+enforcement. Keeping the accepted model fixed across resets also depends on the
+fixed-digest authentication path; this write-exclusion theorem does not prove its
+arithmetic correctness. See the [inference-only assessment](INFERENCE-ONLY.md)
+and [training-capacity assessment](TRAINING-CAPACITY.md) for those separate
+requirements and limits.
+
 ## Where the guarantee applies
 
 The diagram adapts the request paths in the actual top-level RTL. The green
