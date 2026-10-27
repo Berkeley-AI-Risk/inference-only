@@ -45,6 +45,9 @@ jobs:
       - name: Check current inference-only implementation evidence (recorded only)
         working-directory: demos/simplestories-v2-5m
         run: python -I -S -B tools/check_implementation_assurance.py
+      - name: Check current authentication and access evidence (recorded only)
+        working-directory: demos/simplestories-v2-5m
+        run: python -I -S -B formal/authentication-access/check_recorded.py
       - name: Check the independent seeded model reference and client fixtures
         working-directory: demos/simplestories-v2-5m
         run: |

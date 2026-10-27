@@ -91,3 +91,16 @@ whole-machine proof.
 ## Inference-only implementation checks
 
 The [implementation-assurance guide](formal/implementation-assurance/README.md) provides a portable recorded-evidence check and separate commands for fresh RTL compilation, solver phases and exact source/query reproduction. These checks do not access the FPGA.
+
+## Authentication and restricted access checks
+
+From `demos/simplestories-v2-5m/`:
+
+```sh
+python3.12 -I -S -B formal/authentication-access/check_recorded.py
+```
+
+This checks exact recorded evidence and current source/image bindings without a
+solver or FPGA. The [guide](formal/authentication-access/README.md) gives fresh
+selected-query solver replay, source/model audit scope, cryptographic assumptions
+and unresolved secondary results.

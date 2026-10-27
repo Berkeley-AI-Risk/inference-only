@@ -3,7 +3,13 @@
 This page covers the four current SimpleStories-V2-5M configurations. Qwen has
 separate implementation and test evidence; no Qwen theorem is claimed here.
 
-**The main established guarantee is that, after runtime LOCK, the custom RTL
+**The source proofs establish restricted model writes, authentication through
+use, and fixed private access paths.** The [authentication/access package](formal/authentication-access/README.md)
+connects the actual SHA engines, checked model RAM, fixed six-layer schedule,
+operand/address routing and protected K/V capture/use. These are source-bound
+component compositions, with explicit cryptographic and physical assumptions.
+
+**After runtime LOCK, the custom RTL
 cannot issue a write to the model region through the vendor DDR application
 interface until the common hard reset. Writes must stay in the permitted runtime
 K/V region, including its protection metadata where present.** This includes
@@ -26,17 +32,20 @@ cannot issue writes that update stored model weights through this interface,
 while permitting the K/V state needed for inference to evolve. Checking the
 underlying write path establishes hardware enforcement of that restriction.
 
-This is one part of the inference-only argument. Immutable weights alone do not
-rule out using the device's arithmetic or mutable state to help train another
-model. Establishing low residual training capacity requires additional guarantees
-about access to arithmetic and intermediate state, authentication and physical
-enforcement. Keeping the accepted model fixed across resets also depends on the
-fixed-digest authentication path; this write-exclusion theorem does not prove its
-arithmetic correctness. See the [inference-only assessment](INFERENCE-ONLY.md)
-and [training-capacity assessment](TRAINING-CAPACITY.md) for those separate
-requirements and limits.
+The authentication/access proofs supply further parts of that argument: they
+check the actual SHA engines and accepted byte streams, preserve the checked
+model copy through consumption, restrict arithmetic to fixed private scheduling
+and operand/address paths, and join protected K/V verification to attention use.
+They remove ordinary mechanisms for changing model parameters or directly
+programming internal tensor computation through the token interface.
 
-## Where the guarantee applies
+These facts do not establish that every token-only algorithm has negligible
+training utility. Cryptographic resistance and trusted on-chip state remain
+explicit assumptions, and physical enforcement needs separate evidence. See the
+[inference-only assessment](INFERENCE-ONLY.md) and
+[training-capacity assessment](TRAINING-CAPACITY.md) for those limits.
+
+## Scope of the memory-write theorem
 
 The diagram adapts the request paths in the actual top-level RTL. The green
 region marks the composed memory-write proof. The controller has a separate
@@ -114,7 +123,22 @@ contracts are independently proved before use; the argument has no circular
 dependencies or unproved client protocol promises. It does not simply assume
 that the command queue is empty when LOCK arrives.
 
-## Other established guarantees and important limits
+## Authentication and access through the actual implementation
+
+| Checked boundary | Established result | Main limit |
+| --- | --- | --- |
+| Authentication to runtime LOCK | 45 assertions per image, both solvers; native ordered byte stream, padding and one BEGIN per hard reset | No formal full native-size successful-boot reachability witness. |
+| Native SHA and sealed model RAM through consumption | SHA compression/chaining, fixed digest/metadata selection, complete fill/hash/seal and current service/consumer ownership are source-bound and composed | SHA resistance is assumed. Private decryption replies remain unrestricted; AES/SIV algorithm correctness is separate. |
+| Fixed schedule and arithmetic/state access | Six-layer sequence: 22 assertions; actual datapath: 53; group/metadata addresses: 23; lookup: 9. Both solvers complete bases, induction and covers | Numerical-child outputs remain arbitrary in the datapath scope; no whole-transformer numerical theorem. |
+| Protected K/V through attention use | Both protected designs: 221-assertion history, 357-assertion current guard/cache, 43-assertion actual hash framing/chaining and separate 34-assertion attention scopes; both solvers | Component scopes overlap. The integrity interpretation assumes SHA resistance and trusted on-chip tags/state; confidentiality and physical tampering are separate. |
+
+The [current authentication/access evidence and reproduction guide](formal/authentication-access/README.md)
+states the actual source/image joins, proof boundaries, semantic fault controls
+and incomplete secondary results. Actual port, reset, CLEAR, fault, identity and
+data connections join these universal component facts. The baseline and seeded
+designs do not gain integrity against an external K/V-memory attacker.
+
+## Public control and important limits
 
 The separate public-controller proofs check which commands are admitted and
 how they own state and replies: `APPEND(token)` records an accepted token,
@@ -130,7 +154,7 @@ The following stronger claims **are not established by these formal proofs**:
 | Stronger claim | Current evidence boundary |
 | --- | --- |
 | Runtime LOCK is formally reachable after a full native-size boot | Board and simulation campaigns exercise completed boot. No formal native-size full-boot LOCK reachability witness is supplied; transport covers use the separately contracted LOCK input. |
-| LOCK means the correct model image has been authenticated | The write-exclusion proof leaves four authenticator outputs unrestricted. It does not prove SHA arithmetic or that the locked bytes equal the intended model. |
+| Hash resistance and unconditional physical image equality | Actual SHA arithmetic, fixed-digest admission and checked-copy use are verified separately. Collision/second-preimage resistance, trusted on-chip state and vendor memory behavior remain assumptions; source proofs do not attest persistent physical DRAM bytes. |
 | Every STEP computes exactly the fixed model's numerical next-token function | Controller proofs leave private numerical outputs unrestricted. Numerical comparisons and board tests cover particular executions. |
 | The programmed FPGA and external memory satisfy the RTL theorem physically | Source and image hashes record provenance. RTL-to-mapped-image equivalence, vendor DDR behavior, physical CDC/reset timing and FPGA power-on behavior remain outside the proof. |
 | Every possible use of the machine is incapable of learning | These scoped proofs supply no certified residual training-capacity bound. See [INFERENCE-ONLY.md](INFERENCE-ONLY.md) and [TRAINING-CAPACITY.md](TRAINING-CAPACITY.md). |
@@ -201,8 +225,11 @@ Ten directed scenarios and five faulty controls accompany that proof.
 The bank's **258-bit SHA replies remain arbitrary**. Production SHA is identified
 as source provenance but is not elaborated in the bank theorem. The result does
 not prove SHA compression arithmetic, the parent service's digest selection,
-private bank/SHA composition or cryptographic security. The bank count is
-nonadditive with the controller counts above.
+private bank/SHA composition or cryptographic security by itself. The
+[authentication/access proofs](formal/authentication-access/README.md) separately
+retain the native SHA and full bank RAM, check parent digest selection and join
+the checked copy through the private service to its consumers. Counts remain
+nonadditive.
 
 ### Source binding and retained support
 
@@ -239,8 +266,8 @@ The selected greedy-source records retain these scoped results:
 | Design | Checked source scope | Boundary |
 | --- | --- | --- |
 | Baseline | 34 attention-controller assertions; 72 recorded query checks | Child arithmetic and memory replies remain unrestricted at the listed outputs. No numerical-attention or concrete-memory composition theorem. |
-| K/V-protected | Joint cache proof with 357 assertions including support; separate 34-assertion attention scope | Private scheduling and SHA replies remain arbitrary. These overlapping scopes do not establish cryptographic integrity or whole-machine refinement. |
-| K/V protection and encrypted memory | 34 attention assertions joined through six byte-identical isolated sources; 72 query checks | The bridge adds no assertions and supplies no encrypted-guard/SIV, numerical-attention or private-memory composition theorem. |
+| K/V-protected | Current joint guard/cache proof: 357 assertions; actual hash and separate 34-assertion attention use composed through checked source connections | Cryptographic resistance and trusted on-chip state are assumptions. No whole-machine numerical refinement. |
+| K/V protection and encrypted memory | Native encrypted guard/current cache: 357 assertions; actual hash and separate 34-assertion attention use composed | Arbitrary decryption replies; no AES/SIV confidentiality/correctness or numerical-attention theorem. |
 
 Counts are nonadditive. The [qualification guide](GREEDY-QUALIFICATION.md)
 identifies the exact source associations and recorded solver/audit results.
@@ -256,9 +283,10 @@ ownership, live-tape correspondence and logical cancellation at their stated
 boundaries. Private numerical and memory services remain unrestricted at the
 listed cuts. They do not establish eventual completion when readiness stalls
 forever, the correctness of every generated token, physical RAM erasure,
-SHA arithmetic or private-memory composition, whole-machine refinement,
-source-to-mapped-image equivalence, complete vendor-DDR timing or physical
-security. A successful model or board test does not attest another loaded FPGA.
+whole-machine numerical refinement, source-to-mapped-image equivalence,
+complete vendor-DDR timing or physical security. Actual SHA arithmetic and the
+named model/K/V checked-copy compositions have their separate verified scopes
+in the authentication/access package. A successful model or board test does not attest another loaded FPGA.
 
 The assessment assumes a frozen circuit and synchronous digital behavior.
 [INFERENCE-ONLY.md](INFERENCE-ONLY.md) and

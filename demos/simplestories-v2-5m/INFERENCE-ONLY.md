@@ -179,13 +179,14 @@ digests retained in private on-chip memory. It binds data to location and
 current logical context, stages and verifies external reads, and releases
 the sealed verified copy. Changing external K/V alone therefore does not
 supply chosen cache operands under the guard's integrity and trusted-on-chip
-assumptions. [Scoped source-bound proofs](formal/kv-integrity/README.md) check
-private write/tag history, guard-to-cache data and identity, and separately
-attention capture/use. SHA implementation correctness and whole-machine
-composition remain unproved. Corruption, stale data and CLEAR handling have
+assumptions. The [source-bound authentication/access proofs](formal/authentication-access/README.md)
+check actual SHA compression/chaining, private write/tag history, guard-to-cache
+data and identity, and the source connections through attention capture/use.
+Hash resistance, trusted on-chip state and whole-machine numerical correctness
+remain separate assumptions or unproved claims. Corruption, stale data and CLEAR handling have
 simulation tests; normal inference has physical tests. Physical corruption rejection has not
-been demonstrated on the board, and no complete guard/composition theorem is
-claimed. The bytes are still unencrypted and physically observable. This
+been demonstrated on the board. The verified source compositions do not
+constitute physical attestation. The bytes are still unencrypted and physically observable. This
 does not establish resistance to invasive changes or faults inside the chip.
 
 ### Physical interfaces and a fixed ASIC
@@ -255,19 +256,22 @@ objection to being an inference-only demonstration.
 
 ### What the proofs constrain for a software adversary
 
-The scoped RTL checks constrain ownership and admission at their actual
-verification boundaries. The selected baseline has 34 attention-controller
-assertions; the K/V-protected design has a joint 357-assertion cache scope
-including support and a separate 34-assertion attention scope. The encrypted
-attention bridge rechecks those 34 attention assertions through six byte-identical
-isolated sources. Seeded sampling has separate current controller and bank
-proofs. Counts overlap and must not be added.
+The scoped RTL checks constrain public-command ownership and admission in all
+four designs. Source-bound authentication/access proofs additionally check the
+actual SHA engines, fixed model-copy consumption, six-layer scheduling and
+private operand/address paths. Both protected designs have current joint
+357-assertion guard/cache scopes joined through actual source connections to
+hashing and attention capture/use. The baseline and seeded designs do not
+inherit protection against external K/V-memory substitution. Counts overlap
+and must not be added.
 
-Private arithmetic, memory and SHA services remain unrestricted at the listed
-cuts. The results establish their named digital safety properties under reset
+Individual component proofs retain their declared unrestricted child boundaries. The results establish their named digital safety properties under reset
 conditions; they do not establish eventual completion under indefinite stalls,
-the whole backend's numerical function, private-component composition,
-cryptographic security or mapped-image equivalence. See
+the whole backend's numerical function, unconditional cryptographic security or
+mapped-image equivalence. Separate [authentication/access proofs](formal/authentication-access/README.md)
+establish actual SHA arithmetic, fixed private scheduling and operand/address
+paths, checked model-copy use and protected K/V guard-to-capture/use through the
+actual source connections. See
 [FORMAL-STATUS.md](FORMAL-STATUS.md) for each property and solver result.
 
 ### Physical and functional evidence
