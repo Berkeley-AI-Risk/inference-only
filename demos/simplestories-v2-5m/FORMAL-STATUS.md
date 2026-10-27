@@ -1,38 +1,127 @@
 # What the RTL proofs establish
 
-The checked hardware models support a restricted token interface for the fixed
-SimpleStories-V2-5M numerical model. The three greedy designs accept
-`APPEND(token)`, `STEP` and `CLEAR`; the optional seeded design also accepts
-bounded temperature/seed settings at an empty, idle tape. Qwen has separate
-implementation and test evidence; no Qwen theorem is claimed here.
+This page covers the four current SimpleStories-V2-5M configurations. Qwen has
+separate implementation and test evidence; no Qwen theorem is claimed here.
 
-The transaction contract is straightforward: APPEND records an accepted input
-token, STEP owns one generated result that is stored and returned consistently,
-and CLEAR invalidates the logical tape and cancels the relevant ownership.
-A tape accepts at most 2,048 input positions, with a 2,049th slot for the final
-result. Logical clearing does not promise physical erasure of every memory cell.
+**The main established guarantee is that, after runtime LOCK, the custom RTL
+cannot issue a write to the model region through the vendor DDR application
+interface until the common hard reset. Writes must stay in the permitted runtime
+K/V region, including its protection metadata where present.** This includes
+model writes that were previously queued in the custom transport during boot.
 
-Yosys and SMT solvers check assertions against actual RTL and its declared
-verification boundaries. Independent histories record admitted requests,
-accepted commands, live tape contents, outstanding work and returned tokens.
-These monitors are checked against the implementation rather than used as
-assumptions. A completed induction establishes its safety properties for
-arbitrarily long executions of that synchronous digital model under its reset
-conditions. Finite simulations and physical-board tests exercise particular
-executions and remain distinct evidence.
+Z3 establishes this safety property by bounded base checks and unbounded
+induction: it holds for arbitrarily long executions of the checked digital
+model, under its reset conditions. cvc5 passes the transport's bounded base
+checks; its unbounded transport proof remains incomplete. This is a proved
+restriction on issued commands, not a proof of the contents or physical behavior
+of DRAM.
 
-The current results are scoped control and component proofs. They do not prove
-that the entire FPGA implements the fixed model's numerical next-token function.
+## Where the guarantee applies
 
-## Current implementation checks for inference-only enforcement
+The diagram adapts the request paths in the actual top-level RTL. The green
+region marks the composed memory-write proof. The controller has a separate
+control proof; the amber boxes identify behavior that remains abstracted or
+only partly verified. The gray box is outside the proof.
 
-The [implementation-assurance package](formal/implementation-assurance/README.md)
-proves that, after runtime LOCK, writes issued at the vendor DDR application
-interface stay in the permitted runtime K/V region until the common hard reset.
-This includes earlier boot writes queued in transport. The actual boot/source
-path, reset correspondence, full-size FIFOs and top-level wiring are joined;
-all 54 transport premises are independently discharged, with no circular
-dependencies or unproved client protocol promises.
+```mermaid
+flowchart TB
+    HOST["Public token commands<br/>APPEND, STEP, CLEAR; optional settings"]
+    CTRL["UART and token controller<br/>separate control proof"]
+    COMPUTE["Private inference and memory services<br/>numerical behavior not fully proved"]
+    QSPI["Fixed model image<br/>QSPI reader"]
+    AUTH["Image authenticator<br/>four outputs unrestricted in this proof"]
+
+    subgraph WRITE_PROOF["Write-exclusion proof"]
+        BOOT["Boot loader and readback sequencing"]
+        RUN["Runtime request adapter"]
+        OWNER["One-way boot/runtime handoff<br/>LOCK selects runtime ownership"]
+        FIFO["Ordered command and return FIFOs<br/>core/application clock crossing"]
+        PORT["Vendor DDR application interface<br/>WRITE EXCLUSION PROVED HERE"]
+        BOOT <--> OWNER
+        RUN <--> OWNER
+        OWNER <--> FIFO
+        FIFO <--> PORT
+    end
+
+    DDR["Vendor DDR controller, PHY and DRAM<br/>outside this proof"]
+    HOST <--> CTRL
+    CTRL <--> COMPUTE
+    COMPUTE <--> RUN
+    QSPI --> BOOT
+    AUTH -.-> BOOT
+    PORT <--> DDR
+
+    classDef control fill:#eaf1fb,stroke:#42658b,color:#172b4d
+    classDef checked fill:#e8f5e9,stroke:#2e7d32,color:#172b1a
+    classDef abstract fill:#fff4d6,stroke:#9a6700,color:#3d3100
+    classDef outside fill:#f3f4f6,stroke:#6b7280,color:#24292f
+    class HOST,CTRL,QSPI control
+    class BOOT,RUN,OWNER,FIFO,PORT checked
+    class COMPUTE,AUTH abstract
+    class DDR outside
+    style WRITE_PROOF fill:#f5fbf6,stroke:#2e7d32,color:#172b1a
+```
+
+Arrows summarize connections and request/reply paths; they do not imply one
+numerical-correctness theorem across every box. The memory-write proof permits
+arbitrary runtime requests and arbitrary authenticator output flags. Its
+write restriction therefore does not depend on those producers behaving
+correctly. The actual top-level connections are checked separately.
+
+The proof ends at the custom RTL's **issued command**. It includes the custom
+command and return FIFOs, but does not establish when the vendor controller
+finishes a write it has already accepted, or what it retains across reset.
+Runtime reads of model weights remain allowed, as inference requires them.
+
+## Why queued boot writes cannot bypass LOCK
+
+The composed argument has three steps:
+
+1. **Boot model writes precede readback.** The actual source path proves that,
+   once a source READ has been emitted, every later WRITE targets the permitted
+   runtime K/V region.
+2. **Runtime LOCK requires an earlier READ and reply.** The source path proves
+   this even with the four authenticator outputs left unrestricted. It does not
+   prove that the digest was computed correctly.
+3. **The transport preserves order and reply ownership.** A returned reply
+   requires an earlier READ issued at the vendor interface. Model writes queued
+   before that READ have already left the custom command FIFO; later writes are
+   restricted by step 1.
+
+The reset proof establishes that these histories describe the same reset epoch
+across the actual clock domains. All 52 imported FIFO invariants and both source
+contracts are independently proved before use; the argument has no circular
+dependencies or unproved client protocol promises. It does not simply assume
+that the command queue is empty when LOCK arrives.
+
+## Other established guarantees and important limits
+
+The separate public-controller proofs check which commands are admitted and
+how they own state and replies: `APPEND(token)` records an accepted token,
+`STEP` owns a generated result that is stored and returned consistently, and
+`CLEAR` cancels the relevant ownership and invalidates the logical tape. The
+seeded configuration also checks settings and seed ownership at an empty, idle
+tape. These are control guarantees; private numerical services remain
+unrestricted at their declared proof boundaries. Logical CLEAR does not promise
+physical erasure of every memory cell.
+
+The following stronger claims **are not established by these formal proofs**:
+
+| Stronger claim | Current evidence boundary |
+| --- | --- |
+| Runtime LOCK is formally reachable after a full native-size boot | Board and simulation campaigns exercise completed boot. No formal native-size full-boot LOCK reachability witness is supplied; transport covers use the separately contracted LOCK input. |
+| LOCK means the correct model image has been authenticated | The write-exclusion proof leaves four authenticator outputs unrestricted. It does not prove SHA arithmetic or that the locked bytes equal the intended model. |
+| Every STEP computes exactly the fixed model's numerical next-token function | Controller proofs leave private numerical outputs unrestricted. Numerical comparisons and board tests cover particular executions. |
+| The programmed FPGA and external memory satisfy the RTL theorem physically | Source and image hashes record provenance. RTL-to-mapped-image equivalence, vendor DDR behavior, physical CDC/reset timing and FPGA power-on behavior remain outside the proof. |
+| Every possible use of the machine is incapable of learning | These scoped proofs supply no certified residual training-capacity bound. See [INFERENCE-ONLY.md](INFERENCE-ONLY.md) and [TRAINING-CAPACITY.md](TRAINING-CAPACITY.md). |
+
+The current [implementation-assurance package](formal/implementation-assurance/README.md)
+provides the exact models, source bindings, proof receipts, known limitations,
+and commands for checking recorded evidence or running fresh solver phases.
+The detailed inventories below state which component claims are established
+by which solver; assertion counts overlap and are not a coverage score.
+
+## Detailed implementation proof results
 
 | Checked boundary | Current result | Main limit |
 | --- | --- | --- |
