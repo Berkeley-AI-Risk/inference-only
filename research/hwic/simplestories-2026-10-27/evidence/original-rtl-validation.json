@@ -1,0 +1,272 @@
+{
+  "RTL_sources_exactly_copied_from_that_run": true,
+  "case_count": 7,
+  "cases": {
+    "admission": {
+      "actual_result_lines": [
+        "HWIC_ADMISSION positions=2048 overlimit_rejected=1 active_clear=1 numerical_full_window=0",
+        "HWIC_TOKEN epoch=0 token=200 cycles=648962 tensors=32935",
+        "HWIC_TOKEN epoch=0 token=15 cycles=1304635 tensors=65870",
+        "HWIC_TOKEN epoch=1 token=200 cycles=1949470 tensors=98805",
+        "PASS_HWIC_MODEL main_tokens=2 replay_tokens=1 tensor_values=98805 cycles=1949502 sealed_model_rom=1 private_kv=1 cache_reads_checked=300 cache_writes_checked=324"
+      ],
+      "exit": 0,
+      "expected_sha256": "0f4b8dfa1d41c5223dad52082e145f91481d219031b8305f9cc1fa84ae45a2ff",
+      "flags": [
+        "+ADMISSION"
+      ],
+      "generated_tokens": [
+        200,
+        15
+      ],
+      "log_sha256": "57eb91611b94c9a8ef91956ad2eca1e7c68b4c832cbad3d2603b896207283f86",
+      "prompt_tokens": [
+        378
+      ],
+      "replay_tokens": [
+        200
+      ],
+      "tensor_values": 98805,
+      "wall_seconds": 5.13635095799691
+    },
+    "around": {
+      "actual_result_lines": [
+        "HWIC_TOKEN epoch=0 token=200 cycles=644835 tensors=32935",
+        "HWIC_TOKEN epoch=0 token=15 cycles=1300508 tensors=65870",
+        "HWIC_TOKEN epoch=0 token=103 cycles=1968327 tensors=98805",
+        "HWIC_TOKEN epoch=0 token=157 cycles=2645758 tensors=131740",
+        "HWIC_TOKEN epoch=0 token=32 cycles=3335013 tensors=164675",
+        "HWIC_TOKEN epoch=0 token=1429 cycles=4032278 tensors=197610",
+        "HWIC_TOKEN epoch=0 token=115 cycles=4740421 tensors=230545",
+        "HWIC_TOKEN epoch=0 token=789 cycles=5458648 tensors=263480",
+        "HWIC_TOKEN epoch=0 token=15 cycles=6187725 tensors=296415",
+        "HWIC_TOKEN epoch=0 token=103 cycles=6927301 tensors=329350",
+        "HWIC_TOKEN epoch=0 token=165 cycles=7676080 tensors=362285",
+        "HWIC_TOKEN epoch=0 token=93 cycles=8435361 tensors=395220",
+        "HWIC_TOKEN epoch=0 token=320 cycles=9204616 tensors=428155",
+        "HWIC_TOKEN epoch=0 token=85 cycles=9984105 tensors=461090",
+        "HWIC_TOKEN epoch=0 token=393 cycles=10773048 tensors=494025",
+        "HWIC_TOKEN epoch=0 token=867 cycles=11571173 tensors=526960",
+        "HWIC_TOKEN epoch=1 token=200 cycles=12216008 tensors=559895",
+        "HWIC_TOKEN epoch=1 token=15 cycles=12871681 tensors=592830",
+        "PASS_HWIC_MODEL main_tokens=16 replay_tokens=2 tensor_values=592830 cycles=12871713 sealed_model_rom=1 private_kv=1 cache_reads_checked=36300 cache_writes_checked=1944"
+      ],
+      "exit": 0,
+      "expected_sha256": "399dcd5489ac9343f0dd225c26b21b09203148e22c586d0d7832568da1e672aa",
+      "flags": [],
+      "generated_tokens": [
+        200,
+        15,
+        103,
+        157,
+        32,
+        1429,
+        115,
+        789,
+        15,
+        103,
+        165,
+        93,
+        320,
+        85,
+        393,
+        867
+      ],
+      "log_sha256": "a6ba7e84883629ab3aa72ba922808d3bfffca8ffed64ed11acca73c93f86cce1",
+      "prompt_tokens": [
+        378
+      ],
+      "replay_tokens": [
+        200,
+        15
+      ],
+      "tensor_values": 592830,
+      "wall_seconds": 28.67429479099519
+    },
+    "cancel-held": {
+      "actual_result_lines": [
+        "HWIC_HELD_CLEAR held_cycles=32 stale_token_suppressed=1 empty_step_work=0",
+        "HWIC_TOKEN epoch=0 token=200 cycles=1289778 tensors=32935",
+        "HWIC_TOKEN epoch=0 token=15 cycles=1945451 tensors=65870",
+        "HWIC_TOKEN epoch=1 token=200 cycles=2590286 tensors=98805",
+        "PASS_HWIC_MODEL main_tokens=2 replay_tokens=1 tensor_values=98805 cycles=2590318 sealed_model_rom=1 private_kv=1 cache_reads_checked=300 cache_writes_checked=432"
+      ],
+      "exit": 0,
+      "expected_sha256": "0f4b8dfa1d41c5223dad52082e145f91481d219031b8305f9cc1fa84ae45a2ff",
+      "flags": [
+        "+CANCEL_HELD"
+      ],
+      "generated_tokens": [
+        200,
+        15
+      ],
+      "log_sha256": "bcb27e36dc638295c8b7299ebf3362874d9cc773fbe6b4c50e4ac9385c6f29b9",
+      "prompt_tokens": [
+        378
+      ],
+      "replay_tokens": [
+        200
+      ],
+      "tensor_values": 98805,
+      "wall_seconds": 6.36751495799399
+    },
+    "cancel-kv": {
+      "actual_result_lines": [
+        "HWIC_CANCEL drained=1 public_tokens=0 cycles=25973",
+        "HWIC_TOKEN epoch=0 token=200 cycles=670802 tensors=32935",
+        "HWIC_TOKEN epoch=0 token=15 cycles=1326475 tensors=65870",
+        "HWIC_TOKEN epoch=0 token=103 cycles=1994294 tensors=98805",
+        "HWIC_TOKEN epoch=0 token=157 cycles=2671725 tensors=131740",
+        "HWIC_TOKEN epoch=1 token=200 cycles=3316560 tensors=164675",
+        "PASS_HWIC_MODEL main_tokens=4 replay_tokens=1 tensor_values=164675 cycles=3316592 sealed_model_rom=1 private_kv=1 cache_reads_checked=1800 cache_writes_checked=541"
+      ],
+      "exit": 0,
+      "expected_sha256": "0f3d9c1f4b2e0e9b5c69a34f70cccea15558af76e7506dcc1d6becdef0743276",
+      "flags": [
+        "+CANCEL_KV"
+      ],
+      "generated_tokens": [
+        200,
+        15,
+        103,
+        157
+      ],
+      "log_sha256": "5bb18e4d1580cf2a67fb56fb47ec84dc322d8242f4bb5a22174a7acc36734b5b",
+      "prompt_tokens": [
+        378
+      ],
+      "replay_tokens": [
+        200
+      ],
+      "tensor_values": 164675,
+      "wall_seconds": 8.192210249995696
+    },
+    "cancel-model": {
+      "actual_result_lines": [
+        "HWIC_CANCEL drained=1 public_tokens=0 cycles=86",
+        "HWIC_TOKEN epoch=0 token=200 cycles=644915 tensors=32935",
+        "HWIC_TOKEN epoch=0 token=15 cycles=1300588 tensors=65870",
+        "HWIC_TOKEN epoch=0 token=103 cycles=1968407 tensors=98805",
+        "HWIC_TOKEN epoch=0 token=157 cycles=2645838 tensors=131740",
+        "HWIC_TOKEN epoch=1 token=200 cycles=3290673 tensors=164675",
+        "PASS_HWIC_MODEL main_tokens=4 replay_tokens=1 tensor_values=164675 cycles=3290705 sealed_model_rom=1 private_kv=1 cache_reads_checked=1800 cache_writes_checked=540"
+      ],
+      "exit": 0,
+      "expected_sha256": "0f3d9c1f4b2e0e9b5c69a34f70cccea15558af76e7506dcc1d6becdef0743276",
+      "flags": [
+        "+CANCEL_MODEL"
+      ],
+      "generated_tokens": [
+        200,
+        15,
+        103,
+        157
+      ],
+      "log_sha256": "369db4a0e309144df129ec6c67ab25373fe3baa4e9493c267d6e72633f4dc23d",
+      "prompt_tokens": [
+        378
+      ],
+      "replay_tokens": [
+        200
+      ],
+      "tensor_values": 164675,
+      "wall_seconds": 7.785792791997665
+    },
+    "fox": {
+      "actual_result_lines": [
+        "HWIC_TOKEN epoch=0 token=385 cycles=5166035 tensors=233555",
+        "HWIC_TOKEN epoch=0 token=317 cycles=5895524 tensors=266490",
+        "HWIC_TOKEN epoch=0 token=229 cycles=6633492 tensors=299425",
+        "HWIC_TOKEN epoch=0 token=32 cycles=7383003 tensors=332360",
+        "HWIC_TOKEN epoch=0 token=963 cycles=8142059 tensors=365295",
+        "HWIC_TOKEN epoch=0 token=696 cycles=8911344 tensors=398230",
+        "HWIC_TOKEN epoch=0 token=15 cycles=9690025 tensors=431165",
+        "HWIC_TOKEN epoch=0 token=85 cycles=10479304 tensors=464100",
+        "HWIC_TOKEN epoch=1 token=385 cycles=15645339 tensors=697655",
+        "HWIC_TOKEN epoch=1 token=317 cycles=16374828 tensors=730590",
+        "PASS_HWIC_MODEL main_tokens=8 replay_tokens=2 tensor_values=730590 cycles=16374860 sealed_model_rom=1 private_kv=1 cache_reads_checked=42300 cache_writes_checked=2592"
+      ],
+      "exit": 0,
+      "expected_sha256": "5520c0c62d2bcc90e21b3b91fb13dd92772df8eadd0a1ea42701f3fda97f4e05",
+      "flags": [],
+      "generated_tokens": [
+        385,
+        317,
+        229,
+        32,
+        963,
+        696,
+        15,
+        85
+      ],
+      "log_sha256": "c4830418964585855feab175d27b63a3522cf1e2e1b166b4a097226182a247cb",
+      "prompt_tokens": [
+        762,
+        1310,
+        32,
+        398,
+        13,
+        32,
+        611,
+        1143
+      ],
+      "replay_tokens": [
+        385,
+        317
+      ],
+      "tensor_values": 730590,
+      "wall_seconds": 36.47457162498904
+    },
+    "moon": {
+      "actual_result_lines": [
+        "HWIC_TOKEN epoch=0 token=127 cycles=5847848 tensors=262215",
+        "HWIC_TOKEN epoch=0 token=381 cycles=6585513 tensors=295150",
+        "HWIC_TOKEN epoch=0 token=15 cycles=7333732 tensors=328085",
+        "HWIC_TOKEN epoch=0 token=85 cycles=8092328 tensors=361020",
+        "HWIC_TOKEN epoch=0 token=1985 cycles=8861141 tensors=393955",
+        "HWIC_TOKEN epoch=0 token=157 cycles=9640708 tensors=426890",
+        "HWIC_TOKEN epoch=0 token=547 cycles=10430803 tensors=459825",
+        "HWIC_TOKEN epoch=0 token=158 cycles=11229062 tensors=492760",
+        "HWIC_TOKEN epoch=1 token=127 cycles=17076910 tensors=754975",
+        "PASS_HWIC_MODEL main_tokens=8 replay_tokens=1 tensor_values=754975 cycles=17076942 sealed_model_rom=1 private_kv=1 cache_reads_checked=46800 cache_writes_checked=2700"
+      ],
+      "exit": 0,
+      "expected_sha256": "dabbd240b0d6870d2670bc2ba0f105a75972bfc5e3eae82a0476b5702d6e9db5",
+      "flags": [],
+      "generated_tokens": [
+        127,
+        381,
+        15,
+        85,
+        1985,
+        157,
+        547,
+        158
+      ],
+      "log_sha256": "fef2a4b4f9cd211d5c6c541bd70121d051eba9eff5acb137b5e7f5e8a999e761",
+      "prompt_tokens": [
+        85,
+        995,
+        127,
+        289,
+        13,
+        94,
+        32,
+        869,
+        1985
+      ],
+      "replay_tokens": [
+        127
+      ],
+      "tensor_values": 754975,
+      "wall_seconds": 38.65284475000226
+    }
+  },
+  "exact_tokens": 53,
+  "original_finished_sha256": "7ad3e1f574eabfa8e413b5271f5160564d86ddc1c33187a2df522d3b3c3c3cac",
+  "original_inputs_sha256": "083c643a2313a6bfa539a67a5669cc180878a0d1a6315287e2f2fea0818cfeff",
+  "physical_frequency_or_silicon_tokens_per_second_measured": false,
+  "scope": "Complete actual fixed-model RTL with passive observations;independent separately generated integer tensors. This compact export does not bundle its190MBfixtures,compiler tree or original complete logs. The portable replay generates fresh fixtures from the separately supplied authenticated Q0.",
+  "selected_tensor_and_logit_checks": 2605355,
+  "status": "historical_complete_RTL_pass"
+}

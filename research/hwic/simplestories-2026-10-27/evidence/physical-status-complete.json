@@ -1,0 +1,67 @@
+{
+  "actual_nwell_mismatch": {
+    "difference_bbox": "(50950,83020;1360290,594080)",
+    "equal": false,
+    "material": "nwell",
+    "stage": "complete_material_compared",
+    "wall_seconds": 0.6833048919797875,
+    "xor_area": 2865831200
+  },
+  "all152_public_nets_distinct": true,
+  "all_observed_original_raw_GDS_LI_comparisons_match": [
+    true,
+    true
+  ],
+  "comparison_grid_dbu_um": 0.0005,
+  "complete_geometry_native_exit": 0,
+  "complete_source_label_records_checked": 631444,
+  "extracted_primitive_devices": 706753,
+  "extraction_errors": 0,
+  "failed_materials": [
+    {
+      "difference_bbox": "(50950,83020;1360290,594080)",
+      "equal": false,
+      "material": "nwell",
+      "wall_seconds": 0.6833048919797875,
+      "xor_area": 2865831200
+    },
+    {
+      "difference_bbox": "(621600,199470;1392920,239910)",
+      "equal": false,
+      "material": "poly",
+      "wall_seconds": 64.82999152300181,
+      "xor_area": 1512960000
+    }
+  ],
+  "full_ASIC_qualified": false,
+  "full_macro_material_comparison": "Completed,not accepted:23individual material unions match;physicalLIunion matches bothMAGviews and originalrawGDS67/20;nwellandpolyunionsdiffer. Rootcause/representationinterpretation remains open.",
+  "geometry_CPU_seconds": 1149.59369,
+  "geometry_threads": 8,
+  "geometry_wall_seconds": 1072.8860384959844,
+  "label_loader_limit_diagnosed_and_reversible_names_checked": true,
+  "native_extraction_exit": 0,
+  "passed_full_recognized_geometry_preservation": false,
+  "physical_outputs_PDKs_and_libraries_bundled": false,
+  "primitive_model_dimensions_and_anchors_unchanged": true,
+  "public_ports": 152,
+  "qualification_open": [
+    "Full macro source LVS",
+    "Recognized well/mask geometry discrepancy",
+    "Six unsupported process-layer pairs and COREID",
+    "Device-model domains and source/drain warning acceptance",
+    "Physical ROM and SRAM views/function/PVT timing",
+    "Full-chip clocks/reset,DRC/RC/PVT timing,power and area",
+    "Manufacturing-test/scan and physical repurposing analysis"
+  ],
+  "recorded_utc": "2026-10-27T16:39:58.919530+00:00",
+  "scope": "Compact evidence snapshot from the private physical-memory study. The fresh complete RTL replay uses behavioral memories;this does not qualify physical SRAM or ROM. No complete recognized-geometry,source LVS,signoff,physical chip or HNLPU metal-routing reproduction is claimed.",
+  "source_EXT_bytes": 210069781,
+  "source_EXT_sha256": "55fcbe932a013084416d21fa923048508442bc89d658cb927164714fd502f455",
+  "source_extraction_review_sha256": "a17f5059eea2543c2e04745edb44e352ec9da33f06ccd8ec73358d3732fd7c90",
+  "source_full_geometry_review_sha256": "09f1da3dec9ddf16f6c89b81e07d3b6baaf45757dd0565e9c894edce5791eb35",
+  "supersedes_earlier_partial_observation_sha256": "60f62127944bcba2ccb401d2c946b49b11d6bfc624911e4f967ad11d458efc34",
+  "unwaived_extraction_warnings": 171762,
+  "warning_categories": {
+    "device_missing_one_terminal": 171762
+  }
+}

@@ -1,4 +1,4 @@
-# Inference-only FPGA demonstrations
+# Inference-only hardware demonstrations and HWIC research
 
 The paper *The Feasibility of a Hardwired Pause of Frontier AI Training*
 ([hardwired-pause.ai](https://hardwired-pause.ai)) introduces inference-only
@@ -12,7 +12,27 @@ The paper distinguishes two approaches in Section 4.3:
 - **Authenticated-Weight Inference-Only Chips (AWICs)** fix the model architecture and inference function in hardware and authenticate weights stored in memory against fixed cryptographic digests.
 - **Hardwired-Weight Inference-Only Chips (HWICs)** encode both the model architecture and its weights directly in the circuit.
 
-**All designs documented in this repository are AWIC designs implemented on FPGAs. HWIC designs are in progress.**
+**The demonstrated hardware designs are AWICs implemented on FPGAs. This
+repository also includes preliminary HWIC source research.**
+
+## Experimental HWIC research
+
+The [SimpleStories-V2-5M HWIC checkpoint](research/hwic/simplestories-2026-10-27/README.md)
+includes complete fixed-weight RTL, reproduction tools and compact validation
+evidence. A fresh build passes seven complete-model numerical cases: **53 token
+outputs and 2,605,355 selected tensor/logit comparisons**. A deliberately changed
+weight is rejected by the independent tensor checker.
+
+**This is RTL research, not a qualified ASIC or a fabricated chip.** The current
+baseline uses fixed ROM feeding shared arithmetic and reuses the AWIC token
+core. [HNLPU](https://arxiv.org/abs/2508.16151v2) informs the research direction;
+its custom physical weight-routing implementation has not been reproduced, and
+we have not established that the ROM baseline is faster or smaller.
+The checkpoint documents the remaining physical-memory, layout, timing and
+other ASIC gaps. These simulation results are separate from the FPGA
+measurements below.
+
+## Token interface
 
 *Inference* uses an already-trained model to produce outputs without changing
 its learned weights. The idealized machine permits models from a fixed set

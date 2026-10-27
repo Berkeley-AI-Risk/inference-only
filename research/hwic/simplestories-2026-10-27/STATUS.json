@@ -1,0 +1,32 @@
+{
+  "HNLPU_custom_metal_embedding_reproduced": false,
+  "HNLPU_reference": "https://arxiv.org/abs/2508.16151v2",
+  "Qwen3_1_7B": "Active research target;not part of this complete-model checkpoint",
+  "Qwen3_8B": "HWIC deferred by owner",
+  "architecture": "Fixed ROM feeding shared arithmetic;AWIC core reuse;not a proven comparative winner.",
+  "complete_RTL_numerical_cases": 7,
+  "designation": "preliminary_research_source_checkpoint",
+  "evidence": [
+    "evidence/checkpoint-replay.json",
+    "evidence/original-rtl-validation.json",
+    "evidence/physical-status-complete.json"
+  ],
+  "exact_token_outputs": 53,
+  "fabricated": false,
+  "freshly_built_from_this_snapshot": true,
+  "full_macro_geometry_accepted": false,
+  "full_physical_ASIC_qualified": false,
+  "manufacturing_weight_fault_actually_detected": true,
+  "model": "SimpleStories-V2-5M",
+  "next_architecture_milestone": "Implement and compare a source-bound fixed-weight routing/grouping candidate at unchanged arithmetic;separate spatial and batch evaluations.",
+  "numerical_model": "W10/A16/KV16 BFP v5,context2048",
+  "qualified_design_catalog_entry": false,
+  "recorded_utc": "2026-10-27T16:36:19.091265+00:00",
+  "schema": "experimental-hwic-checkpoint-status-v1",
+  "selected_tensor_checks": 2605355,
+  "silicon_performance_measured": false,
+  "unresolved_full_macro_materials": [
+    "nwell",
+    "poly"
+  ]
+}
