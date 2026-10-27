@@ -140,8 +140,8 @@
       "sha256": "58a1fc0e3f86ff8d12a02ff8b78b5e5294d8ef43ce5b77604ac96922f8e454fd"
     },
     "README.md": {
-      "bytes": 13444,
-      "sha256": "2187a94ca440adec0620f2550496262cce2ffe8081ee8c5daacaa3fb806cdd0d"
+      "bytes": 13896,
+      "sha256": "a7ecdcc8b4bbd56f232f9bca4897f0b341cedaced04ca2515a8c0fa04ad746fd"
     },
     "REFERENCES.md": {
       "bytes": 613,
@@ -152,8 +152,8 @@
       "sha256": "17f981e4fa87a2587968a93782fec3beb7501b1c157276eb0eebd433d4093a79"
     },
     "TRAINING-CAPACITY.md": {
-      "bytes": 3590,
-      "sha256": "5f394499f37a892a68cf9b57d23a3c01388e0016d99a49f41b07c841a56a4e08"
+      "bytes": 3587,
+      "sha256": "ed45497c68b9284efb14dba2d008ba054a959c8ca69e4986a62a495965cd9442"
     },
     "benchmarks/fpga-speed/results.json": {
       "bytes": 40605,
@@ -166,6 +166,10 @@
     "demos/qwen3-1.7b/BROWSER.md": {
       "bytes": 5108,
       "sha256": "85a8e3c8a7b8381071a80366e34440309f5000677b8ce9931b3dafb04a8b74e7"
+    },
+    "demos/qwen3-1.7b/FORMAL-STATUS.md": {
+      "bytes": 1560,
+      "sha256": "04de7edab4c2394582614be4ce1d8439ec34eede814951ac7c64fe0f6460304b"
     },
     "demos/qwen3-1.7b/HARDWARE.md": {
       "bytes": 9229,
@@ -180,8 +184,12 @@
       "sha256": "53627fe82c55b2d4ee00570e72dd7c979f4136d0f7034c5590838afd640d568b"
     },
     "demos/qwen3-1.7b/README.md": {
-      "bytes": 11768,
-      "sha256": "5c2ee76862fe94231495c10dd090afe12edb78acbf769061809de7b395ee36c4"
+      "bytes": 11878,
+      "sha256": "a6dd2d09b433510c277ff14a2a3deaf0dfe8d452d6ec52022d1fd9accecd1835"
+    },
+    "demos/qwen3-1.7b/REPRODUCE.md": {
+      "bytes": 2995,
+      "sha256": "cce71b08b5e94f5c5c88b4715d164689890bae8a0fd7c7dfb7f9aeef8867c072"
     },
     "demos/qwen3-1.7b/SOURCE-INPUTS.json": {
       "bytes": 17321,
@@ -190,6 +198,10 @@
     "demos/qwen3-1.7b/TRAINING-CAPACITY.md": {
       "bytes": 14172,
       "sha256": "97731b3a89514e1b42c2ed9d4c6d6dd4df07b7016ef03c21e2bcada6222e49a8"
+    },
+    "demos/qwen3-1.7b/VALIDATION.md": {
+      "bytes": 3008,
+      "sha256": "26a4693b99485ee18c8317e4c8fd0831ec77cfad677fa1c82ee8bf36375315d5"
     },
     "demos/qwen3-1.7b/deployment.json": {
       "bytes": 1137,
@@ -963,6 +975,10 @@
       "bytes": 49,
       "sha256": "105dfc151b6667424b3de7cde77198533835e29de5cfd6efa7cf37a92bb55ead"
     },
+    "demos/qwen3-8b/FORMAL-STATUS.md": {
+      "bytes": 1540,
+      "sha256": "2c28eae225d321e9901c50fe7ff8c487b856cb779b5b75a16a838294d5260a7e"
+    },
     "demos/qwen3-8b/HARDWARE.md": {
       "bytes": 6416,
       "sha256": "677b8f18884d685cce19d0ad5183c2503982c24512edd5a48381b544c4c8fa4b"
@@ -976,12 +992,20 @@
       "sha256": "deda2e5beaf287e0880c1951b40ae4e9ba9926d9d87c858430864b3d6ff43597"
     },
     "demos/qwen3-8b/README.md": {
-      "bytes": 7205,
-      "sha256": "2262fec062f02447b49d9fcda815e151fd10ed33a1633a80cfcb24557966c164"
+      "bytes": 7588,
+      "sha256": "022507f9ab15e7765fe12202952a3d045bb4dd3e93b583a6bacac7a7eb904fa0"
+    },
+    "demos/qwen3-8b/REPRODUCE.md": {
+      "bytes": 3033,
+      "sha256": "928c7747b63bea2edb06eb641c1a46123b34190624b197744edc2d54a97c674b"
     },
     "demos/qwen3-8b/SOURCE-INPUTS.json": {
       "bytes": 26865,
       "sha256": "83c22320ac4e52947d1d89360c7b68d37c71ff3c45edb0df64459de5c3b8bee2"
+    },
+    "demos/qwen3-8b/VALIDATION.md": {
+      "bytes": 2939,
+      "sha256": "5fec4693f906681d6f2033730d92cc0e3e55276e39c258f31bcd248a4351c68d"
     },
     "demos/qwen3-8b/deployment.json": {
       "bytes": 970,
@@ -1865,15 +1889,15 @@
     },
     "demos/simplestories-v2-5m/MANIFEST.json": {
       "bytes": 1781063,
-      "sha256": "04570e74a819fdc88a8c09da49a0adfa8240734345d0af34511cec7369e992b1"
+      "sha256": "f71b80f7aa778ba061633a0d2bd84287c7512ad99889dcf3d25e46ca4c550a39"
     },
     "demos/simplestories-v2-5m/PROGRAMMING.md": {
       "bytes": 15424,
       "sha256": "f72ef1db9f0b47ccc40501e42293b661efc7df01f93b94d3c093426fbe28713a"
     },
     "demos/simplestories-v2-5m/README.md": {
-      "bytes": 4200,
-      "sha256": "151cb36f2a6aa5b66dfe49367697989d6641ac334e54d5338e7da8b471c4f2ce"
+      "bytes": 4391,
+      "sha256": "4f38d3ad43268c6da4c8af5b120d67713d76b39a4487ba646c5a981d230c01c1"
     },
     "demos/simplestories-v2-5m/REPRODUCE.md": {
       "bytes": 5668,
@@ -32513,7 +32537,7 @@
     },
     "demos/simplestories-v2-5m/tools/check_current_three_greedy_v15_v4.py": {
       "bytes": 2800448,
-      "sha256": "383b498c3e3314fbe319f53ffd18418af12f1a8320745785a9740c292a061040"
+      "sha256": "488192310a1bd6d411bf7bdbdd11cc5543cab572ce5bae25ca0542ed4ef77791"
     },
     "demos/simplestories-v2-5m/tools/check_encrypted_flash.py": {
       "bytes": 1848,
@@ -33960,8 +33984,8 @@
       "sha256": "30a8a41d2a8851515b8891cefbff282b70292de12e2aaa80a4a578d073eaf699"
     },
     "tools/release-contract.json": {
-      "bytes": 2061059,
-      "sha256": "bec1180f1e7bfeed7bacc2baafeedc82345f51cd4176e2d6164d4ad150680f25"
+      "bytes": 2061963,
+      "sha256": "c7e0f62e760ee7235332fa1cffa48cfb85b160899321a21edbbdd8684d225e91"
     },
     "tools/test_architecture_work_counts.py": {
       "bytes": 17923,
@@ -33989,7 +34013,7 @@
     },
     "tools/verify_release.py": {
       "bytes": 10128,
-      "sha256": "3f667b6311bec638b22ce428a4a2ef07612594d2e35a61e7959ef860bfabb909"
+      "sha256": "da31169da640b017b4db9ef335b858702c2c3de071fbbc78e8946c1bd11d4488"
     }
   },
   "full_context_evidence_scope": "Each selected greedy image passed 2,047/2,048-token CLI and browser contexts, boundary refusals, CLEAR races, pending-STEP Stop and resumed generation. The seeded image has a separate 16-case context matrix and browser record. Exact workload timestamps remain distinct from cached generation rates.",

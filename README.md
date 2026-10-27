@@ -128,7 +128,7 @@ makes the architectural restriction inference-only.
 
 ## Run a demonstration
 
-For the Tang Mega, follow [its installation guide](demos/simplestories-v2-5m/README.md#run-it-on-your-board).
+For the Tang Mega, follow [its installation guide](demos/simplestories-v2-5m/README.md#run-the-web-demonstration).
 The prebuilt configurations, model, tokenizer and browser app are included;
 running them requires neither hardware compilation nor a paid FPGA design
 license. Installing the model erases flash, so preserve the factory backup
@@ -166,20 +166,26 @@ those antecedents from directly reused components.
 
 Start with the guide for [SimpleStories on Tang Mega](demos/simplestories-v2-5m/README.md), [Qwen3-1.7B on AWS F2](demos/qwen3-1.7b/README.md), or [Qwen3-8B on AWS F2](demos/qwen3-8b/README.md). Each guide links to its implementation, installation and evidence.
 
-| Shared subject | Documentation |
+### Analysis
+
+| Subject | Documentation |
 | --- | --- |
 | Residual training assessment and model comparison | [Overview](TRAINING-CAPACITY.md), [methodology](docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md), [architecture and workload analysis](docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md) |
+| Model training-capacity assessments | [SimpleStories](demos/simplestories-v2-5m/TRAINING-CAPACITY.md), [Qwen3-1.7B](demos/qwen3-1.7b/TRAINING-CAPACITY.md), [Qwen3-8B status](demos/qwen3-8b/README.md#analysis) |
 | FPGA speed comparison | [Common workload, timing and recorded results](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) |
 | GPU reference measurements | [H100 benchmarks and reproduction](docs/benchmarks/H100-BENCHMARK.md) |
-| Design references and prior work | [References](docs/REFERENCES.md) |
+
+### Demonstrations
 
 | Model | Run and install | Hardware | Evidence and reproduction |
 | --- | --- | --- | --- |
 | SimpleStories-V2-5M / Tang Mega | [Guide](demos/simplestories-v2-5m/README.md), [installation](demos/simplestories-v2-5m/PROGRAMMING.md) | [Hardware](demos/simplestories-v2-5m/HARDWARE.md) | [Validation](demos/simplestories-v2-5m/VALIDATION.md), [formal scope](demos/simplestories-v2-5m/FORMAL-STATUS.md), [reproduction](demos/simplestories-v2-5m/REPRODUCE.md) |
-| Qwen3-1.7B / AWS F2 | [Guide](demos/qwen3-1.7b/README.md), [installation](demos/qwen3-1.7b/INSTALL.md) | [Hardware](demos/qwen3-1.7b/HARDWARE.md) | [Numerical reference](demos/qwen3-1.7b/reference/README.md), [training-capacity assessment](demos/qwen3-1.7b/TRAINING-CAPACITY.md) |
-| Qwen3-8B / AWS F2 | [Guide](demos/qwen3-8b/README.md), [installation](demos/qwen3-8b/INSTALL.md) | [Hardware](demos/qwen3-8b/HARDWARE.md) | [Numerical reference](demos/qwen3-8b/reference/), [recorded measurements](demos/qwen3-8b/measurements.json) |
+| Qwen3-1.7B / AWS F2 | [Guide](demos/qwen3-1.7b/README.md), [installation](demos/qwen3-1.7b/INSTALL.md) | [Hardware](demos/qwen3-1.7b/HARDWARE.md) | [Validation](demos/qwen3-1.7b/VALIDATION.md), [formal scope](demos/qwen3-1.7b/FORMAL-STATUS.md), [reproduction](demos/qwen3-1.7b/REPRODUCE.md) |
+| Qwen3-8B / AWS F2 | [Guide](demos/qwen3-8b/README.md), [installation](demos/qwen3-8b/INSTALL.md) | [Hardware](demos/qwen3-8b/HARDWARE.md) | [Validation](demos/qwen3-8b/VALIDATION.md), [formal scope](demos/qwen3-8b/FORMAL-STATUS.md), [reproduction](demos/qwen3-8b/REPRODUCE.md) |
 
-Each model's guide links to its configurations, recorded checks and limitations. Proofs and measurements apply only to their named circuits and assumptions.
+Each model's guide links to its configurations, recorded checks and limitations. Proofs and measurements apply only to their named circuits and assumptions. The formal-status pages state each model's published proof coverage, including the absence of a Qwen proof suite.
+
+[Design references and prior work](docs/REFERENCES.md) credit the algorithms, arithmetic library and hardware antecedents.
 
 Project-owned code, documentation and the photograph are Apache-2.0; the
 packaged SimpleStories model assets use the upstream MIT declaration.

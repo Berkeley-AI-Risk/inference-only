@@ -8,7 +8,7 @@ Residual training analysis asks how much useful training arithmetic an adversary
 | --- | --- | --- |
 | SimpleStories-V2-5M on Tang Mega | [Training capacity](demos/simplestories-v2-5m/TRAINING-CAPACITY.md) | Arithmetic and hypothetical access scenarios for the baseline without K/V integrity checks. |
 | Qwen3-1.7B on AWS F2 | [Training capacity](demos/qwen3-1.7b/TRAINING-CAPACITY.md) | Mapped arithmetic inventory, workload-dependent counts and measured H100 parent-model references. |
-| Qwen3-8B on AWS F2 | [Demonstration and limitations](demos/qwen3-8b/README.md) | A corresponding residual-training assessment has not been completed. |
+| Qwen3-8B on AWS F2 | [Assessment status](demos/qwen3-8b/README.md#analysis) | A corresponding residual-training assessment has not been completed. |
 
 ## Method and reference measurements
 

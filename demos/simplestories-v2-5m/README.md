@@ -54,8 +54,7 @@ reprogram the board or select a different model.
   [encrypted memory](ENCRYPTED-MEMORY.md).
 - [Greedy qualification](GREEDY-QUALIFICATION.md), [seeded qualification](CURRENT-QUALIFICATION.md)
   and [validation and limits](VALIDATION.md).
-- [Inference-only assessment](INFERENCE-ONLY.md), [formal scope](FORMAL-STATUS.md)
-  and [conditional training-capacity estimates](TRAINING-CAPACITY.md).
+- [Formal scope](FORMAL-STATUS.md).
 - [Reproduction](REPRODUCE.md), [vendor setup](VENDOR-SETUP.md) and
   [source/license inventory](../../MANIFEST.json).
 
@@ -73,3 +72,10 @@ proofs and finite model/board tests do not establish whole-machine numerical
 refinement, independent loaded-image attestation or physical-security certification.
 The [Qwen3-1.7B](../qwen3-1.7b/README.md) and [Qwen3-8B](../qwen3-8b/README.md)
 demonstrations have separate implementation and evidence.
+
+## Analysis
+
+The [inference-only assessment](INFERENCE-ONLY.md) describes the access and
+security assumptions. The [training-capacity assessment](TRAINING-CAPACITY.md)
+and [shared methodology](../../docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md)
+state the conditional arithmetic scenarios and their limits.

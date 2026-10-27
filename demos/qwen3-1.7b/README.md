@@ -2,6 +2,8 @@
 
 [Project overview](../../README.md) · [SimpleStories-V2-5M on Tang Mega](../simplestories-v2-5m/README.md)
 
+[Validation](VALIDATION.md) · [Reproduction](REPRODUCE.md) · [Formal scope](FORMAL-STATUS.md)
+
 **A fixed numerical version of Qwen3-1.7B runs on one physical AWS F2 FPGA
 at about 9.0 sustained cached tokens/s under the common one-token benchmark.**
 The FPGA performs inference; the host uploads the fixed model, sends token
@@ -78,6 +80,8 @@ between an architectural demonstration and a certified residual training
 fraction. Tang Mega's scoped proofs and capacity estimates **do not transfer
 automatically to Qwen**. No whole-machine refinement proof, physical-attack
 resistance certification or measured training-capacity bound is claimed here.
+
+## Analysis
 
 The [Qwen residual training analysis](TRAINING-CAPACITY.md) supplies the
 arithmetic inventory, conditional ratios, workload distinctions and H100

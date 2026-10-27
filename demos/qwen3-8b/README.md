@@ -2,6 +2,8 @@
 
 [Installation](INSTALL.md) · [Hardware and source build](HARDWARE.md) · [Recorded evidence](measurements.json)
 
+[Validation](VALIDATION.md) · [Reproduction](REPRODUCE.md) · [Formal scope](FORMAL-STATUS.md)
+
 A fixed numerical version of **Qwen3-8B runs on one physical AWS F2 FPGA at
 about 1.1 sustained cached tokens/s** under the common one-token benchmark.
 The FPGA performs inference; the host loads the fixed model and exchanges
@@ -146,3 +148,8 @@ installation bindings without AWS or a model download, run:
 ```sh
 python3.12 tools/check_package.py
 ```
+## Analysis
+
+The [shared residual-training assessment](../../TRAINING-CAPACITY.md#model-assessments)
+groups the model assessments and [methodology](../../docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md).
+A model-specific residual-training assessment for Qwen3-8B has not been completed.
