@@ -15,23 +15,6 @@ The paper distinguishes two approaches in Section 4.3:
 **The demonstrated hardware designs are AWICs implemented on FPGAs. This
 repository also includes preliminary HWIC source research.**
 
-## Experimental HWIC research
-
-The [SimpleStories-V2-5M HWIC checkpoint](research/hwic/simplestories-2026-10-27/README.md)
-includes complete fixed-weight RTL, reproduction tools and compact validation
-evidence. A fresh build passes seven complete-model numerical cases: **53 token
-outputs and 2,605,355 selected tensor/logit comparisons**. A deliberately changed
-weight is rejected by the independent tensor checker.
-
-**This is RTL research, not a qualified ASIC or a fabricated chip.** The current
-baseline uses fixed ROM feeding shared arithmetic and reuses the AWIC token
-core. [HNLPU](https://arxiv.org/abs/2508.16151v2) informs the research direction;
-its custom physical weight-routing implementation has not been reproduced, and
-we have not established that the ROM baseline is faster or smaller.
-The checkpoint documents the remaining physical-memory, layout, timing and
-other ASIC gaps. These simulation results are separate from the FPGA
-measurements below.
-
 ## Token interface
 
 *Inference* uses an already-trained model to produce outputs without changing
@@ -162,6 +145,23 @@ No FPGA compilation is needed for that path. You provide your own AWS account
 and rental; the 1.7B browser app can run on your Mac and connect to the F2 host
 over SSH. Hardware sources, build instructions and numerical-reference tools
 are also included.
+
+## Experimental HWIC research
+
+The [SimpleStories-V2-5M HWIC checkpoint](research/hwic/simplestories-2026-10-27/README.md)
+includes complete fixed-weight RTL, reproduction tools and compact validation
+evidence. A fresh build passes seven complete-model numerical cases: **53 token
+outputs and 2,605,355 selected tensor/logit comparisons**. A deliberately changed
+weight is rejected by the independent tensor checker.
+
+**This is RTL research, not a qualified ASIC or a fabricated chip.** The current
+baseline uses fixed ROM feeding shared arithmetic and reuses the AWIC token
+core. [HNLPU](https://arxiv.org/abs/2508.16151v2) informs the research direction;
+its custom physical weight-routing implementation has not been reproduced, and
+we have not established that the ROM baseline is faster or smaller.
+The checkpoint documents the remaining physical-memory, layout, timing and
+other ASIC gaps. These simulation results are separate from the FPGA
+measurements above.
 
 ## AI design experiment and attribution
 
