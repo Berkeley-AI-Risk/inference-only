@@ -48,6 +48,11 @@ jobs:
       - name: Check current authentication and access evidence (recorded only)
         working-directory: demos/simplestories-v2-5m
         run: python -I -S -B formal/authentication-access/check_recorded.py
+      - name: Check working-memory ownership and cancellation evidence (recorded only)
+        working-directory: demos/simplestories-v2-5m
+        run: |
+          python -I -S -B formal/session-isolation/check_recorded.py
+          python -I -S -B -m unittest discover -s formal/session-isolation -p 'test_*.py' -v
       - name: Check the independent seeded model reference and client fixtures
         working-directory: demos/simplestories-v2-5m
         run: |

@@ -25,3 +25,8 @@ The [authentication/access package](authentication-access/README.md) verifies th
 actual SHA engines, model checked-copy consumption, fixed private schedule and
 operand/address paths, and protected K/V through attention capture/use. Recorded
 checks and fresh selected-query replay are separate commands.
+
+The [working-memory/session package](session-isolation/README.md) adds native RAM
+histories, current-writer ownership and connected model/K/V cancellation
+barriers. It states the remaining device entry, numerical and token-publication
+composition obligations; it does not claim complete device session isolation.

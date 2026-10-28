@@ -51,6 +51,12 @@ are transport behavior around the three operations, not extra arithmetic
 services. `CLEAR` logically erases the tape and invalidates cached state; it
 does not zero every physical memory cell.
 
+The [working-memory proofs](formal/session-isolation/README.md) check current
+writers before permitted RAM use and accepted-request ownership through CLEAR
+at their stated component boundaries. These support initialized inference
+workspace; complete device correspondence through later token outputs remains
+an outstanding composition obligation.
+
 The actual development FPGA has a JTAG configuration path and volatile,
 unencrypted configuration memory. Reprogramming it is outside the stated
 frozen-design assessment. That assumption does **not** establish resistance

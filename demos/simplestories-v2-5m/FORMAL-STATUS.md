@@ -138,6 +138,30 @@ and incomplete secondary results. Actual port, reset, CLEAR, fault, identity and
 data connections join these universal component facts. The baseline and seeded
 designs do not gain integrity against an external K/V-memory attacker.
 
+## Working-memory ownership and CLEAR
+
+The [working-memory evidence and reproduction guide](formal/session-isolation/README.md)
+adds completed current-writer histories and ownership checks for native RAMs,
+transient state and K/V staging. The baseline/seeded committed cache requires all
+nine current data/metadata returns before validity; its actual typed-write
+payloads have current stage-writer provenance. These facts constrain mutable
+storage to initialized inference workspace at the checked boundaries.
+
+Connected protocol proofs also retain accepted requests through busy CLEAR.
+Both shell classes have a complete model-read core barrier. Separate connected
+semantic/model/K/V proofs restore all thirty native cache outputs and show that
+healthy active semantic idle owes or presents no model or typed K/V work. The
+four current images are source-bound to their applicable native classes.
+
+These are component results with explicit initial tracking, numerical-service
+and RAM-history boundaries. **Full device session isolation through subsequent
+token publication is not yet established.** The common core/outer transport
+epoch join, numerical/reply composition and complete mutable-state signoff
+remain open. Logical CLEAR revokes ownership; it does not erase raw payload bits.
+The packet retains 82 selected component records and thirteen real corruption
+controls, including premature drain release and a skipped K/V RAM writer.
+Counts overlap and are not a coverage score.
+
 ## Public control and important limits
 
 The separate public-controller proofs check which commands are admitted and
