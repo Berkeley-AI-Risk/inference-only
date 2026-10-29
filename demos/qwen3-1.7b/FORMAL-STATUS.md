@@ -14,6 +14,42 @@ as of October 29, 2026. Its named source hashes match [SOURCE-INPUTS.json](SOURC
 These are RTL results; equivalence to the complete synthesized FPGA image
 remains a separate obligation.
 
+## Verification objective
+
+The intended whole-design result combines two claims:
+
+1. **Functional correctness:** permitted operations behave as specified.
+   `APPEND(token)` adds the supplied token to the logical tape; `STEP` computes
+   the next token with the fixed model and its specified numerical rules,
+   appends it to the tape and returns it;
+   `CLEAR` resets the logical context. Arithmetic, ordering, storage,
+   sequencing, clock crossings and reset behavior are part of this claim.
+2. **Inference-only restrictions:** every possible application command
+   sequence stays within the permitted interface. Inputs cannot replace the
+   accepted weights, bypass authentication, select an alternative hardware
+   execution program or obtain a general private tensor/matrix-operand port.
+
+The target is that the configured circuit's observable behavior refines this
+abstract interface under its declared environment contracts. Invalid commands,
+backpressure, faults, cancellation and commands issued while busy must have
+specified rejection, waiting or error behavior. Restricted fixed-model startup
+provisioning, status registers and the 16-bit attention-status diagnostic are
+also explicit parts of the interface; the complete engineering image has
+facilities beyond the three normal inference operations.
+
+`CLEAR` concerns logical state ownership and later inference: previous tape
+contents and derived context must not be used after a completed clear. It does
+not require every private memory cell to be physically overwritten with zeros.
+Successful native boot and legal inference must also be shown reachable under
+the external-service contract; completion guarantees require their stated
+service assumptions. The hardware configuration is assumed frozen, as
+described in the [interface assessment](README.md#interface-and-inference-only-scope).
+
+**This joint whole-design theorem is the objective, not an achieved result.**
+A proof of it would still leave the separate residual-training-factor analysis:
+how much training work an external controller could obtain by combining the
+permitted operations.
+
 ## Checked component scopes
 
 | Component | Qualified result | Boundary |
@@ -28,6 +64,19 @@ The reader's finite native applicability run checks all 72 cache slots,
 assertions. These tests qualify source applicability and fault sensitivity;
 their assertion count is not a proof-coverage percentage. Exhaustive numerical
 sweeps and finite FPGA/reference comparisons are separate evidence classes.
+
+## How the proof layers support the objective
+
+| Layer | Contribution to the whole-design argument |
+| --- | --- |
+| Arithmetic and data blocks | Establish the specified numerical functions and storage/transport behavior. These are ordinary functional-correctness obligations. |
+| Authentication and owned copies | Establish which fixed-model bytes may be used and preserve those bytes through buffers and consumers. |
+| Controllers, lifecycle and state ownership | Establish permitted operation sequences, operand/address authority, command/error handling and logical CLEAR/session behavior. |
+| Source-bound composition and implementation mapping | Join the block contracts at actual ports and configurations, discharge abstractions and state the remaining platform/physical assumptions. Component results become a whole-design claim only after these joins are complete. |
+
+Simulation, exhaustive finite-domain checks, reachable covers and source-fault
+tests also qualify behavior and proof applicability. They retain their stated
+domains and support the formal program alongside the universal RTL proofs.
 
 ## Verification method
 

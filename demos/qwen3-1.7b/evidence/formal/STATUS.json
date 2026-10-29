@@ -57,7 +57,7 @@
     "scalar_bits": 16
   },
   "design_class": "AWIC",
-  "development_package_manifest_sha256": "ae16dfafea49dcee803449bd8cca2b9713daeb92451c5041a5ec2b5a05b52756",
+  "development_package_manifest_sha256": "b6b71e7aa0914d3a998d35839586885b24cecd7693deb918a07a490d3be86a93",
   "evidence_role": "Source-bound status summary of the development verification package. Certificate hashes identify reports; this summary does not reproduce their solver proofs.",
   "production_reader_parameters": {
     "AUTH_SLOTS": 32,
@@ -135,6 +135,26 @@
     }
   },
   "status": "component-proofs-qualified-whole-design-incomplete",
+  "verification_objective": {
+    "additional_public_facilities": [
+      "Restricted fixed-model startup provisioning",
+      "Status registers",
+      "16-bit attention-status diagnostic"
+    ],
+    "configuration_and_environment": "Frozen configured inference circuit under explicit clock/reset/memory service contracts; no claim that the general-purpose AWS host or reprogrammable management plane is inference-only.",
+    "functional_correctness": "APPEND, STEP and CLEAR implement the specified logical tape, fixed numerical model and clear behavior, including storage, sequencing, transport and reset contracts.",
+    "inference_only_restrictions": "Arbitrary application command sequences stay within the declared interface; accepted weights and fixed execution authority cannot be replaced or bypassed through that interface.",
+    "logical_clear": "Completed CLEAR prevents use of previous tape and derived context; physical zeroing of every RAM cell is not required.",
+    "normal_inference_operations": {
+      "APPEND(token)": "Append the supplied legal token to the logical tape.",
+      "CLEAR": "Reset logical context and cancel/discard prior-session work through the specified clear/drain protocol.",
+      "STEP": "Compute the next token with the fixed numerical model, append it to the tape and return it, subject to the declared command guards."
+    },
+    "proof_layers_support_both_claims": true,
+    "reachability_and_progress": "Successful native boot and legal inference reachability remain required. Completion guarantees use explicit external-service assumptions.",
+    "residual_training_factor_quantification_is_separate": true,
+    "whole_design_target_proven": false
+  },
   "whole_design_obligations": [
     {
       "id": "complete-source-basis",
