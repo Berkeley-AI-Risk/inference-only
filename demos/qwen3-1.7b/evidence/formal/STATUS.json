@@ -1,0 +1,191 @@
+{
+  "as_of": "2026-10-29",
+  "certified_residual_training_factor": false,
+  "complete_solver_evidence_bundle_included_in_release": false,
+  "component_reports": {
+    "authenticated_parallel_stream": {
+      "passed_for_stated_scope": true,
+      "report": "PARALLEL-AUTHENTICATED-STREAM-COMPOSITION-CERTIFICATE.json",
+      "scope": "After common sampled initialization, every accepted output beat of the actual four-worker, eight-slot-per-worker parent belongs to the oldest not-yet-retired accepted input header in that digital epoch. Its 16-bit page label and 2048 payload bits are exactly that header page snapshot, with accepted positions 0..255 and last exactly at position 255. For its complete 65536-byte page P and legal index p, H_i=SHA256(0x00||MODEL_TAG||LE64(16*p+i)||P[4096*i:4096*(i+1)]) and SHA256(0x01||MODEL_TAG||LE64(p)||H_0||...||H_15)=R(p), the immutable fixed root. Arbitrary data, stalls, child interleaving, all physical slots, repeated page identifiers and unbounded slot/ticket reuse are covered under the stated sampled digital reset/fault contract.",
+      "sha256": "3a798e8731ec67011d2a1bc4c603bcada3d1136cf716a60a7b6a23aed0e094c6"
+    },
+    "authenticated_token_machine_model_input": {
+      "passed_for_stated_scope": true,
+      "report": "VERIFIED-RESPONSE-AUTHENTICATED-COMPOSITION-CERTIFICATE.json",
+      "scope": "After common sampled initialization, every presented token-machine private model input tuple is the oldest unconsumed verified reader handshake of the current queue epoch. It preserves all requested authenticated payload bytes and LAST, including requested half selection/zero padding, request concatenation order, arbitrary stalls, simultaneous push/pop, pointer reuse and reset/abort ownership. Invalid-cycle physical payload refresh cannot publish or replace an owned word.",
+      "sha256": "ef21396ee21aa63f76b4af8e029a8edc3127ae1a098dbd78b08535cb6ab310ca"
+    },
+    "authenticated_worker_output": {
+      "passed_for_stated_scope": true,
+      "report": "WORKER-AUTHENTICATED-OUTPUT-COMPOSITION-CERTIFICATE.json",
+      "scope": "After common sampled initialization, every accepted output beat of the native eight-slot worker equals its corresponding current-header accepted private page bytes. For that complete 65536-byte page P and legal page p, define H_i = SHA256(0x00 || MODEL_TAG || LE64(16*p+i) || P[4096*i:4096*(i+1)]) for i=0..15. The final root return associated with this accepted output is SHA256(0x01 || MODEL_TAG || LE64(p) || H_0 || ... || H_15), and this value equals the immutable fixed root R(p). The page identifier and ordered beat positions refer to this same authenticated page snapshot. Arbitrary data, stalls, other-context interleaving and retired-slot reuse are covered within the stated digital component epoch contract.",
+      "sha256": "4ea6614f66553e7ca36425d399621b7572de09eeaa58d98e7fb3cd68ee83e41d"
+    },
+    "parent_verified_response_queue": {
+      "passed_for_stated_scope": true,
+      "report": "VERIFIED-RESPONSE-QUEUE-QUALIFICATION-AUDIT.json",
+      "scope": "After a sampled reset or model_abort, every presented model_data tuple is exactly the oldest verified reader handshake not yet consumed in the current queue epoch. The complete 2048-bit payload and LAST snapshot survive arbitrary downstream stalls, invalid incoming physical refresh, simultaneous push/pop, wrap and reuse. At most two tuples are published. Invalid payload refresh cannot change a published head or tail; abort masks both interfaces and resets all logical ownership without resetting private RAM.",
+      "sha256": "e495e3c62e89d0a6d1afb553dbce57f887a8be92129020811620d41cb2c7eb8d"
+    },
+    "physical_core_model_buffer": {
+      "passed_for_stated_scope": true,
+      "report": "CORE-MODEL-BUFFER-QUALIFICATION-AUDIT.json",
+      "scope": "Every physical model_buffer bit equals its most recent input sampled while buffer_valid was false; the complete 2048-bit register holds whenever buffer_valid is true. At every index 0..127, loaded_value is exactly the corresponding 16-bit slice of that same held buffer. Initial contents remain arbitrary. The physical capture and all scalar positions are refined to the actual one-attention-core production fixed core.",
+      "sha256": "031c23e5b1e842bc5ca35071282bd6e4c3ad7bf211db5991c722b2d1ff772f7a"
+    },
+    "production_reader_control": {
+      "passed_for_stated_scope": true,
+      "report": "READER-AWS-CONTROL-QUALIFICATION-AUDIT.json",
+      "scope": [
+        "Queued words plus the pending synchronous read equal reserved credits and remain at most four; reference and event updates bind the native counters.",
+        "Each selected current cache reservation has its exact tag and ordinary accepted prefix of 0..256 beats. Complete publication, live read hits, legal physical addresses and protection of earlier accepted rows follow at all 72 slots.",
+        "Each read issue belongs to the current accepted legal request and carries its request-relative address, remaining length and LAST/short/high-half metadata. All five transfer sizes and every public format bit are bound."
+      ],
+      "sha256": "f1bf0b238ac36d7a20813a080e172471e911b4d45e7cbec2da2d41b13d14a649"
+    },
+    "production_reader_response": {
+      "passed_for_stated_scope": true,
+      "report": "READER-AWS-AUTHENTICATED-RESPONSE-COMPOSITION-CERTIFICATE.json",
+      "scope": "After common sampled initialization, every presented word of the actual model-reader response belongs to the current accepted legal request and carries the exact next authenticated page-row snapshot in request order. The requested 128-byte half is selected and zero-padded when needed; other legal transfers pass complete 256-byte words. LAST identifies exactly the final requested word. Presented words remain stable during live fault-free consumer stalls, and cache/response slot reuse cannot substitute another token. Cancellation grants no new response ownership; fresh initialized epochs cannot expose discarded pending/queued words.",
+      "sha256": "cf00a109f754c299e2ced5d9ae92c669e5c2eb9d644511ae40c397bc85b2ab4e"
+    }
+  },
+  "core_physical_buffer_scope": {
+    "authenticated_operand_admission_and_use_proven": false,
+    "physical_buffer_bits": 2048,
+    "positions": 128,
+    "scalar_bits": 16
+  },
+  "design_class": "AWIC",
+  "development_package_manifest_sha256": "ae16dfafea49dcee803449bd8cca2b9713daeb92451c5041a5ec2b5a05b52756",
+  "evidence_role": "Source-bound status summary of the development verification package. Certificate hashes identify reports; this summary does not reproduce their solver proofs.",
+  "production_reader_parameters": {
+    "AUTH_SLOTS": 32,
+    "AUX_PAGES": 8,
+    "PREFETCH_PAGES": 32,
+    "WEIGHT_PAGES": 64,
+    "verifier_slots_per_worker": 8,
+    "verifier_workers": 4
+  },
+  "proof_bundle_publication_required_for_independent_solver_reproduction": true,
+  "qualified_endpoint": "Token-machine private model input, including authenticated requested bytes and LAST through the parent two-word queue.",
+  "schema": "qwen17-formal-development-status-v1",
+  "scope_limits": [
+    "Ends at token-machine model input. Private fixed-core operand admission, scheduling, address authority, scalar/vector use and complete numerical refinement remain open.",
+    "Sampled component reset/abort semantics only; full transport drain, relational whole-machine CLEAR/session isolation, public lifecycle and successful whole-machine boot/inference reachability remain open.",
+    "The exact fixed-root hash equation is preserved. Excluding a distinct colliding model uses the stated cryptographic resistance assumption. Vendor IP, physical memory/CDC/timing/image equivalence and protected K/V integration remain separate."
+  ],
+  "source_binding_scope": "Identities of named files only; no claim that every function in those files or the complete synthesized FPGA image is formally proved.",
+  "source_files": {
+    "hardware/design/cl_qwen.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "f9454da599d51fdc0dd6a5042662f1fd23b568da3be86704037dc9d657a7a2bb"
+    },
+    "hardware/design/qwen_aws_host_machine.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "287909a9e6aaf72ddeb75d5a15d2c82f1db554b79d5926f855cec0066454a06a"
+    },
+    "hardware/design/qwen_fixed_core.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "7846a43595e2b5e2a1cef4d4d371c4aa080b49ee2d5204d62fa37386d5ef44b6"
+    },
+    "hardware/design/qwen_hbm_cdc_verified_machine.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "9699b8cc20be52a72da40136ded0bc24bdb5b766620e0e95c0cd16995447599b"
+    },
+    "hardware/design/qwen_host_hbm_verified_machine.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "9a0de077899f12ffd7359c64b16d02f5a9ff8d1d9403a6f276f78aecfd64ba1b"
+    },
+    "hardware/design/qwen_model_hash_frame.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "d066cdcc691846cb7f82237c8ffeccabfa1a3de7fe5dbb33a8fd8a3f62dcf876"
+    },
+    "hardware/design/qwen_model_page_auth_parallel_shared.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "08e7d4148a8477856e6f8814127092d520d759fdfa4c6dd036c7e1ef07b669da"
+    },
+    "hardware/design/qwen_model_page_auth_shared_worker.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "7f36f237da333f094e3265199e9d368b4e54e23eba303d0c354e2731cd4d6d3f"
+    },
+    "hardware/design/qwen_model_reader.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "cd3b16645e0eea96997a5e0c1329417fc5424bf16fabc8f86229fd56563c8994"
+    },
+    "hardware/design/qwen_model_verified_machine.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "285cf1316aa66246d5d5fe774e6a8a2409e2fe3179a192a004ce1129d30efc6d"
+    },
+    "hardware/design/qwen_ocl_hbm_verified_machine.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "c96dda6529a473f4885d18bdbde36875f995f5ea7255b1f6261b55b506691d58"
+    },
+    "hardware/design/qwen_sha256_pipeline.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "53b5c2c1a96d121bdd432debacc8d7e1f5a334794a3fa599131b0412c70851e9"
+    },
+    "hardware/design/qwen_token_machine.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "ff324391ede706693509b74bb13b0d2a56e665a48a9d96b6588f4933a33eb18e"
+    },
+    "hardware/design/qwen_verified_machine.sv": {
+      "matches_released_source_inputs": true,
+      "sha256": "8b7599d07521eb58bf1b1a70de535380470c7d2ebcb1624be87391581d99f744"
+    }
+  },
+  "status": "component-proofs-qualified-whole-design-incomplete",
+  "whole_design_obligations": [
+    {
+      "id": "complete-source-basis",
+      "requirement": "All actual custom synthesis-root modules, native parameterizations and proof/image provenance, with explicit vendor boundaries.",
+      "verdict": "partial"
+    },
+    {
+      "id": "public-interface-and-lifecycle",
+      "requirement": "All public token, provisioning and diagnostic operations, request/result ownership and coherent lifecycle/reset/fault restrictions.",
+      "verdict": "partial"
+    },
+    {
+      "id": "issued-model-write-lock",
+      "requirement": "Model writes cannot be issued after runtime admission, including old queued writes across transport and clock domains.",
+      "verdict": "partial"
+    },
+    {
+      "id": "authentication-through-use",
+      "requirement": "Actual SHA arithmetic/framing/constant expected metadata and checked private copy preserved through consumer use.",
+      "verdict": "partial"
+    },
+    {
+      "id": "fixed-private-execution",
+      "requirement": "Native schedule and operand/address/routing restrictions for every admitted public/diagnostic operation.",
+      "verdict": "open"
+    },
+    {
+      "id": "state-and-session-isolation",
+      "requirement": "Every resetless memory/staging register has current-owner history before use; relational new-session isolation after CLEAR/drain.",
+      "verdict": "partial"
+    },
+    {
+      "id": "numerical-refinement",
+      "requirement": "Connect complete numerical function/error contracts and vector histories to the fixed execution and owned operands.",
+      "verdict": "partial"
+    },
+    {
+      "id": "whole-path-reset-cdc-composition",
+      "requirement": "Noncircular proved dependency graph joined to actual production ports, clocks/resets, buffers and ownership epochs.",
+      "verdict": "partial"
+    },
+    {
+      "id": "native-successful-operation-reachability",
+      "requirement": "Successful full-native-image boot/seal and legal inference are reachable under the stated external-service contract; use checked compressed witnesses/ranking certificates if a full unroll is impractical.",
+      "verdict": "open"
+    },
+    {
+      "id": "reproducible-evidence",
+      "requirement": "Frozen source/model/tool bindings, raw queries/replies, reachable covers, semantic mutation traces and accurate published scope.",
+      "verdict": "partial"
+    }
+  ],
+  "whole_machine_refinement_complete": false
+}

@@ -2,29 +2,76 @@
 
 [Guide](README.md) · [Validation](VALIDATION.md) · [Reproduction](REPRODUCE.md)
 
-**No formal-verification proof suite for this Qwen3-1.7B design is supplied in
-this release.** The package does not claim a whole-machine refinement theorem,
-a universal numerical-correctness theorem or a formally certified residual
-training factor for this implementation.
+**Formal verification is in progress. Source-bound component results cover the
+authentication path through the token machine's private model input. The
+complete inference design is not formally verified.** No whole-machine
+refinement theorem, universal numerical-correctness theorem or formally
+certified residual training factor is claimed.
 
-## Published evidence and its boundary
+The [status record](evidence/formal/STATUS.json) identifies the checked source
+files, production parameters, component-certificate hashes and open obligations
+as of October 29, 2026. Its named source hashes match [SOURCE-INPUTS.json](SOURCE-INPUTS.json).
+These are RTL results; equivalence to the complete synthesized FPGA image
+remains a separate obligation.
 
-The [validation guide](VALIDATION.md) links finite numerical/FPGA comparisons,
-source bindings, installation records and vendor implementation reports.
-The [hardware guide](HARDWARE.md) describes the fixed inference schedule,
-private checked-weight storage, clock crossings and implementation checks.
-Those records have their stated engineering scopes; they are not solver proofs
-of the complete inference circuit or its cryptographic security.
+## Checked component scopes
 
-The [interface assessment](README.md#interface-and-inference-only-scope)
-describes the inference operations, restricted startup loader, status facilities
-and attention-control diagnostic. Its inference-only interpretation assumes a
-frozen configuration or eventual fixed ASIC. The reprogrammable AWS management
-platform and physical attacks require separate assessment. K/V integrity and
-weight encryption are not features of this released image.
+| Component | Qualified result | Boundary |
+| --- | --- | --- |
+| SHA-256 and fixed-root page authentication | SHA/framing meaning, current-page byte preservation and ordered authenticated output through four workers with eight slots each. | Scoped checked composition with its stated compiler, solver and binding-checker trusted base. Excluding a distinct colliding model additionally uses the cryptographic resistance assumption. |
+| Production AWS model reader | Authenticated cache publication, independent captured reads, request-relative payload/LAST/short formatting, response order, stalls, reuse and component cancellation. | Actual 64 weight + eight auxiliary cache lines and prefetch 32. Module-default proofs are not substituted for this configuration. |
+| Parent verified-response queue | Both complete 2,049-bit words preserve the verified reader snapshot and FIFO order through invalid-cycle refresh, stalls, simultaneous events and reset/abort. | Native unit induction with Z3 and cvc5, complete compiled state/port refinement and checked composition to the token-machine private model input. |
+| Fixed-core model-beat storage | Complete 2,048-bit physical capture/hold and all 128 sixteen-bit scalar slices. | Storage history and selection only. Native validity/index ownership and actual operand admission/use remain open. |
 
-## Relation to SimpleStories
+The reader's finite native applicability run checks all 72 cache slots,
+566,528 response bytes and thirteen injected source faults, with 5,274 active
+assertions. These tests qualify source applicability and fault sensitivity;
+their assertion count is not a proof-coverage percentage. Exhaustive numerical
+sweeps and finite FPGA/reference comparisons are separate evidence classes.
 
-The [SimpleStories formal package](../simplestories-v2-5m/FORMAL-STATUS.md)
-establishes scoped properties for its named RTL, source/image bindings and
-assumptions. Those results do not transfer to Qwen3-1.7B.
+## Verification method
+
+The work retains native state and parameter dimensions, uses independent
+history references, and checks reset bases plus unrestricted induction.
+Compiled bindings connect the properties to actual clocks, state, memory
+ports, complete payloads and instance parameters. Reachable covers and
+deliberately altered source or bindings test the scope of each result.
+Frozen inputs, raw solver queries/replies and fresh model regeneration support
+the development audits. Resource-stopped or unresolved attempts receive no
+proof credit.
+
+Conservative child-interface abstractions have explicit boundaries. Composed
+authentication claims discharge the child contracts they consume; the
+physical core-buffer observation leaves its numerical children unproved.
+The trusted base includes RTL/SMT translation, solver soundness, the binding
+and composition checkers, and the stated mathematical lifting steps.
+
+## Remaining obligations
+
+- Connect authenticated inputs to the fixed core's actual scalar/projection
+  operand admission, index histories, scheduling and use.
+- Complete public command/lifecycle restrictions, model-write drain/lock and
+  whole-path reset/clock-crossing composition.
+- Establish current-owner histories for all remaining private state and
+  relational session isolation after CLEAR and drain.
+- Complete general arithmetic, vector and whole-model numerical refinement;
+  general FP32 multiplication remains unresolved.
+- Establish successful full-native boot/inference reachability and the
+  synthesis, vendor-IP, memory, timing and image-equivalence boundaries.
+
+The released circuit does not authenticate K/V or encrypt weights. These
+component results do not qualify the separate protected K/V extension or
+resistance to physical modification of the reprogrammable AWS platform.
+
+## Evidence and reproduction boundary
+
+This release contains the source-bound status summary, finite validation
+records and implementation evidence. **It does not include the complete
+development solver/evidence bundle.** Independent solver reproduction needs
+that bundle, its source/model/tool bindings and the recorded commands.
+Checking the status JSON or source hashes alone does not rerun a proof or
+attest an FPGA currently loaded in another machine.
+
+The [validation guide](VALIDATION.md) and [reproduction guide](REPRODUCE.md)
+describe the evidence supplied here. [SimpleStories' scoped proofs](../simplestories-v2-5m/FORMAL-STATUS.md)
+have their own RTL, bindings and assumptions and do not transfer to Qwen.

@@ -81,6 +81,10 @@ fraction. Tang Mega's scoped proofs and capacity estimates **do not transfer
 automatically to Qwen**. No whole-machine refinement proof, physical-attack
 resistance certification or measured training-capacity bound is claimed here.
 
+Qwen-specific [formal work](FORMAL-STATUS.md) has qualified named authentication,
+reader, response-queue and physical storage scopes. Actual fixed-core operand
+use, whole-machine refinement and image equivalence remain open.
+
 ## Analysis
 
 The [Qwen residual training analysis](TRAINING-CAPACITY.md) supplies the

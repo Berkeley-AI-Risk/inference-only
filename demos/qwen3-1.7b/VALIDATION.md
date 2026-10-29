@@ -16,6 +16,7 @@ The released circuit does not authenticate K/V or encrypt weights.
 | Additional hardware workloads | [Measurements](measurements.json), [workloads and limits](README.md#additional-validation-workloads) | Finite token comparisons, CLEAR/replay checks and workload-specific host timings. |
 | Numerical reference | [Runnable reference](reference/README.md), [recorded checks](evidence/reference/CHECKS.json) | Independent software checks for the stated fixed numerical model and selected cases. |
 | Source and implementation | [Source inputs](SOURCE-INPUTS.json), [implementation inputs](hardware/IMPLEMENTATION-INPUTS.json) and [implementation reports](evidence/implementation/REPORTS.json), [hardware guide](HARDWARE.md) | Identities of the measured build and preserved timing, routing and implementation evidence under its declared constraints. |
+| Formal development status | [Scoped results and open obligations](FORMAL-STATUS.md), [source-bound summary](evidence/formal/STATUS.json) | Component RTL proof status for the identified sources. Whole-machine refinement remains incomplete; the complete solver/evidence bundle is not included in this release. |
 | Installation | [Deployment](deployment.json), [rehearsal](evidence/installation.json), [installation guide](INSTALL.md) | Recorded public-image availability and a finite installation/replay test in the image owner's existing SDK environment. |
 
 The [common benchmark](../../docs/benchmarks/FPGA-SPEED-BENCHMARK.md) defines

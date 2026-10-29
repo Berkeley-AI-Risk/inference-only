@@ -5,8 +5,10 @@
 Recorded-evidence checks, fresh model computations and FPGA/source-build work
 are separate operations. Use Python 3.12 for the commands below. The
 [validation page](VALIDATION.md) identifies the released image and evidence;
-[FORMAL-STATUS.md](FORMAL-STATUS.md) states that no Qwen-specific proof suite
-is supplied here.
+[FORMAL-STATUS.md](FORMAL-STATUS.md) summarizes the component RTL results and
+open obligations. This release supplies a [source-bound status record](evidence/formal/STATUS.json),
+rather than the complete development solver/evidence bundle. The commands
+below check the supplied records and do not rerun the formal campaigns.
 
 ## Check the recorded release offline
 
