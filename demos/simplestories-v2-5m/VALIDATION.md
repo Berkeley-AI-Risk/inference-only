@@ -51,3 +51,9 @@ training factor. See [the inference-only assessment](INFERENCE-ONLY.md).
 For offline integrity and recorded-evidence checks, follow
 [REPRODUCE.md](REPRODUCE.md). For guarded board installation and recovery, read
 [PROGRAMMING.md](PROGRAMMING.md) and the [host guide](host-app/README.md).
+
+The [normal K/V return proof](formal/kv-return/README.md) has separate source,
+27-query and full native operating/corruption replay. It connects current
+committed plaintext to the accepted request at the normal guard response.
+The formal-status guide distinguishes functional correctness from inference-only
+restrictions and states the remaining whole-design obligations.

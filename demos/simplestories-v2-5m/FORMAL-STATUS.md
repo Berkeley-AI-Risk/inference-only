@@ -3,6 +3,45 @@
 This page covers the four current SimpleStories-V2-5M configurations. Qwen has
 separate implementation and test evidence; no Qwen theorem is claimed here.
 
+## Verification objective
+
+As in the [Qwen3-1.7B formal program](../qwen3-1.7b/FORMAL-STATUS.md),
+the intended whole-design result combines two claims:
+
+1. **Functional correctness:** permitted operations behave as specified.
+   `APPEND(token)` extends the logical tape; `STEP` computes, appends and returns
+   the fixed model's next token using the configuration's numerical and sampling
+   rules; `CLEAR` resets the logical context. Arithmetic, data preservation,
+   sequencing, backpressure, reset and clock crossings belong to this claim.
+2. **Inference-only restrictions:** arbitrary application command sequences
+   remain within the permitted interface. Inputs cannot replace the accepted
+   model, bypass authentication, choose another execution program or obtain a
+   general private tensor/operand port. Ownership and lifecycle rules must also
+   prevent discarded workspace from influencing later inference after CLEAR.
+
+The seeded design additionally permits bounded temperature and public-seed
+settings while its tape is empty and idle. Restricted boot/provisioning, status
+and diagnostic facilities have their own stated interfaces. Invalid or busy
+commands, cancellation and faults need specified behavior as well as legal
+inference. The circuit configuration and stated external-service contracts are
+assumed fixed.
+
+**The joint whole-design theorem is an objective, not an achieved result.**
+Universal whole-model numerical correctness and complete session isolation
+through subsequent token output remain open. A restricted interface alone does
+not establish correct token computation; correct examples alone do not establish
+the restrictions for arbitrary command sequences.
+
+| Proof layer | Functional-correctness role | Inference-only role |
+| --- | --- | --- |
+| Arithmetic, storage and transport | Establish the specified numerical functions and preserve requested data and ordering. | Supply trustworthy component contracts for restricted computation. |
+| Authentication and checked copies | Compute the checked digest and preserve the accepted bytes through use. | Bind computation to the permitted fixed model and protected current data. |
+| LOCK, controllers and private access paths | Establish operation/lifecycle and request/reply behavior. | Exclude model writes and unauthorized programs, operands or addresses at the checked boundaries. |
+| Working-memory ownership and CLEAR | Establish fresh/current data before consumption and specified cancellation. | Constrain mutable storage to authorized inference state; full post-CLEAR isolation still needs composition. |
+| Source-bound composition and implementation mapping | Join contracts at actual ports, parameters and state. | Connect restrictions to the actual circuit; vendor, physical and mapped-image boundaries remain explicit. |
+
+The following sections state the established scopes and the remaining boundaries.
+
 **The source proofs establish restricted model writes, authentication through
 use, and fixed private access paths.** The [authentication/access package](formal/authentication-access/README.md)
 connects the actual SHA engines, checked model RAM, fixed six-layer schedule,
@@ -128,7 +167,7 @@ that the command queue is empty when LOCK arrives.
 | Checked boundary | Established result | Main limit |
 | --- | --- | --- |
 | Authentication to runtime LOCK | 45 assertions per image, both solvers; native ordered byte stream, padding and one BEGIN per hard reset | No formal full native-size successful-boot reachability witness. |
-| Native SHA and sealed model RAM through consumption | SHA compression/chaining, fixed digest/metadata selection, complete fill/hash/seal and current service/consumer ownership are source-bound and composed | SHA resistance is assumed. Private decryption replies remain unrestricted; AES/SIV algorithm correctness is separate. |
+| Native SHA and sealed model RAM through consumption | SHA compression/chaining, fixed digest/metadata selection, complete fill/hash/seal and current service/consumer ownership are source-bound and composed | SHA resistance is assumed. That package leaves private decryption replies unrestricted; the normal K/V return proof below has a separate scope. |
 | Fixed schedule and arithmetic/state access | Six-layer sequence: 22 assertions; actual datapath: 53; group/metadata addresses: 23; lookup: 9. Both solvers complete bases, induction and covers | Numerical-child outputs remain arbitrary in the datapath scope; no whole-transformer numerical theorem. |
 | Protected K/V through attention use | Both protected designs: 221-assertion history, 357-assertion current guard/cache, 43-assertion actual hash framing/chaining and separate 34-assertion attention scopes; both solvers | Component scopes overlap. The integrity interpretation assumes SHA resistance and trusted on-chip tags/state; confidentiality and physical tampering are separate. |
 
@@ -161,6 +200,33 @@ remain open. Logical CLEAR revokes ownership; it does not erase raw payload bits
 The packet retains 82 selected component records and thirteen real corruption
 controls, including premature drain release and a skipped K/V RAM writer.
 Counts overlap and are not a coverage score.
+
+## Normal returned K/V data
+
+The encrypted-memory design has a separate [normal K/V return proof and portable
+replay](formal/kv-return/README.md). At the integrity guard's normal live read
+response, the complete 256-bit word equals the current committed plaintext word
+named by the **actual accepted request**, under the stated digital-memory and
+native-function/primitive contracts. The argument follows the actual
+seal/store/open producer, capture register, staging RAM, cache, synchronous read
+pipeline and output assembly. It does not assume a desired matching decrypted
+reply or stable upper input wires while busy.
+
+This is functional storage/data-path correctness. It also supports the
+inference-only argument by connecting consumed mutable data to current
+authorized writers. It is a component of session isolation; public CLEAR/drain
+entry, complete hash/tag/fault correspondence, token publication and physical
+DDR refinement remain separate obligations. It does not establish standard-AES
+conformance, confidentiality or a whole-model numerical theorem.
+
+Fresh standalone replay regenerates the exact source graph and checks all 27
+new point/lifting queries. Concrete native execution checks 72 writes and 72
+normal reads across two sessions, 56 cache hits and an in-flight read canceled
+by CLEAR. Two actual staging-read defects are detected, including a wrong
+normal response with `fault=0`. These finite examples qualify applicability;
+the universal component results come from their recorded source-bound proofs.
+Imported earlier proof records are supplied and checked for integrity, but
+their entire solver campaign is not rerun by this selected replay.
 
 ## Public control and important limits
 
@@ -291,7 +357,7 @@ The selected greedy-source records retain these scoped results:
 | --- | --- | --- |
 | Baseline | 34 attention-controller assertions; 72 recorded query checks | Child arithmetic and memory replies remain unrestricted at the listed outputs. No numerical-attention or concrete-memory composition theorem. |
 | K/V-protected | Current joint guard/cache proof: 357 assertions; actual hash and separate 34-assertion attention use composed through checked source connections | Cryptographic resistance and trusted on-chip state are assumptions. No whole-machine numerical refinement. |
-| K/V protection and encrypted memory | Native encrypted guard/current cache: 357 assertions; actual hash and separate 34-assertion attention use composed | Arbitrary decryption replies; no AES/SIV confidentiality/correctness or numerical-attention theorem. |
+| K/V protection and encrypted memory | Native encrypted guard/current cache: 357 assertions; actual hash and separate 34-assertion attention use composed | That authentication/access scope abstracts decryption. The separate normal-return proof below checks K/V data values; confidentiality and numerical attention remain outside it. |
 
 Counts are nonadditive. The [qualification guide](GREEDY-QUALIFICATION.md)
 identifies the exact source associations and recorded solver/audit results.

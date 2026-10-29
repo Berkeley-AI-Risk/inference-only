@@ -54,7 +54,7 @@ reprogram the board or select a different model.
   [encrypted memory](ENCRYPTED-MEMORY.md).
 - [Greedy qualification](GREEDY-QUALIFICATION.md), [seeded qualification](CURRENT-QUALIFICATION.md)
   and [validation and limits](VALIDATION.md).
-- [Formal scope](FORMAL-STATUS.md).
+- [Formal scope](FORMAL-STATUS.md): functional correctness and inference-only restrictions; [normal K/V return proof and replay](formal/kv-return/README.md).
 - [Reproduction](REPRODUCE.md), [vendor setup](VENDOR-SETUP.md) and
   [source/license inventory](../../MANIFEST.json).
 

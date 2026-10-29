@@ -53,6 +53,8 @@ jobs:
         run: |
           python -I -S -B formal/session-isolation/check_recorded.py
           python -I -S -B -m unittest discover -s formal/session-isolation -p 'test_*.py' -v
+          python -I -S -B formal/kv-return/replay.py --packet evidence/kv-return --recorded-only
+          python -I -S -B -m unittest discover -s formal/kv-return -p 'test_*.py' -v
       - name: Check the independent seeded model reference and client fixtures
         working-directory: demos/simplestories-v2-5m
         run: |

@@ -105,3 +105,9 @@ This checks exact recorded evidence and current source/image bindings without a
 solver or FPGA. The [guide](formal/authentication-access/README.md) gives fresh
 selected-query solver replay, source/model audit scope, cryptographic assumptions
 and unresolved secondary results.
+
+## Normal K/V return evidence
+
+The [normal returned-word guide](formal/kv-return/README.md) gives standard-library
+recorded checks and fresh Yosys/Z3/Icarus replay from the supplied closed packet.
+It states the checked component scope and imported-proof replay boundary.
