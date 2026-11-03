@@ -148,7 +148,7 @@ are also included.
 
 ## Experimental HWIC research
 
-See the [October 29 research progress note](research/hwic/PROGRESS-2026-10-29.md) for the current research status and remaining validation milestones.
+See the [November 3 research progress note](research/hwic/PROGRESS-2026-11-03.md) for the completed mapped-ROM16 block regression and remaining full-model and ASIC milestones. The [October 29 note](research/hwic/PROGRESS-2026-10-29.md) records the earlier status.
 
 The [SimpleStories-V2-5M HWIC checkpoint](research/hwic/simplestories-2026-10-27/README.md)
 includes complete fixed-weight RTL, reproduction tools and compact validation

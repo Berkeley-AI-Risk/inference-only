@@ -154,8 +154,8 @@
       "sha256": "58a1fc0e3f86ff8d12a02ff8b78b5e5294d8ef43ce5b77604ac96922f8e454fd"
     },
     "README.md": {
-      "bytes": 15078,
-      "sha256": "3a9e73e556234dd6db1f23e028411c2dad54b1b9447c0a477275d3e9a801ae17"
+      "bytes": 15191,
+      "sha256": "17bce48c12267a5c00a8309ac6a85e3cea12a106544e4497cd823fbb0e111883"
     },
     "REFERENCES.md": {
       "bytes": 613,
@@ -66209,6 +66209,34 @@
       "bytes": 3603,
       "sha256": "31fe4db30418a98059c9c379c8cee89500d0cf4b64dddafc8183d29153c93d23"
     },
+    "research/hwic/PROGRESS-2026-11-03.md": {
+      "bytes": 3728,
+      "sha256": "df95d4b1fa8d9b660068922a8bf8b645da859083bcf4412f95a4a099aebe7c32"
+    },
+    "research/hwic/evidence/rom16-2026-11-03/normal-seed-1.log": {
+      "bytes": 3512,
+      "sha256": "3033a0adb7b652dba2f860bbf882784ecaf8bc63ce3991977304881510b69f67"
+    },
+    "research/hwic/evidence/rom16-2026-11-03/normal-seed-17.log": {
+      "bytes": 3513,
+      "sha256": "d81587eb76cecfd1a339bff5a2c34a0555c3a6bf892947fd2832f23b7c06ef2a"
+    },
+    "research/hwic/evidence/rom16-2026-11-03/normal-seed-20261028.log": {
+      "bytes": 3514,
+      "sha256": "3aa2e9d8e36fb7e2f8ce8137bc56082f27875eb8efddb1223b859a414d4fba85"
+    },
+    "research/hwic/evidence/rom16-2026-11-03/normal-seed-2147483646.log": {
+      "bytes": 3512,
+      "sha256": "03c0852378ac9f461f90e369c1f2db07e645a6d7587e75176dad4de06fb74b6a"
+    },
+    "research/hwic/evidence/rom16-2026-11-03/results.json": {
+      "bytes": 48855,
+      "sha256": "29af4f15cb4a087e5e6d7f93da303a0e6c8a2c51fb247b99fc8de1e29d7ced92"
+    },
+    "research/hwic/evidence/rom16-2026-11-03/wrong-seed-1.log": {
+      "bytes": 132,
+      "sha256": "648fe0e063afc30af2f2bcc4d3279b20ad2bbfdd33524962d1e90899cd6c8d1b"
+    },
     "research/hwic/simplestories-2026-10-27/.gitignore": {
       "bytes": 45,
       "sha256": "40f62cfe4932849f3726b959fb32a7e6a600e29344334f3caa38c6faea248a36"
@@ -66585,6 +66613,26 @@
       "bytes": 11000,
       "sha256": "4e5f2b765964c425c2b254dc29bc410163bc5ad5fa4e807e82e181737fe7401b"
     },
+    "research/hwic/tools/bounded_process.py": {
+      "bytes": 5407,
+      "sha256": "e636b41888aa5076727eccbab58ee892ace1d4c9fc6706fa61091b5fc597665b"
+    },
+    "research/hwic/tools/build_outputs.py": {
+      "bytes": 3094,
+      "sha256": "403176fd37b8a5e85c7e28bbefe1589d3288a56093b3401ca46f66f609a13d25"
+    },
+    "research/hwic/tools/check_recorded_rom16.py": {
+      "bytes": 2912,
+      "sha256": "defa788c41dec525d11e2fbc85acb666c5b702aff8693ccc2fba9ce2220512ec"
+    },
+    "research/hwic/tools/rom16_log_checks.py": {
+      "bytes": 2497,
+      "sha256": "9185292511db48f236977a1b197677f16375d785521e290c66e5dfb73f531341"
+    },
+    "research/hwic/tools/test_checkpoint_tools.py": {
+      "bytes": 3563,
+      "sha256": "8b081c936c7ed75861523ce1cbe98f421ff6b3232eb08d6077294deaff5d0639"
+    },
     "tools/architecture_work_counts.py": {
       "bytes": 10981,
       "sha256": "693547f1cdcda5bfd1b979be60d31879628641b89909e879fc0c0692ce6d58c9"
@@ -66614,8 +66662,8 @@
       "sha256": "30a8a41d2a8851515b8891cefbff282b70292de12e2aaa80a4a578d073eaf699"
     },
     "tools/release-contract.json": {
-      "bytes": 4071315,
-      "sha256": "09d4cc7f0ad8222a910febee37daad8eb2e6c379d67f9d507b145a0df5c42b02"
+      "bytes": 4073356,
+      "sha256": "15ff18bef0a65e47afc0775c37c4c3b1864fc3c634a8dcaa7130ae2801390056"
     },
     "tools/test_architecture_work_counts.py": {
       "bytes": 17923,
@@ -66643,7 +66691,7 @@
     },
     "tools/verify_release.py": {
       "bytes": 10128,
-      "sha256": "7f2081ecccdd5a2694a27ac3e542a4f2f64c1b8ff13b7045cd6e2feae4b5c8df"
+      "sha256": "e7f8bbf2c6f954625edd69a441f2299c78049de12d5a6f2374da634bfc82d395"
     }
   },
   "full_context_evidence_scope": "Each selected greedy image passed 2,047/2,048-token CLI and browser contexts, boundary refusals, CLEAR races, pending-STEP Stop and resumed generation. The seeded image has a separate 16-case context matrix and browser record. Exact workload timestamps remain distinct from cached generation rates.",
