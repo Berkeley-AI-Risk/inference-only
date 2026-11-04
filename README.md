@@ -26,13 +26,14 @@ has its own implementation and validation evidence.
 **The demonstrated hardware designs are AWICs implemented on FPGAs. This
 repository also includes preliminary HWIC source research.**
 
-<a href="docs/figures/inference-only-chips.svg?v=ead4b711e313#gh-light-mode-only"><img src="docs/figures/inference-only-chips.svg?v=ead4b711e313#gh-light-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs that verify signed model commitments using fixed public keys, and HWICs with weights fixed in silicon." width="800"></a>
-<a href="docs/figures/inference-only-chips-dark.svg?v=64b7d3b6af41#gh-dark-mode-only"><img src="docs/figures/inference-only-chips-dark.svg?v=64b7d3b6af41#gh-dark-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs that verify signed model commitments using fixed public keys, and HWICs with weights fixed in silicon." width="800"></a>
+<a href="docs/figures/inference-only-chips.svg?v=da9a5c6081d3#gh-light-mode-only"><img src="docs/figures/inference-only-chips.svg?v=da9a5c6081d3#gh-light-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs illustrated with a k-of-n signature policy, and HWICs with weights fixed in silicon." width="800"></a>
+<a href="docs/figures/inference-only-chips-dark.svg?v=be1398ecbcc0#gh-dark-mode-only"><img src="docs/figures/inference-only-chips-dark.svg?v=be1398ecbcc0#gh-dark-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs illustrated with a k-of-n signature policy, and HWICs with weights fixed in silicon." width="800"></a>
 
-*F-AWIC, S-AWIC and HWIC schematics. The S-AWIC verifies a signed model
-commitment at boot and checks weights against the approved digest during
-inference. Private signing keys remain with the authorizing parties. Layer
-boxes are schematic; arithmetic may be shared across layers.*
+*F-AWIC, S-AWIC and HWIC schematics. The illustrated S-AWIC policy requires
+at least k of n authorities to authorize a model commitment at boot. The
+SimpleStories demonstration uses 2 of 3. Weight checks enforce the approved
+commitment; private signing keys stay off-chip. The layer boxes are
+schematic; arithmetic may be shared across layers.*
 
 ## Token interface
 
