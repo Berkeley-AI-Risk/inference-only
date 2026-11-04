@@ -17,8 +17,8 @@ matching a model commitment fixed in hardware. **Signed-Update AWICs (S-AWICs)**
 permit new model commitments authorized by signatures from designated
 signing authorities.
 
-<a href="docs/figures/ic-taxonomy.svg#gh-light-mode-only"><img src="docs/figures/ic-taxonomy.svg#gh-light-mode-only" alt="Inference-only chip (IC) branches to AWIC and HWIC; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
-<a href="docs/figures/ic-taxonomy-dark.svg#gh-dark-mode-only"><img src="docs/figures/ic-taxonomy-dark.svg#gh-dark-mode-only" alt="Inference-only chip (IC) branches to AWIC and HWIC; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
+<a href="docs/figures/ic-taxonomy.svg#gh-light-mode-only"><img src="docs/figures/ic-taxonomy.svg#gh-light-mode-only" alt="Inference-only chip (IC) branches to AWIC, HWIC, and other possible types; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
+<a href="docs/figures/ic-taxonomy-dark.svg#gh-dark-mode-only"><img src="docs/figures/ic-taxonomy-dark.svg#gh-dark-mode-only" alt="Inference-only chip (IC) branches to AWIC, HWIC, and other possible types; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
 
 The benchmark table below includes F-AWIC and S-AWIC designs. Each design
 has its own implementation and validation evidence.
