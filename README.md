@@ -15,6 +15,13 @@ The paper distinguishes two approaches in Section 4.3:
 **The demonstrated hardware designs are AWICs implemented on FPGAs. This
 repository also includes preliminary HWIC source research.**
 
+<a href="docs/figures/hwic-awic.svg#gh-light-mode-only"><img src="docs/figures/hwic-awic.svg#gh-light-mode-only" alt="Conceptual comparison of AWICs, which authenticate weights read from memory, and HWICs, whose model weights are fixed in silicon. Both use fixed inference circuitry." width="800"></a>
+<a href="docs/figures/hwic-awic-dark.svg#gh-dark-mode-only"><img src="docs/figures/hwic-awic-dark.svg#gh-dark-mode-only" alt="Conceptual comparison of AWICs, which authenticate weights read from memory, and HWICs, whose model weights are fixed in silicon. Both use fixed inference circuitry." width="800"></a>
+
+*Both approaches fix the inference function in hardware; they differ in how
+the weights are stored. The layer boxes are schematic, not a physical
+floorplan: arithmetic may be shared across layers.*
+
 ## Token interface
 
 *Inference* uses an already-trained model to produce outputs without changing
