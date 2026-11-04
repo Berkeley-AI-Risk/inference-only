@@ -1,0 +1,43 @@
+{
+  "Q_operand_provenance_proved": true,
+  "canonical_formal_project_sha256": "2cf04dda992b64162b04282cb5d85162bc1ad56107317067777d1340c9984f5a",
+  "canonical_queries_unchanged": true,
+  "expected_sat": 11,
+  "expected_unsat": 438,
+  "external_boundaries": [
+    "vendor application storage behavior",
+    "runtime-entry model-image write-fold identity",
+    "static metadata-ROM/model binding",
+    "named digital RTL/source/clock/reset semantics"
+  ],
+  "finite_native_cases": 8,
+  "fresh_elapsed_seconds": 581.0693234170321,
+  "fresh_queries": 449,
+  "fresh_solver_seconds": 4074.8459826235194,
+  "hardware_changed": false,
+  "logical_refusal_controls": 52,
+  "native_models_recompiled": [
+    "connected parent",
+    "four-bank cache"
+  ],
+  "native_projection_subtree": true,
+  "operand_transition_weakening": "Only 128 native MAC product/accumulator register updates omitted; native transition implies weakening",
+  "other_numerical_leaves_unrestricted": 19,
+  "passed": true,
+  "portable_fresh_result_sha256": "f78b1de698ae6f3de5592b958fd698d6d9789c22ba24ad1306be2a62a4badf6d",
+  "portable_packet_sha256": "35a5862f78a242a2cf000baa561b0ae3dbd6e755d360df4359be28b14fa1f05d",
+  "qualified": true,
+  "qualified_utc": "2026-11-04T22:19:34.521088+00:00",
+  "schema": "Baseline-Q-operand-provenance-qualification-v1",
+  "scope": {
+    "columns": 256,
+    "groups_per_layer": 4,
+    "lanes": 64,
+    "layers": 6,
+    "variant": "baseline"
+  },
+  "source_refusal_controls": 3,
+  "upstream_memory_proof": "Recorded published 1411-query theorem validated; not freshly rerun",
+  "whole_Q_numerical_correctness": false,
+  "whole_machine_theorem": false
+}

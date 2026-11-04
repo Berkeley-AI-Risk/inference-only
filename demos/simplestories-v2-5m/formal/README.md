@@ -38,3 +38,11 @@ discharges that cache contract's raw-reply premise through the actual custom
 DDR transport, runtime wrappers, shared routing and model CDC. It includes a
 readable theorem, explicit external boundaries and complete source/solver and
 operating reproduction. The whole-device theorem remains open.
+
+
+The [Q operand-provenance package](q-operand-provenance/README.md) connects the
+baseline model words and current accepted activations to all 64 actual Q MAC
+input pins, and current row metadata through tile storage to postscale
+coefficient pins. Its [main SMT-LIB statement](q-operand-provenance/THEOREM.smt2)
+and [readable theorem](q-operand-provenance/THEOREM.md) identify the precise scope.
+The numerical Q result, remaining consumers and whole-device theorem remain open.

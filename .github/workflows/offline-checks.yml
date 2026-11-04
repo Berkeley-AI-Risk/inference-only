@@ -50,6 +50,8 @@ jobs:
         run: python -I -S -B formal/authentication-access/check_recorded.py
       - name: Check composed model-read proof packet (recorded only)
         run: python -I -S -B demos/simplestories-v2-5m/formal/upstream-model-values/run.py --recorded-only
+      - name: Check baseline Q operand-provenance proof packet (recorded only)
+        run: python -I -S -B demos/simplestories-v2-5m/formal/q-operand-provenance/run.py --recorded-only
       - name: Check native component-value proof packet (recorded only)
         run: python -I -S -B demos/simplestories-v2-5m/formal/native-component-values/run.py --recorded-only
       - name: Check working-memory ownership and cancellation evidence (recorded only)
@@ -125,3 +127,4 @@ jobs:
         run: python -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
       - name: Confirm that the checks left the release unchanged
         run: python -I -S -B tools/verify_release.py --strict
+

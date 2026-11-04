@@ -72,7 +72,8 @@ raw-reply premise is discharged through those custom RTL modules.
 | Result | What is established | Remaining boundary |
 | --- | --- | --- |
 | [RMSNorm invocation](formal/native-component-values/README.md) | Every successful result agrees with the native finite-width operator on the current accepted role, exponent and complete vector. Retained workspace, stalls and CLEAR cannot substitute another invocation's values. | Caller operand provenance and the full graph remain open; configured stateless DSP correspondence is a platform premise. |
-| [Model reads through the memory path and cache](formal/upstream-model-values/THEOREM.md) | Requested model word, ownership and order are preserved through the actual custom transport and wrappers, including held cache returns and replacement. The native preceding-write/read-snapshot proof accounts for queued boot commands. | Vendor DDR storage semantics, the trusted model image at runtime entry and its static metadata-ROM binding remain explicit. Actual arithmetic consumption and the whole-device composition remain open. |
+| [Model reads through the memory path and cache](formal/upstream-model-values/THEOREM.md) | Requested model word, ownership and order are preserved through the actual custom transport and wrappers, including held cache returns and replacement. The native preceding-write/read-snapshot proof accounts for queued boot commands. | Vendor DDR storage semantics, the trusted model image at runtime entry and its static metadata-ROM binding remain explicit. Other arithmetic consumers and the whole-device composition remain open. |
+| [Q projection operand provenance](formal/q-operand-provenance/THEOREM.md) | Fixed-model coefficients and matching current accepted activations reach all 64 actual Q MAC input pins; current row metadata reaches tile storage, synchronous reads and both postscale coefficient pins. All six layers, four groups and 256 columns are covered. | Baseline Q operands only. The numerical Q result, normative RMSNorm arithmetic, other consumers and the whole graph remain open. |
 
 ```mermaid
 flowchart LR
@@ -81,6 +82,9 @@ flowchart LR
   T --> S[Shared model/KV routing and model CDC]
   S --> C[Production four-bank cache]
   M[Metadata-ROM/model binding] --> C
+  C --> Q[Q reader, packer and all native MAC coefficient inputs]
+  A[Current accepted activation vector] --> Q
+  C --> R[Q row metadata through tile RAM and postscale inputs]
 ```
 
 The [readable theorem and contract map](formal/upstream-model-values/THEOREM.md)
@@ -92,10 +96,22 @@ eight native models and passes all 1,411 exact queries: 1,404 UNSAT proofs and
 seven expected SAT witnesses or countermodels. Native operating and actual-only
 defect controls supplement the unbounded proof.
 
+The [Q operand-provenance package](formal/q-operand-provenance/README.md)
+connects those model words to the actual Q consumer. It retains the native
+projection subtree, queues, saved request owners, packer, tile operand registers
+and metadata memories. Every one of the 640 beat bits is covered by constant
+coefficient slices and a checked join. The main [SMT-LIB statement](formal/q-operand-provenance/THEOREM.smt2)
+names four constituent guarantees; the [readable theorem and diagram](formal/q-operand-provenance/THEOREM.md)
+state their meaning and assumptions. Its portable replay checks 449 exact
+obligations (438 UNSAT and eleven expected SAT contexts), source reconstruction,
+eight native operating/defect cases and logical refusal controls. The 19 other
+numerical leaves in its parent control model remain unrestricted. The proof
+establishes operand provenance, without claiming arithmetic-result correctness.
+
 These numerical/value results apply to the named baseline sources. They do not
 automatically qualify the other configurations. The main theorem still needs
-actual command-to-graph connections, caller/packed-operand consumption and the
-remaining arithmetic and attention/K/V value contracts.
+actual command-to-graph connections, remaining caller/consumer contracts,
+arithmetic correctness and attention/K/V value contracts.
 
 ## How this supports the inference-only claim
 
@@ -109,8 +125,9 @@ underlying write path establishes hardware enforcement of that restriction.
 The model-read value proof closes the complementary operand gap: a word claimed
 to come from that fixed model really arrives as its requested model word,
 rather than K/V contents, a different read's word or an assumed private reply.
-Connecting those cache words to all arithmetic consumers remains part of the
-whole-device proof.
+The Q operand proof now connects those words to the actual Q MAC and
+postscale coefficient inputs, with matching current accepted activations.
+Connecting the remaining consumers belongs to the whole-device proof.
 
 The authentication/access proofs supply further parts of that argument: they
 check the actual SHA engines and accepted byte streams, preserve the checked
@@ -424,3 +441,4 @@ The assessment assumes a frozen circuit and synchronous digital behavior.
 [TRAINING-CAPACITY.md](TRAINING-CAPACITY.md) state the separate architectural
 and conditional capacity assumptions; these proofs supply no certified residual
 training factor.
+
