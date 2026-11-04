@@ -154,8 +154,8 @@
       "sha256": "58a1fc0e3f86ff8d12a02ff8b78b5e5294d8ef43ce5b77604ac96922f8e454fd"
     },
     "README.md": {
-      "bytes": 17280,
-      "sha256": "3c6bab6160eaa9520bbeb0671267d2f8c9ae3531b7ca6253998cf9459b22c454"
+      "bytes": 17311,
+      "sha256": "b3a5fd27a4a86ca67a7e28202e0e067790d0f86a41eedcbb2c9a0f87eb717406"
     },
     "REFERENCES.md": {
       "bytes": 613,
@@ -69345,6 +69345,38 @@
       "bytes": 1465,
       "sha256": "9288be4314021a3b39f7267d74f2e96289deef96e3e78204448247a0e120f5d0"
     },
+    "docs/figures/inference-only-chips-dark.png": {
+      "bytes": 367070,
+      "sha256": "baa068515abd6d9b972ae2a440edc859c2d336389b8e7090358a96362688a5bc"
+    },
+    "docs/figures/inference-only-chips-dark.svg": {
+      "bytes": 243129,
+      "sha256": "64b7d3b6af4183cd918da52b38309507c1e7581f5d6cd8cc437152c0704cccc5"
+    },
+    "docs/figures/inference-only-chips.png": {
+      "bytes": 368007,
+      "sha256": "8f70d598dcb76d61d5c8e32619f110a458a04db4db579145c2a25345548f35ea"
+    },
+    "docs/figures/inference-only-chips.svg": {
+      "bytes": 242971,
+      "sha256": "ead4b711e313cd1eebbafd63cb294bbe399ba5552a5e01f7233bbe6186019954"
+    },
+    "docs/figures/s-awic-dark.png": {
+      "bytes": 184674,
+      "sha256": "6284a5074b55021bf9b51b28e2bc23ac60710d65836b1f4d09c609d060725fc9"
+    },
+    "docs/figures/s-awic-dark.svg": {
+      "bytes": 142035,
+      "sha256": "7828c396009994d3b2d602ac7968ec6a359d181c9ed4d52f04335828f7660634"
+    },
+    "docs/figures/s-awic.png": {
+      "bytes": 186016,
+      "sha256": "d32dcdea42caef3ce0ddb12b4e74c645a29509250af43de4e28f452e77f4881f"
+    },
+    "docs/figures/s-awic.svg": {
+      "bytes": 141985,
+      "sha256": "913987f1e3ad875bf3e044c6efbc3d23a5ca14d3963dd65d296be248b536e6cb"
+    },
     "evidence/README.md": {
       "bytes": 432,
       "sha256": "8f16131487c14093c4fe53f7638bd510daf8763ddd85d1b884e28a4bcdc7bc03"
@@ -69838,8 +69870,8 @@
       "sha256": "30a8a41d2a8851515b8891cefbff282b70292de12e2aaa80a4a578d073eaf699"
     },
     "tools/release-contract.json": {
-      "bytes": 4252826,
-      "sha256": "f1351c0ab387bb23d675b599658269638cdc47b6840ed4efd646db1b3cb09994"
+      "bytes": 4254070,
+      "sha256": "46b1aa52d87218a73f964baf472f666925da85eebb930cbc55b3c53e2e61b212"
     },
     "tools/test_architecture_work_counts.py": {
       "bytes": 17923,
@@ -69867,7 +69899,7 @@
     },
     "tools/verify_release.py": {
       "bytes": 10128,
-      "sha256": "40513336173234451f37a66e89964c5e5103d0b3d71464b7f99c896ff15ce543"
+      "sha256": "0fd7058d1fb2ce6eb0b140f0d3fa7f2eb8f65bf9c16bd1b6c8680121dc705fd9"
     }
   },
   "full_context_evidence_scope": "Each selected greedy image passed 2,047/2,048-token CLI and browser contexts, boundary refusals, CLEAR races, pending-STEP Stop and resumed generation. The seeded image has a separate 16-case context matrix and browser record. Exact workload timestamps remain distinct from cached generation rates.",

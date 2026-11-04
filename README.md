@@ -26,13 +26,13 @@ has its own implementation and validation evidence.
 **The demonstrated hardware designs are AWICs implemented on FPGAs. This
 repository also includes preliminary HWIC source research.**
 
-<a href="docs/figures/hwic-awic.svg?v=9486bdb93dde#gh-light-mode-only"><img src="docs/figures/hwic-awic.svg?v=9486bdb93dde#gh-light-mode-only" alt="Conceptual comparison of F-AWICs, which authenticate weights against a commitment fixed in hardware, and HWICs, whose model weights are fixed in silicon. Both use fixed inference circuitry." width="800"></a>
-<a href="docs/figures/hwic-awic-dark.svg?v=1ab881b28070#gh-dark-mode-only"><img src="docs/figures/hwic-awic-dark.svg?v=1ab881b28070#gh-dark-mode-only" alt="Conceptual comparison of F-AWICs, which authenticate weights against a commitment fixed in hardware, and HWICs, whose model weights are fixed in silicon. Both use fixed inference circuitry." width="800"></a>
+<a href="docs/figures/inference-only-chips.svg?v=ead4b711e313#gh-light-mode-only"><img src="docs/figures/inference-only-chips.svg?v=ead4b711e313#gh-light-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs that verify signed model commitments using fixed public keys, and HWICs with weights fixed in silicon." width="800"></a>
+<a href="docs/figures/inference-only-chips-dark.svg?v=64b7d3b6af41#gh-dark-mode-only"><img src="docs/figures/inference-only-chips-dark.svg?v=64b7d3b6af41#gh-dark-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs that verify signed model commitments using fixed public keys, and HWICs with weights fixed in silicon." width="800"></a>
 
-*The upper schematic is an F-AWIC; the lower is an HWIC. Both fix the inference
-function in hardware; they differ in how the weights are stored. The layer
-boxes are schematic, not a physical floorplan: arithmetic may be shared
-across layers.*
+*F-AWIC, S-AWIC and HWIC schematics. The S-AWIC verifies a signed model
+commitment at boot and checks weights against the approved digest during
+inference. Private signing keys remain with the authorizing parties. Layer
+boxes are schematic; arithmetic may be shared across layers.*
 
 ## Token interface
 
