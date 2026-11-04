@@ -17,8 +17,8 @@ matching a model commitment fixed in hardware. **Signed-Update AWICs (S-AWICs)**
 permit new model commitments authorized by signatures from designated
 signing authorities.
 
-<a href="docs/figures/ic-taxonomy.svg#gh-light-mode-only"><img src="docs/figures/ic-taxonomy.svg#gh-light-mode-only" alt="Inference-only chip (IC) branches to AWIC, HWIC, and other possible types; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
-<a href="docs/figures/ic-taxonomy-dark.svg#gh-dark-mode-only"><img src="docs/figures/ic-taxonomy-dark.svg#gh-dark-mode-only" alt="Inference-only chip (IC) branches to AWIC, HWIC, and other possible types; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
+<a href="docs/figures/ic-taxonomy.svg?v=9288be431402#gh-light-mode-only"><img src="docs/figures/ic-taxonomy.svg?v=9288be431402#gh-light-mode-only" alt="Inference-only chip (IC) branches to AWIC, HWIC, and other possible types; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
+<a href="docs/figures/ic-taxonomy-dark.svg?v=a01acd3b4838#gh-dark-mode-only"><img src="docs/figures/ic-taxonomy-dark.svg?v=a01acd3b4838#gh-dark-mode-only" alt="Inference-only chip (IC) branches to AWIC, HWIC, and other possible types; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
 
 The benchmark table below includes F-AWIC and S-AWIC designs. Each design
 has its own implementation and validation evidence.
@@ -26,8 +26,8 @@ has its own implementation and validation evidence.
 **The demonstrated hardware designs are AWICs implemented on FPGAs. This
 repository also includes preliminary HWIC source research.**
 
-<a href="docs/figures/hwic-awic.svg#gh-light-mode-only"><img src="docs/figures/hwic-awic.svg#gh-light-mode-only" alt="Conceptual comparison of F-AWICs, which authenticate weights against a commitment fixed in hardware, and HWICs, whose model weights are fixed in silicon. Both use fixed inference circuitry." width="800"></a>
-<a href="docs/figures/hwic-awic-dark.svg#gh-dark-mode-only"><img src="docs/figures/hwic-awic-dark.svg#gh-dark-mode-only" alt="Conceptual comparison of F-AWICs, which authenticate weights against a commitment fixed in hardware, and HWICs, whose model weights are fixed in silicon. Both use fixed inference circuitry." width="800"></a>
+<a href="docs/figures/hwic-awic.svg?v=9486bdb93dde#gh-light-mode-only"><img src="docs/figures/hwic-awic.svg?v=9486bdb93dde#gh-light-mode-only" alt="Conceptual comparison of F-AWICs, which authenticate weights against a commitment fixed in hardware, and HWICs, whose model weights are fixed in silicon. Both use fixed inference circuitry." width="800"></a>
+<a href="docs/figures/hwic-awic-dark.svg?v=1ab881b28070#gh-dark-mode-only"><img src="docs/figures/hwic-awic-dark.svg?v=1ab881b28070#gh-dark-mode-only" alt="Conceptual comparison of F-AWICs, which authenticate weights against a commitment fixed in hardware, and HWICs, whose model weights are fixed in silicon. Both use fixed inference circuitry." width="800"></a>
 
 *The upper schematic is an F-AWIC; the lower is an HWIC. Both fix the inference
 function in hardware; they differ in how the weights are stored. The layer
