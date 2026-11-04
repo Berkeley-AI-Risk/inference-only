@@ -1,5 +1,5 @@
 {
-  "complete_rows": 6,
+  "complete_rows": 7,
   "protocol": "one-token-128-host-v2",
   "rows": [
     {
@@ -475,6 +475,110 @@
     {
       "complete": true,
       "eligible_trials": 2,
+      "id": "simplestories-signed-update",
+      "identity": {
+        "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
+        "baud_rate": 115200,
+        "board_result_sha256": "c2a6f2d19cccf62c0b1ca40bbf6b85bbd09fda13464f8a6d801ec12bff26c610",
+        "clock": "time.monotonic_ns",
+        "clock_hz": 25000000,
+        "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
+        "fpga_image_sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2",
+        "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+        "model": "SimpleStories-V2-5M",
+        "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+        "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
+        "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+        "signed_manifest_version": 1,
+        "timestamp_boundary": "generation_loop_validated_reply",
+        "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+        "variant": "S-AWIC"
+      },
+      "label": "Same model, **signed updates (S-AWIC)**, without K/V integrity",
+      "missing": null,
+      "package_status": "Runnable release; public demonstration keys",
+      "rate": {
+        "cached_host_seconds": 25.124574250000002,
+        "cached_tokens_per_second": 10.109624046664193,
+        "command_only_diagnostic_tokens_per_second": 10.110694000365624,
+        "counted_cached_outputs": 254,
+        "first_step_seconds": [
+          0.084981083,
+          0.085004875
+        ]
+      },
+      "trials": [
+        {
+          "cached_command_seconds": 12.577923757,
+          "cached_host_seconds": 12.579277084,
+          "cached_outputs": 127,
+          "capture_sha256": "d114b4aa722df27b845c1dc97c8173e7051e4a99f406d54ed28d06ac08f6f302",
+          "clear_before": true,
+          "first_step_seconds": 0.084981083,
+          "generated_outputs": 128,
+          "greedy": true,
+          "identity": {
+            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
+            "baud_rate": 115200,
+            "board_result_sha256": "c2a6f2d19cccf62c0b1ca40bbf6b85bbd09fda13464f8a6d801ec12bff26c610",
+            "clock": "time.monotonic_ns",
+            "clock_hz": 25000000,
+            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
+            "fpga_image_sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2",
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "model": "SimpleStories-V2-5M",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
+            "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+            "signed_manifest_version": 1,
+            "timestamp_boundary": "generation_loop_validated_reply",
+            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+            "variant": "S-AWIC"
+          },
+          "prompt_tokens": [
+            378
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
+        },
+        {
+          "cached_command_seconds": 12.543991711,
+          "cached_host_seconds": 12.545297166000001,
+          "cached_outputs": 127,
+          "capture_sha256": "590ef7d91cdbd3d9e794f5b488721cda5787e3258b7415fb26c2024a16b1db8a",
+          "clear_before": true,
+          "first_step_seconds": 0.085004875,
+          "generated_outputs": 128,
+          "greedy": true,
+          "identity": {
+            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
+            "baud_rate": 115200,
+            "board_result_sha256": "c2a6f2d19cccf62c0b1ca40bbf6b85bbd09fda13464f8a6d801ec12bff26c610",
+            "clock": "time.monotonic_ns",
+            "clock_hz": 25000000,
+            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
+            "fpga_image_sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2",
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "model": "SimpleStories-V2-5M",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
+            "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+            "signed_manifest_version": 1,
+            "timestamp_boundary": "generation_loop_validated_reply",
+            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+            "variant": "S-AWIC"
+          },
+          "prompt_tokens": [
+            378
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
+        }
+      ]
+    },
+    {
+      "complete": true,
+      "eligible_trials": 2,
       "id": "qwen3-1.7b",
       "identity": {
         "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
@@ -779,8 +883,20 @@
     "demos/simplestories-v2-5m/tests/reference-cases.json": {
       "bytes": 13049,
       "sha256": "a236c9912e5da9f12412c3f91f3d619a574fd5dce41f0c630fb78cb6c7dc7fa4"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/FINISHED.json": {
+      "bytes": 30948,
+      "sha256": "c3bfe64c344fd4fa60c475e1cc15902de1b6b9fec38d340dc62ef11d48105edc"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/RAW-REVIEW.json": {
+      "bytes": 586,
+      "sha256": "fa6b1e3b48e69f687c8cca0dae4b79969ce0afd50c8351731539f9c73fef36b9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/reference.json": {
+      "bytes": 2267,
+      "sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18"
     }
   },
   "timestamp_boundary": "generation_loop_validated_reply",
-  "total_rows": 6
+  "total_rows": 7
 }

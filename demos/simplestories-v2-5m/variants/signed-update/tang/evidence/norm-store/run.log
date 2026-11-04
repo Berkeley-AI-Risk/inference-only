@@ -1,0 +1,9 @@
+PASS norm model=0 all_3328_rows_both_ports
+PASS norm model=1 all_3328_rows_both_ports
+PASS forbidden norm coefficient rejected
+PASS zero norm multiplier rejected
+PASS norm-store regression
+- tb_norm_store.sv:55: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 136us; walltime 1.421 s; speed 95.846 us/s
+- Verilator: cpu 1.417 s on 1 threads; allocated 9 MB

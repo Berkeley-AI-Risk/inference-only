@@ -1,0 +1,31 @@
+{
+  "kind": "SWIC flash data, not an FPGA configuration",
+  "geometry": "SimpleStories-V2-5M W10/A16/KV16",
+  "device": "GW5AST-138C / PG484A non-Pro",
+  "flash_bytes": 16777216,
+  "expected_jedec_id": "0b4018",
+  "package_sha256": "05fd261a9fc79a9fd3acaedc53e7b996e0f402e97363281b017632dc837d6342",
+  "version": 1,
+  "signers": 2,
+  "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+  "image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+  "package_bytes": 7381380,
+  "boot_frame_bytes": 115396,
+  "writes": [
+    {
+      "file": "model.bin",
+      "address": 8392704,
+      "bytes": 7265984,
+      "sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0"
+    },
+    {
+      "file": "admission-slot.bin",
+      "address": 15728640,
+      "bytes": 262144,
+      "sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38"
+    }
+  ],
+  "normalization_rows": 3328,
+  "fixed_lookup_sha256": "fea751d73eb4fd28f160a4dcc4b8d1fa39c125cb05d10393ac45ad4e3e1bb76b",
+  "policy": "two distinct fixed demo authorities; boot only; no deliberate delay, cap or antirollback"
+}

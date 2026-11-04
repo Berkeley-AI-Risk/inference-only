@@ -1,4 +1,4 @@
-# Inference-only hardware demonstrations and HWIC research
+# Inference-only hardware demonstrations and research
 
 The paper *The Feasibility of a Hardwired Pause of Frontier AI Training*
 ([hardwired-pause.ai](https://hardwired-pause.ai)) introduces inference-only
@@ -9,8 +9,21 @@ general-purpose accelerator whose restrictions depend on its host software.
 
 The paper distinguishes two approaches in Section 4.3:
 
-- **Authenticated-Weight Inference-Only Chips (AWICs)** fix the model architecture and inference function in hardware and authenticate weights stored in memory against fixed cryptographic digests.
+- **Authenticated-Weight Inference-Only Chips (AWICs)** fix the model architecture and inference circuitry in hardware and authenticate weights loaded from memory under a hardware-enforced approval policy.
 - **Hardwired-Weight Inference-Only Chips (HWICs)** encode both the model architecture and its weights directly in the circuit.
+
+Within the AWIC family, **Fixed-Commitment AWICs (F-AWICs)** accept weights
+matching a model commitment fixed in hardware. **Signed-Update AWICs (S-AWICs)**
+permit new model commitments authorized by signatures from designated
+signing authorities.
+
+<a href="docs/figures/ic-taxonomy.svg#gh-light-mode-only"><img src="docs/figures/ic-taxonomy.svg#gh-light-mode-only" alt="Inference-only chip (IC) branches to AWIC and HWIC; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
+<a href="docs/figures/ic-taxonomy-dark.svg#gh-dark-mode-only"><img src="docs/figures/ic-taxonomy-dark.svg#gh-dark-mode-only" alt="Inference-only chip (IC) branches to AWIC and HWIC; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
+
+The benchmark table below includes F-AWIC and S-AWIC designs. The
+[SimpleStories S-AWIC demonstration](demos/simplestories-v2-5m/variants/signed-update/README.md)
+supports signed model updates. Each design has its own implementation and
+validation evidence.
 
 **The demonstrated hardware designs are AWICs implemented on FPGAs. This
 repository also includes preliminary HWIC source research.**
@@ -27,8 +40,8 @@ floorplan: arithmetic may be shared across layers.*
 *Inference* uses an already-trained model to produce outputs without changing
 its learned weights. The idealized machine permits models from a fixed set
 and only three user operations: add input tokens to a model's tape, generate
-another token, and clear the tape. Each demonstration here permits just one
-model, so model selection is implicit.
+another token, and clear the tape. Each demonstration runs one admitted model
+at a time, so model selection is implicit.
 
 | Inference command | Effect |
 | --- | --- |
@@ -57,6 +70,7 @@ The table lists **Authenticated-Weight Inference-Only Chip (AWIC) designs**, all
 | Same model, **K/V-protected** | 25 | ~**7.0 tokens/s** | Runnable release |
 | Same model, **K/V protection + encrypted memory** | 25 | ~**6.0 tokens/s** | Runnable release; public demonstration keys |
 | Same model, **seeded-sampling at temperature 1**, without K/V integrity | 25 | ~**9.9 tokens/s** | Runnable release |
+| Same model, **signed updates (S-AWIC)**, without K/V integrity | 25 | ~**10.1 tokens/s** | Runnable release; public demonstration keys |
 | **Qwen3-1.7B — AWS F2**, authenticated weights | 100 | ~**9.0 tokens/s** | Runnable release; public AWS FPGA image |
 | **Qwen3-8B — AWS F2**, authenticated weights | 100 | ~**1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
 <!-- COMMON-FPGA-SPEED:END -->
@@ -104,8 +118,8 @@ application-specific integrated circuit (ASIC). Reprogramming the development
 FPGA is outside that assessment; resistance to other physical tampering is
 not established by this assumption.
 
-The AWIC implementations authenticate weights read from memory against fixed
-cryptographic digests. The checked on-chip copies, not unchecked later reads
+The F-AWIC implementations authenticate weights read from memory against
+cryptographic digests fixed in hardware. The checked on-chip copies, not unchecked later reads
 from external memory, supply arithmetic. No signing secret or manufacturer
 weight-update command is needed.
 

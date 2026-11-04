@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "scope": "invalid boot: CLEAR acknowledged; valid APPEND and STEP explicitly rejected; no generation",
+  "transactions": [
+    {
+      "opcode": 2,
+      "input_token": 0,
+      "output_token": 0,
+      "request_hex": "a502000067",
+      "response_hex": "5a820000bd"
+    },
+    {
+      "opcode": 0,
+      "input_token": 1,
+      "rejected": true,
+      "response_hex": "5ac00000ed"
+    },
+    {
+      "opcode": 1,
+      "input_token": 0,
+      "rejected": true,
+      "response_hex": "5ac1000086"
+    }
+  ],
+  "captured_utc": "2026-11-04T04:16:22.180635+00:00"
+}

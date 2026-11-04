@@ -49,8 +49,8 @@
       "sha256": "58a1fc0e3f86ff8d12a02ff8b78b5e5294d8ef43ce5b77604ac96922f8e454fd"
     },
     "README.md": {
-      "bytes": 16003,
-      "sha256": "1572a09d507abe6e00920b7b1d5f2ba48e844e50a36ac2891d1181f209f950ad"
+      "bytes": 17139,
+      "sha256": "045a5de938ab45019c5cf256db54e4608839b52b429b1ae5196596d2deb46501"
     },
     "REFERENCES.md": {
       "bytes": 613,
@@ -65,12 +65,12 @@
       "sha256": "ed45497c68b9284efb14dba2d008ba054a959c8ca69e4986a62a495965cd9442"
     },
     "benchmarks/fpga-speed/results.json": {
-      "bytes": 40605,
-      "sha256": "62d4026aa5220b36106e0079cc3b20c90cb0ef9b23d8dc802275ec927be84af0"
+      "bytes": 46606,
+      "sha256": "ec1c4277ac478bed262b3d972cdf3fc2ac7d03cf10b203d9978b4e93411ac0ea"
     },
     "benchmarks/fpga-speed/selection.json": {
-      "bytes": 14808,
-      "sha256": "9d62f251e68c8943106fc8abbd6d34dca69dead68ec015008b92f5c5994f9e8a"
+      "bytes": 17463,
+      "sha256": "2778588bbe7d4b7e827cab2d16e945b99cf0b67f7f52c13c8bbb5d6f858c3e7c"
     },
     "demos/qwen3-1.7b/BROWSER.md": {
       "bytes": 5108,
@@ -1801,16 +1801,16 @@
       "sha256": "a9f7f027e00e9f91f51a1e1de71bda0192d969675854c23b9ff0d3ad5e8c8e35"
     },
     "demos/simplestories-v2-5m/MANIFEST.json": {
-      "bytes": 3653040,
-      "sha256": "23a41d7d8b05403640ea561acde5135e7ad5b6c895617eea7b991272256e3fcc"
+      "bytes": 3717926,
+      "sha256": "07b29983ab3dec2dacd5a52e6807272fd6c14a87ca326fa79decee6e6b3b425d"
     },
     "demos/simplestories-v2-5m/PROGRAMMING.md": {
       "bytes": 15424,
       "sha256": "f72ef1db9f0b47ccc40501e42293b661efc7df01f93b94d3c093426fbe28713a"
     },
     "demos/simplestories-v2-5m/README.md": {
-      "bytes": 4513,
-      "sha256": "16e4becb2258c24a8a84c90f04ed5e0820f50d6521d7f9816e95355a9935a62a"
+      "bytes": 5201,
+      "sha256": "d24f18d9ed3e77b65456716e25f365af5d76bd5bc0378762256481aec68b56c5"
     },
     "demos/simplestories-v2-5m/REPRODUCE.md": {
       "bytes": 6722,
@@ -67812,6 +67812,1338 @@
       "bytes": 2422,
       "sha256": "6e2f5cf5310700888187d3d4d9af1921e2150adbe865773874bdbe7eaecc326a"
     },
+    "demos/simplestories-v2-5m/variants/signed-update/.gitignore": {
+      "bytes": 827,
+      "sha256": "f5b12a2b824f942a7837b55be9ab2d1cf5b5b617d43b0460dab112437ee2b5bc"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/FORMAL-STATUS.md": {
+      "bytes": 2228,
+      "sha256": "7556bc23c5577cbd213b7de8a99243281010456547003756c96e4acd59b30287"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/NOTICE.md": {
+      "bytes": 734,
+      "sha256": "780a447d36f613d5a7f6e7e4622d8f754380f72e56576d8f5802d10ee035a13c"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/README.md": {
+      "bytes": 4023,
+      "sha256": "9ca6df33f1222df80cefafe65edbe3e1fd6be64fd5c2d89ee5a60452c0661b3e"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/REPRODUCE.md": {
+      "bytes": 2959,
+      "sha256": "992d4f19d27aac722414dc6b46af02628d5ad3a26a7ef7fb00a0afc636dc0548"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/SIGNED-UPDATE.md": {
+      "bytes": 7610,
+      "sha256": "becb15a594a284c210c483680235b4be9affbef333669b2dc178fdd07825123d"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/VALIDATION.md": {
+      "bytes": 3915,
+      "sha256": "0be10c7eb5e4ae685332c4c4ed85da84220ec2158498ce88a74dc4d7776affb2"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/PUBLIC-COPIES.json": {
+      "bytes": 4103,
+      "sha256": "f4cfffe3fad567a08dddb04649440ac08b3f4f5ab04c21c7d86c671675a03b5b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/SNAPSHOT.json": {
+      "bytes": 42353,
+      "sha256": "d535cf7191bb31ec255df46fe918e07c74b769516ccc69ea01c1e515f9c8999d"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/cli-result.json": {
+      "bytes": 424,
+      "sha256": "e03cadd22979c423ae022f8708f1f46b66404930a9038b5f0b0ad64929809fbe"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/.gitignore": {
+      "bytes": 584,
+      "sha256": "1650bf2a45e7705a070c7dcace1c77c994b462f80d807b1ca64545d5d0278e03"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/FORMAL-STATUS.md": {
+      "bytes": 2025,
+      "sha256": "e79e8eea6a2155275657d78e16deda33b407e2e3152f498c9e03ffb069cca49d"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/NOTICE.md": {
+      "bytes": 740,
+      "sha256": "f97208c814686b1471ed941a024fd5e391fcdbab91711641209ce1db61875dde"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/README.md": {
+      "bytes": 3742,
+      "sha256": "386a11735a84e4fc62cc0e4175e68fec25fe93acb0c8763c0a5532729bd1bacd"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/REPRODUCE.md": {
+      "bytes": 3019,
+      "sha256": "843652081a93ea74a924a6585de87bd40d9a399d7a15fc541a6b8e5950848ebf"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/SIGNED-UPDATE.md": {
+      "bytes": 7379,
+      "sha256": "7032fab9ea074e29b2db4cc3c87eec7fc3fd4c253c069bf9343e2f93d402235b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/VALIDATION.md": {
+      "bytes": 3391,
+      "sha256": "d42858baf93f603da182d332e90d58184ef9781cec984fab2e94fd9c249d3682"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/SNAPSHOT.json": {
+      "bytes": 4296,
+      "sha256": "0212d7c1292cb91a5fd9f8fe02303c35f306a24750babc9c81ece073361a31b6"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/cli-result.json": {
+      "bytes": 424,
+      "sha256": "e03cadd22979c423ae022f8708f1f46b66404930a9038b5f0b0ad64929809fbe"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/four-state/build.log": {
+      "bytes": 348,
+      "sha256": "a7806c4359d07282c5e4a38bf14ea722754669bb293aff54333ba51f366bb529"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/four-state/result.json": {
+      "bytes": 1145,
+      "sha256": "586f0dbb707343ed3178f602cd60f7be86cd5e5e379dde3190197a08a0e038ed"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/four-state/run.log": {
+      "bytes": 305,
+      "sha256": "0cfb08e43163d160e36045dfb68e59783107ab9afdabfd325f412a2510fc0648"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/generated/lms-vectors.json": {
+      "bytes": 30573,
+      "sha256": "4b47aab41bbdf48e1eddcd73a2b299feae2cf371b8fef79a8561ec2d7dbeb144"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/generated/public-keys.json": {
+      "bytes": 357,
+      "sha256": "a24f350b533e5ad9efa6d55a7dcaaaea767889da8beec40b0ed7d149d2346bf7"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/generated/reference-results.json": {
+      "bytes": 3168,
+      "sha256": "9ec175a499b8425ba05250894c517218902f91bf7c6a616ee435e7f28f82765f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/lint.log": {
+      "bytes": 305,
+      "sha256": "64bd1c3d5ca3f63d45ad1972ef54d8a541bdf1f759f9efe3f05e7c39f8ac0b1a"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/native-sources.json": {
+      "bytes": 339,
+      "sha256": "bd8704d5217986179fc00fa3835989d8c9ea9f9c407f8966197f05a8adbba462"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/rtl-lms/build.log": {
+      "bytes": 5641,
+      "sha256": "cf87e356850fcbf8a06a63374bd3dcea135b9adca8fe03ddb28e4b153bce271f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/rtl-lms/result.json": {
+      "bytes": 5797,
+      "sha256": "38ab9ef530b5571a91d709ccd0010e8fa73425e59a914785ba841a61eeaec962"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/rtl-lms/run.log": {
+      "bytes": 916,
+      "sha256": "5030e0c97285331049f5630cb64bced3fb4cf31ff02a854de62c17553f9eb785"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/rtl-lms/tb_lms.sv": {
+      "bytes": 4019,
+      "sha256": "19fc3719df80be0c455ee69359e13fddb82f0a5c7bed2311512f4d725015e438"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/rtl-memory/build.log": {
+      "bytes": 13728,
+      "sha256": "65b0f5fbbb635c2820df687df8e7fb065f0bd3a3d7fd91b568970a4f84ed33da"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/rtl-memory/result.json": {
+      "bytes": 6207,
+      "sha256": "88a62ceaf65e802440a56617c20614b497068856d9ba303a7f8e86922ad9cd94"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/rtl-memory/run.log": {
+      "bytes": 1822,
+      "sha256": "617d11fdbb36817e8f99d76668b2f8aef58729744c7047f44c628b0577930720"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/rtl-memory/tb_memory.sv": {
+      "bytes": 9901,
+      "sha256": "151bfa12fdf19f0ce372e9965feaaab1338a45efe5dd8c039a2d407f5298e947"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/evidence/toolchain.json": {
+      "bytes": 640,
+      "sha256": "c1fb8705e50a1e436d1ec76cbcb689597ca604f9986356b8a5ef8e918371b942"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/reference/generate_policy.py": {
+      "bytes": 1018,
+      "sha256": "b42a5e6b49ae46265643f6099cdb74d32b551518199658b4e1c65b46282a9680"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/reference/signed_update.py": {
+      "bytes": 10726,
+      "sha256": "a568a80976dd35a7d4143e714758fc44af0c19bf9a029f42baceb6779bb7bd1b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/rtl/su_image_check.sv": {
+      "bytes": 2862,
+      "sha256": "2cfab6dc1c938cea2628d65529d11d74704c5154d8a0b00ed50a752b253dc1cd"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/rtl/su_lms_verify.sv": {
+      "bytes": 9186,
+      "sha256": "ea24a48a471e60ff87c23a6c0f3975f1de27c06b41a49e138fbe8299dc8ff6d9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/rtl/su_policy.svh": {
+      "bytes": 1128,
+      "sha256": "046379705d7647046fd488bb27cbc872dcced29e895f7bb9fcd41b0701db09ec"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/rtl/su_sha256.sv": {
+      "bytes": 3306,
+      "sha256": "1a4122e99386d0d02627ece9674a3092f534f6169e9d6dc2b0a5ecb78681ae63"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/rtl/swic_boot_admission.sv": {
+      "bytes": 11858,
+      "sha256": "1c6e4bf208185ff78d2d97e72ebe5ab14542a402c2b839260082d80759f57fc8"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/rtl/swic_verified_memory.sv": {
+      "bytes": 5175,
+      "sha256": "1cd492a65c2162c138bf84b425bafa927dbee38611725f274b2d781e19e7b58e"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/rtl/vendor/bank.sv": {
+      "bytes": 10180,
+      "sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/rtl/vendor/sha.sv": {
+      "bytes": 24176,
+      "sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/tests/reference_cases.py": {
+      "bytes": 5854,
+      "sha256": "09411accf2ba2d956a4e1a293013bb2334822b16d64fd0a711088d2ed9062274"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/tests/rfc8554-case1.json": {
+      "bytes": 6215,
+      "sha256": "bddd4e5e6bbf2bddf8290e7ef07a6537aa129e9ecac7a5a440f3c2be2aebb281"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/tests/run_lms_rtl.py": {
+      "bytes": 4562,
+      "sha256": "c19ba3aa87b013f175ce5ab44c32487b4d6495b4c0aa0900c9e7acadf8f1ba38"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/tests/run_memory_rtl.py": {
+      "bytes": 4597,
+      "sha256": "1b63b941384a3fed0de1219fd11dbb211c5b8292f3cb93dfde1a1b6a2450006e"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/tests/run_x.py": {
+      "bytes": 1145,
+      "sha256": "65c758a41d05b80f108acb9365c741defe77c32e13120fbfe7bb90d0b1881ad1"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/tests/tb_memory.sv": {
+      "bytes": 9107,
+      "sha256": "df6c382e24dc02c8bbfc9e114b23e3bcf32150908ba5d2534d3fa7a6759ba682"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/component-snapshot/tests/tb_x.sv": {
+      "bytes": 2154,
+      "sha256": "7ea641a056558e707d09b2384b27ead6b4cf39402950dca7166ddda2fb2915e6"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/four-state/build.log": {
+      "bytes": 348,
+      "sha256": "a7806c4359d07282c5e4a38bf14ea722754669bb293aff54333ba51f366bb529"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/four-state/result.json": {
+      "bytes": 1145,
+      "sha256": "586f0dbb707343ed3178f602cd60f7be86cd5e5e379dde3190197a08a0e038ed"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/four-state/run.log": {
+      "bytes": 305,
+      "sha256": "0cfb08e43163d160e36045dfb68e59783107ab9afdabfd325f412a2510fc0648"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/generated/lms-vectors.json": {
+      "bytes": 30573,
+      "sha256": "4b47aab41bbdf48e1eddcd73a2b299feae2cf371b8fef79a8561ec2d7dbeb144"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/generated/public-keys.json": {
+      "bytes": 357,
+      "sha256": "a24f350b533e5ad9efa6d55a7dcaaaea767889da8beec40b0ed7d149d2346bf7"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/generated/reference-results.json": {
+      "bytes": 3168,
+      "sha256": "9ec175a499b8425ba05250894c517218902f91bf7c6a616ee435e7f28f82765f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/lint.log": {
+      "bytes": 305,
+      "sha256": "64bd1c3d5ca3f63d45ad1972ef54d8a541bdf1f759f9efe3f05e7c39f8ac0b1a"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/native-sources.json": {
+      "bytes": 339,
+      "sha256": "bd8704d5217986179fc00fa3835989d8c9ea9f9c407f8966197f05a8adbba462"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/rtl-lms/build.log": {
+      "bytes": 5641,
+      "sha256": "cf87e356850fcbf8a06a63374bd3dcea135b9adca8fe03ddb28e4b153bce271f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/rtl-lms/result.json": {
+      "bytes": 5797,
+      "sha256": "38ab9ef530b5571a91d709ccd0010e8fa73425e59a914785ba841a61eeaec962"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/rtl-lms/run.log": {
+      "bytes": 916,
+      "sha256": "5030e0c97285331049f5630cb64bced3fb4cf31ff02a854de62c17553f9eb785"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/rtl-lms/tb_lms.sv": {
+      "bytes": 4019,
+      "sha256": "19fc3719df80be0c455ee69359e13fddb82f0a5c7bed2311512f4d725015e438"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/rtl-memory/build.log": {
+      "bytes": 13728,
+      "sha256": "65b0f5fbbb635c2820df687df8e7fb065f0bd3a3d7fd91b568970a4f84ed33da"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/rtl-memory/result.json": {
+      "bytes": 6207,
+      "sha256": "88a62ceaf65e802440a56617c20614b497068856d9ba303a7f8e86922ad9cd94"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/rtl-memory/run.log": {
+      "bytes": 1822,
+      "sha256": "617d11fdbb36817e8f99d76668b2f8aef58729744c7047f44c628b0577930720"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/rtl-memory/tb_memory.sv": {
+      "bytes": 9901,
+      "sha256": "151bfa12fdf19f0ce372e9965feaaab1338a45efe5dd8c039a2d407f5298e947"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/evidence/toolchain.json": {
+      "bytes": 640,
+      "sha256": "c1fb8705e50a1e436d1ec76cbcb689597ca604f9986356b8a5ef8e918371b942"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/reference/generate_policy.py": {
+      "bytes": 1018,
+      "sha256": "b42a5e6b49ae46265643f6099cdb74d32b551518199658b4e1c65b46282a9680"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/reference/signed_update.py": {
+      "bytes": 10726,
+      "sha256": "a568a80976dd35a7d4143e714758fc44af0c19bf9a029f42baceb6779bb7bd1b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/rtl/su_image_check.sv": {
+      "bytes": 2862,
+      "sha256": "2cfab6dc1c938cea2628d65529d11d74704c5154d8a0b00ed50a752b253dc1cd"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/rtl/su_lms_verify.sv": {
+      "bytes": 9186,
+      "sha256": "ea24a48a471e60ff87c23a6c0f3975f1de27c06b41a49e138fbe8299dc8ff6d9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/rtl/su_policy.svh": {
+      "bytes": 1128,
+      "sha256": "046379705d7647046fd488bb27cbc872dcced29e895f7bb9fcd41b0701db09ec"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/rtl/su_sha256.sv": {
+      "bytes": 3306,
+      "sha256": "1a4122e99386d0d02627ece9674a3092f534f6169e9d6dc2b0a5ecb78681ae63"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/rtl/swic_boot_admission.sv": {
+      "bytes": 11858,
+      "sha256": "1c6e4bf208185ff78d2d97e72ebe5ab14542a402c2b839260082d80759f57fc8"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/rtl/swic_verified_memory.sv": {
+      "bytes": 5175,
+      "sha256": "1cd492a65c2162c138bf84b425bafa927dbee38611725f274b2d781e19e7b58e"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/rtl/vendor/bank.sv": {
+      "bytes": 10180,
+      "sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/rtl/vendor/sha.sv": {
+      "bytes": 24176,
+      "sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/.gitignore": {
+      "bytes": 291,
+      "sha256": "546dcef497e2051ebc436199e421c60ce5dd25befd7ec0eb7deabd43ed842143"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/FORMAL-STATUS.md": {
+      "bytes": 3145,
+      "sha256": "7ad8544e8ff50067bc240872d1d4ffe25997bae84e8a10affe389ca89606ca32"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/HARDWARE.md": {
+      "bytes": 7184,
+      "sha256": "26cd39290c18c0aab21e6a94e961b119ff4aa78f28a4994b4dd07c06bb405e81"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/NOTICE.md": {
+      "bytes": 1056,
+      "sha256": "ce46aa5a0c50c9b9b6c155d2d1ce4f49d55e14ebcc8645e35cc879b7a0c30671"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/README.md": {
+      "bytes": 3637,
+      "sha256": "138d94407c245d695cbaa50589b5164e9a06eb26a2393d75bd80c518d27b6433"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/REPRODUCE.md": {
+      "bytes": 11205,
+      "sha256": "d8735e23ca7e6f79658f93cd873e07504005671f3e49dba114d6cb96ecccf8f9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/VALIDATION.md": {
+      "bytes": 9350,
+      "sha256": "43ff23d5614b71739be813966cbc7e68a8e20c0e7994a2204de25c9c4d5f1167"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/PUBLIC-COPIES.json": {
+      "bytes": 9751,
+      "sha256": "274b36364bf3eb28d685ccdabbf0029f4e8fdeb584c25097cff6f8f0a59ff0fa"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/SNAPSHOT.json": {
+      "bytes": 31336,
+      "sha256": "974cab9f0d7a2fda77b3572e0bcd0ba3b108ee78f512feb4d77b1ddba6516a2a"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/board/RESULT.json": {
+      "bytes": 3229,
+      "sha256": "c2a6f2d19cccf62c0b1ca40bbf6b85bbd09fda13464f8a6d801ec12bff26c610"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/board/bad-signature-uart.json": {
+      "bytes": 587,
+      "sha256": "076333210279aac3326485c681ff3b0922aafed2c408c24f3026576303aec527"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/board/base-replay.json": {
+      "bytes": 761,
+      "sha256": "0988a44b577fc90138abc2a87fad066fd6ca19f6fbb11e9881d86dc37c34bab0"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/board/base-uart.json": {
+      "bytes": 921,
+      "sha256": "4b02ab8abd97635b294738fe5cd6ec190f2c9b354639f5d22593baa13754dd21"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/board/changed-norm-replay.json": {
+      "bytes": 757,
+      "sha256": "b8eccf08a411fcd42f4f405ac818c7a535354216fd7dd76ccf8211c0217a68f3"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/board/changed-norm-uart.json": {
+      "bytes": 915,
+      "sha256": "d32bd15550a11a488315a476de9310596d1631fea2caef488b5cc7162f717c2f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/boot-faults/build.log": {
+      "bytes": 24122,
+      "sha256": "a3b2bbe3d9e42d019ec65386ccbf3541e543ea6ec9a3c66077deae1737af639a"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/boot-faults/case-0.log": {
+      "bytes": 269,
+      "sha256": "391125b0e85af00ba84cd0e83f4a0a4284559c1fc4aa702e0c27c646364dbad0"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/boot-faults/case-1.log": {
+      "bytes": 269,
+      "sha256": "12384b133998f014b0570e61d711f046afc31cc7767b0b179740e81fe9f0f335"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/boot-faults/case-2.log": {
+      "bytes": 272,
+      "sha256": "fc7cf0fb800a2a69d91115c05bf3bd8a505b39b5310a52893605d592e895e42c"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/boot-faults/case-3.log": {
+      "bytes": 272,
+      "sha256": "1542b9bc56dc59eb8733db35c10e7c0dc3c6d750d2f1ddaa2d759935faa2e50a"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/boot-faults/case-4.log": {
+      "bytes": 266,
+      "sha256": "1767dafc5face3ce9cefdb33fe5421422cd6c465171e20a55e37f5823280cbb5"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/boot-faults/result.json": {
+      "bytes": 25564,
+      "sha256": "543babdf12fc9af740de8172900d083eecb5b7c974e889f5989ba6587695f687"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/boot-faults/tb_faults.sv": {
+      "bytes": 6621,
+      "sha256": "807a53d4930b8bc26f4df57409d18ee149c0bfccb152aac60a82c389ec4b31ec"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/FINISHED.json": {
+      "bytes": 30948,
+      "sha256": "c3bfe64c344fd4fa60c475e1cc15902de1b6b9fec38d340dc62ef11d48105edc"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/PLAN.json": {
+      "bytes": 1929,
+      "sha256": "1d81d39eadf537179d489aa2ae2745c5d70e22fa224d690a28ee0bc7f08cae7d"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/RAW-REVIEW.json": {
+      "bytes": 586,
+      "sha256": "fa6b1e3b48e69f687c8cca0dae4b79969ce0afd50c8351731539f9c73fef36b9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/load-provenance.json": {
+      "bytes": 531,
+      "sha256": "261bca4e5cabdba2063cc065741a3c4429aa3afd5cdf87a97233ecebf968adf0"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/ownership.json": {
+      "bytes": 61,
+      "sha256": "b036613b93283513f1a3a79ba5855f9712de6555e27cc23b8a21c98fef10e871"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/reference.json": {
+      "bytes": 2267,
+      "sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/trial-1-raw.json": {
+      "bytes": 36573,
+      "sha256": "d114b4aa722df27b845c1dc97c8173e7051e4a99f406d54ed28d06ac08f6f302"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/trial-1.json": {
+      "bytes": 11429,
+      "sha256": "e477895384c741e7beeecedb1fd787b47672ca7e144dcc3213e1411d2f96fd4a"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/trial-2-raw.json": {
+      "bytes": 36752,
+      "sha256": "590ef7d91cdbd3d9e794f5b488721cda5787e3258b7415fb26c2024a16b1db8a"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/trial-2.json": {
+      "bytes": 11519,
+      "sha256": "4966a7e2ca4bf4b5d8fda8bc342eae5a5688014d94a5c42afb56a7e3e11270e5"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/fixtures/INPUTS.json": {
+      "bytes": 3096,
+      "sha256": "7b12b1585863833e84a3d2740ce6e74d63bcc95be7e127af2e9af362640d8219"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/fixtures/fixtures.json": {
+      "bytes": 1210,
+      "sha256": "91c27cac1377f69039c86f6ffeeea434ecad14e3ab87b53d5daa41d1321e6013"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/generated/lms-vectors.json": {
+      "bytes": 30573,
+      "sha256": "4b47aab41bbdf48e1eddcd73a2b299feae2cf371b8fef79a8561ec2d7dbeb144"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/generated/public-keys.json": {
+      "bytes": 357,
+      "sha256": "a24f350b533e5ad9efa6d55a7dcaaaea767889da8beec40b0ed7d149d2346bf7"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/generated/reference-results.json": {
+      "bytes": 3168,
+      "sha256": "9ec175a499b8425ba05250894c517218902f91bf7c6a616ee435e7f28f82765f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/00.log": {
+      "bytes": 1161,
+      "sha256": "72d4916d4659ee7e40a6f7ab2ba4d963350688ac54706370fa00abbb6a4c8e35"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/01.log": {
+      "bytes": 52,
+      "sha256": "1ab81d22d1f5dcdaa3b0b0481db70de35e7c90e456170e4d04e2349750bd12e1"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/02.log": {
+      "bytes": 429,
+      "sha256": "e51b34ba50a5f3c2e851edf9c57ed3f758bef74240912d0e5bffbd8bb8c6fdc3"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/03.log": {
+      "bytes": 220,
+      "sha256": "539a973d004a51d55027a2294e8b0e702f35b76b4bb1441663427df73039c165"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/04.log": {
+      "bytes": 32,
+      "sha256": "bd6c8543adbe17a54d5a48cd8870b63efdd4ce7c8bc417d6baf3a69abe74bf68"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/05.log": {
+      "bytes": 32,
+      "sha256": "dcfc0ed242c4bf1de760dc866ccb1dbf62591435416e96f6d5733df70c96eb81"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/06.log": {
+      "bytes": 32,
+      "sha256": "e790a129bdff27421f917583ebaae6be79515d24f1dabf70bb86b72b20f05cd0"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/07.log": {
+      "bytes": 32,
+      "sha256": "1647bb08b8c845e5b2a33b5574f551f5bb3f372ce133085cf2edf93a140ae2b4"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/08.log": {
+      "bytes": 32,
+      "sha256": "65e303465ce669c999eb911469366cdc0aab28b2533b07f6bdd8ddbdd9fa7b45"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/09.log": {
+      "bytes": 638,
+      "sha256": "0e16edec330683dd8c1fe40f2e0e562383d8636107d271c8560cfdc3292aecdd"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/10.log": {
+      "bytes": 412,
+      "sha256": "4d031d2f56eef1ff49a9b279047c6043be3282553ad3850da2ca98051634dfa3"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/11.log": {
+      "bytes": 294,
+      "sha256": "b15b358d98a7a544eeb3de63fd97a237fcb08504e7349862fcf5bda7cee8f501"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/12.log": {
+      "bytes": 32,
+      "sha256": "bd6c8543adbe17a54d5a48cd8870b63efdd4ce7c8bc417d6baf3a69abe74bf68"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/13.log": {
+      "bytes": 32,
+      "sha256": "bd6c8543adbe17a54d5a48cd8870b63efdd4ce7c8bc417d6baf3a69abe74bf68"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/14.log": {
+      "bytes": 714,
+      "sha256": "3dded0d4f38a562bf74f6652962d8acf760a8e380dd0b7de83ba253e2c129cc0"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/15.log": {
+      "bytes": 402,
+      "sha256": "828f9a86b141b1ed26b704265ad072c70d2059ea3d6a88520a30059762440d68"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/16.log": {
+      "bytes": 297,
+      "sha256": "e0fd0170f1543a8dd5433aaccfbe446e0648c481c239db96c5e007c76b46a323"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/FLASH-PLAN.json": {
+      "bytes": 1161,
+      "sha256": "72d4916d4659ee7e40a6f7ab2ba4d963350688ac54706370fa00abbb6a4c8e35"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/host-tools/result.json": {
+      "bytes": 5078,
+      "sha256": "e25e6368fbe30b4126fefca014ea8d8f40530e5ff8f311cd42a151c45f4177fc"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/native-build/INPUTS.json": {
+      "bytes": 14823,
+      "sha256": "15c30ff4ad5074bdb793456bf7fb1125ffdbab38cc966d8e9ee90af916ee7fc0"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/native-build/RESULT.json": {
+      "bytes": 740,
+      "sha256": "d0a9b18bd6458db9ed0f5d70bab75d10f2c5f61e0161955175ea4e176a3fd498"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/native-build/REVIEW.json": {
+      "bytes": 805,
+      "sha256": "b6829bd54089fa1cf7426baeaf924fa359131ceba1e1ebc8e71c625583180d42"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/native-build/STARTED.json": {
+      "bytes": 421,
+      "sha256": "b5e45849d8769aae06f29c26c1531c47f0e26679132c6fe7000d7aec70572487"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/native-build/STATUS.json": {
+      "bytes": 223,
+      "sha256": "31d788c9adb9eff5dd879b0b71840316890fa7bdbbbcfea39ee416f179f9507d"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/native-build/stderr.log": {
+      "bytes": 237,
+      "sha256": "849b613703cb6c16be348b01535d29b9a68bb6c6c5558f901fa5e45ee030edc6"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/native-build/stdout.log": {
+      "bytes": 51260,
+      "sha256": "a184dae8f02576f9e27aa5bcd939f8742c3dd4a3846fbabdb3b09e8a099567fb"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/native-build/swic_product.rpt.html": {
+      "bytes": 117023,
+      "sha256": "68e672dc5064442053ed14a873daaadfd51ed5bb9700e0f853fd0d0021edc0ca"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/native-build/swic_product.rpt.txt": {
+      "bytes": 99113,
+      "sha256": "495abc6ada30c386db6208426445f88f456ca91531b75827d4bfb0be3ede5ca9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/native-build/swic_product.tr": {
+      "bytes": 4841313,
+      "sha256": "37963c458cd515e0ba9e13789bf63ec7298f8d2b0042113ddf60017eeef4db42"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/native-build/swic_product_syn.rpt.html": {
+      "bytes": 56140,
+      "sha256": "3cd9e4be7ed223c5ab1114f0edd57b6a481a44b4c5865cf5dddc8032f14f6b51"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/native-source-comparison.json": {
+      "bytes": 18823,
+      "sha256": "15804d2909429282f0ce5f7cb697be8392493f36673844717b620f0c4a9baca0"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/norm-store/build.log": {
+      "bytes": 5732,
+      "sha256": "41fe7165a1b08138c496809918db706ecc1b7cacd5772b5ee925c098b4ed912b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/norm-store/result.json": {
+      "bytes": 446,
+      "sha256": "d41ed038b9fd7343a59b23867276c6a4c08f0ea6035feccbf9069c39d7e371bb"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/norm-store/run.log": {
+      "bytes": 413,
+      "sha256": "59ebb2eeacafb6754d1fcbb9dd0f0d8000252a3c3eb0b9dcd81d8329ea6ae93d"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/rtl-lms/build.log": {
+      "bytes": 5641,
+      "sha256": "04e6cfa6f715238d47f9834acd17bed3085ec9bbe2689bd69e01e47de2471bb4"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/rtl-lms/result.json": {
+      "bytes": 5826,
+      "sha256": "13981f28d71b2790ae20164e2274e9bcb78992a15275b3d7a6e9f27e6bc9cea5"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/rtl-lms/run.log": {
+      "bytes": 916,
+      "sha256": "7013380a68275eb5844d682faca88ec804d22e62a56442b6e1018189d1e11cf6"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/rtl-lms/tb_lms.sv": {
+      "bytes": 4175,
+      "sha256": "23cac6068546c4e500707ebca7191d481f6e7095b04e986db843ffebad3c30e8"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/rtl-memory/build.log": {
+      "bytes": 13728,
+      "sha256": "bf4a2fa82471bd614d8ea4ccbd4ffca6d17304c95066f129ad90cb1f8eb0297d"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/rtl-memory/result.json": {
+      "bytes": 6327,
+      "sha256": "98001c7a4527a917f1e2f316e4ee9ec0aebfcd7ab1e4590aa38ddb71d035fa35"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/rtl-memory/run.log": {
+      "bytes": 1822,
+      "sha256": "e4807e82f1d55015b33c44476501c1ece6ce73bfa869550ac7c8f1eff65542e6"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/rtl-memory/tb_memory.sv": {
+      "bytes": 9909,
+      "sha256": "5ebacb5ba5e78dfaaf174ae80f0bc508778c650ae1286d100b2896d7bf684e32"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/runner-guards.json": {
+      "bytes": 1230,
+      "sha256": "088f85775c2b06c7ef299b74648a27dcd852b781d29f1676637aa82dffe94462"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/BUILD.json": {
+      "bytes": 23405,
+      "sha256": "eea3b83d243716372ac07ee67487d68aa8e10c1b3b3baa99f786df038fdd6f37"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/SOURCE-AUDIT.json": {
+      "bytes": 15064,
+      "sha256": "8b6b993142311697ce0eae194db4b613842d7d0a835859380d0cac9f16e52da1"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/build.log": {
+      "bytes": 24097,
+      "sha256": "09d3e5175ac28230148374610bf1204ffcd69ec8672a4a15b129de82ae40fda3"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/case-0-result.json": {
+      "bytes": 358,
+      "sha256": "1dd099c45dc7e6bbd9ece7d10c8e5921e7614760c06c090f121a84b19927b29f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/case-0-started.json": {
+      "bytes": 270,
+      "sha256": "3d7f98918b660c4d7a51ab1e18a1640dc255eaf402ee33f7e408cf1e7017ee93"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/case-0.log": {
+      "bytes": 617,
+      "sha256": "2819545652698df1897409f2d9f3de589fc09ee580d45af94aab5e5f2099fedd"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/case-1-result.json": {
+      "bytes": 355,
+      "sha256": "bcc8f2514a4d9108664eea94f4f16bd23693ee5487800df533fe0a54971ba80f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/case-1-started.json": {
+      "bytes": 267,
+      "sha256": "70f17b1d59ae92212f3666b17a5c8fda67df0b81b93bf56c8a7d5a496e23d786"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/case-1.log": {
+      "bytes": 612,
+      "sha256": "2009e8b61e83cf831a5ea5a0b2699e44bd476b87c86ed1984d9f89dd436ae717"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/case-2-result.json": {
+      "bytes": 354,
+      "sha256": "cd996da6b2ffc2bff03dd9c3adb06b587134a0d43ec76066e3c8cd5799d63335"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/case-2-started.json": {
+      "bytes": 267,
+      "sha256": "0a7e358bafbc048ac6829de6d96c8eb7c5cf9c58eb7094a5797f22cb89269b7b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/case-2.log": {
+      "bytes": 271,
+      "sha256": "923d2fe62fc5b5bc874f1baf65b75e5c3fd6cc7d8eb807942cf0dea01e408f29"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/case-3-result.json": {
+      "bytes": 354,
+      "sha256": "0f1410adeb8afb47d9ab3d6f8e8d575b17d52a8c0171d11297d402791c55a847"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/case-3-started.json": {
+      "bytes": 267,
+      "sha256": "bea14fc530c3dbc385a1c50f18915c5f2fbcfc0349054b2cfa8c7134aca7a653"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-fast-simulation/case-3.log": {
+      "bytes": 612,
+      "sha256": "e36841d9476744a8dea0e304d58097d7aeaf34527c0ca7ee6fcd475443611d38"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/BUILD.json": {
+      "bytes": 23405,
+      "sha256": "d825cfba51a9677b0deff7826c0b7ca1edec97790bf9089000740419682f958e"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/SOURCE-AUDIT.json": {
+      "bytes": 14976,
+      "sha256": "949e824e9bcc2ac79306456abeed94060392dada150c5f1bc08ba54ea1dae217"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/build.log": {
+      "bytes": 24098,
+      "sha256": "ec8885b50481123ebb7cb3b334bb93e27fff5d7ce97a03113852fe39aa71d588"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/case-0-result.json": {
+      "bytes": 358,
+      "sha256": "5f3993c34317f978083020028f8bb78a6b830caa8c41d0b2bf5beeaac7299fe4"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/case-0-started.json": {
+      "bytes": 270,
+      "sha256": "4f57c31a71277fb1632d1d59d6ed54c07387b92635ec1899034e9e62cd4f3365"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/case-0.log": {
+      "bytes": 1473,
+      "sha256": "e25f806f4cfa08f7259411c71cce5141425080bae884b8132390c5210cf738b9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/case-1-result.json": {
+      "bytes": 356,
+      "sha256": "fd50254195ef9477012ed92c13b2a7129f7af45f8bec800dfb6a0c23ad57d51f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/case-1-started.json": {
+      "bytes": 267,
+      "sha256": "7ba8dc8cd86cdb612e9dcc6ec64ffbf7df12a3e0fbb102cfe1b24bcca853e5bc"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/case-1.log": {
+      "bytes": 1468,
+      "sha256": "55437b7d7b806f80a6d686b203b61deb425292634257d3d4f18d4a971ae2adb7"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/case-2-result.json": {
+      "bytes": 355,
+      "sha256": "a4840271cbcf949509447d715726e620f01da74951552c24e0657fd3501d3e19"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/case-2-started.json": {
+      "bytes": 267,
+      "sha256": "d73d66b37623090c52a623b89a87f41e3be379a8594285ced2f9513c2909cc2d"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/case-2.log": {
+      "bytes": 325,
+      "sha256": "9b049fc01559e3e49c702cbc8668cbb9889eac616a73728217edfd0112b9dd1b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/superseded/BUILD.json": {
+      "bytes": 23362,
+      "sha256": "8f22e0f0e74641920652c02b0bff6d9de64abce8fe8b6b0b2aa11f74a94ca40f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/superseded/case-0-result.json": {
+      "bytes": 319,
+      "sha256": "b0efdb34c4c1d6cf737e9a011e0bcaff06928cdf05925fa0ca46ebded0b06a9e"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/tang-simulation/superseded/case-1-result.json": {
+      "bytes": 316,
+      "sha256": "018c7eff8ab54525be3908574d835f0b4ea18f39e42ca06c9ec385f59addae92"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/adapter.sv": {
+      "bytes": 9313,
+      "sha256": "dd45423f8cc645a04bef821130faa5c0a7e4d9a81333c571db23c0139b8314e9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/arbiter.sv": {
+      "bytes": 21388,
+      "sha256": "750ac05828f0d81c989c0985e311ef3ef02426da52ad0112f0314db28cc1a272"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/bank.sv": {
+      "bytes": 10180,
+      "sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/booted_memory.sv": {
+      "bytes": 9050,
+      "sha256": "c42103499e1c12b21c3adfafda3d0dd8fc7e50f7e701710100c996e9c02357a8"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/candidate.sv": {
+      "bytes": 3943,
+      "sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/cdc.sv": {
+      "bytes": 6781,
+      "sha256": "46cac96fb496d1679b8df1f594b277300f567b00d2479ce98ac2787f52b7bf40"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/cluster-adapter.sv": {
+      "bytes": 14904,
+      "sha256": "0b8d09a0fded73d93f5fddb6bc790b552968f2d8c38cf0e90d20eb5d49b9744b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/cluster-engine.sv": {
+      "bytes": 12136,
+      "sha256": "97a3edaccef6dba1f095f82706c260cb0520fae49751ba34d76dda0ad314ec88"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/cluster-mul.sv": {
+      "bytes": 3395,
+      "sha256": "93e12f47a8651a1c131609d132f7b50810ac1124200e583164fad3b83e589417"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/cluster-tile.sv": {
+      "bytes": 8079,
+      "sha256": "308e12f6337d9d84bc786e4b2c18fac0806cc5fba5fa7745e1a833ace58493af"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/constraints/board1_fixed_product.cst": {
+      "bytes": 8226,
+      "sha256": "a74e20927c382bb9e85235fc03bf826e4bde12932b603d5e1b3dd35a212315aa"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/constraints/board1_fixed_product.cst.NOTICE": {
+      "bytes": 700,
+      "sha256": "473da1a75b2e1594b33a3c359b45277ead41bac9a01f6bdc1decf41c55e6f984"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/constraints/product.sdc": {
+      "bytes": 2672,
+      "sha256": "ed88a06026c83a0f3b24a5e7fc5841dbfed96dc0d31c6988a0b3d2dfcc76462c"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/defines.v": {
+      "bytes": 55,
+      "sha256": "76cbe1576dbf6c7c6151072d6c1f8125eecc360140ba29784024d3f99b0f6f58"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/digests32.memh": {
+      "bytes": 127728,
+      "sha256": "2c4bb7908d6e957b8a20e99b230c6e8a3d7fafddeb391581dfcbcb1cce7bf672"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fifo.sv": {
+      "bytes": 14373,
+      "sha256": "25b9578703f1c44b67867fea92f1a6749fd692c209fecf36b1de0652cd37df81"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+      "bytes": 3940,
+      "sha256": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": {
+      "bytes": 5911,
+      "sha256": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_private_issue_guard.sv": {
+      "bytes": 2637,
+      "sha256": "95a555560d3b9f3c7e4d22bbabe1bdabc602364ce392e5a2da573e889f59499a"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_unified_dsp64.sv": {
+      "bytes": 4517,
+      "sha256": "e99f1e5049af79b53e42f681a4082451158c9912a43eb35397fd76f9acb15560"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv": {
+      "bytes": 50088,
+      "sha256": "ba17ba73a9c708aabd246cbc538f4e81e25b33cc116ded91da4fd554566ead39"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv": {
+      "bytes": 119942,
+      "sha256": "368596a5f8470cd28ccd429cd2ab479db5c77aef0b34eb9541c55aa44c0baf0c"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv": {
+      "bytes": 13562,
+      "sha256": "093927da7f5d322a3beafe45734f80c0f81e7c26b649d76a23bb8d0957c8cfeb"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": {
+      "bytes": 106583,
+      "sha256": "acd5ce1b5e3ba5e868366f346f2b4850f246bd6966e9fdc20ba04565f8d801bc"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv": {
+      "bytes": 13990,
+      "sha256": "8ee00c6010f1dd05f0b0f7e190f30bc34574d78b65c767f7148683233b08392d"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_lookup.sv": {
+      "bytes": 13863,
+      "sha256": "92d8043230d9df3ab917427c4c619a5b57f918c2669abec310fe805d440034ef"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv": {
+      "bytes": 13202,
+      "sha256": "f7ebce15ce1d3ee97d968014d17051ddd942d3dd2d582368e4aa81b6e0e52205"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": {
+      "bytes": 23674,
+      "sha256": "49ed919ae9c755d009d7edd7df4b87b52984b73be56757957c576603f44c97f1"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+      "bytes": 47757,
+      "sha256": "4d3535168eb81bd10023b6cf7a4b8836a7821cb9c70ea2f3305c6273ad8ea5d9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv": {
+      "bytes": 17734,
+      "sha256": "cdeaf2adec59b811713f17bf2c4a0878d59fdb7020afac09c96c4619c9ec0857"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv": {
+      "bytes": 24322,
+      "sha256": "d030fc7fcee27c1b2fddd3503ad9a3d2160b4af4df393393c5b727e7571369f1"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": {
+      "bytes": 4148,
+      "sha256": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": {
+      "bytes": 2573,
+      "sha256": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv": {
+      "bytes": 3691,
+      "sha256": "042df8b9da13bc2a66f945b2942a30374d52fa38766ba73916999901fa63622f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv": {
+      "bytes": 6175,
+      "sha256": "30ed1ba9546f9d81974452d786932bd54063c23338503045b4b1ce9eb31e2a9b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv": {
+      "bytes": 10465,
+      "sha256": "a5a62b158671b4500cac88bf1a7d66cfb7f44cf74cbe49d4e865aebf397abbca"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+      "bytes": 8052,
+      "sha256": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv": {
+      "bytes": 25862,
+      "sha256": "8d753b5e0e28b5f8bbbbdfdfe3b8894808e068068f44f57fa1b77cdec8a743eb"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv": {
+      "bytes": 2365,
+      "sha256": "1c60a777659e7dea8ba1e13ed9d76ac0e6df544a9c70ccc7327d0e20c0fba5a9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": {
+      "bytes": 30273,
+      "sha256": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv": {
+      "bytes": 22935,
+      "sha256": "653a0eebffff3724312847baf64c5eb188afdaea50ca3b2acb6d4e6e1e888339"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+      "bytes": 10507,
+      "sha256": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+      "bytes": 3760,
+      "sha256": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": {
+      "bytes": 16277,
+      "sha256": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_rope_raw_ram.sv": {
+      "bytes": 1026,
+      "sha256": "d8b9f6c8229af472f8d69858f9412cbcd58991f58b4f4fb2feb508fd5d0b0e21"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_scratch_ram.sv": {
+      "bytes": 1168,
+      "sha256": "dbf09b83baf263397db18970535e41c8c3ab487e9f8926ca8a8740b58f65f901"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector128_ram.sv": {
+      "bytes": 1028,
+      "sha256": "9282e788fc641f15f225986738a8a9d605c892b210e060763622026a5b05310a"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector256_ram.sv": {
+      "bytes": 1108,
+      "sha256": "0767c4a1c69432f9537385223101d2e6d69a86259313ed9a27cff10cb9ccff57"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": {
+      "bytes": 11169,
+      "sha256": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv": {
+      "bytes": 2974,
+      "sha256": "9e033db09b614f43999a94692d0f19a7ec58845dc65963d2e37a0e9d134bf7af"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": {
+      "bytes": 17671,
+      "sha256": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_normalize0/rtl/board1_fixed_vector_rne_shift_iterative.sv": {
+      "bytes": 5892,
+      "sha256": "22159952c558c41366eee3abc6f0932867e482a94bfde16d7f26f0a3228fd05b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh": {
+      "bytes": 33280,
+      "sha256": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+      "bytes": 8056,
+      "sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+      "bytes": 1353,
+      "sha256": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+      "bytes": 24485,
+      "sha256": "bbb16e89c3950058fd24f3dac9d362dcb003fe2dbedf51ebce302084f974b9fe"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor1/rtl/board1_gowin_ddr3_raw_controller_shell.sv": {
+      "bytes": 9879,
+      "sha256": "eda70d4807b7312af6acf8bdfca683fe2d97d2c74f4e4c9e400e05644b1b18c0"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_ddr_locked_auth_watchdog_cdc.sv": {
+      "bytes": 26322,
+      "sha256": "d30b40d79c02c03f1b6b159054b3ee7403985752763aa332fe86ca4fbfb11e37"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_private_ddr_lock_bridge.sv": {
+      "bytes": 22739,
+      "sha256": "71ecc05bad160b500ec2564dcbed62de196972d1b10673a1452af7049325b818"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_qspi_image_stream.sv": {
+      "bytes": 15141,
+      "sha256": "e871d8d5d4d29e6a58a5569f720414e4d2a915a28b8e42738b13a0173cf3740c"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_qspi_async_word_fifo4.sv": {
+      "bytes": 4935,
+      "sha256": "ddd1611a5e77139ae4d1a3c0f4c61c2efba97bf1123ac0541766bd992a708e04"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": {
+      "bytes": 3033,
+      "sha256": "3373d3a7dd46ab2ff632f24b56e93c0556d5963ff2871bcde57c98168f939914"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_endpoint_fault_cdc.sv": {
+      "bytes": 2045,
+      "sha256": "84c61af4e4d836d295f1c43b92456576990733d0247102cd632433a92ef063b0"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_ddr_preboard_locked_boundary.sv": {
+      "bytes": 11586,
+      "sha256": "58760e39d6d82070f595b2b9d93d7116bc8864d4b0abc572cb2e2fc5fceaa8e9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_qspi_read03_master.sv": {
+      "bytes": 8909,
+      "sha256": "409e8862d850ef398ff1dbf38c40be63ffbe94462b2ca3184fb421b4f4367607"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_semantic_image_auth_compact.sv": {
+      "bytes": 7755,
+      "sha256": "0b35dc658c3d87a09777a257c994d9f5273bf287a73eb669f9de4132138c6e98"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/shared_projection_scale0/rtl/board1_shared_projection_scale_engine.sv": {
+      "bytes": 26128,
+      "sha256": "443d16724abe6999af5af35c3685c8d5ef45b707cc1af6dd4514a5beefac209f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/unified_dsp0/rtl/board1_unified_projection_head_mul_exact.sv": {
+      "bytes": 7148,
+      "sha256": "ccf15c1ad0f5bef293a44e89ae56fb9fd6bf8382205d7b12bac472ad2fa295d2"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv": {
+      "bytes": 7882,
+      "sha256": "21c3ebc878f36c7260bf203f78174584d0c3e0ce18546966707ead45a0631b83"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": {
+      "bytes": 3071,
+      "sha256": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": {
+      "bytes": 1502,
+      "sha256": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": {
+      "bytes": 12541,
+      "sha256": "13551d6d3cdffe60dbfa4ed094bad5fb92b7648604dca8f6a98f1f0d8f27f84b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/handoff.sv": {
+      "bytes": 8824,
+      "sha256": "25f6455dd70ccf92107184fa7f166b9ff1dc33018aa867d4a0275ace72e34366"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/mapper_portable.sv": {
+      "bytes": 4485,
+      "sha256": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/metadata192.memh": {
+      "bytes": 114072,
+      "sha256": "1535aa2d84de71c736b71e40694940f1b291dfd1db6c9f02d10b8605552ccdb9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": {
+      "bytes": 36873,
+      "sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/normalizer_pipeline.sv": {
+      "bytes": 57551,
+      "sha256": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/product.gprj": {
+      "bytes": 10895,
+      "sha256": "f92ba126d24056ed9e548ae21bf334d580998a1a50be6a91f44426e1bdce7d2b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/production_sources.f": {
+      "bytes": 6003,
+      "sha256": "bb762a135955547592a3eb094aa2786adedd31268b2e14cbde1b26556507ac98"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/reset.sv": {
+      "bytes": 930,
+      "sha256": "8b7d02cbcc49fad8e017a71051afb61ec923aa6aaa37031866e00a44da3bc7a6"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/service.sv": {
+      "bytes": 15504,
+      "sha256": "e5fe095fae8fe70fdaf4db33d60d4c994f00e0df8832b3983802091e0cf8d566"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/sha.sv": {
+      "bytes": 24176,
+      "sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/shared_token_probe.sv": {
+      "bytes": 17759,
+      "sha256": "17aae8f21119a3aa1f16d7f7dc6a4f15a984e9362901570183d3e86a848f097e"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/swic/su_image_check.sv": {
+      "bytes": 2862,
+      "sha256": "2cfab6dc1c938cea2628d65529d11d74704c5154d8a0b00ed50a752b253dc1cd"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/swic/su_lms_verify.sv": {
+      "bytes": 10209,
+      "sha256": "3365c3476a641c3d4a2524247c826c3ade6c7a8761f33714400d1604b973dd02"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/swic/su_policy.svh": {
+      "bytes": 1128,
+      "sha256": "046379705d7647046fd488bb27cbc872dcced29e895f7bb9fcd41b0701db09ec"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/swic/su_sha256.sv": {
+      "bytes": 3306,
+      "sha256": "1a4122e99386d0d02627ece9674a3092f534f6169e9d6dc2b0a5ecb78681ae63"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/swic/swic_boot_admission.sv": {
+      "bytes": 14478,
+      "sha256": "fb6069d1c4c423889330746c6c16f71ff07824527b42f4b2cf2a3825c398582b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/swic/swic_boot_ingress.sv": {
+      "bytes": 4138,
+      "sha256": "0a109d0ed42a97f872fa500c3d6f506fff4b8d39c36d1dde1a60d73f359d1932"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/swic/swic_ddr_boot.sv": {
+      "bytes": 7607,
+      "sha256": "ca176f7758f64cc83f2d56b7f313cdbae14d88b181ef748e066954fa3f640531"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/swic/swic_norm_store.sv": {
+      "bytes": 4078,
+      "sha256": "e5981a955613b7588c098fe1b014e074eda905c17964c91efefc066ed231b88a"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/swic/swic_qspi_boot_source.sv": {
+      "bytes": 5355,
+      "sha256": "6bb234dd08917c415da31cefc76203b0ffae68ea5e3965b29ffb15cfaa92a626"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/swic/swic_read03_master.sv": {
+      "bytes": 8976,
+      "sha256": "f2c092bbd8c1112e650c8ba8d3dd4e023a2970f770bb9be31330b8758549b966"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/swic/swic_verified_memory.sv": {
+      "bytes": 5175,
+      "sha256": "1cd492a65c2162c138bf84b425bafa927dbee38611725f274b2d781e19e7b58e"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/swic/vendor/bank.sv": {
+      "bytes": 10180,
+      "sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/swic/vendor/sha.sv": {
+      "bytes": 24176,
+      "sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/thin_transport.sv": {
+      "bytes": 8284,
+      "sha256": "b85e08fa0dfe0aefdc37aa0343175f8ea614025392bce0e112d11f12172eb84e"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/top.sv": {
+      "bytes": 11121,
+      "sha256": "19fe87027432fa5a6d2aa6efb7217403fa80db3fe7c580f71ada01d9dccf49d0"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/project/uart_core.sv": {
+      "bytes": 4405,
+      "sha256": "479d621a6ac9460dfcd1d36e1a59eff77147504353bfe8b92d216861f6e17390"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/hardware/run.tcl": {
+      "bytes": 831,
+      "sha256": "263c7d41f4251dc8890e1cb78fa60dac82de7c897c5d9ad61ca4d57ad822ea23"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/prebuilt/README.md": {
+      "bytes": 1154,
+      "sha256": "81f209f95aa9240cc2cbdec79a3ae4e906f3556dccee0cae54602fe2d95c9ee7"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/prebuilt/swic_product.fs": {
+      "bytes": 42197772,
+      "sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/reference/signed_update.py": {
+      "bytes": 10726,
+      "sha256": "a568a80976dd35a7d4143e714758fc44af0c19bf9a029f42baceb6779bb7bd1b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/reference/tang_image.py": {
+      "bytes": 4733,
+      "sha256": "7ab38413e7a8f643a19b1adb6ff33efc0648e5a9ac5611d241862ffe61159ba5"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/audit_build_inputs.py": {
+      "bytes": 1672,
+      "sha256": "321748495189d25d7e1f4b5b74dbf2ac516f3a8609755dea9692b6901a13068e"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/build_tang_sim.py": {
+      "bytes": 2677,
+      "sha256": "04b122899431138c9193cc1862196f3c40284f00b1da9b5f6121bc74afcf5556"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/check_board_rejection.py": {
+      "bytes": 2397,
+      "sha256": "0e6a6c4959709966a8337902a591f8d974c98489fdd9e902b66581b708061c84"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/check_fixture_identity.py": {
+      "bytes": 2528,
+      "sha256": "7ca7820ecb5c79d3532c83de7d2592585274100e003a22878ab5d58f3438d51a"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/fast_flash_body.sv": {
+      "bytes": 1673,
+      "sha256": "13e3b37a667583b16925447ea226849e206c8d4734ebabc5b2ca777c51f8c70f"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/lms-vectors.json": {
+      "bytes": 30573,
+      "sha256": "4b47aab41bbdf48e1eddcd73a2b299feae2cf371b8fef79a8561ec2d7dbeb144"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/make_fixtures.py": {
+      "bytes": 2056,
+      "sha256": "00a1f91f0dfe0052147b20ac765ea0d74d894beaaed9efbb38bdfd9e6be73891"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/make_weight_fixture.py": {
+      "bytes": 1726,
+      "sha256": "2775a29f81823ce0b9dbe063a87eebc00a89b3b4e3cccfdda4d64eec15657354"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/phy_model.sv": {
+      "bytes": 4926,
+      "sha256": "0ac62b88ed211c4fadfa3da581bc181fa265373ef13bd108ea39154a4e9965d9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/phy_model_body.sv": {
+      "bytes": 3345,
+      "sha256": "04b06f0323ef5bf8d88b84baf5d3857768abeb75c149fe40e24180262d7d2dd2"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/reference_cases.py": {
+      "bytes": 5854,
+      "sha256": "09411accf2ba2d956a4e1a293013bb2334822b16d64fd0a711088d2ed9062274"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/rfc8554-case1.json": {
+      "bytes": 6215,
+      "sha256": "bddd4e5e6bbf2bddf8290e7ef07a6537aa129e9ecac7a5a440f3c2be2aebb281"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/run_admission_memory.py": {
+      "bytes": 4717,
+      "sha256": "c0680026be2eafc6da2b4ce8efd5afc55625a85b42b35c3b4bdafcd10d5a1330"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/run_boot_faults.py": {
+      "bytes": 5908,
+      "sha256": "f7982acf967bc6029340c416cc9d77d49c6dbdafa9a93656b69ecf44a9f54b64"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/run_crypto_kats.py": {
+      "bytes": 4730,
+      "sha256": "b51499d3aaf3ea03bb9fb075d505a0e73756e405fa5f3df2d6a11248449dc72c"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/run_host_tools.py": {
+      "bytes": 5565,
+      "sha256": "9342edcae80f5f7af45d005fd4a268b305a85f3e66c89e9bd0e7a2e772844d32"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/run_norm_store.py": {
+      "bytes": 1373,
+      "sha256": "f371782e7e2312658ded62a0037956f99044066ec87ca535f68e6c7369cc43ff"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/run_tang_sim.py": {
+      "bytes": 2388,
+      "sha256": "c4c31813ab9d83288fcc23df9bccc9accf3c4c8bbef5bd0a325438be114681c7"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/tb_memory.sv": {
+      "bytes": 9107,
+      "sha256": "df6c382e24dc02c8bbfc9e114b23e3bcf32150908ba5d2534d3fa7a6759ba682"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/tb_norm_store.sv": {
+      "bytes": 2903,
+      "sha256": "895bd197175e5fc5fd4638fa811918b71d353805820637df194362d2a98dc8cc"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tests/tb_tang.sv": {
+      "bytes": 7669,
+      "sha256": "ab3da5053e6b3fcf4414455ccfd8f6cfa153f775b88de94bdfb4c3003d8b0116"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tools/build_native.py": {
+      "bytes": 3149,
+      "sha256": "3edb1c8434f4866b385d47462b1f1cb3917433ac9bf3a264ba58327daed456e1"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tools/check_common_speed.py": {
+      "bytes": 6123,
+      "sha256": "3c95eab24786029bc05ea7f88b9bdea3c283633b3065a0d4f91f2433b9d1bc19"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tools/check_flash.py": {
+      "bytes": 2023,
+      "sha256": "7027c074da6a73abbb59b4e312318c1e7e6d7010e66a9a43e4b453aeb5912236"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tools/collect_common_speed.py": {
+      "bytes": 9333,
+      "sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tools/common_speed_reference.py": {
+      "bytes": 2365,
+      "sha256": "81328fd2323273fbab8ea56f566ae95e9473de480a7c3b93c86f344bf9813f6b"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tools/prepare_flash.py": {
+      "bytes": 1892,
+      "sha256": "326548e377ccef373673fe9a0cc5042d8dff11f182cc53ea0979e4c356a9be4e"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tools/prepare_flash_blocks.py": {
+      "bytes": 2284,
+      "sha256": "b88a7892dd626f455d2c0fba13e1df21e4f356dc4f5ed6f084d1f249d2f1f1ce"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tools/prepare_preserving_flash.py": {
+      "bytes": 3143,
+      "sha256": "02af81710f70929794fefdc9c2d6dce1f2ddf07892a45a715df26f77735036f5"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tools/read_flash_jtag.py": {
+      "bytes": 3728,
+      "sha256": "0241871f3541930c71b986de50b9c0c37a6e84e45afd2971aa16f88ac53c9514"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/tools/uart_check.py": {
+      "bytes": 3765,
+      "sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tests/reference_cases.py": {
+      "bytes": 5854,
+      "sha256": "09411accf2ba2d956a4e1a293013bb2334822b16d64fd0a711088d2ed9062274"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tests/rfc8554-case1.json": {
+      "bytes": 6215,
+      "sha256": "bddd4e5e6bbf2bddf8290e7ef07a6537aa129e9ecac7a5a440f3c2be2aebb281"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tests/run_lms_rtl.py": {
+      "bytes": 4562,
+      "sha256": "c19ba3aa87b013f175ce5ab44c32487b4d6495b4c0aa0900c9e7acadf8f1ba38"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tests/run_memory_rtl.py": {
+      "bytes": 4597,
+      "sha256": "1b63b941384a3fed0de1219fd11dbb211c5b8292f3cb93dfde1a1b6a2450006e"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tests/run_x.py": {
+      "bytes": 1145,
+      "sha256": "65c758a41d05b80f108acb9365c741defe77c32e13120fbfe7bb90d0b1881ad1"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tests/tb_memory.sv": {
+      "bytes": 9107,
+      "sha256": "df6c382e24dc02c8bbfc9e114b23e3bcf32150908ba5d2534d3fa7a6759ba682"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tests/tb_x.sv": {
+      "bytes": 2154,
+      "sha256": "7ea641a056558e707d09b2384b27ead6b4cf39402950dca7166ddda2fb2915e6"
+    },
     "diagrams/README.md": {
       "bytes": 3658,
       "sha256": "c5b386e0e7e4da62dc57415a8610ad40b391befd429912225a37ded57cd85d22"
@@ -67845,8 +69177,8 @@
       "sha256": "79365e8930766b7ea2cc62da148973d1b3e421504ce9c80f3c5d3d7655879440"
     },
     "docs/benchmarks/FPGA-SPEED-BENCHMARK.md": {
-      "bytes": 6176,
-      "sha256": "440cd11920fded205965fce2e313a3da9d158a5c36a2c5944ccf8a12bdd50bc6"
+      "bytes": 7152,
+      "sha256": "0e6f1dd969ba6266584c212bd7f3c8dadd66ec15b399dc8a3f7ba59d9f5d5c58"
     },
     "docs/benchmarks/H100-BENCHMARK.md": {
       "bytes": 23339,
@@ -67899,6 +69231,14 @@
     "docs/figures/hwic.svg": {
       "bytes": 87687,
       "sha256": "d9bba1f88bc1cd60d2a0894649024b522b37da39166ade7bdc78b7a0f3ec97ec"
+    },
+    "docs/figures/ic-taxonomy-dark.svg": {
+      "bytes": 1278,
+      "sha256": "9e84334c24f212c42cddf9331c8f3e72a355dcfc92971fe25c7bf33922faafc6"
+    },
+    "docs/figures/ic-taxonomy.svg": {
+      "bytes": 1278,
+      "sha256": "17ce27c9c3a09c3567d3578a23b1748ff67aa08ac6703c828cf8a3cb9a80d932"
     },
     "evidence/README.md": {
       "bytes": 432,
@@ -68381,8 +69721,8 @@
       "sha256": "22dc8a322fec4379f38b83c591b7aa47cd3619343f50fff41c467888ddf8ef59"
     },
     "tools/fpga_speed_benchmark.py": {
-      "bytes": 18267,
-      "sha256": "a63d6a41955ca57d304b7b5eda9d4d1292896244f28b478235803f486380b535"
+      "bytes": 18900,
+      "sha256": "7f83144d3884d9749612f09346b06863fbeaa1f42d7d4e901643d2c15ada39d6"
     },
     "tools/qwen_common_speed_evidence.py": {
       "bytes": 8722,
@@ -68397,8 +69737,8 @@
       "sha256": "d978194ec7e23c8756e1a03c6d8192263ad01cb37ca69c825bbce76b16a2a9c4"
     },
     "tools/test_fpga_speed_benchmark.py": {
-      "bytes": 11111,
-      "sha256": "fbb5b7b22ee17d241417a0b334f94170bb79ed627f5d5227774594610f91ce00"
+      "bytes": 12397,
+      "sha256": "854402ee3123d841eb93f1dfffe5e62508d45731b3eb203eb1f5fff964f08034"
     },
     "tools/test_qwen_h100_results.py": {
       "bytes": 4275,

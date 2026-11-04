@@ -79,3 +79,15 @@ The [inference-only assessment](INFERENCE-ONLY.md) describes the access and
 security assumptions. The [training-capacity assessment](TRAINING-CAPACITY.md)
 and [shared methodology](../../docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md)
 state the conditional arithmetic scenarios and their limits.
+
+## Experimental signed updates
+
+The separate [S-AWIC prototype](variants/signed-update/README.md) admits compatible
+full model parameters signed by two of three fixed demonstration authorities. Its
+[complete Tang integration](variants/signed-update/tang/README.md) connects
+signature admission to flash boot, DDR readback and the UART token machine.
+[Validation status](variants/signed-update/tang/VALIDATION.md) distinguishes
+completed simulations, native build qualification and board evidence. This
+experimental target has public demo signing material and no deliberate delay,
+update cap or antirollback protection; it is separate from the measured
+fixed-digest configurations above.

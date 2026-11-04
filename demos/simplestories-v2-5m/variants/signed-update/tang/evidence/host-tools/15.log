@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "LOCAL_INTEGRATION/tools/prepare_flash_blocks.py", line 25, in <module>
+    a.output.mkdir(parents=True,mode=0o700,exist_ok=False)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/pathlib.py", line 1288, in mkdir
+    self._accessor.mkdir(self, mode)
+FileExistsError: [Errno 17] File exists: 'LOCAL_BUILD/swic-host-check-judbxsrg/blocks'

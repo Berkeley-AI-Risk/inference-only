@@ -1,0 +1,170 @@
+{
+  "result": "PASS",
+  "hardware_access": false,
+  "cli_cases": [
+    {
+      "tool": "prepare_flash.py",
+      "expected_success": true,
+      "exit_code": 0,
+      "log_sha256": "72d4916d4659ee7e40a6f7ab2ba4d963350688ac54706370fa00abbb6a4c8e35"
+    },
+    {
+      "tool": "prepare_flash.py",
+      "expected_success": false,
+      "exit_code": 1,
+      "log_sha256": "1ab81d22d1f5dcdaa3b0b0481db70de35e7c90e456170e4d04e2349750bd12e1"
+    },
+    {
+      "tool": "prepare_flash.py",
+      "expected_success": false,
+      "exit_code": 1,
+      "log_sha256": "e51b34ba50a5f3c2e851edf9c57ed3f758bef74240912d0e5bffbd8bb8c6fdc3"
+    },
+    {
+      "tool": "check_flash.py",
+      "expected_success": true,
+      "exit_code": 0,
+      "log_sha256": "539a973d004a51d55027a2294e8b0e702f35b76b4bb1441663427df73039c165"
+    },
+    {
+      "tool": "check_flash.py",
+      "expected_success": false,
+      "exit_code": 1,
+      "log_sha256": "bd6c8543adbe17a54d5a48cd8870b63efdd4ce7c8bc417d6baf3a69abe74bf68"
+    },
+    {
+      "tool": "check_flash.py",
+      "expected_success": false,
+      "exit_code": 1,
+      "log_sha256": "dcfc0ed242c4bf1de760dc866ccb1dbf62591435416e96f6d5733df70c96eb81"
+    },
+    {
+      "tool": "check_flash.py",
+      "expected_success": false,
+      "exit_code": 1,
+      "log_sha256": "e790a129bdff27421f917583ebaae6be79515d24f1dabf70bb86b72b20f05cd0"
+    },
+    {
+      "tool": "check_flash.py",
+      "expected_success": false,
+      "exit_code": 1,
+      "log_sha256": "1647bb08b8c845e5b2a33b5574f551f5bb3f372ce133085cf2edf93a140ae2b4"
+    },
+    {
+      "tool": "check_flash.py",
+      "expected_success": false,
+      "exit_code": 1,
+      "log_sha256": "65e303465ce669c999eb911469366cdc0aab28b2533b07f6bdd8ddbdd9fa7b45"
+    },
+    {
+      "tool": "prepare_preserving_flash.py",
+      "expected_success": true,
+      "exit_code": 0,
+      "log_sha256": "0e16edec330683dd8c1fe40f2e0e562383d8636107d271c8560cfdc3292aecdd"
+    },
+    {
+      "tool": "prepare_preserving_flash.py",
+      "expected_success": false,
+      "exit_code": 1,
+      "log_sha256": "4d031d2f56eef1ff49a9b279047c6043be3282553ad3850da2ca98051634dfa3"
+    },
+    {
+      "tool": "check_flash.py",
+      "expected_success": true,
+      "exit_code": 0,
+      "log_sha256": "b15b358d98a7a544eeb3de63fd97a237fcb08504e7349862fcf5bda7cee8f501"
+    },
+    {
+      "tool": "check_flash.py",
+      "expected_success": false,
+      "exit_code": 1,
+      "log_sha256": "bd6c8543adbe17a54d5a48cd8870b63efdd4ce7c8bc417d6baf3a69abe74bf68"
+    },
+    {
+      "tool": "check_flash.py",
+      "expected_success": false,
+      "exit_code": 1,
+      "log_sha256": "bd6c8543adbe17a54d5a48cd8870b63efdd4ce7c8bc417d6baf3a69abe74bf68"
+    },
+    {
+      "tool": "prepare_flash_blocks.py",
+      "expected_success": true,
+      "exit_code": 0,
+      "log_sha256": "3dded0d4f38a562bf74f6652962d8acf760a8e380dd0b7de83ba253e2c129cc0"
+    },
+    {
+      "tool": "prepare_flash_blocks.py",
+      "expected_success": false,
+      "exit_code": 1,
+      "log_sha256": "828f9a86b141b1ed26b704265ad072c70d2059ea3d6a88520a30059762440d68"
+    },
+    {
+      "tool": "prepare_flash_blocks.py",
+      "expected_success": false,
+      "exit_code": 1,
+      "log_sha256": "e0fd0170f1543a8dd5433aaccfbe446e0648c481c239db96c5e007c76b46a323"
+    }
+  ],
+  "uart_cases": [
+    {
+      "opcode": 2,
+      "input": 0,
+      "value": 0,
+      "corruption": null,
+      "accepted": true
+    },
+    {
+      "opcode": 0,
+      "input": 1,
+      "value": 0,
+      "corruption": null,
+      "accepted": true
+    },
+    {
+      "opcode": 1,
+      "input": 0,
+      "value": 108,
+      "corruption": null,
+      "accepted": true
+    },
+    {
+      "opcode": 1,
+      "input": 0,
+      "value": 32,
+      "corruption": null,
+      "accepted": true
+    },
+    {
+      "opcode": 0,
+      "input": 1,
+      "value": 1,
+      "corruption": "ack",
+      "accepted": false
+    },
+    {
+      "opcode": 1,
+      "input": 0,
+      "value": 108,
+      "corruption": "crc",
+      "accepted": false
+    },
+    {
+      "opcode": 1,
+      "input": 0,
+      "value": 108,
+      "corruption": "status",
+      "accepted": false
+    }
+  ],
+  "package_sha256": "05fd261a9fc79a9fd3acaedc53e7b996e0f402e97363281b017632dc837d6342",
+  "source_sha256": {
+    "tests/run_host_tools.py": "9342edcae80f5f7af45d005fd4a268b305a85f3e66c89e9bd0e7a2e772844d32",
+    "tools/prepare_flash.py": "326548e377ccef373673fe9a0cc5042d8dff11f182cc53ea0979e4c356a9be4e",
+    "tools/prepare_preserving_flash.py": "02af81710f70929794fefdc9c2d6dce1f2ddf07892a45a715df26f77735036f5",
+    "tools/prepare_flash_blocks.py": "b88a7892dd626f455d2c0fba13e1df21e4f356dc4f5ed6f084d1f249d2f1f1ce",
+    "tools/check_flash.py": "7027c074da6a73abbb59b4e312318c1e7e6d7010e66a9a43e4b453aeb5912236",
+    "tools/uart_check.py": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+    "reference/tang_image.py": "7ab38413e7a8f643a19b1adb6ff33efc0648e5a9ac5611d241862ffe61159ba5",
+    "reference/signed_update.py": "a568a80976dd35a7d4143e714758fc44af0c19bf9a029f42baceb6779bb7bd1b"
+  }
+}

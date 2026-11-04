@@ -1,0 +1,22 @@
+PASS vector=0 cycles=581969 expected=1
+PASS vector=1 cycles=649799 expected=0
+PASS vector=2 cycles=548314 expected=1
+PASS vector=3 cycles=650059 expected=0
+PASS vector=4 cycles=616014 expected=1
+PASS vector=5 cycles=548184 expected=1
+PASS vector=6 cycles=616014 expected=1
+PASS vector=7 cycles=616014 expected=1
+PASS vector=8 cycles=548184 expected=1
+PASS vector=9 cycles=616014 expected=1
+PASS vector=10 cycles=13 expected=0
+PASS vector=11 cycles=13 expected=0
+PASS vector=12 cycles=13 expected=0
+PASS vector=13 cycles=616014 expected=0
+PASS vector=14 cycles=616014 expected=0
+PASS vector=15 cycles=683844 expected=0
+PASS vector=16 cycles=616014 expected=0
+PASS all LMS vectors total_cycles=8522490
+- tb_lms.sv:53: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 85ms; walltime 1.964 s; speed 43.392 ms/s
+- Verilator: cpu 1.961 s on 1 threads; allocated 2 MB

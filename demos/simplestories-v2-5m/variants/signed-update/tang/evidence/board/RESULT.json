@@ -1,0 +1,63 @@
+{
+  "schema": "simplestories-signed-update-physical-campaign-v1",
+  "result": "PASS",
+  "captured_utc": "2026-11-04T04:32:47.249256+00:00",
+  "target": "Tang Mega 138K non-Pro / GW5AST-138C / PG484A",
+  "bitstream_sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2",
+  "bitstream_bytes": 42197772,
+  "native_inputs_sha256": "15c30ff4ad5074bdb793456bf7fb1125ffdbab38cc966d8e9ee90af916ee7fc0",
+  "same_bitstream_for_all_cases": true,
+  "independent_complete_original_backups": 2,
+  "backups_match_and_have_verified_durable_copies": true,
+  "read_transport_compared_against_both_maintenance_reader_backups": true,
+  "outside_model_and_admission_regions_preserved_in_all_readbacks": true,
+  "programming_transport": "openFPGALoader v1.1.1; complete changed 64 KiB blocks; programmer verify plus independent entire-array readback",
+  "openloader_sha256": "f880eb583695f8056566da308248ba539a1a1c4cabb6305c3d801acfd58f9e1b",
+  "sram_loader_sha256": "41a967c1d18ec73b420801d52bf83ad40b92ca032683231d55a5ef158d523cfb",
+  "cases": [
+    {
+      "case": "bad-signature",
+      "result": "PASS",
+      "complete_flash_readback_matches_candidate": true,
+      "flash_bytes": 16777216,
+      "image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+      "admission_slot_sha256": "1ec58d73593649ae623a98d9dd68546078794d4783ded15752deade567bfa3cf",
+      "uart_evidence": "bad-signature-uart.json",
+      "clear_replay_evidence": null
+    },
+    {
+      "case": "changed-norm",
+      "result": "PASS",
+      "complete_flash_readback_matches_candidate": true,
+      "flash_bytes": 16777216,
+      "image_sha256": "1ada1d7dfbbae137f8747945a7144a84428f2d1d6135afa13c071ab67e7f05ce",
+      "admission_slot_sha256": "ce73095c5e1ca1bee7c00b26af6e5c8ac785f8546a5bcf85c3613c3e5dfbfa42",
+      "uart_evidence": "changed-norm-uart.json",
+      "clear_replay_evidence": "changed-norm-replay.json"
+    },
+    {
+      "case": "base",
+      "result": "PASS",
+      "complete_flash_readback_matches_candidate": true,
+      "flash_bytes": 16777216,
+      "image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+      "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
+      "uart_evidence": "base-uart.json",
+      "clear_replay_evidence": "base-replay.json"
+    }
+  ],
+  "final_running_fixture": "base",
+  "source_sha256": {
+    "tools/uart_check.py": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+    "tests/check_board_rejection.py": "0e6a6c4959709966a8337902a591f8d974c98489fdd9e902b66581b708061c84",
+    "tools/read_flash_jtag.py": "0241871f3541930c71b986de50b9c0c37a6e84e45afd2971aa16f88ac53c9514",
+    "tools/prepare_flash_blocks.py": "b88a7892dd626f455d2c0fba13e1df21e4f356dc4f5ed6f084d1f249d2f1f1ce"
+  },
+  "limits": [
+    "Finite directed observations, not exhaustive verification or formal proof.",
+    "No full vendor-DDR timing signoff or physical attestation.",
+    "Public demonstration signing keys; no delay, cap or antirollback.",
+    "Synthetic changed-norm fixture, not a trained fine-tune.",
+    "FPGA configuration loaded into volatile SRAM; flash data contains model and admission slot."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "result": "PASS",
+  "hardware_access": false,
+  "checks": [
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3",
+        "tests/build_tang_sim.py",
+        "--fast"
+      ],
+      "exit_code": 1,
+      "refused_overwrite": true
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3",
+        "tests/run_tang_sim.py",
+        "--case",
+        "0"
+      ],
+      "exit_code": 1,
+      "refused_overwrite": true
+    }
+  ],
+  "unchanged_sha256": {
+    "evidence/tang-fast-simulation/BUILD.json": "eea3b83d243716372ac07ee67487d68aa8e10c1b3b3baa99f786df038fdd6f37",
+    "evidence/tang-fast-simulation/build.log": "09d3e5175ac28230148374610bf1204ffcd69ec8672a4a15b129de82ae40fda3",
+    "evidence/tang-simulation/case-0.log": "e25f806f4cfa08f7259411c71cce5141425080bae884b8132390c5210cf738b9",
+    "evidence/tang-simulation/case-0-result.json": "5f3993c34317f978083020028f8bb78a6b830caa8c41d0b2bf5beeaac7299fe4"
+  },
+  "runner_sha256": {
+    "tests/build_tang_sim.py": "04b122899431138c9193cc1862196f3c40284f00b1da9b5f6121bc74afcf5556",
+    "tests/run_tang_sim.py": "c4c31813ab9d83288fcc23df9bccc9accf3c4c8bbef5bd0a325438be114681c7"
+  }
+}

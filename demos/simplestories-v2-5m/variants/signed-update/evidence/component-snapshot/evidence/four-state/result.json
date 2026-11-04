@@ -1,0 +1,29 @@
+{
+  "result": "PASS",
+  "cases": 6,
+  "build_command": [
+    "iverilog",
+    "-g2012",
+    "-I",
+    "LOCAL_COMPONENT/rtl",
+    "-s",
+    "tb_x",
+    "-o",
+    "LOCAL_BUILD/swic-x-ah9_amfg/tb_x",
+    "LOCAL_COMPONENT/rtl/vendor/sha.sv",
+    "LOCAL_COMPONENT/rtl/su_sha256.sv",
+    "LOCAL_COMPONENT/rtl/su_lms_verify.sv",
+    "LOCAL_COMPONENT/rtl/swic_boot_admission.sv",
+    "LOCAL_COMPONENT/rtl/su_image_check.sv",
+    "LOCAL_COMPONENT/tests/tb_x.sv"
+  ],
+  "source_sha256": {
+    "rtl/vendor/sha.sv": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94",
+    "rtl/su_sha256.sv": "1a4122e99386d0d02627ece9674a3092f534f6169e9d6dc2b0a5ecb78681ae63",
+    "rtl/su_lms_verify.sv": "ea24a48a471e60ff87c23a6c0f3975f1de27c06b41a49e138fbe8299dc8ff6d9",
+    "rtl/swic_boot_admission.sv": "1c6e4bf208185ff78d2d97e72ebe5ab14542a402c2b839260082d80759f57fc8",
+    "rtl/su_image_check.sv": "2cfab6dc1c938cea2628d65529d11d74704c5154d8a0b00ed50a752b253dc1cd",
+    "tests/tb_x.sv": "7ea641a056558e707d09b2384b27ead6b4cf39402950dca7166ddda2fb2915e6",
+    "rtl/su_policy.svh": "046379705d7647046fd488bb27cbc872dcced29e895f7bb9fcd41b0701db09ec"
+  }
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "LOCAL_INTEGRATION/tools/prepare_flash.py", line 16, in <module>
+    info=tang.validate_tang(package,keys)
+  File "LOCAL_INTEGRATION/reference/tang_image.py", line 34, in validate_tang
+    info=su.verify_package(package,keys)
+  File "LOCAL_INTEGRATION/reference/signed_update.py", line 178, in verify_package
+    raise Reject("bad LMS signature")
+signed_update.Reject: bad LMS signature

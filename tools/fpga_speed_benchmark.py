@@ -249,6 +249,14 @@ def calculate(root):
                 root / 'tools/qwen_common_speed_evidence.py')
             verifier = importlib.util.module_from_spec(spec); spec.loader.exec_module(verifier)
             verifier.verify(root, row, sources[row['source']], sources[row['evidence_review']])
+        if row['id'] == 'simplestories-signed-update':
+            target = root / MODEL / 'variants/signed-update/tang'
+            spec = importlib.util.spec_from_file_location('signed_update_speed_evidence',
+                target / 'tools/check_common_speed.py')
+            verifier = importlib.util.module_from_spec(spec); spec.loader.exec_module(verifier)
+            need(row.get('evidence_review') in sources, 'Missing S-AWIC raw evidence review')
+            checked = verifier.verify(target, (root / row['source']).parent)
+            need(checked == sources[row['evidence_review']], 'S-AWIC raw evidence review differs')
         if row.get('artifact'):
             need(manifest['files'][row['artifact']]['sha256'] == row['identity']['fpga_image_sha256'],
                  'Benchmark does not describe the selected published FPGA image')

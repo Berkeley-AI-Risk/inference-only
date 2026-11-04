@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "LOCAL_INTEGRATION/tools/prepare_flash_blocks.py", line 19, in <module>
+    if before[lo:hi]!=candidate[lo:hi]:raise ValueError('candidate changes bytes outside model/admission regions')
+ValueError: candidate changes bytes outside model/admission regions

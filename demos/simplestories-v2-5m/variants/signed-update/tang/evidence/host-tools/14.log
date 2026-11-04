@@ -1,0 +1,22 @@
+{
+  "kind": "offline aligned flash block plan",
+  "hardware_access": false,
+  "block_bytes": 65536,
+  "before_sha256": "69348f8a2ab1bcdf8d64752c92cb78a32faffadca3d8ae2b63e3e7a19a3e51fe",
+  "candidate_sha256": "62c7ef4530b330608e0bf257846e9d75c676165520f2c93c62be8f16159b0ec7",
+  "outside_update_regions_preserved": true,
+  "writes": [
+    {
+      "file": "block-800000-6f0000.bin",
+      "address": 8388608,
+      "bytes": 7274496,
+      "sha256": "f3028ab95abd1d15bcb1d7730307e5a7c2c6d837310d73e82e9fcfe75528eaff"
+    },
+    {
+      "file": "block-f00000-040000.bin",
+      "address": 15728640,
+      "bytes": 262144,
+      "sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38"
+    }
+  ]
+}

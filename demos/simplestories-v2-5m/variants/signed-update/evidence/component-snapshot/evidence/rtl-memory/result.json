@@ -1,0 +1,174 @@
+{
+  "result": "PASS",
+  "boot_cases": [
+    {
+      "name": "base",
+      "accepted": true
+    },
+    {
+      "name": "changed-weight",
+      "accepted": true
+    },
+    {
+      "name": "changed-metadata",
+      "accepted": true
+    },
+    {
+      "name": "domain",
+      "accepted": false
+    },
+    {
+      "name": "geometry",
+      "accepted": false
+    },
+    {
+      "name": "reserved",
+      "accepted": false
+    },
+    {
+      "name": "policy",
+      "accepted": false
+    },
+    {
+      "name": "version-without-signature",
+      "accepted": false
+    },
+    {
+      "name": "root",
+      "accepted": false
+    },
+    {
+      "name": "zero-signers",
+      "accepted": false
+    },
+    {
+      "name": "one-signer",
+      "accepted": false
+    },
+    {
+      "name": "four-signers",
+      "accepted": false
+    },
+    {
+      "name": "unknown-signer",
+      "accepted": false
+    },
+    {
+      "name": "duplicate-signer",
+      "accepted": false
+    },
+    {
+      "name": "ots-type",
+      "accepted": false
+    },
+    {
+      "name": "lms-type",
+      "accepted": false
+    },
+    {
+      "name": "signature-chain",
+      "accepted": false
+    },
+    {
+      "name": "signature-path",
+      "accepted": false
+    },
+    {
+      "name": "image-hash",
+      "accepted": false
+    },
+    {
+      "name": "digest-table",
+      "accepted": false
+    },
+    {
+      "name": "metadata",
+      "accepted": false
+    },
+    {
+      "name": "truncated",
+      "accepted": false
+    },
+    {
+      "name": "oversized",
+      "accepted": false
+    },
+    {
+      "name": "authorities-02",
+      "accepted": true
+    },
+    {
+      "name": "authorities-12",
+      "accepted": true
+    },
+    {
+      "name": "authorities-012",
+      "accepted": true
+    }
+  ],
+  "image_bytes_each": 7265984,
+  "native_page_bytes": 4096,
+  "elapsed_seconds": 43.98001408576965,
+  "build_directory": "LOCAL_BUILD/swic-memory-yz_65axo",
+  "build_command": [
+    "verilator",
+    "--binary",
+    "--timing",
+    "-Wno-fatal",
+    "--top-module",
+    "tb_memory",
+    "-j",
+    "1",
+    "--Mdir",
+    "obj",
+    "sha.sv",
+    "bank.sv",
+    "su_sha256.sv",
+    "su_lms_verify.sv",
+    "swic_boot_admission.sv",
+    "su_image_check.sv",
+    "swic_verified_memory.sv",
+    "tb_memory.sv"
+  ],
+  "source_sha256": {
+    "rtl/vendor/sha.sv": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94",
+    "rtl/vendor/bank.sv": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1",
+    "rtl/su_sha256.sv": "1a4122e99386d0d02627ece9674a3092f534f6169e9d6dc2b0a5ecb78681ae63",
+    "rtl/su_lms_verify.sv": "ea24a48a471e60ff87c23a6c0f3975f1de27c06b41a49e138fbe8299dc8ff6d9",
+    "rtl/swic_boot_admission.sv": "1c6e4bf208185ff78d2d97e72ebe5ab14542a402c2b839260082d80759f57fc8",
+    "rtl/su_image_check.sv": "2cfab6dc1c938cea2628d65529d11d74704c5154d8a0b00ed50a752b253dc1cd",
+    "rtl/swic_verified_memory.sv": "1cd492a65c2162c138bf84b425bafa927dbee38611725f274b2d781e19e7b58e",
+    "rtl/su_policy.svh": "046379705d7647046fd488bb27cbc872dcced29e895f7bb9fcd41b0701db09ec",
+    "evidence/rtl-memory/tb_memory.sv": "151bfa12fdf19f0ce372e9965feaaab1338a45efe5dd8c039a2d407f5298e947"
+  },
+  "input_sha256": {
+    "evidence/rtl-memory/frame-0.hex": "4fe45e464d7f4349e579087d0ac165d0515c09842ccbb2a9b8abfeca508b2b17",
+    "evidence/rtl-memory/frame-1.hex": "1ebd4bd7d49d69cbd4e0a586aafaf4053f1ba7b9b56c7810002c5f0951acf474",
+    "evidence/rtl-memory/frame-10.hex": "7115e3e2d186eee76bd72013f82ad836843d36d89f08a0dd8eef16fece1bca65",
+    "evidence/rtl-memory/frame-11.hex": "19b4ba769e6eb585d8b3c3b571714626ec4e8ce26f4dbfe03ddb1c8c8147ea25",
+    "evidence/rtl-memory/frame-12.hex": "0f0d23d9ea8d3a4902d2b578afeb66e311cfe84a39fe70d9c70f55478233871f",
+    "evidence/rtl-memory/frame-13.hex": "9adbfee539c1296a4339e036559b288a50b91b981cf974f0ed16c48742a8a1f4",
+    "evidence/rtl-memory/frame-14.hex": "0f436e226d7f4a0f1441289ec03ba7bf2ce93029b00c4a06e9533aa2c61f1930",
+    "evidence/rtl-memory/frame-15.hex": "a4c9b05a53fdee209300bf09087014f5620c8a45db4720f1f6b89e24a3cbc104",
+    "evidence/rtl-memory/frame-16.hex": "bf2315b1c4985cc7e250874d93229cc42909e13809a10aa1132805ea46ffe062",
+    "evidence/rtl-memory/frame-17.hex": "0ff1883a7d4015b89289a16a75490408d3fcb07d9811b08905b310e981a115d9",
+    "evidence/rtl-memory/frame-18.hex": "0c7c80ca8457c3bc117ab574ba0df0fc4bbaa75a420685092115ab339c9037b1",
+    "evidence/rtl-memory/frame-19.hex": "fd0d2a20aabd016d707ccbb96aa999579155e9c79fad90d8c0d0baefc3334c5e",
+    "evidence/rtl-memory/frame-2.hex": "214ab759b91d941e32c514029ee15f65a5fd399baddf839d6cb03cd7f41642a6",
+    "evidence/rtl-memory/frame-20.hex": "688c796e8ba731647b2df41caed1f70d755dc85bd3a5840ad3009469f703206a",
+    "evidence/rtl-memory/frame-21.hex": "b43c20b83ac1d6d776535e4ef2a7d22b5166a80460a723d659167200ce3b7d95",
+    "evidence/rtl-memory/frame-22.hex": "5e66cbc31704a5c22edcb12655eff1603a432c1cb2750e22ebee848f6640a844",
+    "evidence/rtl-memory/frame-23.hex": "cf2b09ef605b58d88b1821305cb725512388ca20094fd29547abc27daa833b81",
+    "evidence/rtl-memory/frame-24.hex": "7ab9a7e7685e8a63850da5eb8aa458bda974931431a614a9f289f437a3f08ba2",
+    "evidence/rtl-memory/frame-25.hex": "65199d02744d58a9eb0db0a23c25156e77a3bf3205f527ba7fcd8a781e0e2f62",
+    "evidence/rtl-memory/frame-3.hex": "49e7441759a823cdd03b00ff585f0d1f35cd794ab34212edf4b4b1e0d28e5b15",
+    "evidence/rtl-memory/frame-4.hex": "b8aae141af66b2466ed3c4d429b5887b6f811ae13abb5b4dd01d3f528f8fb6a4",
+    "evidence/rtl-memory/frame-5.hex": "d255571c27cf21ddb84615895b5c986cbaff8ff213dc61a96214defcbaed0d05",
+    "evidence/rtl-memory/frame-6.hex": "1b89271745b838ab140b7ab9e5499512241893de64a3b35e6f7eeac5557529ca",
+    "evidence/rtl-memory/frame-7.hex": "171309749c7a233c4b20a466c2045b210b0c2b5438b1ebde3844a2341c9252dc",
+    "evidence/rtl-memory/frame-8.hex": "b8766efbcd4ecfb69aa6eb08b3dbf9606506ac152d7ebfdf5ec6ec85a7c8f1ce",
+    "evidence/rtl-memory/frame-9.hex": "4f231a22f3673ca150a475f8d6185c3cacfbf18da386daab735746789037d871",
+    "evidence/rtl-memory/image.hex": "9ab79b8f305daa625ef4a7418114874c45ee623a6a3cd0bd86a761391e5f498c",
+    "evidence/rtl-memory/metadata.hex": "1535aa2d84de71c736b71e40694940f1b291dfd1db6c9f02d10b8605552ccdb9"
+  }
+}

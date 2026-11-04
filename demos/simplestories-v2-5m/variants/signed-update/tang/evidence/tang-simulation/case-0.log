@@ -1,0 +1,24 @@
+SPI START case=0 address=00f00000 time=5253800000
+SPI START case=0 address=00801000 time=676353000000
+BOOT PROGRESS case=0 cycles=50000000 slot=262144 image=519097 word=16221 state=1
+BOOT PROGRESS case=0 cycles=100000000 slot=262144 image=1300347 word=40635 state=1
+BOOT PROGRESS case=0 cycles=150000000 slot=262144 image=2081597 word=65049 state=1
+BOOT PROGRESS case=0 cycles=200000000 slot=262144 image=2862847 word=89463 state=1
+BOOT PROGRESS case=0 cycles=250000000 slot=262144 image=3644097 word=113878 state=1
+BOOT PROGRESS case=0 cycles=300000000 slot=262144 image=4425347 word=138292 state=1
+BOOT PROGRESS case=0 cycles=350000000 slot=262144 image=5206597 word=162706 state=1
+BOOT PROGRESS case=0 cycles=400000000 slot=262144 image=5987847 word=187120 state=1
+BOOT PROGRESS case=0 cycles=450000000 slot=262144 image=6769097 word=211534 state=1
+PASS Tang boot case=0 cycles=497734355 all_norm_rows=3328
+PASS UART case=0 op=2 token=0 cycles=10642
+PASS UART case=0 op=0 token=0 cycles=10642
+PASS UART case=0 op=1 token=108 cycles=2035190
+PASS UART case=0 op=1 token=32 cycles=2037594
+PASS UART case=0 op=2 token=0 cycles=10642
+PASS UART case=0 op=0 token=0 cycles=10642
+PASS UART case=0 op=1 token=108 cycles=2035190
+PASS full Tang SWIC case=0
+- tb_tang.sv:128: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 20s; walltime 1897.116 s; speed 10.629 ms/s
+- Verilator: cpu 1893.006 s on 1 threads; allocated 26 MB

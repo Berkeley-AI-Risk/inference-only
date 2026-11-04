@@ -1,0 +1,22 @@
+{
+  "python": "Python 3.8.10",
+  "verilator": "Verilator 5.050 2026-07-01 rev vUNKNOWN-built20260701",
+  "iverilog": "Icarus Verilog version 13.0 (stable) (v13_0)",
+  "clang": "Apple clang version 15.0.0 (clang-1500.3.9.4)",
+  "lint_command": [
+    "verilator",
+    "--lint-only",
+    "-Irtl",
+    "--top-module",
+    "swic_verified_memory",
+    "rtl/vendor/sha.sv",
+    "rtl/vendor/bank.sv",
+    "rtl/su_sha256.sv",
+    "rtl/su_lms_verify.sv",
+    "rtl/swic_boot_admission.sv",
+    "rtl/su_image_check.sv",
+    "rtl/swic_verified_memory.sv"
+  ],
+  "lint_exit_code": 0,
+  "parent_pause_commit": "0318657e2faf2d059633309f47981c97edb96005"
+}

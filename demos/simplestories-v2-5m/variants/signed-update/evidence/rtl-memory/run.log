@@ -1,0 +1,54 @@
+PASS boot case=0 accepted=1
+PASS boot case=1 accepted=1
+PASS boot case=2 accepted=1
+PASS boot case=3 accepted=0
+PASS boot case=4 accepted=0
+PASS boot case=5 accepted=0
+PASS boot case=6 accepted=0
+PASS boot case=7 accepted=0
+PASS boot case=8 accepted=0
+PASS boot case=9 accepted=0
+PASS boot case=10 accepted=0
+PASS boot case=11 accepted=0
+PASS boot case=12 accepted=0
+PASS boot case=13 accepted=0
+PASS boot case=14 accepted=0
+PASS boot case=15 accepted=0
+PASS boot case=16 accepted=0
+PASS boot case=17 accepted=0
+PASS boot case=18 accepted=0
+PASS boot case=19 accepted=0
+PASS boot case=20 accepted=0
+PASS boot case=21 accepted=0
+PASS boot case=22 accepted=0
+PASS boot case=23 accepted=1
+PASS boot case=24 accepted=1
+PASS boot case=25 accepted=1
+PASS reset during frame load revokes partial state
+PASS reset during verification revokes partial state
+PASS boot case=0 accepted=1
+PASS full image changed=0 corrupt=0
+PASS all 2328 sealed metadata words
+PASS page=0 changed=0 corrupt=0
+PASS page=1773 changed=0 corrupt=0
+PASS final-page out-of-range read rejected
+PASS boot case=1 accepted=1
+PASS full image changed=1 corrupt=0
+PASS page=0 changed=1 corrupt=0
+PASS post-admission boot write fails closed
+PASS boot case=2 accepted=1
+PASS full image changed=2 corrupt=0
+PASS all 2328 sealed metadata words
+PASS page=1655 changed=2 corrupt=0
+PASS out-of-range metadata read rejected
+PASS boot case=0 accepted=1
+PASS full image changed=0 corrupt=0
+PASS page=0 changed=0 corrupt=1
+PASS boot case=0 accepted=1
+PASS full image changed=0 corrupt=1
+PASS reset revokes admission
+PASS connected SWIC memory regression
+- tb_memory.sv:197: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 1s; walltime 34.875 s; speed 28.970 ms/s
+- Verilator: cpu 34.810 s on 1 threads; allocated 10 MB

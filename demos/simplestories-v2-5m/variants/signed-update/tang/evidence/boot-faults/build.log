@@ -1,0 +1,145 @@
+%Warning-WIDTHTRUNC: project/fifo.sv:154:9: Logical operator GENIF expects 1 bit on the If, but If's VARREF 'SOURCE_NEGEDGE_READ_POINTER_SYNC1' generates 32 bits.
+                                          : ... note: In instance 'tb_tang.dut.u_transport.u_commands'
+  154 |         if (SOURCE_NEGEDGE_READ_POINTER_SYNC1) begin : g_boot_return_phase
+      |         ^~
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.050
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:2430:58: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                      : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention.u_norm_stage'
+ 2430 |                 wide_required = $signed(source_exponent) + bit_length - 15;
+      |                                                          ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.050
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv:85:32: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                             : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention.u_value_prefix'
+   85 |             required=$signed(e)+bits_needed-15;
+      |                                ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv:88:27: Operator ASSIGN expects 8 bits on the Assign RHS, but Assign RHS's VARREF 'required' generates 32 bits.
+                                                                                                                                            : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention.u_value_prefix'
+   88 |             else first_fit=required;
+      |                           ^
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv:182:46: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                                              : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_elementwise_lane.u_fixed_elementwise_product_compact_lane'
+  182 |                 amount = -($signed(exponent) + 10);
+      |                                              ^
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv:188:44: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                                              : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_elementwise_lane.u_fixed_elementwise_product_compact_lane'
+  188 |                 amount = $signed(exponent) + 10;
+      |                                            ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv:322:30: Operator ASSIGN expects 6 bits on the Assign RHS, but Assign RHS's UNSIGNED generates 9 bits.
+                                                                                                                                                             : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_elementwise_lane.u_fixed_elementwise_product_compact_lane'
+  322 |         residual_first_shift =
+      |                              ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv:325:31: Operator ASSIGN expects 6 bits on the Assign RHS, but Assign RHS's UNSIGNED generates 9 bits.
+                                                                                                                                                             : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_elementwise_lane.u_fixed_elementwise_product_compact_lane'
+  325 |         residual_second_shift =
+      |                               ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv:203:29: Operator ASSIGNDLY expects 6 bits on the Assign RHS, but Assign RHS's COND generates 9 bits.
+                                                                                                                                                : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention.u_shift'
+  203 |                     amount_q<=request_shift_i<0 ? $unsigned(-request_shift_i) : $unsigned(request_shift_i);
+      |                             ^~
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:95:53: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                    : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+   95 |                 required = $signed(source_exponent) + bit_length - 15;
+      |                                                     ^
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:122:58: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                     : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+  122 |                 wide_required = $signed(source_exponent) + bit_length - 15;
+      |                                                          ^
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:547:63: Operator SUB expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                     : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+  547 |         normalize_shift_comb = $signed(normalize_candidate_q) -
+      |                                                               ^
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:547:63: Operator SUB expects 32 bits on the RHS, but RHS's SIGNED generates 8 bits.
+                                                                                                                                     : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+  547 |         normalize_shift_comb = $signed(normalize_candidate_q) -
+      |                                                               ^
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:577:58: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                     : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+  577 |         softmax_shift_comb = -($signed(score_exponent_q) + 8);
+      |                                                          ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:597:35: Operator ASSIGN expects 9 bits on the Assign RHS, but Assign RHS's VARREF 'normalize_shift_comb' generates 32 bits.
+                                                                                                                                    : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+  597 |         shift_request_amount_comb = normalize_shift_comb;
+      |                                   ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:603:39: Operator ASSIGN expects 9 bits on the Assign RHS, but Assign RHS's VARREF 'softmax_shift_comb' generates 32 bits.
+                                                                                                                                    : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+  603 |             shift_request_amount_comb = softmax_shift_comb;
+      |                                       ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:1645:60: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'output_bram_read_data' generates 18 bits.
+                                                                                                                                     : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+ 1645 |                     result_buffer_q[coordinate_q*16 +: 16] <=
+      |                                                            ^~
+%Warning-WIDTHTRUNC: project/fifo.sv:118:32: Logical operator LOGAND expects 1 bit on the LHS, but LHS's VARREF 'DESTINATION_LOOKAHEAD' generates 32 bits.
+                                           : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_boundary.response_fifo_i'
+  118 |         (DESTINATION_LOOKAHEAD && destination_pop) ?
+      |                                ^~
+%Warning-WIDTHTRUNC: project/fifo.sv:123:32: Logical operator LOGAND expects 1 bit on the LHS, but LHS's VARREF 'DESTINATION_LOOKAHEAD' generates 32 bits.
+                                           : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_boundary.response_fifo_i'
+  123 |         (DESTINATION_LOOKAHEAD && destination_pop && next_row_visible);
+      |                                ^~
+%Warning-WIDTHTRUNC: project/fifo.sv:223:52: Logical operator COND expects 1 bit on the Conditional Test, but Conditional Test's VARREF 'DESTINATION_LOOKAHEAD' generates 32 bits.
+                                           : ... note: In instance 'tb_tang.dut.u_uart_core.u_machine.u_boundary.response_fifo_i'
+  223 |                 m_valid_q <= DESTINATION_LOOKAHEAD ? next_row_visible : 1'b0;
+      |                                                    ^
+%Warning-WIDTHEXPAND: tb_faults.sv:23:79: Operator SUB expects 32 bits on the RHS, but RHS's CONST '24'h801000' generates 24 bits.
+                                        : ... note: In instance 'tb_tang'
+   23 |         if(address>=24'h801000 && address<24'heeeec0) flash_byte=image[address-24'h801000];
+      |                                                                               ^
+%Warning-WIDTHEXPAND: tb_faults.sv:24:83: Operator SUB expects 32 bits on the RHS, but RHS's CONST '24'hf00000' generates 24 bits.
+                                        : ... note: In instance 'tb_tang'
+   24 |         else if(address>=24'hf00000 && address<24'hf40000) flash_byte=slot[address-24'hf00000];
+      |                                                                                   ^
+%Warning-WIDTHEXPAND: tb_faults.sv:35:37: Operator EQ expects 32 bits on the RHS, but RHS's CONST '24'h801000' generates 24 bits.
+                                        : ... note: In instance 'tb_tang'
+   35 |                 else if(read_address==24'h801000) image_transactions=image_transactions+1;
+      |                                     ^~
+%Warning-WIDTHEXPAND: tb_faults.sv:34:32: Operator EQ expects 32 bits on the RHS, but RHS's CONST '24'hf00000' generates 24 bits.
+                                        : ... note: In instance 'tb_tang'
+   34 |                 if(read_address==24'hf00000) frame_transactions=frame_transactions+1;
+      |                                ^~
+%Warning-WIDTHTRUNC: tb_faults.sv:42:13: Operator ASSIGN expects 1 bits on the Assign RHS, but Assign RHS's AND generates 32 or 8 bits.
+                                       : ... note: In instance 'tb_tang'
+   42 |         miso=(flash_byte(read_address)>>data_bit)&1;
+      |             ^
+%Warning-WIDTHEXPAND: tb_faults.sv:81:19: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's REPLICATE generates 16 bits.
+                                        : ... note: In instance 'tb_tang'
+   81 |             actual={replies[before_count+3],replies[before_count+2]};
+      |                   ^
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated.o /opt/homebrew/Cellar/verilator/5.050/share/verilator/include/verilated.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_timing.o /opt/homebrew/Cellar/verilator/5.050/share/verilator/include/verilated_timing.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_threads.o /opt/homebrew/Cellar/verilator/5.050/share/verilator/include/verilated_threads.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -x c++-header Vtb_tang__pch.h -o Vtb_tang__pch.h.fast.gch
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -include-pch Vtb_tang__pch.h.fast.gch -c Vtb_tang_vm_classes_0.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++   -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -x c++-header Vtb_tang__pch.h -o Vtb_tang__pch.h.slow.gch
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++   -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -include-pch Vtb_tang__pch.h.slow.gch -c Vtb_tang_vm_classes_Slow_0.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++   -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -include-pch Vtb_tang__pch.h.slow.gch -c Vtb_tang__Syms__Slow.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++  -Wl,-U,__Z15vl_time_stamp64v,-U,__Z13sc_time_stampv,-U,_vlog_startup_routines   verilated.o verilated_timing.o verilated_threads.o Vtb_tang__ALL.a    -pthread -lpthread   -o Vtb_tang
+rm Vtb_tang__ALL.verilator_deplist.tmp
+- V e r i l a t i o n   R e p o r t: Verilator 5.050 2026-07-01 rev vUNKNOWN-built20260701
+- Verilator: Built from 54.410 MB sources in 108 modules, into 11.248 MB in 16 C++ files needing 0.018 MB
+- Verilator: Walltime 11.442 s (elab=0.090, cvt=0.821, bld=10.332); cpu 1.100 s on 1 threads; allocated 135.969 MB

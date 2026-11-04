@@ -1,0 +1,36 @@
+{
+  "identity": {
+    "model": "SimpleStories-V2-5M",
+    "variant": "S-AWIC",
+    "clock_hz": 25000000,
+    "fpga_image_sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2",
+    "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+    "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
+    "signed_manifest_version": 1,
+    "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+    "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
+    "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
+    "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+    "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+    "board_result_sha256": "c2a6f2d19cccf62c0b1ca40bbf6b85bbd09fda13464f8a6d801ec12bff26c610",
+    "baud_rate": 115200,
+    "clock": "time.monotonic_ns",
+    "timestamp_boundary": "generation_loop_validated_reply"
+  },
+  "input_sha256": {
+    "collector": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
+    "uart_check": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+    "reference": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+    "load_record": "6a425fce1122aaf0f1e372e086c47c2aa082e46159e826c7a38864178d72288d",
+    "flash_record": "2a1f8b3017442a6c512392c48b8a04368a3127fd1a17bedd54ee7e1430c12e3f",
+    "bitstream": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2",
+    "board_result": "c2a6f2d19cccf62c0b1ca40bbf6b85bbd09fda13464f8a6d801ec12bff26c610"
+  },
+  "automatic_retry": false,
+  "flash_modified": false,
+  "fpga_programmed": false,
+  "concurrent_fpga_workload": false,
+  "protocol": "greedy-one-token-128-host-v1",
+  "repetitions": 2,
+  "outputs_per_trial": 128
+}

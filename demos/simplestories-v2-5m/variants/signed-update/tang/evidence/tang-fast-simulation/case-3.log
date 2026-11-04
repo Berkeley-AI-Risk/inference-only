@@ -1,0 +1,13 @@
+PASS Tang boot case=3 cycles=24981099 all_norm_rows=3328
+PASS UART case=3 op=2 token=0 cycles=10642
+PASS UART case=3 op=0 token=0 cycles=10642
+PASS UART case=3 op=1 token=0 cycles=1843613
+PASS UART case=3 op=1 token=0 cycles=1845609
+PASS UART case=3 op=2 token=0 cycles=10642
+PASS UART case=3 op=0 token=0 cycles=10642
+PASS UART case=3 op=1 token=0 cycles=1843613
+PASS fast Tang SWIC case=3
+- tb_tang.sv:126: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 1s; walltime 114.627 s; speed 10.735 ms/s
+- Verilator: cpu 114.303 s on 1 threads; allocated 34 MB

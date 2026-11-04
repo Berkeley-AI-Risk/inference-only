@@ -156,6 +156,41 @@
       "temperature": 1
     },
     {
+      "artifact": "demos/simplestories-v2-5m/variants/signed-update/tang/prebuilt/swic_product.fs",
+      "cases": [
+        "one-token-128-trial1",
+        "one-token-128-trial2"
+      ],
+      "evidence_review": "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/RAW-REVIEW.json",
+      "format": "canonical",
+      "id": "simplestories-signed-update",
+      "identity": {
+        "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
+        "baud_rate": 115200,
+        "board_result_sha256": "c2a6f2d19cccf62c0b1ca40bbf6b85bbd09fda13464f8a6d801ec12bff26c610",
+        "clock": "time.monotonic_ns",
+        "clock_hz": 25000000,
+        "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
+        "fpga_image_sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2",
+        "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+        "model": "SimpleStories-V2-5M",
+        "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+        "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
+        "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+        "signed_manifest_version": 1,
+        "timestamp_boundary": "generation_loop_validated_reply",
+        "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+        "variant": "S-AWIC"
+      },
+      "label": "Same model, **signed updates (S-AWIC)**, without K/V integrity",
+      "prompt_tokens": [
+        378
+      ],
+      "reference_source": "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/reference.json",
+      "source": "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/FINISHED.json",
+      "status": "Runnable release; public demonstration keys"
+    },
+    {
       "cases": [
         "trial-1",
         "trial-2"
@@ -287,6 +322,18 @@
     "demos/simplestories-v2-5m/tests/reference-cases.json": {
       "bytes": 13049,
       "sha256": "a236c9912e5da9f12412c3f91f3d619a574fd5dce41f0c630fb78cb6c7dc7fa4"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/FINISHED.json": {
+      "bytes": 30948,
+      "sha256": "c3bfe64c344fd4fa60c475e1cc15902de1b6b9fec38d340dc62ef11d48105edc"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/RAW-REVIEW.json": {
+      "bytes": 586,
+      "sha256": "fa6b1e3b48e69f687c8cca0dae4b79969ce0afd50c8351731539f9c73fef36b9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/reference.json": {
+      "bytes": 2267,
+      "sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18"
     }
   },
   "timestamp_boundary": "generation_loop_validated_reply"

@@ -1,0 +1,139 @@
+[
+  {
+    "test": "valid-model-1",
+    "result": "PASS",
+    "version": 1,
+    "signers": 2,
+    "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+    "image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+    "package_bytes": 7381380,
+    "boot_frame_bytes": 115396
+  },
+  {
+    "test": "valid-model-2",
+    "result": "PASS",
+    "version": 2,
+    "signers": 2,
+    "model_root": "87846354f08038923d04676ba5e8c3d18b5e476f285ba378edb6061a3ceaf6b4",
+    "image_sha256": "7ec5f57c5c21e74b1d39eb209c53d1563d5831c1c61643097e7ca63ea4582c72",
+    "package_bytes": 7381380,
+    "boot_frame_bytes": 115396
+  },
+  {
+    "test": "valid-model-3",
+    "result": "PASS",
+    "version": 3,
+    "signers": 2,
+    "model_root": "0fb41493d04b3401c1a162ec99ca6d0cbdd861c8695b2acc14e75e9b1cc1e266",
+    "image_sha256": "fdd40daa4b4bf46bed12eb30bc1b6b27684d7ec8a9e2cc98ebe8bd52b35e440b",
+    "package_bytes": 7381380,
+    "boot_frame_bytes": 115396
+  },
+  {
+    "test": "empty",
+    "result": "REJECTED",
+    "reason": "wrong manifest length"
+  },
+  {
+    "test": "truncated",
+    "result": "REJECTED",
+    "reason": "truncated or oversized package"
+  },
+  {
+    "test": "oversized",
+    "result": "REJECTED",
+    "reason": "truncated or oversized package"
+  },
+  {
+    "test": "domain",
+    "result": "REJECTED",
+    "reason": "domain/geometry mismatch"
+  },
+  {
+    "test": "geometry",
+    "result": "REJECTED",
+    "reason": "domain/geometry mismatch"
+  },
+  {
+    "test": "reserved",
+    "result": "REJECTED",
+    "reason": "noncanonical reserved bytes"
+  },
+  {
+    "test": "policy",
+    "result": "REJECTED",
+    "reason": "geometry/policy mismatch"
+  },
+  {
+    "test": "manifest-root",
+    "result": "REJECTED",
+    "reason": "bad LMS signature"
+  },
+  {
+    "test": "one-signer",
+    "result": "REJECTED",
+    "reason": "invalid signer count"
+  },
+  {
+    "test": "zero-signers",
+    "result": "REJECTED",
+    "reason": "invalid signer count"
+  },
+  {
+    "test": "four-signers",
+    "result": "REJECTED",
+    "reason": "invalid signer count"
+  },
+  {
+    "test": "unknown-signer",
+    "result": "REJECTED",
+    "reason": "unknown, duplicate or noncanonical signer"
+  },
+  {
+    "test": "duplicate-signer",
+    "result": "REJECTED",
+    "reason": "unknown, duplicate or noncanonical signer"
+  },
+  {
+    "test": "signature-chain",
+    "result": "REJECTED",
+    "reason": "bad LMS signature"
+  },
+  {
+    "test": "signature-path",
+    "result": "REJECTED",
+    "reason": "bad LMS signature"
+  },
+  {
+    "test": "image-hash",
+    "result": "REJECTED",
+    "reason": "root mismatch"
+  },
+  {
+    "test": "page-table",
+    "result": "REJECTED",
+    "reason": "root mismatch"
+  },
+  {
+    "test": "metadata",
+    "result": "REJECTED",
+    "reason": "root mismatch"
+  },
+  {
+    "test": "image",
+    "result": "REJECTED",
+    "reason": "image/page-table mismatch"
+  },
+  {
+    "test": "valid-signed-rollback-is-permitted",
+    "result": "PASS"
+  },
+  {
+    "test": "all-1774-native-page-digests",
+    "result": "PASS"
+  },
+  {
+    "test": "signer-reserves-before-use-and-corrupt-state-rejected",
+    "result": "PASS"
+  }
+]

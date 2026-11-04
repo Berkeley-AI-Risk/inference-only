@@ -192,6 +192,28 @@ class CommonSpeedTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Changed benchmark source'):
             bench.read_sources(ROOT,selection)
 
+    def signed_update_recorded_case(self):
+        root=ROOT/'demos/simplestories-v2-5m/variants/signed-update/tang'
+        spec=importlib.util.spec_from_file_location('signed_raw',root/'tools/check_common_speed.py')
+        verifier=importlib.util.module_from_spec(spec);spec.loader.exec_module(verifier)
+        capture=root/'evidence/common-speed-20261103'
+        case=json.loads((capture/'FINISHED.json').read_text())['cases'][0]
+        raw=json.loads((capture/case['raw_capture']).read_text())
+        reference=json.loads((capture/'reference.json').read_text())['generated_tokens']
+        return verifier,case,raw,reference
+
+    def test_signed_update_caller_timestamps_match_raw_capture(self):
+        verifier,case,raw,reference=self.signed_update_recorded_case()
+        case['reply_elapsed_seconds'][10]+=0.001
+        with self.assertRaisesRegex(ValueError,'caller timestamps'):
+            verifier.verify_case(case,raw,reference)
+
+    def test_signed_update_self_agreement_cannot_replace_reference(self):
+        verifier,case,raw,reference=self.signed_update_recorded_case()
+        for key in ('generated_tokens','expected_tokens'):case[key][0]^=1
+        with self.assertRaisesRegex(ValueError,'reference IDs'):
+            verifier.verify_case(case,raw,reference)
+
     def test_saved_results_and_overview_use_same_accounting(self):
         result=bench.calculate(ROOT)
         self.assertEqual(result,json.loads((ROOT/bench.RESULTS).read_text()))
