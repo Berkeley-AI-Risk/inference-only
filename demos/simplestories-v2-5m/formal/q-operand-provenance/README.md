@@ -15,7 +15,8 @@ unbounded induction, complete case joins and literal provider applications.
 Python orchestrates source checks and the engines; compiling Python is not a
 verification of the hardware.
 
-[QUALIFICATION.json](QUALIFICATION.json) records the completed reproduction.
+[QUALIFICATION.json](QUALIFICATION.json) records the completed reproduction;
+the [full fresh-run receipt](FRESH-RESULT.json) supplies its detailed results.
 There are **449 exact obligations: 438 UNSAT and eleven expected SAT contexts**.
 The selected engines are recorded per obligation. The package also checks eight
 native operating/actual-defect cases, 52 logical refusal controls and three
