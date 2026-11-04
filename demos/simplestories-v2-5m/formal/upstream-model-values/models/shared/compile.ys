@@ -1,0 +1,12 @@
+read_verilog -formal -sv -nosynthesis -D SYNTHESIS native.sv
+hierarchy -check -top board1_private_shared_ddr_transaction_boundary
+proc
+opt_clean
+flatten
+clk2fflogic
+opt_clean
+dffunmap
+memory_collect
+check -assert
+write_json native.json
+write_smt2 -wires native.smt2

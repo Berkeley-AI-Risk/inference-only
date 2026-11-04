@@ -1,0 +1,130 @@
+{
+  "actual_kv_reads": 12,
+  "actual_kv_writes": 300,
+  "actual_model_reads": 260,
+  "boot_boundary": "Original u_boot output bundle only",
+  "boot_reads": 3,
+  "finite_evidence": true,
+  "suites": [
+    {
+      "cases": [
+        {
+          "exit": 0,
+          "name": "healthy",
+          "tags": [
+            "PASS SHARED_RUNTIME"
+          ]
+        },
+        {
+          "changes": [
+            {
+              "after": "read_owner_q[read_tail_q] <= !cmd_kv_q;",
+              "before": "read_owner_q[read_tail_q] <= cmd_kv_q;",
+              "file": "shared-back.sv"
+            }
+          ],
+          "exit": 1,
+          "name": "wrong-owner",
+          "tags": [
+            "ACK_BEFORE_NORMALIZED_ADMISSION",
+            "KV_RETURN",
+            "MODEL_RETURN"
+          ]
+        },
+        {
+          "changes": [
+            {
+              "after": "assign app_wr_data_o = request_m_data[255:0] ^ 256'd1;",
+              "before": "assign app_wr_data_o = request_m_data[255:0];",
+              "file": "transport.sv"
+            }
+          ],
+          "exit": 1,
+          "name": "wrong-physical-word",
+          "tags": [
+            "KV_RETURN",
+            "MODEL_RETURN"
+          ]
+        }
+      ],
+      "files": {
+        "adapter.sv": "operating/full-path/adapter.sv",
+        "bench.sv": "operating/full-path/bench.sv",
+        "cdc.sv": "operating/full-path/cdc.sv",
+        "fault-cdc.sv": "operating/full-path/fault-cdc.sv",
+        "fifo.sv": "operating/full-path/fifo.sv",
+        "handoff.sv": "operating/full-path/handoff.sv",
+        "parent.sv": "operating/full-path/parent.sv",
+        "shared-back.sv": "operating/full-path/shared-back.sv",
+        "shared-fifo.sv": "operating/full-path/shared-fifo.sv",
+        "shared-front.sv": "operating/full-path/shared-front.sv",
+        "transport.sv": "operating/full-path/transport.sv",
+        "wrapper.sv": "operating/full-path/wrapper.sv"
+      },
+      "name": "full-path",
+      "top": "native_shared_runtime_tb"
+    },
+    {
+      "cases": [
+        {
+          "changes": [
+            {
+              "after": "1'b0",
+              "before": "__FAILED__",
+              "file": "bench.sv",
+              "replace_all": true
+            }
+          ],
+          "exit": 0,
+          "name": "healthy",
+          "tags": [
+            "EDGE_PASS"
+          ]
+        },
+        {
+          "changes": [
+            {
+              "after": "1'b1",
+              "before": "__FAILED__",
+              "file": "bench.sv",
+              "replace_all": true
+            }
+          ],
+          "exit": 0,
+          "name": "failed-controller",
+          "tags": [
+            "EDGE_PASS"
+          ]
+        },
+        {
+          "changes": [
+            {
+              "after": "1'b1",
+              "before": "__FAILED__",
+              "file": "bench.sv",
+              "replace_all": true
+            },
+            {
+              "after": "(outstanding_reads_q == 0) ||",
+              "before": "(outstanding_reads_q == 0) || !controller_known_good ||",
+              "file": "adapter.sv"
+            }
+          ],
+          "exit": 1,
+          "name": "missing-fault-mask",
+          "tags": [
+            "UNMARKED_BAD_RETURN"
+          ]
+        }
+      ],
+      "files": {
+        "adapter.sv": "operating/first-fault/adapter.sv",
+        "bench.sv": "operating/first-fault/bench.sv",
+        "booted_memory.sv": "operating/first-fault/booted_memory.sv",
+        "handoff.sv": "operating/first-fault/handoff.sv"
+      },
+      "name": "first-fault",
+      "top": "wrapper_tb"
+    }
+  ]
+}

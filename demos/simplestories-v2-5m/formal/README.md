@@ -32,8 +32,9 @@ barriers. It states the remaining device entry, numerical and token-publication
 composition obligations; it does not claim complete device session isolation.
 
 The [native component-value package](native-component-values/README.md) verifies
-baseline RMSNorm invocation confinement with its full numerical subtree and
-conditional fixed-model word identity through the production four-bank cache.
-It provides complete recorded checks and fresh compilation/solver/operating
-reproduction. The upstream raw DDR contract and whole-device theorem remain
-open.
+baseline RMSNorm invocation confinement and the production cache's component
+value contract. The [composed model-read package](upstream-model-values/README.md)
+discharges that cache contract's raw-reply premise through the actual custom
+DDR transport, runtime wrappers, shared routing and model CDC. It includes a
+readable theorem, explicit external boundaries and complete source/solver and
+operating reproduction. The whole-device theorem remains open.

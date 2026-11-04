@@ -61,32 +61,41 @@ checks; its unbounded transport proof remains incomplete. This is a proved
 restriction on issued commands, not a proof of the contents or physical behavior
 of DRAM.
 
-## Native numerical and model-cache value results
+## Native numerical and model-word value results
 
-The baseline [native component-value package](formal/native-component-values/README.md)
-adds two completed results toward functional correctness and inference-only
-confinement. It retains the actual numerical/storage producers at production
-dimensions and watchdogs.
+The baseline now has a [composed model-read value proof](formal/upstream-model-values/README.md)
+through the actual custom DDR transport, runtime wrappers, shared model/K/V
+routing, model CDC and production four-bank cache. Successful cache words are
+the fixed model words at their accepted request addresses. The cache's correct
+raw-reply premise is discharged through those custom RTL modules.
 
-| Component | What is established | Remaining boundary |
+| Result | What is established | Remaining boundary |
 | --- | --- | --- |
-| RMSNorm invocation | Every successful result agrees with the frozen native finite-width operator on the current accepted role, exponent and complete vector. Prior work, retained workspace, stalls and CLEAR cannot substitute another invocation's values. DONE follows 256 ordered result handshakes. | This is correspondence to the named RTL operator, not an independent mathematical RMSNorm theorem. Caller operand provenance and the full graph remain open; configured stateless DSP correspondence is a platform premise. |
-| Four-bank model cache | Under ordered correct raw model-memory replies, or failure, the production cache service preserves accepted request ownership/order and returns the requested fixed-model word, including held returns and replacement. | The upstream DDR transport/storage contract is an explicit premise, not a proved result of this package. Actual arithmetic consumption and the whole-device composition remain open. |
+| [RMSNorm invocation](formal/native-component-values/README.md) | Every successful result agrees with the native finite-width operator on the current accepted role, exponent and complete vector. Retained workspace, stalls and CLEAR cannot substitute another invocation's values. | Caller operand provenance and the full graph remain open; configured stateless DSP correspondence is a platform premise. |
+| [Model reads through the memory path and cache](formal/upstream-model-values/THEOREM.md) | Requested model word, ownership and order are preserved through the actual custom transport and wrappers, including held cache returns and replacement. The native preceding-write/read-snapshot proof accounts for queued boot commands. | Vendor DDR storage semantics, the trusted model image at runtime entry and its static metadata-ROM binding remain explicit. Actual arithmetic consumption and the whole-device composition remain open. |
 
-RMSNorm passes 26 top-level rules through 119 exact engine queries (118 UNSAT
-and one SAT nonvacuity check). The conditional cache result passes 17 UNSAT
-queries. Fresh reproduction recompiles the native source and replays every
-query. Native operating runs and numerical defect controls supplement the
-unbounded proof; they do not replace it. The [component statements and diagram](formal/native-component-values/README.md)
-show the open boundaries. These results are source-bound to the baseline and
-do not automatically qualify the other configurations.
+```mermaid
+flowchart LR
+  V[Vendor storage contract] --> T[Native transport and runtime wrappers]
+  I[Trusted model image at runtime entry] --> T
+  T --> S[Shared model/KV routing and model CDC]
+  S --> C[Production four-bank cache]
+  M[Metadata-ROM/model binding] --> C
+```
 
-These results strengthen the inference-only argument beyond selecting an
-operation name: a successful permitted operation must obtain values from its
-current fixed operands. RMSNorm closes that local numerical-producer boundary;
-the cache theorem supplies a conditional model-word path. The main theorem
-still needs the actual command-to-graph connections, remaining arithmetic and
-attention/K/V value contracts, and upstream memory composition.
+The [readable theorem and contract map](formal/upstream-model-values/THEOREM.md)
+explain each discharged interface and external boundary. The proof retains the
+native FIFO payloads, RAMs, ownership rings, watchdogs and independent physical
+clock crossing. It uses no correct-private-reply promise and makes no
+queue-empty assumption at LOCK. Its combined fresh reproduction recompiles
+eight native models and passes all 1,411 exact queries: 1,404 UNSAT proofs and
+seven expected SAT witnesses or countermodels. Native operating and actual-only
+defect controls supplement the unbounded proof.
+
+These numerical/value results apply to the named baseline sources. They do not
+automatically qualify the other configurations. The main theorem still needs
+actual command-to-graph connections, caller/packed-operand consumption and the
+remaining arithmetic and attention/K/V value contracts.
 
 ## How this supports the inference-only claim
 
@@ -97,6 +106,11 @@ result supports the **fixed-model requirement**: after LOCK, the checked RTL
 cannot issue writes that update stored model weights through this interface,
 while permitting the K/V state needed for inference to evolve. Checking the
 underlying write path establishes hardware enforcement of that restriction.
+The model-read value proof closes the complementary operand gap: a word claimed
+to come from that fixed model really arrives as its requested model word,
+rather than K/V contents, a different read's word or an assumed private reply.
+Connecting those cache words to all arithmetic consumers remains part of the
+whole-device proof.
 
 The authentication/access proofs supply further parts of that argument: they
 check the actual SHA engines and accepted byte streams, preserve the checked

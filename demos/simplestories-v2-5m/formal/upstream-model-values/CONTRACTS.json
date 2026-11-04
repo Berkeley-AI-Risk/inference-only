@@ -1,0 +1,250 @@
+{
+  "external_boundaries": [
+    "physical-vendor-storage-owner-and-end",
+    "trusted-model-image-at-runtime-entry",
+    "static-metadata-ROM-model-binding",
+    "digital-RTL-clock-reset-semantics"
+  ],
+  "formal_method": "Native RTL induction, source-erasure/instantiation, common-event observer projection, SMT universal selector elimination",
+  "roles": [
+    {
+      "id": "wiring-and-reset",
+      "meaning": "Actual source ports, common epoch and parent/shared/CDC release; no payload premise",
+      "providers": [
+        "q1305",
+        "q1306",
+        "q1307",
+        "q1308",
+        "q1309",
+        "q1310",
+        "q1311",
+        "q1312",
+        "q1313",
+        "q1386",
+        "q1387"
+      ],
+      "requires": []
+    },
+    {
+      "id": "native-thin",
+      "meaning": "Native transport and accepted-read preceding-write snapshot; only physical vendor storage remains external",
+      "providers": [
+        "q0003",
+        "q0513"
+      ],
+      "requires": [
+        "wiring-and-reset"
+      ]
+    },
+    {
+      "id": "parent-lower-contract",
+      "meaning": "Exact parent sampled owner/end/data predicates, including unselected owner/end cases",
+      "providers": [
+        "q1314",
+        "q1315",
+        "q1319",
+        "q1320",
+        "q1316",
+        "q1317",
+        "q1318",
+        "q1388",
+        "q1389"
+      ],
+      "requires": [
+        "native-thin",
+        "wiring-and-reset"
+      ]
+    },
+    {
+      "id": "native-parent",
+      "meaning": "Actual adapter/one-way handoff parent; original boot output bundle is an explicit boundary",
+      "providers": [
+        "q0662",
+        "q0663",
+        "q0664",
+        "q0665"
+      ],
+      "requires": [
+        "parent-lower-contract"
+      ]
+    },
+    {
+      "id": "shared-owner-bootstrap",
+      "meaning": "Native accepted-read/return counts close shared owner without assuming shared invariants or M values",
+      "providers": [
+        "q1321",
+        "q1322",
+        "q1323",
+        "q1324",
+        "q1325"
+      ],
+      "requires": [
+        "native-parent",
+        "wiring-and-reset"
+      ]
+    },
+    {
+      "id": "native-shared-ownership",
+      "meaning": "169 data-independent shared ownership assertions",
+      "providers": [
+        "q0841",
+        "q1011"
+      ],
+      "requires": [
+        "shared-owner-bootstrap"
+      ]
+    },
+    {
+      "id": "runtime-model-image",
+      "meaning": "Startup binds M to accepted-command write fold at one-way runtime entry; actual typed runtime writes cannot change a model word",
+      "providers": [
+        "q1329",
+        "q1328"
+      ],
+      "requires": [
+        "native-parent",
+        "native-shared-ownership"
+      ]
+    },
+    {
+      "id": "shared-lower-model-contract",
+      "meaning": "Exact sampled shared M-word predicate, with only a final sampled-base selector and unrestricted prior history",
+      "providers": [
+        "q1327",
+        "q1326",
+        "q1333",
+        "q1334",
+        "q1390",
+        "q1392"
+      ],
+      "requires": [
+        "native-parent",
+        "native-shared-ownership",
+        "runtime-model-image"
+      ]
+    },
+    {
+      "id": "native-shared-values",
+      "meaning": "Native 170-assertion shared value proof and complete model-return pipeline slot coverage",
+      "providers": [
+        "q0668",
+        "q0839",
+        "q1013",
+        "q1014",
+        "q1015"
+      ],
+      "requires": [
+        "shared-lower-model-contract",
+        "shared-owner-bootstrap"
+      ]
+    },
+    {
+      "id": "native-cdc-ownership",
+      "meaning": "140 native data-independent assertions; sampled prior-owner predicate is closed by induction",
+      "providers": [
+        "q1161",
+        "q1162",
+        "q1302",
+        "q1303"
+      ],
+      "requires": [
+        "wiring-and-reset"
+      ]
+    },
+    {
+      "id": "shared-cdc-history",
+      "meaning": "Accepted address histories and response ordinals align until sticky application fault; current fault closes new capture",
+      "providers": [
+        "q1335",
+        "q1336"
+      ],
+      "requires": [
+        "native-shared-ownership",
+        "native-cdc-ownership",
+        "wiring-and-reset"
+      ]
+    },
+    {
+      "id": "cdc-lower-model-contract",
+      "meaning": "Exact CDC M-word sample predicate for all target addresses, without a returned-data promise",
+      "providers": [
+        "q1337",
+        "q1338",
+        "q1339",
+        "q1340",
+        "q1391"
+      ],
+      "requires": [
+        "native-shared-values",
+        "shared-cdc-history",
+        "native-cdc-ownership"
+      ]
+    },
+    {
+      "id": "native-cdc-values",
+      "meaning": "142 native assertions preserve successful core values, including buffered good responses after application fault",
+      "providers": [
+        "q1156",
+        "q1157",
+        "q1159",
+        "q1160"
+      ],
+      "requires": [
+        "cdc-lower-model-contract",
+        "native-cdc-ownership"
+      ]
+    },
+    {
+      "id": "core-read-stream",
+      "meaning": "Full native CDC result lifted to every core response; source-identical readonly core history projection has engine-checked recurrence",
+      "providers": [
+        "q1382",
+        "q1383",
+        "q1384",
+        "q1393"
+      ],
+      "requires": [
+        "native-cdc-values",
+        "wiring-and-reset"
+      ]
+    },
+    {
+      "id": "cache-raw-origin",
+      "meaning": "Actual page-fill read/return offsets equal the CDC core history, including wrap and ordinary errors",
+      "providers": [
+        "q1341",
+        "q1381"
+      ],
+      "requires": [
+        "wiring-and-reset"
+      ]
+    },
+    {
+      "id": "cache-upstream-word",
+      "meaning": "Exact upstream-word predicate used by the qualified production four-bank cache argument",
+      "providers": [
+        "q1342"
+      ],
+      "requires": [
+        "core-read-stream",
+        "cache-raw-origin"
+      ]
+    },
+    {
+      "id": "cache-model-word",
+      "meaning": "Production cache returns M at the accepted model address; static metadata ROM must be the corresponding projection of M",
+      "providers": [
+        "q1398",
+        "q1402",
+        "q1408",
+        "q1410"
+      ],
+      "requires": [
+        "cache-upstream-word"
+      ]
+    }
+  ],
+  "root": "cache-model-word",
+  "schema": "Baseline-model-read-compositional-proof-map-v1",
+  "whole_machine_theorem": false
+}

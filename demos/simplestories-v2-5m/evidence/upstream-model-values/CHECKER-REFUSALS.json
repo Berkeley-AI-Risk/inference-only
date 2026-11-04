@@ -1,0 +1,26 @@
+{
+  "checker_sha256": "65177cdd3f4ac4d8d8bbae24c2102673b827d8081bc6deee17e8d8be1bc03d96",
+  "negative_cases": {
+    "SAT-as-theorem": {
+      "passed": true,
+      "reason": "SAT control used as theorem",
+      "resealed_invalid_input": true
+    },
+    "missing-predecessor": {
+      "passed": true,
+      "reason": "proof dependency",
+      "resealed_invalid_input": true
+    },
+    "observer-drives-native-state": {
+      "passed": true,
+      "reason": "observer drives native",
+      "resealed_invalid_input": true
+    },
+    "unknown-private-reply-boundary": {
+      "passed": true,
+      "reason": "Unexpected external premise",
+      "resealed_invalid_input": true
+    }
+  },
+  "passed": true
+}

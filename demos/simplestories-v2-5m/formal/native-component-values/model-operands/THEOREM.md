@@ -1,5 +1,11 @@
 # Fixed-model words through the production cache service
 
+The [composed baseline memory-path proof](../../upstream-model-values/README.md)
+discharges this component's raw-read premise through the custom RTL. Its
+vendor-storage, trusted startup-image and static metadata boundaries remain
+explicit; the whole-device inference-only theorem remains open.
+
+
 This is a **conditional component theorem**, separate from the whole-device
 inference-only theorem. Current results are recorded in `RESULT.json`.
 
@@ -38,7 +44,7 @@ arithmetic-consumer port.
 flowchart LR
   A[Accepted request address] --> Q[Owned request FIFO and registered head]
   Q --> B[Fixed metadata ROM or page bank]
-  U[Upstream ordered model-read contract: open in main proof] --> F[Raw ordinal and page-fill owner]
+  U[Upstream ordered model-read contract: supplied by composed memory-path proof] --> F[Raw ordinal and page-fill owner]
   F --> B
   B --> R[Owned response FIFO and held bank/ROM value]
   R --> V[Requested fixed-model word]

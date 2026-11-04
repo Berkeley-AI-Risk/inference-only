@@ -1,0 +1,5 @@
+{
+  "block": "    always @(posedge core_clk_i)if(f_source)f_addresses[f_A[6:0]]<=core_req_word_i;\n    always @(posedge core_clk_i or negedge core_reset_n_i)begin\n        if(!core_reset_n_i)begin f_A<=0;f_D<=0;f_req_seen<=0;end\n        else begin\n            if(f_source)begin\n                f_A<=f_A+1'b1;\n                if(f_A[5:0]==f_slot)begin f_req_seen<=1;f_req_seq<=f_A;f_req_word<=core_req_word_i;end\n            end\n            if(f_delivery)f_D<=f_D+1'b1;\n        end\n    end\n",
+  "events": "Actual core source/delivery events; literal native readonly block and checked recurrence",
+  "model": "model-cdc"
+}

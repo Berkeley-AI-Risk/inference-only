@@ -121,9 +121,26 @@ python3.12 -B demos/simplestories-v2-5m/formal/native-component-values/run.py --
 python3.12 -B demos/simplestories-v2-5m/formal/native-component-values/run.py --out /tmp/simplestories-native-values
 ```
 
-The [guide](formal/native-component-values/README.md) pins the compiler/solver
-versions and explains both the RMSNorm invocation theorem and the cache
-theorem's open upstream raw-read premise. The second command recompiles the
+The [component guide](formal/native-component-values/README.md) pins the
+compiler/solver versions and explains the RMSNorm and cache component theorems.
+The cache's raw-read premise is discharged by the composed memory-path proof
+below. The second command recompiles the
 actual native subtrees, replays all 136 engine obligations and reruns finite
 operating/defect controls. It writes to a new output directory without altering
 the release. No FPGA access is required.
+
+
+## Composed model-memory and cache-value proof
+
+From the repository root:
+
+```sh
+python3.12 -I -S -B demos/simplestories-v2-5m/formal/upstream-model-values/run.py --recorded-only
+python3.12 -I -S -B demos/simplestories-v2-5m/formal/upstream-model-values/run.py --out /tmp/simplestories-upstream-values --workers 8
+```
+
+The [guide and theorem](formal/upstream-model-values/README.md) give the exact
+scope and pinned tools. Fresh replay reconstructs/recompiles the native models,
+runs all 1,411 queries and reruns the mixed-traffic and actual-only defect
+controls. It needs no FPGA. Vendor storage, trusted startup image identity and
+the static metadata-ROM/model binding remain stated boundaries.

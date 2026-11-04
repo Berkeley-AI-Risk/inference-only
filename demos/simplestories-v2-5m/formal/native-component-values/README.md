@@ -1,5 +1,11 @@
 # Native component values for the baseline SimpleStories design
 
+The [composed model-read package](../upstream-model-values/README.md) supplies
+the cache's raw-reply premise through the actual baseline transport and
+wrappers, under its stated startup, metadata and vendor-storage boundaries.
+The cache theorem here remains the reusable conditional component lemma.
+
+
 Two completed component results strengthen the connection between the fixed
 inference graph and the values its implementation produces. They are separate
 from the main inference-only theorem, which remains open.
@@ -7,7 +13,7 @@ from the main inference-only theorem, which remains open.
 | Result | Established fact | Explicit boundary |
 | --- | --- | --- |
 | [RMSNorm invocation confinement](THEOREM.md) | Each successful result belongs to the current accepted vector and agrees with a fresh invocation of the frozen native finite-width operator, despite prior work, retained payloads, stalls and CLEAR. DONE requires all 256 result handshakes. | Actual caller operand provenance and an independent mathematical RMSNorm specification are not proved. The configured stateless DSP correspondence remains a platform premise. |
-| [Production model-cache word identity](model-operands/THEOREM.md) | The actual four-bank cache service preserves request ownership/order and returns the requested immutable model word, including held responses and page replacement. | Conditional on ordered correct raw DDR replies, or failure, at the private raw-read seam. The upstream transport/storage premise and downstream arithmetic consumption remain open. |
+| [Production model-cache word identity](model-operands/THEOREM.md) | The actual four-bank cache service preserves request ownership/order and returns the requested immutable model word, including held responses and page replacement. | Conditional on ordered correct raw DDR replies, or failure, at the private raw-read seam. The custom upstream premise is discharged in the [composed model-read proof](../upstream-model-values/README.md); downstream arithmetic consumption remains open. |
 
 RMSNorm retains the native vector/work RAMs, coefficient ROM, multiplier,
 square root, rounded divider and shift pipeline. The cache proof retains the
@@ -35,7 +41,7 @@ whole-device property for arbitrary command sequences.
 
 ```mermaid
 flowchart LR
-  M[Fixed model] --> U[Upstream DDR contract: open]
+  M[Fixed model] --> U[Upstream contract: composed in upstream-model-values]
   U --> C[Four-bank model cache: conditional value theorem]
   C --> G[Actual operand and graph composition: open]
   A[Accepted RMSNorm argument] --> R[Native RMSNorm invocation theorem]
