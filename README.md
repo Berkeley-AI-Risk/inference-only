@@ -169,7 +169,7 @@ are also included.
 
 ## Experimental HWIC research
 
-See the [latest HWIC progress note](research/hwic/PROGRESS-2026-11-04.md) for the completed integrated spatial candidate regression and remaining ASIC milestones. The [November 3 note](research/hwic/PROGRESS-2026-11-03.md) records the mapped-ROM16 block results.
+See the [latest HWIC physical progress note](research/hwic/PROGRESS-2026-11-04-PHYSICAL.md) for the matched complete-query comparison and the next routing/timing milestone, prioritizing grouped/spatial arithmetic. The [integrated regression note](research/hwic/PROGRESS-2026-11-04.md) records the completed full-model numerical and fault regression; the [November 3 note](research/hwic/PROGRESS-2026-11-03.md) records the mapped-ROM16 block results.
 
 The [SimpleStories-V2-5M HWIC checkpoint](research/hwic/simplestories-2026-10-27/README.md)
 includes complete fixed-weight RTL, reproduction tools and compact validation
