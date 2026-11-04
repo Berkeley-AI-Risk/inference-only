@@ -26,12 +26,13 @@ has its own implementation and validation evidence.
 **The demonstrated hardware designs are AWICs implemented on FPGAs. This
 repository also includes preliminary HWIC source research.**
 
-<a href="docs/figures/hwic-awic.svg#gh-light-mode-only"><img src="docs/figures/hwic-awic.svg#gh-light-mode-only" alt="Conceptual comparison of AWICs, which authenticate weights read from memory, and HWICs, whose model weights are fixed in silicon. Both use fixed inference circuitry." width="800"></a>
-<a href="docs/figures/hwic-awic-dark.svg#gh-dark-mode-only"><img src="docs/figures/hwic-awic-dark.svg#gh-dark-mode-only" alt="Conceptual comparison of AWICs, which authenticate weights read from memory, and HWICs, whose model weights are fixed in silicon. Both use fixed inference circuitry." width="800"></a>
+<a href="docs/figures/hwic-awic.svg#gh-light-mode-only"><img src="docs/figures/hwic-awic.svg#gh-light-mode-only" alt="Conceptual comparison of F-AWICs, which authenticate weights against a commitment fixed in hardware, and HWICs, whose model weights are fixed in silicon. Both use fixed inference circuitry." width="800"></a>
+<a href="docs/figures/hwic-awic-dark.svg#gh-dark-mode-only"><img src="docs/figures/hwic-awic-dark.svg#gh-dark-mode-only" alt="Conceptual comparison of F-AWICs, which authenticate weights against a commitment fixed in hardware, and HWICs, whose model weights are fixed in silicon. Both use fixed inference circuitry." width="800"></a>
 
-*Both approaches fix the inference function in hardware; they differ in how
-the weights are stored. The layer boxes are schematic, not a physical
-floorplan: arithmetic may be shared across layers.*
+*The upper schematic is an F-AWIC; the lower is an HWIC. Both fix the inference
+function in hardware; they differ in how the weights are stored. The layer
+boxes are schematic, not a physical floorplan: arithmetic may be shared
+across layers.*
 
 ## Token interface
 
