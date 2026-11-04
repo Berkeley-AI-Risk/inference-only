@@ -20,10 +20,8 @@ signing authorities.
 <a href="docs/figures/ic-taxonomy.svg#gh-light-mode-only"><img src="docs/figures/ic-taxonomy.svg#gh-light-mode-only" alt="Inference-only chip (IC) branches to AWIC and HWIC; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
 <a href="docs/figures/ic-taxonomy-dark.svg#gh-dark-mode-only"><img src="docs/figures/ic-taxonomy-dark.svg#gh-dark-mode-only" alt="Inference-only chip (IC) branches to AWIC and HWIC; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
 
-The benchmark table below includes F-AWIC and S-AWIC designs. The
-[SimpleStories S-AWIC demonstration](demos/simplestories-v2-5m/variants/signed-update/README.md)
-supports signed model updates. Each design has its own implementation and
-validation evidence.
+The benchmark table below includes F-AWIC and S-AWIC designs. Each design
+has its own implementation and validation evidence.
 
 **The demonstrated hardware designs are AWICs implemented on FPGAs. This
 repository also includes preliminary HWIC source research.**
