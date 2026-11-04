@@ -1,0 +1,1711 @@
+{
+  "ASIC_qualification": false,
+  "accounting": {
+    "accepted_native_CPU_seconds": 291359.337556,
+    "accepted_native_stage_count": 45,
+    "local_energy_cost_USD": null,
+    "native_invocations_in_prelaunch_declines": 0,
+    "new_paid_service_charges_USD": 0,
+    "parallel_stage_walls_are_not_project_elapsed_time": true,
+    "parent_outer_CPU_not_added_again": true,
+    "prelaunch_CPU_admission_declines": 2,
+    "preparation_and_review_time_partially_unmeasured": true,
+    "provider_billing_USD": null,
+    "provider_tokens": null,
+    "retained_partial_attempts": [
+      {
+        "CPU_system_seconds": 62.692923,
+        "CPU_user_seconds": 5273.351681,
+        "case_name": "around",
+        "native_exit": -15,
+        "outcome": "Planned early restart with larger runtime budgets; retained and excluded from accepted case counts.",
+        "wall_seconds": 2723.2727674590424
+      },
+      {
+        "CPU_system_seconds": 62.384398,
+        "CPU_user_seconds": 5270.866496,
+        "case_name": "fox",
+        "native_exit": -15,
+        "outcome": "Planned early restart with larger runtime budgets; retained and excluded from accepted case counts.",
+        "wall_seconds": 2721.3694188341033
+      },
+      {
+        "CPU_system_seconds": 62.529495,
+        "CPU_user_seconds": 5268.1987,
+        "case_name": "moon",
+        "native_exit": -15,
+        "outcome": "Planned early restart with larger runtime budgets; retained and excluded from accepted case counts.",
+        "wall_seconds": 2720.5638122078963
+      },
+      {
+        "CPU_system_seconds": 366.075673,
+        "CPU_user_seconds": 29468.294945,
+        "case_name": "around",
+        "native_exit": -15,
+        "outcome": "Previous build-scale disk reserve interrupted replay; retained and excluded from accepted case counts.",
+        "resource_failure": "LIVE_DISK_BELOW_FLOOR",
+        "wall_seconds": 16338.696050625062
+      },
+      {
+        "CPU_system_seconds": 365.255809,
+        "CPU_user_seconds": 29462.174673,
+        "case_name": "fox",
+        "native_exit": -15,
+        "outcome": "Previous build-scale disk reserve interrupted replay; retained and excluded from accepted case counts.",
+        "resource_failure": "LIVE_DISK_BELOW_FLOOR",
+        "wall_seconds": 16336.047974249814
+      },
+      {
+        "CPU_system_seconds": 365.367668,
+        "CPU_user_seconds": 29462.151963,
+        "case_name": "moon",
+        "native_exit": -15,
+        "outcome": "Previous build-scale disk reserve interrupted replay; retained and excluded from accepted case counts.",
+        "resource_failure": "LIVE_DISK_BELOW_FLOOR",
+        "wall_seconds": 16335.67877045786
+      }
+    ],
+    "retained_partial_native_CPU_seconds": 105489.344424,
+    "total_research_cost_USD": null
+  },
+  "arithmetic": "Fixed W10/A16/KV16 BFP-v5 numerical contract",
+  "attribution": {
+    "URL": "https://arxiv.org/abs/2508.16151v2",
+    "paper": "Hardwired-Neurons Language Processing Units as General-Purpose Cognitive Substrates",
+    "relationship": "HNLPU-inspired research. Current baseline uses fixed ROM feeding shared arithmetic; the custom physical weight-routing method has not been reproduced."
+  },
+  "completed_utc": "2026-11-04T10:06:04.825532+00:00",
+  "evidence_form": "Selected result lines and measured native receipts. This record does not execute the RTL or reproduce the spatial candidate build.",
+  "fault_cases": [
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 11,
+      "case_name": "admission",
+      "expected_first_ordinal": 2432,
+      "fault_family": "GATE",
+      "first_actual_diagnostic": "[478485000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=2432 pos=0 layer=0 stage=11 index=0 actual=000000000b0000f2ffffffffffffdf32 expected=000000000b0000f2ffffffffffffdf33 read=1",
+      "full_log_sha256": "a73a64bfa3c12bd09765b388cbd28f18ac3dfb52d96e87b9fc8b201adecee7cc",
+      "image_sha256": "8614cb03c4727452feceb2440664c14ae1cfecb958e5f5b0194dac8c9b751d3c",
+      "independent_review_identity": {
+        "bytes": 16016,
+        "sha256": "0b56c7ff719924496651b0aeff0a59cfb1afb9eb0d382a4cf659065ea5339fd8"
+      },
+      "metrics": {
+        "CPU_system_seconds": 5.079971,
+        "CPU_user_seconds": 431.899893,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116228096,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116260864,
+        "wall_seconds": 232.04123041615821
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 12,
+      "case_name": "admission",
+      "expected_first_ordinal": 3114,
+      "fault_family": "UP",
+      "first_actual_diagnostic": "[482355000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3114 pos=0 layer=0 stage=12 index=0 actual=000000000c0000f100000000000035d8 expected=000000000c0000f100000000000035d9 read=1",
+      "full_log_sha256": "54b1e47343dfe2337dd29f62ee029838be951812a2c862fe90d89829f1e3bd6f",
+      "image_sha256": "05d64456bf263a2cbb012d31c21e148128200472dc404f5c5dc9e6e30f4ac2c3",
+      "independent_review_identity": {
+        "bytes": 17270,
+        "sha256": "db8123f995287cf368dbc43b910ccfd85b5d3bf525841afd74a8a08b2a122780"
+      },
+      "metrics": {
+        "CPU_system_seconds": 8.211273,
+        "CPU_user_seconds": 497.156238,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 115867648,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 115900416,
+        "wall_seconds": 263.2179237920791
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 13,
+      "case_name": "admission",
+      "expected_first_ordinal": 3796,
+      "fault_family": "SiLU",
+      "first_actual_diagnostic": "[489715000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3796 pos=0 layer=0 stage=13 index=0 actual=000000000d0000f0ffffffffffffeb49 expected=000000000d0000f0ffffffffffffeb48 read=1",
+      "full_log_sha256": "4d564e6beb7a3b108413db68ea71b5ff1164c3cc331985896a1056cf38d3caae",
+      "image_sha256": "b58dd50ad7cd0055bbe5a6cd15a9a07927ec413aa1b38cf75641229317f07d72",
+      "independent_review_identity": {
+        "bytes": 16746,
+        "sha256": "47da2db34bec168dd29b7857b9ab99217420163a0b6671752170f35573f2c0db"
+      },
+      "metrics": {
+        "CPU_system_seconds": 6.226665,
+        "CPU_user_seconds": 488.303141,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116539392,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116555776,
+        "wall_seconds": 258.1887017081026
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 14,
+      "case_name": "admission",
+      "expected_first_ordinal": 4478,
+      "fault_family": "DOWN",
+      "first_actual_diagnostic": "[492785000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=4478 pos=0 layer=0 stage=14 index=0 actual=000000000e0000eeffffffffffffdf8c expected=000000000e0000eeffffffffffffdf8d read=1",
+      "full_log_sha256": "831da58d94b4cea4b278cac3d5764d96eea0db557878ff7316d8c935c44ac2f9",
+      "image_sha256": "ba8ff036587258ef5e4511b8764e696e9d6c1b5cbbb5e4f74926efb72b835feb",
+      "independent_review_identity": {
+        "bytes": 16993,
+        "sha256": "49d5aa9627fb01e65a373d7ab0efe76e35f8fa4d5cb333a04cff61f27ea8892b"
+      },
+      "metrics": {
+        "CPU_system_seconds": 7.526412,
+        "CPU_user_seconds": 500.164817,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116490240,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117080064,
+        "wall_seconds": 266.26614108285867
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 11,
+      "case_name": "around",
+      "expected_first_ordinal": 2432,
+      "fault_family": "GATE",
+      "first_actual_diagnostic": "[437215000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=2432 pos=0 layer=0 stage=11 index=0 actual=000000000b0000f2ffffffffffffdf32 expected=000000000b0000f2ffffffffffffdf33 read=1",
+      "full_log_sha256": "f514c265092556097ad71014fb423f85d706e3708f91ecf97a22246a7aecd381",
+      "image_sha256": "8614cb03c4727452feceb2440664c14ae1cfecb958e5f5b0194dac8c9b751d3c",
+      "independent_review_identity": {
+        "bytes": 16906,
+        "sha256": "941496ab72339dcd23076a66ba34d7b05388d17b5f1ab4bb61219f7a9ac5cf28"
+      },
+      "metrics": {
+        "CPU_system_seconds": 6.768426,
+        "CPU_user_seconds": 450.193133,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116228096,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116277248,
+        "wall_seconds": 237.0799695418682
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 12,
+      "case_name": "around",
+      "expected_first_ordinal": 3114,
+      "fault_family": "UP",
+      "first_actual_diagnostic": "[441085000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3114 pos=0 layer=0 stage=12 index=0 actual=000000000c0000f100000000000035d8 expected=000000000c0000f100000000000035d9 read=1",
+      "full_log_sha256": "0257a104ebc10831d5af98cbc58440a51d24674a0e4b39317b438cd43b822627",
+      "image_sha256": "05d64456bf263a2cbb012d31c21e148128200472dc404f5c5dc9e6e30f4ac2c3",
+      "independent_review_identity": {
+        "bytes": 16622,
+        "sha256": "15f0343b2f523f5c473c355ec67d1cf7c18ce1bfbe664980c7387788ca1e7aa0"
+      },
+      "metrics": {
+        "CPU_system_seconds": 7.273161,
+        "CPU_user_seconds": 456.871589,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 115900416,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 115949568,
+        "wall_seconds": 242.0874125000555
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 13,
+      "case_name": "around",
+      "expected_first_ordinal": 3796,
+      "fault_family": "SiLU",
+      "first_actual_diagnostic": "[448445000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3796 pos=0 layer=0 stage=13 index=0 actual=000000000d0000f0ffffffffffffeb49 expected=000000000d0000f0ffffffffffffeb48 read=1",
+      "full_log_sha256": "570b82d2b3aee1ebfb428b68fa5b93add9cf6a88c7f26aafc4e070c57cea9081",
+      "image_sha256": "b58dd50ad7cd0055bbe5a6cd15a9a07927ec413aa1b38cf75641229317f07d72",
+      "independent_review_identity": {
+        "bytes": 16662,
+        "sha256": "266807168b41ac3f41bf850707b38447d7467249744c6fe3acbbdfb73b483681"
+      },
+      "metrics": {
+        "CPU_system_seconds": 5.5305,
+        "CPU_user_seconds": 447.762078,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116523008,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116539392,
+        "wall_seconds": 236.12201720802113
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 14,
+      "case_name": "around",
+      "expected_first_ordinal": 4478,
+      "fault_family": "DOWN",
+      "first_actual_diagnostic": "[451515000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=4478 pos=0 layer=0 stage=14 index=0 actual=000000000e0000eeffffffffffffdf8c expected=000000000e0000eeffffffffffffdf8d read=1",
+      "full_log_sha256": "ace7e7af265deea9e4eca24f0bd6e6fb26dfa0abc1acad4c475a026dfd217e53",
+      "image_sha256": "ba8ff036587258ef5e4511b8764e696e9d6c1b5cbbb5e4f74926efb72b835feb",
+      "independent_review_identity": {
+        "bytes": 16921,
+        "sha256": "fcedec9c5ea92701b8f670c7c1a1b9b515f7807fe4dde742c80d1edcfb8a5d8e"
+      },
+      "metrics": {
+        "CPU_system_seconds": 6.507139,
+        "CPU_user_seconds": 457.958695,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116441088,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116998144,
+        "wall_seconds": 243.13478062511422
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 11,
+      "case_name": "cancel-held",
+      "expected_first_ordinal": 2432,
+      "fault_family": "GATE",
+      "first_actual_diagnostic": "[4689775000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=2432 pos=0 layer=0 stage=11 index=0 actual=000000000b0000f2ffffffffffffdf32 expected=000000000b0000f2ffffffffffffdf33 read=1",
+      "full_log_sha256": "bdf7fe5e5c1c2b9f48936d92531f80baafe06e6e95e16bbd2e2b0e9eb9746c4b",
+      "image_sha256": "8614cb03c4727452feceb2440664c14ae1cfecb958e5f5b0194dac8c9b751d3c",
+      "independent_review_identity": {
+        "bytes": 17054,
+        "sha256": "cb6f5eb0f9687644f0984c148e0622aa7ceec77a754623d7cb81d18f2d83b7f7"
+      },
+      "metrics": {
+        "CPU_system_seconds": 86.006513,
+        "CPU_user_seconds": 4859.378853,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 117587968,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117587968,
+        "wall_seconds": 2606.7220954999793
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 12,
+      "case_name": "cancel-held",
+      "expected_first_ordinal": 3114,
+      "fault_family": "UP",
+      "first_actual_diagnostic": "[4693645000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3114 pos=0 layer=0 stage=12 index=0 actual=000000000c0000f100000000000035d8 expected=000000000c0000f100000000000035d9 read=1",
+      "full_log_sha256": "1c213e0b92833c3becd594ccbdc8f04e41668f16b2d69351d3349388431220a2",
+      "image_sha256": "05d64456bf263a2cbb012d31c21e148128200472dc404f5c5dc9e6e30f4ac2c3",
+      "independent_review_identity": {
+        "bytes": 16768,
+        "sha256": "5a8ae9227218ac722ccfa1d87d063a2ef2404d38bd3c58aed8ec223c01011ee0"
+      },
+      "metrics": {
+        "CPU_system_seconds": 96.041179,
+        "CPU_user_seconds": 4904.477009,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116506624,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116506624,
+        "wall_seconds": 2643.043369541876
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 13,
+      "case_name": "cancel-held",
+      "expected_first_ordinal": 3796,
+      "fault_family": "SiLU",
+      "first_actual_diagnostic": "[4701005000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3796 pos=0 layer=0 stage=13 index=0 actual=000000000d0000f0ffffffffffffeb49 expected=000000000d0000f0ffffffffffffeb48 read=1",
+      "full_log_sha256": "65266fcf4c1e7c5ea2a93742c170c51160c8a9ff3dc38664aa40278128b5e2c6",
+      "image_sha256": "b58dd50ad7cd0055bbe5a6cd15a9a07927ec413aa1b38cf75641229317f07d72",
+      "independent_review_identity": {
+        "bytes": 16810,
+        "sha256": "63e11e348fac3bead9dd97b0a5afe347e0df4b11d139854e30c422f86553e1ce"
+      },
+      "metrics": {
+        "CPU_system_seconds": 72.869462,
+        "CPU_user_seconds": 4767.120395,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 117096448,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117096448,
+        "wall_seconds": 2550.4931264170446
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 14,
+      "case_name": "cancel-held",
+      "expected_first_ordinal": 4478,
+      "fault_family": "DOWN",
+      "first_actual_diagnostic": "[4704075000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=4478 pos=0 layer=0 stage=14 index=0 actual=000000000e0000eeffffffffffffdf8c expected=000000000e0000eeffffffffffffdf8d read=1",
+      "full_log_sha256": "a185585fa28952b9d6dd3362b58be5d4e2f534ce80c9cb05e24f89068cebe36a",
+      "image_sha256": "ba8ff036587258ef5e4511b8764e696e9d6c1b5cbbb5e4f74926efb72b835feb",
+      "independent_review_identity": {
+        "bytes": 17057,
+        "sha256": "b617c583f8bd637c3215f14f62b2373cd586ec8207544885eeeac35707862ac9"
+      },
+      "metrics": {
+        "CPU_system_seconds": 87.989807,
+        "CPU_user_seconds": 4895.081981,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116998144,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116998144,
+        "wall_seconds": 2648.8590057091787
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 11,
+      "case_name": "cancel-kv",
+      "expected_first_ordinal": 2432,
+      "fault_family": "GATE",
+      "first_actual_diagnostic": "[598325000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=2432 pos=0 layer=0 stage=11 index=0 actual=000000000b0000f2ffffffffffffdf32 expected=000000000b0000f2ffffffffffffdf33 read=1",
+      "full_log_sha256": "1e3887d4c1c95ac5bea48bfad25cf36e5549a4e77e97ceedb66b9f2b561fa0d5",
+      "image_sha256": "8614cb03c4727452feceb2440664c14ae1cfecb958e5f5b0194dac8c9b751d3c",
+      "independent_review_identity": {
+        "bytes": 16999,
+        "sha256": "c87dcd676f0c3d11a29ad60fcf37213441b1307620201cc47fee81e1cac01a4c"
+      },
+      "metrics": {
+        "CPU_system_seconds": 9.860192,
+        "CPU_user_seconds": 619.902773,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116260864,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116277248,
+        "wall_seconds": 330.4408233331051
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 12,
+      "case_name": "cancel-kv",
+      "expected_first_ordinal": 3114,
+      "fault_family": "UP",
+      "first_actual_diagnostic": "[602195000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3114 pos=0 layer=0 stage=12 index=0 actual=000000000c0000f100000000000035d8 expected=000000000c0000f100000000000035d9 read=1",
+      "full_log_sha256": "abdc3c68887e0489d0809e2a4b6434d914af406b29a770d62a51a2dc8218a51c",
+      "image_sha256": "05d64456bf263a2cbb012d31c21e148128200472dc404f5c5dc9e6e30f4ac2c3",
+      "independent_review_identity": {
+        "bytes": 16715,
+        "sha256": "aab18ad5ad086c3f489daeb765459832420d4889e65640867b42fcf1ae592dca"
+      },
+      "metrics": {
+        "CPU_system_seconds": 12.527367,
+        "CPU_user_seconds": 614.365143,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 115884032,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 115916800,
+        "wall_seconds": 334.4650495410897
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 13,
+      "case_name": "cancel-kv",
+      "expected_first_ordinal": 3796,
+      "fault_family": "SiLU",
+      "first_actual_diagnostic": "[609555000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3796 pos=0 layer=0 stage=13 index=0 actual=000000000d0000f0ffffffffffffeb49 expected=000000000d0000f0ffffffffffffeb48 read=1",
+      "full_log_sha256": "76c05d4bae37d79356f59181f145722ef94e4bbe885a588872ce909196171c60",
+      "image_sha256": "b58dd50ad7cd0055bbe5a6cd15a9a07927ec413aa1b38cf75641229317f07d72",
+      "independent_review_identity": {
+        "bytes": 16752,
+        "sha256": "adc3fb0146d133740efa3c013a6168d0d9e545d495a1b4f0f4f70706068d1f7e"
+      },
+      "metrics": {
+        "CPU_system_seconds": 9.130013,
+        "CPU_user_seconds": 613.251888,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116572160,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116572160,
+        "wall_seconds": 327.46119612501934
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 14,
+      "case_name": "cancel-kv",
+      "expected_first_ordinal": 4478,
+      "fault_family": "DOWN",
+      "first_actual_diagnostic": "[612625000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=4478 pos=0 layer=0 stage=14 index=0 actual=000000000e0000eeffffffffffffdf8c expected=000000000e0000eeffffffffffffdf8d read=1",
+      "full_log_sha256": "dee9da1fdbd933e7d275420b9817561628896c4313d16128e21300a8a10b2712",
+      "image_sha256": "ba8ff036587258ef5e4511b8764e696e9d6c1b5cbbb5e4f74926efb72b835feb",
+      "independent_review_identity": {
+        "bytes": 16996,
+        "sha256": "7fd43680d533dba16840a001415afb05fbe5d56ed2bc3e60f9497e86a79ea419"
+      },
+      "metrics": {
+        "CPU_system_seconds": 11.0176,
+        "CPU_user_seconds": 625.377552,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 117047296,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117080064,
+        "wall_seconds": 337.52025529090315
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 11,
+      "case_name": "cancel-model",
+      "expected_first_ordinal": 2432,
+      "fault_family": "GATE",
+      "first_actual_diagnostic": "[438015000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=2432 pos=0 layer=0 stage=11 index=0 actual=000000000b0000f2ffffffffffffdf32 expected=000000000b0000f2ffffffffffffdf33 read=1",
+      "full_log_sha256": "96b48d8483627ccccc3b4c2cc7187e809706ccd14223e6097f238c0548f415ef",
+      "image_sha256": "8614cb03c4727452feceb2440664c14ae1cfecb958e5f5b0194dac8c9b751d3c",
+      "independent_review_identity": {
+        "bytes": 17067,
+        "sha256": "bd1362cffbd1f5ea2fc239ac86e8f5b96ac2af194a149124b5b1d84a729812be"
+      },
+      "metrics": {
+        "CPU_system_seconds": 7.775113,
+        "CPU_user_seconds": 451.669989,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116277248,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116293632,
+        "wall_seconds": 240.0654275410343
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 12,
+      "case_name": "cancel-model",
+      "expected_first_ordinal": 3114,
+      "fault_family": "UP",
+      "first_actual_diagnostic": "[441885000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3114 pos=0 layer=0 stage=12 index=0 actual=000000000c0000f100000000000035d8 expected=000000000c0000f100000000000035d9 read=1",
+      "full_log_sha256": "f1e182e7d69d2debc2938bc357827f8b08a81e69932337c54c1f51128ea1459b",
+      "image_sha256": "05d64456bf263a2cbb012d31c21e148128200472dc404f5c5dc9e6e30f4ac2c3",
+      "independent_review_identity": {
+        "bytes": 16788,
+        "sha256": "0096ce04f6d6a1c77e020316f0030dac446e6f12e686cdcda529b865f082f6ae"
+      },
+      "metrics": {
+        "CPU_system_seconds": 9.336505,
+        "CPU_user_seconds": 455.12434,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 115949568,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 115965952,
+        "wall_seconds": 243.07587475003675
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 13,
+      "case_name": "cancel-model",
+      "expected_first_ordinal": 3796,
+      "fault_family": "SiLU",
+      "first_actual_diagnostic": "[449245000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3796 pos=0 layer=0 stage=13 index=0 actual=000000000d0000f0ffffffffffffeb49 expected=000000000d0000f0ffffffffffffeb48 read=1",
+      "full_log_sha256": "eb40608db6be0fb51f3776a81eb7b41bddc3c08600dc92dad665ff91bb741215",
+      "image_sha256": "b58dd50ad7cd0055bbe5a6cd15a9a07927ec413aa1b38cf75641229317f07d72",
+      "independent_review_identity": {
+        "bytes": 16827,
+        "sha256": "432c3f1cd75281ad63fefbe1c0c9dd6d559b9e02d2bc2341f1c4863805707076"
+      },
+      "metrics": {
+        "CPU_system_seconds": 7.979991,
+        "CPU_user_seconds": 443.711529,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116555776,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116555776,
+        "wall_seconds": 244.02963191713206
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 14,
+      "case_name": "cancel-model",
+      "expected_first_ordinal": 4478,
+      "fault_family": "DOWN",
+      "first_actual_diagnostic": "[452315000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=4478 pos=0 layer=0 stage=14 index=0 actual=000000000e0000eeffffffffffffdf8c expected=000000000e0000eeffffffffffffdf8d read=1",
+      "full_log_sha256": "491f4a356d88c16c29836bd4d8fe3a11b8d70c7073a145c85927f1b58ada4a7b",
+      "image_sha256": "ba8ff036587258ef5e4511b8764e696e9d6c1b5cbbb5e4f74926efb72b835feb",
+      "independent_review_identity": {
+        "bytes": 17075,
+        "sha256": "8cd8d04204f1dccdd7d5be7b45a52b7ed80db272b85a7be27f7f38baecfe4001"
+      },
+      "metrics": {
+        "CPU_system_seconds": 9.467699,
+        "CPU_user_seconds": 450.731444,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 117047296,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117063680,
+        "wall_seconds": 252.09036500006914
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 11,
+      "case_name": "fox",
+      "expected_first_ordinal": 2432,
+      "fault_family": "GATE",
+      "first_actual_diagnostic": "[434815000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=2432 pos=0 layer=0 stage=11 index=0 actual=000000000b0000f2fffffffffffffc63 expected=000000000b0000f2fffffffffffffc62 read=1",
+      "full_log_sha256": "85c67f1698e37ee79b654219694d71f6f95b5268635d27c384e40df6822f6f6e",
+      "image_sha256": "8614cb03c4727452feceb2440664c14ae1cfecb958e5f5b0194dac8c9b751d3c",
+      "independent_review_identity": {
+        "bytes": 16835,
+        "sha256": "6368b5bea41397680a3f4b8e774e5b13d91abc0b47b130e9d9d6d5c748341619"
+      },
+      "metrics": {
+        "CPU_system_seconds": 9.788501,
+        "CPU_user_seconds": 437.411518,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116277248,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116310016,
+        "wall_seconds": 247.07535995915532
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 12,
+      "case_name": "fox",
+      "expected_first_ordinal": 3114,
+      "fault_family": "UP",
+      "first_actual_diagnostic": "[438685000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3114 pos=0 layer=0 stage=12 index=0 actual=000000000c0000f2ffffffffffffff8a expected=000000000c0000f2ffffffffffffff8b read=1",
+      "full_log_sha256": "4189ed1482b28c56d3d1c31c98b24f8df5d31b9dd60fb45cec8bad0ff737a3b2",
+      "image_sha256": "05d64456bf263a2cbb012d31c21e148128200472dc404f5c5dc9e6e30f4ac2c3",
+      "independent_review_identity": {
+        "bytes": 17109,
+        "sha256": "ee921e65bbbdd5d97ec5dd0ea5e1b02cd54dd2e521f4f1880f13d6257579a13d"
+      },
+      "metrics": {
+        "CPU_system_seconds": 2.96958,
+        "CPU_user_seconds": 450.239795,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 115884032,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 115916800,
+        "wall_seconds": 229.15374800004065
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 13,
+      "case_name": "fox",
+      "expected_first_ordinal": 3796,
+      "fault_family": "SiLU",
+      "first_actual_diagnostic": "[446045000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3796 pos=0 layer=0 stage=13 index=0 actual=000000000d0000f10000000000000007 expected=000000000d0000f10000000000000006 read=1",
+      "full_log_sha256": "a24d9209bdf7d1af58a1dc4aaca5cfb84a577108eba42e4ef498d3c7796373b9",
+      "image_sha256": "b58dd50ad7cd0055bbe5a6cd15a9a07927ec413aa1b38cf75641229317f07d72",
+      "independent_review_identity": {
+        "bytes": 16586,
+        "sha256": "bdfff4ad6d90b494e0207afd60fa79ab98ca55656ed5fa12949caef503e13eab"
+      },
+      "metrics": {
+        "CPU_system_seconds": 2.09,
+        "CPU_user_seconds": 431.96954,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116555776,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116555776,
+        "wall_seconds": 221.99804987502284
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 14,
+      "case_name": "fox",
+      "expected_first_ordinal": 4478,
+      "fault_family": "DOWN",
+      "first_actual_diagnostic": "[449115000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=4478 pos=0 layer=0 stage=14 index=0 actual=000000000e0000eeffffffffffffb563 expected=000000000e0000eeffffffffffffb562 read=1",
+      "full_log_sha256": "b55dc96cb4ef3c397ff62daeebde50813774579bbe8847f4e938457e2bdf499c",
+      "image_sha256": "ba8ff036587258ef5e4511b8764e696e9d6c1b5cbbb5e4f74926efb72b835feb",
+      "independent_review_identity": {
+        "bytes": 16837,
+        "sha256": "0ca0375a02d24f8898d31fbc203562bbcfa45e70c20829074be34f153db6d65c"
+      },
+      "metrics": {
+        "CPU_system_seconds": 2.925331,
+        "CPU_user_seconds": 449.950394,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 117030912,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117047296,
+        "wall_seconds": 232.09058758290485
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 11,
+      "case_name": "moon",
+      "expected_first_ordinal": 2432,
+      "fault_family": "GATE",
+      "first_actual_diagnostic": "[434655000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=2432 pos=0 layer=0 stage=11 index=0 actual=000000000b0000f2fffffffffffffffc expected=000000000b0000f2fffffffffffffffd read=1",
+      "full_log_sha256": "f062da466cdc6ca876376e5ae0a7f041f64d955adfda7e87661243da4420fe38",
+      "image_sha256": "8614cb03c4727452feceb2440664c14ae1cfecb958e5f5b0194dac8c9b751d3c",
+      "independent_review_identity": {
+        "bytes": 16852,
+        "sha256": "4cc7d943b32cf9dd89ff9729d20ba62b8adc641650eec830a764cf5868f65328"
+      },
+      "metrics": {
+        "CPU_system_seconds": 2.915699,
+        "CPU_user_seconds": 435.956346,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116244480,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116244480,
+        "wall_seconds": 223.08271429198794
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 12,
+      "case_name": "moon",
+      "expected_first_ordinal": 3114,
+      "fault_family": "UP",
+      "first_actual_diagnostic": "[438525000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3114 pos=0 layer=0 stage=12 index=0 actual=000000000c0000f1fffffffffffff5e0 expected=000000000c0000f1fffffffffffff5e1 read=1",
+      "full_log_sha256": "a684503ac2c6c5b50d6032e84e6aaf4c8951958f84956e544b99d768c065d180",
+      "image_sha256": "05d64456bf263a2cbb012d31c21e148128200472dc404f5c5dc9e6e30f4ac2c3",
+      "independent_review_identity": {
+        "bytes": 16572,
+        "sha256": "3b0444daec45d4eeb1c8799df2f78b2f346624745793e965277365f5cabbfb5e"
+      },
+      "metrics": {
+        "CPU_system_seconds": 3.014737,
+        "CPU_user_seconds": 427.728634,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 115900416,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 115933184,
+        "wall_seconds": 217.98761054198258
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 13,
+      "case_name": "moon",
+      "expected_first_ordinal": 3796,
+      "fault_family": "SiLU",
+      "first_actual_diagnostic": "[445885000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=3796 pos=0 layer=0 stage=13 index=0 actual=000000000d0000f10000000000000001 expected=000000000d0000f10000000000000000 read=1",
+      "full_log_sha256": "9fd9bb09e870fc2384e64bba3811b9b71bb5b72d1ce561a6a9bf0cc01adbc720",
+      "image_sha256": "b58dd50ad7cd0055bbe5a6cd15a9a07927ec413aa1b38cf75641229317f07d72",
+      "independent_review_identity": {
+        "bytes": 16617,
+        "sha256": "6cf21ed994377ab3d01d36e746f84eaf45d3e91d16bee975edaf5935d6e7293f"
+      },
+      "metrics": {
+        "CPU_system_seconds": 2.243995,
+        "CPU_user_seconds": 403.488074,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116572160,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116588544,
+        "wall_seconds": 206.94249449996278
+      },
+      "passed_intended_first_fault_detection": true
+    },
+    {
+      "actual_first_fault_position": 0,
+      "actual_first_fault_stage": 14,
+      "case_name": "moon",
+      "expected_first_ordinal": 4478,
+      "fault_family": "DOWN",
+      "first_actual_diagnostic": "[448955000] %Fatal: tb.sv:65: Assertion failed in tb_hwic_simplestories.observe: TENSOR_MISMATCH ordinal=4478 pos=0 layer=0 stage=14 index=0 actual=000000000e0000eefffffffffffff1cf expected=000000000e0000eefffffffffffff1ce read=1",
+      "full_log_sha256": "2823594d6f765311eb620c63466f246197c1648bad362490f7356fab6ab2aef5",
+      "image_sha256": "ba8ff036587258ef5e4511b8764e696e9d6c1b5cbbb5e4f74926efb72b835feb",
+      "independent_review_identity": {
+        "bytes": 16856,
+        "sha256": "5195644f878d126f376173a2287d88a560105adbb9ca03f4842ac106dcc6984c"
+      },
+      "metrics": {
+        "CPU_system_seconds": 1.958466,
+        "CPU_user_seconds": 359.181576,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 117014528,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117047296,
+        "wall_seconds": 184.82842162507586
+      },
+      "passed_intended_first_fault_detection": true
+    }
+  ],
+  "fault_construction": "One original compile-row replacement per family; reviewed contract mutants, original goldens unchanged.",
+  "independent_join_review_identity": {
+    "bytes": 62125,
+    "sha256": "f61c4b193c259be2ec74e466564301c4258f9082fc4083d789ba8882b11b75f3"
+  },
+  "limitations": [
+    "Bounded RTL regression, not exhaustive formal equivalence or statistical model-quality testing.",
+    "The newer spatial candidate source/build reproduction package is separate from this recorded progress update.",
+    "No full-model ASIC clock, routed area, power, token rate or manufacturing qualification established."
+  ],
+  "model": "SimpleStories-V2-5M",
+  "positive_cases": [
+    {
+      "actual_fixed_GATE_UP_DOWN_and_all_six_SiLU_profiles_passed": true,
+      "case_name": "admission",
+      "full_log_identity": {
+        "bytes": 21229,
+        "sha256": "6d81add1f53e23debd59bfdc7f636d9dd176852885e4e89501cc651e4849f500"
+      },
+      "generated_tokens": [
+        200,
+        15
+      ],
+      "image_sha256": "c2011f690769519a803d7e988413fa63a044b79e4515dc4da5b5e9e8db69f1f0",
+      "independent_review_identity": {
+        "bytes": 18258,
+        "sha256": "514c76e26cc70f3cab6e0a4cf6df375b87cc7c6ab283bff8c57b5ef28e96f0df"
+      },
+      "logical_cycles": 1290441,
+      "metrics": {
+        "CPU_system_seconds": 93.1246,
+        "CPU_user_seconds": 8478.243021,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116539392,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116572160,
+        "wall_seconds": 4360.825974541949
+      },
+      "private_cache_reads_checked": 300,
+      "private_cache_writes_checked": 324,
+      "prompt_tokens": [
+        378
+      ],
+      "replay_tokens": [
+        200
+      ],
+      "selected_result_lines": "PROFILE_FAST_UP starts=1 input_groups=16 normalized_groups=43 normalized_rows=682\nPROFILE_FAST_SILU16 layer=0 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=1 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=2 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=3 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=4 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=5 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_DOWN starts=1 input_groups=43 normalized_groups=16\nPROFILE_FAST_GATE starts=1 input_groups=16 normalized_groups=43 normalized_rows=682\nHWIC_TOKEN epoch=0 token=200 cycles=429275 tensors=32935\nPROFILE_FAST_UP starts=2 input_groups=32 normalized_groups=86 normalized_rows=1364\nPROFILE_FAST_SILU16 layer=0 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=1 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=2 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=3 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=4 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=5 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_DOWN starts=2 input_groups=86 normalized_groups=32\nPROFILE_FAST_GATE starts=2 input_groups=32 normalized_groups=86 normalized_rows=1364\nHWIC_TOKEN epoch=0 token=15 cycles=865261 tensors=65870\nPROFILE_FAST_UP starts=3 input_groups=48 normalized_groups=129 normalized_rows=2046\nPROFILE_FAST_SILU16 layer=0 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=1 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=2 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=3 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=4 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=5 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_DOWN starts=3 input_groups=129 normalized_groups=48\nPROFILE_FAST_GATE starts=3 input_groups=48 normalized_groups=129 normalized_rows=2046\nHWIC_TOKEN epoch=1 token=200 cycles=1290409 tensors=98805\nPASS_HWIC_MODEL main_tokens=2 replay_tokens=1 tensor_values=98805 cycles=1290441 sealed_model_rom=1 private_kv=1 cache_reads_checked=300 cache_writes_checked=324\n",
+      "tensor_comparisons": 98805
+    },
+    {
+      "actual_fixed_GATE_UP_DOWN_and_all_six_SiLU_profiles_passed": true,
+      "case_name": "around",
+      "full_log_identity": {
+        "bytes": 96707,
+        "sha256": "00327cb838f27c708a17652989ce2906cbfa5aab2258a5cb59630a414a18be74"
+      },
+      "generated_tokens": [
+        200,
+        15,
+        103,
+        157,
+        32,
+        1429,
+        115,
+        789,
+        15,
+        103,
+        165,
+        93,
+        320,
+        85,
+        393,
+        867
+      ],
+      "image_sha256": "c2011f690769519a803d7e988413fa63a044b79e4515dc4da5b5e9e8db69f1f0",
+      "independent_review_identity": {
+        "bytes": 33330,
+        "sha256": "77c2d50b9a5cec922a2b9c684c329d4a2516dabf872af3b99df9c4985501f4c0"
+      },
+      "logical_cycles": 8917347,
+      "metrics": {
+        "CPU_system_seconds": 317.688406,
+        "CPU_user_seconds": 51750.214923,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116637696,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116654080,
+        "wall_seconds": 26159.09398029186
+      },
+      "private_cache_reads_checked": 36300,
+      "private_cache_writes_checked": 1944,
+      "prompt_tokens": [
+        378
+      ],
+      "replay_tokens": [
+        200,
+        15
+      ],
+      "selected_result_lines": "PROFILE_FAST_UP starts=1 input_groups=16 normalized_groups=43 normalized_rows=682\nPROFILE_FAST_SILU16 layer=0 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=1 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=2 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=3 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=4 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=5 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_DOWN starts=1 input_groups=43 normalized_groups=16\nPROFILE_FAST_GATE starts=1 input_groups=16 normalized_groups=43 normalized_rows=682\nHWIC_TOKEN epoch=0 token=200 cycles=425148 tensors=32935\nPROFILE_FAST_UP starts=2 input_groups=32 normalized_groups=86 normalized_rows=1364\nPROFILE_FAST_SILU16 layer=0 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=1 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=2 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=3 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=4 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=5 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_DOWN starts=2 input_groups=86 normalized_groups=32\nPROFILE_FAST_GATE starts=2 input_groups=32 normalized_groups=86 normalized_rows=1364\nHWIC_TOKEN epoch=0 token=15 cycles=861134 tensors=65870\nPROFILE_FAST_UP starts=3 input_groups=48 normalized_groups=129 normalized_rows=2046\nPROFILE_FAST_SILU16 layer=0 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=1 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=2 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=3 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=4 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=5 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_DOWN starts=3 input_groups=129 normalized_groups=48\nPROFILE_FAST_GATE starts=3 input_groups=48 normalized_groups=129 normalized_rows=2046\nHWIC_TOKEN epoch=0 token=103 cycles=1309266 tensors=98805\nPROFILE_FAST_UP starts=4 input_groups=64 normalized_groups=172 normalized_rows=2728\nPROFILE_FAST_SILU16 layer=0 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=1 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=2 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=3 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=4 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=5 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_DOWN starts=4 input_groups=172 normalized_groups=64\nPROFILE_FAST_GATE starts=4 input_groups=64 normalized_groups=172 normalized_rows=2728\nHWIC_TOKEN epoch=0 token=157 cycles=1767010 tensors=131740\nPROFILE_FAST_UP starts=5 input_groups=80 normalized_groups=215 normalized_rows=3410\nPROFILE_FAST_SILU16 layer=0 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=1 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=2 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=3 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=4 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=5 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_DOWN starts=5 input_groups=215 normalized_groups=80\nPROFILE_FAST_GATE starts=5 input_groups=80 normalized_groups=215 normalized_rows=3410\nHWIC_TOKEN epoch=0 token=32 cycles=2236578 tensors=164675\nPROFILE_FAST_UP starts=6 input_groups=96 normalized_groups=258 normalized_rows=4092\nPROFILE_FAST_SILU16 layer=0 starts=6 read_groups=258 raw_groups=258 write_groups=258 rows=4092 dones=6\nPROFILE_FAST_SILU16 layer=1 starts=6 read_groups=258 raw_groups=258 write_groups=258 rows=4092 dones=6\nPROFILE_FAST_SILU16 layer=2 starts=6 read_groups=258 raw_groups=258 write_groups=258 rows=4092 dones=6\nPROFILE_FAST_SILU16 layer=3 starts=6 read_groups=258 raw_groups=258 write_groups=258 rows=4092 dones=6\nPROFILE_FAST_SILU16 layer=4 starts=6 read_groups=258 raw_groups=258 write_groups=258 rows=4092 dones=6\nPROFILE_FAST_SILU16 layer=5 starts=6 read_groups=258 raw_groups=258 write_groups=258 rows=4092 dones=6\nPROFILE_FAST_DOWN starts=6 input_groups=258 normalized_groups=96\nPROFILE_FAST_GATE starts=6 input_groups=96 normalized_groups=258 normalized_rows=4092\nHWIC_TOKEN epoch=0 token=1429 cycles=2714156 tensors=197610\nPROFILE_FAST_UP starts=7 input_groups=112 normalized_groups=301 normalized_rows=4774\nPROFILE_FAST_SILU16 layer=0 starts=7 read_groups=301 raw_groups=301 write_groups=301 rows=4774 dones=7\nPROFILE_FAST_SILU16 layer=1 starts=7 read_groups=301 raw_groups=301 write_groups=301 rows=4774 dones=7\nPROFILE_FAST_SILU16 layer=2 starts=7 read_groups=301 raw_groups=301 write_groups=301 rows=4774 dones=7\nPROFILE_FAST_SILU16 layer=3 starts=7 read_groups=301 raw_groups=301 write_groups=301 rows=4774 dones=7\nPROFILE_FAST_SILU16 layer=4 starts=7 read_groups=301 raw_groups=301 write_groups=301 rows=4774 dones=7\nPROFILE_FAST_SILU16 layer=5 starts=7 read_groups=301 raw_groups=301 write_groups=301 rows=4774 dones=7\nPROFILE_FAST_DOWN starts=7 input_groups=301 normalized_groups=112\nPROFILE_FAST_GATE starts=7 input_groups=112 normalized_groups=301 normalized_rows=4774\nHWIC_TOKEN epoch=0 token=115 cycles=3202612 tensors=230545\nPROFILE_FAST_UP starts=8 input_groups=128 normalized_groups=344 normalized_rows=5456\nPROFILE_FAST_SILU16 layer=0 starts=8 read_groups=344 raw_groups=344 write_groups=344 rows=5456 dones=8\nPROFILE_FAST_SILU16 layer=1 starts=8 read_groups=344 raw_groups=344 write_groups=344 rows=5456 dones=8\nPROFILE_FAST_SILU16 layer=2 starts=8 read_groups=344 raw_groups=344 write_groups=344 rows=5456 dones=8\nPROFILE_FAST_SILU16 layer=3 starts=8 read_groups=344 raw_groups=344 write_groups=344 rows=5456 dones=8\nPROFILE_FAST_SILU16 layer=4 starts=8 read_groups=344 raw_groups=344 write_groups=344 rows=5456 dones=8\nPROFILE_FAST_SILU16 layer=5 starts=8 read_groups=344 raw_groups=344 write_groups=344 rows=5456 dones=8\nPROFILE_FAST_DOWN starts=8 input_groups=344 normalized_groups=128\nPROFILE_FAST_GATE starts=8 input_groups=128 normalized_groups=344 normalized_rows=5456\nHWIC_TOKEN epoch=0 token=789 cycles=3701152 tensors=263480\nPROFILE_FAST_UP starts=9 input_groups=144 normalized_groups=387 normalized_rows=6138\nPROFILE_FAST_SILU16 layer=0 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=1 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=2 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=3 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=4 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=5 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_DOWN starts=9 input_groups=387 normalized_groups=144\nPROFILE_FAST_GATE starts=9 input_groups=144 normalized_groups=387 normalized_rows=6138\nHWIC_TOKEN epoch=0 token=15 cycles=4210542 tensors=296415\nPROFILE_FAST_UP starts=10 input_groups=160 normalized_groups=430 normalized_rows=6820\nPROFILE_FAST_SILU16 layer=0 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=1 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=2 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=3 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=4 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=5 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_DOWN starts=10 input_groups=430 normalized_groups=160\nPROFILE_FAST_GATE starts=10 input_groups=160 normalized_groups=430 normalized_rows=6820\nHWIC_TOKEN epoch=0 token=103 cycles=4730431 tensors=329350\nPROFILE_FAST_UP starts=11 input_groups=176 normalized_groups=473 normalized_rows=7502\nPROFILE_FAST_SILU16 layer=0 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=1 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=2 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=3 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=4 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=5 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_DOWN starts=11 input_groups=473 normalized_groups=176\nPROFILE_FAST_GATE starts=11 input_groups=176 normalized_groups=473 normalized_rows=7502\nHWIC_TOKEN epoch=0 token=165 cycles=5259523 tensors=362285\nPROFILE_FAST_UP starts=12 input_groups=192 normalized_groups=516 normalized_rows=8184\nPROFILE_FAST_SILU16 layer=0 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=1 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=2 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=3 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=4 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=5 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_DOWN starts=12 input_groups=516 normalized_groups=192\nPROFILE_FAST_GATE starts=12 input_groups=192 normalized_groups=516 normalized_rows=8184\nHWIC_TOKEN epoch=0 token=93 cycles=5799117 tensors=395220\nPROFILE_FAST_UP starts=13 input_groups=208 normalized_groups=559 normalized_rows=8866\nPROFILE_FAST_SILU16 layer=0 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=1 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=2 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=3 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=4 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=5 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_DOWN starts=13 input_groups=559 normalized_groups=208\nPROFILE_FAST_GATE starts=13 input_groups=208 normalized_groups=559 normalized_rows=8866\nHWIC_TOKEN epoch=0 token=320 cycles=6348685 tensors=428155\nPROFILE_FAST_UP starts=14 input_groups=224 normalized_groups=602 normalized_rows=9548\nPROFILE_FAST_SILU16 layer=0 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=1 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=2 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=3 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=4 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=5 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_DOWN starts=14 input_groups=602 normalized_groups=224\nPROFILE_FAST_GATE starts=14 input_groups=224 normalized_groups=602 normalized_rows=9548\nHWIC_TOKEN epoch=0 token=85 cycles=6908487 tensors=461090\nPROFILE_FAST_UP starts=15 input_groups=240 normalized_groups=645 normalized_rows=10230\nPROFILE_FAST_SILU16 layer=0 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=1 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=2 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=3 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=4 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=5 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_DOWN starts=15 input_groups=645 normalized_groups=240\nPROFILE_FAST_GATE starts=15 input_groups=240 normalized_groups=645 normalized_rows=10230\nHWIC_TOKEN epoch=0 token=393 cycles=7477743 tensors=494025\nPROFILE_FAST_UP starts=16 input_groups=256 normalized_groups=688 normalized_rows=10912\nPROFILE_FAST_SILU16 layer=0 starts=16 read_groups=688 raw_groups=688 write_groups=688 rows=10912 dones=16\nPROFILE_FAST_SILU16 layer=1 starts=16 read_groups=688 raw_groups=688 write_groups=688 rows=10912 dones=16\nPROFILE_FAST_SILU16 layer=2 starts=16 read_groups=688 raw_groups=688 write_groups=688 rows=10912 dones=16\nPROFILE_FAST_SILU16 layer=3 starts=16 read_groups=688 raw_groups=688 write_groups=688 rows=10912 dones=16\nPROFILE_FAST_SILU16 layer=4 starts=16 read_groups=688 raw_groups=688 write_groups=688 rows=10912 dones=16\nPROFILE_FAST_SILU16 layer=5 starts=16 read_groups=688 raw_groups=688 write_groups=688 rows=10912 dones=16\nPROFILE_FAST_DOWN starts=16 input_groups=688 normalized_groups=256\nPROFILE_FAST_GATE starts=16 input_groups=256 normalized_groups=688 normalized_rows=10912\nHWIC_TOKEN epoch=0 token=867 cycles=8056181 tensors=526960\nPROFILE_FAST_UP starts=17 input_groups=272 normalized_groups=731 normalized_rows=11594\nPROFILE_FAST_SILU16 layer=0 starts=17 read_groups=731 raw_groups=731 write_groups=731 rows=11594 dones=17\nPROFILE_FAST_SILU16 layer=1 starts=17 read_groups=731 raw_groups=731 write_groups=731 rows=11594 dones=17\nPROFILE_FAST_SILU16 layer=2 starts=17 read_groups=731 raw_groups=731 write_groups=731 rows=11594 dones=17\nPROFILE_FAST_SILU16 layer=3 starts=17 read_groups=731 raw_groups=731 write_groups=731 rows=11594 dones=17\nPROFILE_FAST_SILU16 layer=4 starts=17 read_groups=731 raw_groups=731 write_groups=731 rows=11594 dones=17\nPROFILE_FAST_SILU16 layer=5 starts=17 read_groups=731 raw_groups=731 write_groups=731 rows=11594 dones=17\nPROFILE_FAST_DOWN starts=17 input_groups=731 normalized_groups=272\nPROFILE_FAST_GATE starts=17 input_groups=272 normalized_groups=731 normalized_rows=11594\nHWIC_TOKEN epoch=1 token=200 cycles=8481329 tensors=559895\nPROFILE_FAST_UP starts=18 input_groups=288 normalized_groups=774 normalized_rows=12276\nPROFILE_FAST_SILU16 layer=0 starts=18 read_groups=774 raw_groups=774 write_groups=774 rows=12276 dones=18\nPROFILE_FAST_SILU16 layer=1 starts=18 read_groups=774 raw_groups=774 write_groups=774 rows=12276 dones=18\nPROFILE_FAST_SILU16 layer=2 starts=18 read_groups=774 raw_groups=774 write_groups=774 rows=12276 dones=18\nPROFILE_FAST_SILU16 layer=3 starts=18 read_groups=774 raw_groups=774 write_groups=774 rows=12276 dones=18\nPROFILE_FAST_SILU16 layer=4 starts=18 read_groups=774 raw_groups=774 write_groups=774 rows=12276 dones=18\nPROFILE_FAST_SILU16 layer=5 starts=18 read_groups=774 raw_groups=774 write_groups=774 rows=12276 dones=18\nPROFILE_FAST_DOWN starts=18 input_groups=774 normalized_groups=288\nPROFILE_FAST_GATE starts=18 input_groups=288 normalized_groups=774 normalized_rows=12276\nHWIC_TOKEN epoch=1 token=15 cycles=8917315 tensors=592830\nPASS_HWIC_MODEL main_tokens=16 replay_tokens=2 tensor_values=592830 cycles=8917347 sealed_model_rom=1 private_kv=1 cache_reads_checked=36300 cache_writes_checked=1944\n",
+      "tensor_comparisons": 592830
+    },
+    {
+      "actual_fixed_GATE_UP_DOWN_and_all_six_SiLU_profiles_passed": true,
+      "case_name": "cancel-held",
+      "full_log_identity": {
+        "bytes": 21305,
+        "sha256": "5c2eff0d93c1875e0dd3a5bc37a9dfc11d6d37410d7cbe83fb6321a213089ae4"
+      },
+      "generated_tokens": [
+        200,
+        15
+      ],
+      "image_sha256": "c2011f690769519a803d7e988413fa63a044b79e4515dc4da5b5e9e8db69f1f0",
+      "independent_review_identity": {
+        "bytes": 18943,
+        "sha256": "dcf5dd00cbdab97f533a8ee7eb080303190ceac0d36b760a024e073f7efb8bd7"
+      },
+      "logical_cycles": 1711570,
+      "metrics": {
+        "CPU_system_seconds": 195.631446,
+        "CPU_user_seconds": 13036.906155,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116506624,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116555776,
+        "wall_seconds": 6853.4137019999325
+      },
+      "private_cache_reads_checked": 300,
+      "private_cache_writes_checked": 432,
+      "prompt_tokens": [
+        378
+      ],
+      "replay_tokens": [
+        200
+      ],
+      "selected_result_lines": "PROFILE_FAST_UP starts=2 input_groups=32 normalized_groups=86 normalized_rows=1364\nPROFILE_FAST_SILU16 layer=0 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=1 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=2 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=3 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=4 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=5 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_DOWN starts=2 input_groups=86 normalized_groups=32\nPROFILE_FAST_GATE starts=2 input_groups=32 normalized_groups=86 normalized_rows=1364\nHWIC_TOKEN epoch=0 token=200 cycles=850404 tensors=32935\nPROFILE_FAST_UP starts=3 input_groups=48 normalized_groups=129 normalized_rows=2046\nPROFILE_FAST_SILU16 layer=0 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=1 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=2 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=3 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=4 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=5 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_DOWN starts=3 input_groups=129 normalized_groups=48\nPROFILE_FAST_GATE starts=3 input_groups=48 normalized_groups=129 normalized_rows=2046\nHWIC_TOKEN epoch=0 token=15 cycles=1286390 tensors=65870\nPROFILE_FAST_UP starts=4 input_groups=64 normalized_groups=172 normalized_rows=2728\nPROFILE_FAST_SILU16 layer=0 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=1 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=2 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=3 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=4 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=5 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_DOWN starts=4 input_groups=172 normalized_groups=64\nPROFILE_FAST_GATE starts=4 input_groups=64 normalized_groups=172 normalized_rows=2728\nHWIC_TOKEN epoch=1 token=200 cycles=1711538 tensors=98805\nPASS_HWIC_MODEL main_tokens=2 replay_tokens=1 tensor_values=98805 cycles=1711570 sealed_model_rom=1 private_kv=1 cache_reads_checked=300 cache_writes_checked=432\n",
+      "tensor_comparisons": 98805
+    },
+    {
+      "actual_fixed_GATE_UP_DOWN_and_all_six_SiLU_profiles_passed": true,
+      "case_name": "cancel-kv",
+      "full_log_identity": {
+        "bytes": 31219,
+        "sha256": "635afdb17d7c081e8e450cc4b79f851a8718f33060478588be2f905314927cef"
+      },
+      "generated_tokens": [
+        200,
+        15,
+        103,
+        157
+      ],
+      "image_sha256": "c2011f690769519a803d7e988413fa63a044b79e4515dc4da5b5e9e8db69f1f0",
+      "independent_review_identity": {
+        "bytes": 20690,
+        "sha256": "a61b4f3b6fcbf2385553836bed04a7c0ad7f8e9c9274351cce1caecf3b0013ba"
+      },
+      "logical_cycles": 2208301,
+      "metrics": {
+        "CPU_system_seconds": 289.613566,
+        "CPU_user_seconds": 17392.927743,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116604928,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116621312,
+        "wall_seconds": 10093.794705000008
+      },
+      "private_cache_reads_checked": 1800,
+      "private_cache_writes_checked": 541,
+      "prompt_tokens": [
+        378
+      ],
+      "replay_tokens": [
+        200
+      ],
+      "selected_result_lines": "PROFILE_FAST_UP starts=1 input_groups=16 normalized_groups=43 normalized_rows=682\nPROFILE_FAST_SILU16 layer=0 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=1 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=2 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=3 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=4 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=5 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_DOWN starts=1 input_groups=43 normalized_groups=16\nPROFILE_FAST_GATE starts=1 input_groups=16 normalized_groups=43 normalized_rows=682\nHWIC_TOKEN epoch=0 token=200 cycles=441259 tensors=32935\nPROFILE_FAST_UP starts=2 input_groups=32 normalized_groups=86 normalized_rows=1364\nPROFILE_FAST_SILU16 layer=0 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=1 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=2 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=3 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=4 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=5 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_DOWN starts=2 input_groups=86 normalized_groups=32\nPROFILE_FAST_GATE starts=2 input_groups=32 normalized_groups=86 normalized_rows=1364\nHWIC_TOKEN epoch=0 token=15 cycles=877245 tensors=65870\nPROFILE_FAST_UP starts=3 input_groups=48 normalized_groups=129 normalized_rows=2046\nPROFILE_FAST_SILU16 layer=0 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=1 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=2 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=3 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=4 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=5 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_DOWN starts=3 input_groups=129 normalized_groups=48\nPROFILE_FAST_GATE starts=3 input_groups=48 normalized_groups=129 normalized_rows=2046\nHWIC_TOKEN epoch=0 token=103 cycles=1325377 tensors=98805\nPROFILE_FAST_UP starts=4 input_groups=64 normalized_groups=172 normalized_rows=2728\nPROFILE_FAST_SILU16 layer=0 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=1 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=2 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=3 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=4 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=5 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_DOWN starts=4 input_groups=172 normalized_groups=64\nPROFILE_FAST_GATE starts=4 input_groups=64 normalized_groups=172 normalized_rows=2728\nHWIC_TOKEN epoch=0 token=157 cycles=1783121 tensors=131740\nPROFILE_FAST_UP starts=5 input_groups=80 normalized_groups=215 normalized_rows=3410\nPROFILE_FAST_SILU16 layer=0 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=1 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=2 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=3 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=4 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=5 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_DOWN starts=5 input_groups=215 normalized_groups=80\nPROFILE_FAST_GATE starts=5 input_groups=80 normalized_groups=215 normalized_rows=3410\nHWIC_TOKEN epoch=1 token=200 cycles=2208269 tensors=164675\nPASS_HWIC_MODEL main_tokens=4 replay_tokens=1 tensor_values=164675 cycles=2208301 sealed_model_rom=1 private_kv=1 cache_reads_checked=1800 cache_writes_checked=541\n",
+      "tensor_comparisons": 164675
+    },
+    {
+      "actual_fixed_GATE_UP_DOWN_and_all_six_SiLU_profiles_passed": true,
+      "case_name": "cancel-model",
+      "full_log_identity": {
+        "bytes": 31202,
+        "sha256": "f3322263e07dc974f0d39a64693f29df309c625f1594ecc4ff7bf4ae361e508a"
+      },
+      "generated_tokens": [
+        200,
+        15,
+        103,
+        157
+      ],
+      "image_sha256": "c2011f690769519a803d7e988413fa63a044b79e4515dc4da5b5e9e8db69f1f0",
+      "independent_review_identity": {
+        "bytes": 20764,
+        "sha256": "aa581809014c33618c36344867943b3e6cbd0f9a31208f1c7ad09a81c6ce7739"
+      },
+      "logical_cycles": 2192270,
+      "metrics": {
+        "CPU_system_seconds": 284.114605,
+        "CPU_user_seconds": 17219.578818,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116637696,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116654080,
+        "wall_seconds": 9715.601032624952
+      },
+      "private_cache_reads_checked": 1800,
+      "private_cache_writes_checked": 540,
+      "prompt_tokens": [
+        378
+      ],
+      "replay_tokens": [
+        200
+      ],
+      "selected_result_lines": "PROFILE_FAST_UP starts=1 input_groups=16 normalized_groups=43 normalized_rows=682\nPROFILE_FAST_SILU16 layer=0 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=1 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=2 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=3 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=4 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_SILU16 layer=5 starts=1 read_groups=43 raw_groups=43 write_groups=43 rows=682 dones=1\nPROFILE_FAST_DOWN starts=1 input_groups=43 normalized_groups=16\nPROFILE_FAST_GATE starts=1 input_groups=16 normalized_groups=43 normalized_rows=682\nHWIC_TOKEN epoch=0 token=200 cycles=425228 tensors=32935\nPROFILE_FAST_UP starts=2 input_groups=32 normalized_groups=86 normalized_rows=1364\nPROFILE_FAST_SILU16 layer=0 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=1 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=2 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=3 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=4 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_SILU16 layer=5 starts=2 read_groups=86 raw_groups=86 write_groups=86 rows=1364 dones=2\nPROFILE_FAST_DOWN starts=2 input_groups=86 normalized_groups=32\nPROFILE_FAST_GATE starts=2 input_groups=32 normalized_groups=86 normalized_rows=1364\nHWIC_TOKEN epoch=0 token=15 cycles=861214 tensors=65870\nPROFILE_FAST_UP starts=3 input_groups=48 normalized_groups=129 normalized_rows=2046\nPROFILE_FAST_SILU16 layer=0 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=1 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=2 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=3 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=4 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_SILU16 layer=5 starts=3 read_groups=129 raw_groups=129 write_groups=129 rows=2046 dones=3\nPROFILE_FAST_DOWN starts=3 input_groups=129 normalized_groups=48\nPROFILE_FAST_GATE starts=3 input_groups=48 normalized_groups=129 normalized_rows=2046\nHWIC_TOKEN epoch=0 token=103 cycles=1309346 tensors=98805\nPROFILE_FAST_UP starts=4 input_groups=64 normalized_groups=172 normalized_rows=2728\nPROFILE_FAST_SILU16 layer=0 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=1 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=2 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=3 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=4 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_SILU16 layer=5 starts=4 read_groups=172 raw_groups=172 write_groups=172 rows=2728 dones=4\nPROFILE_FAST_DOWN starts=4 input_groups=172 normalized_groups=64\nPROFILE_FAST_GATE starts=4 input_groups=64 normalized_groups=172 normalized_rows=2728\nHWIC_TOKEN epoch=0 token=157 cycles=1767090 tensors=131740\nPROFILE_FAST_UP starts=5 input_groups=80 normalized_groups=215 normalized_rows=3410\nPROFILE_FAST_SILU16 layer=0 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=1 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=2 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=3 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=4 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_SILU16 layer=5 starts=5 read_groups=215 raw_groups=215 write_groups=215 rows=3410 dones=5\nPROFILE_FAST_DOWN starts=5 input_groups=215 normalized_groups=80\nPROFILE_FAST_GATE starts=5 input_groups=80 normalized_groups=215 normalized_rows=3410\nHWIC_TOKEN epoch=1 token=200 cycles=2192238 tensors=164675\nPASS_HWIC_MODEL main_tokens=4 replay_tokens=1 tensor_values=164675 cycles=2192270 sealed_model_rom=1 private_kv=1 cache_reads_checked=1800 cache_writes_checked=540\n",
+      "tensor_comparisons": 164675
+    },
+    {
+      "actual_fixed_GATE_UP_DOWN_and_all_six_SiLU_profiles_passed": true,
+      "case_name": "fox",
+      "full_log_identity": {
+        "bytes": 56866,
+        "sha256": "b831964f62c058651e026b339b5da3f42b4cf4dbb0906939f061a16e38532f27"
+      },
+      "generated_tokens": [
+        385,
+        317,
+        229,
+        32,
+        963,
+        696,
+        15,
+        85
+      ],
+      "image_sha256": "c2011f690769519a803d7e988413fa63a044b79e4515dc4da5b5e9e8db69f1f0",
+      "independent_review_identity": {
+        "bytes": 26004,
+        "sha256": "fbeaf269d283b29b20b1683933d011ad0aa3b40031957471b8ffa4508d405aa4"
+      },
+      "logical_cycles": 11120236,
+      "metrics": {
+        "CPU_system_seconds": 415.566424,
+        "CPU_user_seconds": 65684.983228,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116686848,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116719616,
+        "wall_seconds": 33482.875047250185
+      },
+      "private_cache_reads_checked": 42300,
+      "private_cache_writes_checked": 2592,
+      "prompt_tokens": [
+        762,
+        1310,
+        32,
+        398,
+        13,
+        32,
+        611,
+        1143
+      ],
+      "replay_tokens": [
+        385,
+        317
+      ],
+      "selected_result_lines": "PROFILE_FAST_UP starts=8 input_groups=128 normalized_groups=344 normalized_rows=5456\nPROFILE_FAST_SILU16 layer=0 starts=8 read_groups=344 raw_groups=344 write_groups=344 rows=5456 dones=8\nPROFILE_FAST_SILU16 layer=1 starts=8 read_groups=344 raw_groups=344 write_groups=344 rows=5456 dones=8\nPROFILE_FAST_SILU16 layer=2 starts=8 read_groups=344 raw_groups=344 write_groups=344 rows=5456 dones=8\nPROFILE_FAST_SILU16 layer=3 starts=8 read_groups=344 raw_groups=344 write_groups=344 rows=5456 dones=8\nPROFILE_FAST_SILU16 layer=4 starts=8 read_groups=344 raw_groups=344 write_groups=344 rows=5456 dones=8\nPROFILE_FAST_SILU16 layer=5 starts=8 read_groups=344 raw_groups=344 write_groups=344 rows=5456 dones=8\nPROFILE_FAST_DOWN starts=8 input_groups=344 normalized_groups=128\nPROFILE_FAST_GATE starts=8 input_groups=128 normalized_groups=344 normalized_rows=5456\nHWIC_TOKEN epoch=0 token=385 cycles=3417471 tensors=233555\nPROFILE_FAST_UP starts=9 input_groups=144 normalized_groups=387 normalized_rows=6138\nPROFILE_FAST_SILU16 layer=0 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=1 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=2 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=3 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=4 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=5 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_DOWN starts=9 input_groups=387 normalized_groups=144\nPROFILE_FAST_GATE starts=9 input_groups=144 normalized_groups=387 normalized_rows=6138\nHWIC_TOKEN epoch=0 token=317 cycles=3927273 tensors=266490\nPROFILE_FAST_UP starts=10 input_groups=160 normalized_groups=430 normalized_rows=6820\nPROFILE_FAST_SILU16 layer=0 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=1 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=2 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=3 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=4 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=5 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_DOWN starts=10 input_groups=430 normalized_groups=160\nPROFILE_FAST_GATE starts=10 input_groups=160 normalized_groups=430 normalized_rows=6820\nHWIC_TOKEN epoch=0 token=229 cycles=4445554 tensors=299425\nPROFILE_FAST_UP starts=11 input_groups=176 normalized_groups=473 normalized_rows=7502\nPROFILE_FAST_SILU16 layer=0 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=1 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=2 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=3 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=4 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=5 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_DOWN starts=11 input_groups=473 normalized_groups=176\nPROFILE_FAST_GATE starts=11 input_groups=176 normalized_groups=473 normalized_rows=7502\nHWIC_TOKEN epoch=0 token=32 cycles=4975378 tensors=332360\nPROFILE_FAST_UP starts=12 input_groups=192 normalized_groups=516 normalized_rows=8184\nPROFILE_FAST_SILU16 layer=0 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=1 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=2 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=3 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=4 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=5 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_DOWN starts=12 input_groups=516 normalized_groups=192\nPROFILE_FAST_GATE starts=12 input_groups=192 normalized_groups=516 normalized_rows=8184\nHWIC_TOKEN epoch=0 token=963 cycles=5514747 tensors=365295\nPROFILE_FAST_UP starts=13 input_groups=208 normalized_groups=559 normalized_rows=8866\nPROFILE_FAST_SILU16 layer=0 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=1 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=2 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=3 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=4 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=5 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_DOWN starts=13 input_groups=559 normalized_groups=208\nPROFILE_FAST_GATE starts=13 input_groups=208 normalized_groups=559 normalized_rows=8866\nHWIC_TOKEN epoch=0 token=696 cycles=6064345 tensors=398230\nPROFILE_FAST_UP starts=14 input_groups=224 normalized_groups=602 normalized_rows=9548\nPROFILE_FAST_SILU16 layer=0 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=1 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=2 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=3 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=4 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=5 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_DOWN starts=14 input_groups=602 normalized_groups=224\nPROFILE_FAST_GATE starts=14 input_groups=224 normalized_groups=602 normalized_rows=9548\nHWIC_TOKEN epoch=0 token=15 cycles=6623339 tensors=431165\nPROFILE_FAST_UP starts=15 input_groups=240 normalized_groups=645 normalized_rows=10230\nPROFILE_FAST_SILU16 layer=0 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=1 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=2 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=3 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=4 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=5 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_DOWN starts=15 input_groups=645 normalized_groups=240\nPROFILE_FAST_GATE starts=15 input_groups=240 normalized_groups=645 normalized_rows=10230\nHWIC_TOKEN epoch=0 token=85 cycles=7192931 tensors=464100\nPROFILE_FAST_UP starts=23 input_groups=368 normalized_groups=989 normalized_rows=15686\nPROFILE_FAST_SILU16 layer=0 starts=23 read_groups=989 raw_groups=989 write_groups=989 rows=15686 dones=23\nPROFILE_FAST_SILU16 layer=1 starts=23 read_groups=989 raw_groups=989 write_groups=989 rows=15686 dones=23\nPROFILE_FAST_SILU16 layer=2 starts=23 read_groups=989 raw_groups=989 write_groups=989 rows=15686 dones=23\nPROFILE_FAST_SILU16 layer=3 starts=23 read_groups=989 raw_groups=989 write_groups=989 rows=15686 dones=23\nPROFILE_FAST_SILU16 layer=4 starts=23 read_groups=989 raw_groups=989 write_groups=989 rows=15686 dones=23\nPROFILE_FAST_SILU16 layer=5 starts=23 read_groups=989 raw_groups=989 write_groups=989 rows=15686 dones=23\nPROFILE_FAST_DOWN starts=23 input_groups=989 normalized_groups=368\nPROFILE_FAST_GATE starts=23 input_groups=368 normalized_groups=989 normalized_rows=15686\nHWIC_TOKEN epoch=1 token=385 cycles=10610402 tensors=697655\nPROFILE_FAST_UP starts=24 input_groups=384 normalized_groups=1032 normalized_rows=16368\nPROFILE_FAST_SILU16 layer=0 starts=24 read_groups=1032 raw_groups=1032 write_groups=1032 rows=16368 dones=24\nPROFILE_FAST_SILU16 layer=1 starts=24 read_groups=1032 raw_groups=1032 write_groups=1032 rows=16368 dones=24\nPROFILE_FAST_SILU16 layer=2 starts=24 read_groups=1032 raw_groups=1032 write_groups=1032 rows=16368 dones=24\nPROFILE_FAST_SILU16 layer=3 starts=24 read_groups=1032 raw_groups=1032 write_groups=1032 rows=16368 dones=24\nPROFILE_FAST_SILU16 layer=4 starts=24 read_groups=1032 raw_groups=1032 write_groups=1032 rows=16368 dones=24\nPROFILE_FAST_SILU16 layer=5 starts=24 read_groups=1032 raw_groups=1032 write_groups=1032 rows=16368 dones=24\nPROFILE_FAST_DOWN starts=24 input_groups=1032 normalized_groups=384\nPROFILE_FAST_GATE starts=24 input_groups=384 normalized_groups=1032 normalized_rows=16368\nHWIC_TOKEN epoch=1 token=317 cycles=11120204 tensors=730590\nPASS_HWIC_MODEL main_tokens=8 replay_tokens=2 tensor_values=730590 cycles=11120236 sealed_model_rom=1 private_kv=1 cache_reads_checked=42300 cache_writes_checked=2592\n",
+      "tensor_comparisons": 730590
+    },
+    {
+      "actual_fixed_GATE_UP_DOWN_and_all_six_SiLU_profiles_passed": true,
+      "case_name": "moon",
+      "full_log_identity": {
+        "bytes": 51841,
+        "sha256": "8d4a1e1198478b610c6c8d48dfdcb27300892928be127fd34ce660703badfde4"
+      },
+      "generated_tokens": [
+        127,
+        381,
+        15,
+        85,
+        1985,
+        157,
+        547,
+        158
+      ],
+      "image_sha256": "c2011f690769519a803d7e988413fa63a044b79e4515dc4da5b5e9e8db69f1f0",
+      "independent_review_identity": {
+        "bytes": 25113,
+        "sha256": "360c71ea17581c53cdeaec78c5f0cac03f8560c083d25d67b2accaa7cc83fae0"
+      },
+      "logical_cycles": 11605183,
+      "metrics": {
+        "CPU_system_seconds": 448.347357,
+        "CPU_user_seconds": 68334.955585,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116703232,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116736000,
+        "wall_seconds": 34898.40073708305
+      },
+      "private_cache_reads_checked": 46800,
+      "private_cache_writes_checked": 2700,
+      "prompt_tokens": [
+        85,
+        995,
+        127,
+        289,
+        13,
+        94,
+        32,
+        869,
+        1985
+      ],
+      "replay_tokens": [
+        127
+      ],
+      "selected_result_lines": "PROFILE_FAST_UP starts=9 input_groups=144 normalized_groups=387 normalized_rows=6138\nPROFILE_FAST_SILU16 layer=0 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=1 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=2 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=3 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=4 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_SILU16 layer=5 starts=9 read_groups=387 raw_groups=387 write_groups=387 rows=6138 dones=9\nPROFILE_FAST_DOWN starts=9 input_groups=387 normalized_groups=144\nPROFILE_FAST_GATE starts=9 input_groups=144 normalized_groups=387 normalized_rows=6138\nHWIC_TOKEN epoch=0 token=127 cycles=3880873 tensors=262215\nPROFILE_FAST_UP starts=10 input_groups=160 normalized_groups=430 normalized_rows=6820\nPROFILE_FAST_SILU16 layer=0 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=1 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=2 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=3 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=4 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_SILU16 layer=5 starts=10 read_groups=430 raw_groups=430 write_groups=430 rows=6820 dones=10\nPROFILE_FAST_DOWN starts=10 input_groups=430 normalized_groups=160\nPROFILE_FAST_GATE starts=10 input_groups=160 normalized_groups=430 normalized_rows=6820\nHWIC_TOKEN epoch=0 token=381 cycles=4398851 tensors=295150\nPROFILE_FAST_UP starts=11 input_groups=176 normalized_groups=473 normalized_rows=7502\nPROFILE_FAST_SILU16 layer=0 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=1 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=2 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=3 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=4 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_SILU16 layer=5 starts=11 read_groups=473 raw_groups=473 write_groups=473 rows=7502 dones=11\nPROFILE_FAST_DOWN starts=11 input_groups=473 normalized_groups=176\nPROFILE_FAST_GATE starts=11 input_groups=176 normalized_groups=473 normalized_rows=7502\nHWIC_TOKEN epoch=0 token=15 cycles=4927383 tensors=328085\nPROFILE_FAST_UP starts=12 input_groups=192 normalized_groups=516 normalized_rows=8184\nPROFILE_FAST_SILU16 layer=0 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=1 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=2 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=3 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=4 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_SILU16 layer=5 starts=12 read_groups=516 raw_groups=516 write_groups=516 rows=8184 dones=12\nPROFILE_FAST_DOWN starts=12 input_groups=516 normalized_groups=192\nPROFILE_FAST_GATE starts=12 input_groups=192 normalized_groups=516 normalized_rows=8184\nHWIC_TOKEN epoch=0 token=85 cycles=5466292 tensors=361020\nPROFILE_FAST_UP starts=13 input_groups=208 normalized_groups=559 normalized_rows=8866\nPROFILE_FAST_SILU16 layer=0 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=1 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=2 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=3 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=4 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_SILU16 layer=5 starts=13 read_groups=559 raw_groups=559 write_groups=559 rows=8866 dones=13\nPROFILE_FAST_DOWN starts=13 input_groups=559 normalized_groups=208\nPROFILE_FAST_GATE starts=13 input_groups=208 normalized_groups=559 normalized_rows=8866\nHWIC_TOKEN epoch=0 token=1985 cycles=6015418 tensors=393955\nPROFILE_FAST_UP starts=14 input_groups=224 normalized_groups=602 normalized_rows=9548\nPROFILE_FAST_SILU16 layer=0 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=1 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=2 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=3 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=4 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_SILU16 layer=5 starts=14 read_groups=602 raw_groups=602 write_groups=602 rows=9548 dones=14\nPROFILE_FAST_DOWN starts=14 input_groups=602 normalized_groups=224\nPROFILE_FAST_GATE starts=14 input_groups=224 normalized_groups=602 normalized_rows=9548\nHWIC_TOKEN epoch=0 token=157 cycles=6575298 tensors=426890\nPROFILE_FAST_UP starts=15 input_groups=240 normalized_groups=645 normalized_rows=10230\nPROFILE_FAST_SILU16 layer=0 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=1 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=2 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=3 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=4 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_SILU16 layer=5 starts=15 read_groups=645 raw_groups=645 write_groups=645 rows=10230 dones=15\nPROFILE_FAST_DOWN starts=15 input_groups=645 normalized_groups=240\nPROFILE_FAST_GATE starts=15 input_groups=240 normalized_groups=645 normalized_rows=10230\nHWIC_TOKEN epoch=0 token=547 cycles=7145706 tensors=459825\nPROFILE_FAST_UP starts=16 input_groups=256 normalized_groups=688 normalized_rows=10912\nPROFILE_FAST_SILU16 layer=0 starts=16 read_groups=688 raw_groups=688 write_groups=688 rows=10912 dones=16\nPROFILE_FAST_SILU16 layer=1 starts=16 read_groups=688 raw_groups=688 write_groups=688 rows=10912 dones=16\nPROFILE_FAST_SILU16 layer=2 starts=16 read_groups=688 raw_groups=688 write_groups=688 rows=10912 dones=16\nPROFILE_FAST_SILU16 layer=3 starts=16 read_groups=688 raw_groups=688 write_groups=688 rows=10912 dones=16\nPROFILE_FAST_SILU16 layer=4 starts=16 read_groups=688 raw_groups=688 write_groups=688 rows=10912 dones=16\nPROFILE_FAST_SILU16 layer=5 starts=16 read_groups=688 raw_groups=688 write_groups=688 rows=10912 dones=16\nPROFILE_FAST_DOWN starts=16 input_groups=688 normalized_groups=256\nPROFILE_FAST_GATE starts=16 input_groups=256 normalized_groups=688 normalized_rows=10912\nHWIC_TOKEN epoch=0 token=158 cycles=7724278 tensors=492760\nPROFILE_FAST_UP starts=25 input_groups=400 normalized_groups=1075 normalized_rows=17050\nPROFILE_FAST_SILU16 layer=0 starts=25 read_groups=1075 raw_groups=1075 write_groups=1075 rows=17050 dones=25\nPROFILE_FAST_SILU16 layer=1 starts=25 read_groups=1075 raw_groups=1075 write_groups=1075 rows=17050 dones=25\nPROFILE_FAST_SILU16 layer=2 starts=25 read_groups=1075 raw_groups=1075 write_groups=1075 rows=17050 dones=25\nPROFILE_FAST_SILU16 layer=3 starts=25 read_groups=1075 raw_groups=1075 write_groups=1075 rows=17050 dones=25\nPROFILE_FAST_SILU16 layer=4 starts=25 read_groups=1075 raw_groups=1075 write_groups=1075 rows=17050 dones=25\nPROFILE_FAST_SILU16 layer=5 starts=25 read_groups=1075 raw_groups=1075 write_groups=1075 rows=17050 dones=25\nPROFILE_FAST_DOWN starts=25 input_groups=1075 normalized_groups=400\nPROFILE_FAST_GATE starts=25 input_groups=400 normalized_groups=1075 normalized_rows=17050\nHWIC_TOKEN epoch=1 token=127 cycles=11605151 tensors=754975\nPASS_HWIC_MODEL main_tokens=8 replay_tokens=1 tensor_values=754975 cycles=11605183 sealed_model_rom=1 private_kv=1 cache_reads_checked=46800 cache_writes_checked=2700\n",
+      "tensor_comparisons": 754975
+    }
+  ],
+  "positive_image_sha256": "c2011f690769519a803d7e988413fa63a044b79e4515dc4da5b5e9e8db69f1f0",
+  "recorded_native_stages": [
+    {
+      "metrics": {
+        "CPU_system_seconds": 275.767012,
+        "CPU_user_seconds": 1122.467701,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 32184336384,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 32170115072,
+        "wall_seconds": 689.80205608299
+      },
+      "stage_id": "normal.generation"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 25.110291,
+        "CPU_user_seconds": 1464.239675,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 29574463488,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 7477198848,
+        "wall_seconds": 422.9144227919169
+      },
+      "stage_id": "normal.make"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 303.419739,
+        "CPU_user_seconds": 1350.54528,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 32183042048,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 32168919040,
+        "wall_seconds": 843.6428993341979
+      },
+      "stage_id": "GATE.generation"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 30.385642,
+        "CPU_user_seconds": 1652.63264,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 19332530176,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 7501545472,
+        "wall_seconds": 611.8404103750363
+      },
+      "stage_id": "GATE.make"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 295.571522,
+        "CPU_user_seconds": 1332.038388,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 31931006976,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 31916965888,
+        "wall_seconds": 838.7532873339951
+      },
+      "stage_id": "UP.generation"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 30.65173,
+        "CPU_user_seconds": 1635.090516,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 19213844480,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 7431749632,
+        "wall_seconds": 609.8847871250473
+      },
+      "stage_id": "UP.make"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 268.250833,
+        "CPU_user_seconds": 1306.603401,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 31733563392,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 31719538688,
+        "wall_seconds": 818.7426853750367
+      },
+      "stage_id": "SiLU.generation"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 32.783683,
+        "CPU_user_seconds": 1671.899507,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 19273646080,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 7454916608,
+        "wall_seconds": 620.3752655000426
+      },
+      "stage_id": "SiLU.make"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 268.129541,
+        "CPU_user_seconds": 1307.821091,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 31413682176,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 31399575552,
+        "wall_seconds": 820.7902840408497
+      },
+      "stage_id": "DOWN.generation"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 33.117791,
+        "CPU_user_seconds": 1683.456042,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 21491023872,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 7488995328,
+        "wall_seconds": 543.093392916955
+      },
+      "stage_id": "DOWN.make"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 93.1246,
+        "CPU_user_seconds": 8478.243021,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116539392,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116572160,
+        "wall_seconds": 4360.825974541949
+      },
+      "stage_id": "positive.admission"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 317.688406,
+        "CPU_user_seconds": 51750.214923,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116637696,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116654080,
+        "wall_seconds": 26159.09398029186
+      },
+      "stage_id": "positive.around"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 195.631446,
+        "CPU_user_seconds": 13036.906155,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116506624,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116555776,
+        "wall_seconds": 6853.4137019999325
+      },
+      "stage_id": "positive.cancel-held"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 289.613566,
+        "CPU_user_seconds": 17392.927743,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116604928,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116621312,
+        "wall_seconds": 10093.794705000008
+      },
+      "stage_id": "positive.cancel-kv"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 284.114605,
+        "CPU_user_seconds": 17219.578818,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116637696,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116654080,
+        "wall_seconds": 9715.601032624952
+      },
+      "stage_id": "positive.cancel-model"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 415.566424,
+        "CPU_user_seconds": 65684.983228,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116686848,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116719616,
+        "wall_seconds": 33482.875047250185
+      },
+      "stage_id": "positive.fox"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 448.347357,
+        "CPU_user_seconds": 68334.955585,
+        "native_exit": 0,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116703232,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116736000,
+        "wall_seconds": 34898.40073708305
+      },
+      "stage_id": "positive.moon"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 5.079971,
+        "CPU_user_seconds": 431.899893,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116228096,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116260864,
+        "wall_seconds": 232.04123041615821
+      },
+      "stage_id": "fault.GATE.admission"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 8.211273,
+        "CPU_user_seconds": 497.156238,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 115867648,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 115900416,
+        "wall_seconds": 263.2179237920791
+      },
+      "stage_id": "fault.UP.admission"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 6.226665,
+        "CPU_user_seconds": 488.303141,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116539392,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116555776,
+        "wall_seconds": 258.1887017081026
+      },
+      "stage_id": "fault.SiLU.admission"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 7.526412,
+        "CPU_user_seconds": 500.164817,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116490240,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117080064,
+        "wall_seconds": 266.26614108285867
+      },
+      "stage_id": "fault.DOWN.admission"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 6.768426,
+        "CPU_user_seconds": 450.193133,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116228096,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116277248,
+        "wall_seconds": 237.0799695418682
+      },
+      "stage_id": "fault.GATE.around"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 7.273161,
+        "CPU_user_seconds": 456.871589,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 115900416,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 115949568,
+        "wall_seconds": 242.0874125000555
+      },
+      "stage_id": "fault.UP.around"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 5.5305,
+        "CPU_user_seconds": 447.762078,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116523008,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116539392,
+        "wall_seconds": 236.12201720802113
+      },
+      "stage_id": "fault.SiLU.around"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 6.507139,
+        "CPU_user_seconds": 457.958695,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116441088,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116998144,
+        "wall_seconds": 243.13478062511422
+      },
+      "stage_id": "fault.DOWN.around"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 86.006513,
+        "CPU_user_seconds": 4859.378853,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 117587968,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117587968,
+        "wall_seconds": 2606.7220954999793
+      },
+      "stage_id": "fault.GATE.cancel-held"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 96.041179,
+        "CPU_user_seconds": 4904.477009,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116506624,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116506624,
+        "wall_seconds": 2643.043369541876
+      },
+      "stage_id": "fault.UP.cancel-held"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 72.869462,
+        "CPU_user_seconds": 4767.120395,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 117096448,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117096448,
+        "wall_seconds": 2550.4931264170446
+      },
+      "stage_id": "fault.SiLU.cancel-held"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 87.989807,
+        "CPU_user_seconds": 4895.081981,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116998144,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116998144,
+        "wall_seconds": 2648.8590057091787
+      },
+      "stage_id": "fault.DOWN.cancel-held"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 9.860192,
+        "CPU_user_seconds": 619.902773,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116260864,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116277248,
+        "wall_seconds": 330.4408233331051
+      },
+      "stage_id": "fault.GATE.cancel-kv"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 12.527367,
+        "CPU_user_seconds": 614.365143,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 115884032,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 115916800,
+        "wall_seconds": 334.4650495410897
+      },
+      "stage_id": "fault.UP.cancel-kv"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 9.130013,
+        "CPU_user_seconds": 613.251888,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116572160,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116572160,
+        "wall_seconds": 327.46119612501934
+      },
+      "stage_id": "fault.SiLU.cancel-kv"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 11.0176,
+        "CPU_user_seconds": 625.377552,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 117047296,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117080064,
+        "wall_seconds": 337.52025529090315
+      },
+      "stage_id": "fault.DOWN.cancel-kv"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 7.775113,
+        "CPU_user_seconds": 451.669989,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116277248,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116293632,
+        "wall_seconds": 240.0654275410343
+      },
+      "stage_id": "fault.GATE.cancel-model"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 9.336505,
+        "CPU_user_seconds": 455.12434,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 115949568,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 115965952,
+        "wall_seconds": 243.07587475003675
+      },
+      "stage_id": "fault.UP.cancel-model"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 7.979991,
+        "CPU_user_seconds": 443.711529,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116555776,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116555776,
+        "wall_seconds": 244.02963191713206
+      },
+      "stage_id": "fault.SiLU.cancel-model"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 9.467699,
+        "CPU_user_seconds": 450.731444,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 117047296,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117063680,
+        "wall_seconds": 252.09036500006914
+      },
+      "stage_id": "fault.DOWN.cancel-model"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 9.788501,
+        "CPU_user_seconds": 437.411518,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116277248,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116310016,
+        "wall_seconds": 247.07535995915532
+      },
+      "stage_id": "fault.GATE.fox"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 2.96958,
+        "CPU_user_seconds": 450.239795,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 115884032,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 115916800,
+        "wall_seconds": 229.15374800004065
+      },
+      "stage_id": "fault.UP.fox"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 2.09,
+        "CPU_user_seconds": 431.96954,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116555776,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116555776,
+        "wall_seconds": 221.99804987502284
+      },
+      "stage_id": "fault.SiLU.fox"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 2.925331,
+        "CPU_user_seconds": 449.950394,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 117030912,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117047296,
+        "wall_seconds": 232.09058758290485
+      },
+      "stage_id": "fault.DOWN.fox"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 2.915699,
+        "CPU_user_seconds": 435.956346,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116244480,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116244480,
+        "wall_seconds": 223.08271429198794
+      },
+      "stage_id": "fault.GATE.moon"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 3.014737,
+        "CPU_user_seconds": 427.728634,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 115900416,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 115933184,
+        "wall_seconds": 217.98761054198258
+      },
+      "stage_id": "fault.UP.moon"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 2.243995,
+        "CPU_user_seconds": 403.488074,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 116572160,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 116588544,
+        "wall_seconds": 206.94249449996278
+      },
+      "stage_id": "fault.SiLU.moon"
+    },
+    {
+      "metrics": {
+        "CPU_system_seconds": 1.958466,
+        "CPU_user_seconds": 359.181576,
+        "native_exit": 1,
+        "owned_native_group_drained": true,
+        "peak_sampled_native_group_RSS_bytes": 117014528,
+        "resource_failure": null,
+        "wait4_maxrss_bytes": 117047296,
+        "wall_seconds": 184.82842162507586
+      },
+      "stage_id": "fault.DOWN.moon"
+    }
+  ],
+  "schema": "hwic.recorded-integrated-model-regression.v1",
+  "scope": "Integrated spatial FFN candidate with SiLU16 in all six layers; bounded original corpus against its independent fixed-numerical-model reference.",
+  "simulation_tool": "Verilator",
+  "source_record_identity": {
+    "bytes": 125125,
+    "sha256": "667faa423ad37c7e2df59b4a5e83f0b10689a43345185ad55967c8fce78f588a"
+  },
+  "totals": {
+    "actual_fault_cases": 28,
+    "fault_families": 4,
+    "output_tokens": 53,
+    "positive_cases": 7,
+    "tensor_comparisons": 2605355
+  },
+  "unchanged_current_source_files": 1965,
+  "unchanged_original_fixture_assets": 63
+}
