@@ -1,0 +1,180 @@
+{
+  "bodies": [
+    "service-project/native.smt2",
+    "service-origin.smt2",
+    "request-origin.smt2",
+    "raw-origin.smt2",
+    "model-origin.smt2"
+  ],
+  "checks_file": "MODEL-CHECKS.json",
+  "declarations": [
+    "(declare-const a |board1_verified_ddr_page_service_s|)",
+    "(declare-const an |board1_verified_ddr_page_service_s|)",
+    "(declare-const h ServiceOrigin)",
+    "(declare-const hn ServiceOrigin)",
+    "(declare-const slot (_ BitVec 5))",
+    "(declare-const q RequestOrigin)",
+    "(declare-const qn RequestOrigin)",
+    "(declare-const r RawOrigin)",
+    "(declare-const rn RawOrigin)",
+    "(declare-const u (_ BitVec 18))",
+    "(declare-const model (Array (_ BitVec 18) (_ BitVec 256)))"
+  ],
+  "external_facts": {
+    "ingress:ingress-dispatch-value": {
+      "plan": "INGRESS-PLAN.json",
+      "rule": "ingress-dispatch-value"
+    },
+    "ingress:ingress-preserved": {
+      "plan": "INGRESS-PLAN.json",
+      "rule": "ingress-preserved"
+    },
+    "ingress:ingress-reset-base": {
+      "plan": "INGRESS-PLAN.json",
+      "rule": "ingress-reset-base"
+    },
+    "raw:raw-issued-address": {
+      "plan": "RAW-PLAN.json",
+      "rule": "raw-issued-address"
+    },
+    "raw:raw-preserved": {
+      "plan": "RAW-PLAN.json",
+      "rule": "raw-preserved"
+    },
+    "raw:raw-reset-base": {
+      "plan": "RAW-PLAN.json",
+      "rule": "raw-reset-base"
+    },
+    "raw:raw-returned-fill": {
+      "plan": "RAW-PLAN.json",
+      "rule": "raw-returned-fill"
+    },
+    "service:service-preserved": {
+      "plan": "SERVICE-PLAN.json",
+      "rule": "service-preserved"
+    },
+    "service:service-reset-base": {
+      "plan": "SERVICE-PLAN.json",
+      "rule": "service-reset-base"
+    },
+    "service:service-return-value": {
+      "plan": "SERVICE-PLAN.json",
+      "rule": "service-return-value"
+    }
+  },
+  "inputs": {
+    "INGRESS-CHECKS.json": "5ab3fa8bf4b3df6402ca6481c45520ca16a064f60119855e89c72412ab408bc4",
+    "INGRESS-PLAN.json": "7b58cc5b3b23bd0860c02ab94a4fdc1964105a62dde1c0929fa3444da0208b82",
+    "RAW-CHECKS.json": "2652a70236bd580ae181b84377f4df67511fb2cb53ef6b82c328f93629501bce",
+    "RAW-PLAN.json": "2f063be2ce55dc9ee636f705712d5ad5669aa5f0bccfa5d9747634fbb979c762",
+    "SERVICE-CHECKS.json": "4b18d60e5afd016e305478f067f2c147016aa7e8b7b5d1b1bdf25a76f8bdb837",
+    "SERVICE-PLAN.json": "aa62407bc82ee5a136abe9ed8d99daafc0e8084305b7c9d7d660dbaf086ee22c",
+    "SERVICE-SOURCES.json": "97a76fd2ee4ed4c66d089d512d85f056eeb4a79617a3ac1b3701f226dab9a1f0",
+    "model-origin.smt2": "a87cfaf2b234258f2771c7371560e592c3679d1c27180fa2d26dbd59f7723b4d",
+    "raw-origin.smt2": "2a9cfe83e48af784cd0e6a27ecab3849185f0a235b44cfeb8d5b3031d9ded1b5",
+    "request-origin.smt2": "89adf8c58457ff50b3eb056f1b85beedbb5d7679023f01af93d686fa38c54edf",
+    "service-origin.smt2": "8de9f5ef3302a0e3eecb547584e82d2a48b134e5f2fde6a6856c11b0fde81d9f",
+    "service-project/native.smt2": "315317846d411305feb9873087b1d4ab2074239461cc4c281872de711964dab9"
+  },
+  "observations": [
+    "u",
+    "slot",
+    "h",
+    "hn",
+    "r",
+    "rn",
+    "(m-bank0-0 an u model)",
+    "(m-bank0-1 an u model)",
+    "(m-bank0-2 an u model)",
+    "(m-bank0-3 an u model)",
+    "(m-bank0-4 an u model)",
+    "(m-bank0-5 an u model)",
+    "(m-bank1-0 an u model)",
+    "(m-bank1-1 an u model)",
+    "(m-bank1-2 an u model)",
+    "(m-bank1-3 an u model)",
+    "(m-bank1-4 an u model)",
+    "(m-bank1-5 an u model)",
+    "(m-bank2-0 an u model)",
+    "(m-bank2-1 an u model)",
+    "(m-bank2-2 an u model)",
+    "(m-bank2-3 an u model)",
+    "(m-bank2-4 an u model)",
+    "(m-bank2-5 an u model)",
+    "(m-bank3-0 an u model)",
+    "(m-bank3-1 an u model)",
+    "(m-bank3-2 an u model)",
+    "(m-bank3-3 an u model)",
+    "(m-bank3-4 an u model)",
+    "(m-bank3-5 an u model)",
+    "(model-owned an hn u model)",
+    "(service-inv an hn slot)",
+    "(request-inv an qn)",
+    "(raw-inv an rn)",
+    "(metadata-model an u model)"
+  ],
+  "order": [
+    "metadata-model-preserved",
+    "model-reset-base",
+    "model-preserved",
+    "model-return-value"
+  ],
+  "property": "Conditional fixed-model word identity through the complete four-bank service; upstream raw-read contract is explicit and remains to be discharged in the main proof",
+  "rules": {
+    "metadata-model-preserved": {
+      "assumptions": [
+        "(|board1_verified_ddr_page_service_t| a an)",
+        "(metadata-model a u model)"
+      ],
+      "conclusion": "(metadata-model an u model)"
+    },
+    "model-preserved": {
+      "assumptions": [
+        "(|board1_verified_ddr_page_service_n reset_n| a)",
+        "(|board1_verified_ddr_page_service_n reset_n| an)",
+        "(|board1_verified_ddr_page_service_t| a an)",
+        "(joint-model a h q r slot u model)",
+        "(= hn (service-next a h slot))",
+        "(= qn (request-next a q))",
+        "(= rn (raw-next a r))",
+        "(upstream-word a r model)"
+      ],
+      "conclusion": "(joint-model an hn qn rn slot u model)",
+      "dependencies": [
+        "metadata-model-preserved",
+        "service:service-preserved",
+        "ingress:ingress-preserved",
+        "ingress:ingress-dispatch-value",
+        "raw:raw-preserved",
+        "raw:raw-returned-fill"
+      ]
+    },
+    "model-reset-base": {
+      "assumptions": [
+        "(not (|board1_verified_ddr_page_service_n reset_n| a))",
+        "(|board1_verified_ddr_page_service_n reset_n| an)",
+        "(|board1_verified_ddr_page_service_t| a an)",
+        "(target-in-image u)",
+        "(metadata-model an u model)"
+      ],
+      "conclusion": "(joint-model an service-zero request-zero raw-zero slot u model)",
+      "dependencies": [
+        "service:service-reset-base",
+        "ingress:ingress-reset-base",
+        "raw:raw-reset-base"
+      ]
+    },
+    "model-return-value": {
+      "assumptions": [
+        "(|board1_verified_ddr_page_service_n reset_n| a)",
+        "(joint-model a h q r slot u model)"
+      ],
+      "conclusion": "(fixed-model-return a h slot u model)",
+      "dependencies": [
+        "service:service-return-value"
+      ]
+    }
+  },
+  "schema": "Declarative-native-induction-v1",
+  "source_manifest": "SERVICE-SOURCES.json"
+}

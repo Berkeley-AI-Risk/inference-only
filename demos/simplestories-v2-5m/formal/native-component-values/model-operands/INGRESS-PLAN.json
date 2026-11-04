@@ -1,0 +1,143 @@
+{
+  "bodies": [
+    "service-project/native.smt2",
+    "request-origin.smt2"
+  ],
+  "checks_file": "INGRESS-CHECKS.json",
+  "declarations": [
+    "(declare-const a |board1_verified_ddr_page_service_s|)",
+    "(declare-const an |board1_verified_ddr_page_service_s|)",
+    "(declare-const q RequestOrigin)",
+    "(declare-const qn RequestOrigin)"
+  ],
+  "inputs": {
+    "SERVICE-SOURCES.json": "97a76fd2ee4ed4c66d089d512d85f056eeb4a79617a3ac1b3701f226dab9a1f0",
+    "request-origin.smt2": "89adf8c58457ff50b3eb056f1b85beedbb5d7679023f01af93d686fa38c54edf",
+    "service-project/native.smt2": "315317846d411305feb9873087b1d4ab2074239461cc4c281872de711964dab9",
+    "service-project/native.sv": "b9ea5e49f92565a77adbd0f4e6b0745a4e59852f3be6cd751d578136dc86e9a0"
+  },
+  "observations": [
+    "q",
+    "qn",
+    "(|board1_verified_ddr_page_service_n fault_o| a)",
+    "(|board1_verified_ddr_page_service_n head_valid_q| a)",
+    "(|board1_verified_ddr_page_service_n head_word| a)",
+    "(|board1_verified_ddr_page_service_n request_count_q| a)",
+    "(|board1_verified_ddr_page_service_n request_read_q| a)",
+    "(|board1_verified_ddr_page_service_n request_write_q| a)",
+    "(|board1_verified_ddr_page_service_n request_fire| a)",
+    "(|board1_verified_ddr_page_service_n read_fire| a)",
+    "(|board1_verified_ddr_page_service_n fault_o| an)",
+    "(|board1_verified_ddr_page_service_n head_valid_q| an)",
+    "(|board1_verified_ddr_page_service_n head_word| an)",
+    "(|board1_verified_ddr_page_service_n request_count_q| an)",
+    "(|board1_verified_ddr_page_service_n request_read_q| an)",
+    "(|board1_verified_ddr_page_service_n request_write_q| an)",
+    "(|board1_verified_ddr_page_service_n request_fire| an)",
+    "(|board1_verified_ddr_page_service_n read_fire| an)",
+    "(qinv0 an qn)",
+    "(qinv1 an qn)",
+    "(qinv2 an qn)",
+    "(qinv3 an qn)",
+    "(qinv4 an qn)",
+    "(qinv5 an qn)",
+    "(qinv6 an qn)",
+    "(qinv7 an qn)",
+    "(qinv8 an qn)",
+    "(qinv9 an qn)",
+    "(qinv10 an qn)",
+    "(qinv11 an qn)",
+    "(qinv12 an qn)",
+    "(qinv13 an qn)",
+    "(qinv14 an qn)",
+    "(qinv15 an qn)",
+    "(qinv16 an qn)",
+    "(qinv17 an qn)",
+    "(qinv18 an qn)",
+    "(qinv19 an qn)",
+    "(qinv20 an qn)",
+    "(qinv21 an qn)",
+    "(qinv22 an qn)",
+    "(qinv23 an qn)",
+    "(qinv24 an qn)",
+    "(qinv25 an qn)",
+    "(qinv26 an qn)",
+    "(qinv27 an qn)",
+    "(qinv28 an qn)",
+    "(qinv29 an qn)",
+    "(qinv30 an qn)",
+    "(qinv31 an qn)",
+    "(qinv32 an qn)",
+    "(qinv33 an qn)",
+    "(qinv34 an qn)",
+    "(qinv35 an qn)",
+    "(qinv36 an qn)",
+    "(qinv37 an qn)",
+    "(qinv38 an qn)",
+    "(qinv39 an qn)",
+    "(qinv40 an qn)",
+    "(qinv41 an qn)",
+    "(qinv42 an qn)",
+    "(qinv43 an qn)",
+    "(qinv44 an qn)",
+    "(qinv45 an qn)",
+    "(qinv46 an qn)",
+    "(qinv47 an qn)",
+    "(qinv48 an qn)",
+    "(qinv49 an qn)",
+    "(qinv50 an qn)",
+    "(qinv51 an qn)",
+    "(qinv52 an qn)",
+    "(qinv53 an qn)",
+    "(qinv54 an qn)",
+    "(qinv55 an qn)",
+    "(qinv56 an qn)",
+    "(qinv57 an qn)",
+    "(qinv58 an qn)",
+    "(qinv59 an qn)",
+    "(qinv60 an qn)",
+    "(qinv61 an qn)",
+    "(qinv62 an qn)",
+    "(qinv63 an qn)",
+    "(qinv64 an qn)",
+    "(qinv65 an qn)",
+    "(qinv66 an qn)",
+    "(qinv67 an qn)",
+    "(qinv68 an qn)"
+  ],
+  "order": [
+    "ingress-reset-base",
+    "ingress-preserved",
+    "ingress-dispatch-value"
+  ],
+  "property": "Dispatch address is the oldest accepted undispached request, with full 64-entry native FIFO and 128-slot read-only history ring",
+  "rules": {
+    "ingress-dispatch-value": {
+      "assumptions": [
+        "(|board1_verified_ddr_page_service_n reset_n| a)",
+        "(request-inv a q)"
+      ],
+      "conclusion": "(dispatch-origin a q)"
+    },
+    "ingress-preserved": {
+      "assumptions": [
+        "(|board1_verified_ddr_page_service_n reset_n| a)",
+        "(|board1_verified_ddr_page_service_n reset_n| an)",
+        "(|board1_verified_ddr_page_service_t| a an)",
+        "(request-inv a q)",
+        "(= qn (request-next a q))"
+      ],
+      "conclusion": "(request-inv an qn)"
+    },
+    "ingress-reset-base": {
+      "assumptions": [
+        "(not (|board1_verified_ddr_page_service_n reset_n| a))",
+        "(|board1_verified_ddr_page_service_n reset_n| an)",
+        "(|board1_verified_ddr_page_service_t| a an)"
+      ],
+      "conclusion": "(request-inv an request-zero)"
+    }
+  },
+  "schema": "Declarative-native-induction-v1",
+  "source_manifest": "SERVICE-SOURCES.json"
+}

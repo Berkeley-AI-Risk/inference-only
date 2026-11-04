@@ -1,0 +1,93 @@
+{
+  "bodies": [
+    "service-project/native.smt2",
+    "raw-origin.smt2"
+  ],
+  "checks_file": "RAW-CHECKS.json",
+  "declarations": [
+    "(declare-const a |board1_verified_ddr_page_service_s|)",
+    "(declare-const an |board1_verified_ddr_page_service_s|)",
+    "(declare-const r RawOrigin)",
+    "(declare-const rn RawOrigin)"
+  ],
+  "inputs": {
+    "SERVICE-SOURCES.json": "97a76fd2ee4ed4c66d089d512d85f056eeb4a79617a3ac1b3701f226dab9a1f0",
+    "raw-origin.smt2": "2a9cfe83e48af784cd0e6a27ecab3849185f0a235b44cfeb8d5b3031d9ded1b5",
+    "service-project/native.smt2": "315317846d411305feb9873087b1d4ab2074239461cc4c281872de711964dab9",
+    "service-project/native.sv": "b9ea5e49f92565a77adbd0f4e6b0745a4e59852f3be6cd751d578136dc86e9a0"
+  },
+  "observations": [
+    "r",
+    "rn",
+    "(|board1_verified_ddr_page_service_n fault_o| a)",
+    "(|board1_verified_ddr_page_service_n dma_state_q| a)",
+    "(|board1_verified_ddr_page_service_n fill_page_q| a)",
+    "(|board1_verified_ddr_page_service_n fill_bank| a)",
+    "(|board1_verified_ddr_page_service_n issued_q| a)",
+    "(|board1_verified_ddr_page_service_n received_q| a)",
+    "(|board1_verified_ddr_page_service_n page_words_q| a)",
+    "(|board1_verified_ddr_page_service_n ddr_request_fire| a)",
+    "(|board1_verified_ddr_page_service_n ddr_response_fire| a)",
+    "(|board1_verified_ddr_page_service_n fault_o| an)",
+    "(|board1_verified_ddr_page_service_n dma_state_q| an)",
+    "(|board1_verified_ddr_page_service_n fill_page_q| an)",
+    "(|board1_verified_ddr_page_service_n fill_bank| an)",
+    "(|board1_verified_ddr_page_service_n issued_q| an)",
+    "(|board1_verified_ddr_page_service_n received_q| an)",
+    "(|board1_verified_ddr_page_service_n page_words_q| an)",
+    "(|board1_verified_ddr_page_service_n ddr_request_fire| an)",
+    "(|board1_verified_ddr_page_service_n ddr_response_fire| an)",
+    "(rinv0 an rn)",
+    "(rinv1 an rn)",
+    "(rinv2 an rn)",
+    "(rinv3 an rn)",
+    "(rinv4 an rn)",
+    "(rinv5 an rn)",
+    "(rinv6 an rn)"
+  ],
+  "order": [
+    "raw-reset-base",
+    "raw-preserved",
+    "raw-issued-address",
+    "raw-returned-fill"
+  ],
+  "property": "Raw read ordinal/address and accepted return offset own the actual page RAM write; upstream response-data identity remains open",
+  "rules": {
+    "raw-issued-address": {
+      "assumptions": [
+        "(|board1_verified_ddr_page_service_n reset_n| a)",
+        "(raw-inv a r)"
+      ],
+      "conclusion": "(issued-address a r)"
+    },
+    "raw-preserved": {
+      "assumptions": [
+        "(|board1_verified_ddr_page_service_n reset_n| a)",
+        "(|board1_verified_ddr_page_service_n reset_n| an)",
+        "(|board1_verified_ddr_page_service_t| a an)",
+        "(raw-inv a r)",
+        "(= rn (raw-next a r))"
+      ],
+      "conclusion": "(raw-inv an rn)"
+    },
+    "raw-reset-base": {
+      "assumptions": [
+        "(not (|board1_verified_ddr_page_service_n reset_n| a))",
+        "(|board1_verified_ddr_page_service_n reset_n| an)",
+        "(|board1_verified_ddr_page_service_t| a an)"
+      ],
+      "conclusion": "(raw-inv an raw-zero)"
+    },
+    "raw-returned-fill": {
+      "assumptions": [
+        "(|board1_verified_ddr_page_service_n reset_n| a)",
+        "(|board1_verified_ddr_page_service_n reset_n| an)",
+        "(|board1_verified_ddr_page_service_t| a an)",
+        "(raw-inv a r)"
+      ],
+      "conclusion": "(returned-fill a an r)"
+    }
+  },
+  "schema": "Declarative-native-induction-v1",
+  "source_manifest": "SERVICE-SOURCES.json"
+}

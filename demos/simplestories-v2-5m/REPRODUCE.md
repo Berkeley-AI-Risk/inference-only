@@ -111,3 +111,19 @@ and unresolved secondary results.
 The [normal returned-word guide](formal/kv-return/README.md) gives standard-library
 recorded checks and fresh Yosys/Z3/Icarus replay from the supplied closed packet.
 It states the checked component scope and imported-proof replay boundary.
+
+## Native numerical and cache-value proofs
+
+From the repository root:
+
+```sh
+python3.12 -B demos/simplestories-v2-5m/formal/native-component-values/run.py --recorded-only
+python3.12 -B demos/simplestories-v2-5m/formal/native-component-values/run.py --out /tmp/simplestories-native-values
+```
+
+The [guide](formal/native-component-values/README.md) pins the compiler/solver
+versions and explains both the RMSNorm invocation theorem and the cache
+theorem's open upstream raw-read premise. The second command recompiles the
+actual native subtrees, replays all 136 engine obligations and reruns finite
+operating/defect controls. It writes to a new output directory without altering
+the release. No FPGA access is required.

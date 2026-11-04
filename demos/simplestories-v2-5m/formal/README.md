@@ -30,3 +30,10 @@ The [working-memory/session package](session-isolation/README.md) adds native RA
 histories, current-writer ownership and connected model/K/V cancellation
 barriers. It states the remaining device entry, numerical and token-publication
 composition obligations; it does not claim complete device session isolation.
+
+The [native component-value package](native-component-values/README.md) verifies
+baseline RMSNorm invocation confinement with its full numerical subtree and
+conditional fixed-model word identity through the production four-bank cache.
+It provides complete recorded checks and fresh compilation/solver/operating
+reproduction. The upstream raw DDR contract and whole-device theorem remain
+open.

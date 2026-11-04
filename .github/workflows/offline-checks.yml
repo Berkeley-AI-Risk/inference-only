@@ -48,6 +48,8 @@ jobs:
       - name: Check current authentication and access evidence (recorded only)
         working-directory: demos/simplestories-v2-5m
         run: python -I -S -B formal/authentication-access/check_recorded.py
+      - name: Check native component-value proof packet (recorded only)
+        run: python -I -S -B demos/simplestories-v2-5m/formal/native-component-values/run.py --recorded-only
       - name: Check working-memory ownership and cancellation evidence (recorded only)
         working-directory: demos/simplestories-v2-5m
         run: |

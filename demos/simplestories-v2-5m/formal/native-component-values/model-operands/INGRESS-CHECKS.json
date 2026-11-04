@@ -1,0 +1,67 @@
+{
+  "all_rules_passed": true,
+  "plan_sha256": "7b58cc5b3b23bd0860c02ab94a4fdc1964105a62dde1c0929fa3444da0208b82",
+  "rules": {
+    "ingress-dispatch-value": {
+      "answers": [
+        "unsat"
+      ],
+      "command": [
+        "z3",
+        "-memory:4096",
+        "-T:120",
+        "queries/ingress-dispatch-value-20261104T013624134690Z/query.smt2"
+      ],
+      "exit_code": 0,
+      "expected": "unsat",
+      "log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+      "passed": true,
+      "plan_sha256": "7b58cc5b3b23bd0860c02ab94a4fdc1964105a62dde1c0929fa3444da0208b82",
+      "query_sha256": "b3c61b5bdf6a49b1321aa673da682cd15c829eb326aeb76e3b20bda3f2dc561a",
+      "receipt": "queries/ingress-dispatch-value-20261104T013624134690Z/RESULT.json",
+      "rule": "ingress-dispatch-value",
+      "seconds": 0.2032792081590742
+    },
+    "ingress-preserved": {
+      "answers": [
+        "unsat"
+      ],
+      "command": [
+        "z3",
+        "-memory:4096",
+        "-T:120",
+        "queries/ingress-preserved-20261104T013511678035Z/query.smt2"
+      ],
+      "exit_code": 0,
+      "expected": "unsat",
+      "log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+      "passed": true,
+      "plan_sha256": "7b58cc5b3b23bd0860c02ab94a4fdc1964105a62dde1c0929fa3444da0208b82",
+      "query_sha256": "0885004fd0eb02bb8dc896f0ff56009fd063db96f37b415d8ef977699317cb12",
+      "receipt": "queries/ingress-preserved-20261104T013511678035Z/RESULT.json",
+      "rule": "ingress-preserved",
+      "seconds": 71.3566259171348
+    },
+    "ingress-reset-base": {
+      "answers": [
+        "unsat"
+      ],
+      "command": [
+        "z3",
+        "-memory:4096",
+        "-T:120",
+        "queries/ingress-reset-base-20261104T013510083221Z/query.smt2"
+      ],
+      "exit_code": 0,
+      "expected": "unsat",
+      "log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+      "passed": true,
+      "plan_sha256": "7b58cc5b3b23bd0860c02ab94a4fdc1964105a62dde1c0929fa3444da0208b82",
+      "query_sha256": "cb9a2b83a20ee576288ef29ebf9434855179af717738c3ef758d852e9b403d41",
+      "receipt": "queries/ingress-reset-base-20261104T013510083221Z/RESULT.json",
+      "rule": "ingress-reset-base",
+      "seconds": 0.24441566597670317
+    }
+  },
+  "whole_model_consumption_proved": false
+}

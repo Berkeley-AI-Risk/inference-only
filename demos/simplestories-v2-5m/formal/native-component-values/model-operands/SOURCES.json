@@ -1,0 +1,42 @@
+{
+  "IMAGE_WORDS": 227062,
+  "REGISTER_RESULT": 0,
+  "compile_seconds": 0.18679120810702443,
+  "complete_native_bank_hierarchy": true,
+  "internal_cuts": [],
+  "memories": {
+    "$flatten\\u_sha.$auto$proc_rom.cc:155:do_switch$795": {
+      "SIZE": 64,
+      "WIDTH": 32
+    },
+    "$flatten\\u_sha.$auto$proc_rom.cc:155:do_switch$799": {
+      "SIZE": 64,
+      "WIDTH": 32
+    },
+    "memory_q": {
+      "SIZE": 128,
+      "WIDTH": 256
+    }
+  },
+  "native_smt_sha256": "eba17fb0c799519e70d741cce51ef605adc56584ae5d10b21f0afcacf8d6d25d",
+  "schema": "Native-bank-provenance-setup-v1",
+  "solver_started": false,
+  "source_sha256": "e742a9ad1fb12cf36d292f3e274d98eab81870a81eaef5904cc206a364bd96be",
+  "sources": {
+    "bank.sv": {
+      "model_source": "hardware/project/bank.sv",
+      "modules": [
+        "board1_verified_page_bank"
+      ],
+      "sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1"
+    },
+    "sha.sv": {
+      "model_source": "hardware/project/sha.sv",
+      "modules": [
+        "board1_sha256_bank_owned_compress"
+      ],
+      "sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94"
+    }
+  },
+  "whole_model_consumption_proved": false
+}

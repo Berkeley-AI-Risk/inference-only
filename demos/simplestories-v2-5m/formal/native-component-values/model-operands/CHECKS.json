@@ -1,0 +1,67 @@
+{
+  "all_rules_passed": true,
+  "plan_sha256": "1e7e7e870bd05dd1b13894aa24ccc5ff05a3a49c1f08267f1b832f295fd3d873",
+  "rules": {
+    "preserved": {
+      "answers": [
+        "unsat"
+      ],
+      "command": [
+        "z3",
+        "-memory:4096",
+        "-T:120",
+        "queries/preserved-20261104T011028703208Z/query.smt2"
+      ],
+      "exit_code": 0,
+      "expected": "unsat",
+      "log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+      "passed": true,
+      "plan_sha256": "1e7e7e870bd05dd1b13894aa24ccc5ff05a3a49c1f08267f1b832f295fd3d873",
+      "query_sha256": "a39cf37c29b1db754712076ef895b1407b143941c2de01ec2e3bc972b7154497",
+      "receipt": "queries/preserved-20261104T011028703208Z/RESULT.json",
+      "rule": "preserved",
+      "seconds": 0.18715050001628697
+    },
+    "read-value": {
+      "answers": [
+        "unsat"
+      ],
+      "command": [
+        "z3",
+        "-memory:4096",
+        "-T:120",
+        "queries/read-value-20261104T011029665905Z/query.smt2"
+      ],
+      "exit_code": 0,
+      "expected": "unsat",
+      "log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+      "passed": true,
+      "plan_sha256": "1e7e7e870bd05dd1b13894aa24ccc5ff05a3a49c1f08267f1b832f295fd3d873",
+      "query_sha256": "54f6d3190fdcbd163654f95dc99ace47441a775fa96750b334e376b8dce9accb",
+      "receipt": "queries/read-value-20261104T011029665905Z/RESULT.json",
+      "rule": "read-value",
+      "seconds": 0.02370216604322195
+    },
+    "reset-base": {
+      "answers": [
+        "unsat"
+      ],
+      "command": [
+        "z3",
+        "-memory:4096",
+        "-T:120",
+        "queries/reset-base-20261104T011027659010Z/query.smt2"
+      ],
+      "exit_code": 0,
+      "expected": "unsat",
+      "log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+      "passed": true,
+      "plan_sha256": "1e7e7e870bd05dd1b13894aa24ccc5ff05a3a49c1f08267f1b832f295fd3d873",
+      "query_sha256": "5596e51869a910de9528d56562bd7cd821c92abc1231851d51ff43e16997891c",
+      "receipt": "queries/reset-base-20261104T011027659010Z/RESULT.json",
+      "rule": "reset-base",
+      "seconds": 0.044775000074878335
+    }
+  },
+  "whole_model_consumption_proved": false
+}

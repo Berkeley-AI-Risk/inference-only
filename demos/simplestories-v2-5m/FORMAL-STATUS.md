@@ -61,6 +61,33 @@ checks; its unbounded transport proof remains incomplete. This is a proved
 restriction on issued commands, not a proof of the contents or physical behavior
 of DRAM.
 
+## Native numerical and model-cache value results
+
+The baseline [native component-value package](formal/native-component-values/README.md)
+adds two completed results toward functional correctness and inference-only
+confinement. It retains the actual numerical/storage producers at production
+dimensions and watchdogs.
+
+| Component | What is established | Remaining boundary |
+| --- | --- | --- |
+| RMSNorm invocation | Every successful result agrees with the frozen native finite-width operator on the current accepted role, exponent and complete vector. Prior work, retained workspace, stalls and CLEAR cannot substitute another invocation's values. DONE follows 256 ordered result handshakes. | This is correspondence to the named RTL operator, not an independent mathematical RMSNorm theorem. Caller operand provenance and the full graph remain open; configured stateless DSP correspondence is a platform premise. |
+| Four-bank model cache | Under ordered correct raw model-memory replies, or failure, the production cache service preserves accepted request ownership/order and returns the requested fixed-model word, including held returns and replacement. | The upstream DDR transport/storage contract is an explicit premise, not a proved result of this package. Actual arithmetic consumption and the whole-device composition remain open. |
+
+RMSNorm passes 26 top-level rules through 119 exact engine queries (118 UNSAT
+and one SAT nonvacuity check). The conditional cache result passes 17 UNSAT
+queries. Fresh reproduction recompiles the native source and replays every
+query. Native operating runs and numerical defect controls supplement the
+unbounded proof; they do not replace it. The [component statements and diagram](formal/native-component-values/README.md)
+show the open boundaries. These results are source-bound to the baseline and
+do not automatically qualify the other configurations.
+
+These results strengthen the inference-only argument beyond selecting an
+operation name: a successful permitted operation must obtain values from its
+current fixed operands. RMSNorm closes that local numerical-producer boundary;
+the cache theorem supplies a conditional model-word path. The main theorem
+still needs the actual command-to-graph connections, remaining arithmetic and
+attention/K/V value contracts, and upstream memory composition.
+
 ## How this supports the inference-only claim
 
 An inference-only machine serves a fixed permitted model while allowing the

@@ -1,0 +1,24 @@
+{
+  "actual_clear_after_owned_old_work": true,
+  "actual_hard_resets": 1,
+  "case": "wrong-operand",
+  "compile_exit": 0,
+  "defect_detected": true,
+  "mutation": {
+    "after": "vector_read_q}) <<< 11;",
+    "before": "vector_read_q}) <<< 12;",
+    "reference_changed": false
+  },
+  "operating_witness": false,
+  "pilot_complete": false,
+  "reference_payload_zeroed_only": true,
+  "role": 12,
+  "rom_sha256": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4",
+  "seconds": 0.6312384579796344,
+  "simulation_exit": 1,
+  "simulation_log_sha256": "916c42411c237bc04cdddf638498b61af78902b2bdeba86c06d4ba2f81ea7ef4",
+  "source_sha256": "ea67fef34057bb4a9cd4c5aec8582df0dadbc79707118c3a933c1d3923b2b33f",
+  "testbench_sha256": "8b84cc0edc8d28197f1f5948ca391dd8fda318fdc2fd8b4e4e1c48f912ee2bc9",
+  "unbounded_proof": false,
+  "values_sha256": "82d6401e700862cff0aa5f61f79b3d140de9bf5325b57bcf0642601d94098a1a"
+}

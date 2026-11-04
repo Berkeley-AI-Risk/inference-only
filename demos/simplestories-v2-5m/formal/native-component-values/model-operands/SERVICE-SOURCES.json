@@ -1,0 +1,127 @@
+{
+  "IMAGE_WORDS": 227062,
+  "REGISTER_RESULT": 0,
+  "compile_seconds": 0.6412039170973003,
+  "complete_native_bank_hierarchy": true,
+  "complete_native_service_hierarchy": true,
+  "internal_cuts": [],
+  "memories": {
+    "$flatten\\g_bank[0].u_bank.\\u_sha.$auto$proc_rom.cc:155:do_switch$1843": {
+      "SIZE": 64,
+      "WIDTH": 32
+    },
+    "$flatten\\g_bank[0].u_bank.\\u_sha.$auto$proc_rom.cc:155:do_switch$1847": {
+      "SIZE": 64,
+      "WIDTH": 32
+    },
+    "$flatten\\g_bank[1].u_bank.\\u_sha.$auto$proc_rom.cc:155:do_switch$1843": {
+      "SIZE": 64,
+      "WIDTH": 32
+    },
+    "$flatten\\g_bank[1].u_bank.\\u_sha.$auto$proc_rom.cc:155:do_switch$1847": {
+      "SIZE": 64,
+      "WIDTH": 32
+    },
+    "$flatten\\g_bank[2].u_bank.\\u_sha.$auto$proc_rom.cc:155:do_switch$1843": {
+      "SIZE": 64,
+      "WIDTH": 32
+    },
+    "$flatten\\g_bank[2].u_bank.\\u_sha.$auto$proc_rom.cc:155:do_switch$1847": {
+      "SIZE": 64,
+      "WIDTH": 32
+    },
+    "$flatten\\g_bank[3].u_bank.\\u_sha.$auto$proc_rom.cc:155:do_switch$1843": {
+      "SIZE": 64,
+      "WIDTH": 32
+    },
+    "$flatten\\g_bank[3].u_bank.\\u_sha.$auto$proc_rom.cc:155:do_switch$1847": {
+      "SIZE": 64,
+      "WIDTH": 32
+    },
+    "digest_rom": {
+      "SIZE": 14192,
+      "WIDTH": 32
+    },
+    "g_bank[0].u_bank.memory_q": {
+      "SIZE": 128,
+      "WIDTH": 256
+    },
+    "g_bank[1].u_bank.memory_q": {
+      "SIZE": 128,
+      "WIDTH": 256
+    },
+    "g_bank[2].u_bank.memory_q": {
+      "SIZE": 128,
+      "WIDTH": 256
+    },
+    "g_bank[3].u_bank.memory_q": {
+      "SIZE": 128,
+      "WIDTH": 256
+    },
+    "g_metadata.memory": {
+      "SIZE": 2328,
+      "WIDTH": 192
+    },
+    "request_fifo": {
+      "SIZE": 64,
+      "WIDTH": 18
+    },
+    "response_fifo": {
+      "SIZE": 32,
+      "WIDTH": 3
+    }
+  },
+  "native_smt_sha256": "315317846d411305feb9873087b1d4ab2074239461cc4c281872de711964dab9",
+  "production_parameters": {
+    "ADDR_W": 19,
+    "BANKS": 4,
+    "DDR_WATCHDOG_CYCLES": 50000000,
+    "IMAGE_WORDS": 227062,
+    "LOCAL_METADATA": 1,
+    "MAX_OUTSTANDING": 32,
+    "WEIGHT_WORDS": 211800
+  },
+  "schema": "Native-model-service-setup-v1",
+  "service_induction_proved": false,
+  "solver_started": false,
+  "source_sha256": "b9ea5e49f92565a77adbd0f4e6b0745a4e59852f3be6cd751d578136dc86e9a0",
+  "sources": {
+    "bank.sv": {
+      "model_source": "hardware/project/bank.sv",
+      "modules": [
+        "board1_verified_page_bank"
+      ],
+      "sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1"
+    },
+    "service.sv": {
+      "model_source": "hardware/project/service.sv",
+      "modules": [
+        "board1_verified_ddr_page_service"
+      ],
+      "sha256": "f9c0dc77430a1d08d85e2f2ebd8dfb38f13e09e4659bdc053976a3f321048cd6"
+    },
+    "sha.sv": {
+      "model_source": "hardware/project/sha.sv",
+      "modules": [
+        "board1_sha256_bank_owned_compress"
+      ],
+      "sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94"
+    },
+    "top.sv": {
+      "model_source": "hardware/project/top.sv",
+      "modules": [],
+      "sha256": "b5f5bfbb41ae83fa048df9502ce9b204d148130d16caaa9f38ba7c05b6ef10fb"
+    },
+    "uart_core.sv": {
+      "model_source": "hardware/project/uart_core.sv",
+      "modules": [],
+      "sha256": "315f5d20fa93a5f974eeef1b26220952c6f9ab4264cd6309a1de7cb35ea1832a"
+    }
+  },
+  "tables": {
+    "digests32.memh": "2c4bb7908d6e957b8a20e99b230c6e8a3d7fafddeb391581dfcbcb1cce7bf672",
+    "metadata192.memh": "1535aa2d84de71c736b71e40694940f1b291dfd1db6c9f02d10b8605552ccdb9"
+  },
+  "top": "board1_verified_ddr_page_service",
+  "whole_model_consumption_proved": false
+}

@@ -1,0 +1,44 @@
+{
+  "RTL_SHA256_correspondence_proved": false,
+  "cases": {
+    "native": {
+      "actual_source_sha256": "e742a9ad1fb12cf36d292f3e274d98eab81870a81eaef5904cc206a364bd96be",
+      "bench_sha256": "88a5da6ea16ccf4f94f27690edc081e8b7a468daf4ff4ceb76edd80122724176",
+      "case": "native",
+      "compared_values": 251,
+      "exit_code": 0,
+      "native_source_sha256": "e742a9ad1fb12cf36d292f3e274d98eab81870a81eaef5904cc206a364bd96be",
+      "numerical_defect_detected": false,
+      "passed": true,
+      "transcript_sha256": "4f711e4f93de3df34569615d7f8102d9f0529f2809044e0a3794b3283c61f381",
+      "unbounded_proof": false
+    },
+    "stale-read": {
+      "actual_source_sha256": "01e76e714b4dd7bb061a1c657a062ddc3df70090700d0e86c6e1281057d2c6b1",
+      "bench_sha256": "88a5da6ea16ccf4f94f27690edc081e8b7a468daf4ff4ceb76edd80122724176",
+      "case": "stale-read",
+      "compared_values": 133,
+      "exit_code": 1,
+      "native_source_sha256": "e742a9ad1fb12cf36d292f3e274d98eab81870a81eaef5904cc206a364bd96be",
+      "numerical_defect_detected": true,
+      "passed": true,
+      "transcript_sha256": "60b5872c251ec38ce4ad4f114888e0dc2011f1b29f3f60be2d91da534340c9a3",
+      "unbounded_proof": false
+    },
+    "wrong-word": {
+      "actual_source_sha256": "c72c8d4592a557d4da3b659c098885a950a2e8c046bf072cf8be321771fd47f9",
+      "bench_sha256": "88a5da6ea16ccf4f94f27690edc081e8b7a468daf4ff4ceb76edd80122724176",
+      "case": "wrong-word",
+      "compared_values": 0,
+      "exit_code": 1,
+      "native_source_sha256": "e742a9ad1fb12cf36d292f3e274d98eab81870a81eaef5904cc206a364bd96be",
+      "numerical_defect_detected": true,
+      "passed": true,
+      "transcript_sha256": "a54742417fd37f627f522a18753276a16b13619e2190b7f56e7c42d1dabf93c1",
+      "unbounded_proof": false
+    }
+  },
+  "passed": true,
+  "schema": "Native-bank-operating-evidence-v1",
+  "whole_model_consumption_proved": false
+}

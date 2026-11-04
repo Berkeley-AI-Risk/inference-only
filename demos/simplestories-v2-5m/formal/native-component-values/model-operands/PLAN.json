@@ -1,0 +1,94 @@
+{
+  "bodies": [
+    "project/native.smt2",
+    "origin.smt2"
+  ],
+  "declarations": [
+    "(declare-const a |board1_verified_page_bank_s|)",
+    "(declare-const an |board1_verified_page_bank_s|)",
+    "(declare-const h Origin)",
+    "(declare-const hn Origin)",
+    "(declare-const w (_ BitVec 7))"
+  ],
+  "inputs": {
+    "SOURCES.json": "1aaa47d357966e6e5bb9364979fa0472d12ac1260fb34deaf600407b10449fc7",
+    "origin.smt2": "98c7dc340a0448bdc4314058b6744f727b9fc71f3834da4348dc97daee67adfd",
+    "project/compile.ys": "079b98a88c94a097d636f3aa498fba9f9db6c3bef1bf066a746c038e63937c34",
+    "project/native.smt2": "eba17fb0c799519e70d741cce51ef605adc56584ae5d10b21f0afcacf8d6d25d",
+    "project/native.sv": "e742a9ad1fb12cf36d292f3e274d98eab81870a81eaef5904cc206a364bd96be"
+  },
+  "observations": [
+    "w",
+    "(|board1_verified_page_bank_n state_q| a)",
+    "(|board1_verified_page_bank_n fault_o| a)",
+    "(|board1_verified_page_bank_n fill_count_q| a)",
+    "(|board1_verified_page_bank_n valid_words_q| a)",
+    "(|board1_verified_page_bank_n page_o| a)",
+    "(|board1_verified_page_bank_n begin_fire| a)",
+    "(|board1_verified_page_bank_n fill_fire| a)",
+    "(|board1_verified_page_bank_n read_fire| a)",
+    "(|board1_verified_page_bank_n read_word_i| a)",
+    "(|board1_verified_page_bank_n cancel_read_i| a)",
+    "(|board1_verified_page_bank_n response_valid_q| a)",
+    "(|board1_verified_page_bank_n response_ready_i| a)",
+    "(|board1_verified_page_bank_n state_q| an)",
+    "(|board1_verified_page_bank_n fault_o| an)",
+    "(|board1_verified_page_bank_n fill_count_q| an)",
+    "(|board1_verified_page_bank_n valid_words_q| an)",
+    "(|board1_verified_page_bank_n page_o| an)",
+    "(|board1_verified_page_bank_n begin_fire| an)",
+    "(|board1_verified_page_bank_n fill_fire| an)",
+    "(|board1_verified_page_bank_n read_fire| an)",
+    "(|board1_verified_page_bank_n read_word_i| an)",
+    "(|board1_verified_page_bank_n cancel_read_i| an)",
+    "(|board1_verified_page_bank_n response_valid_q| an)",
+    "(|board1_verified_page_bank_n response_ready_i| an)",
+    "(inv0 an hn w)",
+    "(inv1 an hn w)",
+    "(inv2 an hn w)",
+    "(inv3 an hn w)",
+    "(inv4 an hn w)",
+    "(inv5 an hn w)",
+    "(inv6 an hn w)",
+    "(inv7 an hn w)",
+    "(inv8 an hn w)",
+    "h",
+    "hn"
+  ],
+  "order": [
+    "reset-base",
+    "preserved",
+    "read-value"
+  ],
+  "production_memory_width": 256,
+  "production_memory_words": 128,
+  "property": "Response value comes from its owned completed page fill; fixed-model identity remains open",
+  "rules": {
+    "preserved": {
+      "assumptions": [
+        "(|board1_verified_page_bank_n reset_n| a)",
+        "(|board1_verified_page_bank_n reset_n| an)",
+        "(|board1_verified_page_bank_t| a an)",
+        "(origin-inv a h w)",
+        "(= hn (origin-next a h w))"
+      ],
+      "conclusion": "(origin-inv an hn w)"
+    },
+    "read-value": {
+      "assumptions": [
+        "(|board1_verified_page_bank_n reset_n| a)",
+        "(origin-inv a h w)"
+      ],
+      "conclusion": "(read-origin a h w)"
+    },
+    "reset-base": {
+      "assumptions": [
+        "(not (|board1_verified_page_bank_n reset_n| a))",
+        "(|board1_verified_page_bank_n reset_n| an)",
+        "(|board1_verified_page_bank_t| a an)"
+      ],
+      "conclusion": "(origin-inv an origin-zero w)"
+    }
+  },
+  "schema": "Declarative-native-induction-v1"
+}

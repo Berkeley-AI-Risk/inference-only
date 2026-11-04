@@ -1,0 +1,67 @@
+{
+  "all_rules_passed": true,
+  "plan_sha256": "aa62407bc82ee5a136abe9ed8d99daafc0e8084305b7c9d7d660dbaf086ee22c",
+  "rules": {
+    "service-preserved": {
+      "answers": [
+        "unsat"
+      ],
+      "command": [
+        "z3",
+        "-memory:4096",
+        "-T:120",
+        "queries/service-preserved-20261104T012942593250Z/query.smt2"
+      ],
+      "exit_code": 0,
+      "expected": "unsat",
+      "log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+      "passed": true,
+      "plan_sha256": "aa62407bc82ee5a136abe9ed8d99daafc0e8084305b7c9d7d660dbaf086ee22c",
+      "query_sha256": "7530d1c19027cf990add35e355a1b16739a5a84cf2c06bf29e2084f092e240b6",
+      "receipt": "queries/service-preserved-20261104T012942593250Z/RESULT.json",
+      "rule": "service-preserved",
+      "seconds": 78.98692408390343
+    },
+    "service-reset-base": {
+      "answers": [
+        "unsat"
+      ],
+      "command": [
+        "z3",
+        "-memory:4096",
+        "-T:120",
+        "queries/service-reset-base-20261104T012941216061Z/query.smt2"
+      ],
+      "exit_code": 0,
+      "expected": "unsat",
+      "log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+      "passed": true,
+      "plan_sha256": "aa62407bc82ee5a136abe9ed8d99daafc0e8084305b7c9d7d660dbaf086ee22c",
+      "query_sha256": "d4e8d03f463f35c9045d86c8582336a2ff575c0c5d4713b2559d014956b3e5c2",
+      "receipt": "queries/service-reset-base-20261104T012941216061Z/RESULT.json",
+      "rule": "service-reset-base",
+      "seconds": 0.24572383309714496
+    },
+    "service-return-value": {
+      "answers": [
+        "unsat"
+      ],
+      "command": [
+        "z3",
+        "-memory:4096",
+        "-T:120",
+        "queries/service-return-value-20261104T013102738327Z/query.smt2"
+      ],
+      "exit_code": 0,
+      "expected": "unsat",
+      "log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+      "passed": true,
+      "plan_sha256": "aa62407bc82ee5a136abe9ed8d99daafc0e8084305b7c9d7d660dbaf086ee22c",
+      "query_sha256": "a1ac0aefe6eff77cb27a3682b4e73c2e0728215aa733f53b7c3b682186ace35c",
+      "receipt": "queries/service-return-value-20261104T013102738327Z/RESULT.json",
+      "rule": "service-return-value",
+      "seconds": 0.23975904192775488
+    }
+  },
+  "whole_model_consumption_proved": false
+}

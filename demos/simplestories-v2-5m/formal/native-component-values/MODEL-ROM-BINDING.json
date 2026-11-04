@@ -1,0 +1,93 @@
+{
+  "banks": [
+    {
+      "coefficient_byte": 6777600,
+      "metadata_byte": 6855936,
+      "role": 0,
+      "rows": 256
+    },
+    {
+      "coefficient_byte": 6777920,
+      "metadata_byte": 6855940,
+      "role": 1,
+      "rows": 256
+    },
+    {
+      "coefficient_byte": 6778240,
+      "metadata_byte": 6855944,
+      "role": 2,
+      "rows": 256
+    },
+    {
+      "coefficient_byte": 6778560,
+      "metadata_byte": 6855948,
+      "role": 3,
+      "rows": 256
+    },
+    {
+      "coefficient_byte": 6778880,
+      "metadata_byte": 6855952,
+      "role": 4,
+      "rows": 256
+    },
+    {
+      "coefficient_byte": 6779200,
+      "metadata_byte": 6855956,
+      "role": 5,
+      "rows": 256
+    },
+    {
+      "coefficient_byte": 6779520,
+      "metadata_byte": 6855960,
+      "role": 6,
+      "rows": 256
+    },
+    {
+      "coefficient_byte": 6779840,
+      "metadata_byte": 6855964,
+      "role": 7,
+      "rows": 256
+    },
+    {
+      "coefficient_byte": 6780160,
+      "metadata_byte": 6855968,
+      "role": 8,
+      "rows": 256
+    },
+    {
+      "coefficient_byte": 6780480,
+      "metadata_byte": 6855972,
+      "role": 9,
+      "rows": 256
+    },
+    {
+      "coefficient_byte": 6780800,
+      "metadata_byte": 6855976,
+      "role": 10,
+      "rows": 256
+    },
+    {
+      "coefficient_byte": 6781120,
+      "metadata_byte": 6855980,
+      "role": 11,
+      "rows": 256
+    },
+    {
+      "coefficient_byte": 6856000,
+      "metadata_byte": 6856320,
+      "role": 12,
+      "rows": 256
+    }
+  ],
+  "finite_artifact_check": true,
+  "independent_numerical_oracle_theorem": false,
+  "model_image_bytes": 7265984,
+  "model_image_path": "assets/board1-real-semantic-image2048.bin",
+  "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+  "norm_rom_sha256": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4",
+  "packing": "Four little-endian signed int10 coefficients per five bytes; ROM coefficient[9:0], multiplier[25:10], exponent[33:26].",
+  "passed": true,
+  "runtime_DDR_model_consumption_proved": false,
+  "schema": "RMSNorm-model-ROM-binding-v1",
+  "words_compared": 3328
+}

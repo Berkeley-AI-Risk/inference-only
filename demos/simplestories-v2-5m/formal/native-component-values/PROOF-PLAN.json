@@ -1,0 +1,2536 @@
+{
+  "group_mode": "root-state cases",
+  "groups": {
+    "history-preserved": [
+      "history-preserved-root-00",
+      "history-preserved-root-01",
+      "history-preserved-root-02",
+      "history-preserved-root-03",
+      "history-preserved-root-04",
+      "history-preserved-root-05",
+      "history-preserved-root-06",
+      "history-preserved-root-07",
+      "history-preserved-root-08",
+      "history-preserved-root-09",
+      "history-preserved-root-10",
+      "history-preserved-root-11",
+      "history-preserved-root-12",
+      "history-preserved-root-13",
+      "history-preserved-root-14",
+      "history-preserved-root-15",
+      "history-preserved-root-16",
+      "history-preserved-root-17",
+      "history-preserved-root-18",
+      "history-preserved-root-19",
+      "history-preserved-root-20",
+      "history-preserved-root-21",
+      "history-preserved-root-22",
+      "history-preserved-root-23",
+      "history-preserved-root-24",
+      "history-preserved-root-25",
+      "history-preserved-root-26",
+      "history-preserved-root-27",
+      "history-preserved-root-28",
+      "history-preserved-root-29",
+      "history-preserved-root-30",
+      "history-preserved-root-31"
+    ],
+    "product-preserved": [
+      "product-preserved-root-00",
+      "product-preserved-root-01",
+      "product-preserved-root-02",
+      "product-preserved-root-03",
+      "product-preserved-root-04",
+      "product-preserved-root-05",
+      "product-preserved-root-06",
+      "product-preserved-root-07",
+      "product-preserved-root-08",
+      "product-preserved-root-09",
+      "product-preserved-root-10",
+      "product-preserved-root-11",
+      "product-preserved-root-12",
+      "product-preserved-root-13",
+      "product-preserved-root-14",
+      "product-preserved-root-15",
+      "product-preserved-root-16",
+      "product-preserved-root-17",
+      "product-preserved-root-18",
+      "product-preserved-root-19",
+      "product-preserved-root-20",
+      "product-preserved-root-21",
+      "product-preserved-root-22",
+      "product-preserved-root-23",
+      "product-preserved-root-24",
+      "product-preserved-root-25",
+      "product-preserved-root-26",
+      "product-preserved-root-27",
+      "product-preserved-root-28",
+      "product-preserved-root-29",
+      "product-preserved-root-30",
+      "product-preserved-root-31"
+    ],
+    "unary-preserved": [
+      "unary-preserved-root-00",
+      "unary-preserved-root-01",
+      "unary-preserved-root-02",
+      "unary-preserved-root-03",
+      "unary-preserved-root-04",
+      "unary-preserved-root-05",
+      "unary-preserved-root-06",
+      "unary-preserved-root-07",
+      "unary-preserved-root-08",
+      "unary-preserved-root-09",
+      "unary-preserved-root-10",
+      "unary-preserved-root-11",
+      "unary-preserved-root-12",
+      "unary-preserved-root-13",
+      "unary-preserved-root-14",
+      "unary-preserved-root-15",
+      "unary-preserved-root-16",
+      "unary-preserved-root-17",
+      "unary-preserved-root-18",
+      "unary-preserved-root-19",
+      "unary-preserved-root-20",
+      "unary-preserved-root-21",
+      "unary-preserved-root-22",
+      "unary-preserved-root-23",
+      "unary-preserved-root-24",
+      "unary-preserved-root-25",
+      "unary-preserved-root-26",
+      "unary-preserved-root-27",
+      "unary-preserved-root-28",
+      "unary-preserved-root-29",
+      "unary-preserved-root-30",
+      "unary-preserved-root-31"
+    ]
+  },
+  "history_sha256": "cd5dae6a83934d721f1b1563e537844b70faaf535aa2a70afa5d2b29c79f60bc",
+  "native_parent_state_width": 5,
+  "native_sha256": "a6322769432b070a07e5151ecb2551f554cd5c99deb6e57b6f56ac4e9bda2e3f",
+  "nodes": {
+    "accepted-events-tick": {
+      "assumptions": [
+        "(coupled a b)"
+      ],
+      "conclusion": "(=> (or (|board1_fixed_vector_rmsnorm_service_n clear_i| a) (start-fire a) (capture-fire a) (result-fire a) (done-fire a)) (tick a))",
+      "dependencies": [],
+      "import_formulas": []
+    },
+    "argument-capture-correspondence": {
+      "assumptions": [
+        "(relation a b)",
+        "(product-step a an b bn)"
+      ],
+      "conclusion": "(=> (and (not (failed a)) (tick a) (|board1_fixed_vector_rmsnorm_service_n input_valid_i| b) (|board1_fixed_vector_rmsnorm_service_n input_ready_o| b)) (or (failed an) (|board1_fixed_vector_rmsnorm_service_n clear_i| a) (and (capture-fire a) (= (|board1_fixed_vector_rmsnorm_service_n input_row_index_i| a) (|board1_fixed_vector_rmsnorm_service_n input_row_index_i| b)) (= (|board1_fixed_vector_rmsnorm_service_n input_mantissa_i| a) (|board1_fixed_vector_rmsnorm_service_n input_mantissa_i| b)) (= (|board1_fixed_vector_rmsnorm_service_n input_last_i| a) (|board1_fixed_vector_rmsnorm_service_n input_last_i| b)))))",
+      "dependencies": [
+        "product-preserved",
+        "protocol-capture",
+        "failure-preserved"
+      ],
+      "import_formulas": []
+    },
+    "argument-start-correspondence": {
+      "assumptions": [
+        "(relation a b)",
+        "(coupled a b)"
+      ],
+      "conclusion": "(=> (and (not (failed a)) (start-fire a)) (and (|board1_fixed_vector_rmsnorm_service_n start_valid_i| b) (|board1_fixed_vector_rmsnorm_service_n start_ready_o| b) (= (|board1_fixed_vector_rmsnorm_service_n fixed_layer_i| a) (|board1_fixed_vector_rmsnorm_service_n fixed_layer_i| b)) (= (|board1_fixed_vector_rmsnorm_service_n fixed_norm_kind_i| a) (|board1_fixed_vector_rmsnorm_service_n fixed_norm_kind_i| b)) (= (|board1_fixed_vector_rmsnorm_service_n input_exponent_i| a) (|board1_fixed_vector_rmsnorm_service_n input_exponent_i| b))))",
+      "dependencies": [
+        "product-preserved"
+      ],
+      "import_formulas": []
+    },
+    "clear-base": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(coupled a b)",
+        "(coupled an bn)",
+        "(|board1_fixed_vector_rmsnorm_service_n clear_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| b bn)"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved"
+      ],
+      "import_formulas": []
+    },
+    "coefficient-bank-binding": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)"
+      ],
+      "conclusion": "(=> (and (not (failed a)) (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv9 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv10 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv11 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv12 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv13 5)))) (and (h-active h) (bvule (h-role h) (_ bv12 4)) (= (|board1_fixed_vector_rmsnorm_service_n rom_address| a) (concat (h-role h) (|board1_fixed_vector_rmsnorm_service_n lane_index_q| a))) (= (|board1_fixed_vector_rmsnorm_service_n rom_coefficient| a) ((_ extract 9 0) (select (|board1_fixed_vector_rmsnorm_service_m u_norm_rom.norm_rom| a) (concat (h-role h) (|board1_fixed_vector_rmsnorm_service_n lane_index_q| a))))) (= (|board1_fixed_vector_rmsnorm_service_n rom_multiplier| a) ((_ extract 25 10) (select (|board1_fixed_vector_rmsnorm_service_m u_norm_rom.norm_rom| a) (concat (h-role h) (|board1_fixed_vector_rmsnorm_service_n lane_index_q| a))))) (= (|board1_fixed_vector_rmsnorm_service_n rom_tensor_exponent| a) ((_ extract 33 26) (select (|board1_fixed_vector_rmsnorm_service_m u_norm_rom.norm_rom| a) (concat (h-role h) (|board1_fixed_vector_rmsnorm_service_n lane_index_q| a)))))))",
+      "dependencies": [
+        "unary-preserved",
+        "history-preserved"
+      ],
+      "import_formulas": []
+    },
+    "completed-value-contract": {
+      "assumptions": [
+        "(relation a b)",
+        "(coupled a b)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)"
+      ],
+      "conclusion": "(and (history-output a h) (output-meaning a b))",
+      "dependencies": [
+        "history-output",
+        "one-sided-output",
+        "argument-start-correspondence",
+        "argument-capture-correspondence",
+        "watchdog-step",
+        "idle-canonical-entry",
+        "reference-entry-feasible",
+        "accepted-events-tick",
+        "watchdog-boundary",
+        "coefficient-bank-binding"
+      ],
+      "import_formulas": []
+    },
+    "failure-preserved": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(failed a)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)"
+      ],
+      "conclusion": "(failed an)",
+      "dependencies": [],
+      "import_formulas": []
+    },
+    "failure-suppresses-output": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(failed a)"
+      ],
+      "conclusion": "(and (not (|board1_fixed_vector_rmsnorm_service_n result_valid_o| a)) (not (|board1_fixed_vector_rmsnorm_service_n done_valid_o| a)))",
+      "dependencies": [],
+      "import_formulas": []
+    },
+    "hard-reset-base": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n rst_n| a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n rst_n| b))",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| b bn)",
+        "(coupled an bn)"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved"
+      ],
+      "import_formulas": []
+    },
+    "history-base": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (not (|board1_fixed_vector_rmsnorm_service_n rst_n| a)) (|board1_fixed_vector_rmsnorm_service_n clear_i| a))"
+      ],
+      "conclusion": "(history-inv an history-zero)",
+      "dependencies": [],
+      "import_formulas": []
+    },
+    "history-output": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)"
+      ],
+      "conclusion": "(history-output a h)",
+      "dependencies": [
+        "history-preserved",
+        "failure-suppresses-output"
+      ],
+      "import_formulas": []
+    },
+    "history-preserved": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-00": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv0 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-01": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv1 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-02": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv2 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-03": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv3 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-04": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv4 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-05": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv5 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-06": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv6 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-07": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv7 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-08": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv8 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-09": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv9 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-10": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv10 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-11": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv11 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-12": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv12 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-13": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv13 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-14": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv14 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-15": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv15 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-16": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv16 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-17": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv17 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-18": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv18 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-19": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv19 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-20": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv20 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-21": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv21 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-22": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv22 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-23": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv23 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-24": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv24 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-25": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv25 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-26": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv26 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-27": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv27 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-28": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv28 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-29": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv29 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-30": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv30 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "history-preserved-root-31": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(history-inv a h)",
+        "(= hn (history-next a an h))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv31 5))"
+      ],
+      "conclusion": "(history-inv an hn)",
+      "dependencies": [
+        "unary-preserved",
+        "history-base"
+      ],
+      "import_formulas": [
+        "(or (failed an) (reachable an))"
+      ],
+      "imports": [
+        "unary-preserved"
+      ]
+    },
+    "idle-canonical-entry": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(reachable a)",
+        "(not (failed a))",
+        "(|board1_fixed_vector_rmsnorm_service_n start_ready_o| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| r0)",
+        "(reference-zero r0)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n rst_n| r0))",
+        "(|board1_fixed_vector_rmsnorm_service_t| r0 b)",
+        "(coupled a b)"
+      ],
+      "conclusion": "(relation a b)",
+      "dependencies": [
+        "rom-preserved"
+      ],
+      "import_formulas": []
+    },
+    "one-sided-output": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(coupled a b)",
+        "(relation a b)"
+      ],
+      "conclusion": "(output-meaning a b)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "product-preserved"
+      ],
+      "import_formulas": []
+    },
+    "product-preserved": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": []
+    },
+    "product-preserved-root-00": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv0 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-01": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv1 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-02": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv2 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-03": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv3 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-04": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv4 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-05": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv5 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-06": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv6 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-07": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv7 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-08": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv8 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-09": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv9 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-10": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv10 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-11": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv11 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-12": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv12 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-13": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv13 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-14": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv14 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-15": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv15 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-16": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv16 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-17": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv17 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-18": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv18 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-19": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv19 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-20": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv20 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-21": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv21 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-22": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv22 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-23": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv23 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-24": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv24 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-25": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv25 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-26": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv26 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-27": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv27 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-28": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv28 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-29": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv29 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-30": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv30 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "product-preserved-root-31": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_i| b)",
+        "(relation a b)",
+        "(product-step a an b bn)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv31 5))"
+      ],
+      "conclusion": "(relation an bn)",
+      "dependencies": [
+        "rom-preserved",
+        "clear-base",
+        "hard-reset-base",
+        "failure-preserved",
+        "accepted-events-tick"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "protocol-admission": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))"
+      ],
+      "conclusion": "(=> (start-fire a) (or (failed an) (and (legal-descriptor a) (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv1 5))) (= (|board1_fixed_vector_rmsnorm_service_n capture_index_q| an) (_ bv0 8)) (= (|board1_fixed_vector_rmsnorm_service_n selector_q| an) (argument-role a)) (= (|board1_fixed_vector_rmsnorm_service_n input_exponent_q| an) (|board1_fixed_vector_rmsnorm_service_n input_exponent_i| a)) (= (|board1_fixed_vector_rmsnorm_service_n layer_q| an) (|board1_fixed_vector_rmsnorm_service_n fixed_layer_i| a)))))",
+      "dependencies": [
+        "unary-preserved"
+      ],
+      "import_formulas": []
+    },
+    "protocol-capture": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))"
+      ],
+      "conclusion": "(=> (capture-fire a) (or (failed an) (and (legal-capture a) (ite (= (|board1_fixed_vector_rmsnorm_service_n capture_index_q| a) (_ bv255 8)) (and (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv2 5))) (= (|board1_fixed_vector_rmsnorm_service_n capture_index_q| an) (_ bv255 8))) (and (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv1 5))) (= (|board1_fixed_vector_rmsnorm_service_n capture_index_q| an) (bvadd (|board1_fixed_vector_rmsnorm_service_n capture_index_q| a) (_ bv1 8))))))))",
+      "dependencies": [
+        "unary-preserved"
+      ],
+      "import_formulas": []
+    },
+    "reference-entry-feasible": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| r0)",
+        "(reference-zero r0)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n rst_n| r0))",
+        "(|board1_fixed_vector_rmsnorm_service_t| r0 a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n model_lock_i| a)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n upstream_fault_i| a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n input_valid_i| a))",
+        "(|board1_fixed_vector_rmsnorm_service_n start_valid_i| a)",
+        "(= (|board1_fixed_vector_rmsnorm_service_n fixed_layer_i| a) (_ bv5 3))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n fixed_norm_kind_i| a) (_ bv2 2))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n input_exponent_i| a) #xf4)",
+        "(|board1_fixed_vector_rmsnorm_service_n start_ready_o| a)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(or (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv1 5)))"
+      ],
+      "conclusion": "false",
+      "dependencies": [],
+      "expected": "sat",
+      "import_formulas": []
+    },
+    "rom-preserved": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_i| a)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)"
+      ],
+      "conclusion": "(|board1_fixed_vector_rmsnorm_service_i| an)",
+      "dependencies": [],
+      "import_formulas": []
+    },
+    "unary-base": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (not (|board1_fixed_vector_rmsnorm_service_n rst_n| a)) (|board1_fixed_vector_rmsnorm_service_n clear_i| a))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [],
+      "import_formulas": []
+    },
+    "unary-preserved": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": []
+    },
+    "unary-preserved-root-00": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv0 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-01": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv1 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-02": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv2 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-03": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv3 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-04": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv4 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-05": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv5 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-06": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv6 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-07": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv7 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-08": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv8 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-09": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv9 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-10": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv10 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-11": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv11 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-12": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv12 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-13": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv13 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-14": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv14 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-15": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv15 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-16": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv16 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-17": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv17 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-18": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv18 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-19": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv19 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-20": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv20 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-21": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv21 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-22": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv22 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-23": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv23 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-24": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv24 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-25": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv25 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-26": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv26 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-27": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv27 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-28": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv28 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-29": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv29 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-30": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv30 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "unary-preserved-root-31": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(not (failed a))",
+        "(= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv31 5))"
+      ],
+      "conclusion": "(or (failed an) (reachable an))",
+      "dependencies": [
+        "unary-base",
+        "failure-preserved"
+      ],
+      "import_formulas": [],
+      "imports": []
+    },
+    "watchdog-boundary": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))",
+        "(or (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv1 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv2 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv3 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv4 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv5 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv6 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv7 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv8 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv9 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv10 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv11 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv12 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv13 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv14 5)))",
+        "(bvuge (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a) (_ bv1999999 32))"
+      ],
+      "conclusion": "(failed an)",
+      "dependencies": [],
+      "import_formulas": []
+    },
+    "watchdog-counter-update": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))"
+      ],
+      "conclusion": "(=> (and (not (failed a)) (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv1 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv2 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv3 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv4 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv5 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv6 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv7 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv8 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv9 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv10 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv11 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv12 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv13 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv14 5))) (bvult (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a) (_ bv1999999 32))) (or (= (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| an) (bvadd (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a) (_ bv1 32))) (and (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv0 5))) (done-fire a) (= (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| an) (_ bv0 32)))))",
+      "dependencies": [],
+      "import_formulas": []
+    },
+    "watchdog-idle-exit": {
+      "assumptions": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))"
+      ],
+      "conclusion": "(=> (and (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv1 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv2 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv3 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv4 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv5 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv6 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv7 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv8 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv9 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv10 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv11 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv12 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv13 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv14 5))) (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv0 5)))) (done-fire a))",
+      "dependencies": [],
+      "import_formulas": []
+    },
+    "watchdog-rank-arithmetic": {
+      "assumptions": [],
+      "conclusion": "(=> (and (bvult (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a) (_ bv1999999 32)) (= (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| an) (bvadd (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a) (_ bv1 32)))) (and (bvult (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| an) (_ bv2000000 32)) (bvult (bvsub (_ bv2000000 32) (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| an)) (bvsub (_ bv2000000 32) (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a)))))",
+      "dependencies": [],
+      "import_formulas": []
+    },
+    "watchdog-step": {
+      "assumptions": [
+        "(or (failed a) (reachable a))",
+        "(=> true (or (failed an) (reachable an)))",
+        "(=> true (=> (and (not (failed a)) (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv1 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv2 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv3 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv4 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv5 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv6 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv7 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv8 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv9 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv10 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv11 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv12 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv13 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv14 5))) (bvult (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a) (_ bv1999999 32))) (or (= (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| an) (bvadd (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a) (_ bv1 32))) (and (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv0 5))) (done-fire a) (= (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| an) (_ bv0 32))))))",
+        "(=> true (=> (and (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv1 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv2 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv3 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv4 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv5 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv6 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv7 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv8 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv9 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv10 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv11 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv12 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv13 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv14 5))) (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv0 5)))) (done-fire a)))",
+        "(=> true (=> (and (bvult (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a) (_ bv1999999 32)) (= (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| an) (bvadd (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a) (_ bv1 32)))) (and (bvult (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| an) (_ bv2000000 32)) (bvult (bvsub (_ bv2000000 32) (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| an)) (bvsub (_ bv2000000 32) (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a))))))",
+        "(=> (and (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv1 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv2 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv3 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv4 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv5 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv6 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv7 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv8 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv9 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv10 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv11 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv12 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv13 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv14 5))) (bvuge (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a) (_ bv1999999 32))) (failed an))"
+      ],
+      "conclusion": "(=> (and (not (failed a)) (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv1 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv2 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv3 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv4 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv5 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv6 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv7 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv8 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv9 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv10 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv11 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv12 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv13 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| a) (_ bv14 5)))) (or (failed an) (and (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv0 5))) (done-fire a)) (and (or (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv1 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv2 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv3 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv4 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv5 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv6 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv7 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv8 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv9 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv10 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv11 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv12 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv13 5)) (= (|board1_fixed_vector_rmsnorm_service_n state_q| an) (_ bv14 5))) (= (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| an) (bvadd (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a) (_ bv1 32))) (bvult (bvsub (_ bv2000000 32) (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| an)) (bvsub (_ bv2000000 32) (|board1_fixed_vector_rmsnorm_service_n compute_cycles_q| a))))))",
+      "context_facts": [
+        "unary-preserved",
+        "watchdog-counter-update",
+        "watchdog-idle-exit",
+        "watchdog-rank-arithmetic",
+        "watchdog-boundary"
+      ],
+      "dependencies": [
+        "unary-preserved",
+        "watchdog-counter-update",
+        "watchdog-idle-exit",
+        "watchdog-rank-arithmetic",
+        "watchdog-boundary"
+      ],
+      "import_formulas": [],
+      "imports": [],
+      "passthrough": [
+        "(or (failed a) (reachable a))"
+      ],
+      "source_context": [
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| a)",
+        "(|board1_fixed_vector_rmsnorm_service_n rst_n| an)",
+        "(|board1_fixed_vector_rmsnorm_service_t| a an)",
+        "(or (failed a) (reachable a))",
+        "(not (|board1_fixed_vector_rmsnorm_service_n clear_i| a))"
+      ]
+    }
+  },
+  "product_sha256": "85fd61d22caabc220b5980256f37c0e5092b2e07921e4918d43d58d6d2845bf5",
+  "schema": "RMSNorm-declarative-proof-plan-v1",
+  "topological_order": [
+    "rom-preserved",
+    "clear-base",
+    "hard-reset-base",
+    "failure-preserved",
+    "failure-suppresses-output",
+    "accepted-events-tick",
+    "idle-canonical-entry",
+    "unary-base",
+    "unary-preserved",
+    "product-preserved",
+    "one-sided-output",
+    "history-base",
+    "history-preserved",
+    "history-output",
+    "protocol-admission",
+    "protocol-capture",
+    "argument-start-correspondence",
+    "argument-capture-correspondence",
+    "watchdog-counter-update",
+    "watchdog-idle-exit",
+    "watchdog-rank-arithmetic",
+    "watchdog-boundary",
+    "watchdog-step",
+    "reference-entry-feasible",
+    "coefficient-bank-binding",
+    "completed-value-contract"
+  ]
+}

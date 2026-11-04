@@ -1,0 +1,128 @@
+{
+  "binding_record_sha256": "3f746d91d465830e33b139d91d04dd41d0c0ea4678c5ca2f9ecafe8edf4b3dba",
+  "caller_instances": {
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": "board1_fixed_vector_rmsnorm_service u_rmsnorm (\n        .clk(clk), .rst_n(rst_n), .clear_i(clear_i),\n        .model_lock_i(model_lock_i),\n        .upstream_fault_i(upstream_fault_i || fault_q),\n        .start_valid_i(rms_start_valid), .start_ready_o(rms_start_ready),\n        .fixed_layer_i(current_layer_q),\n        .fixed_norm_kind_i((current_stage_q == STAGE_INPUT_RMS) ? 2'd0 :\n                                                                    2'd1),\n        .input_exponent_i(hidden_exponent_q),\n        .input_valid_i(rms_input_valid), .input_ready_o(rms_input_ready),\n        .input_row_index_i(input_index_q[7:0]),\n        .input_mantissa_i(hidden_ram_read_data),\n        .input_last_i(input_index_q == 10'd255),\n        .result_valid_o(rms_result_valid),\n        .result_ready_i(rms_result_ready),\n        .result_row_index_o(rms_result_index),\n        .result_mantissa_o(rms_result_mantissa),\n        .result_exponent_o(rms_result_exponent),\n        .result_last_o(rms_result_last),\n        .done_valid_o(rms_done_valid), .done_ready_i(rms_done_ready),\n        .busy_o(rms_busy), .range_fault_o(rms_fault)\n    );",
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": "board1_fixed_vector_rmsnorm_service #(\n        .MAX_COMPUTE_CYCLES(RMS_MAX_COMPUTE_CYCLES),\n        .NORM_ROM_FILE(NORM_ROM_FILE)\n    ) u_final_rmsnorm (\n        .clk(clk), .rst_n(rst_n), .clear_i(clear_i),\n        .model_lock_i(model_lock_i),\n        .upstream_fault_i(upstream_fault_i),\n        .start_valid_i(rms_start_valid), .start_ready_o(rms_start_ready),\n        .fixed_layer_i(3'd5), .fixed_norm_kind_i(2'd2),\n        .input_exponent_i(layer5_exponent_q),\n        .input_valid_i(rms_input_valid), .input_ready_o(rms_input_ready),\n        .input_row_index_i(stream_index_q),\n        .input_mantissa_i(layer5_read_q),\n        .input_last_i(stream_index_q == 8'd255),\n        .result_valid_o(rms_result_valid),\n        .result_ready_i(rms_result_ready),\n        .result_row_index_o(rms_result_index),\n        .result_mantissa_o(rms_result_mantissa),\n        .result_exponent_o(rms_result_exponent),\n        .result_last_o(rms_result_last),\n        .done_valid_o(rms_done_valid), .done_ready_i(rms_done_ready),\n        .busy_o(rms_busy), .range_fault_o(rms_fault)\n    );"
+  },
+  "compiler_source_sha256": "b29bdd819233ee800ecd6e4b4f5ac36c56fa29fe13551e7c886e191cfe65ee06",
+  "configuration": {
+    "BOARD1_FIXED_ELEMENTWISE_GW5_DSP": false,
+    "FORMAL": false,
+    "SYNTHESIS": true
+  },
+  "files": {
+    "candidate.sv": {
+      "bytes": 3943,
+      "compiled_modules": [
+        "board1_fixed_vector_rne_shift_pipeline1"
+      ],
+      "model_source": "hardware/project/candidate.sv",
+      "module_sha256": {
+        "board1_fixed_vector_rne_shift_pipeline1": "fb7d7fe34dadf273eb4090c15d67cab8cd26140a40b3df3e78bfc36a34d2633d"
+      },
+      "sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374"
+    },
+    "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+      "bytes": 3940,
+      "compiled_modules": [
+        "board0_exact_isqrt_u45_iterative"
+      ],
+      "model_source": "hardware/project/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv",
+      "module_sha256": {
+        "board0_exact_isqrt_u45_iterative": "0f798df435688d6cd624cc1ebbd6276ec4895481023d7f13b6b6e48d079ac5e1"
+      },
+      "sha256": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": {
+      "bytes": 106297,
+      "model_source": "hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv",
+      "sha256": "fd7b6ade26e99db09999709954630b6d358b2d6cd7fae1f7f18c878fefec0dc3"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+      "bytes": 47471,
+      "model_source": "hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv",
+      "sha256": "55d56d5a4add9afa81b5622303ff0c81c27734fe23ac7ffa5b849d3944d8fe62"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+      "bytes": 8052,
+      "compiled_modules": [
+        "board1_fixed_elementwise_dsp_lane"
+      ],
+      "model_source": "hardware/project/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv",
+      "module_sha256": {
+        "board1_fixed_elementwise_dsp_lane": "b420fcd06b5126602cc84d0e5ef70fb74e974e257a33cd023e9f8c4b64feb2c2"
+      },
+      "sha256": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh": {
+      "bytes": 33280,
+      "model_source": "hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/recorded/norm_rom34.memh",
+      "sha256": "2f57bc170e24c059c3fbd4023979405ff058399ba424c50e54d80105f8b1a5d4"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+      "bytes": 8056,
+      "compiled_modules": [
+        "board1_fixed_rmsnorm_isqrt_u45_iterative",
+        "board1_fixed_rmsnorm_rne_div_signed64_iterative",
+        "board1_rmsnorm_bounded28_divider"
+      ],
+      "model_source": "hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv",
+      "module_sha256": {
+        "board1_fixed_rmsnorm_isqrt_u45_iterative": "ca4c6bd7a62d3c70a9df50356efbc778b37081888abda0c142af85aac07d71d4",
+        "board1_fixed_rmsnorm_rne_div_signed64_iterative": "7fedc7387292044b97b8169f75d0703aeabf326a6da41d1984439ee479f232d3",
+        "board1_rmsnorm_bounded28_divider": "5a08531f185df1bb1644fc153bdcaecb70be34f05106f4a07ac9a561d51431ff"
+      },
+      "sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+      "bytes": 1353,
+      "compiled_modules": [
+        "board1_fixed_rmsnorm_rom"
+      ],
+      "model_source": "hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv",
+      "module_sha256": {
+        "board1_fixed_rmsnorm_rom": "c504d00a4430b604584942abc3e85ca5691740b7c0b9ba940adcbfd24ce3618a"
+      },
+      "sha256": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+      "bytes": 25459,
+      "compiled_modules": [
+        "board1_fixed_vector_rmsnorm_service"
+      ],
+      "model_source": "hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv",
+      "module_sha256": {
+        "board1_fixed_vector_rmsnorm_service": "97475666ca6fe82725f42744e5acaf4cbed305bc48f9b73a26d5b42e9317fda3"
+      },
+      "sha256": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae"
+    },
+    "normalizer_pipeline.sv": {
+      "bytes": 57551,
+      "compiled_modules": [
+        "board1_fixed_vector_normalizer"
+      ],
+      "model_source": "hardware/project/normalizer_pipeline.sv",
+      "module_sha256": {
+        "board1_fixed_vector_normalizer": "160fdb4c6fe45bd133136cc950e28ddfcf06fbd64be4b9459fe5134d12f16cec"
+      },
+      "sha256": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40"
+    }
+  },
+  "internal_numerical_cuts": [],
+  "parent_scope": "Universal child inputs; caller instances bind port/parameter specialization only, not a parent operand-provenance proof.",
+  "platform_premises": [
+    "Two-state RTL and synchronous native clock; no analog/metastability claim.",
+    "Configured bypass/no-feedback vendor DSP equals the retained behavioral signed multiply.",
+    "Immutable ROM bytes and source parameters are the named baseline, not the HWIC tree."
+  ],
+  "production_parameters": {
+    "MAX_COMPUTE_CYCLES": 2000000,
+    "normalizer_MAX_COMPUTE_CYCLES": 2000000,
+    "normalizer_rows": 682,
+    "normalizer_width": 58,
+    "vector_rows": 256,
+    "vector_width": 16
+  },
+  "schema": "RMSNorm-pilot-source-inventory-v1",
+  "top": "board1_fixed_vector_rmsnorm_service"
+}
