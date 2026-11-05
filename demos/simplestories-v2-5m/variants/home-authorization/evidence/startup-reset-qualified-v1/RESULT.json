@@ -1,0 +1,51 @@
+{
+  "result": "PASS",
+  "stages": [
+    {
+      "name": "compile-sweep",
+      "exit_code": 0,
+      "elapsed_seconds": 0.063153125
+    },
+    {
+      "name": "sweep",
+      "exit_code": 0,
+      "elapsed_seconds": 0.056735916
+    },
+    {
+      "name": "compile-vendor",
+      "exit_code": 0,
+      "elapsed_seconds": 0.053393208
+    },
+    {
+      "name": "vendor",
+      "exit_code": 0,
+      "elapsed_seconds": 0.056572375000000036
+    },
+    {
+      "name": "formal",
+      "exit_code": 0,
+      "elapsed_seconds": 0.10255491700000002
+    }
+  ],
+  "base_top_sha256": "3dbf708ae75b89968ef5aeb963918a3bb7b521952490c983c68c8a0d3f94511b",
+  "transformed_top_sha256": "96117e70903d179c1440d41ee528bdff1a3c4c821e445e5e3599248b02832cb7",
+  "reset_excerpt_sha256": "1dd4d02ff48820872cf69ee3e20fc8289431f91a06e0f950ccfd407409f05d27",
+  "vendor_model_sha256": "7109c2568188627465d218bc099cf72f12e90807c21d4d862d2335b499043544",
+  "configuration": "phase-qualified-entry",
+  "scope": "Actual extracted reset RTL: four-state phase and stopped-clock sweep; unmodified vendor divided-clock phase/startup simulation; inductive sampled-edge equivalence to saturating-count release specification. No analog metastability, PVT, whole-chip or physical security proof.",
+  "files_sha256": {
+    "startup_reset.sv": "2d0ccb4dd6f10561df08874a871b08d76232272ea77539016832dcf6a7dc5416",
+    "prove.ys": "203821928db5b318e18830ef5fde71740a568d77d50254e2f622fcdd4e40c736",
+    "CLKDIV.v": "0285c7167764746bf6b1b0bd0ef8e400913b68ee0a4bbf7801b227bb59fc6a2b",
+    "tb.sv": "5514fc2f2c718d336e74170a8ad50685eb9acfc5f95f94bdc7d255abc918844d",
+    "tb_vendor.sv": "0d7f99bb8ede479adddca4111a642d7d09bd3ffd65b9c84d275818426e682687",
+    "compile-sweep.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sweep.log": "e397ff090ad15eeda3e344586ebf449ca277a3e99e0aefcef197f8035555c163",
+    "vendor.vvp": "7cbfb7cff7fafeb52f11a1f3a0d598b153037353982a5cca4b83578179e01fba",
+    "vendor.log": "96dfb3c5a80cbc9a9055ccfd38718317a422fd2cffe579f8c7054599ece69431",
+    "sweep.vvp": "b730b697e122b911618038fc0aaef44fe4dc904d0c4be26cb3a4154f876f268b",
+    "proof.sv": "e4c27d047f2f15d54c83ac7e7f9f3fa111b138dadd4f58f37ee4f3e857788572",
+    "formal.log": "4b94d0e05f8bf4a71d1118bdd09ed82556d5183f3529719c4be5d8949fc488ac",
+    "compile-vendor.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

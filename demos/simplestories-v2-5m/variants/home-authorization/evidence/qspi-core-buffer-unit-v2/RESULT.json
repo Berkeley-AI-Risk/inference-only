@@ -1,0 +1,33 @@
+{
+  "result": "PASS",
+  "stages": [
+    {
+      "name": "compile",
+      "exit_code": 0,
+      "elapsed_seconds": 0.026709416000000003
+    },
+    {
+      "name": "phase-sweep",
+      "exit_code": 0,
+      "elapsed_seconds": 0.05789675
+    },
+    {
+      "name": "formal",
+      "exit_code": 0,
+      "elapsed_seconds": 0.6396271250000001
+    }
+  ],
+  "actual_source_sha256": "72d3f3005b686b910c1dfe14a88e7f33c2cf36fee70ceb533fcaf5887df789d6",
+  "reset_excerpt_sha256": "21a0e24fad352615d9ebd47c0a1b904f41371fbf750e5cb8ce5e1df69d1a11a2",
+  "scope": "Actual flash-loader RTL: 1200 reset release phases/combinations with both real read masters and async FIFO elaborated; both clock stop/reset/restart; exact extracted reset block inductively matches count-based release specification. Digital semantics only; no analog or whole-chip proof.",
+  "files_sha256": {
+    "lut_primitives.v": "f17e6d3f53d47f3e0a2c15a33ca920b71d27c30d80b6ffb0e894a7358c731416",
+    "prove.ys": "756f4cd1d9267dbf35c843e824b458a18e4ce300510b41767c996a7cf99ed266",
+    "tb.sv": "bc6e5593e9308d9fbae5c03be0950060bd9b9ad3c98cc74b1a84c0304b5851d5",
+    "sim.vvp": "8bf3381c3f42a9de40e22dab6a813d68655194a60eefd2e9e73e2c956e6631e7",
+    "phase-sweep.log": "a8510f43018ac7cbc02095514e8a4dbf2565ce26966a21dfb73e1208f1f90790",
+    "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proof.sv": "a78f139230c4303f4578835a0b654793273528b84fe5643f26d14caf60b76476",
+    "formal.log": "f6988b0001efee56496d5c554944bd76f421278b5b7bb55e442ede4788cb58a3"
+  }
+}

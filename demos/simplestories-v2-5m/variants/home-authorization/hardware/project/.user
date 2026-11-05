@@ -1,0 +1,27 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE ProjectUserData>
+<UserConfig>
+    <Version>1.0</Version>
+    <FlowState>
+        <Process ID="Synthesis" State="2"/>
+        <Process ID="Pnr" State="2"/>
+        <Process ID="Gao" State="2"/>
+        <Process ID="Rtl_Gao" State="2"/>
+        <Process ID="Gvio" State="0"/>
+        <Process ID="Place" State="2"/>
+    </FlowState>
+    <ResultFileList>
+        <ResultFile ResultFileType="RES.netlist" ResultFilePath="impl/gwsynthesis/home_product.vg"/>
+        <ResultFile ResultFileType="RES.pnr.bitstream" ResultFilePath="impl/pnr/home_product.fs"/>
+        <ResultFile ResultFileType="RES.pnr.pin.rpt" ResultFilePath="impl/pnr/home_product.pin.html"/>
+        <ResultFile ResultFileType="RES.pnr.posp.bin" ResultFilePath="impl/pnr/home_product.db"/>
+        <ResultFile ResultFileType="RES.pnr.pwr.rpt" ResultFilePath="impl/pnr/home_product.power.html"/>
+        <ResultFile ResultFileType="RES.pnr.report" ResultFilePath="impl/pnr/home_product.rpt.html"/>
+        <ResultFile ResultFileType="RES.pnr.timing.paths" ResultFilePath="impl/pnr/home_product.timing_paths"/>
+        <ResultFile ResultFileType="RES.pnr.timing.rpt" ResultFilePath="impl/pnr/home_product.tr.html"/>
+        <ResultFile ResultFileType="RES.syn.report" ResultFilePath="impl/gwsynthesis/home_product_syn.rpt.html"/>
+        <ResultFile ResultFileType="RES.syn.resource" ResultFilePath="impl/gwsynthesis/home_product_syn_rsc.xml"/>
+    </ResultFileList>
+    <Ui></Ui>
+    <FpUi></FpUi>
+</UserConfig>

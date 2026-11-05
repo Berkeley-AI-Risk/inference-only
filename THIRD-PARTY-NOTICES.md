@@ -118,3 +118,7 @@ the pretrained model, FPGA silicon, Sipeed board, vendor IP or tools.
 The owner-supplied board photograph and demonstration videos are included in
 the project's Apache-2.0 grant; removal of personal metadata is not an
 ownership claim about their subjects or third-party software shown on screen.
+
+## neoTRNG in the home-authorization S-AWIC
+
+The optional SimpleStories home-authorization variant incorporates neoTRNG by Stephan Nolting under the BSD 3-Clause license. Its source, copyright/license header and complete license are retained in `demos/simplestories-v2-5m/variants/home-authorization/nonce/vendor/`; the pinned upstream identity is in `nonce/DEPENDENCY.json`. This notice does not imply entropy or cryptographic-security qualification.

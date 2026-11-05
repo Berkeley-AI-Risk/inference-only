@@ -1,0 +1,315 @@
+%Warning-PINMISSING: project/swic/su_lms_verify.sv:146:35: Instance has missing pin: 'shared_request_o'
+  146 |     su_sha256 #(.MAX_BYTES(1110)) u_hash(
+      |                                   ^~~~~~
+                     project/swic/su_sha256.sv:18:17: ... Location of port declaration
+   18 |     output wire shared_request_o,
+      |                 ^~~~~~~~~~~~~~~~
+                     ... For warning description see https://verilator.org/warn/PINMISSING?v=5.050
+                     ... Use "/* verilator lint_off PINMISSING */" and lint_on around source to disable this message.
+%Warning-PINMISSING: project/swic/su_lms_verify.sv:146:35: Instance has missing pin: 'shared_block_o'
+  146 |     su_sha256 #(.MAX_BYTES(1110)) u_hash(
+      |                                   ^~~~~~
+                     project/swic/su_sha256.sv:19:25: ... Location of port declaration
+   19 |     output wire [511:0] shared_block_o,
+      |                         ^~~~~~~~~~~~~~
+%Warning-PINMISSING: project/swic/su_lms_verify.sv:146:35: Instance has missing pin: 'shared_state_o'
+  146 |     su_sha256 #(.MAX_BYTES(1110)) u_hash(
+      |                                   ^~~~~~
+                     project/swic/su_sha256.sv:20:25: ... Location of port declaration
+   20 |     output wire [255:0] shared_state_o,
+      |                         ^~~~~~~~~~~~~~
+%Warning-PINMISSING: project/swic/su_lms_verify.sv:146:35: Instance has missing pin: 'shared_accept_i'
+  146 |     su_sha256 #(.MAX_BYTES(1110)) u_hash(
+      |                                   ^~~~~~
+                     project/swic/su_sha256.sv:21:16: ... Location of port declaration
+   21 |     input wire shared_accept_i,shared_done_i,
+      |                ^~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/swic/su_lms_verify.sv:146:35: Instance has missing pin: 'shared_done_i'
+  146 |     su_sha256 #(.MAX_BYTES(1110)) u_hash(
+      |                                   ^~~~~~
+                     project/swic/su_sha256.sv:21:32: ... Location of port declaration
+   21 |     input wire shared_accept_i,shared_done_i,
+      |                                ^~~~~~~~~~~~~
+%Warning-PINMISSING: project/swic/su_lms_verify.sv:146:35: Instance has missing pin: 'shared_digest_i'
+  146 |     su_sha256 #(.MAX_BYTES(1110)) u_hash(
+      |                                   ^~~~~~
+                     project/swic/su_sha256.sv:22:24: ... Location of port declaration
+   22 |     input wire [255:0] shared_digest_i
+      |                        ^~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/swic/swic_boot_admission.sv:198:41: Instance has missing pin: 'shared_request_o'
+  198 |     su_sha256 #(.MAX_BYTES(ROOT_BYTES)) u_root(
+      |                                         ^~~~~~
+                     project/swic/su_sha256.sv:18:17: ... Location of port declaration
+   18 |     output wire shared_request_o,
+      |                 ^~~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/swic/swic_boot_admission.sv:198:41: Instance has missing pin: 'shared_block_o'
+  198 |     su_sha256 #(.MAX_BYTES(ROOT_BYTES)) u_root(
+      |                                         ^~~~~~
+                     project/swic/su_sha256.sv:19:25: ... Location of port declaration
+   19 |     output wire [511:0] shared_block_o,
+      |                         ^~~~~~~~~~~~~~
+%Warning-PINMISSING: project/swic/swic_boot_admission.sv:198:41: Instance has missing pin: 'shared_state_o'
+  198 |     su_sha256 #(.MAX_BYTES(ROOT_BYTES)) u_root(
+      |                                         ^~~~~~
+                     project/swic/su_sha256.sv:20:25: ... Location of port declaration
+   20 |     output wire [255:0] shared_state_o,
+      |                         ^~~~~~~~~~~~~~
+%Warning-PINMISSING: project/swic/swic_boot_admission.sv:198:41: Instance has missing pin: 'shared_accept_i'
+  198 |     su_sha256 #(.MAX_BYTES(ROOT_BYTES)) u_root(
+      |                                         ^~~~~~
+                     project/swic/su_sha256.sv:21:16: ... Location of port declaration
+   21 |     input wire shared_accept_i,shared_done_i,
+      |                ^~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/swic/swic_boot_admission.sv:198:41: Instance has missing pin: 'shared_done_i'
+  198 |     su_sha256 #(.MAX_BYTES(ROOT_BYTES)) u_root(
+      |                                         ^~~~~~
+                     project/swic/su_sha256.sv:21:32: ... Location of port declaration
+   21 |     input wire shared_accept_i,shared_done_i,
+      |                                ^~~~~~~~~~~~~
+%Warning-PINMISSING: project/swic/swic_boot_admission.sv:198:41: Instance has missing pin: 'shared_digest_i'
+  198 |     su_sha256 #(.MAX_BYTES(ROOT_BYTES)) u_root(
+      |                                         ^~~~~~
+                     project/swic/su_sha256.sv:22:24: ... Location of port declaration
+   22 |     input wire [255:0] shared_digest_i
+      |                        ^~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/home/home_boot_gate.sv:142:48: Instance has missing pin: 'shared_hash_start_o'
+  142 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     project/swic/su_lms_verify.sv:23:17: ... Location of port declaration
+   23 |     output wire shared_hash_start_o,shared_hash_byte_valid_o,
+      |                 ^~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/home/home_boot_gate.sv:142:48: Instance has missing pin: 'shared_hash_byte_valid_o'
+  142 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     project/swic/su_lms_verify.sv:23:37: ... Location of port declaration
+   23 |     output wire shared_hash_start_o,shared_hash_byte_valid_o,
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/home/home_boot_gate.sv:142:48: Instance has missing pin: 'shared_hash_length_o'
+  142 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     project/swic/su_lms_verify.sv:24:24: ... Location of port declaration
+   24 |     output wire [31:0] shared_hash_length_o,
+      |                        ^~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/home/home_boot_gate.sv:142:48: Instance has missing pin: 'shared_hash_byte_o'
+  142 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     project/swic/su_lms_verify.sv:25:23: ... Location of port declaration
+   25 |     output wire [7:0] shared_hash_byte_o,
+      |                       ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/home/home_boot_gate.sv:142:48: Instance has missing pin: 'shared_hash_ready_i'
+  142 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     project/swic/su_lms_verify.sv:26:16: ... Location of port declaration
+   26 |     input wire shared_hash_ready_i,shared_hash_busy_i,shared_hash_done_i,shared_hash_fault_i,
+      |                ^~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/home/home_boot_gate.sv:142:48: Instance has missing pin: 'shared_hash_busy_i'
+  142 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     project/swic/su_lms_verify.sv:26:36: ... Location of port declaration
+   26 |     input wire shared_hash_ready_i,shared_hash_busy_i,shared_hash_done_i,shared_hash_fault_i,
+      |                                    ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/home/home_boot_gate.sv:142:48: Instance has missing pin: 'shared_hash_done_i'
+  142 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     project/swic/su_lms_verify.sv:26:55: ... Location of port declaration
+   26 |     input wire shared_hash_ready_i,shared_hash_busy_i,shared_hash_done_i,shared_hash_fault_i,
+      |                                                       ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/home/home_boot_gate.sv:142:48: Instance has missing pin: 'shared_hash_fault_i'
+  142 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     project/swic/su_lms_verify.sv:26:74: ... Location of port declaration
+   26 |     input wire shared_hash_ready_i,shared_hash_busy_i,shared_hash_done_i,shared_hash_fault_i,
+      |                                                                          ^~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/home/home_boot_gate.sv:142:48: Instance has missing pin: 'shared_hash_offset_i'
+  142 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     project/swic/su_lms_verify.sv:27:23: ... Location of port declaration
+   27 |     input wire [31:0] shared_hash_offset_i,
+      |                       ^~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: project/home/home_boot_gate.sv:142:48: Instance has missing pin: 'shared_hash_digest_i'
+  142 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     project/swic/su_lms_verify.sv:28:24: ... Location of port declaration
+   28 |     input wire [255:0] shared_hash_digest_i
+      |                        ^~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: nonce_frontend.sv:75:48: Instance has missing pin: 'shared_request_o'
+   75 |       su_sha256 #(.MAX_BYTES(SAMPLE_BYTES+16)) u_conditioner(
+      |                                                ^~~~~~~~~~~~~
+                     project/swic/su_sha256.sv:18:17: ... Location of port declaration
+   18 |     output wire shared_request_o,
+      |                 ^~~~~~~~~~~~~~~~
+%Warning-PINMISSING: nonce_frontend.sv:75:48: Instance has missing pin: 'shared_block_o'
+   75 |       su_sha256 #(.MAX_BYTES(SAMPLE_BYTES+16)) u_conditioner(
+      |                                                ^~~~~~~~~~~~~
+                     project/swic/su_sha256.sv:19:25: ... Location of port declaration
+   19 |     output wire [511:0] shared_block_o,
+      |                         ^~~~~~~~~~~~~~
+%Warning-PINMISSING: nonce_frontend.sv:75:48: Instance has missing pin: 'shared_state_o'
+   75 |       su_sha256 #(.MAX_BYTES(SAMPLE_BYTES+16)) u_conditioner(
+      |                                                ^~~~~~~~~~~~~
+                     project/swic/su_sha256.sv:20:25: ... Location of port declaration
+   20 |     output wire [255:0] shared_state_o,
+      |                         ^~~~~~~~~~~~~~
+%Warning-PINMISSING: nonce_frontend.sv:75:48: Instance has missing pin: 'shared_accept_i'
+   75 |       su_sha256 #(.MAX_BYTES(SAMPLE_BYTES+16)) u_conditioner(
+      |                                                ^~~~~~~~~~~~~
+                     project/swic/su_sha256.sv:21:16: ... Location of port declaration
+   21 |     input wire shared_accept_i,shared_done_i,
+      |                ^~~~~~~~~~~~~~~
+%Warning-PINMISSING: nonce_frontend.sv:75:48: Instance has missing pin: 'shared_done_i'
+   75 |       su_sha256 #(.MAX_BYTES(SAMPLE_BYTES+16)) u_conditioner(
+      |                                                ^~~~~~~~~~~~~
+                     project/swic/su_sha256.sv:21:32: ... Location of port declaration
+   21 |     input wire shared_accept_i,shared_done_i,
+      |                                ^~~~~~~~~~~~~
+%Warning-PINMISSING: nonce_frontend.sv:75:48: Instance has missing pin: 'shared_digest_i'
+   75 |       su_sha256 #(.MAX_BYTES(SAMPLE_BYTES+16)) u_conditioner(
+      |                                                ^~~~~~~~~~~~~
+                     project/swic/su_sha256.sv:22:24: ... Location of port declaration
+   22 |     input wire [255:0] shared_digest_i
+      |                        ^~~~~~~~~~~~~~~
+%Warning-WIDTHTRUNC: project/fifo.sv:154:9: Logical operator GENIF expects 1 bit on the If, but If's VARREF 'SOURCE_NEGEDGE_READ_POINTER_SYNC1' generates 32 bits.
+                                          : ... note: In instance 'tb_home_tang.dut.u_transport.u_commands'
+  154 |         if (SOURCE_NEGEDGE_READ_POINTER_SYNC1) begin : g_boot_return_phase
+      |         ^~
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.050
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:2430:58: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                      : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention.u_norm_stage'
+ 2430 |                 wide_required = $signed(source_exponent) + bit_length - 15;
+      |                                                          ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.050
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv:85:32: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                             : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention.u_value_prefix'
+   85 |             required=$signed(e)+bits_needed-15;
+      |                                ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv:88:27: Operator ASSIGN expects 8 bits on the Assign RHS, but Assign RHS's VARREF 'required' generates 32 bits.
+                                                                                                                                            : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention.u_value_prefix'
+   88 |             else first_fit=required;
+      |                           ^
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv:182:46: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                                              : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_elementwise_lane.u_fixed_elementwise_product_compact_lane'
+  182 |                 amount = -($signed(exponent) + 10);
+      |                                              ^
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv:188:44: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                                              : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_elementwise_lane.u_fixed_elementwise_product_compact_lane'
+  188 |                 amount = $signed(exponent) + 10;
+      |                                            ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv:322:30: Operator ASSIGN expects 6 bits on the Assign RHS, but Assign RHS's UNSIGNED generates 9 bits.
+                                                                                                                                                             : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_elementwise_lane.u_fixed_elementwise_product_compact_lane'
+  322 |         residual_first_shift =
+      |                              ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv:325:31: Operator ASSIGN expects 6 bits on the Assign RHS, but Assign RHS's UNSIGNED generates 9 bits.
+                                                                                                                                                             : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_elementwise_lane.u_fixed_elementwise_product_compact_lane'
+  325 |         residual_second_shift =
+      |                               ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv:203:29: Operator ASSIGNDLY expects 6 bits on the Assign RHS, but Assign RHS's COND generates 9 bits.
+                                                                                                                                                : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention.u_shift'
+  203 |                     amount_q<=request_shift_i<0 ? $unsigned(-request_shift_i) : $unsigned(request_shift_i);
+      |                             ^~
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:95:53: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                    : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+   95 |                 required = $signed(source_exponent) + bit_length - 15;
+      |                                                     ^
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:122:58: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                     : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+  122 |                 wide_required = $signed(source_exponent) + bit_length - 15;
+      |                                                          ^
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:547:63: Operator SUB expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                     : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+  547 |         normalize_shift_comb = $signed(normalize_candidate_q) -
+      |                                                               ^
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:547:63: Operator SUB expects 32 bits on the RHS, but RHS's SIGNED generates 8 bits.
+                                                                                                                                     : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+  547 |         normalize_shift_comb = $signed(normalize_candidate_q) -
+      |                                                               ^
+%Warning-WIDTHEXPAND: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:577:58: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 8 bits.
+                                                                                                                                     : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+  577 |         softmax_shift_comb = -($signed(score_exponent_q) + 8);
+      |                                                          ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:597:35: Operator ASSIGN expects 9 bits on the Assign RHS, but Assign RHS's VARREF 'normalize_shift_comb' generates 32 bits.
+                                                                                                                                    : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+  597 |         shift_request_amount_comb = normalize_shift_comb;
+      |                                   ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:603:39: Operator ASSIGN expects 9 bits on the Assign RHS, but Assign RHS's VARREF 'softmax_shift_comb' generates 32 bits.
+                                                                                                                                    : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+  603 |             shift_request_amount_comb = softmax_shift_comb;
+      |                                       ^
+%Warning-WIDTHTRUNC: project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv:1645:60: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'output_bram_read_data' generates 18 bits.
+                                                                                                                                     : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_machine.u_six_layers.u_datapath.u_attention'
+ 1645 |                     result_buffer_q[coordinate_q*16 +: 16] <=
+      |                                                            ^~
+%Warning-WIDTHTRUNC: project/fifo.sv:118:32: Logical operator LOGAND expects 1 bit on the LHS, but LHS's VARREF 'DESTINATION_LOOKAHEAD' generates 32 bits.
+                                           : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_boundary.response_fifo_i'
+  118 |         (DESTINATION_LOOKAHEAD && destination_pop) ?
+      |                                ^~
+%Warning-WIDTHTRUNC: project/fifo.sv:123:32: Logical operator LOGAND expects 1 bit on the LHS, but LHS's VARREF 'DESTINATION_LOOKAHEAD' generates 32 bits.
+                                           : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_boundary.response_fifo_i'
+  123 |         (DESTINATION_LOOKAHEAD && destination_pop && next_row_visible);
+      |                                ^~
+%Warning-WIDTHTRUNC: project/fifo.sv:223:52: Logical operator COND expects 1 bit on the Conditional Test, but Conditional Test's VARREF 'DESTINATION_LOOKAHEAD' generates 32 bits.
+                                           : ... note: In instance 'tb_home_tang.dut.u_uart_core.u_machine.u_boundary.response_fifo_i'
+  223 |                 m_valid_q <= DESTINATION_LOOKAHEAD ? next_row_visible : 1'b0;
+      |                                                    ^
+%Warning-WIDTHTRUNC: nonce_frontend.sv:81:68: Bit extraction of array[511:0] requires 9 bit index, not 10 bits.
+                                            : ... note: In instance 'tb_home_tang.front'
+   81 |         if(state_q==COLLECT && request_i && entropy_valid_i)samples[count_q]<=entropy_byte_i;
+      |                                                                    ^
+%Warning-WIDTHTRUNC: nonce_frontend.sv:83:35: Bit extraction of array[511:0] requires 9 bit index, not 10 bits.
+                                            : ... note: In instance 'tb_home_tang.front'
+   83 |             sample_byte_q<=samples[sample_address];sample_address_q<=sample_address;
+      |                                   ^
+%Warning-WIDTHEXPAND: nonce_frontend.sv:118:36: Operator LT expects 32 bits on the LHS, but LHS's VARREF 'new_ones' generates 16 bits.
+                                              : ... note: In instance 'tb_home_tang.front'
+  118 |                         if(new_ones<SAMPLE_BYTES*2 || new_ones>SAMPLE_BYTES*6)state_q<=FAILED;
+      |                                    ^
+%Warning-WIDTHEXPAND: nonce_frontend.sv:118:63: Operator GT expects 32 bits on the LHS, but LHS's VARREF 'new_ones' generates 16 bits.
+                                              : ... note: In instance 'tb_home_tang.front'
+  118 |                         if(new_ones<SAMPLE_BYTES*2 || new_ones>SAMPLE_BYTES*6)state_q<=FAILED;
+      |                                                               ^
+%Warning-WIDTHEXPAND: nonce_frontend.sv:115:76: Operator GTE expects 32 bits on the LHS, but LHS's VARREF 'repeat_q' generates 8 bits.
+                                              : ... note: In instance 'tb_home_tang.front'
+  115 |                     if(count_q!=0 && entropy_byte_i==previous_q && repeat_q>=MAX_IDENTICAL_BYTES-1)
+      |                                                                            ^~
+%Warning-WIDTHEXPAND: tb_home_tang.sv:111:31: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's REPLICATE generates 16 bits.
+                                            : ... note: In instance 'tb_home_tang'
+  111 |                         actual={replies[read_cursor+3],replies[read_cursor+2]};
+      |                               ^
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated.o /opt/homebrew/Cellar/verilator/5.050/share/verilator/include/verilated.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_timing.o /opt/homebrew/Cellar/verilator/5.050/share/verilator/include/verilated_timing.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_threads.o /opt/homebrew/Cellar/verilator/5.050/share/verilator/include/verilated_threads.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -x c++-header Vtb_home_tang__pch.h -o Vtb_home_tang__pch.h.fast.gch
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -include-pch Vtb_home_tang__pch.h.fast.gch -c Vtb_home_tang_vm_classes_0.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++   -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -x c++-header Vtb_home_tang__pch.h -o Vtb_home_tang__pch.h.slow.gch
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++   -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -include-pch Vtb_home_tang__pch.h.slow.gch -c Vtb_home_tang_vm_classes_Slow_0.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++   -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -O2 -DVL_TIME_CONTEXT   -std=gnu++20 -include-pch Vtb_home_tang__pch.h.slow.gch -c Vtb_home_tang__Syms__Slow.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++  -Wl,-U,__Z15vl_time_stamp64v,-U,__Z13sc_time_stampv,-U,_vlog_startup_routines   verilated.o verilated_timing.o verilated_threads.o Vtb_home_tang__ALL.a    -pthread -lpthread   -o Vtb_home_tang
+rm Vtb_home_tang__ALL.verilator_deplist.tmp
+- V e r i l a t i o n   R e p o r t: Verilator 5.050 2026-07-01 rev vUNKNOWN-built20260701
+- Verilator: Built from 58.150 MB sources in 113 modules, into 12.225 MB in 18 C++ files needing 0.010 MB
+- Verilator: Walltime 11.530 s (elab=0.104, cvt=0.863, bld=10.282); cpu 1.162 s on 1 threads; allocated 146.484 MB

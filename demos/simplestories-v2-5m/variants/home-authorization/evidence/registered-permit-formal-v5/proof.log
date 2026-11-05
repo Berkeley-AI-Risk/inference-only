@@ -1,0 +1,1217 @@
+
+-- Executing script file `prove.ys' --
+
+1. Executing Verilog-2005 frontend: design.sv
+Parsing formal SystemVerilog input from `design.sv' to AST representation.
+Generating RTLIL representation for module `\home_boot_gate'.
+Generating RTLIL representation for module `\home_equal256_tree'.
+Generating RTLIL representation for module `\formal_top'.
+Successfully finished Verilog frontend.
+Parameter \USE_SHARED_VERIFIER = 1
+
+2. Executing AST frontend in derive mode using pre-parsed AST for module `\home_boot_gate'.
+Parameter \USE_SHARED_VERIFIER = 1
+Generating RTLIL representation for module `$paramod\home_boot_gate\USE_SHARED_VERIFIER=s32'00000000000000000000000000000001'.
+
+3. Executing PREP pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \formal_top
+Used module:     \home_boot_gate
+Used module:         \home_equal256_tree
+Parameter \USE_SHARED_VERIFIER = 1
+Parameter \RESPONSE_LIMIT_CYCLES = 50000000
+Parameter \LEASE_CYCLES = 125000000
+Parameter \RENEW_LEAD_CYCLES = 62500000
+
+3.1.2. Executing AST frontend in derive mode using pre-parsed AST for module `\home_boot_gate'.
+Parameter \USE_SHARED_VERIFIER = 1
+Parameter \RESPONSE_LIMIT_CYCLES = 50000000
+Parameter \LEASE_CYCLES = 125000000
+Parameter \RENEW_LEAD_CYCLES = 62500000
+Generating RTLIL representation for module `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate'.
+
+3.1.3. Analyzing design hierarchy..
+Top module:  \formal_top
+Used module:     $paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate
+Used module:         \home_equal256_tree
+
+3.1.4. Analyzing design hierarchy..
+Top module:  \formal_top
+Used module:     $paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate
+Used module:         \home_equal256_tree
+Removing unused module `\home_boot_gate'.
+Removed 1 unused modules.
+Module formal_top directly or indirectly contains formal properties -> setting "keep" attribute.
+Module $paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:104$653'.
+Removing empty process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:104$653'.
+Cleaned up 1 empty switch.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$design.sv:81$633 in module $paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.
+Marked 1 switch rules as full_case in process $proc$design.sv:200$606 in module $paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.
+Marked 9 switch rules as full_case in process $proc$design.sv:142$577 in module $paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.
+Marked 1 switch rules as full_case in process $proc$design.sv:116$574 in module $paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.
+Marked 1 switch rules as full_case in process $proc$design.sv:110$560 in module $paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.
+Removed a total of 0 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 8 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \permit_register_reset_n in `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:200$606'.
+Found async reset \reset_n in `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+Found async reset \reset_n in `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:116$574'.
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~21 debug messages>
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:81$633'.
+     1/1: $1\message_byte$func$design.sv:81$494.$result[7:0]$637
+Creating decoders for process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:206$609'.
+     1/4: $assert$design.sv:210$628_EN
+     2/4: $assert$design.sv:209$625_EN
+     3/4: $assert$design.sv:208$622_EN
+     4/4: $assert$design.sv:207$610_EN
+Creating decoders for process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:200$606'.
+     1/1: $0\token_reset_asserted[0:0]
+Creating decoders for process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+     1/12: $0\index_q[10:0]
+     2/12: $0\previous_nonce_q[255:0]
+     3/12: $0\seen_nonce_q[0:0]
+     4/12: $0\lease_active_q[0:0]
+     5/12: $0\lease_age_q[26:0]
+     6/12: $0\age_q[25:0]
+     7/12: $0\fault_q[0:0]
+     8/12: $0\have_root_q[0:0]
+     9/12: $0\have_nonce_q[0:0]
+    10/12: $0\root_q[255:0]
+    11/12: $0\nonce_q[255:0]
+    12/12: $0\state_q[3:0]
+Creating decoders for process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:116$574'.
+     1/1: $0\signature_read_valid_q[0:0]
+Creating decoders for process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:110$560'.
+     1/3: $1$memwr$\signature_mem$design.sv:112$495_EN[7:0]$571
+     2/3: $1$memwr$\signature_mem$design.sv:112$495_DATA[7:0]$570
+     3/3: $1$memwr$\signature_mem$design.sv:112$495_ADDR[31:0]$569
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\message_byte$func$design.sv:81$493.$result' from process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:81$633'.
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\token_reset_asserted' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:200$606'.
+  created $adff cell `$procdff$927' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\state_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+  created $adff cell `$procdff$932' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\nonce_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+  created $adff cell `$procdff$937' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\root_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+  created $adff cell `$procdff$942' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\have_nonce_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+  created $adff cell `$procdff$947' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\have_root_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+  created $adff cell `$procdff$952' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\fault_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+  created $adff cell `$procdff$957' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\age_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+  created $adff cell `$procdff$962' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\lease_age_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+  created $adff cell `$procdff$967' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\lease_active_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+  created $adff cell `$procdff$972' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\seen_nonce_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+  created $adff cell `$procdff$977' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\previous_nonce_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+  created $adff cell `$procdff$982' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\index_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+  created $adff cell `$procdff$987' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\signature_read_valid_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:116$574'.
+  created $adff cell `$procdff$992' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\signature_address_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:110$560'.
+  created $dff cell `$procdff$993' with positive edge clock.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.\signature_byte_q' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:110$560'.
+  created $dff cell `$procdff$994' with positive edge clock.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$memwr$\signature_mem$design.sv:112$495_ADDR' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:110$560'.
+  created $dff cell `$procdff$995' with positive edge clock.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$memwr$\signature_mem$design.sv:112$495_DATA' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:110$560'.
+  created $dff cell `$procdff$996' with positive edge clock.
+Creating register for signal `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$memwr$\signature_mem$design.sv:112$495_EN' using process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:110$560'.
+  created $dff cell `$procdff$997' with positive edge clock.
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:81$633'.
+Removing empty process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:81$633'.
+Found and cleaned up 1 empty switch in `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:206$609'.
+Removing empty process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:206$609'.
+Found and cleaned up 1 empty switch in `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:200$606'.
+Removing empty process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:200$606'.
+Found and cleaned up 17 empty switches in `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+Removing empty process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:142$577'.
+Removing empty process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:116$574'.
+Found and cleaned up 1 empty switch in `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:110$560'.
+Removing empty process `$paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.$proc$design.sv:110$560'.
+Cleaned up 21 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module formal_top.
+Optimizing module home_equal256_tree.
+Optimizing module $paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.
+<suppressed ~45 debug messages>
+
+3.3. Executing FLATTEN pass (flatten design).
+Deleting now unused module home_equal256_tree.
+Deleting now unused module $paramod$22291a8d47f021b84877dffa0245e6b49b874440\home_boot_gate.
+<suppressed ~3 debug messages>
+
+3.4. Executing FUTURE pass.
+
+3.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module formal_top.
+<suppressed ~1 debug messages>
+
+3.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \formal_top..
+Removed 53 unused cells and 532 unused wires.
+<suppressed ~71 debug messages>
+
+3.7. Executing CHECK pass (checking for obvious problems).
+Checking module formal_top...
+Found and reported 0 problems.
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module formal_top.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\formal_top'.
+Computing hashes of 581 cells of `\formal_top'.
+Finding duplicate cells in `\formal_top'.
+Computing hashes of 534 cells of `\formal_top'.
+Finding duplicate cells in `\formal_top'.
+Computing hashes of 529 cells of `\formal_top'.
+Finding duplicate cells in `\formal_top'.
+Computing hashes of 528 cells of `\formal_top'.
+Finding duplicate cells in `\formal_top'.
+Computing hashes of 527 cells of `\formal_top'.
+Finding duplicate cells in `\formal_top'.
+<suppressed ~162 debug messages>
+Removed a total of 54 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \formal_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $flatten\dut.$procmux$735: \dut.lease_active_q -> 1'0
+      Replacing known input bits on port A of cell $flatten\dut.$procmux$733: \dut.lease_active_q -> 1'1
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~118 debug messages>
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \formal_top.
+    New input vector for $reduce_and cell $flatten\dut.\u_nonce_equal.$reduce_and$design.sv:234$324: { \dut.u_nonce_equal.g_pairs[15].same \dut.u_nonce_equal.g_pairs[14].same \dut.u_nonce_equal.g_pairs[13].same \dut.u_nonce_equal.g_pairs[12].same \dut.u_nonce_equal.g_pairs[11].same \dut.u_nonce_equal.g_pairs[10].same \dut.u_nonce_equal.g_pairs[9].same \dut.u_nonce_equal.g_pairs[8].same \dut.u_nonce_equal.g_pairs[7].same \dut.u_nonce_equal.g_pairs[6].same \dut.u_nonce_equal.g_pairs[5].same \dut.u_nonce_equal.g_pairs[4].same \dut.u_nonce_equal.g_pairs[3].same \dut.u_nonce_equal.g_pairs[2].same \dut.u_nonce_equal.g_pairs[1].same \dut.u_nonce_equal.g_pairs[0].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_nonce_equal.$reduce_and$design.sv:234$325: { \dut.u_nonce_equal.g_pairs[31].same \dut.u_nonce_equal.g_pairs[30].same \dut.u_nonce_equal.g_pairs[29].same \dut.u_nonce_equal.g_pairs[28].same \dut.u_nonce_equal.g_pairs[27].same \dut.u_nonce_equal.g_pairs[26].same \dut.u_nonce_equal.g_pairs[25].same \dut.u_nonce_equal.g_pairs[24].same \dut.u_nonce_equal.g_pairs[23].same \dut.u_nonce_equal.g_pairs[22].same \dut.u_nonce_equal.g_pairs[21].same \dut.u_nonce_equal.g_pairs[20].same \dut.u_nonce_equal.g_pairs[19].same \dut.u_nonce_equal.g_pairs[18].same \dut.u_nonce_equal.g_pairs[17].same \dut.u_nonce_equal.g_pairs[16].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_nonce_equal.$reduce_and$design.sv:234$326: { \dut.u_nonce_equal.g_pairs[47].same \dut.u_nonce_equal.g_pairs[46].same \dut.u_nonce_equal.g_pairs[45].same \dut.u_nonce_equal.g_pairs[44].same \dut.u_nonce_equal.g_pairs[43].same \dut.u_nonce_equal.g_pairs[42].same \dut.u_nonce_equal.g_pairs[41].same \dut.u_nonce_equal.g_pairs[40].same \dut.u_nonce_equal.g_pairs[39].same \dut.u_nonce_equal.g_pairs[38].same \dut.u_nonce_equal.g_pairs[37].same \dut.u_nonce_equal.g_pairs[36].same \dut.u_nonce_equal.g_pairs[35].same \dut.u_nonce_equal.g_pairs[34].same \dut.u_nonce_equal.g_pairs[33].same \dut.u_nonce_equal.g_pairs[32].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_nonce_equal.$reduce_and$design.sv:234$327: { \dut.u_nonce_equal.g_pairs[63].same \dut.u_nonce_equal.g_pairs[62].same \dut.u_nonce_equal.g_pairs[61].same \dut.u_nonce_equal.g_pairs[60].same \dut.u_nonce_equal.g_pairs[59].same \dut.u_nonce_equal.g_pairs[58].same \dut.u_nonce_equal.g_pairs[57].same \dut.u_nonce_equal.g_pairs[56].same \dut.u_nonce_equal.g_pairs[55].same \dut.u_nonce_equal.g_pairs[54].same \dut.u_nonce_equal.g_pairs[53].same \dut.u_nonce_equal.g_pairs[52].same \dut.u_nonce_equal.g_pairs[51].same \dut.u_nonce_equal.g_pairs[50].same \dut.u_nonce_equal.g_pairs[49].same \dut.u_nonce_equal.g_pairs[48].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_nonce_equal.$reduce_and$design.sv:234$328: { \dut.u_nonce_equal.g_pairs[79].same \dut.u_nonce_equal.g_pairs[78].same \dut.u_nonce_equal.g_pairs[77].same \dut.u_nonce_equal.g_pairs[76].same \dut.u_nonce_equal.g_pairs[75].same \dut.u_nonce_equal.g_pairs[74].same \dut.u_nonce_equal.g_pairs[73].same \dut.u_nonce_equal.g_pairs[72].same \dut.u_nonce_equal.g_pairs[71].same \dut.u_nonce_equal.g_pairs[70].same \dut.u_nonce_equal.g_pairs[69].same \dut.u_nonce_equal.g_pairs[68].same \dut.u_nonce_equal.g_pairs[67].same \dut.u_nonce_equal.g_pairs[66].same \dut.u_nonce_equal.g_pairs[65].same \dut.u_nonce_equal.g_pairs[64].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_nonce_equal.$reduce_and$design.sv:234$329: { \dut.u_nonce_equal.g_pairs[95].same \dut.u_nonce_equal.g_pairs[94].same \dut.u_nonce_equal.g_pairs[93].same \dut.u_nonce_equal.g_pairs[92].same \dut.u_nonce_equal.g_pairs[91].same \dut.u_nonce_equal.g_pairs[90].same \dut.u_nonce_equal.g_pairs[89].same \dut.u_nonce_equal.g_pairs[88].same \dut.u_nonce_equal.g_pairs[87].same \dut.u_nonce_equal.g_pairs[86].same \dut.u_nonce_equal.g_pairs[85].same \dut.u_nonce_equal.g_pairs[84].same \dut.u_nonce_equal.g_pairs[83].same \dut.u_nonce_equal.g_pairs[82].same \dut.u_nonce_equal.g_pairs[81].same \dut.u_nonce_equal.g_pairs[80].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_nonce_equal.$reduce_and$design.sv:234$330: { \dut.u_nonce_equal.g_pairs[111].same \dut.u_nonce_equal.g_pairs[110].same \dut.u_nonce_equal.g_pairs[109].same \dut.u_nonce_equal.g_pairs[108].same \dut.u_nonce_equal.g_pairs[107].same \dut.u_nonce_equal.g_pairs[106].same \dut.u_nonce_equal.g_pairs[105].same \dut.u_nonce_equal.g_pairs[104].same \dut.u_nonce_equal.g_pairs[103].same \dut.u_nonce_equal.g_pairs[102].same \dut.u_nonce_equal.g_pairs[101].same \dut.u_nonce_equal.g_pairs[100].same \dut.u_nonce_equal.g_pairs[99].same \dut.u_nonce_equal.g_pairs[98].same \dut.u_nonce_equal.g_pairs[97].same \dut.u_nonce_equal.g_pairs[96].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_nonce_equal.$reduce_and$design.sv:234$331: { \dut.u_nonce_equal.g_pairs[127].same \dut.u_nonce_equal.g_pairs[126].same \dut.u_nonce_equal.g_pairs[125].same \dut.u_nonce_equal.g_pairs[124].same \dut.u_nonce_equal.g_pairs[123].same \dut.u_nonce_equal.g_pairs[122].same \dut.u_nonce_equal.g_pairs[121].same \dut.u_nonce_equal.g_pairs[120].same \dut.u_nonce_equal.g_pairs[119].same \dut.u_nonce_equal.g_pairs[118].same \dut.u_nonce_equal.g_pairs[117].same \dut.u_nonce_equal.g_pairs[116].same \dut.u_nonce_equal.g_pairs[115].same \dut.u_nonce_equal.g_pairs[114].same \dut.u_nonce_equal.g_pairs[113].same \dut.u_nonce_equal.g_pairs[112].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_root_equal.$reduce_and$design.sv:234$324: { \dut.u_root_equal.g_pairs[15].same \dut.u_root_equal.g_pairs[14].same \dut.u_root_equal.g_pairs[13].same \dut.u_root_equal.g_pairs[12].same \dut.u_root_equal.g_pairs[11].same \dut.u_root_equal.g_pairs[10].same \dut.u_root_equal.g_pairs[9].same \dut.u_root_equal.g_pairs[8].same \dut.u_root_equal.g_pairs[7].same \dut.u_root_equal.g_pairs[6].same \dut.u_root_equal.g_pairs[5].same \dut.u_root_equal.g_pairs[4].same \dut.u_root_equal.g_pairs[3].same \dut.u_root_equal.g_pairs[2].same \dut.u_root_equal.g_pairs[1].same \dut.u_root_equal.g_pairs[0].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_root_equal.$reduce_and$design.sv:234$325: { \dut.u_root_equal.g_pairs[31].same \dut.u_root_equal.g_pairs[30].same \dut.u_root_equal.g_pairs[29].same \dut.u_root_equal.g_pairs[28].same \dut.u_root_equal.g_pairs[27].same \dut.u_root_equal.g_pairs[26].same \dut.u_root_equal.g_pairs[25].same \dut.u_root_equal.g_pairs[24].same \dut.u_root_equal.g_pairs[23].same \dut.u_root_equal.g_pairs[22].same \dut.u_root_equal.g_pairs[21].same \dut.u_root_equal.g_pairs[20].same \dut.u_root_equal.g_pairs[19].same \dut.u_root_equal.g_pairs[18].same \dut.u_root_equal.g_pairs[17].same \dut.u_root_equal.g_pairs[16].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_root_equal.$reduce_and$design.sv:234$326: { \dut.u_root_equal.g_pairs[47].same \dut.u_root_equal.g_pairs[46].same \dut.u_root_equal.g_pairs[45].same \dut.u_root_equal.g_pairs[44].same \dut.u_root_equal.g_pairs[43].same \dut.u_root_equal.g_pairs[42].same \dut.u_root_equal.g_pairs[41].same \dut.u_root_equal.g_pairs[40].same \dut.u_root_equal.g_pairs[39].same \dut.u_root_equal.g_pairs[38].same \dut.u_root_equal.g_pairs[37].same \dut.u_root_equal.g_pairs[36].same \dut.u_root_equal.g_pairs[35].same \dut.u_root_equal.g_pairs[34].same \dut.u_root_equal.g_pairs[33].same \dut.u_root_equal.g_pairs[32].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_root_equal.$reduce_and$design.sv:234$327: { \dut.u_root_equal.g_pairs[63].same \dut.u_root_equal.g_pairs[62].same \dut.u_root_equal.g_pairs[61].same \dut.u_root_equal.g_pairs[60].same \dut.u_root_equal.g_pairs[59].same \dut.u_root_equal.g_pairs[58].same \dut.u_root_equal.g_pairs[57].same \dut.u_root_equal.g_pairs[56].same \dut.u_root_equal.g_pairs[55].same \dut.u_root_equal.g_pairs[54].same \dut.u_root_equal.g_pairs[53].same \dut.u_root_equal.g_pairs[52].same \dut.u_root_equal.g_pairs[51].same \dut.u_root_equal.g_pairs[50].same \dut.u_root_equal.g_pairs[49].same \dut.u_root_equal.g_pairs[48].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_root_equal.$reduce_and$design.sv:234$328: { \dut.u_root_equal.g_pairs[79].same \dut.u_root_equal.g_pairs[78].same \dut.u_root_equal.g_pairs[77].same \dut.u_root_equal.g_pairs[76].same \dut.u_root_equal.g_pairs[75].same \dut.u_root_equal.g_pairs[74].same \dut.u_root_equal.g_pairs[73].same \dut.u_root_equal.g_pairs[72].same \dut.u_root_equal.g_pairs[71].same \dut.u_root_equal.g_pairs[70].same \dut.u_root_equal.g_pairs[69].same \dut.u_root_equal.g_pairs[68].same \dut.u_root_equal.g_pairs[67].same \dut.u_root_equal.g_pairs[66].same \dut.u_root_equal.g_pairs[65].same \dut.u_root_equal.g_pairs[64].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_root_equal.$reduce_and$design.sv:234$329: { \dut.u_root_equal.g_pairs[95].same \dut.u_root_equal.g_pairs[94].same \dut.u_root_equal.g_pairs[93].same \dut.u_root_equal.g_pairs[92].same \dut.u_root_equal.g_pairs[91].same \dut.u_root_equal.g_pairs[90].same \dut.u_root_equal.g_pairs[89].same \dut.u_root_equal.g_pairs[88].same \dut.u_root_equal.g_pairs[87].same \dut.u_root_equal.g_pairs[86].same \dut.u_root_equal.g_pairs[85].same \dut.u_root_equal.g_pairs[84].same \dut.u_root_equal.g_pairs[83].same \dut.u_root_equal.g_pairs[82].same \dut.u_root_equal.g_pairs[81].same \dut.u_root_equal.g_pairs[80].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_root_equal.$reduce_and$design.sv:234$330: { \dut.u_root_equal.g_pairs[111].same \dut.u_root_equal.g_pairs[110].same \dut.u_root_equal.g_pairs[109].same \dut.u_root_equal.g_pairs[108].same \dut.u_root_equal.g_pairs[107].same \dut.u_root_equal.g_pairs[106].same \dut.u_root_equal.g_pairs[105].same \dut.u_root_equal.g_pairs[104].same \dut.u_root_equal.g_pairs[103].same \dut.u_root_equal.g_pairs[102].same \dut.u_root_equal.g_pairs[101].same \dut.u_root_equal.g_pairs[100].same \dut.u_root_equal.g_pairs[99].same \dut.u_root_equal.g_pairs[98].same \dut.u_root_equal.g_pairs[97].same \dut.u_root_equal.g_pairs[96].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_root_equal.$reduce_and$design.sv:234$331: { \dut.u_root_equal.g_pairs[127].same \dut.u_root_equal.g_pairs[126].same \dut.u_root_equal.g_pairs[125].same \dut.u_root_equal.g_pairs[124].same \dut.u_root_equal.g_pairs[123].same \dut.u_root_equal.g_pairs[122].same \dut.u_root_equal.g_pairs[121].same \dut.u_root_equal.g_pairs[120].same \dut.u_root_equal.g_pairs[119].same \dut.u_root_equal.g_pairs[118].same \dut.u_root_equal.g_pairs[117].same \dut.u_root_equal.g_pairs[116].same \dut.u_root_equal.g_pairs[115].same \dut.u_root_equal.g_pairs[114].same \dut.u_root_equal.g_pairs[113].same \dut.u_root_equal.g_pairs[112].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_root_equal.$reduce_and$design.sv:238$163: { \dut.u_root_equal.g_pairs[127].same \dut.u_root_equal.g_pairs[126].same \dut.u_root_equal.g_pairs[125].same \dut.u_root_equal.g_pairs[124].same \dut.u_root_equal.g_pairs[123].same \dut.u_root_equal.g_pairs[122].same \dut.u_root_equal.g_pairs[121].same \dut.u_root_equal.g_pairs[120].same \dut.u_root_equal.g_pairs[119].same \dut.u_root_equal.g_pairs[118].same \dut.u_root_equal.g_pairs[117].same \dut.u_root_equal.g_pairs[116].same \dut.u_root_equal.g_pairs[115].same \dut.u_root_equal.g_pairs[114].same \dut.u_root_equal.g_pairs[113].same \dut.u_root_equal.g_pairs[112].same \dut.u_root_equal.g_pairs[111].same \dut.u_root_equal.g_pairs[110].same \dut.u_root_equal.g_pairs[109].same \dut.u_root_equal.g_pairs[108].same \dut.u_root_equal.g_pairs[107].same \dut.u_root_equal.g_pairs[106].same \dut.u_root_equal.g_pairs[105].same \dut.u_root_equal.g_pairs[104].same \dut.u_root_equal.g_pairs[103].same \dut.u_root_equal.g_pairs[102].same \dut.u_root_equal.g_pairs[101].same \dut.u_root_equal.g_pairs[100].same \dut.u_root_equal.g_pairs[99].same \dut.u_root_equal.g_pairs[98].same \dut.u_root_equal.g_pairs[97].same \dut.u_root_equal.g_pairs[96].same \dut.u_root_equal.g_pairs[95].same \dut.u_root_equal.g_pairs[94].same \dut.u_root_equal.g_pairs[93].same \dut.u_root_equal.g_pairs[92].same \dut.u_root_equal.g_pairs[91].same \dut.u_root_equal.g_pairs[90].same \dut.u_root_equal.g_pairs[89].same \dut.u_root_equal.g_pairs[88].same \dut.u_root_equal.g_pairs[87].same \dut.u_root_equal.g_pairs[86].same \dut.u_root_equal.g_pairs[85].same \dut.u_root_equal.g_pairs[84].same \dut.u_root_equal.g_pairs[83].same \dut.u_root_equal.g_pairs[82].same \dut.u_root_equal.g_pairs[81].same \dut.u_root_equal.g_pairs[80].same \dut.u_root_equal.g_pairs[79].same \dut.u_root_equal.g_pairs[78].same \dut.u_root_equal.g_pairs[77].same \dut.u_root_equal.g_pairs[76].same \dut.u_root_equal.g_pairs[75].same \dut.u_root_equal.g_pairs[74].same \dut.u_root_equal.g_pairs[73].same \dut.u_root_equal.g_pairs[72].same \dut.u_root_equal.g_pairs[71].same \dut.u_root_equal.g_pairs[70].same \dut.u_root_equal.g_pairs[69].same \dut.u_root_equal.g_pairs[68].same \dut.u_root_equal.g_pairs[67].same \dut.u_root_equal.g_pairs[66].same \dut.u_root_equal.g_pairs[65].same \dut.u_root_equal.g_pairs[64].same \dut.u_root_equal.g_pairs[63].same \dut.u_root_equal.g_pairs[62].same \dut.u_root_equal.g_pairs[61].same \dut.u_root_equal.g_pairs[60].same \dut.u_root_equal.g_pairs[59].same \dut.u_root_equal.g_pairs[58].same \dut.u_root_equal.g_pairs[57].same \dut.u_root_equal.g_pairs[56].same \dut.u_root_equal.g_pairs[55].same \dut.u_root_equal.g_pairs[54].same \dut.u_root_equal.g_pairs[53].same \dut.u_root_equal.g_pairs[52].same \dut.u_root_equal.g_pairs[51].same \dut.u_root_equal.g_pairs[50].same \dut.u_root_equal.g_pairs[49].same \dut.u_root_equal.g_pairs[48].same \dut.u_root_equal.g_pairs[47].same \dut.u_root_equal.g_pairs[46].same \dut.u_root_equal.g_pairs[45].same \dut.u_root_equal.g_pairs[44].same \dut.u_root_equal.g_pairs[43].same \dut.u_root_equal.g_pairs[42].same \dut.u_root_equal.g_pairs[41].same \dut.u_root_equal.g_pairs[40].same \dut.u_root_equal.g_pairs[39].same \dut.u_root_equal.g_pairs[38].same \dut.u_root_equal.g_pairs[37].same \dut.u_root_equal.g_pairs[36].same \dut.u_root_equal.g_pairs[35].same \dut.u_root_equal.g_pairs[34].same \dut.u_root_equal.g_pairs[33].same \dut.u_root_equal.g_pairs[32].same \dut.u_root_equal.g_pairs[31].same \dut.u_root_equal.g_pairs[30].same \dut.u_root_equal.g_pairs[29].same \dut.u_root_equal.g_pairs[28].same \dut.u_root_equal.g_pairs[27].same \dut.u_root_equal.g_pairs[26].same \dut.u_root_equal.g_pairs[25].same \dut.u_root_equal.g_pairs[24].same \dut.u_root_equal.g_pairs[23].same \dut.u_root_equal.g_pairs[22].same \dut.u_root_equal.g_pairs[21].same \dut.u_root_equal.g_pairs[20].same \dut.u_root_equal.g_pairs[19].same \dut.u_root_equal.g_pairs[18].same \dut.u_root_equal.g_pairs[17].same \dut.u_root_equal.g_pairs[16].same \dut.u_root_equal.g_pairs[15].same \dut.u_root_equal.g_pairs[14].same \dut.u_root_equal.g_pairs[13].same \dut.u_root_equal.g_pairs[12].same \dut.u_root_equal.g_pairs[11].same \dut.u_root_equal.g_pairs[10].same \dut.u_root_equal.g_pairs[9].same \dut.u_root_equal.g_pairs[8].same \dut.u_root_equal.g_pairs[7].same \dut.u_root_equal.g_pairs[6].same \dut.u_root_equal.g_pairs[5].same \dut.u_root_equal.g_pairs[4].same \dut.u_root_equal.g_pairs[3].same \dut.u_root_equal.g_pairs[2].same \dut.u_root_equal.g_pairs[1].same \dut.u_root_equal.g_pairs[0].same }
+    New input vector for $reduce_and cell $flatten\dut.\u_nonce_equal.$reduce_and$design.sv:238$163: { \dut.u_nonce_equal.g_pairs[127].same \dut.u_nonce_equal.g_pairs[126].same \dut.u_nonce_equal.g_pairs[125].same \dut.u_nonce_equal.g_pairs[124].same \dut.u_nonce_equal.g_pairs[123].same \dut.u_nonce_equal.g_pairs[122].same \dut.u_nonce_equal.g_pairs[121].same \dut.u_nonce_equal.g_pairs[120].same \dut.u_nonce_equal.g_pairs[119].same \dut.u_nonce_equal.g_pairs[118].same \dut.u_nonce_equal.g_pairs[117].same \dut.u_nonce_equal.g_pairs[116].same \dut.u_nonce_equal.g_pairs[115].same \dut.u_nonce_equal.g_pairs[114].same \dut.u_nonce_equal.g_pairs[113].same \dut.u_nonce_equal.g_pairs[112].same \dut.u_nonce_equal.g_pairs[111].same \dut.u_nonce_equal.g_pairs[110].same \dut.u_nonce_equal.g_pairs[109].same \dut.u_nonce_equal.g_pairs[108].same \dut.u_nonce_equal.g_pairs[107].same \dut.u_nonce_equal.g_pairs[106].same \dut.u_nonce_equal.g_pairs[105].same \dut.u_nonce_equal.g_pairs[104].same \dut.u_nonce_equal.g_pairs[103].same \dut.u_nonce_equal.g_pairs[102].same \dut.u_nonce_equal.g_pairs[101].same \dut.u_nonce_equal.g_pairs[100].same \dut.u_nonce_equal.g_pairs[99].same \dut.u_nonce_equal.g_pairs[98].same \dut.u_nonce_equal.g_pairs[97].same \dut.u_nonce_equal.g_pairs[96].same \dut.u_nonce_equal.g_pairs[95].same \dut.u_nonce_equal.g_pairs[94].same \dut.u_nonce_equal.g_pairs[93].same \dut.u_nonce_equal.g_pairs[92].same \dut.u_nonce_equal.g_pairs[91].same \dut.u_nonce_equal.g_pairs[90].same \dut.u_nonce_equal.g_pairs[89].same \dut.u_nonce_equal.g_pairs[88].same \dut.u_nonce_equal.g_pairs[87].same \dut.u_nonce_equal.g_pairs[86].same \dut.u_nonce_equal.g_pairs[85].same \dut.u_nonce_equal.g_pairs[84].same \dut.u_nonce_equal.g_pairs[83].same \dut.u_nonce_equal.g_pairs[82].same \dut.u_nonce_equal.g_pairs[81].same \dut.u_nonce_equal.g_pairs[80].same \dut.u_nonce_equal.g_pairs[79].same \dut.u_nonce_equal.g_pairs[78].same \dut.u_nonce_equal.g_pairs[77].same \dut.u_nonce_equal.g_pairs[76].same \dut.u_nonce_equal.g_pairs[75].same \dut.u_nonce_equal.g_pairs[74].same \dut.u_nonce_equal.g_pairs[73].same \dut.u_nonce_equal.g_pairs[72].same \dut.u_nonce_equal.g_pairs[71].same \dut.u_nonce_equal.g_pairs[70].same \dut.u_nonce_equal.g_pairs[69].same \dut.u_nonce_equal.g_pairs[68].same \dut.u_nonce_equal.g_pairs[67].same \dut.u_nonce_equal.g_pairs[66].same \dut.u_nonce_equal.g_pairs[65].same \dut.u_nonce_equal.g_pairs[64].same \dut.u_nonce_equal.g_pairs[63].same \dut.u_nonce_equal.g_pairs[62].same \dut.u_nonce_equal.g_pairs[61].same \dut.u_nonce_equal.g_pairs[60].same \dut.u_nonce_equal.g_pairs[59].same \dut.u_nonce_equal.g_pairs[58].same \dut.u_nonce_equal.g_pairs[57].same \dut.u_nonce_equal.g_pairs[56].same \dut.u_nonce_equal.g_pairs[55].same \dut.u_nonce_equal.g_pairs[54].same \dut.u_nonce_equal.g_pairs[53].same \dut.u_nonce_equal.g_pairs[52].same \dut.u_nonce_equal.g_pairs[51].same \dut.u_nonce_equal.g_pairs[50].same \dut.u_nonce_equal.g_pairs[49].same \dut.u_nonce_equal.g_pairs[48].same \dut.u_nonce_equal.g_pairs[47].same \dut.u_nonce_equal.g_pairs[46].same \dut.u_nonce_equal.g_pairs[45].same \dut.u_nonce_equal.g_pairs[44].same \dut.u_nonce_equal.g_pairs[43].same \dut.u_nonce_equal.g_pairs[42].same \dut.u_nonce_equal.g_pairs[41].same \dut.u_nonce_equal.g_pairs[40].same \dut.u_nonce_equal.g_pairs[39].same \dut.u_nonce_equal.g_pairs[38].same \dut.u_nonce_equal.g_pairs[37].same \dut.u_nonce_equal.g_pairs[36].same \dut.u_nonce_equal.g_pairs[35].same \dut.u_nonce_equal.g_pairs[34].same \dut.u_nonce_equal.g_pairs[33].same \dut.u_nonce_equal.g_pairs[32].same \dut.u_nonce_equal.g_pairs[31].same \dut.u_nonce_equal.g_pairs[30].same \dut.u_nonce_equal.g_pairs[29].same \dut.u_nonce_equal.g_pairs[28].same \dut.u_nonce_equal.g_pairs[27].same \dut.u_nonce_equal.g_pairs[26].same \dut.u_nonce_equal.g_pairs[25].same \dut.u_nonce_equal.g_pairs[24].same \dut.u_nonce_equal.g_pairs[23].same \dut.u_nonce_equal.g_pairs[22].same \dut.u_nonce_equal.g_pairs[21].same \dut.u_nonce_equal.g_pairs[20].same \dut.u_nonce_equal.g_pairs[19].same \dut.u_nonce_equal.g_pairs[18].same \dut.u_nonce_equal.g_pairs[17].same \dut.u_nonce_equal.g_pairs[16].same \dut.u_nonce_equal.g_pairs[15].same \dut.u_nonce_equal.g_pairs[14].same \dut.u_nonce_equal.g_pairs[13].same \dut.u_nonce_equal.g_pairs[12].same \dut.u_nonce_equal.g_pairs[11].same \dut.u_nonce_equal.g_pairs[10].same \dut.u_nonce_equal.g_pairs[9].same \dut.u_nonce_equal.g_pairs[8].same \dut.u_nonce_equal.g_pairs[7].same \dut.u_nonce_equal.g_pairs[6].same \dut.u_nonce_equal.g_pairs[5].same \dut.u_nonce_equal.g_pairs[4].same \dut.u_nonce_equal.g_pairs[3].same \dut.u_nonce_equal.g_pairs[2].same \dut.u_nonce_equal.g_pairs[1].same \dut.u_nonce_equal.g_pairs[0].same }
+    New ctrl vector for $pmux cell $flatten\dut.$procmux$790: { $auto$opt_reduce.cc:137:opt_pmux$1003 $flatten\dut.$eq$design.sv:100$552_Y $flatten\dut.$eq$design.sv:207$612_Y $flatten\dut.$procmux$694_CMP }
+  Optimizing cells in module \formal_top.
+Performed a total of 19 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\formal_top'.
+Computing hashes of 528 cells of `\formal_top'.
+Finding duplicate cells in `\formal_top'.
+Computing hashes of 525 cells of `\formal_top'.
+Finding duplicate cells in `\formal_top'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+3.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \formal_top..
+Removed 80 unused cells and 141 unused wires.
+<suppressed ~165 debug messages>
+
+3.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module formal_top.
+
+3.8.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \formal_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~112 debug messages>
+
+3.8.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \formal_top.
+Performed a total of 0 changes.
+
+3.8.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\formal_top'.
+Computing hashes of 445 cells of `\formal_top'.
+Finding duplicate cells in `\formal_top'.
+Removed a total of 0 cells.
+
+3.8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \formal_top..
+
+3.8.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module formal_top.
+
+3.8.14. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 3 bits (of 4) from port B of cell formal_top.$flatten\dut.$procmux$659_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell formal_top.$flatten\dut.$procmux$658_CMP1 ($eq).
+Removed top 2 bits (of 4) from port B of cell formal_top.$flatten\dut.$procmux$658_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell formal_top.$flatten\dut.$procmux$657_CMP1 ($eq).
+Removed top 1 bits (of 4) from port B of cell formal_top.$flatten\dut.$procmux$657_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell formal_top.$flatten\dut.$procmux$656_CMP1 ($eq).
+Removed top 1 bits (of 4) from port B of cell formal_top.$flatten\dut.$procmux$656_CMP0 ($eq).
+Removed top 24 bits (of 32) from port A of cell formal_top.$flatten\dut.$add$design.sv:71$645 ($add).
+Removed top 31 bits (of 32) from port B of cell formal_top.$flatten\dut.$add$design.sv:71$645 ($add).
+Removed top 23 bits (of 32) from port Y of cell formal_top.$flatten\dut.$add$design.sv:71$645 ($add).
+Removed top 25 bits (of 32) from port A of cell formal_top.$flatten\dut.$add$design.sv:69$639 ($add).
+Removed top 31 bits (of 32) from port B of cell formal_top.$flatten\dut.$add$design.sv:69$639 ($add).
+Removed top 24 bits (of 32) from port Y of cell formal_top.$flatten\dut.$add$design.sv:69$639 ($add).
+Removed top 1 bits (of 4) from port B of cell formal_top.$flatten\dut.$eq$design.sv:207$618 ($eq).
+Removed top 2 bits (of 4) from port B of cell formal_top.$flatten\dut.$eq$design.sv:207$614 ($eq).
+Removed top 2 bits (of 4) from port B of cell formal_top.$flatten\dut.$eq$design.sv:207$612 ($eq).
+Removed top 3 bits (of 4) from port B of cell formal_top.$flatten\dut.$eq$design.sv:207$611 ($eq).
+Removed top 1 bits (of 27) from port B of cell formal_top.$flatten\dut.$ge$design.sv:189$600 ($ge).
+Removed top 1 bits (of 27) from port A of cell formal_top.$flatten\dut.$add$design.sv:186$599 ($add).
+Removed top 24 bits (of 32) from port B of cell formal_top.$flatten\dut.$lt$design.sv:178$593 ($lt).
+Removed top 4 bits (of 11) from port B of cell formal_top.$flatten\dut.$eq$design.sv:173$589 ($eq).
+Removed top 1 bits (of 4) from port B of cell formal_top.$flatten\dut.$eq$design.sv:100$552 ($eq).
+Removed top 24 bits (of 32) from wire formal_top.$flatten\dut.$add$design.sv:69$639_Y.
+Removed top 23 bits (of 32) from wire formal_top.$flatten\dut.$add$design.sv:71$645_Y.
+
+3.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \formal_top..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+3.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.12. Executing OPT pass (performing simple optimizations).
+
+3.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module formal_top.
+
+3.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\formal_top'.
+Computing hashes of 445 cells of `\formal_top'.
+Finding duplicate cells in `\formal_top'.
+Removed a total of 0 cells.
+
+3.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \formal_top..
+
+3.12.4. Finished fast OPT passes.
+
+3.13. Executing SORT pass.
+
+3.14. Printing statistics.
+
+=== formal_top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      487 wires
+     7095 wire bits
+      335 public wires
+     3534 public wire bits
+       17 ports
+      534 port bits
+      445 cells
+        6   $add
+       13   $adff
+        4   $check
+      271   $eq
+        3   $ge
+       23   $logic_and
+       11   $logic_not
+       18   $logic_or
+        2   $lt
+       69   $mux
+        2   $ne
+        2   $not
+        7   $pmux
+        2   $reduce_and
+        4   $reduce_or
+        3   $scopeinfo
+        5   $shiftx
+
+3.15. Executing CHECK pass (checking for obvious problems).
+Checking module formal_top...
+Found and reported 0 problems.
+
+4. Executing ASYNC2SYNC pass.
+Replacing formal_top.$flatten\dut.$procdff$927 ($adff): ARST=\dut.permit_register_reset_n, D=$flatten\dut.$0\token_reset_asserted[0:0], Q=\dut.token_reset_asserted
+Replacing formal_top.$flatten\dut.$procdff$932 ($adff): ARST=\reset_n, D=$flatten\dut.$0\state_q[3:0], Q=\dut.state_q
+Replacing formal_top.$flatten\dut.$procdff$937 ($adff): ARST=\reset_n, D=$flatten\dut.$0\nonce_q[255:0], Q=\dut.nonce_q
+Replacing formal_top.$flatten\dut.$procdff$942 ($adff): ARST=\reset_n, D=$flatten\dut.$0\root_q[255:0], Q=\dut.root_q
+Replacing formal_top.$flatten\dut.$procdff$947 ($adff): ARST=\reset_n, D=$flatten\dut.$0\have_nonce_q[0:0], Q=\dut.have_nonce_q
+Replacing formal_top.$flatten\dut.$procdff$952 ($adff): ARST=\reset_n, D=$flatten\dut.$0\have_root_q[0:0], Q=\dut.have_root_q
+Replacing formal_top.$flatten\dut.$procdff$957 ($adff): ARST=\reset_n, D=$flatten\dut.$0\fault_q[0:0], Q=\dut.fault_q
+Replacing formal_top.$flatten\dut.$procdff$962 ($adff): ARST=\reset_n, D=$flatten\dut.$0\age_q[25:0], Q=\dut.age_q
+Replacing formal_top.$flatten\dut.$procdff$967 ($adff): ARST=\reset_n, D=$flatten\dut.$0\lease_age_q[26:0], Q=\dut.lease_age_q
+Replacing formal_top.$flatten\dut.$procdff$972 ($adff): ARST=\reset_n, D=$flatten\dut.$0\lease_active_q[0:0], Q=\dut.lease_active_q
+Replacing formal_top.$flatten\dut.$procdff$977 ($adff): ARST=\reset_n, D=$flatten\dut.$0\seen_nonce_q[0:0], Q=\dut.seen_nonce_q
+Replacing formal_top.$flatten\dut.$procdff$982 ($adff): ARST=\reset_n, D=$flatten\dut.$0\previous_nonce_q[255:0], Q=\dut.previous_nonce_q
+Replacing formal_top.$flatten\dut.$procdff$987 ($adff): ARST=\reset_n, D=$flatten\dut.$0\index_q[10:0], Q=\dut.index_q
+
+5. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \formal_top..
+Removed 8 unused cells and 8 unused wires.
+<suppressed ~9 debug messages>
+
+7. Executing SAT pass (solving SAT problems in the circuit).
+Using SAT solver `minisat`.
+
+Setting up time step 1:
+Import set-constraint: \clk = 1'1
+Import set-constraint for this timestep: \reset_n = 1'0
+Final constraint equation: { \reset_n \clk } = 2'01
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \crypto_done
+Import def constraint for this timestep: \crypto_valid
+Import def constraint for this timestep: \crypto_fault
+Import def constraint for this timestep: \crypto_busy
+Import def constraint for this timestep: \stop_i
+Import def constraint for this timestep: \nonce_valid
+Import def constraint for this timestep: \nonce_fault
+Import def constraint for this timestep: \root_valid
+Import def constraint for this timestep: \model_fault
+Import def constraint for this timestep: \request_ready
+Import def constraint for this timestep: \grant_valid
+Import def constraint for this timestep: \grant_last
+Import def constraint for this timestep: \grant_byte
+Import def constraint for this timestep: \nonce
+Import def constraint for this timestep: \root
+Imported 458 cells to SAT database.
+No constraints for initial state found.
+
+
+Setting up time step 2:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \crypto_done
+Import def constraint for this timestep: \crypto_valid
+Import def constraint for this timestep: \crypto_fault
+Import def constraint for this timestep: \crypto_busy
+Import def constraint for this timestep: \stop_i
+Import def constraint for this timestep: \nonce_valid
+Import def constraint for this timestep: \nonce_fault
+Import def constraint for this timestep: \root_valid
+Import def constraint for this timestep: \model_fault
+Import def constraint for this timestep: \request_ready
+Import def constraint for this timestep: \grant_valid
+Import def constraint for this timestep: \grant_last
+Import def constraint for this timestep: \grant_byte
+Import def constraint for this timestep: \nonce
+Import def constraint for this timestep: \root
+Imported 458 cells to SAT database.
+
+Setting up time step 1:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \crypto_done
+Import def constraint for this timestep: \crypto_valid
+Import def constraint for this timestep: \crypto_fault
+Import def constraint for this timestep: \crypto_busy
+Import def constraint for this timestep: \stop_i
+Import def constraint for this timestep: \nonce_valid
+Import def constraint for this timestep: \nonce_fault
+Import def constraint for this timestep: \root_valid
+Import def constraint for this timestep: \model_fault
+Import def constraint for this timestep: \request_ready
+Import def constraint for this timestep: \grant_valid
+Import def constraint for this timestep: \grant_last
+Import def constraint for this timestep: \grant_byte
+Import def constraint for this timestep: \nonce
+Import def constraint for this timestep: \root
+Imported 458 cells to SAT database.
+Import proof for assert: $flatten\dut.$logic_or$design.sv:207$621_Y when $flatten\dut.$assert$design.sv:207$610_EN.
+Import proof for assert: $flatten\dut.$logic_or$design.sv:208$624_Y when $flatten\dut.$assert$design.sv:207$610_EN.
+Import proof for assert: $flatten\dut.$logic_or$design.sv:209$627_Y when $flatten\dut.$assert$design.sv:207$610_EN.
+Import proof for assert: $flatten\dut.$logic_or$design.sv:210$632_Y when $flatten\dut.$assert$design.sv:207$610_EN.
+
+** Trying induction with length 1 **
+
+Setting up time step 3:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \crypto_done
+Import def constraint for this timestep: \crypto_valid
+Import def constraint for this timestep: \crypto_fault
+Import def constraint for this timestep: \crypto_busy
+Import def constraint for this timestep: \stop_i
+Import def constraint for this timestep: \nonce_valid
+Import def constraint for this timestep: \nonce_fault
+Import def constraint for this timestep: \root_valid
+Import def constraint for this timestep: \model_fault
+Import def constraint for this timestep: \request_ready
+Import def constraint for this timestep: \grant_valid
+Import def constraint for this timestep: \grant_last
+Import def constraint for this timestep: \grant_byte
+Import def constraint for this timestep: \nonce
+Import def constraint for this timestep: \root
+Imported 458 cells to SAT database.
+Import proof for assert: $flatten\dut.$logic_or$design.sv:207$621_Y when $flatten\dut.$assert$design.sv:207$610_EN.
+Import proof for assert: $flatten\dut.$logic_or$design.sv:208$624_Y when $flatten\dut.$assert$design.sv:207$610_EN.
+Import proof for assert: $flatten\dut.$logic_or$design.sv:209$627_Y when $flatten\dut.$assert$design.sv:207$610_EN.
+Import proof for assert: $flatten\dut.$logic_or$design.sv:210$632_Y when $flatten\dut.$assert$design.sv:207$610_EN.
+Import show expression: \clk
+Import show expression: \crypto_busy
+Import show expression: \crypto_done
+Import show expression: \crypto_fault
+Import show expression: \crypto_valid
+Import show expression: \dut.active_window
+Import show expression: \dut.admitted_root_i
+Import show expression: \dut.admitted_root_valid_i
+Import show expression: \dut.age_q
+Import show expression: \dut.binding_fault
+Import show expression: \dut.clk
+Import show expression: \dut.crypto_busy
+Import show expression: \dut.crypto_done
+Import show expression: \dut.crypto_fault
+Import show expression: \dut.crypto_valid
+Import show expression: \dut.expired
+Import show expression: \dut.failed_o
+Import show expression: \dut.fault_now
+Import show expression: \dut.fault_q
+Import show expression: \dut.grant_byte_i
+Import show expression: \dut.grant_last_i
+Import show expression: \dut.grant_valid_i
+Import show expression: \dut.have_nonce_q
+Import show expression: \dut.have_root_q
+Import show expression: \dut.index_q
+Import show expression: \dut.inference_enabled_o
+Import show expression: \dut.lease_active_q
+Import show expression: \dut.lease_age_q
+Import show expression: \dut.message_address
+Import show expression: \dut.message_byte$func$design.sv:81$494.address
+Import show expression: \dut.model_fault_i
+Import show expression: \dut.new_lease_o
+Import show expression: \dut.nonce_equal
+Import show expression: \dut.nonce_fault_i
+Import show expression: \dut.nonce_i
+Import show expression: \dut.nonce_q
+Import show expression: \dut.nonce_request_o
+Import show expression: \dut.nonce_valid_i
+Import show expression: \dut.permit_register_reset_n
+Import show expression: \dut.previous_nonce_q
+Import show expression: \dut.proof_stop_i
+Import show expression: \dut.request_ready_i
+Import show expression: \dut.reset_n
+Import show expression: \dut.root_equal
+Import show expression: \dut.root_q
+Import show expression: \dut.seen_nonce_q
+Import show expression: \dut.selected_message_address
+Import show expression: \dut.selected_message_byte
+Import show expression: \dut.shared_busy_i
+Import show expression: \dut.shared_done_i
+Import show expression: \dut.shared_fault_i
+Import show expression: \dut.shared_message_address_i
+Import show expression: \dut.shared_message_byte_o
+Import show expression: \dut.shared_signature_address_i
+Import show expression: \dut.shared_valid_i
+Import show expression: \dut.signature_address
+Import show expression: \dut.state_q
+Import show expression: \dut.timed_out
+Import show expression: \dut.token_reset_asserted
+Import show expression: \dut.u_nonce_equal.a
+Import show expression: \dut.u_nonce_equal.b
+Import show expression: \dut.u_nonce_equal.equal_o
+Import show expression: \dut.u_nonce_equal.g_pairs[0].same
+Import show expression: \dut.u_nonce_equal.g_pairs[100].same
+Import show expression: \dut.u_nonce_equal.g_pairs[101].same
+Import show expression: \dut.u_nonce_equal.g_pairs[102].same
+Import show expression: \dut.u_nonce_equal.g_pairs[103].same
+Import show expression: \dut.u_nonce_equal.g_pairs[104].same
+Import show expression: \dut.u_nonce_equal.g_pairs[105].same
+Import show expression: \dut.u_nonce_equal.g_pairs[106].same
+Import show expression: \dut.u_nonce_equal.g_pairs[107].same
+Import show expression: \dut.u_nonce_equal.g_pairs[108].same
+Import show expression: \dut.u_nonce_equal.g_pairs[109].same
+Import show expression: \dut.u_nonce_equal.g_pairs[10].same
+Import show expression: \dut.u_nonce_equal.g_pairs[110].same
+Import show expression: \dut.u_nonce_equal.g_pairs[111].same
+Import show expression: \dut.u_nonce_equal.g_pairs[112].same
+Import show expression: \dut.u_nonce_equal.g_pairs[113].same
+Import show expression: \dut.u_nonce_equal.g_pairs[114].same
+Import show expression: \dut.u_nonce_equal.g_pairs[115].same
+Import show expression: \dut.u_nonce_equal.g_pairs[116].same
+Import show expression: \dut.u_nonce_equal.g_pairs[117].same
+Import show expression: \dut.u_nonce_equal.g_pairs[118].same
+Import show expression: \dut.u_nonce_equal.g_pairs[119].same
+Import show expression: \dut.u_nonce_equal.g_pairs[11].same
+Import show expression: \dut.u_nonce_equal.g_pairs[120].same
+Import show expression: \dut.u_nonce_equal.g_pairs[121].same
+Import show expression: \dut.u_nonce_equal.g_pairs[122].same
+Import show expression: \dut.u_nonce_equal.g_pairs[123].same
+Import show expression: \dut.u_nonce_equal.g_pairs[124].same
+Import show expression: \dut.u_nonce_equal.g_pairs[125].same
+Import show expression: \dut.u_nonce_equal.g_pairs[126].same
+Import show expression: \dut.u_nonce_equal.g_pairs[127].same
+Import show expression: \dut.u_nonce_equal.g_pairs[12].same
+Import show expression: \dut.u_nonce_equal.g_pairs[13].same
+Import show expression: \dut.u_nonce_equal.g_pairs[14].same
+Import show expression: \dut.u_nonce_equal.g_pairs[15].same
+Import show expression: \dut.u_nonce_equal.g_pairs[16].same
+Import show expression: \dut.u_nonce_equal.g_pairs[17].same
+Import show expression: \dut.u_nonce_equal.g_pairs[18].same
+Import show expression: \dut.u_nonce_equal.g_pairs[19].same
+Import show expression: \dut.u_nonce_equal.g_pairs[1].same
+Import show expression: \dut.u_nonce_equal.g_pairs[20].same
+Import show expression: \dut.u_nonce_equal.g_pairs[21].same
+Import show expression: \dut.u_nonce_equal.g_pairs[22].same
+Import show expression: \dut.u_nonce_equal.g_pairs[23].same
+Import show expression: \dut.u_nonce_equal.g_pairs[24].same
+Import show expression: \dut.u_nonce_equal.g_pairs[25].same
+Import show expression: \dut.u_nonce_equal.g_pairs[26].same
+Import show expression: \dut.u_nonce_equal.g_pairs[27].same
+Import show expression: \dut.u_nonce_equal.g_pairs[28].same
+Import show expression: \dut.u_nonce_equal.g_pairs[29].same
+Import show expression: \dut.u_nonce_equal.g_pairs[2].same
+Import show expression: \dut.u_nonce_equal.g_pairs[30].same
+Import show expression: \dut.u_nonce_equal.g_pairs[31].same
+Import show expression: \dut.u_nonce_equal.g_pairs[32].same
+Import show expression: \dut.u_nonce_equal.g_pairs[33].same
+Import show expression: \dut.u_nonce_equal.g_pairs[34].same
+Import show expression: \dut.u_nonce_equal.g_pairs[35].same
+Import show expression: \dut.u_nonce_equal.g_pairs[36].same
+Import show expression: \dut.u_nonce_equal.g_pairs[37].same
+Import show expression: \dut.u_nonce_equal.g_pairs[38].same
+Import show expression: \dut.u_nonce_equal.g_pairs[39].same
+Import show expression: \dut.u_nonce_equal.g_pairs[3].same
+Import show expression: \dut.u_nonce_equal.g_pairs[40].same
+Import show expression: \dut.u_nonce_equal.g_pairs[41].same
+Import show expression: \dut.u_nonce_equal.g_pairs[42].same
+Import show expression: \dut.u_nonce_equal.g_pairs[43].same
+Import show expression: \dut.u_nonce_equal.g_pairs[44].same
+Import show expression: \dut.u_nonce_equal.g_pairs[45].same
+Import show expression: \dut.u_nonce_equal.g_pairs[46].same
+Import show expression: \dut.u_nonce_equal.g_pairs[47].same
+Import show expression: \dut.u_nonce_equal.g_pairs[48].same
+Import show expression: \dut.u_nonce_equal.g_pairs[49].same
+Import show expression: \dut.u_nonce_equal.g_pairs[4].same
+Import show expression: \dut.u_nonce_equal.g_pairs[50].same
+Import show expression: \dut.u_nonce_equal.g_pairs[51].same
+Import show expression: \dut.u_nonce_equal.g_pairs[52].same
+Import show expression: \dut.u_nonce_equal.g_pairs[53].same
+Import show expression: \dut.u_nonce_equal.g_pairs[54].same
+Import show expression: \dut.u_nonce_equal.g_pairs[55].same
+Import show expression: \dut.u_nonce_equal.g_pairs[56].same
+Import show expression: \dut.u_nonce_equal.g_pairs[57].same
+Import show expression: \dut.u_nonce_equal.g_pairs[58].same
+Import show expression: \dut.u_nonce_equal.g_pairs[59].same
+Import show expression: \dut.u_nonce_equal.g_pairs[5].same
+Import show expression: \dut.u_nonce_equal.g_pairs[60].same
+Import show expression: \dut.u_nonce_equal.g_pairs[61].same
+Import show expression: \dut.u_nonce_equal.g_pairs[62].same
+Import show expression: \dut.u_nonce_equal.g_pairs[63].same
+Import show expression: \dut.u_nonce_equal.g_pairs[64].same
+Import show expression: \dut.u_nonce_equal.g_pairs[65].same
+Import show expression: \dut.u_nonce_equal.g_pairs[66].same
+Import show expression: \dut.u_nonce_equal.g_pairs[67].same
+Import show expression: \dut.u_nonce_equal.g_pairs[68].same
+Import show expression: \dut.u_nonce_equal.g_pairs[69].same
+Import show expression: \dut.u_nonce_equal.g_pairs[6].same
+Import show expression: \dut.u_nonce_equal.g_pairs[70].same
+Import show expression: \dut.u_nonce_equal.g_pairs[71].same
+Import show expression: \dut.u_nonce_equal.g_pairs[72].same
+Import show expression: \dut.u_nonce_equal.g_pairs[73].same
+Import show expression: \dut.u_nonce_equal.g_pairs[74].same
+Import show expression: \dut.u_nonce_equal.g_pairs[75].same
+Import show expression: \dut.u_nonce_equal.g_pairs[76].same
+Import show expression: \dut.u_nonce_equal.g_pairs[77].same
+Import show expression: \dut.u_nonce_equal.g_pairs[78].same
+Import show expression: \dut.u_nonce_equal.g_pairs[79].same
+Import show expression: \dut.u_nonce_equal.g_pairs[7].same
+Import show expression: \dut.u_nonce_equal.g_pairs[80].same
+Import show expression: \dut.u_nonce_equal.g_pairs[81].same
+Import show expression: \dut.u_nonce_equal.g_pairs[82].same
+Import show expression: \dut.u_nonce_equal.g_pairs[83].same
+Import show expression: \dut.u_nonce_equal.g_pairs[84].same
+Import show expression: \dut.u_nonce_equal.g_pairs[85].same
+Import show expression: \dut.u_nonce_equal.g_pairs[86].same
+Import show expression: \dut.u_nonce_equal.g_pairs[87].same
+Import show expression: \dut.u_nonce_equal.g_pairs[88].same
+Import show expression: \dut.u_nonce_equal.g_pairs[89].same
+Import show expression: \dut.u_nonce_equal.g_pairs[8].same
+Import show expression: \dut.u_nonce_equal.g_pairs[90].same
+Import show expression: \dut.u_nonce_equal.g_pairs[91].same
+Import show expression: \dut.u_nonce_equal.g_pairs[92].same
+Import show expression: \dut.u_nonce_equal.g_pairs[93].same
+Import show expression: \dut.u_nonce_equal.g_pairs[94].same
+Import show expression: \dut.u_nonce_equal.g_pairs[95].same
+Import show expression: \dut.u_nonce_equal.g_pairs[96].same
+Import show expression: \dut.u_nonce_equal.g_pairs[97].same
+Import show expression: \dut.u_nonce_equal.g_pairs[98].same
+Import show expression: \dut.u_nonce_equal.g_pairs[99].same
+Import show expression: \dut.u_nonce_equal.g_pairs[9].same
+Import show expression: \dut.u_nonce_equal.pairs
+Import show expression: \dut.u_root_equal.a
+Import show expression: \dut.u_root_equal.b
+Import show expression: \dut.u_root_equal.equal_o
+Import show expression: \dut.u_root_equal.g_pairs[0].same
+Import show expression: \dut.u_root_equal.g_pairs[100].same
+Import show expression: \dut.u_root_equal.g_pairs[101].same
+Import show expression: \dut.u_root_equal.g_pairs[102].same
+Import show expression: \dut.u_root_equal.g_pairs[103].same
+Import show expression: \dut.u_root_equal.g_pairs[104].same
+Import show expression: \dut.u_root_equal.g_pairs[105].same
+Import show expression: \dut.u_root_equal.g_pairs[106].same
+Import show expression: \dut.u_root_equal.g_pairs[107].same
+Import show expression: \dut.u_root_equal.g_pairs[108].same
+Import show expression: \dut.u_root_equal.g_pairs[109].same
+Import show expression: \dut.u_root_equal.g_pairs[10].same
+Import show expression: \dut.u_root_equal.g_pairs[110].same
+Import show expression: \dut.u_root_equal.g_pairs[111].same
+Import show expression: \dut.u_root_equal.g_pairs[112].same
+Import show expression: \dut.u_root_equal.g_pairs[113].same
+Import show expression: \dut.u_root_equal.g_pairs[114].same
+Import show expression: \dut.u_root_equal.g_pairs[115].same
+Import show expression: \dut.u_root_equal.g_pairs[116].same
+Import show expression: \dut.u_root_equal.g_pairs[117].same
+Import show expression: \dut.u_root_equal.g_pairs[118].same
+Import show expression: \dut.u_root_equal.g_pairs[119].same
+Import show expression: \dut.u_root_equal.g_pairs[11].same
+Import show expression: \dut.u_root_equal.g_pairs[120].same
+Import show expression: \dut.u_root_equal.g_pairs[121].same
+Import show expression: \dut.u_root_equal.g_pairs[122].same
+Import show expression: \dut.u_root_equal.g_pairs[123].same
+Import show expression: \dut.u_root_equal.g_pairs[124].same
+Import show expression: \dut.u_root_equal.g_pairs[125].same
+Import show expression: \dut.u_root_equal.g_pairs[126].same
+Import show expression: \dut.u_root_equal.g_pairs[127].same
+Import show expression: \dut.u_root_equal.g_pairs[12].same
+Import show expression: \dut.u_root_equal.g_pairs[13].same
+Import show expression: \dut.u_root_equal.g_pairs[14].same
+Import show expression: \dut.u_root_equal.g_pairs[15].same
+Import show expression: \dut.u_root_equal.g_pairs[16].same
+Import show expression: \dut.u_root_equal.g_pairs[17].same
+Import show expression: \dut.u_root_equal.g_pairs[18].same
+Import show expression: \dut.u_root_equal.g_pairs[19].same
+Import show expression: \dut.u_root_equal.g_pairs[1].same
+Import show expression: \dut.u_root_equal.g_pairs[20].same
+Import show expression: \dut.u_root_equal.g_pairs[21].same
+Import show expression: \dut.u_root_equal.g_pairs[22].same
+Import show expression: \dut.u_root_equal.g_pairs[23].same
+Import show expression: \dut.u_root_equal.g_pairs[24].same
+Import show expression: \dut.u_root_equal.g_pairs[25].same
+Import show expression: \dut.u_root_equal.g_pairs[26].same
+Import show expression: \dut.u_root_equal.g_pairs[27].same
+Import show expression: \dut.u_root_equal.g_pairs[28].same
+Import show expression: \dut.u_root_equal.g_pairs[29].same
+Import show expression: \dut.u_root_equal.g_pairs[2].same
+Import show expression: \dut.u_root_equal.g_pairs[30].same
+Import show expression: \dut.u_root_equal.g_pairs[31].same
+Import show expression: \dut.u_root_equal.g_pairs[32].same
+Import show expression: \dut.u_root_equal.g_pairs[33].same
+Import show expression: \dut.u_root_equal.g_pairs[34].same
+Import show expression: \dut.u_root_equal.g_pairs[35].same
+Import show expression: \dut.u_root_equal.g_pairs[36].same
+Import show expression: \dut.u_root_equal.g_pairs[37].same
+Import show expression: \dut.u_root_equal.g_pairs[38].same
+Import show expression: \dut.u_root_equal.g_pairs[39].same
+Import show expression: \dut.u_root_equal.g_pairs[3].same
+Import show expression: \dut.u_root_equal.g_pairs[40].same
+Import show expression: \dut.u_root_equal.g_pairs[41].same
+Import show expression: \dut.u_root_equal.g_pairs[42].same
+Import show expression: \dut.u_root_equal.g_pairs[43].same
+Import show expression: \dut.u_root_equal.g_pairs[44].same
+Import show expression: \dut.u_root_equal.g_pairs[45].same
+Import show expression: \dut.u_root_equal.g_pairs[46].same
+Import show expression: \dut.u_root_equal.g_pairs[47].same
+Import show expression: \dut.u_root_equal.g_pairs[48].same
+Import show expression: \dut.u_root_equal.g_pairs[49].same
+Import show expression: \dut.u_root_equal.g_pairs[4].same
+Import show expression: \dut.u_root_equal.g_pairs[50].same
+Import show expression: \dut.u_root_equal.g_pairs[51].same
+Import show expression: \dut.u_root_equal.g_pairs[52].same
+Import show expression: \dut.u_root_equal.g_pairs[53].same
+Import show expression: \dut.u_root_equal.g_pairs[54].same
+Import show expression: \dut.u_root_equal.g_pairs[55].same
+Import show expression: \dut.u_root_equal.g_pairs[56].same
+Import show expression: \dut.u_root_equal.g_pairs[57].same
+Import show expression: \dut.u_root_equal.g_pairs[58].same
+Import show expression: \dut.u_root_equal.g_pairs[59].same
+Import show expression: \dut.u_root_equal.g_pairs[5].same
+Import show expression: \dut.u_root_equal.g_pairs[60].same
+Import show expression: \dut.u_root_equal.g_pairs[61].same
+Import show expression: \dut.u_root_equal.g_pairs[62].same
+Import show expression: \dut.u_root_equal.g_pairs[63].same
+Import show expression: \dut.u_root_equal.g_pairs[64].same
+Import show expression: \dut.u_root_equal.g_pairs[65].same
+Import show expression: \dut.u_root_equal.g_pairs[66].same
+Import show expression: \dut.u_root_equal.g_pairs[67].same
+Import show expression: \dut.u_root_equal.g_pairs[68].same
+Import show expression: \dut.u_root_equal.g_pairs[69].same
+Import show expression: \dut.u_root_equal.g_pairs[6].same
+Import show expression: \dut.u_root_equal.g_pairs[70].same
+Import show expression: \dut.u_root_equal.g_pairs[71].same
+Import show expression: \dut.u_root_equal.g_pairs[72].same
+Import show expression: \dut.u_root_equal.g_pairs[73].same
+Import show expression: \dut.u_root_equal.g_pairs[74].same
+Import show expression: \dut.u_root_equal.g_pairs[75].same
+Import show expression: \dut.u_root_equal.g_pairs[76].same
+Import show expression: \dut.u_root_equal.g_pairs[77].same
+Import show expression: \dut.u_root_equal.g_pairs[78].same
+Import show expression: \dut.u_root_equal.g_pairs[79].same
+Import show expression: \dut.u_root_equal.g_pairs[7].same
+Import show expression: \dut.u_root_equal.g_pairs[80].same
+Import show expression: \dut.u_root_equal.g_pairs[81].same
+Import show expression: \dut.u_root_equal.g_pairs[82].same
+Import show expression: \dut.u_root_equal.g_pairs[83].same
+Import show expression: \dut.u_root_equal.g_pairs[84].same
+Import show expression: \dut.u_root_equal.g_pairs[85].same
+Import show expression: \dut.u_root_equal.g_pairs[86].same
+Import show expression: \dut.u_root_equal.g_pairs[87].same
+Import show expression: \dut.u_root_equal.g_pairs[88].same
+Import show expression: \dut.u_root_equal.g_pairs[89].same
+Import show expression: \dut.u_root_equal.g_pairs[8].same
+Import show expression: \dut.u_root_equal.g_pairs[90].same
+Import show expression: \dut.u_root_equal.g_pairs[91].same
+Import show expression: \dut.u_root_equal.g_pairs[92].same
+Import show expression: \dut.u_root_equal.g_pairs[93].same
+Import show expression: \dut.u_root_equal.g_pairs[94].same
+Import show expression: \dut.u_root_equal.g_pairs[95].same
+Import show expression: \dut.u_root_equal.g_pairs[96].same
+Import show expression: \dut.u_root_equal.g_pairs[97].same
+Import show expression: \dut.u_root_equal.g_pairs[98].same
+Import show expression: \dut.u_root_equal.g_pairs[99].same
+Import show expression: \dut.u_root_equal.g_pairs[9].same
+Import show expression: \dut.u_root_equal.pairs
+Import show expression: \grant_byte
+Import show expression: \grant_last
+Import show expression: \grant_valid
+Import show expression: \model_fault
+Import show expression: \nonce
+Import show expression: \nonce_fault
+Import show expression: \nonce_valid
+Import show expression: \request_ready
+Import show expression: \reset_n
+Import show expression: \root
+Import show expression: \root_valid
+Import show expression: \stop_i
+
+[base case 1] Solving problem with 565583 variables and 1576973 clauses..
+Base case for induction length 1 proven.
+
+Setting up time step 2:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \crypto_done
+Import def constraint for this timestep: \crypto_valid
+Import def constraint for this timestep: \crypto_fault
+Import def constraint for this timestep: \crypto_busy
+Import def constraint for this timestep: \stop_i
+Import def constraint for this timestep: \nonce_valid
+Import def constraint for this timestep: \nonce_fault
+Import def constraint for this timestep: \root_valid
+Import def constraint for this timestep: \model_fault
+Import def constraint for this timestep: \request_ready
+Import def constraint for this timestep: \grant_valid
+Import def constraint for this timestep: \grant_last
+Import def constraint for this timestep: \grant_byte
+Import def constraint for this timestep: \nonce
+Import def constraint for this timestep: \root
+Imported 458 cells to SAT database.
+Import proof for assert: $flatten\dut.$logic_or$design.sv:207$621_Y when $flatten\dut.$assert$design.sv:207$610_EN.
+Import proof for assert: $flatten\dut.$logic_or$design.sv:208$624_Y when $flatten\dut.$assert$design.sv:207$610_EN.
+Import proof for assert: $flatten\dut.$logic_or$design.sv:209$627_Y when $flatten\dut.$assert$design.sv:207$610_EN.
+Import proof for assert: $flatten\dut.$logic_or$design.sv:210$632_Y when $flatten\dut.$assert$design.sv:207$610_EN.
+Import show expression: \clk
+Import show expression: \crypto_busy
+Import show expression: \crypto_done
+Import show expression: \crypto_fault
+Import show expression: \crypto_valid
+Import show expression: \dut.active_window
+Import show expression: \dut.admitted_root_i
+Import show expression: \dut.admitted_root_valid_i
+Import show expression: \dut.age_q
+Import show expression: \dut.binding_fault
+Import show expression: \dut.clk
+Import show expression: \dut.crypto_busy
+Import show expression: \dut.crypto_done
+Import show expression: \dut.crypto_fault
+Import show expression: \dut.crypto_valid
+Import show expression: \dut.expired
+Import show expression: \dut.failed_o
+Import show expression: \dut.fault_now
+Import show expression: \dut.fault_q
+Import show expression: \dut.grant_byte_i
+Import show expression: \dut.grant_last_i
+Import show expression: \dut.grant_valid_i
+Import show expression: \dut.have_nonce_q
+Import show expression: \dut.have_root_q
+Import show expression: \dut.index_q
+Import show expression: \dut.inference_enabled_o
+Import show expression: \dut.lease_active_q
+Import show expression: \dut.lease_age_q
+Import show expression: \dut.message_address
+Import show expression: \dut.message_byte$func$design.sv:81$494.address
+Import show expression: \dut.model_fault_i
+Import show expression: \dut.new_lease_o
+Import show expression: \dut.nonce_equal
+Import show expression: \dut.nonce_fault_i
+Import show expression: \dut.nonce_i
+Import show expression: \dut.nonce_q
+Import show expression: \dut.nonce_request_o
+Import show expression: \dut.nonce_valid_i
+Import show expression: \dut.permit_register_reset_n
+Import show expression: \dut.previous_nonce_q
+Import show expression: \dut.proof_stop_i
+Import show expression: \dut.request_ready_i
+Import show expression: \dut.reset_n
+Import show expression: \dut.root_equal
+Import show expression: \dut.root_q
+Import show expression: \dut.seen_nonce_q
+Import show expression: \dut.selected_message_address
+Import show expression: \dut.selected_message_byte
+Import show expression: \dut.shared_busy_i
+Import show expression: \dut.shared_done_i
+Import show expression: \dut.shared_fault_i
+Import show expression: \dut.shared_message_address_i
+Import show expression: \dut.shared_message_byte_o
+Import show expression: \dut.shared_signature_address_i
+Import show expression: \dut.shared_valid_i
+Import show expression: \dut.signature_address
+Import show expression: \dut.state_q
+Import show expression: \dut.timed_out
+Import show expression: \dut.token_reset_asserted
+Import show expression: \dut.u_nonce_equal.a
+Import show expression: \dut.u_nonce_equal.b
+Import show expression: \dut.u_nonce_equal.equal_o
+Import show expression: \dut.u_nonce_equal.g_pairs[0].same
+Import show expression: \dut.u_nonce_equal.g_pairs[100].same
+Import show expression: \dut.u_nonce_equal.g_pairs[101].same
+Import show expression: \dut.u_nonce_equal.g_pairs[102].same
+Import show expression: \dut.u_nonce_equal.g_pairs[103].same
+Import show expression: \dut.u_nonce_equal.g_pairs[104].same
+Import show expression: \dut.u_nonce_equal.g_pairs[105].same
+Import show expression: \dut.u_nonce_equal.g_pairs[106].same
+Import show expression: \dut.u_nonce_equal.g_pairs[107].same
+Import show expression: \dut.u_nonce_equal.g_pairs[108].same
+Import show expression: \dut.u_nonce_equal.g_pairs[109].same
+Import show expression: \dut.u_nonce_equal.g_pairs[10].same
+Import show expression: \dut.u_nonce_equal.g_pairs[110].same
+Import show expression: \dut.u_nonce_equal.g_pairs[111].same
+Import show expression: \dut.u_nonce_equal.g_pairs[112].same
+Import show expression: \dut.u_nonce_equal.g_pairs[113].same
+Import show expression: \dut.u_nonce_equal.g_pairs[114].same
+Import show expression: \dut.u_nonce_equal.g_pairs[115].same
+Import show expression: \dut.u_nonce_equal.g_pairs[116].same
+Import show expression: \dut.u_nonce_equal.g_pairs[117].same
+Import show expression: \dut.u_nonce_equal.g_pairs[118].same
+Import show expression: \dut.u_nonce_equal.g_pairs[119].same
+Import show expression: \dut.u_nonce_equal.g_pairs[11].same
+Import show expression: \dut.u_nonce_equal.g_pairs[120].same
+Import show expression: \dut.u_nonce_equal.g_pairs[121].same
+Import show expression: \dut.u_nonce_equal.g_pairs[122].same
+Import show expression: \dut.u_nonce_equal.g_pairs[123].same
+Import show expression: \dut.u_nonce_equal.g_pairs[124].same
+Import show expression: \dut.u_nonce_equal.g_pairs[125].same
+Import show expression: \dut.u_nonce_equal.g_pairs[126].same
+Import show expression: \dut.u_nonce_equal.g_pairs[127].same
+Import show expression: \dut.u_nonce_equal.g_pairs[12].same
+Import show expression: \dut.u_nonce_equal.g_pairs[13].same
+Import show expression: \dut.u_nonce_equal.g_pairs[14].same
+Import show expression: \dut.u_nonce_equal.g_pairs[15].same
+Import show expression: \dut.u_nonce_equal.g_pairs[16].same
+Import show expression: \dut.u_nonce_equal.g_pairs[17].same
+Import show expression: \dut.u_nonce_equal.g_pairs[18].same
+Import show expression: \dut.u_nonce_equal.g_pairs[19].same
+Import show expression: \dut.u_nonce_equal.g_pairs[1].same
+Import show expression: \dut.u_nonce_equal.g_pairs[20].same
+Import show expression: \dut.u_nonce_equal.g_pairs[21].same
+Import show expression: \dut.u_nonce_equal.g_pairs[22].same
+Import show expression: \dut.u_nonce_equal.g_pairs[23].same
+Import show expression: \dut.u_nonce_equal.g_pairs[24].same
+Import show expression: \dut.u_nonce_equal.g_pairs[25].same
+Import show expression: \dut.u_nonce_equal.g_pairs[26].same
+Import show expression: \dut.u_nonce_equal.g_pairs[27].same
+Import show expression: \dut.u_nonce_equal.g_pairs[28].same
+Import show expression: \dut.u_nonce_equal.g_pairs[29].same
+Import show expression: \dut.u_nonce_equal.g_pairs[2].same
+Import show expression: \dut.u_nonce_equal.g_pairs[30].same
+Import show expression: \dut.u_nonce_equal.g_pairs[31].same
+Import show expression: \dut.u_nonce_equal.g_pairs[32].same
+Import show expression: \dut.u_nonce_equal.g_pairs[33].same
+Import show expression: \dut.u_nonce_equal.g_pairs[34].same
+Import show expression: \dut.u_nonce_equal.g_pairs[35].same
+Import show expression: \dut.u_nonce_equal.g_pairs[36].same
+Import show expression: \dut.u_nonce_equal.g_pairs[37].same
+Import show expression: \dut.u_nonce_equal.g_pairs[38].same
+Import show expression: \dut.u_nonce_equal.g_pairs[39].same
+Import show expression: \dut.u_nonce_equal.g_pairs[3].same
+Import show expression: \dut.u_nonce_equal.g_pairs[40].same
+Import show expression: \dut.u_nonce_equal.g_pairs[41].same
+Import show expression: \dut.u_nonce_equal.g_pairs[42].same
+Import show expression: \dut.u_nonce_equal.g_pairs[43].same
+Import show expression: \dut.u_nonce_equal.g_pairs[44].same
+Import show expression: \dut.u_nonce_equal.g_pairs[45].same
+Import show expression: \dut.u_nonce_equal.g_pairs[46].same
+Import show expression: \dut.u_nonce_equal.g_pairs[47].same
+Import show expression: \dut.u_nonce_equal.g_pairs[48].same
+Import show expression: \dut.u_nonce_equal.g_pairs[49].same
+Import show expression: \dut.u_nonce_equal.g_pairs[4].same
+Import show expression: \dut.u_nonce_equal.g_pairs[50].same
+Import show expression: \dut.u_nonce_equal.g_pairs[51].same
+Import show expression: \dut.u_nonce_equal.g_pairs[52].same
+Import show expression: \dut.u_nonce_equal.g_pairs[53].same
+Import show expression: \dut.u_nonce_equal.g_pairs[54].same
+Import show expression: \dut.u_nonce_equal.g_pairs[55].same
+Import show expression: \dut.u_nonce_equal.g_pairs[56].same
+Import show expression: \dut.u_nonce_equal.g_pairs[57].same
+Import show expression: \dut.u_nonce_equal.g_pairs[58].same
+Import show expression: \dut.u_nonce_equal.g_pairs[59].same
+Import show expression: \dut.u_nonce_equal.g_pairs[5].same
+Import show expression: \dut.u_nonce_equal.g_pairs[60].same
+Import show expression: \dut.u_nonce_equal.g_pairs[61].same
+Import show expression: \dut.u_nonce_equal.g_pairs[62].same
+Import show expression: \dut.u_nonce_equal.g_pairs[63].same
+Import show expression: \dut.u_nonce_equal.g_pairs[64].same
+Import show expression: \dut.u_nonce_equal.g_pairs[65].same
+Import show expression: \dut.u_nonce_equal.g_pairs[66].same
+Import show expression: \dut.u_nonce_equal.g_pairs[67].same
+Import show expression: \dut.u_nonce_equal.g_pairs[68].same
+Import show expression: \dut.u_nonce_equal.g_pairs[69].same
+Import show expression: \dut.u_nonce_equal.g_pairs[6].same
+Import show expression: \dut.u_nonce_equal.g_pairs[70].same
+Import show expression: \dut.u_nonce_equal.g_pairs[71].same
+Import show expression: \dut.u_nonce_equal.g_pairs[72].same
+Import show expression: \dut.u_nonce_equal.g_pairs[73].same
+Import show expression: \dut.u_nonce_equal.g_pairs[74].same
+Import show expression: \dut.u_nonce_equal.g_pairs[75].same
+Import show expression: \dut.u_nonce_equal.g_pairs[76].same
+Import show expression: \dut.u_nonce_equal.g_pairs[77].same
+Import show expression: \dut.u_nonce_equal.g_pairs[78].same
+Import show expression: \dut.u_nonce_equal.g_pairs[79].same
+Import show expression: \dut.u_nonce_equal.g_pairs[7].same
+Import show expression: \dut.u_nonce_equal.g_pairs[80].same
+Import show expression: \dut.u_nonce_equal.g_pairs[81].same
+Import show expression: \dut.u_nonce_equal.g_pairs[82].same
+Import show expression: \dut.u_nonce_equal.g_pairs[83].same
+Import show expression: \dut.u_nonce_equal.g_pairs[84].same
+Import show expression: \dut.u_nonce_equal.g_pairs[85].same
+Import show expression: \dut.u_nonce_equal.g_pairs[86].same
+Import show expression: \dut.u_nonce_equal.g_pairs[87].same
+Import show expression: \dut.u_nonce_equal.g_pairs[88].same
+Import show expression: \dut.u_nonce_equal.g_pairs[89].same
+Import show expression: \dut.u_nonce_equal.g_pairs[8].same
+Import show expression: \dut.u_nonce_equal.g_pairs[90].same
+Import show expression: \dut.u_nonce_equal.g_pairs[91].same
+Import show expression: \dut.u_nonce_equal.g_pairs[92].same
+Import show expression: \dut.u_nonce_equal.g_pairs[93].same
+Import show expression: \dut.u_nonce_equal.g_pairs[94].same
+Import show expression: \dut.u_nonce_equal.g_pairs[95].same
+Import show expression: \dut.u_nonce_equal.g_pairs[96].same
+Import show expression: \dut.u_nonce_equal.g_pairs[97].same
+Import show expression: \dut.u_nonce_equal.g_pairs[98].same
+Import show expression: \dut.u_nonce_equal.g_pairs[99].same
+Import show expression: \dut.u_nonce_equal.g_pairs[9].same
+Import show expression: \dut.u_nonce_equal.pairs
+Import show expression: \dut.u_root_equal.a
+Import show expression: \dut.u_root_equal.b
+Import show expression: \dut.u_root_equal.equal_o
+Import show expression: \dut.u_root_equal.g_pairs[0].same
+Import show expression: \dut.u_root_equal.g_pairs[100].same
+Import show expression: \dut.u_root_equal.g_pairs[101].same
+Import show expression: \dut.u_root_equal.g_pairs[102].same
+Import show expression: \dut.u_root_equal.g_pairs[103].same
+Import show expression: \dut.u_root_equal.g_pairs[104].same
+Import show expression: \dut.u_root_equal.g_pairs[105].same
+Import show expression: \dut.u_root_equal.g_pairs[106].same
+Import show expression: \dut.u_root_equal.g_pairs[107].same
+Import show expression: \dut.u_root_equal.g_pairs[108].same
+Import show expression: \dut.u_root_equal.g_pairs[109].same
+Import show expression: \dut.u_root_equal.g_pairs[10].same
+Import show expression: \dut.u_root_equal.g_pairs[110].same
+Import show expression: \dut.u_root_equal.g_pairs[111].same
+Import show expression: \dut.u_root_equal.g_pairs[112].same
+Import show expression: \dut.u_root_equal.g_pairs[113].same
+Import show expression: \dut.u_root_equal.g_pairs[114].same
+Import show expression: \dut.u_root_equal.g_pairs[115].same
+Import show expression: \dut.u_root_equal.g_pairs[116].same
+Import show expression: \dut.u_root_equal.g_pairs[117].same
+Import show expression: \dut.u_root_equal.g_pairs[118].same
+Import show expression: \dut.u_root_equal.g_pairs[119].same
+Import show expression: \dut.u_root_equal.g_pairs[11].same
+Import show expression: \dut.u_root_equal.g_pairs[120].same
+Import show expression: \dut.u_root_equal.g_pairs[121].same
+Import show expression: \dut.u_root_equal.g_pairs[122].same
+Import show expression: \dut.u_root_equal.g_pairs[123].same
+Import show expression: \dut.u_root_equal.g_pairs[124].same
+Import show expression: \dut.u_root_equal.g_pairs[125].same
+Import show expression: \dut.u_root_equal.g_pairs[126].same
+Import show expression: \dut.u_root_equal.g_pairs[127].same
+Import show expression: \dut.u_root_equal.g_pairs[12].same
+Import show expression: \dut.u_root_equal.g_pairs[13].same
+Import show expression: \dut.u_root_equal.g_pairs[14].same
+Import show expression: \dut.u_root_equal.g_pairs[15].same
+Import show expression: \dut.u_root_equal.g_pairs[16].same
+Import show expression: \dut.u_root_equal.g_pairs[17].same
+Import show expression: \dut.u_root_equal.g_pairs[18].same
+Import show expression: \dut.u_root_equal.g_pairs[19].same
+Import show expression: \dut.u_root_equal.g_pairs[1].same
+Import show expression: \dut.u_root_equal.g_pairs[20].same
+Import show expression: \dut.u_root_equal.g_pairs[21].same
+Import show expression: \dut.u_root_equal.g_pairs[22].same
+Import show expression: \dut.u_root_equal.g_pairs[23].same
+Import show expression: \dut.u_root_equal.g_pairs[24].same
+Import show expression: \dut.u_root_equal.g_pairs[25].same
+Import show expression: \dut.u_root_equal.g_pairs[26].same
+Import show expression: \dut.u_root_equal.g_pairs[27].same
+Import show expression: \dut.u_root_equal.g_pairs[28].same
+Import show expression: \dut.u_root_equal.g_pairs[29].same
+Import show expression: \dut.u_root_equal.g_pairs[2].same
+Import show expression: \dut.u_root_equal.g_pairs[30].same
+Import show expression: \dut.u_root_equal.g_pairs[31].same
+Import show expression: \dut.u_root_equal.g_pairs[32].same
+Import show expression: \dut.u_root_equal.g_pairs[33].same
+Import show expression: \dut.u_root_equal.g_pairs[34].same
+Import show expression: \dut.u_root_equal.g_pairs[35].same
+Import show expression: \dut.u_root_equal.g_pairs[36].same
+Import show expression: \dut.u_root_equal.g_pairs[37].same
+Import show expression: \dut.u_root_equal.g_pairs[38].same
+Import show expression: \dut.u_root_equal.g_pairs[39].same
+Import show expression: \dut.u_root_equal.g_pairs[3].same
+Import show expression: \dut.u_root_equal.g_pairs[40].same
+Import show expression: \dut.u_root_equal.g_pairs[41].same
+Import show expression: \dut.u_root_equal.g_pairs[42].same
+Import show expression: \dut.u_root_equal.g_pairs[43].same
+Import show expression: \dut.u_root_equal.g_pairs[44].same
+Import show expression: \dut.u_root_equal.g_pairs[45].same
+Import show expression: \dut.u_root_equal.g_pairs[46].same
+Import show expression: \dut.u_root_equal.g_pairs[47].same
+Import show expression: \dut.u_root_equal.g_pairs[48].same
+Import show expression: \dut.u_root_equal.g_pairs[49].same
+Import show expression: \dut.u_root_equal.g_pairs[4].same
+Import show expression: \dut.u_root_equal.g_pairs[50].same
+Import show expression: \dut.u_root_equal.g_pairs[51].same
+Import show expression: \dut.u_root_equal.g_pairs[52].same
+Import show expression: \dut.u_root_equal.g_pairs[53].same
+Import show expression: \dut.u_root_equal.g_pairs[54].same
+Import show expression: \dut.u_root_equal.g_pairs[55].same
+Import show expression: \dut.u_root_equal.g_pairs[56].same
+Import show expression: \dut.u_root_equal.g_pairs[57].same
+Import show expression: \dut.u_root_equal.g_pairs[58].same
+Import show expression: \dut.u_root_equal.g_pairs[59].same
+Import show expression: \dut.u_root_equal.g_pairs[5].same
+Import show expression: \dut.u_root_equal.g_pairs[60].same
+Import show expression: \dut.u_root_equal.g_pairs[61].same
+Import show expression: \dut.u_root_equal.g_pairs[62].same
+Import show expression: \dut.u_root_equal.g_pairs[63].same
+Import show expression: \dut.u_root_equal.g_pairs[64].same
+Import show expression: \dut.u_root_equal.g_pairs[65].same
+Import show expression: \dut.u_root_equal.g_pairs[66].same
+Import show expression: \dut.u_root_equal.g_pairs[67].same
+Import show expression: \dut.u_root_equal.g_pairs[68].same
+Import show expression: \dut.u_root_equal.g_pairs[69].same
+Import show expression: \dut.u_root_equal.g_pairs[6].same
+Import show expression: \dut.u_root_equal.g_pairs[70].same
+Import show expression: \dut.u_root_equal.g_pairs[71].same
+Import show expression: \dut.u_root_equal.g_pairs[72].same
+Import show expression: \dut.u_root_equal.g_pairs[73].same
+Import show expression: \dut.u_root_equal.g_pairs[74].same
+Import show expression: \dut.u_root_equal.g_pairs[75].same
+Import show expression: \dut.u_root_equal.g_pairs[76].same
+Import show expression: \dut.u_root_equal.g_pairs[77].same
+Import show expression: \dut.u_root_equal.g_pairs[78].same
+Import show expression: \dut.u_root_equal.g_pairs[79].same
+Import show expression: \dut.u_root_equal.g_pairs[7].same
+Import show expression: \dut.u_root_equal.g_pairs[80].same
+Import show expression: \dut.u_root_equal.g_pairs[81].same
+Import show expression: \dut.u_root_equal.g_pairs[82].same
+Import show expression: \dut.u_root_equal.g_pairs[83].same
+Import show expression: \dut.u_root_equal.g_pairs[84].same
+Import show expression: \dut.u_root_equal.g_pairs[85].same
+Import show expression: \dut.u_root_equal.g_pairs[86].same
+Import show expression: \dut.u_root_equal.g_pairs[87].same
+Import show expression: \dut.u_root_equal.g_pairs[88].same
+Import show expression: \dut.u_root_equal.g_pairs[89].same
+Import show expression: \dut.u_root_equal.g_pairs[8].same
+Import show expression: \dut.u_root_equal.g_pairs[90].same
+Import show expression: \dut.u_root_equal.g_pairs[91].same
+Import show expression: \dut.u_root_equal.g_pairs[92].same
+Import show expression: \dut.u_root_equal.g_pairs[93].same
+Import show expression: \dut.u_root_equal.g_pairs[94].same
+Import show expression: \dut.u_root_equal.g_pairs[95].same
+Import show expression: \dut.u_root_equal.g_pairs[96].same
+Import show expression: \dut.u_root_equal.g_pairs[97].same
+Import show expression: \dut.u_root_equal.g_pairs[98].same
+Import show expression: \dut.u_root_equal.g_pairs[99].same
+Import show expression: \dut.u_root_equal.g_pairs[9].same
+Import show expression: \dut.u_root_equal.pairs
+Import show expression: \grant_byte
+Import show expression: \grant_last
+Import show expression: \grant_valid
+Import show expression: \model_fault
+Import show expression: \nonce
+Import show expression: \nonce_fault
+Import show expression: \nonce_valid
+Import show expression: \request_ready
+Import show expression: \reset_n
+Import show expression: \root
+Import show expression: \root_valid
+Import show expression: \stop_i
+
+[induction step 1] Solving problem with 371170 variables and 1034503 clauses..
+Induction step proven: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+

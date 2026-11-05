@@ -1,0 +1,29 @@
+{
+  "result": "MAPPED_TOPOLOGY_MATCH",
+  "rings": [
+    {
+      "cell": 0,
+      "inverting_latch_stages": 5,
+      "single_feedback_cycle": true,
+      "sampling_stages": 2,
+      "sampling_clock": "core_clk"
+    },
+    {
+      "cell": 1,
+      "inverting_latch_stages": 7,
+      "single_feedback_cycle": true,
+      "sampling_stages": 2,
+      "sampling_clock": "core_clk"
+    },
+    {
+      "cell": 2,
+      "inverting_latch_stages": 9,
+      "single_feedback_cycle": true,
+      "sampling_stages": 2,
+      "sampling_clock": "core_clk"
+    }
+  ],
+  "physical_entropy_qualified": false,
+  "scope": "Digital ring connectivity and two-stage sampling only. This does not verify completed routing, oscillation, entropy, timing closure or physical security.",
+  "netlist_sha256": "267d0f5b531579c2326c4e049eae6b25be459a3180d2996d443df476eaf5d6bb"
+}

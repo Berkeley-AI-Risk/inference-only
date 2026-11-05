@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3",
+    "LOCAL_SIGNED_UPDATE/tools/uart_check.py",
+    "--device",
+    "/dev/cu.usbserial-20250303171",
+    "--expected",
+    "108,32",
+    "--output",
+    "LOCAL_PROTOTYPE/evidence/board-25mhz-v9/baseline-after.json"
+  ],
+  "exit_code": 0,
+  "time": "2026-11-05T15:14:00.379459+00:00"
+}

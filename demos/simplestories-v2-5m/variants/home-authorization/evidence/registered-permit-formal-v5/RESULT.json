@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "exit_code": 0,
+  "elapsed_seconds": 2.244564749998972,
+  "yosys_sha256": "f59e100c4df830cf7898bc69da624225f15c25e09b1c5747c9b510a15a7a69f5",
+  "response_cycles": 50000000,
+  "lease_cycles": 125000000,
+  "renew_lead_cycles": 62500000,
+  "shared_message_selector": true,
+  "method": "Temporal induction from reset, with binary induction states and arbitrary binary inputs; async2sync clocked abstraction.",
+  "property": "Whenever the registered permit releases reset, the existing home gate permits inference and stop is clear.",
+  "excluded": [
+    "cryptographic correctness",
+    "entropy",
+    "analog or sub-cycle reset behavior",
+    "CDC",
+    "whole-chip noninterference"
+  ],
+  "inputs_sha256": "d14dee6b0bce5e1800e9f4f630046ef79d84096d858e28c091ab89b604d8ec7d",
+  "proof_log_sha256": "4c27051edaae7c777739c0b8fd956ad32436abb8be0443633eba4e109e288ff7"
+}

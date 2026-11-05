@@ -257,6 +257,14 @@ def calculate(root):
             need(row.get('evidence_review') in sources, 'Missing S-AWIC raw evidence review')
             checked = verifier.verify(target, (root / row['source']).parent)
             need(checked == sources[row['evidence_review']], 'S-AWIC raw evidence review differs')
+        if row['id'] == 'simplestories-home-authorization':
+            target = root / MODEL / 'variants/home-authorization'
+            spec = importlib.util.spec_from_file_location('home_authorization_evidence',
+                target / 'tools/check_evidence.py')
+            verifier = importlib.util.module_from_spec(spec); spec.loader.exec_module(verifier)
+            need(row.get('evidence_review') in sources, 'Missing home-authorization evidence review')
+            checked = verifier.verify(target, (root / row['source']).parent)
+            need(checked == sources[row['evidence_review']], 'Home-authorization evidence differs')
         if row.get('artifact'):
             need(manifest['files'][row['artifact']]['sha256'] == row['identity']['fpga_image_sha256'],
                  'Benchmark does not describe the selected published FPGA image')

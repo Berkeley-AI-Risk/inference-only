@@ -1,0 +1,62 @@
+{
+  "bitstream_sha256": "af5ee9ab77e818171ba8d15b610e64c4f39ffa6e945f956575f016950adf9a05",
+  "timing_report_sha256": "7ddfb476edd07f46d192a3e5af357e22579c2fa842b51b3b0ee480290f6db3ce",
+  "functional_board_test_allowed": true,
+  "production_timing_qualified": false,
+  "reported_core_fmax_mhz": 25.037,
+  "startup_reset_removal_violations": [
+    {
+      "number": 1,
+      "slack_ns": -0.076,
+      "from_node": "u_core/u_raw_controller/trusted_reset_release_q_2_s0/Q",
+      "to_node": "u_core/core_release_q_0_s0/CLEAR",
+      "from_clock": "trusted_clk12p5:[R]",
+      "to_clock": "inference_clk25:[R]",
+      "relation_ns": 0.0,
+      "skew_ns": -0.564,
+      "delay_ns": 0.47,
+      "category": "other"
+    },
+    {
+      "number": 2,
+      "slack_ns": -0.076,
+      "from_node": "u_core/u_raw_controller/trusted_reset_release_q_2_s0/Q",
+      "to_node": "u_core/core_release_q_1_s0/CLEAR",
+      "from_clock": "trusted_clk12p5:[R]",
+      "to_clock": "inference_clk25:[R]",
+      "relation_ns": 0.0,
+      "skew_ns": -0.564,
+      "delay_ns": 0.47,
+      "category": "other"
+    }
+  ],
+  "accepted_synchronizer_entry_exceptions": [
+    {
+      "number": 1,
+      "slack_ns": -0.076,
+      "from_node": "u_core/u_raw_controller/trusted_reset_release_q_2_s0/Q",
+      "to_node": "u_core/core_release_q_0_s0/CLEAR",
+      "from_clock": "trusted_clk12p5:[R]",
+      "to_clock": "inference_clk25:[R]",
+      "relation_ns": 0.0,
+      "skew_ns": -0.564,
+      "delay_ns": 0.47,
+      "category": "other"
+    },
+    {
+      "number": 2,
+      "slack_ns": -0.076,
+      "from_node": "u_core/u_raw_controller/trusted_reset_release_q_2_s0/Q",
+      "to_node": "u_core/core_release_q_1_s0/CLEAR",
+      "from_clock": "trusted_clk12p5:[R]",
+      "to_clock": "inference_clk25:[R]",
+      "relation_ns": 0.0,
+      "skew_ns": -0.564,
+      "delay_ns": 0.47,
+      "category": "other"
+    }
+  ],
+  "startup_mapping_sha256": "621664f6dfef466dc5ed2a94cf412a2420abf66701c47f0d0226ee1aefe21bb0",
+  "startup_min_delay_ns": 0,
+  "scope": "Exact previously board-tested108 image: intentional removal exceptions at the first two asynchronous reset-synchronizer CLEAR inputs, retained with their original -0.076ns values. Three-stage chain and exclusive interstage fanout checked; all interstage D, final-stage CLEAR, functional reset fanout and data timing remain constrained. Real-clock setup/hold summaries pass. All other bounded negatives are vendor DDR or physical entropy. Supports scoped SRAM-only functional qualification and restoration, not physical timing repair of those inputs, quantitative metastability MTBF, full timing/CDC/entropy certification or physical-security assurance."
+}

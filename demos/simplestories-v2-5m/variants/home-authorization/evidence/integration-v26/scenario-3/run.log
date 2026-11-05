@@ -1,0 +1,12 @@
+START integrated home authorization simulation
+RESET RELEASED time=5243220000
+MODEL LOCKED cycles=25049446
+PASS home UART turn=1 scenario=3
+PASS token UART status=82 token=0
+PASS token UART status=80 token=0
+PASS home UART turn=2 scenario=3
+PASS integrated shared verifier rejects corrupt renewal after valid lease
+- tb_home_tang.sv:172: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 1s; walltime 166.095 s; speed 8.999 ms/s
+- Verilator: cpu 165.170 s on 1 threads; allocated 26 MB

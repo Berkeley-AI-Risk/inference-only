@@ -191,6 +191,35 @@
       "status": "Runnable release; public demonstration keys"
     },
     {
+      "artifact": "demos/simplestories-v2-5m/variants/home-authorization/prebuilt/home_product.fs",
+      "cases": [
+        "one-token-128-trial1",
+        "one-token-128-trial2"
+      ],
+      "evidence_review": "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/EVIDENCE-AUDIT.json",
+      "format": "canonical",
+      "id": "simplestories-home-authorization",
+      "identity": {
+        "clock": "time.monotonic_ns",
+        "clock_hz": 25000000,
+        "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
+        "fpga_image_sha256": "cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e",
+        "model": "SimpleStories-V2-5M",
+        "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+        "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+        "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+        "timestamp_boundary": "generation_loop_validated_reply",
+        "variant": "S-AWIC with renewable home authorization"
+      },
+      "label": "Same model, **S-AWIC with periodic reauthorization**, without K/V integrity",
+      "prompt_tokens": [
+        378
+      ],
+      "reference_source": "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/common-reference.json",
+      "source": "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/COMMON-SPEED.json",
+      "status": "Runnable token-ID demonstration; public demonstration keys"
+    },
+    {
       "cases": [
         "trial-1",
         "trial-2"
@@ -322,6 +351,30 @@
     "demos/simplestories-v2-5m/tests/reference-cases.json": {
       "bytes": 13049,
       "sha256": "a236c9912e5da9f12412c3f91f3d619a574fd5dce41f0c630fb78cb6c7dc7fa4"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v8/COMMON-SPEED.json": {
+      "bytes": 31146,
+      "sha256": "199cb3170cc8b42a751a9b11f55ad3c9230c6aa90554ad2db683bd8f8c864b4b"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v8/EVIDENCE-AUDIT.json": {
+      "bytes": 5335,
+      "sha256": "a1f36b020880f3b976db7e8e243cd5c1fee45a97889833180298c10c57e12a59"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v8/common-reference.json": {
+      "bytes": 2267,
+      "sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/COMMON-SPEED.json": {
+      "bytes": 31150,
+      "sha256": "32df19d58983620a9a517df8859eb07305dad72ff25ed786f24e445f1931f4b2"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/EVIDENCE-AUDIT.json": {
+      "bytes": 5340,
+      "sha256": "72d34d5d96ea607a9040ee474f07d871ff0c17d6477ce70cfb594afd3b519014"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/common-reference.json": {
+      "bytes": 2267,
+      "sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18"
     },
     "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/FINISHED.json": {
       "bytes": 30948,

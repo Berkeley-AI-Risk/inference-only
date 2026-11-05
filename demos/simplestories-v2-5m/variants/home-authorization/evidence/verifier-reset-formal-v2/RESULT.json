@@ -1,0 +1,8 @@
+{
+  "result": "PASS",
+  "exit_code": 0,
+  "actual_controller_sha256": "13e175169d55ed26c1c4ceba7f9dc5db638469b4abfeddf003e69b65d7e44405",
+  "design_sha256": "603fde2a330b0b74beec3f27072a349f60ccce81df0619104596ef7f8a2a54ba",
+  "log_sha256": "54e51f1843cf8bda0a54c420ac4dd740a3a5988e838fa867528b6054cfb93216",
+  "scope": "Actual controller at native25MHz timer parameters, arbitrary binary inputs and crypto verdicts. Start has reset released in previous sampled cycle, reset stays released across START-to-VERIFY, preparatory states cannot grant a lease, failure suppresses inference, lease grant requires the verified verdict. Clocked async2sync model, not an analog reset-glitch, physical timing, cryptography or complete security proof."
+}

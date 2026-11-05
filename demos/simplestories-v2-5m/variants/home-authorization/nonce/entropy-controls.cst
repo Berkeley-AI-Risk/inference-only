@@ -1,0 +1,22 @@
+// Local ring-enable routing; sampling clocks are unchanged. SUG935E A.8.
+CLOCK_LOC "u_entropy/source/cell_en_out[0]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/cell_en_out_0[1]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/cell_en_out_1[2]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[0].neoTRNG_cell_inst/sreg[0]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[0].neoTRNG_cell_inst/sreg[1]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[0].neoTRNG_cell_inst/sreg[2]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[0].neoTRNG_cell_inst/sreg[3]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[1].neoTRNG_cell_inst/sreg[0]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[1].neoTRNG_cell_inst/sreg[1]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[1].neoTRNG_cell_inst/sreg[2]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[1].neoTRNG_cell_inst/sreg[3]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[1].neoTRNG_cell_inst/sreg[4]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[1].neoTRNG_cell_inst/sreg[5]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[0]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[1]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[2]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[3]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[4]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[5]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[6]" LOCAL_CLOCK;
+CLOCK_LOC "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[7]" LOCAL_CLOCK;

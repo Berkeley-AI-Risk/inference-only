@@ -1,0 +1,32 @@
+{
+  "result": "PASS",
+  "bitstream_sha256": "cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e",
+  "actual_core_mhz": 25,
+  "reported_core_fmax_mhz": 25.005,
+  "timing_constraints_unchanged_from_114": true,
+  "sdc_sha256": "b845ec9b216ccdc50450eaa5be32606684a1b7e674c0b0623e8236f4d9778d2c",
+  "timing_exceptions_used": false,
+  "source_identity_lut_requests": 2,
+  "literal_identity_lut_instances_retained_by_name": 0,
+  "actual_flash_core_clear_realization": {
+    "and_cell": "u_core/u_fixed_qspi_boot/common_reset_n_s0",
+    "type": "LUT2",
+    "INIT": "4'h8",
+    "input_nets": [
+      "u_core/trusted_reset_n",
+      "core_reset_n_Z"
+    ],
+    "invert_cell": "u_core/u_fixed_qspi_boot/n15_s2",
+    "type_after_and": "INV",
+    "core_clear_net": "u_core/u_fixed_qspi_boot/n15_6"
+  },
+  "realization_note": "The compiler absorbs the literal identity LUT requests. The mapped core-clear path uses a distinct AND followed by an inverter, rather than assuming two retained LUT1 buffers. Its Boolean function matches the trusted-chain clear for all four input assignments. Actual raw routed timing, not source padding or report suppression, establishes positive removal slack.",
+  "observed_removal_slack_ns": {
+    "main_phase_qualifier": 0.325,
+    "flash_core_stage0": 0.494,
+    "flash_core_stage1": 0.494,
+    "flash_core_stage2": 0.494
+  },
+  "functional_setup_hold_recovery_removal_negative_paths": 0,
+  "scope": "Nominal25MHz functional timing and reset-release checks for this exact image; small core setup margin. Vendor DDR/entropy/analog/physical-security qualification remains separate."
+}

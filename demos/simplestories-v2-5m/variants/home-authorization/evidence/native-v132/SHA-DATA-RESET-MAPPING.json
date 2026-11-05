@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "core_clock": "core_clk",
+  "compressors": {
+    "u_core/u_signed_boot/u_admission/u_root/g_local_compressor.u_compress/": {
+      "private_data": 1024,
+      "reset_control_and_result": 264
+    },
+    "u_core/u_memory/u_boot/u_boot_compressor/u_compress/": {
+      "private_data": 1024,
+      "reset_control_and_result": 264
+    }
+  },
+  "private_reset_connections_removed": 2048,
+  "scope": "Mapped register/reset/clock structure only. RTL observable equivalence is checked separately; not complete gate-level equivalence or timing signoff."
+}

@@ -35,6 +35,15 @@ SimpleStories demonstration uses 2 of 3. Weight checks enforce the approved
 commitment; private signing keys stay off-chip. The layer boxes are
 schematic; arithmetic may be shared across layers.*
 
+### Optional periodic reauthorization
+
+An S-AWIC can require **periodic reauthorization**: model-specific approval from a remote authority at startup and periodically during operation. **Authorities can de-whitelist one set of weights and distribute a signed replacement**, supporting patches and future fine-tunes within the fixed architecture. The deployment host installs the replacement; the chip verifies its signatures and weights and obtains fresh permission for that exact model. Withholding renewal stops inference with the old weights no later than the current approval deadline.
+
+<a href="docs/figures/s-awic-home-authorization.svg#gh-light-mode-only"><img src="docs/figures/s-awic-home-authorization.svg#gh-light-mode-only" alt="Optional S-AWIC feature: home base authorizes the exact model and fresh chip nonce; the deployment host relays messages, and current permission enables fixed inference circuitry." width="800"></a>
+<a href="docs/figures/s-awic-home-authorization-dark.svg#gh-dark-mode-only"><img src="docs/figures/s-awic-home-authorization-dark.svg#gh-dark-mode-only" alt="Optional S-AWIC feature: home base authorizes the exact model and fresh chip nonce; the deployment host relays messages, and current permission enables fixed inference circuitry." width="800"></a>
+
+The [SimpleStories periodic-reauthorization demonstration](demos/simplestories-v2-5m/variants/home-authorization/README.md) supplies the implementation and evidence. Signed-update admission and permission to run are separate checks. Replacement starts a fresh session; the demonstration uses the host installation workflow and includes no automatic remote-update agent. Periodic reauthorization is an optional S-AWIC feature. In this variant, continued inference requires fresh approval.
+
 ## Token interface
 
 *Inference* uses an already-trained model to produce outputs without changing
@@ -71,6 +80,7 @@ The table lists **Authenticated-Weight Inference-Only Chip (AWIC) designs**, all
 | Same model, **K/V protection + encrypted memory** | 25 | ~**6.0 tokens/s** | Runnable release; public demonstration keys |
 | Same model, **seeded-sampling at temperature 1**, without K/V integrity | 25 | ~**9.9 tokens/s** | Runnable release |
 | Same model, **signed updates (S-AWIC)**, without K/V integrity | 25 | ~**10.1 tokens/s** | Runnable release; public demonstration keys |
+| Same model, **S-AWIC with periodic reauthorization**, without K/V integrity | 25 | ~**7.4 tokens/s** | Runnable token-ID demonstration; public demonstration keys |
 | **Qwen3-1.7B — AWS F2**, authenticated weights | 100 | ~**9.0 tokens/s** | Runnable release; public AWS FPGA image |
 | **Qwen3-8B — AWS F2**, authenticated weights | 100 | ~**1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
 <!-- COMMON-FPGA-SPEED:END -->

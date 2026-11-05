@@ -1,0 +1,13 @@
+# Hardware and authorization boundary
+
+The exact physical source is in [hardware/project](hardware/project), top `board1_home_auth_product_top`. The shared boot-root SHA engine handles model admission, LMS verification and nonce conditioning under private controller ownership. Update admission uses the existing 2-of-3 demonstration authority policy. Home permission uses a separate fixed public key. Neither threshold nor periodic authorization is part of the S-AWIC definition.
+
+A request contains a domain tag, fixed device ID, fresh 256-bit nonce, admitted model commitment and fixed architecture geometry (128 bytes total). Home base returns that request plus a 1,292-byte LMS signature. The chip verifies the signature and exact device/nonce/model/geometry bindings before granting temporary permission. The host relays the messages and supplies no trusted permission or nonce signal.
+
+The hardware period is 250,000,000 core cycles (nominally 10 seconds), with renewal 125,000,000 cycles before expiry and a 100,000,000-cycle response deadline. The deadline is anchored to challenge issue, rather than reply arrival. Valid renewal preserves the token context. Expiry or a fatal transport/signature/model fault closes runtime access, resets token inference and suppresses pending publication; a new session is required. A denied renewal can stop the session before the lease deadline.
+
+Weight memory and model-authentication logic are distinct. Authentication admits the signed model and validates the weights. Current home permission enables inference and runtime memory access. Storing/admitting a package alone does not authorize running it. Replacement weights use the same [signed-update flash layout](../signed-update/tang/HARDWARE.md); the inference UART cannot rewrite them.
+
+The inference clock is 25 MHz; board, DDR, application and trusted-reset logic use separate clock domains. The physical nonce candidate uses three neoTRNG inverter/latch rings, a 512-byte sample buffer, simple repeat/bias screens and SHA256 conditioning. Host bytes do not seed it. These checks do not establish a cryptographic entropy bound, robust freshness under physical attack, a trusted wall clock or a clone-resistant device identity.
+
+The [reset/timing review](RESET-REVIEW.md) records positive reset-release margins and passing functional timing at the configured 25 MHz, without reset-entry exceptions. The reported core maximum is 25.005 MHz, so the margin is small. Complete vendor-DDR timing, metastability MTBF, entropy qualification and physical tamper resistance remain open.

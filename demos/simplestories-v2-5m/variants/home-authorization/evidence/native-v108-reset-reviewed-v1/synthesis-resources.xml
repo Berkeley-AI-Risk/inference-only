@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="board1_home_auth_product_top" T_Register="51085(0)" T_Alu="11864(0)" T_Lut="78037(0)" T_MULTALU27X18="89(0)" T_MULT12X12="4(0)" T_Bsram="256(0)" T_Ssram="1133(0)">
+ <SubModule name="u_entropy" T_Register="67(0)" T_Lut="47(0)">
+  <SubModule name="source" Register="19" Lut="23" T_Register="67(19)" T_Lut="47(23)">
+   <SubModule name="entropy_cell_gen[0].neoTRNG_cell_inst" Register="12" Lut="6" T_Register="12(12)" T_Lut="6(6)"/>
+   <SubModule name="entropy_cell_gen[1].neoTRNG_cell_inst" Register="16" Lut="8" T_Register="16(16)" T_Lut="8(8)"/>
+   <SubModule name="entropy_cell_gen[2].neoTRNG_cell_inst" Register="20" Lut="10" T_Register="20(20)" T_Lut="10(10)"/>
+  </SubModule>
+ </SubModule>
+ <SubModule name="u_nonce" Register="349" Alu="40" Lut="487" Bsram="1" T_Register="349(349)" T_Alu="40(40)" T_Lut="487(487)" T_Bsram="1(1)"/>
+ <SubModule name="u_core" Register="29" Lut="66" T_Register="50669(29)" T_Alu="11824(0)" T_Lut="77503(66)" T_MULTALU27X18="89(0)" T_MULT12X12="4(0)" T_Bsram="255(0)" T_Ssram="1133(0)">
+  <SubModule name="u_board_reset" Register="21" Alu="17" Lut="8" T_Register="21(21)" T_Alu="17(17)" T_Lut="8(8)"/>
+  <SubModule name="u_home" Register="600" Alu="18" Lut="795" Bsram="1" T_Register="600(600)" T_Alu="18(18)" T_Lut="1131(795)" T_Bsram="1(1)">
+   <SubModule name="u_root_equal" Lut="168" T_Lut="168(168)"/>
+   <SubModule name="u_nonce_equal" Lut="168" T_Lut="168(168)"/>
+  </SubModule>
+  <SubModule name="u_home_uart" Register="14" Alu="10" Lut="11" T_Register="68(14)" T_Alu="10(10)" T_Lut="97(11)">
+   <SubModule name="u_tx" Register="22" Lut="42" T_Register="22(22)" T_Lut="42(42)"/>
+   <SubModule name="u_rx" Register="32" Lut="44" T_Register="32(32)" T_Lut="44(44)"/>
+  </SubModule>
+  <SubModule name="u_raw_controller" Register="13" Lut="4" T_Register="5511(13)" T_Alu="206(0)" T_Lut="3010(4)" T_Bsram="16(0)">
+   <SubModule name="u_board_ddr_pll" T_Register="39(0)" T_Alu="16(0)" T_Lut="59(0)">
+    <SubModule name="u_pll"/>
+    <SubModule name="u_pll_init" Register="39" Alu="16" Lut="59" T_Register="39(39)" T_Alu="16(16)" T_Lut="59(59)"/>
+   </SubModule>
+   <SubModule name="u_ddr3" Register="5459" Alu="190" Lut="2947" Bsram="16" T_Register="5459(5459)" T_Alu="190(190)" T_Lut="2947(2947)" T_Bsram="16(16)"/>
+  </SubModule>
+  <SubModule name="u_fixed_qspi_boot" Register="42" Lut="82" T_Register="479(42)" T_Alu="2(0)" T_Lut="383(82)" T_Ssram="3(0)">
+   <SubModule name="u_frame" Register="74" Lut="135" T_Register="74(74)" T_Lut="135(135)"/>
+   <SubModule name="u_image" Register="81" Lut="145" T_Register="81(81)" T_Lut="145(145)"/>
+   <SubModule name="u_loader_cdc" Register="282" Alu="2" Lut="21" Ssram="3" T_Register="282(282)" T_Alu="2(2)" T_Lut="21(21)" T_Ssram="3(3)"/>
+  </SubModule>
+  <SubModule name="u_signed_boot" Register="596" Alu="73" Lut="106" MULTALU27X18="1" T_Register="5136(596)" T_Alu="1112(73)" T_Lut="6675(106)" T_MULTALU27X18="2(1)" T_MULT12X12="1(0)" T_Bsram="90(0)" T_Ssram="32(0)">
+   <SubModule name="u_admission" Register="947" Alu="415" Lut="1423" MULTALU27X18="1" MULT12X12="1" Bsram="82" Ssram="32" T_Register="4540(947)" T_Alu="1039(415)" T_Lut="6569(1423)" T_MULTALU27X18="1(1)" T_MULT12X12="1(1)" T_Bsram="90(82)" T_Ssram="32(32)">
+    <SubModule name="u_root" Register="1072" Alu="14" Lut="2917" T_Register="2360(1072)" T_Alu="590(14)" T_Lut="4020(2917)">
+     <SubModule name="g_local_compressor.u_compress" Register="1288" Alu="576" Lut="1103" T_Register="1288(1288)" T_Alu="576(576)" T_Lut="1103(1103)"/>
+    </SubModule>
+    <SubModule name="u_lms" Register="1233" Alu="34" Lut="1126" Bsram="8" T_Register="1233(1233)" T_Alu="34(34)" T_Lut="1126(1126)" T_Bsram="8(8)"/>
+   </SubModule>
+  </SubModule>
+  <SubModule name="u_memory" Register="4" Lut="9" T_Register="4731(4)" T_Alu="861(0)" T_Lut="6474(9)" T_Bsram="14(0)">
+   <SubModule name="u_boot" Register="311" Lut="613" T_Register="4684(311)" T_Alu="861(0)" T_Lut="6065(613)" T_Bsram="14(0)">
+    <SubModule name="u_boot_adapter" Register="3" Lut="8" T_Register="3(3)" T_Lut="8(8)"/>
+    <SubModule name="u_boot_compressor" Register="4" Lut="264" T_Register="1292(4)" T_Alu="576(0)" T_Lut="1876(264)">
+     <SubModule name="u_compress" Register="1288" Alu="576" Lut="1612" T_Register="1288(1288)" T_Alu="576(576)" T_Lut="1612(1612)"/>
+    </SubModule>
+    <SubModule name="u_image" Register="283" Alu="278" Lut="38" T_Register="1345(283)" T_Alu="285(278)" T_Lut="985(38)">
+     <SubModule name="u_sha" Register="1062" Alu="7" Lut="947" T_Register="1062(1062)" T_Alu="7(7)" T_Lut="947(947)"/>
+    </SubModule>
+    <SubModule name="u_fixed_luts" Register="1062" Lut="740" T_Register="1062(1062)" T_Lut="740(740)"/>
+    <SubModule name="u_norms" Register="671" Lut="1843" Bsram="14" T_Register="671(671)" T_Lut="1843(1843)" T_Bsram="14(14)"/>
+   </SubModule>
+   <SubModule name="u_runtime_adapter" Register="7" Lut="24" T_Register="7(7)" T_Lut="24(24)"/>
+   <SubModule name="u_handoff" Register="36" Lut="376" T_Register="36(36)" T_Lut="376(376)"/>
+  </SubModule>
+  <SubModule name="u_uart_core" T_Register="33353(0)" T_Alu="9572(0)" T_Lut="58649(0)" T_MULTALU27X18="87(0)" T_MULT12X12="3(0)" T_Bsram="134(0)" T_Ssram="700(0)">
+   <SubModule name="u_fixed_uart" Register="84" Alu="16" Lut="198" T_Register="138(84)" T_Alu="16(16)" T_Lut="299(198)">
+    <SubModule name="receiver" Register="32" Lut="45" T_Register="32(32)" T_Lut="45(45)"/>
+    <SubModule name="transmitter" Register="22" Lut="56" T_Register="22(22)" T_Lut="56(56)"/>
+   </SubModule>
+   <SubModule name="u_machine" Register="7" Lut="9" T_Register="33215(7)" T_Alu="9556(0)" T_Lut="58350(9)" T_MULTALU27X18="87(0)" T_MULT12X12="3(0)" T_Bsram="134(0)" T_Ssram="700(0)">
+    <SubModule name="u_model_cdc" Register="18" Lut="66" T_Register="784(18)" T_Alu="305(0)" T_Lut="848(66)" T_Ssram="280(0)">
+     <SubModule name="u_requests" Register="100" Alu="21" Lut="104" Ssram="20" T_Register="100(100)" T_Alu="21(21)" T_Lut="104(104)" T_Ssram="20(20)"/>
+     <SubModule name="u_responses" Register="606" Alu="270" Lut="613" Ssram="256" T_Register="606(606)" T_Alu="270(270)" T_Lut="613(613)" T_Ssram="256(256)"/>
+     <SubModule name="u_credits" Register="60" Alu="14" Lut="65" Ssram="4" T_Register="60(60)" T_Alu="14(14)" T_Lut="65(65)" T_Ssram="4(4)"/>
+    </SubModule>
+    <SubModule name="u_shared" Register="265" Lut="37" T_Register="611(265)" T_Alu="8(0)" T_Lut="471(37)" T_Bsram="8(0)" T_Ssram="76(0)">
+     <SubModule name="u_model_admission" Register="3" Lut="12" Ssram="5" T_Register="3(3)" T_Lut="12(12)" T_Ssram="5(5)"/>
+     <SubModule name="u_kv_admission" Register="4" Lut="9" Ssram="69" T_Register="4(4)" T_Lut="9(9)" T_Ssram="69(69)"/>
+     <SubModule name="u_backend" Register="339" Alu="8" Lut="413" Bsram="8" Ssram="2" T_Register="339(339)" T_Alu="8(8)" T_Lut="413(413)" T_Bsram="8(8)" T_Ssram="2(2)"/>
+    </SubModule>
+    <SubModule name="u_auth" Register="380" Alu="59" Lut="1274" Bsram="1" Ssram="2" T_Register="7812(380)" T_Alu="4667(59)" T_Lut="9750(1274)" T_Bsram="33(1)" T_Ssram="2(2)">
+     <SubModule name="g_bank[0].u_bank" Register="1083" Alu="256" Lut="672" Bsram="8" T_Register="1858(1083)" T_Alu="1152(256)" T_Lut="2123(672)" T_Bsram="8(8)">
+      <SubModule name="u_sha" Register="775" Alu="896" Lut="1451" T_Register="775(775)" T_Alu="896(896)" T_Lut="1451(1451)"/>
+     </SubModule>
+     <SubModule name="g_bank[1].u_bank" Register="1083" Alu="256" Lut="662" Bsram="8" T_Register="1858(1083)" T_Alu="1152(256)" T_Lut="2114(662)" T_Bsram="8(8)">
+      <SubModule name="u_sha" Register="775" Alu="896" Lut="1452" T_Register="775(775)" T_Alu="896(896)" T_Lut="1452(1452)"/>
+     </SubModule>
+     <SubModule name="g_bank[2].u_bank" Register="1083" Alu="256" Lut="665" Bsram="8" T_Register="1858(1083)" T_Alu="1152(256)" T_Lut="2116(665)" T_Bsram="8(8)">
+      <SubModule name="u_sha" Register="775" Alu="896" Lut="1451" T_Register="775(775)" T_Alu="896(896)" T_Lut="1451(1451)"/>
+     </SubModule>
+     <SubModule name="g_bank[3].u_bank" Register="1083" Alu="256" Lut="671" Bsram="8" T_Register="1858(1083)" T_Alu="1152(256)" T_Lut="2123(671)" T_Bsram="8(8)">
+      <SubModule name="u_sha" Register="775" Alu="896" Lut="1452" T_Register="775(775)" T_Alu="896(896)" T_Lut="1452(1452)"/>
+     </SubModule>
+    </SubModule>
+    <SubModule name="u_machine" Register="2" Lut="19" T_Register="20004(2)" T_Alu="3733(0)" T_Lut="41590(19)" T_MULTALU27X18="87(0)" T_MULT12X12="3(0)" T_Bsram="93(0)" T_Ssram="196(0)">
+     <SubModule name="u_token_shell" Register="137" Alu="179" Lut="662" Bsram="6" T_Register="5090(137)" T_Alu="1225(179)" T_Lut="9071(662)" T_MULTALU27X18="2(0)" T_MULT12X12="1(0)" T_Bsram="15(6)">
+      <SubModule name="u_fixed_embedding" Register="82" Alu="13" Lut="1832" MULTALU27X18="1" T_Register="3678(82)" T_Alu="186(13)" T_Lut="4965(1832)" T_MULTALU27X18="1(1)" T_MULT12X12="1(0)" T_Bsram="4(0)">
+       <SubModule name="u_tied_group_reader" Register="1548" Alu="25" Lut="362" T_Register="3127(1548)" T_Alu="83(25)" T_Lut="1594(362)" T_MULT12X12="1(0)">
+        <SubModule name="u_outstanding_delta" Alu="11" T_Alu="11(11)"/>
+        <SubModule name="u_metadata_reader" Register="295" Alu="47" Lut="566" MULT12X12="1" T_Register="295(295)" T_Alu="47(47)" T_Lut="566(566)" T_MULT12X12="1(1)"/>
+        <SubModule name="u_width_adapter" Register="643" Lut="654" T_Register="643(643)" T_Lut="654(654)"/>
+        <SubModule name="u_weight_beat_register" Register="641" Lut="12" T_Register="641(641)" T_Lut="12(12)"/>
+       </SubModule>
+       <SubModule name="u_embedding_normalizer" Register="125" Alu="26" Lut="609" Bsram="4" T_Register="469(125)" T_Alu="90(26)" T_Lut="1539(609)" T_Bsram="4(4)">
+        <SubModule name="u_shift" Register="344" Alu="64" Lut="930" T_Register="344(344)" T_Alu="64(64)" T_Lut="930(930)"/>
+       </SubModule>
+      </SubModule>
+      <SubModule name="u_final_rmsnorm" Register="263" Alu="136" Lut="624" Bsram="1" T_Register="1109(263)" T_Alu="379(136)" T_Lut="3032(624)" T_MULTALU27X18="1(0)" T_Bsram="5(1)">
+       <SubModule name="u_sealed_shared_multiply" Lut="109" MULTALU27X18="1" T_Lut="109(109)" T_MULTALU27X18="1(1)"/>
+       <SubModule name="u_exact_isqrt" T_Register="144(0)" T_Alu="66(0)" T_Lut="190(0)">
+        <SubModule name="u_exact_board0_isqrt" Register="144" Alu="66" Lut="190" T_Register="144(144)" T_Alu="66(66)" T_Lut="190(190)"/>
+       </SubModule>
+       <SubModule name="u_exact_divider" T_Register="241(0)" T_Alu="87(0)" T_Lut="614(0)">
+        <SubModule name="u_exact_bounded_divider" Register="241" Alu="87" Lut="614" T_Register="241(241)" T_Alu="87(87)" T_Lut="614(614)"/>
+       </SubModule>
+       <SubModule name="u_frozen_vector_normalizer" Register="117" Alu="26" Lut="570" Bsram="4" T_Register="461(117)" T_Alu="90(26)" T_Lut="1495(570)" T_Bsram="4(4)">
+        <SubModule name="u_shift" Register="344" Alu="64" Lut="925" T_Register="344(344)" T_Alu="64(64)" T_Lut="925(925)"/>
+       </SubModule>
+      </SubModule>
+      <SubModule name="u_exact_argmax" Register="166" Alu="8" Lut="412" T_Register="166(166)" T_Alu="481(8)" T_Lut="412(412)">
+       <SubModule name="u_exact_compare" Alu="9" T_Alu="473(9)">
+        <SubModule name="u_right_two" Alu="96" T_Alu="96(96)"/>
+        <SubModule name="u_right_one" Alu="92" T_Alu="92(92)"/>
+        <SubModule name="u_equal" Alu="92" T_Alu="92(92)"/>
+        <SubModule name="u_left_one" Alu="94" T_Alu="94(94)"/>
+        <SubModule name="u_left_two" Alu="90" T_Alu="90(90)"/>
+       </SubModule>
+      </SubModule>
+     </SubModule>
+     <SubModule name="u_six_layers" T_Register="14865(0)" T_Alu="2508(0)" T_Lut="32358(0)" T_MULTALU27X18="85(0)" T_MULT12X12="2(0)" T_Bsram="78(0)" T_Ssram="56(0)">
+      <SubModule name="u_sequence" Register="48" Alu="16" Lut="204" T_Register="48(48)" T_Alu="16(16)" T_Lut="204(204)"/>
+      <SubModule name="u_datapath" Register="1332" Alu="86" Lut="2453" T_Register="14817(1332)" T_Alu="2492(86)" T_Lut="32154(2453)" T_MULTALU27X18="85(0)" T_MULT12X12="2(0)" T_Bsram="78(0)" T_Ssram="56(0)">
+       <SubModule name="u_gate_scratch" Lut="10" Bsram="1" T_Lut="10(10)" T_Bsram="1(1)"/>
+       <SubModule name="u_up_scratch" Lut="2" Bsram="1" T_Lut="2(2)" T_Bsram="1(1)"/>
+       <SubModule name="u_attention_scratch" Lut="15" Bsram="1" T_Lut="15(15)" T_Bsram="1(1)"/>
+       <SubModule name="u_rms_scratch" Lut="3" Bsram="1" T_Lut="3(3)" T_Bsram="1(1)"/>
+       <SubModule name="u_output_scratch" Lut="1" Bsram="1" T_Lut="1(1)" T_Bsram="1(1)"/>
+       <SubModule name="u_hidden_state" Lut="2" Bsram="1" T_Lut="2(2)" T_Bsram="1(1)"/>
+       <SubModule name="u_query_state" Lut="16" Bsram="1" T_Lut="16(16)" T_Bsram="1(1)"/>
+       <SubModule name="u_key_state" Lut="5" Bsram="1" T_Lut="5(5)" T_Bsram="1(1)"/>
+       <SubModule name="u_value_state" Lut="1" Bsram="1" T_Lut="1(1)" T_Bsram="1(1)"/>
+       <SubModule name="u_rope_raw_scratch" Lut="3" Bsram="2" T_Lut="3(3)" T_Bsram="2(2)"/>
+       <SubModule name="u_rmsnorm" Register="266" Alu="136" Lut="615" Bsram="1" T_Register="1111(266)" T_Alu="379(136)" T_Lut="3031(615)" T_MULTALU27X18="1(0)" T_Bsram="5(1)">
+        <SubModule name="u_sealed_shared_multiply" Lut="109" MULTALU27X18="1" T_Lut="109(109)" T_MULTALU27X18="1(1)"/>
+        <SubModule name="u_exact_isqrt" T_Register="144(0)" T_Alu="66(0)" T_Lut="190(0)">
+         <SubModule name="u_exact_board0_isqrt" Register="144" Alu="66" Lut="190" T_Register="144(144)" T_Alu="66(66)" T_Lut="190(190)"/>
+        </SubModule>
+        <SubModule name="u_exact_divider" T_Register="241(0)" T_Alu="87(0)" T_Lut="614(0)">
+         <SubModule name="u_exact_bounded_divider" Register="241" Alu="87" Lut="614" T_Register="241(241)" T_Alu="87(87)" T_Lut="614(614)"/>
+        </SubModule>
+        <SubModule name="u_frozen_vector_normalizer" Register="116" Alu="26" Lut="574" Bsram="4" T_Register="460(116)" T_Alu="90(26)" T_Lut="1503(574)" T_Bsram="4(4)">
+         <SubModule name="u_shift" Register="344" Alu="64" Lut="929" T_Register="344(344)" T_Alu="64(64)" T_Lut="929(929)"/>
+        </SubModule>
+       </SubModule>
+       <SubModule name="u_projection" Register="67" Alu="7" Lut="364" Bsram="1" T_Register="4329(67)" T_Alu="888(7)" T_Lut="6153(364)" T_MULTALU27X18="67(0)" T_MULT12X12="2(0)" T_Bsram="1(1)" T_Ssram="24(0)">
+        <SubModule name="u_group_stream" Register="1568" Alu="66" Lut="969" MULTALU27X18="1" MULT12X12="1" T_Register="3147(1568)" T_Alu="124(66)" T_Lut="2197(969)" T_MULTALU27X18="1(1)" T_MULT12X12="2(1)">
+         <SubModule name="u_outstanding_delta" Alu="11" T_Alu="11(11)"/>
+         <SubModule name="u_metadata_reader" Register="295" Alu="47" Lut="568" MULT12X12="1" T_Register="295(295)" T_Alu="47(47)" T_Lut="568(568)" T_MULT12X12="1(1)"/>
+         <SubModule name="u_width_adapter" Register="643" Lut="655" T_Register="643(643)" T_Lut="655(655)"/>
+         <SubModule name="u_weight_beat_register" Register="641" Lut="5" T_Register="641(641)" T_Lut="5(5)"/>
+        </SubModule>
+        <SubModule name="u_shared_engine" Register="35" Alu="673" Lut="1223" T_Register="1115(35)" T_Alu="757(673)" T_Lut="3592(1223)" T_MULTALU27X18="66(0)" T_Ssram="24(0)">
+         <SubModule name="u_engine" Register="175" Alu="20" Lut="290" T_Register="1080(175)" T_Alu="84(20)" T_Lut="2369(290)" T_MULTALU27X18="66(0)" T_Ssram="24(0)">
+          <SubModule name="g_tile[0].u_tile" Register="244" Alu="16" Lut="1024" Ssram="6" T_Register="244(244)" T_Alu="16(16)" T_Lut="1025(1024)" T_MULTALU27X18="16(0)" T_Ssram="6(6)">
+           <SubModule name="g_lane[0].u_mac" Lut="1" MULTALU27X18="1" T_Lut="1(1)" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[1].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[2].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[3].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[4].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[5].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[6].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[7].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[8].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[9].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[10].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[11].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[12].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[13].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[14].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[15].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+          </SubModule>
+          <SubModule name="g_tile[1].u_tile" Register="219" Alu="16" Lut="353" Ssram="6" T_Register="219(219)" T_Alu="16(16)" T_Lut="353(353)" T_MULTALU27X18="16(0)" T_Ssram="6(6)">
+           <SubModule name="g_lane[0].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[1].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[2].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[3].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[4].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[5].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[6].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[7].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[8].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[9].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[10].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[11].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[12].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[13].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[14].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[15].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+          </SubModule>
+          <SubModule name="g_tile[2].u_tile" Register="221" Alu="16" Lut="351" Ssram="6" T_Register="221(221)" T_Alu="16(16)" T_Lut="351(351)" T_MULTALU27X18="16(0)" T_Ssram="6(6)">
+           <SubModule name="g_lane[0].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[1].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[2].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[3].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[4].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[5].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[6].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[7].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[8].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[9].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[10].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[11].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[12].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[13].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[14].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[15].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+          </SubModule>
+          <SubModule name="g_tile[3].u_tile" Register="221" Alu="16" Lut="350" Ssram="6" T_Register="221(221)" T_Alu="16(16)" T_Lut="350(350)" T_MULTALU27X18="16(0)" T_Ssram="6(6)">
+           <SubModule name="g_lane[0].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[1].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[2].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[3].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[4].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[5].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[6].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[7].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[8].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[9].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[10].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[11].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[12].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[13].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[14].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+           <SubModule name="g_lane[15].u_mac" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+          </SubModule>
+          <SubModule name="u_scale_low" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+          <SubModule name="u_scale_high" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+         </SubModule>
+        </SubModule>
+       </SubModule>
+       <SubModule name="u_normalizer" Register="127" Alu="46" Lut="644" Bsram="4" T_Register="471(127)" T_Alu="110(46)" T_Lut="1570(644)" T_Bsram="4(4)">
+        <SubModule name="u_shift" Register="344" Alu="64" Lut="926" T_Register="344(344)" T_Alu="64(64)" T_Lut="926(926)"/>
+       </SubModule>
+       <SubModule name="u_elementwise_lane" T_Register="461(0)" T_Alu="215(0)" T_Lut="2282(0)" T_MULTALU27X18="1(0)">
+        <SubModule name="u_fixed_elementwise_product_compact_lane" Register="461" Alu="215" Lut="2282" T_Register="461(461)" T_Alu="215(215)" T_Lut="2282(2282)" T_MULTALU27X18="1(0)">
+         <SubModule name="u_product_dsp" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        </SubModule>
+       </SubModule>
+       <SubModule name="u_lookup" Register="41" Lut="522" T_Register="41(41)" T_Lut="522(522)"/>
+       <SubModule name="u_kv_cache" Register="2539" Alu="124" Lut="3088" Bsram="8" T_Register="2539(2539)" T_Alu="192(124)" T_Lut="3088(3088)" T_Bsram="8(8)">
+        <SubModule name="u_write_shadow_mapper" Alu="34" T_Alu="34(34)"/>
+        <SubModule name="u_read_shadow_mapper" Alu="34" T_Alu="34(34)"/>
+       </SubModule>
+       <SubModule name="u_attention" Register="3408" Alu="291" Lut="6739" Ssram="32" T_Register="4533(3408)" T_Alu="622(291)" T_Lut="12997(6739)" T_MULTALU27X18="16(0)" T_Bsram="49(0)" T_Ssram="32(32)">
+        <SubModule name="g_mac8[0].u_score_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[0].u_value_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[1].u_score_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[1].u_value_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[2].u_score_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[2].u_value_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[3].u_score_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[3].u_value_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[4].u_score_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[4].u_value_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[5].u_score_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[5].u_value_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[6].u_score_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[6].u_value_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[7].u_score_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="g_mac8[7].u_value_lane" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+        <SubModule name="u_accumulator_bram" Register="7" Alu="2" Lut="10" Bsram="9" T_Register="7(7)" T_Alu="2(2)" T_Lut="10(10)" T_Bsram="9(9)"/>
+        <SubModule name="u_norm_stage" Register="9" Alu="10" Lut="151" T_Register="9(9)" T_Alu="10(10)" T_Lut="151(151)"/>
+        <SubModule name="u_value_prefix" Register="231" Alu="53" Lut="343" T_Register="231(231)" T_Alu="53(53)" T_Lut="343(343)"/>
+        <SubModule name="u_query_bram" Lut="17" Bsram="8" T_Lut="17(17)" T_Bsram="8(8)"/>
+        <SubModule name="u_output_bram" Bsram="1" T_Bsram="1(1)"/>
+        <SubModule name="u_workspace_bram" Bsram="23" T_Bsram="23(23)"/>
+        <SubModule name="u_align8" Register="291" Lut="2625" T_Register="291(291)" T_Lut="2625(2625)"/>
+        <SubModule name="u_shift" Register="295" Alu="96" Lut="1501" T_Register="295(295)" T_Alu="96(96)" T_Lut="1501(1501)"/>
+        <SubModule name="u_exp_lut" Register="4" Lut="54" Bsram="8" T_Register="4(4)" T_Lut="54(54)" T_Bsram="8(8)"/>
+        <SubModule name="u_divider" Register="288" Alu="170" Lut="1557" T_Register="288(288)" T_Alu="170(170)" T_Lut="1557(1557)"/>
+       </SubModule>
+      </SubModule>
+     </SubModule>
+     <SubModule name="u_shell_model_request_queue" Register="4" Lut="16" Ssram="5" T_Register="4(4)" T_Lut="16(16)" T_Ssram="5(5)"/>
+     <SubModule name="u_shell_model_response_queue" Register="4" Lut="18" Ssram="65" T_Register="4(4)" T_Lut="18(18)" T_Ssram="65(65)"/>
+     <SubModule name="u_layer_model_request_queue" Register="4" Lut="7" Ssram="5" T_Register="4(4)" T_Lut="7(7)" T_Ssram="5(5)"/>
+     <SubModule name="u_layer_model_response_queue" Register="4" Lut="8" Ssram="65" T_Register="4(4)" T_Lut="8(8)" T_Ssram="65(65)"/>
+     <SubModule name="u_private_ddr_arbiter" Register="31" Lut="93" T_Register="31(31)" T_Lut="93(93)"/>
+    </SubModule>
+    <SubModule name="u_boundary" Register="281" Alu="257" Lut="689" T_Register="3997(281)" T_Alu="843(257)" T_Lut="5682(689)" T_Ssram="146(0)">
+     <SubModule name="request_fifo_i" Register="691" Alu="300" Lut="69" Ssram="75" T_Register="691(691)" T_Alu="300(300)" T_Lut="69(69)" T_Ssram="75(75)"/>
+     <SubModule name="response_fifo_i" Register="589" Alu="268" Lut="69" Ssram="65" T_Register="589(589)" T_Alu="268(268)" T_Lut="69(69)" T_Ssram="65(65)"/>
+     <SubModule name="app_boundary_i" Register="2436" Lut="4803" Ssram="6" T_Register="2436(2436)" T_Alu="18(0)" T_Lut="4855(4803)" T_Ssram="6(6)">
+      <SubModule name="u_fixed_address" Alu="18" Lut="52" T_Alu="18(18)" T_Lut="52(52)"/>
+     </SubModule>
+    </SubModule>
+   </SubModule>
+  </SubModule>
+  <SubModule name="u_core_fault_cdc" Register="6" Lut="1" T_Register="6(6)" T_Lut="1(1)"/>
+  <SubModule name="u_transport" Register="26" Lut="96" T_Register="735(26)" T_Alu="26(0)" T_Lut="1009(96)" T_Ssram="398(0)">
+   <SubModule name="u_commands" Register="361" Alu="12" Lut="336" Ssram="138" T_Register="361(361)" T_Alu="12(12)" T_Lut="336(336)" T_Ssram="138(138)"/>
+   <SubModule name="u_returns" Register="348" Alu="14" Lut="577" Ssram="260" T_Register="348(348)" T_Alu="14(14)" T_Lut="577(577)" T_Ssram="260(260)"/>
+  </SubModule>
+ </SubModule>
+</Module>

@@ -1,5 +1,5 @@
 {
-  "complete_rows": 7,
+  "complete_rows": 8,
   "protocol": "one-token-128-host-v2",
   "rows": [
     {
@@ -579,6 +579,92 @@
     {
       "complete": true,
       "eligible_trials": 2,
+      "id": "simplestories-home-authorization",
+      "identity": {
+        "clock": "time.monotonic_ns",
+        "clock_hz": 25000000,
+        "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
+        "fpga_image_sha256": "cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e",
+        "model": "SimpleStories-V2-5M",
+        "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+        "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+        "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+        "timestamp_boundary": "generation_loop_validated_reply",
+        "variant": "S-AWIC with renewable home authorization"
+      },
+      "label": "Same model, **S-AWIC with periodic reauthorization**, without K/V integrity",
+      "missing": null,
+      "package_status": "Runnable token-ID demonstration; public demonstration keys",
+      "rate": {
+        "cached_host_seconds": 34.406163082999996,
+        "cached_tokens_per_second": 7.382398304259064,
+        "command_only_diagnostic_tokens_per_second": 10.08160665019189,
+        "counted_cached_outputs": 254,
+        "first_step_seconds": [
+          0.085018417,
+          0.084956583
+        ]
+      },
+      "trials": [
+        {
+          "cached_command_seconds": 12.599171048,
+          "cached_host_seconds": 16.540049125,
+          "cached_outputs": 127,
+          "capture_sha256": "e10575a0a5343c95656a45281e850b69440abbe7c8002ad74a298f8a00cc2dcb",
+          "clear_before": true,
+          "first_step_seconds": 0.085018417,
+          "generated_outputs": 128,
+          "greedy": true,
+          "identity": {
+            "clock": "time.monotonic_ns",
+            "clock_hz": 25000000,
+            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
+            "fpga_image_sha256": "cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e",
+            "model": "SimpleStories-V2-5M",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+            "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+            "timestamp_boundary": "generation_loop_validated_reply",
+            "variant": "S-AWIC with renewable home authorization"
+          },
+          "prompt_tokens": [
+            378
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
+        },
+        {
+          "cached_command_seconds": 12.595225918,
+          "cached_host_seconds": 17.866113958,
+          "cached_outputs": 127,
+          "capture_sha256": "49f24af8c71fa2f3febb4b3bc032432b51fadc61cf948405785845827275230c",
+          "clear_before": true,
+          "first_step_seconds": 0.084956583,
+          "generated_outputs": 128,
+          "greedy": true,
+          "identity": {
+            "clock": "time.monotonic_ns",
+            "clock_hz": 25000000,
+            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
+            "fpga_image_sha256": "cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e",
+            "model": "SimpleStories-V2-5M",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+            "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+            "timestamp_boundary": "generation_loop_validated_reply",
+            "variant": "S-AWIC with renewable home authorization"
+          },
+          "prompt_tokens": [
+            378
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
+        }
+      ]
+    },
+    {
+      "complete": true,
+      "eligible_trials": 2,
       "id": "qwen3-1.7b",
       "identity": {
         "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
@@ -884,6 +970,30 @@
       "bytes": 13049,
       "sha256": "a236c9912e5da9f12412c3f91f3d619a574fd5dce41f0c630fb78cb6c7dc7fa4"
     },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v8/COMMON-SPEED.json": {
+      "bytes": 31146,
+      "sha256": "199cb3170cc8b42a751a9b11f55ad3c9230c6aa90554ad2db683bd8f8c864b4b"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v8/EVIDENCE-AUDIT.json": {
+      "bytes": 5335,
+      "sha256": "a1f36b020880f3b976db7e8e243cd5c1fee45a97889833180298c10c57e12a59"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v8/common-reference.json": {
+      "bytes": 2267,
+      "sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/COMMON-SPEED.json": {
+      "bytes": 31150,
+      "sha256": "32df19d58983620a9a517df8859eb07305dad72ff25ed786f24e445f1931f4b2"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/EVIDENCE-AUDIT.json": {
+      "bytes": 5340,
+      "sha256": "72d34d5d96ea607a9040ee474f07d871ff0c17d6477ce70cfb594afd3b519014"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/common-reference.json": {
+      "bytes": 2267,
+      "sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18"
+    },
     "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/FINISHED.json": {
       "bytes": 30948,
       "sha256": "c3bfe64c344fd4fa60c475e1cc15902de1b6b9fec38d340dc62ef11d48105edc"
@@ -898,5 +1008,5 @@
     }
   },
   "timestamp_boundary": "generation_loop_validated_reply",
-  "total_rows": 7
+  "total_rows": 8
 }

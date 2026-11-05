@@ -1,0 +1,45 @@
+{
+  "result": "PASS",
+  "core_clock": "core_clk",
+  "active_edge": "rising",
+  "stages": {
+    "1": {
+      "kind": "DFFCE",
+      "name": "\\u_core/core_release_q_1_s0",
+      "ports": {
+        "D": "\\u_core/core_release_q[0]",
+        "CLK": "core_clk",
+        "CE": "VCC",
+        "CLEAR": "\\u_core/n9_5",
+        "Q": "\\u_core/core_release_q[1]"
+      }
+    },
+    "0": {
+      "kind": "DFFCE",
+      "name": "\\u_core/core_release_q_0_s0",
+      "ports": {
+        "D": "VCC",
+        "CLK": "core_clk",
+        "CE": "VCC",
+        "CLEAR": "\\u_core/n9_5",
+        "Q": "\\u_core/core_release_q[0]"
+      }
+    },
+    "2": {
+      "kind": "DFFCE",
+      "name": "\\u_core/core_release_q_2_s0",
+      "ports": {
+        "D": "\\u_core/core_release_q[1]",
+        "CLK": "core_clk",
+        "CE": "VCC",
+        "CLEAR": "\\u_core/n9_5",
+        "Q": "core_reset_n_Z"
+      }
+    }
+  },
+  "scope": "Exact three-stage asynchronous-clear chain, constant-one entry, retained stage wiring and effective selected clock polarity. Functional core frequency/clock is separately checked by the native reviewer. Not an analog metastability certificate.",
+  "digital_checks_receipt_sha256": "08d18f28ac3f25d8282305f88e96e3ee30fea02bb6af62aab5009ceb522f7863",
+  "classification": "Intentional asynchronous-clear input timing exception at stages0and1 only; interstage D paths, last-stage CLEAR and functional reset fanout remain timed.",
+  "authority": "https://docs.altera.com/r/docs/683082/25.1/quartus-prime-pro-edition-user-guide/use-synchronized-asynchronous-reset?contentId=to1rfCGdVjeHnExJPxYxpw",
+  "limitation": "Standard digital reset-synchronizer topology review. No quantitative metastability MTBF, Gowin-specific analog characterization, whole-chip or physical-security certificate."
+}

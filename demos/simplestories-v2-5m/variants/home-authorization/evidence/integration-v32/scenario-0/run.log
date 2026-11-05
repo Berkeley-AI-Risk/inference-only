@@ -1,0 +1,14 @@
+START integrated home authorization simulation
+RESET RELEASED time=5243220000
+MODEL LOCKED cycles=25049446
+PASS home UART turn=1 scenario=0
+PASS token UART status=82 token=0
+PASS token UART status=80 token=0
+PASS home UART turn=2 scenario=0
+PASS token UART status=81 token=108
+PASS token UART status=81 token=32
+PASS integrated renewal preserves context and exact [108,32] tokens
+- tb_home_tang.sv:158: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 2s; walltime 177.123 s; speed 8.858 ms/s
+- Verilator: cpu 176.914 s on 1 threads; allocated 26 MB

@@ -1,0 +1,56 @@
+{
+  "result": "PASS",
+  "PUBLIC_DEMO_KEYS": true,
+  "time_source": "controlled software clock",
+  "nonce_source": "secrets.token_bytes: operating-system CSPRNG",
+  "executes_model_tokens": false,
+  "models": [
+    {
+      "version": 1,
+      "signers": 2,
+      "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+      "image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+      "package_bytes": 7381380,
+      "boot_frame_bytes": 115396
+    },
+    {
+      "version": 1,
+      "signers": 2,
+      "model_root": "87846354f08038923d04676ba5e8c3d18b5e476f285ba378edb6061a3ceaf6b4",
+      "image_sha256": "7ec5f57c5c21e74b1d39eb209c53d1563d5831c1c61643097e7ca63ea4582c72",
+      "package_bytes": 7381380,
+      "boot_frame_bytes": 115396
+    }
+  ],
+  "events": [
+    {
+      "software_time": 0.0,
+      "event": "model A authenticated and authorized"
+    },
+    {
+      "software_time": 45,
+      "event": "model A authorization renewed with a fresh nonce"
+    },
+    {
+      "software_time": 45,
+      "event": "home-base policy revokes A; B remains approved"
+    },
+    {
+      "software_time": 90,
+      "event": "home base refuses renewal for A"
+    },
+    {
+      "software_time": 90,
+      "event": "existing A lease remains valid before its deadline"
+    },
+    {
+      "software_time": 105,
+      "event": "A is disabled at lease expiry"
+    },
+    {
+      "software_time": 105,
+      "event": "distinct signed model B authenticates and receives authorization"
+    }
+  ],
+  "input_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0"
+}

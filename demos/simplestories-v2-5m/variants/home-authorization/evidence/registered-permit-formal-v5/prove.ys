@@ -1,0 +1,7 @@
+read_verilog -formal -sv design.sv
+chparam -set USE_SHARED_VERIFIER 1 home_boot_gate
+prep -top formal_top -flatten
+async2sync
+memory_map
+opt_clean
+sat -verify -prove-asserts -tempinduct -tempinduct-def -seq 2 -maxsteps 12 -set clk 1 -set-at 1 reset_n 0 -set-def-inputs -show-public -dump_vcd induction.vcd -dump_json induction.json

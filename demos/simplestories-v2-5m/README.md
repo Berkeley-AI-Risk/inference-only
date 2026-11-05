@@ -91,3 +91,7 @@ completed simulations, native build qualification and board evidence. This
 experimental target has public demo signing material and no deliberate delay,
 update cap or antirollback protection; it is separate from the measured
 fixed-digest configurations above.
+
+## Optional periodic reauthorization
+
+The [S-AWIC with periodic reauthorization](variants/home-authorization/README.md) requires fresh approval at startup and periodically to keep running the authenticated model. Authorities can withdraw approval for old weights and distribute a signed replacement through the deployment host. It runs at 25 MHz and measures **~7.4 tokens/s** on the common paired benchmark, including renewal gaps. Its [installation](variants/home-authorization/INSTALL.md), [validation](variants/home-authorization/VALIDATION.md), [formal scope](variants/home-authorization/FORMAL-STATUS.md) and [reproduction](variants/home-authorization/REPRODUCE.md) are separate from the fixed-commitment and signed-update-only configurations.

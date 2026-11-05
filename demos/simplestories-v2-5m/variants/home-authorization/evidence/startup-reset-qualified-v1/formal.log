@@ -1,0 +1,467 @@
+
+-- Executing script file `prove.ys' --
+
+1. Executing Verilog-2005 frontend: proof.sv
+Parsing formal SystemVerilog input from `proof.sv' to AST representation.
+Generating RTLIL representation for module `\startup_reset'.
+Generating RTLIL representation for module `\proof'.
+Successfully finished Verilog frontend.
+
+2. Executing PREP pass.
+
+2.1. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1.1. Analyzing design hierarchy..
+Top module:  \proof
+Used module:     \startup_reset
+
+2.1.2. Analyzing design hierarchy..
+Top module:  \proof
+Used module:     \startup_reset
+Removed 0 unused modules.
+Module proof directly or indirectly contains formal properties -> setting "keep" attribute.
+Mapping positional arguments of cell proof.dut (startup_reset).
+
+2.2. Executing PROC pass (convert processes to netlists).
+
+2.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$proof.sv:26$8 in module proof.
+Marked 1 switch rules as full_case in process $proc$proof.sv:12$6 in module startup_reset.
+Marked 1 switch rules as full_case in process $proc$proof.sv:6$3 in module startup_reset.
+Removed a total of 0 dead cases.
+
+2.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 3 redundant assignments.
+Promoted 1 assignment to connection.
+
+2.2.4. Executing PROC_INIT pass (extract init attributes).
+
+2.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \all_clear in `\proof.$proc$proof.sv:26$8'.
+Found async reset \qualified_async_reset_n in `\startup_reset.$proc$proof.sv:12$6'.
+Found async reset \common_async_reset_n in `\startup_reset.$proc$proof.sv:6$3'.
+
+2.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~2 debug messages>
+
+2.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\proof.$proc$proof.sv:29$12'.
+     1/1: $assert$proof.sv:31$17_EN
+Creating decoders for process `\proof.$proc$proof.sv:26$8'.
+     1/1: $0\stable_edges[1:0]
+Creating decoders for process `\startup_reset.$proc$proof.sv:12$6'.
+     1/1: $0\core_release_q[2:0]
+Creating decoders for process `\startup_reset.$proc$proof.sv:6$3'.
+     1/1: $0\core_phase_release_q[0:0]
+
+2.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+2.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\proof.\stable_edges' using process `\proof.$proc$proof.sv:26$8'.
+  created $adff cell `$procdff$27' with positive edge clock and positive level reset.
+Creating register for signal `\startup_reset.\core_release_q' using process `\startup_reset.$proc$proof.sv:12$6'.
+  created $adff cell `$procdff$32' with positive edge clock and positive level reset.
+Creating register for signal `\startup_reset.\core_phase_release_q' using process `\startup_reset.$proc$proof.sv:6$3'.
+  created $adff cell `$procdff$37' with negative edge clock and positive level reset.
+
+2.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+2.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\proof.$proc$proof.sv:29$12'.
+Removing empty process `proof.$proc$proof.sv:29$12'.
+Found and cleaned up 1 empty switch in `\proof.$proc$proof.sv:26$8'.
+Removing empty process `proof.$proc$proof.sv:26$8'.
+Removing empty process `startup_reset.$proc$proof.sv:12$6'.
+Removing empty process `startup_reset.$proc$proof.sv:6$3'.
+Cleaned up 2 empty switches.
+
+2.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module proof.
+<suppressed ~3 debug messages>
+Optimizing module startup_reset.
+<suppressed ~4 debug messages>
+
+2.3. Executing FLATTEN pass (flatten design).
+Deleting now unused module startup_reset.
+<suppressed ~1 debug messages>
+
+2.4. Executing FUTURE pass.
+
+2.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module proof.
+
+2.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \proof..
+Removed 7 unused cells and 19 unused wires.
+<suppressed ~8 debug messages>
+
+2.7. Executing CHECK pass (checking for obvious problems).
+Checking module proof...
+Found and reported 0 problems.
+
+2.8. Executing OPT pass (performing simple optimizations).
+
+2.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module proof.
+
+2.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\proof'.
+Computing hashes of 16 cells of `\proof'.
+Finding duplicate cells in `\proof'.
+Removed a total of 0 cells.
+
+2.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \proof..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+2.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \proof.
+Performed a total of 0 changes.
+
+2.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\proof'.
+Computing hashes of 16 cells of `\proof'.
+Finding duplicate cells in `\proof'.
+Removed a total of 0 cells.
+
+2.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \proof..
+
+2.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module proof.
+
+2.8.8. Finished fast OPT passes. (There is nothing left to do.)
+
+2.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 30 bits (of 32) from port B of cell proof.$lt$proof.sv:28$10 ($lt).
+Removed top 31 bits (of 32) from port B of cell proof.$add$proof.sv:28$11 ($add).
+Removed top 30 bits (of 32) from port Y of cell proof.$add$proof.sv:28$11 ($add).
+Removed top 30 bits (of 32) from wire proof.$add$proof.sv:28$11_Y.
+
+2.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \proof..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+2.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+2.12. Executing OPT pass (performing simple optimizations).
+
+2.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module proof.
+
+2.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\proof'.
+Computing hashes of 16 cells of `\proof'.
+Finding duplicate cells in `\proof'.
+Removed a total of 0 cells.
+
+2.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \proof..
+
+2.12.4. Finished fast OPT passes.
+
+2.13. Executing SORT pass.
+
+2.14. Printing statistics.
+
+=== proof ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       26 wires
+       31 wire bits
+       18 public wires
+       21 public wire bits
+        4 ports
+        4 port bits
+       16 cells
+        1   $add
+        3   $adff
+        2   $check
+        2   $eq
+        3   $logic_and
+        1   $logic_not
+        1   $lt
+        2   $mux
+        1   $scopeinfo
+
+2.15. Executing CHECK pass (checking for obvious problems).
+Checking module proof...
+Found and reported 0 problems.
+
+3. Executing CLK2FFLOGIC pass (convert clocked FFs to generic $ff cells).
+
+3.1. Executing PEEPOPT pass (run peephole optimizers).
+Replacing proof.$flatten\dut.$procdff$32 ($adff): CLK=\core_clk, D={ \dut.core_release_q [1:0] 1'1 }, Q=\dut.core_release_q
+Replacing proof.$flatten\dut.$procdff$37 ($adff): CLK=\core_clk, D=1'1, Q=\dut.core_phase_release_q
+Replacing proof.$procdff$27 ($adff): CLK=\core_clk, D=$0\stable_edges[1:0], Q=\stable_edges
+
+4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \proof..
+Removed 4 unused cells and 7 unused wires.
+<suppressed ~5 debug messages>
+
+5. Executing SAT pass (solving SAT problems in the circuit).
+Using SAT solver `minisat`.
+
+Setting up time step 1:
+Import set-constraint for this timestep: \board_reset_n = 1'0
+Import set-constraint for this timestep: \trusted_reset_n = 1'0
+Import set-constraint for this timestep: \app_reset_n = 1'0
+Final constraint equation: { \app_reset_n \trusted_reset_n \board_reset_n } = 3'000
+Import def constraint for this timestep: \core_clk
+Import def constraint for this timestep: \board_reset_n
+Import def constraint for this timestep: \trusted_reset_n
+Import def constraint for this timestep: \app_reset_n
+Imported 40 cells to SAT database.
+Import set-constraint from init attribute: $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$80 = 1'1
+Import set-constraint from init attribute: $auto$clk2fflogic.cc:101:sample_data$$0\stable_edges[1:0]#sampled$78 = 2'00
+Import set-constraint from init attribute: $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$69#sampled$70 = 1'0
+Import set-constraint from init attribute: $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$62 = 1'0
+Import set-constraint from init attribute: $auto$clk2fflogic.cc:101:sample_data$1'1#sampled$60 = 1'0
+Import set-constraint from init attribute: $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$87#sampled$88 = 1'0
+Import set-constraint from init attribute: $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$51#sampled$52 = 1'0
+Import set-constraint from init attribute: $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$44 = 1'1
+Import set-constraint from init attribute: $auto$clk2fflogic.cc:101:sample_data${\dut.core_release_q[1:0]1'1}#sampled$42 = 3'000
+Final init constraint equation: { $auto$clk2fflogic.cc:101:sample_data${\dut.core_release_q[1:0]1'1}#sampled$42 $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$44 $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$51#sampled$52 $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$87#sampled$88 $auto$clk2fflogic.cc:101:sample_data$1'1#sampled$60 $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$62 $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$69#sampled$70 $auto$clk2fflogic.cc:101:sample_data$$0\stable_edges[1:0]#sampled$78 $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$80 } = 12'000100000001
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \core_clk
+Import def constraint for this timestep: \board_reset_n
+Import def constraint for this timestep: \trusted_reset_n
+Import def constraint for this timestep: \app_reset_n
+Imported 40 cells to SAT database.
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \core_clk
+Import def constraint for this timestep: \board_reset_n
+Import def constraint for this timestep: \trusted_reset_n
+Import def constraint for this timestep: \app_reset_n
+Imported 40 cells to SAT database.
+Import proof for assert: $eq$proof.sv:30$15_Y when 1'1.
+Import proof for assert: $logic_not$proof.sv:31$18_Y when $assert$proof.sv:31$17_EN.
+
+** Trying induction with length 1 **
+
+Setting up time step 3:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \core_clk
+Import def constraint for this timestep: \board_reset_n
+Import def constraint for this timestep: \trusted_reset_n
+Import def constraint for this timestep: \app_reset_n
+Imported 40 cells to SAT database.
+Import proof for assert: $eq$proof.sv:30$15_Y when 1'1.
+Import proof for assert: $logic_not$proof.sv:31$18_Y when $assert$proof.sv:31$17_EN.
+
+[base case 1] Solving problem with 2942 variables and 7825 clauses..
+Base case for induction length 1 proven.
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \core_clk
+Import def constraint for this timestep: \board_reset_n
+Import def constraint for this timestep: \trusted_reset_n
+Import def constraint for this timestep: \app_reset_n
+Imported 40 cells to SAT database.
+Import proof for assert: $eq$proof.sv:30$15_Y when 1'1.
+Import proof for assert: $logic_not$proof.sv:31$18_Y when $assert$proof.sv:31$17_EN.
+
+[induction step 1] Solving problem with 1853 variables and 4900 clauses..
+Induction step failed. Incrementing induction length.
+
+  Time Signal Name                                                                                Dec       Hex           Bin
+  ---- ---------------------------------------------------------------------------------- ----------- --------- -------------
+  init $auto$clk2fflogic.cc:101:sample_data$$0\stable_edges[1:0]#sampled$78                         0         0            00
+  init $auto$clk2fflogic.cc:101:sample_data$1'1#sampled$60                                          0         0             0
+  init $auto$clk2fflogic.cc:101:sample_data$\dut.core_phase_release_q#sampled$58                    1         1             1
+  init $auto$clk2fflogic.cc:101:sample_data$\dut.core_release_q#sampled$40                          0         0           000
+  init $auto$clk2fflogic.cc:101:sample_data$\stable_edges#sampled$76                                2         2            10
+  init $auto$clk2fflogic.cc:101:sample_data${\dut.core_release_q[1:0]1'1}#sampled$42                0         0           000
+  init $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$51#sampled$52                 0         0             0
+  init $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$69#sampled$70                 0         0             0
+  init $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$87#sampled$88                 0         0             0
+  init $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$44                             0         0             0
+  init $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$62                             0         0             0
+  init $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$80                             0         0             0
+
+** Trying induction with length 2 **
+
+Setting up time step 4:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \core_clk
+Import def constraint for this timestep: \board_reset_n
+Import def constraint for this timestep: \trusted_reset_n
+Import def constraint for this timestep: \app_reset_n
+Imported 40 cells to SAT database.
+Import proof for assert: $eq$proof.sv:30$15_Y when 1'1.
+Import proof for assert: $logic_not$proof.sv:31$18_Y when $assert$proof.sv:31$17_EN.
+
+[base case 2] Solving problem with 4123 variables and 11049 clauses..
+Base case for induction length 2 proven.
+
+Setting up time step 3:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \core_clk
+Import def constraint for this timestep: \board_reset_n
+Import def constraint for this timestep: \trusted_reset_n
+Import def constraint for this timestep: \app_reset_n
+Imported 40 cells to SAT database.
+Import proof for assert: $eq$proof.sv:30$15_Y when 1'1.
+Import proof for assert: $logic_not$proof.sv:31$18_Y when $assert$proof.sv:31$17_EN.
+
+[induction step 2] Solving problem with 3179 variables and 8576 clauses..
+Induction step failed. Incrementing induction length.
+
+  Time Signal Name                                                                                Dec       Hex           Bin
+  ---- ---------------------------------------------------------------------------------- ----------- --------- -------------
+  init $auto$clk2fflogic.cc:101:sample_data$$0\stable_edges[1:0]#sampled$78                         0         0            00
+  init $auto$clk2fflogic.cc:101:sample_data$1'1#sampled$60                                          0         0             0
+  init $auto$clk2fflogic.cc:101:sample_data$\dut.core_phase_release_q#sampled$58                    1         1             1
+  init $auto$clk2fflogic.cc:101:sample_data$\dut.core_release_q#sampled$40                          5         5           101
+  init $auto$clk2fflogic.cc:101:sample_data$\stable_edges#sampled$76                                3         3            11
+  init $auto$clk2fflogic.cc:101:sample_data${\dut.core_release_q[1:0]1'1}#sampled$42                4         4           100
+  init $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$51#sampled$52                 0         0             0
+  init $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$69#sampled$70                 0         0             0
+  init $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$87#sampled$88                 0         0             0
+  init $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$44                             1         1             1
+  init $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$62                             0         0             0
+  init $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$80                             1         1             1
+
+** Trying induction with length 3 **
+
+Setting up time step 5:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \core_clk
+Import def constraint for this timestep: \board_reset_n
+Import def constraint for this timestep: \trusted_reset_n
+Import def constraint for this timestep: \app_reset_n
+Imported 40 cells to SAT database.
+Import proof for assert: $eq$proof.sv:30$15_Y when 1'1.
+Import proof for assert: $logic_not$proof.sv:31$18_Y when $assert$proof.sv:31$17_EN.
+
+[base case 3] Solving problem with 5421 variables and 14641 clauses..
+Base case for induction length 3 proven.
+
+Setting up time step 4:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \core_clk
+Import def constraint for this timestep: \board_reset_n
+Import def constraint for this timestep: \trusted_reset_n
+Import def constraint for this timestep: \app_reset_n
+Imported 40 cells to SAT database.
+Import proof for assert: $eq$proof.sv:30$15_Y when 1'1.
+Import proof for assert: $logic_not$proof.sv:31$18_Y when $assert$proof.sv:31$17_EN.
+
+[induction step 3] Solving problem with 4630 variables and 12644 clauses..
+Induction step failed. Incrementing induction length.
+
+  Time Signal Name                                                                                Dec       Hex           Bin
+  ---- ---------------------------------------------------------------------------------- ----------- --------- -------------
+  init $auto$clk2fflogic.cc:101:sample_data$$0\stable_edges[1:0]#sampled$78                         2         2            10
+  init $auto$clk2fflogic.cc:101:sample_data$1'1#sampled$60                                          0         0             0
+  init $auto$clk2fflogic.cc:101:sample_data$\dut.core_phase_release_q#sampled$58                    1         1             1
+  init $auto$clk2fflogic.cc:101:sample_data$\dut.core_release_q#sampled$40                          1         1           001
+  init $auto$clk2fflogic.cc:101:sample_data$\stable_edges#sampled$76                                3         3            11
+  init $auto$clk2fflogic.cc:101:sample_data${\dut.core_release_q[1:0]1'1}#sampled$42                6         6           110
+  init $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$51#sampled$52                 0         0             0
+  init $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$69#sampled$70                 0         0             0
+  init $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$87#sampled$88                 1         1             1
+  init $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$44                             1         1             1
+  init $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$62                             0         0             0
+  init $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$80                             1         1             1
+
+** Trying induction with length 4 **
+
+Setting up time step 6:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \core_clk
+Import def constraint for this timestep: \board_reset_n
+Import def constraint for this timestep: \trusted_reset_n
+Import def constraint for this timestep: \app_reset_n
+Imported 40 cells to SAT database.
+Import proof for assert: $eq$proof.sv:30$15_Y when 1'1.
+Import proof for assert: $logic_not$proof.sv:31$18_Y when $assert$proof.sv:31$17_EN.
+
+[base case 4] Solving problem with 6851 variables and 18646 clauses..
+Base case for induction length 4 proven.
+
+Setting up time step 5:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \core_clk
+Import def constraint for this timestep: \board_reset_n
+Import def constraint for this timestep: \trusted_reset_n
+Import def constraint for this timestep: \app_reset_n
+Imported 40 cells to SAT database.
+Import proof for assert: $eq$proof.sv:30$15_Y when 1'1.
+Import proof for assert: $logic_not$proof.sv:31$18_Y when $assert$proof.sv:31$17_EN.
+
+[induction step 4] Solving problem with 6208 variables and 17110 clauses..
+Induction step failed. Incrementing induction length.
+
+  Time Signal Name                                                                                Dec       Hex           Bin
+  ---- ---------------------------------------------------------------------------------- ----------- --------- -------------
+  init $auto$clk2fflogic.cc:101:sample_data$$0\stable_edges[1:0]#sampled$78                         0         0            00
+  init $auto$clk2fflogic.cc:101:sample_data$1'1#sampled$60                                          0         0             0
+  init $auto$clk2fflogic.cc:101:sample_data$\dut.core_phase_release_q#sampled$58                    1         1             1
+  init $auto$clk2fflogic.cc:101:sample_data$\dut.core_release_q#sampled$40                          0         0           000
+  init $auto$clk2fflogic.cc:101:sample_data$\stable_edges#sampled$76                                1         1            01
+  init $auto$clk2fflogic.cc:101:sample_data${\dut.core_release_q[1:0]1'1}#sampled$42                4         4           100
+  init $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$51#sampled$52                 0         0             0
+  init $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$69#sampled$70                 0         0             0
+  init $auto$clk2fflogic.cc:75:sample_control$$auto$rtlil.cc:3267:Not$87#sampled$88                 0         0             0
+  init $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$44                             1         1             1
+  init $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$62                             1         1             1
+  init $auto$clk2fflogic.cc:87:sample_control_edge$\core_clk#sampled$80                             1         1             1
+
+** Trying induction with length 5 **
+
+Setting up time step 7:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \core_clk
+Import def constraint for this timestep: \board_reset_n
+Import def constraint for this timestep: \trusted_reset_n
+Import def constraint for this timestep: \app_reset_n
+Imported 40 cells to SAT database.
+Import proof for assert: $eq$proof.sv:30$15_Y when 1'1.
+Import proof for assert: $logic_not$proof.sv:31$18_Y when $assert$proof.sv:31$17_EN.
+
+[base case 5] Solving problem with 8411 variables and 23058 clauses..
+Base case for induction length 5 proven.
+
+Setting up time step 6:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \core_clk
+Import def constraint for this timestep: \board_reset_n
+Import def constraint for this timestep: \trusted_reset_n
+Import def constraint for this timestep: \app_reset_n
+Imported 40 cells to SAT database.
+Import proof for assert: $eq$proof.sv:30$15_Y when 1'1.
+Import proof for assert: $logic_not$proof.sv:31$18_Y when $assert$proof.sv:31$17_EN.
+
+[induction step 5] Solving problem with 7913 variables and 21974 clauses..
+Induction step proven: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+
+End of script. Logfile hash: a0224e2f81, time: 0.05s, user: 0.05s, system: 0.02s, MEM: 26.33 MB peak
+Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)
+Time spent: 86% 1x sat (0 sec), 3% 2x read_verilog (0 sec), ...

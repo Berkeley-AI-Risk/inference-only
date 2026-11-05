@@ -1,0 +1,8 @@
+read_verilog -formal -sv design.sv
+chparam -set USE_SHARED_VERIFIER 1 -set RESPONSE_LIMIT_CYCLES 100000000 -set LEASE_CYCLES 250000000 -set RENEW_LEAD_CYCLES 125000000 home_boot_gate
+prep -top home_boot_gate -flatten
+delete home_boot_gate/shared_signature_byte_o
+async2sync
+memory_map
+opt_clean
+sat -verify -prove-asserts -tempinduct -tempinduct-def -seq 2 -maxsteps 12 -set clk 1 -set-at 1 reset_n 0 -set-def-inputs -dump_vcd failure.vcd

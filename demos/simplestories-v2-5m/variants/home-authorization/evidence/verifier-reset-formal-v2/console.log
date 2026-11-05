@@ -1,0 +1,799 @@
+
+-- Executing script file `prove.ys' --
+
+1. Executing Verilog-2005 frontend: design.sv
+Parsing formal SystemVerilog input from `design.sv' to AST representation.
+Generating RTLIL representation for module `\home_boot_gate'.
+Generating RTLIL representation for module `\home_equal256_tree'.
+Successfully finished Verilog frontend.
+Parameter \USE_SHARED_VERIFIER = 1
+Parameter \RESPONSE_LIMIT_CYCLES = 100000000
+Parameter \LEASE_CYCLES = 250000000
+Parameter \RENEW_LEAD_CYCLES = 125000000
+
+2. Executing AST frontend in derive mode using pre-parsed AST for module `\home_boot_gate'.
+Parameter \USE_SHARED_VERIFIER = 1
+Parameter \RESPONSE_LIMIT_CYCLES = 100000000
+Parameter \LEASE_CYCLES = 250000000
+Parameter \RENEW_LEAD_CYCLES = 125000000
+Generating RTLIL representation for module `$paramod$ffcdea5c0387e40838c77e880664ea28a42717f4\home_boot_gate'.
+
+3. Executing PREP pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \home_boot_gate
+Used module:     \home_equal256_tree
+
+3.1.2. Analyzing design hierarchy..
+Top module:  \home_boot_gate
+Used module:     \home_equal256_tree
+Removed 0 unused modules.
+Module home_boot_gate directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\home_boot_gate.$proc$design.sv:113$519'.
+Removing empty process `home_boot_gate.$proc$design.sv:113$519'.
+Cleaned up 1 empty switch.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$design.sv:119$430 in module home_boot_gate.
+Marked 1 switch rules as full_case in process $proc$design.sv:125$444 in module home_boot_gate.
+Marked 9 switch rules as full_case in process $proc$design.sv:151$447 in module home_boot_gate.
+Marked 1 switch rules as full_case in process $proc$design.sv:86$499 in module home_boot_gate.
+Marked 1 switch rules as full_case in process $proc$design.sv:64$355 in module home_boot_gate.
+Removed a total of 0 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 14 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\home_boot_gate.$proc$design.sv:214$520'.
+  Set init value: \proof_past_valid = 1'0
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \reset_n in `\home_boot_gate.$proc$design.sv:125$444'.
+Found async reset \reset_n in `\home_boot_gate.$proc$design.sv:151$447'.
+Found async reset \reset_n in `\home_boot_gate.$proc$design.sv:64$355'.
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~27 debug messages>
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\home_boot_gate.$proc$design.sv:119$430'.
+     1/3: $1$memwr$\signature_mem$design.sv:121$352_EN[7:0]$441
+     2/3: $1$memwr$\signature_mem$design.sv:121$352_DATA[7:0]$440
+     3/3: $1$memwr$\signature_mem$design.sv:121$352_ADDR[31:0]$439
+Creating decoders for process `\home_boot_gate.$proc$design.sv:125$444'.
+     1/1: $0\signature_read_valid_q[0:0]
+Creating decoders for process `\home_boot_gate.$proc$design.sv:151$447'.
+     1/12: $0\index_q[10:0]
+     2/12: $0\previous_nonce_q[255:0]
+     3/12: $0\seen_nonce_q[0:0]
+     4/12: $0\lease_active_q[0:0]
+     5/12: $0\lease_age_q[27:0]
+     6/12: $0\age_q[26:0]
+     7/12: $0\fault_q[0:0]
+     8/12: $0\have_root_q[0:0]
+     9/12: $0\have_nonce_q[0:0]
+    10/12: $0\root_q[255:0]
+    11/12: $0\nonce_q[255:0]
+    12/12: $0\state_q[3:0]
+Creating decoders for process `\home_boot_gate.$proc$design.sv:208$471'.
+     1/4: $assert$design.sv:212$484_EN
+     2/4: $assert$design.sv:211$479_EN
+     3/4: $assert$design.sv:210$473_EN
+     4/4: $assert$design.sv:209$472_EN
+Creating decoders for process `\home_boot_gate.$proc$design.sv:215$486'.
+     1/3: $assert$design.sv:221$498_EN
+     2/3: $assert$design.sv:220$497_EN
+     3/3: $assert$design.sv:218$493_EN
+Creating decoders for process `\home_boot_gate.$proc$design.sv:86$499'.
+     1/1: $1\message_byte$func$design.sv:86$351.$result[7:0]$503
+Creating decoders for process `\home_boot_gate.$proc$design.sv:64$355'.
+     1/1: $0\crypto_reset_release_q[0:0]
+Creating decoders for process `\home_boot_gate.$proc$design.sv:214$520'.
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\home_boot_gate.\message_byte$func$design.sv:86$346.$result' from process `\home_boot_gate.$proc$design.sv:86$499'.
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\home_boot_gate.\signature_address_q' using process `\home_boot_gate.$proc$design.sv:119$430'.
+  created $dff cell `$procdff$822' with positive edge clock.
+Creating register for signal `\home_boot_gate.\signature_byte_q' using process `\home_boot_gate.$proc$design.sv:119$430'.
+  created $dff cell `$procdff$823' with positive edge clock.
+Creating register for signal `\home_boot_gate.$memwr$\signature_mem$design.sv:121$352_ADDR' using process `\home_boot_gate.$proc$design.sv:119$430'.
+  created $dff cell `$procdff$824' with positive edge clock.
+Creating register for signal `\home_boot_gate.$memwr$\signature_mem$design.sv:121$352_DATA' using process `\home_boot_gate.$proc$design.sv:119$430'.
+  created $dff cell `$procdff$825' with positive edge clock.
+Creating register for signal `\home_boot_gate.$memwr$\signature_mem$design.sv:121$352_EN' using process `\home_boot_gate.$proc$design.sv:119$430'.
+  created $dff cell `$procdff$826' with positive edge clock.
+Creating register for signal `\home_boot_gate.\signature_read_valid_q' using process `\home_boot_gate.$proc$design.sv:125$444'.
+  created $adff cell `$procdff$831' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\state_q' using process `\home_boot_gate.$proc$design.sv:151$447'.
+  created $adff cell `$procdff$836' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\nonce_q' using process `\home_boot_gate.$proc$design.sv:151$447'.
+  created $adff cell `$procdff$841' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\root_q' using process `\home_boot_gate.$proc$design.sv:151$447'.
+  created $adff cell `$procdff$846' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\have_nonce_q' using process `\home_boot_gate.$proc$design.sv:151$447'.
+  created $adff cell `$procdff$851' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\have_root_q' using process `\home_boot_gate.$proc$design.sv:151$447'.
+  created $adff cell `$procdff$856' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\fault_q' using process `\home_boot_gate.$proc$design.sv:151$447'.
+  created $adff cell `$procdff$861' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\age_q' using process `\home_boot_gate.$proc$design.sv:151$447'.
+  created $adff cell `$procdff$866' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\lease_age_q' using process `\home_boot_gate.$proc$design.sv:151$447'.
+  created $adff cell `$procdff$871' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\lease_active_q' using process `\home_boot_gate.$proc$design.sv:151$447'.
+  created $adff cell `$procdff$876' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\seen_nonce_q' using process `\home_boot_gate.$proc$design.sv:151$447'.
+  created $adff cell `$procdff$881' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\previous_nonce_q' using process `\home_boot_gate.$proc$design.sv:151$447'.
+  created $adff cell `$procdff$886' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\index_q' using process `\home_boot_gate.$proc$design.sv:151$447'.
+  created $adff cell `$procdff$891' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\proof_past_valid' using process `\home_boot_gate.$proc$design.sv:215$486'.
+  created $dff cell `$procdff$892' with positive edge clock.
+Creating register for signal `\home_boot_gate.$past$design.sv:217$347$0' using process `\home_boot_gate.$proc$design.sv:215$486'.
+  created $dff cell `$procdff$893' with positive edge clock.
+Creating register for signal `\home_boot_gate.$past$design.sv:218$348$0' using process `\home_boot_gate.$proc$design.sv:215$486'.
+  created $dff cell `$procdff$894' with positive edge clock.
+Creating register for signal `\home_boot_gate.$past$design.sv:219$349$0' using process `\home_boot_gate.$proc$design.sv:215$486'.
+  created $dff cell `$procdff$895' with positive edge clock.
+Creating register for signal `\home_boot_gate.$past$design.sv:221$350$0' using process `\home_boot_gate.$proc$design.sv:215$486'.
+  created $dff cell `$procdff$896' with positive edge clock.
+Creating register for signal `\home_boot_gate.\crypto_reset_release_q' using process `\home_boot_gate.$proc$design.sv:64$355'.
+  created $adff cell `$procdff$901' with positive edge clock and positive level reset.
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\home_boot_gate.$proc$design.sv:119$430'.
+Removing empty process `home_boot_gate.$proc$design.sv:119$430'.
+Removing empty process `home_boot_gate.$proc$design.sv:125$444'.
+Found and cleaned up 17 empty switches in `\home_boot_gate.$proc$design.sv:151$447'.
+Removing empty process `home_boot_gate.$proc$design.sv:151$447'.
+Found and cleaned up 5 empty switches in `\home_boot_gate.$proc$design.sv:208$471'.
+Removing empty process `home_boot_gate.$proc$design.sv:208$471'.
+Found and cleaned up 3 empty switches in `\home_boot_gate.$proc$design.sv:215$486'.
+Removing empty process `home_boot_gate.$proc$design.sv:215$486'.
+Found and cleaned up 1 empty switch in `\home_boot_gate.$proc$design.sv:86$499'.
+Removing empty process `home_boot_gate.$proc$design.sv:86$499'.
+Removing empty process `home_boot_gate.$proc$design.sv:64$355'.
+Removing empty process `home_boot_gate.$proc$design.sv:214$520'.
+Cleaned up 27 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module home_equal256_tree.
+Optimizing module home_boot_gate.
+<suppressed ~43 debug messages>
+
+3.3. Executing FLATTEN pass (flatten design).
+Deleting now unused module home_equal256_tree.
+<suppressed ~2 debug messages>
+
+3.4. Executing FUTURE pass.
+
+3.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module home_boot_gate.
+
+3.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \home_boot_gate..
+Removed 20 unused cells and 512 unused wires.
+<suppressed ~21 debug messages>
+
+3.7. Executing CHECK pass (checking for obvious problems).
+Checking module home_boot_gate...
+Found and reported 0 problems.
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module home_boot_gate.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\home_boot_gate'.
+Computing hashes of 637 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+Computing hashes of 577 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+Computing hashes of 572 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+<suppressed ~195 debug messages>
+Removed a total of 65 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \home_boot_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $procmux$598: \lease_active_q -> 1'0
+      Replacing known input bits on port A of cell $procmux$596: \lease_active_q -> 1'1
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~139 debug messages>
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \home_boot_gate.
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:247$345: { \u_nonce_equal.g_pairs[112].same \u_nonce_equal.g_pairs[113].same \u_nonce_equal.g_pairs[114].same \u_nonce_equal.g_pairs[115].same \u_nonce_equal.g_pairs[116].same \u_nonce_equal.g_pairs[117].same \u_nonce_equal.g_pairs[118].same \u_nonce_equal.g_pairs[119].same \u_nonce_equal.g_pairs[120].same \u_nonce_equal.g_pairs[121].same \u_nonce_equal.g_pairs[122].same \u_nonce_equal.g_pairs[123].same \u_nonce_equal.g_pairs[124].same \u_nonce_equal.g_pairs[125].same \u_nonce_equal.g_pairs[126].same \u_nonce_equal.g_pairs[127].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:247$344: { \u_nonce_equal.g_pairs[96].same \u_nonce_equal.g_pairs[97].same \u_nonce_equal.g_pairs[98].same \u_nonce_equal.g_pairs[99].same \u_nonce_equal.g_pairs[100].same \u_nonce_equal.g_pairs[101].same \u_nonce_equal.g_pairs[102].same \u_nonce_equal.g_pairs[103].same \u_nonce_equal.g_pairs[104].same \u_nonce_equal.g_pairs[105].same \u_nonce_equal.g_pairs[106].same \u_nonce_equal.g_pairs[107].same \u_nonce_equal.g_pairs[108].same \u_nonce_equal.g_pairs[109].same \u_nonce_equal.g_pairs[110].same \u_nonce_equal.g_pairs[111].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:247$343: { \u_nonce_equal.g_pairs[80].same \u_nonce_equal.g_pairs[81].same \u_nonce_equal.g_pairs[82].same \u_nonce_equal.g_pairs[83].same \u_nonce_equal.g_pairs[84].same \u_nonce_equal.g_pairs[85].same \u_nonce_equal.g_pairs[86].same \u_nonce_equal.g_pairs[87].same \u_nonce_equal.g_pairs[88].same \u_nonce_equal.g_pairs[89].same \u_nonce_equal.g_pairs[90].same \u_nonce_equal.g_pairs[91].same \u_nonce_equal.g_pairs[92].same \u_nonce_equal.g_pairs[93].same \u_nonce_equal.g_pairs[94].same \u_nonce_equal.g_pairs[95].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:247$342: { \u_nonce_equal.g_pairs[64].same \u_nonce_equal.g_pairs[65].same \u_nonce_equal.g_pairs[66].same \u_nonce_equal.g_pairs[67].same \u_nonce_equal.g_pairs[68].same \u_nonce_equal.g_pairs[69].same \u_nonce_equal.g_pairs[70].same \u_nonce_equal.g_pairs[71].same \u_nonce_equal.g_pairs[72].same \u_nonce_equal.g_pairs[73].same \u_nonce_equal.g_pairs[74].same \u_nonce_equal.g_pairs[75].same \u_nonce_equal.g_pairs[76].same \u_nonce_equal.g_pairs[77].same \u_nonce_equal.g_pairs[78].same \u_nonce_equal.g_pairs[79].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:247$341: { \u_nonce_equal.g_pairs[48].same \u_nonce_equal.g_pairs[49].same \u_nonce_equal.g_pairs[50].same \u_nonce_equal.g_pairs[51].same \u_nonce_equal.g_pairs[52].same \u_nonce_equal.g_pairs[53].same \u_nonce_equal.g_pairs[54].same \u_nonce_equal.g_pairs[55].same \u_nonce_equal.g_pairs[56].same \u_nonce_equal.g_pairs[57].same \u_nonce_equal.g_pairs[58].same \u_nonce_equal.g_pairs[59].same \u_nonce_equal.g_pairs[60].same \u_nonce_equal.g_pairs[61].same \u_nonce_equal.g_pairs[62].same \u_nonce_equal.g_pairs[63].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:247$340: { \u_nonce_equal.g_pairs[32].same \u_nonce_equal.g_pairs[33].same \u_nonce_equal.g_pairs[34].same \u_nonce_equal.g_pairs[35].same \u_nonce_equal.g_pairs[36].same \u_nonce_equal.g_pairs[37].same \u_nonce_equal.g_pairs[38].same \u_nonce_equal.g_pairs[39].same \u_nonce_equal.g_pairs[40].same \u_nonce_equal.g_pairs[41].same \u_nonce_equal.g_pairs[42].same \u_nonce_equal.g_pairs[43].same \u_nonce_equal.g_pairs[44].same \u_nonce_equal.g_pairs[45].same \u_nonce_equal.g_pairs[46].same \u_nonce_equal.g_pairs[47].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:247$339: { \u_nonce_equal.g_pairs[16].same \u_nonce_equal.g_pairs[17].same \u_nonce_equal.g_pairs[18].same \u_nonce_equal.g_pairs[19].same \u_nonce_equal.g_pairs[20].same \u_nonce_equal.g_pairs[21].same \u_nonce_equal.g_pairs[22].same \u_nonce_equal.g_pairs[23].same \u_nonce_equal.g_pairs[24].same \u_nonce_equal.g_pairs[25].same \u_nonce_equal.g_pairs[26].same \u_nonce_equal.g_pairs[27].same \u_nonce_equal.g_pairs[28].same \u_nonce_equal.g_pairs[29].same \u_nonce_equal.g_pairs[30].same \u_nonce_equal.g_pairs[31].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:247$338: { \u_nonce_equal.g_pairs[0].same \u_nonce_equal.g_pairs[1].same \u_nonce_equal.g_pairs[2].same \u_nonce_equal.g_pairs[3].same \u_nonce_equal.g_pairs[4].same \u_nonce_equal.g_pairs[5].same \u_nonce_equal.g_pairs[6].same \u_nonce_equal.g_pairs[7].same \u_nonce_equal.g_pairs[8].same \u_nonce_equal.g_pairs[9].same \u_nonce_equal.g_pairs[10].same \u_nonce_equal.g_pairs[11].same \u_nonce_equal.g_pairs[12].same \u_nonce_equal.g_pairs[13].same \u_nonce_equal.g_pairs[14].same \u_nonce_equal.g_pairs[15].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:251$177: { \u_nonce_equal.g_pairs[0].same \u_nonce_equal.g_pairs[1].same \u_nonce_equal.g_pairs[2].same \u_nonce_equal.g_pairs[3].same \u_nonce_equal.g_pairs[4].same \u_nonce_equal.g_pairs[5].same \u_nonce_equal.g_pairs[6].same \u_nonce_equal.g_pairs[7].same \u_nonce_equal.g_pairs[8].same \u_nonce_equal.g_pairs[9].same \u_nonce_equal.g_pairs[10].same \u_nonce_equal.g_pairs[11].same \u_nonce_equal.g_pairs[12].same \u_nonce_equal.g_pairs[13].same \u_nonce_equal.g_pairs[14].same \u_nonce_equal.g_pairs[15].same \u_nonce_equal.g_pairs[16].same \u_nonce_equal.g_pairs[17].same \u_nonce_equal.g_pairs[18].same \u_nonce_equal.g_pairs[19].same \u_nonce_equal.g_pairs[20].same \u_nonce_equal.g_pairs[21].same \u_nonce_equal.g_pairs[22].same \u_nonce_equal.g_pairs[23].same \u_nonce_equal.g_pairs[24].same \u_nonce_equal.g_pairs[25].same \u_nonce_equal.g_pairs[26].same \u_nonce_equal.g_pairs[27].same \u_nonce_equal.g_pairs[28].same \u_nonce_equal.g_pairs[29].same \u_nonce_equal.g_pairs[30].same \u_nonce_equal.g_pairs[31].same \u_nonce_equal.g_pairs[32].same \u_nonce_equal.g_pairs[33].same \u_nonce_equal.g_pairs[34].same \u_nonce_equal.g_pairs[35].same \u_nonce_equal.g_pairs[36].same \u_nonce_equal.g_pairs[37].same \u_nonce_equal.g_pairs[38].same \u_nonce_equal.g_pairs[39].same \u_nonce_equal.g_pairs[40].same \u_nonce_equal.g_pairs[41].same \u_nonce_equal.g_pairs[42].same \u_nonce_equal.g_pairs[43].same \u_nonce_equal.g_pairs[44].same \u_nonce_equal.g_pairs[45].same \u_nonce_equal.g_pairs[46].same \u_nonce_equal.g_pairs[47].same \u_nonce_equal.g_pairs[48].same \u_nonce_equal.g_pairs[49].same \u_nonce_equal.g_pairs[50].same \u_nonce_equal.g_pairs[51].same \u_nonce_equal.g_pairs[52].same \u_nonce_equal.g_pairs[53].same \u_nonce_equal.g_pairs[54].same \u_nonce_equal.g_pairs[55].same \u_nonce_equal.g_pairs[56].same \u_nonce_equal.g_pairs[57].same \u_nonce_equal.g_pairs[58].same \u_nonce_equal.g_pairs[59].same \u_nonce_equal.g_pairs[60].same \u_nonce_equal.g_pairs[61].same \u_nonce_equal.g_pairs[62].same \u_nonce_equal.g_pairs[63].same \u_nonce_equal.g_pairs[64].same \u_nonce_equal.g_pairs[65].same \u_nonce_equal.g_pairs[66].same \u_nonce_equal.g_pairs[67].same \u_nonce_equal.g_pairs[68].same \u_nonce_equal.g_pairs[69].same \u_nonce_equal.g_pairs[70].same \u_nonce_equal.g_pairs[71].same \u_nonce_equal.g_pairs[72].same \u_nonce_equal.g_pairs[73].same \u_nonce_equal.g_pairs[74].same \u_nonce_equal.g_pairs[75].same \u_nonce_equal.g_pairs[76].same \u_nonce_equal.g_pairs[77].same \u_nonce_equal.g_pairs[78].same \u_nonce_equal.g_pairs[79].same \u_nonce_equal.g_pairs[80].same \u_nonce_equal.g_pairs[81].same \u_nonce_equal.g_pairs[82].same \u_nonce_equal.g_pairs[83].same \u_nonce_equal.g_pairs[84].same \u_nonce_equal.g_pairs[85].same \u_nonce_equal.g_pairs[86].same \u_nonce_equal.g_pairs[87].same \u_nonce_equal.g_pairs[88].same \u_nonce_equal.g_pairs[89].same \u_nonce_equal.g_pairs[90].same \u_nonce_equal.g_pairs[91].same \u_nonce_equal.g_pairs[92].same \u_nonce_equal.g_pairs[93].same \u_nonce_equal.g_pairs[94].same \u_nonce_equal.g_pairs[95].same \u_nonce_equal.g_pairs[96].same \u_nonce_equal.g_pairs[97].same \u_nonce_equal.g_pairs[98].same \u_nonce_equal.g_pairs[99].same \u_nonce_equal.g_pairs[100].same \u_nonce_equal.g_pairs[101].same \u_nonce_equal.g_pairs[102].same \u_nonce_equal.g_pairs[103].same \u_nonce_equal.g_pairs[104].same \u_nonce_equal.g_pairs[105].same \u_nonce_equal.g_pairs[106].same \u_nonce_equal.g_pairs[107].same \u_nonce_equal.g_pairs[108].same \u_nonce_equal.g_pairs[109].same \u_nonce_equal.g_pairs[110].same \u_nonce_equal.g_pairs[111].same \u_nonce_equal.g_pairs[112].same \u_nonce_equal.g_pairs[113].same \u_nonce_equal.g_pairs[114].same \u_nonce_equal.g_pairs[115].same \u_nonce_equal.g_pairs[116].same \u_nonce_equal.g_pairs[117].same \u_nonce_equal.g_pairs[118].same \u_nonce_equal.g_pairs[119].same \u_nonce_equal.g_pairs[120].same \u_nonce_equal.g_pairs[121].same \u_nonce_equal.g_pairs[122].same \u_nonce_equal.g_pairs[123].same \u_nonce_equal.g_pairs[124].same \u_nonce_equal.g_pairs[125].same \u_nonce_equal.g_pairs[126].same \u_nonce_equal.g_pairs[127].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:247$345: { \u_root_equal.g_pairs[112].same \u_root_equal.g_pairs[113].same \u_root_equal.g_pairs[114].same \u_root_equal.g_pairs[115].same \u_root_equal.g_pairs[116].same \u_root_equal.g_pairs[117].same \u_root_equal.g_pairs[118].same \u_root_equal.g_pairs[119].same \u_root_equal.g_pairs[120].same \u_root_equal.g_pairs[121].same \u_root_equal.g_pairs[122].same \u_root_equal.g_pairs[123].same \u_root_equal.g_pairs[124].same \u_root_equal.g_pairs[125].same \u_root_equal.g_pairs[126].same \u_root_equal.g_pairs[127].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:247$344: { \u_root_equal.g_pairs[96].same \u_root_equal.g_pairs[97].same \u_root_equal.g_pairs[98].same \u_root_equal.g_pairs[99].same \u_root_equal.g_pairs[100].same \u_root_equal.g_pairs[101].same \u_root_equal.g_pairs[102].same \u_root_equal.g_pairs[103].same \u_root_equal.g_pairs[104].same \u_root_equal.g_pairs[105].same \u_root_equal.g_pairs[106].same \u_root_equal.g_pairs[107].same \u_root_equal.g_pairs[108].same \u_root_equal.g_pairs[109].same \u_root_equal.g_pairs[110].same \u_root_equal.g_pairs[111].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:247$343: { \u_root_equal.g_pairs[80].same \u_root_equal.g_pairs[81].same \u_root_equal.g_pairs[82].same \u_root_equal.g_pairs[83].same \u_root_equal.g_pairs[84].same \u_root_equal.g_pairs[85].same \u_root_equal.g_pairs[86].same \u_root_equal.g_pairs[87].same \u_root_equal.g_pairs[88].same \u_root_equal.g_pairs[89].same \u_root_equal.g_pairs[90].same \u_root_equal.g_pairs[91].same \u_root_equal.g_pairs[92].same \u_root_equal.g_pairs[93].same \u_root_equal.g_pairs[94].same \u_root_equal.g_pairs[95].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:247$342: { \u_root_equal.g_pairs[64].same \u_root_equal.g_pairs[65].same \u_root_equal.g_pairs[66].same \u_root_equal.g_pairs[67].same \u_root_equal.g_pairs[68].same \u_root_equal.g_pairs[69].same \u_root_equal.g_pairs[70].same \u_root_equal.g_pairs[71].same \u_root_equal.g_pairs[72].same \u_root_equal.g_pairs[73].same \u_root_equal.g_pairs[74].same \u_root_equal.g_pairs[75].same \u_root_equal.g_pairs[76].same \u_root_equal.g_pairs[77].same \u_root_equal.g_pairs[78].same \u_root_equal.g_pairs[79].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:247$341: { \u_root_equal.g_pairs[48].same \u_root_equal.g_pairs[49].same \u_root_equal.g_pairs[50].same \u_root_equal.g_pairs[51].same \u_root_equal.g_pairs[52].same \u_root_equal.g_pairs[53].same \u_root_equal.g_pairs[54].same \u_root_equal.g_pairs[55].same \u_root_equal.g_pairs[56].same \u_root_equal.g_pairs[57].same \u_root_equal.g_pairs[58].same \u_root_equal.g_pairs[59].same \u_root_equal.g_pairs[60].same \u_root_equal.g_pairs[61].same \u_root_equal.g_pairs[62].same \u_root_equal.g_pairs[63].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:247$340: { \u_root_equal.g_pairs[32].same \u_root_equal.g_pairs[33].same \u_root_equal.g_pairs[34].same \u_root_equal.g_pairs[35].same \u_root_equal.g_pairs[36].same \u_root_equal.g_pairs[37].same \u_root_equal.g_pairs[38].same \u_root_equal.g_pairs[39].same \u_root_equal.g_pairs[40].same \u_root_equal.g_pairs[41].same \u_root_equal.g_pairs[42].same \u_root_equal.g_pairs[43].same \u_root_equal.g_pairs[44].same \u_root_equal.g_pairs[45].same \u_root_equal.g_pairs[46].same \u_root_equal.g_pairs[47].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:247$339: { \u_root_equal.g_pairs[16].same \u_root_equal.g_pairs[17].same \u_root_equal.g_pairs[18].same \u_root_equal.g_pairs[19].same \u_root_equal.g_pairs[20].same \u_root_equal.g_pairs[21].same \u_root_equal.g_pairs[22].same \u_root_equal.g_pairs[23].same \u_root_equal.g_pairs[24].same \u_root_equal.g_pairs[25].same \u_root_equal.g_pairs[26].same \u_root_equal.g_pairs[27].same \u_root_equal.g_pairs[28].same \u_root_equal.g_pairs[29].same \u_root_equal.g_pairs[30].same \u_root_equal.g_pairs[31].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:247$338: { \u_root_equal.g_pairs[0].same \u_root_equal.g_pairs[1].same \u_root_equal.g_pairs[2].same \u_root_equal.g_pairs[3].same \u_root_equal.g_pairs[4].same \u_root_equal.g_pairs[5].same \u_root_equal.g_pairs[6].same \u_root_equal.g_pairs[7].same \u_root_equal.g_pairs[8].same \u_root_equal.g_pairs[9].same \u_root_equal.g_pairs[10].same \u_root_equal.g_pairs[11].same \u_root_equal.g_pairs[12].same \u_root_equal.g_pairs[13].same \u_root_equal.g_pairs[14].same \u_root_equal.g_pairs[15].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:251$177: { \u_root_equal.g_pairs[0].same \u_root_equal.g_pairs[1].same \u_root_equal.g_pairs[2].same \u_root_equal.g_pairs[3].same \u_root_equal.g_pairs[4].same \u_root_equal.g_pairs[5].same \u_root_equal.g_pairs[6].same \u_root_equal.g_pairs[7].same \u_root_equal.g_pairs[8].same \u_root_equal.g_pairs[9].same \u_root_equal.g_pairs[10].same \u_root_equal.g_pairs[11].same \u_root_equal.g_pairs[12].same \u_root_equal.g_pairs[13].same \u_root_equal.g_pairs[14].same \u_root_equal.g_pairs[15].same \u_root_equal.g_pairs[16].same \u_root_equal.g_pairs[17].same \u_root_equal.g_pairs[18].same \u_root_equal.g_pairs[19].same \u_root_equal.g_pairs[20].same \u_root_equal.g_pairs[21].same \u_root_equal.g_pairs[22].same \u_root_equal.g_pairs[23].same \u_root_equal.g_pairs[24].same \u_root_equal.g_pairs[25].same \u_root_equal.g_pairs[26].same \u_root_equal.g_pairs[27].same \u_root_equal.g_pairs[28].same \u_root_equal.g_pairs[29].same \u_root_equal.g_pairs[30].same \u_root_equal.g_pairs[31].same \u_root_equal.g_pairs[32].same \u_root_equal.g_pairs[33].same \u_root_equal.g_pairs[34].same \u_root_equal.g_pairs[35].same \u_root_equal.g_pairs[36].same \u_root_equal.g_pairs[37].same \u_root_equal.g_pairs[38].same \u_root_equal.g_pairs[39].same \u_root_equal.g_pairs[40].same \u_root_equal.g_pairs[41].same \u_root_equal.g_pairs[42].same \u_root_equal.g_pairs[43].same \u_root_equal.g_pairs[44].same \u_root_equal.g_pairs[45].same \u_root_equal.g_pairs[46].same \u_root_equal.g_pairs[47].same \u_root_equal.g_pairs[48].same \u_root_equal.g_pairs[49].same \u_root_equal.g_pairs[50].same \u_root_equal.g_pairs[51].same \u_root_equal.g_pairs[52].same \u_root_equal.g_pairs[53].same \u_root_equal.g_pairs[54].same \u_root_equal.g_pairs[55].same \u_root_equal.g_pairs[56].same \u_root_equal.g_pairs[57].same \u_root_equal.g_pairs[58].same \u_root_equal.g_pairs[59].same \u_root_equal.g_pairs[60].same \u_root_equal.g_pairs[61].same \u_root_equal.g_pairs[62].same \u_root_equal.g_pairs[63].same \u_root_equal.g_pairs[64].same \u_root_equal.g_pairs[65].same \u_root_equal.g_pairs[66].same \u_root_equal.g_pairs[67].same \u_root_equal.g_pairs[68].same \u_root_equal.g_pairs[69].same \u_root_equal.g_pairs[70].same \u_root_equal.g_pairs[71].same \u_root_equal.g_pairs[72].same \u_root_equal.g_pairs[73].same \u_root_equal.g_pairs[74].same \u_root_equal.g_pairs[75].same \u_root_equal.g_pairs[76].same \u_root_equal.g_pairs[77].same \u_root_equal.g_pairs[78].same \u_root_equal.g_pairs[79].same \u_root_equal.g_pairs[80].same \u_root_equal.g_pairs[81].same \u_root_equal.g_pairs[82].same \u_root_equal.g_pairs[83].same \u_root_equal.g_pairs[84].same \u_root_equal.g_pairs[85].same \u_root_equal.g_pairs[86].same \u_root_equal.g_pairs[87].same \u_root_equal.g_pairs[88].same \u_root_equal.g_pairs[89].same \u_root_equal.g_pairs[90].same \u_root_equal.g_pairs[91].same \u_root_equal.g_pairs[92].same \u_root_equal.g_pairs[93].same \u_root_equal.g_pairs[94].same \u_root_equal.g_pairs[95].same \u_root_equal.g_pairs[96].same \u_root_equal.g_pairs[97].same \u_root_equal.g_pairs[98].same \u_root_equal.g_pairs[99].same \u_root_equal.g_pairs[100].same \u_root_equal.g_pairs[101].same \u_root_equal.g_pairs[102].same \u_root_equal.g_pairs[103].same \u_root_equal.g_pairs[104].same \u_root_equal.g_pairs[105].same \u_root_equal.g_pairs[106].same \u_root_equal.g_pairs[107].same \u_root_equal.g_pairs[108].same \u_root_equal.g_pairs[109].same \u_root_equal.g_pairs[110].same \u_root_equal.g_pairs[111].same \u_root_equal.g_pairs[112].same \u_root_equal.g_pairs[113].same \u_root_equal.g_pairs[114].same \u_root_equal.g_pairs[115].same \u_root_equal.g_pairs[116].same \u_root_equal.g_pairs[117].same \u_root_equal.g_pairs[118].same \u_root_equal.g_pairs[119].same \u_root_equal.g_pairs[120].same \u_root_equal.g_pairs[121].same \u_root_equal.g_pairs[122].same \u_root_equal.g_pairs[123].same \u_root_equal.g_pairs[124].same \u_root_equal.g_pairs[125].same \u_root_equal.g_pairs[126].same \u_root_equal.g_pairs[127].same }
+    New ctrl vector for $pmux cell $procmux$653: { $auto$opt_reduce.cc:137:opt_pmux$906 $procmux$757_CMP $procmux$769_CMP $procmux$783_CMP }
+    Consolidated identical input bits for $mux cell $procmux$522:
+      Old ports: A=8'00000000, B=8'11111111, Y=$0$memwr$\signature_mem$design.sv:121$352_EN[7:0]$433
+      New ports: A=1'0, B=1'1, Y=$0$memwr$\signature_mem$design.sv:121$352_EN[7:0]$433 [0]
+      New connections: $0$memwr$\signature_mem$design.sv:121$352_EN[7:0]$433 [7:1] = { $0$memwr$\signature_mem$design.sv:121$352_EN[7:0]$433 [0] $0$memwr$\signature_mem$design.sv:121$352_EN[7:0]$433 [0] $0$memwr$\signature_mem$design.sv:121$352_EN[7:0]$433 [0] $0$memwr$\signature_mem$design.sv:121$352_EN[7:0]$433 [0] $0$memwr$\signature_mem$design.sv:121$352_EN[7:0]$433 [0] $0$memwr$\signature_mem$design.sv:121$352_EN[7:0]$433 [0] $0$memwr$\signature_mem$design.sv:121$352_EN[7:0]$433 [0] }
+  Optimizing cells in module \home_boot_gate.
+Performed a total of 20 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\home_boot_gate'.
+Computing hashes of 573 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+Computing hashes of 571 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+Computing hashes of 570 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+3.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \home_boot_gate..
+Removed 80 unused cells and 152 unused wires.
+<suppressed ~165 debug messages>
+
+3.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module home_boot_gate.
+
+3.8.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \home_boot_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~138 debug messages>
+
+3.8.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \home_boot_gate.
+Performed a total of 0 changes.
+
+3.8.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\home_boot_gate'.
+Computing hashes of 490 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+Removed a total of 0 cells.
+
+3.8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \home_boot_gate..
+
+3.8.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module home_boot_gate.
+
+3.8.14. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 21 address bits (of 32) from memory init port home_boot_gate.$auto$proc_memwr.cc:45:proc_memwr$902 (signature_mem).
+Removed top 4 bits (of 11) from port B of cell home_boot_gate.$eq$design.sv:103$414 ($eq).
+Removed top 36 bits (of 64) from mux cell home_boot_gate.$ternary$design.sv:107$426 ($mux).
+Removed top 24 bits (of 32) from port B of cell home_boot_gate.$ge$design.sv:120$437 ($ge).
+Removed top 24 bits (of 32) from port B of cell home_boot_gate.$sub$design.sv:121$442 ($sub).
+Removed top 20 bits (of 32) from port Y of cell home_boot_gate.$sub$design.sv:121$442 ($sub).
+Removed top 24 bits (of 32) from port B of cell home_boot_gate.$lt$design.sv:187$463 ($lt).
+Removed top 1 bits (of 28) from port A of cell home_boot_gate.$add$design.sv:197$469 ($add).
+Removed top 1 bits (of 28) from port B of cell home_boot_gate.$ge$design.sv:200$470 ($ge).
+Removed top 2 bits (of 4) from port B of cell home_boot_gate.$eq$design.sv:219$494 ($eq).
+Removed top 25 bits (of 32) from port A of cell home_boot_gate.$add$design.sv:74$505 ($add).
+Removed top 31 bits (of 32) from port B of cell home_boot_gate.$add$design.sv:74$505 ($add).
+Removed top 24 bits (of 32) from port Y of cell home_boot_gate.$add$design.sv:74$505 ($add).
+Removed top 23 bits (of 32) from port B of cell home_boot_gate.$shiftx$design.sv:74$506 ($shiftx).
+Removed top 23 bits (of 32) from port B of cell home_boot_gate.$shiftx$design.sv:75$509 ($shiftx).
+Removed top 24 bits (of 32) from port A of cell home_boot_gate.$add$design.sv:76$511 ($add).
+Removed top 31 bits (of 32) from port B of cell home_boot_gate.$add$design.sv:76$511 ($add).
+Removed top 23 bits (of 32) from port Y of cell home_boot_gate.$add$design.sv:76$511 ($add).
+Removed top 22 bits (of 32) from port B of cell home_boot_gate.$shiftx$design.sv:76$512 ($shiftx).
+Removed top 22 bits (of 32) from port B of cell home_boot_gate.$shiftx$design.sv:77$515 ($shiftx).
+Removed top 22 bits (of 32) from port B of cell home_boot_gate.$shiftx$design.sv:78$518 ($shiftx).
+Removed top 21 bits (of 32) from mux cell home_boot_gate.$procmux$528 ($mux).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$751_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$757_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell home_boot_gate.$procmux$758_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$759_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$760_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell home_boot_gate.$procmux$769_CMP0 ($eq).
+Removed top 3 bits (of 4) from port B of cell home_boot_gate.$procmux$775_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$817_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$817_CMP1 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$818_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$818_CMP1 ($eq).
+Removed top 2 bits (of 4) from port B of cell home_boot_gate.$procmux$819_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell home_boot_gate.$procmux$819_CMP1 ($eq).
+Removed top 3 bits (of 4) from port B of cell home_boot_gate.$procmux$820_CMP0 ($eq).
+Removed top 1 bits (of 12) from port Y of cell home_boot_gate.$sub$design.sv:121$442 ($sub).
+Removed top 21 bits (of 32) from wire home_boot_gate.$0$memwr$\signature_mem$design.sv:121$352_ADDR[31:0]$431.
+Removed top 21 bits (of 32) from wire home_boot_gate.$sub$design.sv:121$442_Y.
+Removed top 24 bits (of 32) from wire home_boot_gate.$add$design.sv:74$505_Y.
+Removed top 23 bits (of 32) from wire home_boot_gate.$add$design.sv:76$511_Y.
+
+3.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \home_boot_gate..
+Removed 0 unused cells and 4 unused wires.
+<suppressed ~1 debug messages>
+
+3.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.12. Executing OPT pass (performing simple optimizations).
+
+3.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module home_boot_gate.
+
+3.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\home_boot_gate'.
+Computing hashes of 489 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+Removed a total of 0 cells.
+
+3.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \home_boot_gate..
+
+3.12.4. Finished fast OPT passes.
+
+3.13. Executing SORT pass.
+
+3.14. Printing statistics.
+
+=== home_boot_gate ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      514 wires
+     6760 wire bits
+      333 public wires
+     3138 public wire bits
+       33 ports
+      651 port bits
+      489 cells
+        6   $add
+       14   $adff
+        7   $check
+        7   $dff
+      275   $eq
+        4   $ge
+       35   $logic_and
+       10   $logic_not
+       18   $logic_or
+        3   $lt
+        1   $mem_v2
+       83   $mux
+        2   $ne
+        2   $not
+        7   $pmux
+        2   $reduce_and
+        4   $reduce_or
+        2   $scopeinfo
+        5   $shiftx
+        2   $sub
+
+3.15. Executing CHECK pass (checking for obvious problems).
+Checking module home_boot_gate...
+Found and reported 0 problems.
+
+4. Executing ASYNC2SYNC pass.
+Replacing home_boot_gate.$procdff$831 ($adff): ARST=\reset_n, D=1'1, Q=\signature_read_valid_q
+Replacing home_boot_gate.$procdff$836 ($adff): ARST=\reset_n, D=$0\state_q[3:0], Q=\state_q
+Replacing home_boot_gate.$procdff$841 ($adff): ARST=\reset_n, D=$0\nonce_q[255:0], Q=\nonce_q
+Replacing home_boot_gate.$procdff$846 ($adff): ARST=\reset_n, D=$0\root_q[255:0], Q=\root_q
+Replacing home_boot_gate.$procdff$851 ($adff): ARST=\reset_n, D=$0\have_nonce_q[0:0], Q=\have_nonce_q
+Replacing home_boot_gate.$procdff$856 ($adff): ARST=\reset_n, D=$0\have_root_q[0:0], Q=\have_root_q
+Replacing home_boot_gate.$procdff$861 ($adff): ARST=\reset_n, D=$0\fault_q[0:0], Q=\fault_q
+Replacing home_boot_gate.$procdff$866 ($adff): ARST=\reset_n, D=$0\age_q[26:0], Q=\age_q
+Replacing home_boot_gate.$procdff$871 ($adff): ARST=\reset_n, D=$0\lease_age_q[27:0], Q=\lease_age_q
+Replacing home_boot_gate.$procdff$876 ($adff): ARST=\reset_n, D=$0\lease_active_q[0:0], Q=\lease_active_q
+Replacing home_boot_gate.$procdff$881 ($adff): ARST=\reset_n, D=$0\seen_nonce_q[0:0], Q=\seen_nonce_q
+Replacing home_boot_gate.$procdff$886 ($adff): ARST=\reset_n, D=$0\previous_nonce_q[255:0], Q=\previous_nonce_q
+Replacing home_boot_gate.$procdff$891 ($adff): ARST=\reset_n, D=$0\index_q[10:0], Q=\index_q
+Replacing home_boot_gate.$procdff$901 ($adff): ARST=\reset_n, D=$0\crypto_reset_release_q[0:0], Q=\crypto_reset_release_q
+
+5. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+Mapping memory \signature_mem in module \home_boot_gate:
+  created 1292 $dff cells and 0 static cells of width 8.
+  read interface: 0 $dff and 2047 $mux cells.
+  write interface: 1292 write mux blocks.
+
+6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \home_boot_gate..
+Removed 7373 unused cells and 10713 unused wires.
+<suppressed ~8667 debug messages>
+
+7. Executing SAT pass (solving SAT problems in the circuit).
+Using SAT solver `minisat`.
+
+Setting up time step 1:
+Import set-constraint: \clk = 1'1
+Import set-constraint for this timestep: \reset_n = 1'0
+Final constraint equation: { \reset_n \clk } = 2'01
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \nonce_valid_i
+Import def constraint for this timestep: \nonce_fault_i
+Import def constraint for this timestep: \admitted_root_valid_i
+Import def constraint for this timestep: \model_fault_i
+Import def constraint for this timestep: \request_ready_i
+Import def constraint for this timestep: \grant_valid_i
+Import def constraint for this timestep: \grant_last_i
+Import def constraint for this timestep: \shared_busy_i
+Import def constraint for this timestep: \shared_done_i
+Import def constraint for this timestep: \shared_valid_i
+Import def constraint for this timestep: \shared_fault_i
+Import def constraint for this timestep: \grant_byte_i
+Import def constraint for this timestep: \shared_message_address_i
+Import def constraint for this timestep: \shared_signature_address_i
+Import def constraint for this timestep: \nonce_i
+Import def constraint for this timestep: \admitted_root_i
+Imported 499 cells to SAT database.
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$927 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:107:execute$923 = 1'0
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$921 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:107:execute$917 = 1'0
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$915 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:107:execute$911 = 1'0
+Import set-constraint from init attribute: \proof_past_valid = 1'0
+Final init constraint equation: { \proof_past_valid $auto$async2sync.cc:107:execute$911 $auto$async2sync.cc:116:execute$915 $auto$async2sync.cc:107:execute$917 $auto$async2sync.cc:116:execute$921 $auto$async2sync.cc:107:execute$923 $auto$async2sync.cc:116:execute$927 } = 7'0010101
+
+Setting up time step 2:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \nonce_valid_i
+Import def constraint for this timestep: \nonce_fault_i
+Import def constraint for this timestep: \admitted_root_valid_i
+Import def constraint for this timestep: \model_fault_i
+Import def constraint for this timestep: \request_ready_i
+Import def constraint for this timestep: \grant_valid_i
+Import def constraint for this timestep: \grant_last_i
+Import def constraint for this timestep: \shared_busy_i
+Import def constraint for this timestep: \shared_done_i
+Import def constraint for this timestep: \shared_valid_i
+Import def constraint for this timestep: \shared_fault_i
+Import def constraint for this timestep: \grant_byte_i
+Import def constraint for this timestep: \shared_message_address_i
+Import def constraint for this timestep: \shared_signature_address_i
+Import def constraint for this timestep: \nonce_i
+Import def constraint for this timestep: \admitted_root_i
+Imported 499 cells to SAT database.
+
+Setting up time step 1:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \nonce_valid_i
+Import def constraint for this timestep: \nonce_fault_i
+Import def constraint for this timestep: \admitted_root_valid_i
+Import def constraint for this timestep: \model_fault_i
+Import def constraint for this timestep: \request_ready_i
+Import def constraint for this timestep: \grant_valid_i
+Import def constraint for this timestep: \grant_last_i
+Import def constraint for this timestep: \shared_busy_i
+Import def constraint for this timestep: \shared_done_i
+Import def constraint for this timestep: \shared_valid_i
+Import def constraint for this timestep: \shared_fault_i
+Import def constraint for this timestep: \grant_byte_i
+Import def constraint for this timestep: \shared_message_address_i
+Import def constraint for this timestep: \shared_signature_address_i
+Import def constraint for this timestep: \nonce_i
+Import def constraint for this timestep: \admitted_root_i
+Imported 499 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:116:execute$915 when $auto$async2sync.cc:107:execute$911.
+Import proof for assert: $logic_not$design.sv:211$480_Y when $assert$design.sv:211$479_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$921 when $auto$async2sync.cc:107:execute$917.
+Import proof for assert: $logic_not$design.sv:212$485_Y when $assert$design.sv:212$484_EN.
+Import proof for assert: \shared_reset_n_o when $assert$design.sv:209$472_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$927 when $auto$async2sync.cc:107:execute$923.
+Import proof for assert: $logic_and$design.sv:210$478_Y when $assert$design.sv:210$473_EN.
+
+** Trying induction with length 1 **
+
+Setting up time step 3:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \nonce_valid_i
+Import def constraint for this timestep: \nonce_fault_i
+Import def constraint for this timestep: \admitted_root_valid_i
+Import def constraint for this timestep: \model_fault_i
+Import def constraint for this timestep: \request_ready_i
+Import def constraint for this timestep: \grant_valid_i
+Import def constraint for this timestep: \grant_last_i
+Import def constraint for this timestep: \shared_busy_i
+Import def constraint for this timestep: \shared_done_i
+Import def constraint for this timestep: \shared_valid_i
+Import def constraint for this timestep: \shared_fault_i
+Import def constraint for this timestep: \grant_byte_i
+Import def constraint for this timestep: \shared_message_address_i
+Import def constraint for this timestep: \shared_signature_address_i
+Import def constraint for this timestep: \nonce_i
+Import def constraint for this timestep: \admitted_root_i
+Imported 499 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:116:execute$915 when $auto$async2sync.cc:107:execute$911.
+Import proof for assert: $logic_not$design.sv:211$480_Y when $assert$design.sv:211$479_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$921 when $auto$async2sync.cc:107:execute$917.
+Import proof for assert: $logic_not$design.sv:212$485_Y when $assert$design.sv:212$484_EN.
+Import proof for assert: \shared_reset_n_o when $assert$design.sv:209$472_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$927 when $auto$async2sync.cc:107:execute$923.
+Import proof for assert: $logic_and$design.sv:210$478_Y when $assert$design.sv:210$473_EN.
+
+[base case 1] Solving problem with 573820 variables and 1599267 clauses..
+Base case for induction length 1 proven.
+
+Setting up time step 2:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \nonce_valid_i
+Import def constraint for this timestep: \nonce_fault_i
+Import def constraint for this timestep: \admitted_root_valid_i
+Import def constraint for this timestep: \model_fault_i
+Import def constraint for this timestep: \request_ready_i
+Import def constraint for this timestep: \grant_valid_i
+Import def constraint for this timestep: \grant_last_i
+Import def constraint for this timestep: \shared_busy_i
+Import def constraint for this timestep: \shared_done_i
+Import def constraint for this timestep: \shared_valid_i
+Import def constraint for this timestep: \shared_fault_i
+Import def constraint for this timestep: \grant_byte_i
+Import def constraint for this timestep: \shared_message_address_i
+Import def constraint for this timestep: \shared_signature_address_i
+Import def constraint for this timestep: \nonce_i
+Import def constraint for this timestep: \admitted_root_i
+Imported 499 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:116:execute$915 when $auto$async2sync.cc:107:execute$911.
+Import proof for assert: $logic_not$design.sv:211$480_Y when $assert$design.sv:211$479_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$921 when $auto$async2sync.cc:107:execute$917.
+Import proof for assert: $logic_not$design.sv:212$485_Y when $assert$design.sv:212$484_EN.
+Import proof for assert: \shared_reset_n_o when $assert$design.sv:209$472_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$927 when $auto$async2sync.cc:107:execute$923.
+Import proof for assert: $logic_and$design.sv:210$478_Y when $assert$design.sv:210$473_EN.
+
+[induction step 1] Solving problem with 376539 variables and 1049025 clauses..
+Induction step failed. Incrementing induction length.
+
+  Time Signal Name                                      Dec       Hex                                                                                                                                                                                                                                                                 Bin
+  ---- ---------------------------------------- ----------- --------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  init $auto$async2sync.cc:107:execute$911                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:107:execute$917                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:107:execute$923                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:116:execute$915                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:116:execute$921                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:116:execute$927                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:253:execute$929                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:253:execute$931                3         3                                                                                                                                                                                                                                                                0011
+  init $auto$async2sync.cc:253:execute$933               --        --    0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  init $auto$async2sync.cc:253:execute$935               --        --    0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  init $auto$async2sync.cc:253:execute$937                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:253:execute$939                1         1                                                                                                                                                                                                                                                                   1
+  init $auto$async2sync.cc:253:execute$941                1         1                                                                                                                                                                                                                                                                   1
+  init $auto$async2sync.cc:253:execute$943            65534      fffe                                                                                                                                                                                                                                         000000000001111111111111110
+  init $auto$async2sync.cc:253:execute$945        133103614   7eefffe                                                                                                                                                                                                                                        0111111011101111111111111110
+  init $auto$async2sync.cc:253:execute$947                1         1                                                                                                                                                                                                                                                                   1
+  init $auto$async2sync.cc:253:execute$949                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:253:execute$951               --        --    0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  init $auto$async2sync.cc:253:execute$953              127        7f                                                                                                                                                                                                                                                         00001111111
+  init $auto$async2sync.cc:253:execute$955                1         1                                                                                                                                                                                                                                                                   1
+  init $past$design.sv:217$347$0                          1         1                                                                                                                                                                                                                                                                   1
+  init $past$design.sv:218$348$0                          0         0                                                                                                                                                                                                                                                                   0
+  init $past$design.sv:219$349$0                          3         3                                                                                                                                                                                                                                                                0011
+  init $past$design.sv:221$350$0                          0         0                                                                                                                                                                                                                                                                   0
+  init \proof_past_valid                                  1         1                                                                                                                                                                                                                                                                   1
+  init \signature_address_q                               1         1                                                                                                                                                                                                                                                         00000000001
+  ---- ---------------------------------------- ----------- --------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     1 \clk                                               1         1                                                                                                                                                                                                                                                                   1
+  ---- ---------------------------------------- ----------- --------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     2 \clk                                               1         1                                                                                                                                                                                                                                                                   1
+
+** Trying induction with length 2 **
+
+Setting up time step 4:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \nonce_valid_i
+Import def constraint for this timestep: \nonce_fault_i
+Import def constraint for this timestep: \admitted_root_valid_i
+Import def constraint for this timestep: \model_fault_i
+Import def constraint for this timestep: \request_ready_i
+Import def constraint for this timestep: \grant_valid_i
+Import def constraint for this timestep: \grant_last_i
+Import def constraint for this timestep: \shared_busy_i
+Import def constraint for this timestep: \shared_done_i
+Import def constraint for this timestep: \shared_valid_i
+Import def constraint for this timestep: \shared_fault_i
+Import def constraint for this timestep: \grant_byte_i
+Import def constraint for this timestep: \shared_message_address_i
+Import def constraint for this timestep: \shared_signature_address_i
+Import def constraint for this timestep: \nonce_i
+Import def constraint for this timestep: \admitted_root_i
+Imported 499 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:116:execute$915 when $auto$async2sync.cc:107:execute$911.
+Import proof for assert: $logic_not$design.sv:211$480_Y when $assert$design.sv:211$479_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$921 when $auto$async2sync.cc:107:execute$917.
+Import proof for assert: $logic_not$design.sv:212$485_Y when $assert$design.sv:212$484_EN.
+Import proof for assert: \shared_reset_n_o when $assert$design.sv:209$472_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$927 when $auto$async2sync.cc:107:execute$923.
+Import proof for assert: $logic_and$design.sv:210$478_Y when $assert$design.sv:210$473_EN.
+
+[base case 2] Solving problem with 778918 variables and 2174704 clauses..
+Base case for induction length 2 proven.
+
+Setting up time step 3:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \nonce_valid_i
+Import def constraint for this timestep: \nonce_fault_i
+Import def constraint for this timestep: \admitted_root_valid_i
+Import def constraint for this timestep: \model_fault_i
+Import def constraint for this timestep: \request_ready_i
+Import def constraint for this timestep: \grant_valid_i
+Import def constraint for this timestep: \grant_last_i
+Import def constraint for this timestep: \shared_busy_i
+Import def constraint for this timestep: \shared_done_i
+Import def constraint for this timestep: \shared_valid_i
+Import def constraint for this timestep: \shared_fault_i
+Import def constraint for this timestep: \grant_byte_i
+Import def constraint for this timestep: \shared_message_address_i
+Import def constraint for this timestep: \shared_signature_address_i
+Import def constraint for this timestep: \nonce_i
+Import def constraint for this timestep: \admitted_root_i
+Imported 499 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:116:execute$915 when $auto$async2sync.cc:107:execute$911.
+Import proof for assert: $logic_not$design.sv:211$480_Y when $assert$design.sv:211$479_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$921 when $auto$async2sync.cc:107:execute$917.
+Import proof for assert: $logic_not$design.sv:212$485_Y when $assert$design.sv:212$484_EN.
+Import proof for assert: \shared_reset_n_o when $assert$design.sv:209$472_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$927 when $auto$async2sync.cc:107:execute$923.
+Import proof for assert: $logic_and$design.sv:210$478_Y when $assert$design.sv:210$473_EN.
+
+[induction step 2] Solving problem with 588602 variables and 1646226 clauses..
+Induction step failed. Incrementing induction length.
+
+  Time Signal Name                                      Dec       Hex                                                                                                                                                                                                                                                                 Bin
+  ---- ---------------------------------------- ----------- --------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  init $auto$async2sync.cc:107:execute$911                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:107:execute$917                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:107:execute$923                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:116:execute$915                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:116:execute$921                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:116:execute$927                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:253:execute$929                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:253:execute$931                7         7                                                                                                                                                                                                                                                                0111
+  init $auto$async2sync.cc:253:execute$933               --        --    0100000100000100000000000100100000000100100100100100100100100000100100000100100000100000100100000000000100100000000000000100100100100100100100100000000000100100000100100100100100100000000000100100100000100100000100000000100100100100000000000000100000100000
+  init $auto$async2sync.cc:253:execute$935               --        --    1000001000001001001000001001001001000000000001000000001001001000001010010010000000010010010000000000000000010010000010000010010000010000000000010000000010010000000000010010010010010000010010000010010010000000000000000010010010000000010000010010010000000100
+  init $auto$async2sync.cc:253:execute$937                1         1                                                                                                                                                                                                                                                                   1
+  init $auto$async2sync.cc:253:execute$939                1         1                                                                                                                                                                                                                                                                   1
+  init $auto$async2sync.cc:253:execute$941                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:253:execute$943             4953      1359                                                                                                                                                                                                                                         000000000000001001101011001
+  init $auto$async2sync.cc:253:execute$945        124999999   773593f                                                                                                                                                                                                                                        0111011100110101100100111111
+  init $auto$async2sync.cc:253:execute$947                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:253:execute$949                0         0                                                                                                                                                                                                                                                                   0
+  init $auto$async2sync.cc:253:execute$951               --        --    0010010100000100000000000010010010010000000000000010000100010010010110000010100010000101101000100101001000100100000001000000000100000100000101000000000000000001000100000100100001101101100000011010101101110101100111010010000010001010100000101101011001011101
+  init $auto$async2sync.cc:253:execute$953             1419       58b                                                                                                                                                                                                                                                         10110001011
+  init $auto$async2sync.cc:253:execute$955                0         0                                                                                                                                                                                                                                                                   0
+  init $past$design.sv:217$347$0                          1         1                                                                                                                                                                                                                                                                   1
+  init $past$design.sv:218$348$0                          0         0                                                                                                                                                                                                                                                                   0
+  init $past$design.sv:219$349$0                         14         e                                                                                                                                                                                                                                                                1110
+  init $past$design.sv:221$350$0                          0         0                                                                                                                                                                                                                                                                   0
+  init \proof_past_valid                                  1         1                                                                                                                                                                                                                                                                   1
+  init \signature_address_q                            1967       7af                                                                                                                                                                                                                                                         11110101111
+  ---- ---------------------------------------- ----------- --------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     1 \clk                                               1         1                                                                                                                                                                                                                                                                   1
+  ---- ---------------------------------------- ----------- --------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     2 \clk                                               1         1                                                                                                                                                                                                                                                                   1
+  ---- ---------------------------------------- ----------- --------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     3 \clk                                               1         1                                                                                                                                                                                                                                                                   1
+
+** Trying induction with length 3 **
+
+Setting up time step 5:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \nonce_valid_i
+Import def constraint for this timestep: \nonce_fault_i
+Import def constraint for this timestep: \admitted_root_valid_i
+Import def constraint for this timestep: \model_fault_i
+Import def constraint for this timestep: \request_ready_i
+Import def constraint for this timestep: \grant_valid_i
+Import def constraint for this timestep: \grant_last_i
+Import def constraint for this timestep: \shared_busy_i
+Import def constraint for this timestep: \shared_done_i
+Import def constraint for this timestep: \shared_valid_i
+Import def constraint for this timestep: \shared_fault_i
+Import def constraint for this timestep: \grant_byte_i
+Import def constraint for this timestep: \shared_message_address_i
+Import def constraint for this timestep: \shared_signature_address_i
+Import def constraint for this timestep: \nonce_i
+Import def constraint for this timestep: \admitted_root_i
+Imported 499 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:116:execute$915 when $auto$async2sync.cc:107:execute$911.
+Import proof for assert: $logic_not$design.sv:211$480_Y when $assert$design.sv:211$479_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$921 when $auto$async2sync.cc:107:execute$917.
+Import proof for assert: $logic_not$design.sv:212$485_Y when $assert$design.sv:212$484_EN.
+Import proof for assert: \shared_reset_n_o when $assert$design.sv:209$472_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$927 when $auto$async2sync.cc:107:execute$923.
+Import proof for assert: $logic_and$design.sv:210$478_Y when $assert$design.sv:210$473_EN.
+
+[base case 3] Solving problem with 990866 variables and 2771560 clauses..
+Base case for induction length 3 proven.
+
+Setting up time step 4:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \nonce_valid_i
+Import def constraint for this timestep: \nonce_fault_i
+Import def constraint for this timestep: \admitted_root_valid_i
+Import def constraint for this timestep: \model_fault_i
+Import def constraint for this timestep: \request_ready_i
+Import def constraint for this timestep: \grant_valid_i
+Import def constraint for this timestep: \grant_last_i
+Import def constraint for this timestep: \shared_busy_i
+Import def constraint for this timestep: \shared_done_i
+Import def constraint for this timestep: \shared_valid_i
+Import def constraint for this timestep: \shared_fault_i
+Import def constraint for this timestep: \grant_byte_i
+Import def constraint for this timestep: \shared_message_address_i
+Import def constraint for this timestep: \shared_signature_address_i
+Import def constraint for this timestep: \nonce_i
+Import def constraint for this timestep: \admitted_root_i
+Imported 499 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:116:execute$915 when $auto$async2sync.cc:107:execute$911.
+Import proof for assert: $logic_not$design.sv:211$480_Y when $assert$design.sv:211$479_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$921 when $auto$async2sync.cc:107:execute$917.
+Import proof for assert: $logic_not$design.sv:212$485_Y when $assert$design.sv:212$484_EN.
+Import proof for assert: \shared_reset_n_o when $assert$design.sv:209$472_EN.
+Import proof for assert: $auto$async2sync.cc:116:execute$927 when $auto$async2sync.cc:107:execute$923.
+Import proof for assert: $logic_and$design.sv:210$478_Y when $assert$design.sv:210$473_EN.
+
+[induction step 3] Solving problem with 806756 variables and 2262569 clauses..
+Induction step proven: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+

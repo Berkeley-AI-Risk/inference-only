@@ -1,0 +1,5 @@
+read_verilog -formal -sv proof.sv
+prep -top proof -flatten
+clk2fflogic
+opt_clean
+sat -verify -prove-asserts -tempinduct -tempinduct-def -seq 2 -maxsteps 24 -set-at 1 board_reset_n 0 -set-at 1 trusted_reset_n 0 -set-at 1 app_reset_n 0 -set-def-inputs -dump_vcd failure.vcd

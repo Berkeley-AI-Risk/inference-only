@@ -1,0 +1,9 @@
+# Formal status
+
+The long-term inference-only objective is a whole-machine theorem relating every externally supplied command stream to the permitted APPEND, STEP and CLEAR behavior, conditional on the admitted model and current home authorization. That theorem has not been proved for this composition. Functional hardware correctness, protocol/controller safety and the inference-only boundary are related but distinct verification obligations.
+
+Completed scoped checks include temporal induction on the registered permission boundary and the selected controller's verifier-reset/start sequencing, and an inductive startup release-count specification. The verifier-reset proof uses the exact selected controller hash and native 25 MHz timer parameters. It checks reset release before verifier start, retained reset release across START/VERIFY, denial of grants in preparatory states, failure disabling inference and a verified verdict before a new lease.
+
+The registered-permission proof shows reset release implies the existing home gate permits inference and stop is clear, under its recorded clocked/binary model and parameters. It is a component proof, without a theorem for the complete selected board composition. Full-design directed simulations bind the selected changes to the current physical source. The [verifier-reset evidence](evidence/verifier-reset-formal-v2/RESULT.json), [permission evidence](evidence/registered-permit-formal-v5/RESULT.json) and [startup evidence](evidence/startup-reset-qualified-v1/RESULT.json) preserve the exact scope.
+
+Cryptographic verdicts are abstract inputs in controller proofs; the proofs do not establish LMS/SHA correctness, analog reset behavior, clock-domain crossing correctness, entropy, physical security or whole-machine noninterference. Actual-signature tests and board checks supply separate finite evidence.

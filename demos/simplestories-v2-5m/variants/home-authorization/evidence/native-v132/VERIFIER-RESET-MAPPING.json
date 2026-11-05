@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "driver_type": "DFFCE",
+  "driver_instance": "\\u_core/u_home/crypto_reset_release_q_s0",
+  "registered_net": "\\u_core/crypto_reset_release_q",
+  "clock": "core_clk",
+  "asynchronous_clear_net": "\\u_entropy/source/gowin_split_inv_from_n35_s2_onet",
+  "lms_reset_cones": {
+    "\\u_core/u_signed_boot/u_admission/n3601_5": [
+      "\\u_core/core_release_q_2_s0",
+      "\\u_core/u_home/crypto_reset_release_q_s0",
+      "\\u_core/u_signed_boot/u_admission/fault_q_s0",
+      "\\u_core/u_signed_boot/u_admission/state_q_0_s0",
+      "\\u_core/u_signed_boot/u_admission/state_q_1_s0",
+      "\\u_core/u_signed_boot/u_admission/state_q_2_s0",
+      "\\u_core/u_signed_boot/u_admission/state_q_3_s0",
+      "\\u_core/u_signed_boot/u_admission/u_root/fault_o_s1"
+    ]
+  },
+  "scope": "Mapped register type/core clock and combinational cones of all shared-LMS asynchronous reset/preset loads. Every cone depends on the retained register; no other home-controller register has a direct combinational path into those reset pins. Not mapped functional equivalence, analog timing or complete security certification."
+}
