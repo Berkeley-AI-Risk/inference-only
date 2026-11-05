@@ -45,4 +45,8 @@ baseline model words and current accepted activations to all 64 actual Q MAC
 input pins, and current row metadata through tile storage to postscale
 coefficient pins. Its [main SMT-LIB statement](q-operand-provenance/THEOREM.smt2)
 and [readable theorem](q-operand-provenance/THEOREM.md) identify the precise scope.
-The numerical Q result, remaining consumers and whole-device theorem remain open.
+The [complete Q operator package](q-operator/README.md) adds exact numerical Q
+projection/normalization and actual Q write, exponent and completion behavior,
+with checked common-trace composition. Its [readable theorem](q-operator/THEOREM.md)
+states the interruption and implementation boundaries. Remaining consumers and
+the whole-device theorem remain open.

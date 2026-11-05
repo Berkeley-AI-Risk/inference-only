@@ -1,0 +1,439 @@
+{
+  "bounds": [
+    "split-postscale-integer-identity"
+  ],
+  "engine-integer-r2": [
+    "joined-integer-output"
+  ],
+  "frame": [
+    "consequence",
+    "held-arguments",
+    "native-step-weakening",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-2",
+    "reset-base"
+  ],
+  "frame-algebra": [
+    "high27-is-signed10",
+    "legal-m16-is-m15-embedding",
+    "low27-is-unsigned25",
+    "low48-product-nonnegative",
+    "low48-zero-extension-is-signed-extension",
+    "scale18-is-unsigned16"
+  ],
+  "frame-integer": [
+    "current-output-integer"
+  ],
+  "lanes": [
+    "all64-native-recurrences-and-ports",
+    "full-native-T-implies-all-lane-projections"
+  ],
+  "lineage": [
+    "complete-before-read",
+    "native-input-dot",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-2",
+    "preserved-3",
+    "preserved-4",
+    "preserved-5",
+    "preserved-6",
+    "reset-base",
+    "selected-read-sum"
+  ],
+  "math-fold-r2": [
+    "current-sum-fits35",
+    "emit-count-and-reference",
+    "parts-join",
+    "preserved-0",
+    "preserved-0-enabled",
+    "preserved-0-held",
+    "preserved-0-revoked",
+    "preserved-1",
+    "preserved-2",
+    "preserved-2-enabled",
+    "preserved-2-held",
+    "preserved-2-revoked",
+    "preserved-3",
+    "reset-base",
+    "sum-fits48-before-update"
+  ],
+  "meta-safety-r2": [
+    "output-multiplier-is-positive-uint15",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-2",
+    "preserved-3",
+    "preserved-4",
+    "preserved-5",
+    "preserved-6",
+    "preserved-7",
+    "preserved-8",
+    "reset-base"
+  ],
+  "norm-algorithm-r2": [
+    "actual-DONE-algorithm",
+    "actual-output-algorithm",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-10",
+    "preserved-11",
+    "preserved-2",
+    "preserved-3",
+    "preserved-4",
+    "preserved-5",
+    "preserved-6",
+    "preserved-7",
+    "preserved-8",
+    "preserved-9",
+    "reset-base"
+  ],
+  "norm-capture-r2": [
+    "native-step-weakening",
+    "output-and-DONE-ownership",
+    "owned-read-consequence",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-10",
+    "preserved-11",
+    "preserved-12",
+    "preserved-2",
+    "preserved-3",
+    "preserved-4",
+    "preserved-5",
+    "preserved-6",
+    "preserved-7",
+    "preserved-8",
+    "preserved-9",
+    "reset-base"
+  ],
+  "norm-shift": [
+    "actual-held-output-current-vector",
+    "actual-response-current-vector",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-2",
+    "reset-base"
+  ],
+  "normalizer-faults": [
+    "clean-first-fault-enters-independent-numeric-rejection",
+    "clean-numeric-rejection-preserves-emitted-prefix",
+    "fault-state-preserved",
+    "fault-state-reset-base",
+    "first-fault-is-named-interruption-or-independent-rejection"
+  ],
+  "postscale": [
+    "signed35-integer-split"
+  ],
+  "prefix-r2": [
+    "consequence",
+    "native-step-weakening",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-10",
+    "preserved-11",
+    "preserved-12",
+    "preserved-13",
+    "preserved-14",
+    "preserved-2",
+    "preserved-3",
+    "preserved-4",
+    "preserved-5",
+    "preserved-6",
+    "preserved-7",
+    "preserved-8",
+    "preserved-9",
+    "reset-base"
+  ],
+  "q-arguments-r3": [
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-2",
+    "preserved-3",
+    "preserved-4",
+    "preserved-5",
+    "preserved-6",
+    "reset-base"
+  ],
+  "q-capture-array": [
+    "next-watched-capture-is-retained-or-newly-written"
+  ],
+  "q-capture-support": [
+    "Q-record-write-source-and-arguments",
+    "descriptor-preserved",
+    "descriptor-reset-base",
+    "next-authoritative-record-comes-from-old-current-invocation",
+    "watched-source-frame-row"
+  ],
+  "q-certificate": [
+    "complete-vector-watched-value",
+    "empty-capture-reset-base",
+    "preserved"
+  ],
+  "q-columns-r3": [
+    "current-0",
+    "current-1",
+    "current-2",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "reset-base"
+  ],
+  "q-done-certificate": [
+    "completed-reference-watched-value",
+    "empty-completion-reset-base",
+    "preserved"
+  ],
+  "q-done-support": [
+    "retained-completed-reference-or-current-native-DONE",
+    "source-empty-reset-base",
+    "source-preserved"
+  ],
+  "q-emit": [
+    "all-EMIT-completed-Q-dot"
+  ],
+  "q-endpoint-links": [
+    "done_valid_o-requires-actual-job-reset",
+    "result_valid_o-requires-actual-job-reset"
+  ],
+  "q-exponent": [
+    "CLEAR-holds-unless-reset",
+    "actual-compiled-next-observation",
+    "asynchronous-reset-observation",
+    "source-update-or-next-reset"
+  ],
+  "q-frontier-control": [
+    "accepted-descriptor-stable",
+    "held-or-advancing-certified-frame",
+    "previous-certified-EMIT",
+    "sum-and-vector-snapshot-stable"
+  ],
+  "q-frontier-rows": [
+    "engine-group-stable-at-next-live-output",
+    "previous-engine-group-is-accepted-group"
+  ],
+  "q-frontier-value-r3": [
+    "next-output-certified-frame",
+    "next-output-raw-Q-value"
+  ],
+  "q-frontier-vector": [
+    "current-raw-identity-is-current-accepted-vector"
+  ],
+  "q-identity": [
+    "current-fixed-Q-snapshot-operands",
+    "parts-join",
+    "preserved-0",
+    "reset-base"
+  ],
+  "q-job-r2": [
+    "Q-DONE-full-prefix",
+    "live-Q-output-prefix",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-2",
+    "preserved-3",
+    "preserved-4",
+    "preserved-5",
+    "reset-base"
+  ],
+  "q-lifecycle-r2": [
+    "accepted-Q-raw-common-invocation",
+    "live-Q-normalizer-current-invocation",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-2",
+    "preserved-3",
+    "preserved-4",
+    "preserved-5",
+    "preserved-6",
+    "preserved-7",
+    "reset-base"
+  ],
+  "q-main": [
+    "CLEAR-nonzero-exponent-compatible-context",
+    "CLEAR-revokes-current-operator-authority",
+    "Q-stage-DONE-full-current-reference-and-writes",
+    "actual-Q-exponent-register-value-or-reset",
+    "actual-Q-write-value-address-and-order",
+    "held-normalized-Q-value",
+    "transferred-normalized-Q-value"
+  ],
+  "q-main-witness": [
+    "nonzero-write-concrete-compatible-context"
+  ],
+  "q-metadata": [
+    "current-output-metadata",
+    "current-stage1",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-2",
+    "reset-base"
+  ],
+  "q-model": [
+    "current-Q-operands-fixed-model"
+  ],
+  "q-normalizer-product": [
+    "Q-start-descriptor",
+    "accepted-Q-raw-is-actual-projection",
+    "common-reset-reaches-normalizer",
+    "product-retains-old-parent-and-native-normalizer"
+  ],
+  "q-output-ownership-r3": [
+    "actual-Q-exponent-update",
+    "actual-Q-write-current-ordered-normalizer-output",
+    "full-native-product-implies-control-step",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-10",
+    "preserved-11",
+    "preserved-12",
+    "preserved-2",
+    "preserved-3",
+    "preserved-4",
+    "preserved-5",
+    "preserved-6",
+    "preserved-7",
+    "preserved-8",
+    "preserved-9",
+    "reset-base",
+    "stage-DONE-full-Q-writes-and-child-completions"
+  ],
+  "q-prefix-control": [
+    "continuing-prefix-count-step",
+    "current-pending-count-and-FIRST",
+    "pending-input-and-column-continuity",
+    "revoked-prefix-is-empty",
+    "sum-owner-and-snapshot-continuity",
+    "sum-pending-is-current-owned"
+  ],
+  "q-prefix-laws": [
+    "empty-prefix",
+    "next-prefix"
+  ],
+  "q-prefix-r3": [
+    "completed-fixed-Q-dot",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "reset-base"
+  ],
+  "q-raw-scope": [
+    "live-next-raw-has-previous-nonfailed-root",
+    "raw-reset-base"
+  ],
+  "q-record-value": [
+    "accepted-layer-exponent-binding",
+    "watched-raw-record-value"
+  ],
+  "q-routing-r2": [
+    "accepted-parent-Q-start-descriptor",
+    "actual-job-to-engine-result",
+    "actual-job-to-engine-transfer",
+    "current-Q-global-row-and-accepted-descriptor"
+  ],
+  "q-trace-bootstrap": [
+    "first-post-reset-normalizer-cannot-record-a-raw-word",
+    "second-post-reset-logical-capture-is-empty"
+  ],
+  "q-trace-links": [
+    "common-reset-reaches-all-Q-component-instances",
+    "empty-count-implies-active-capture-certificate"
+  ],
+  "selector": [
+    "clamped-first-fit-from-length",
+    "parallel-bit-length-is-independent-linear-bit-length",
+    "source-exponent-and-zero-capture"
+  ],
+  "shift": [
+    "consequence",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-2",
+    "preserved-3",
+    "preserved-4",
+    "preserved-5",
+    "preserved-6",
+    "reset-base"
+  ],
+  "sum-frame": [
+    "current-result-dot-argument",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-2",
+    "reset-base"
+  ],
+  "tile-held": [
+    "arbitrary-payload-base-witness",
+    "consequence",
+    "parts-join",
+    "preserved-0",
+    "preserved-1",
+    "preserved-2",
+    "preserved-3",
+    "preserved-4",
+    "preserved-4-lane-0",
+    "preserved-4-lane-1",
+    "preserved-4-lane-10",
+    "preserved-4-lane-11",
+    "preserved-4-lane-12",
+    "preserved-4-lane-13",
+    "preserved-4-lane-14",
+    "preserved-4-lane-15",
+    "preserved-4-lane-2",
+    "preserved-4-lane-3",
+    "preserved-4-lane-4",
+    "preserved-4-lane-5",
+    "preserved-4-lane-6",
+    "preserved-4-lane-7",
+    "preserved-4-lane-8",
+    "preserved-4-lane-9",
+    "preserved-5",
+    "reset-base"
+  ],
+  "wide-bounds": [
+    "signed35-unsigned15-fits50"
+  ],
+  "word-algebra": [
+    "addition-congruence-factorization-48",
+    "addition-congruence-factorization-50",
+    "full-signed27x18-fits48",
+    "mod-removes-whole-multiple-26",
+    "mod-removes-whole-multiple-48",
+    "mod-removes-whole-multiple-50",
+    "product-congruence-factorization-26",
+    "product-congruence-factorization-48",
+    "product-congruence-factorization-50",
+    "sign-extend-10-to-26",
+    "sign-extend-16-to-26",
+    "sign-extend-26-to-48",
+    "sign-extend-48-to-50"
+  ],
+  "word-scalar": [
+    "bounded-dot-native-overflow-clear",
+    "bounded-dot-upper-bits-are-sign",
+    "signed-low35-preserves-bounded-value",
+    "unsigned10-increment-exact"
+  ],
+  "word-semantics": [
+    "signed-add48-exact-under-sum-bound",
+    "signed-mod-exact-26",
+    "signed-mod-exact-48",
+    "signed-mod-exact-50",
+    "signed16x10-product-fits26"
+  ]
+}

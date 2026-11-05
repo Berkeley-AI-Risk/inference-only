@@ -1,0 +1,125 @@
+{
+  "all_canonical_and_transformed_engine_bytes_unchanged": true,
+  "clean_replay_result_sha256": "305e2576f8cccce41918d353fd1c1c7eafc6eaf8b5799ef253642585036ecd21",
+  "complete_baseline_Q_operator_proved": true,
+  "evidence_sha256": "2bebfb65b9cc7680a172f6822c8f550d5dc72b7b0beaaca3a1f8670c45a8197a",
+  "finite_native_evidence": {
+    "connected-operating-r2/missing-FIRST": {
+      "independent_expected_data_reconstructed": true,
+      "passed": true,
+      "pattern": "small",
+      "source_only_defect": true
+    },
+    "connected-operating-r2/operating": {
+      "independent_expected_data_reconstructed": true,
+      "passed": true,
+      "pattern": "small",
+      "source_only_defect": false
+    },
+    "connected-operating-r2/wrong-postscale-split": {
+      "independent_expected_data_reconstructed": true,
+      "passed": true,
+      "pattern": "small",
+      "source_only_defect": true
+    },
+    "connected-operating-r2/wrong-product-sign": {
+      "independent_expected_data_reconstructed": true,
+      "passed": true,
+      "pattern": "small",
+      "source_only_defect": true
+    },
+    "connected-operating-r3/cancellation/operating": {
+      "independent_expected_data_reconstructed": true,
+      "passed": true,
+      "pattern": "cancellation",
+      "source_only_defect": false
+    },
+    "connected-operating-r3/impulse/operating": {
+      "independent_expected_data_reconstructed": true,
+      "passed": true,
+      "pattern": "impulse",
+      "source_only_defect": false
+    },
+    "connected-operating-r3/maximum-negative/operating": {
+      "independent_expected_data_reconstructed": true,
+      "passed": true,
+      "pattern": "maximum-negative",
+      "source_only_defect": false
+    },
+    "connected-operating-r3/maximum-positive/operating": {
+      "independent_expected_data_reconstructed": true,
+      "passed": true,
+      "pattern": "maximum-positive",
+      "source_only_defect": false
+    },
+    "connected-operating-r3/small/dropped-accumulation": {
+      "independent_expected_data_reconstructed": true,
+      "passed": true,
+      "pattern": "small",
+      "source_only_defect": true
+    },
+    "connected-operating-r3/small/duplicated-product": {
+      "independent_expected_data_reconstructed": true,
+      "passed": true,
+      "pattern": "small",
+      "source_only_defect": true
+    },
+    "connected-operating-r3/small/shifted-FIRST-tag": {
+      "independent_expected_data_reconstructed": true,
+      "passed": true,
+      "pattern": "small",
+      "source_only_defect": true
+    },
+    "connected-operating-r3/small/wrong-record-read-row": {
+      "independent_expected_data_reconstructed": true,
+      "passed": true,
+      "pattern": "small",
+      "source_only_defect": true
+    },
+    "connected-operating-r3/zero/operating": {
+      "independent_expected_data_reconstructed": true,
+      "passed": true,
+      "pattern": "zero",
+      "source_only_defect": false
+    },
+    "normalizer-edge-operating-r1": {
+      "aggregate": true,
+      "cases": 0,
+      "passed": true
+    },
+    "normalizer-operating-r1": {
+      "aggregate": true,
+      "cases": 12,
+      "passed": true
+    }
+  },
+  "finite_simulations_replayed_by_portable_default": false,
+  "fresh_native_models": 7,
+  "fresh_selected_engine_queries": 17,
+  "new_engine_queries": 329,
+  "new_sat_controls": 3,
+  "new_unsat_implications": 326,
+  "normalizer_cases": 12,
+  "old_operand_queries_reconstructed": 449,
+  "original_queries_typechecked": 329,
+  "packet_archive_sha256": "e773f685f6aca28ae6fe6d17ce6cb72fb746e30bf12f2c118a6da0a0226c36d4",
+  "physical_DSP_or_bitstream_equivalence": false,
+  "positive_patterns": 6,
+  "qualified": true,
+  "remaining": [
+    "Caller RMSNorm and whole graph",
+    "Other numerical operators/attention/KV values",
+    "Timed fault authorization and progress",
+    "Whole-device arbitrary-command inference-only theorem"
+  ],
+  "retained_query_RAM": false,
+  "reviews": {
+    "F1-COMMON-TRACE-REVIEW.md": "5671fa013282f651ffdcbe94f31710adbd027015a4c6707c5878d68ce9fc10e3",
+    "FRESH-COMPLETE-Q-AUDIT.md": "6e911b45c5ff6217cbaaed432f06c017efd1b441edf696a3eb5d6b9b57175088"
+  },
+  "scope": "Baseline Q value/prefix/completion and current invocation, under named source interruptions and four model/memory boundaries",
+  "source_only_numerical_defects": 7,
+  "typechecks_counted_as_proofs": false,
+  "upstream_queries_reconstructed": 1411,
+  "whole_device_inference_only_proved": false
+}

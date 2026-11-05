@@ -73,7 +73,9 @@ raw-reply premise is discharged through those custom RTL modules.
 | --- | --- | --- |
 | [RMSNorm invocation](formal/native-component-values/README.md) | Every successful result agrees with the native finite-width operator on the current accepted role, exponent and complete vector. Retained workspace, stalls and CLEAR cannot substitute another invocation's values. | Caller operand provenance and the full graph remain open; configured stateless DSP correspondence is a platform premise. |
 | [Model reads through the memory path and cache](formal/upstream-model-values/THEOREM.md) | Requested model word, ownership and order are preserved through the actual custom transport and wrappers, including held cache returns and replacement. The native preceding-write/read-snapshot proof accounts for queued boot commands. | Vendor DDR storage semantics, the trusted model image at runtime entry and its static metadata-ROM binding remain explicit. Other arithmetic consumers and the whole-device composition remain open. |
-| [Q projection operand provenance](formal/q-operand-provenance/THEOREM.md) | Fixed-model coefficients and matching current accepted activations reach all 64 actual Q MAC input pins; current row metadata reaches tile storage, synchronous reads and both postscale coefficient pins. All six layers, four groups and 256 columns are covered. | Baseline Q operands only. The numerical Q result, normative RMSNorm arithmetic, other consumers and the whole graph remain open. |
+| [Q projection operand provenance](formal/q-operand-provenance/THEOREM.md) | Fixed-model coefficients and matching current accepted activations reach all 64 actual Q MAC input pins; current row metadata reaches tile storage, synchronous reads and both postscale coefficient pins. All six layers, four groups and 256 columns are covered. | Baseline operand layer. The complete Q value result is stated in the next row; caller RMSNorm, other consumers and the whole graph remain open. |
+
+| [Q projection and normalization](formal/q-operator/THEOREM.md) | Exact fixed-model Q dot products/scaling, ordered raw rows, the independent normalization algorithm, actual Q write admissions/exponent, full stage completion and current-invocation value ownership. Common-reset, bootstrap and regular trace composition are checked. | Named interruptions may truncate a correct prefix. Caller RMSNorm/whole graph, retained query-RAM reads, timed fault authorization, other configurations and physical implementation equivalence remain open. |
 
 ```mermaid
 flowchart LR
@@ -108,6 +110,19 @@ eight native operating/defect cases and logical refusal controls. The 19 other
 numerical leaves in its parent control model remain unrestricted. The proof
 establishes operand provenance, without claiming arithmetic-result correctness.
 
+The [complete Q operator package](formal/q-operator/README.md) joins that operand
+layer to the numerical implementation and actual Q effects. Its 326 UNSAT
+implications and three SAT controls have an executable common-trace composition.
+The portable qualification recompiles seven numerical models identically and
+reruns 17 selected solver queries; all 329 canonical/actual new engine inputs and
+the existing dependencies are reconstructed. [The readable theorem and diagram](formal/q-operator/THEOREM.md)
+explain the fixed-model dot/scale, normalization, write, exponent and completion
+chain. Finite cases cover all layers/lanes, large signed values, cancellation,
+zero/impulse inputs, stalls and seven source-only defects. This establishes
+interruptible value/prefix/completion behavior, without a termination or timed
+fault-authorization claim. The actual normalizer is bound in this composition;
+18 unrelated numerical leaves remain unrestricted.
+
 These numerical/value results apply to the named baseline sources. They do not
 automatically qualify the other configurations. The main theorem still needs
 actual command-to-graph connections, remaining caller/consumer contracts,
@@ -127,7 +142,9 @@ to come from that fixed model really arrives as its requested model word,
 rather than K/V contents, a different read's word or an assumed private reply.
 The Q operand proof now connects those words to the actual Q MAC and
 postscale coefficient inputs, with matching current accepted activations.
-Connecting the remaining consumers belongs to the whole-device proof.
+The Q operator proof additionally establishes the specified numerical result and
+its current-invocation writes. Connecting the remaining consumers and the permitted
+command-to-graph schedule belongs to the whole-device proof.
 
 The authentication/access proofs supply further parts of that argument: they
 check the actual SHA engines and accepted byte streams, preserve the checked

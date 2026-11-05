@@ -1,0 +1,92 @@
+{
+  "complete_common_trace_reconstructed": true,
+  "every_canonical_and_actual_engine_query_byte_identical": true,
+  "finite_cases": {
+    "connected-operating-r2/missing-FIRST": true,
+    "connected-operating-r2/operating": true,
+    "connected-operating-r2/wrong-postscale-split": true,
+    "connected-operating-r2/wrong-product-sign": true,
+    "connected-operating-r3/cancellation/operating": true,
+    "connected-operating-r3/impulse/operating": true,
+    "connected-operating-r3/maximum-negative/operating": true,
+    "connected-operating-r3/maximum-positive/operating": true,
+    "connected-operating-r3/small/dropped-accumulation": true,
+    "connected-operating-r3/small/duplicated-product": true,
+    "connected-operating-r3/small/shifted-FIRST-tag": true,
+    "connected-operating-r3/small/wrong-record-read-row": true,
+    "connected-operating-r3/zero/operating": true,
+    "normalizer-edge-operating-r1": true,
+    "normalizer-operating-r1": true
+  },
+  "fresh_engine_query_count": 17,
+  "full_new_engine_replay": false,
+  "native_compilation": {
+    "mac": {
+      "byte_identical": {
+        "native.json": true,
+        "native.smt2": true
+      },
+      "exit_code": 0,
+      "seconds": 0.08935683313757181
+    },
+    "mul": {
+      "byte_identical": {
+        "native.json": true,
+        "native.smt2": true
+      },
+      "exit_code": 0,
+      "seconds": 0.012817082926630974
+    },
+    "prefix": {
+      "byte_identical": {
+        "native.json": true,
+        "native.smt2": true
+      },
+      "exit_code": 0,
+      "seconds": 0.196061666123569
+    },
+    "q-exponent": {
+      "byte_identical": {
+        "native.json": true,
+        "native.smt2": true
+      },
+      "exit_code": 0,
+      "seconds": 0.4231388750486076
+    },
+    "selector": {
+      "byte_identical": {
+        "native.json": true,
+        "native.smt2": true
+      },
+      "exit_code": 0,
+      "seconds": 0.4402468749321997
+    },
+    "shift": {
+      "byte_identical": {
+        "native.json": true,
+        "native.smt2": true
+      },
+      "exit_code": 0,
+      "seconds": 0.08733187499456108
+    },
+    "tile": {
+      "byte_identical": {
+        "native.json": true,
+        "native.smt2": true
+      },
+      "exit_code": 0,
+      "seconds": 0.04987991717644036
+    }
+  },
+  "new_engine_queries": 329,
+  "old_operand_queries": 449,
+  "original_obligations_typechecked": 329,
+  "passed": true,
+  "qualified": false,
+  "recorded_only": false,
+  "seconds": 144.8483788331505,
+  "typechecks_counted_as_proofs": false,
+  "upstream_recorded_proof_reconstructed": true,
+  "whole_Q_operator_proved": false,
+  "whole_machine_theorem": false
+}
