@@ -40,7 +40,7 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, authenticated weights",
+      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC**",
       "prompt_tokens": [
         378
       ],
@@ -83,7 +83,7 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "Same model, **K/V-protected**",
+      "label": "Same model, **F-AWIC with K/V protection**",
       "prompt_tokens": [
         378
       ],
@@ -126,7 +126,7 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "Same model, **K/V protection + encrypted memory**",
+      "label": "Same model, **F-AWIC with K/V protection + encrypted memory**",
       "prompt_tokens": [
         378
       ],
@@ -146,7 +146,7 @@
         "core_clock_mhz": 25,
         "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
       },
-      "label": "Same model, **seeded-sampling at temperature 1**, without K/V integrity",
+      "label": "Same model, **F-AWIC with seeded sampling at temperature 1**, without K/V integrity",
       "prompt_tokens": [
         378
       ],
@@ -182,7 +182,7 @@
         "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
         "variant": "S-AWIC"
       },
-      "label": "Same model, **signed updates (S-AWIC)**, without K/V integrity",
+      "label": "Same model, **S-AWIC**, without K/V integrity",
       "prompt_tokens": [
         378
       ],
@@ -253,7 +253,7 @@
         "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
         "runtime_clock_probe_supported": false
       },
-      "label": "**Qwen3-1.7B \u2014 AWS F2**, authenticated weights",
+      "label": "**Qwen3-1.7B \u2014 AWS F2**, **F-AWIC**",
       "prompt_tokens": [
         9707
       ],
@@ -294,7 +294,7 @@
         "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
         "runtime_clock_probe_supported": false
       },
-      "label": "**Qwen3-8B \u2014 AWS F2**, authenticated weights",
+      "label": "**Qwen3-8B \u2014 AWS F2**, **F-AWIC**",
       "prompt_tokens": [
         9707
       ],
