@@ -74,8 +74,8 @@ raw-reply premise is discharged through those custom RTL modules.
 | [RMSNorm invocation](formal/native-component-values/README.md) | Every successful result agrees with the native finite-width operator on the current accepted role, exponent and complete vector. Retained workspace, stalls and CLEAR cannot substitute another invocation's values. | Caller operand provenance and the full graph remain open; configured stateless DSP correspondence is a platform premise. |
 | [Model reads through the memory path and cache](formal/upstream-model-values/THEOREM.md) | Requested model word, ownership and order are preserved through the actual custom transport and wrappers, including held cache returns and replacement. The native preceding-write/read-snapshot proof accounts for queued boot commands. | Vendor DDR storage semantics, the trusted model image at runtime entry and its static metadata-ROM binding remain explicit. Other arithmetic consumers and the whole-device composition remain open. |
 | [Q projection operand provenance](formal/q-operand-provenance/THEOREM.md) | Fixed-model coefficients and matching current accepted activations reach all 64 actual Q MAC input pins; current row metadata reaches tile storage, synchronous reads and both postscale coefficient pins. All six layers, four groups and 256 columns are covered. | Baseline operand layer. The complete Q value result is stated in the next row; caller RMSNorm, other consumers and the whole graph remain open. |
-
-| [Q projection and normalization](formal/q-operator/THEOREM.md) | Exact fixed-model Q dot products/scaling, ordered raw rows, the independent normalization algorithm, actual Q write admissions/exponent, full stage completion and current-invocation value ownership. Common-reset, bootstrap and regular trace composition are checked. | Named interruptions may truncate a correct prefix. Caller RMSNorm/whole graph, retained query-RAM reads, timed fault authorization, other configurations and physical implementation equivalence remain open. |
+| [Q projection and normalization](formal/q-operator/THEOREM.md) | Exact fixed-model Q dot products/scaling, ordered raw rows, the independent normalization algorithm, actual Q write admissions/exponent, full stage completion and current-invocation value ownership. Common-reset, bootstrap and regular trace composition are checked. | Named interruptions may truncate a correct prefix. The composed RMSNorm/query-RAM result is stated below. Whole graph, timed fault authorization, other configurations and physical implementation equivalence remain open. |
+| [RMSNorm through Q and query RAM](formal/rms-q-segment/THEOREM.md) | Independent RMS integer arithmetic and whole-vector normalization, actual hidden/RMS RAM and Q capture, the complete Q operator, retained unrotated-Q payloads and pre-overwrite reads with the full producing-invocation certificate. | The input boundary is actual RMS stage admission. Earlier activation meaning, Q-RoPE/later consumers, remaining graph, other configurations and physical mapping remain open. |
 
 ```mermaid
 flowchart LR
@@ -123,6 +123,21 @@ interruptible value/prefix/completion behavior, without a termination or timed
 fault-authorization claim. The actual normalizer is bound in this composition;
 18 unrelated numerical leaves remain unrestricted.
 
+The [RMSNorm-to-Q segment](formal/rms-q-segment/README.md) connects the actual
+RMS producer and workspace to that complete Q computation and retained query
+payloads. Its independent integer profile includes floor square root and signed
+nearest-even division; all 3,328 consumed RMS ROM words match the fixed model.
+Constructed admission and payload histories preserve the complete numerical
+certificate across storage, reads, CLEAR and overwrite. The [readable theorem
+and diagram](formal/rms-q-segment/THEOREM.md) and [SMT-LIB predicate](formal/rms-q-segment/STATEMENT.smt2)
+state the entry-vector boundary and exact read scope. Qualification reconstructs
+554 selected new engine checks (548 UNSAT, six SAT controls), the pinned Q and
+memory dependencies, four byte-identical new native recompilations and 52 fresh
+composition checks. Six native layer-0 operating cases and three actual-only
+numerical defects supplement the unbounded source argument. This closes these
+RMS/Q/storage interfaces; whole-device numerical and command composition remain
+open.
+
 These numerical/value results apply to the named baseline sources. They do not
 automatically qualify the other configurations. The main theorem still needs
 actual command-to-graph connections, remaining caller/consumer contracts,
@@ -142,8 +157,10 @@ to come from that fixed model really arrives as its requested model word,
 rather than K/V contents, a different read's word or an assumed private reply.
 The Q operand proof now connects those words to the actual Q MAC and
 postscale coefficient inputs, with matching current accepted activations.
-The Q operator proof additionally establishes the specified numerical result and
-its current-invocation writes. Connecting the remaining consumers and the permitted
+The Q operator proof establishes the specified numerical result and its
+current-invocation writes. The RMSNorm-to-Q composition carries independent
+normalization meaning from actual stage entry through Q capture and retained
+query payloads, closing those numerical producer and storage interfaces. Connecting the remaining consumers and the permitted
 command-to-graph schedule belongs to the whole-device proof.
 
 The authentication/access proofs supply further parts of that argument: they

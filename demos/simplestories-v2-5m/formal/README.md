@@ -50,3 +50,11 @@ projection/normalization and actual Q write, exponent and completion behavior,
 with checked common-trace composition. Its [readable theorem](q-operator/THEOREM.md)
 states the interruption and implementation boundaries. Remaining consumers and
 the whole-device theorem remain open.
+
+
+The [baseline RMSNorm-to-Q segment](rms-q-segment/README.md) adds independent RMS
+arithmetic, actual RMS workspace/Q capture, and retained query-RAM/readback
+certificates to the complete Q result. Its [theorem and diagram](rms-q-segment/THEOREM.md)
+state the stage-entry input boundary, constructive admission histories and
+remaining whole-graph/implementation limits. The qualified source-bound package
+has 554 new selected checks and clean portable reproduction.
