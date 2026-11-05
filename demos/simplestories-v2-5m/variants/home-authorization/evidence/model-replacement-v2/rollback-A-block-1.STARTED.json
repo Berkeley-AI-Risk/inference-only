@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/opt/homebrew/bin/openFPGALoader",
+    "-b",
+    "tangmega138k",
+    "--ftdi-serial",
+    "2025030317",
+    "--ftdi-channel",
+    "0",
+    "--freq",
+    "900000",
+    "-v",
+    "-f",
+    "--verify",
+    "--offset",
+    "15728640",
+    "LOCAL_REPLACEMENT/B-to-A/block-f00000-010000.bin"
+  ],
+  "started_utc": "2026-11-05T17:01:54.599725+00:00"
+}

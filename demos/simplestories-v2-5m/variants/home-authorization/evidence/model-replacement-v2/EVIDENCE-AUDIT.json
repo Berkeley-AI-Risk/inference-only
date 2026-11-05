@@ -1,0 +1,40 @@
+{
+  "result": "PASS",
+  "models": {
+    "A": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+    "B": "761fdec33b08bfa8664b0c8091225fa06fb593b867882f5a31a631ce1faac635"
+  },
+  "fpga_image_sha256": "cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e",
+  "matched_reference_outputs": 68,
+  "raw_wire_reply_frames": 78,
+  "raw_wire_command_frames": 90,
+  "raw_wire_grants": 5,
+  "distinct_nonces": 7,
+  "unique_new_signing_leaves": [
+    19,
+    20,
+    21,
+    22
+  ],
+  "wrong_model_same_nonce_signature_checked": true,
+  "revocation_rollback_and_replay_checked": true,
+  "full_array_B_and_A_readbacks_checked": true,
+  "written_blocks": 4,
+  "starting_flash_and_original_sram_restored": true,
+  "electrical_power_cycles": false,
+  "B_renewal_observation": "Generation succeeds across a fresh approval. The constant-zero B fixture cannot by itself distinguish preserved context from a context reset; the raw runner context-preservation label is limited accordingly.",
+  "source_hashes": {
+    "RESULT.json": "b28189d1d046c89b58821d52f4c0decc7c054f9b63cfe8bd960148e5c24f20b1",
+    "RESTORED.json": "a764570cf4b9c670e7f7eb65162d4fdb83c08eaba5eda11f1d18cea127ddaffd",
+    "EVENTS.jsonl": "d9571a6e877571d6f9900b9d9b0533120fa29de903cbdfea159ee0090b704cb4",
+    "INPUTS.json": "3a6e9e05e3b4f92ba36a23ad4ba3714af2b2f03d1374b658de5bc657fe84e9ff",
+    "HOST-SOURCES.json": "69f03f474d4439763e1e934c1386430112b9225a8794f066247a0057f1a0181a",
+    "RUNNER.py": "2ea89601b2af0353abe69ad14417e6a24af77c318b1c6af5a828f0b40e8e52d0",
+    "model-A-tokens.json": "a0ce27337df71f197d01d25f138d21b977ca7d0f99026c6d19697279bf63e108",
+    "model-B-tokens.json": "2970d63bcfd3dfbb0d00507c7480b127082574e245b5dc403a638fabfd7fc039",
+    "baseline-after.json": "9160aded0ed26aa3f1591ec1724e6bc06822a9e0fd24bc0f1a03afb6a00fd7e4",
+    "B-readback.bin.json": "45abc4fdb533c6c8e757c10fa81f50fd68de578c821f99b43b643678745fdbc1",
+    "A-restored-readback.bin.json": "afcae83922ef4dd6c7d219975475d3648e4e6b507455a279ec5145c744a62c8d"
+  },
+  "scope": "Finite host-observed physical campaign, independently rechecked against saved raw wire bytes, signed packages, actual LMS grants and complete private flash captures. Not physical attestation, entropy certification or a universal command-stream theorem."
+}

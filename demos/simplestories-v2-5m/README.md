@@ -95,3 +95,5 @@ fixed-digest configurations above.
 ## Optional periodic reauthorization
 
 The [S-AWIC with periodic reauthorization](variants/home-authorization/README.md) requires fresh approval at startup and periodically to keep running the authenticated model. Authorities can withdraw approval for old weights and distribute a signed replacement through the deployment host. It runs at 25 MHz and measures **~7.4 tokens/s** on the common paired benchmark, including renewal gaps. Its [installation](variants/home-authorization/INSTALL.md), [validation](variants/home-authorization/VALIDATION.md), [formal scope](variants/home-authorization/FORMAL-STATUS.md) and [reproduction](variants/home-authorization/REPRODUCE.md) are separate from the fixed-commitment and signed-update-only configurations.
+
+The [physical replacement test](variants/home-authorization/VALIDATION.md#physical-model-replacement) exercises model-specific permission with two signed models, verifies their numerical outputs, and checks withdrawn-model rollback and replay rejection. The replacement is a controlled synthetic weight change.

@@ -4,6 +4,8 @@ import hashlib
 import importlib.util
 import json
 import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -54,5 +56,10 @@ class HomeEvidenceTests(unittest.TestCase):
         (self.capture/'EVENTS.jsonl').write_text(''.join(json.dumps(e)+'\n'for e in events))
         with self.assertRaises(ValueError):evidence.verify(TARGET,self.capture)
 
+
+class ReplacementEvidenceTests(unittest.TestCase):
+    def test_public_model_replacement_replay_and_controls(self):
+        result=subprocess.run([sys.executable,'-I','-S','-B',str(TARGET/'tests/test_model_replacement_evidence.py')],capture_output=True,text=True)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
 
 if __name__=='__main__':unittest.main()

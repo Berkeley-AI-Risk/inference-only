@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/opt/homebrew/opt/python@3.13/bin/python3.13",
+    "LOCAL_SIGNED_UPDATE/tools/read_flash_jtag.py",
+    "--openloader",
+    "/opt/homebrew/bin/openFPGALoader",
+    "--tool-sha256",
+    "f880eb583695f8056566da308248ba539a1a1c4cabb6305c3d801acfd58f9e1b",
+    "--serial",
+    "2025030317",
+    "--output",
+    "LOCAL_REPLACEMENT/campaign-v2/A-restored-readback.bin",
+    "--expected-array",
+    "LOCAL_REPLACEMENT/model-A/array.bin"
+  ],
+  "started_utc": "2026-11-05T17:01:57.687400+00:00"
+}

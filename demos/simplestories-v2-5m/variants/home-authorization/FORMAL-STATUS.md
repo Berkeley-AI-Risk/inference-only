@@ -6,4 +6,6 @@ Completed scoped checks include temporal induction on the registered permission 
 
 The registered-permission proof shows reset release implies the existing home gate permits inference and stop is clear, under its recorded clocked/binary model and parameters. It is a component proof, without a theorem for the complete selected board composition. Full-design directed simulations bind the selected changes to the current physical source. The [verifier-reset evidence](evidence/verifier-reset-formal-v2/RESULT.json), [permission evidence](evidence/registered-permit-formal-v5/RESULT.json) and [startup evidence](evidence/startup-reset-qualified-v1/RESULT.json) preserve the exact scope.
 
+The [physical replacement campaign](VALIDATION.md#physical-model-replacement) checks actual model admission, numerical outputs, model-specific approval and withdrawn-model rollback/replay rejection with the selected image. These are finite board observations; they do not establish the whole-machine theorem.
+
 Cryptographic verdicts are abstract inputs in controller proofs; the proofs do not establish LMS/SHA correctness, analog reset behavior, clock-domain crossing correctness, entropy, physical security or whole-machine noninterference. Actual-signature tests and board checks supply separate finite evidence.

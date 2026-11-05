@@ -1,0 +1,107 @@
+empty
+write to flash
+Jtag frequency : requested 900.00KHz  -> real 857.14KHz 
+found 1 devices
+index 0:
+	idcode 0x1081b
+	manufacturer Gowin
+	family GW5AST
+	model  GW5AST-138
+	irlength 8
+File type : bin
+Parse file DONE
+Jtag frequency : requested 2.50MHz    -> real 2.00MHz   
+Before disable SPI mode: displayReadReg 00020638
+	   [ 3] Timeout
+	   [ 4] auto_boot_2nd_fail
+	   [ 5] Memory Erase
+	   [ 9] auto_boot_1st_fail
+	   [10] Non-JTAG configuration is active
+	   [17] sspi_mode
+	[24:23] CPU Bus Width: no BWD pattern is detected
+pollFlag: 20638 (0)
+after program flash: displayReadReg 00020638
+	   [ 3] Timeout
+	   [ 4] auto_boot_2nd_fail
+	   [ 5] Memory Erase
+	   [ 9] auto_boot_1st_fail
+	   [10] Non-JTAG configuration is active
+	   [17] sspi_mode
+	[24:23] CPU Bus Width: no BWD pattern is detected
+Erase SRAM before erase sram: displayReadReg 00020638
+	   [ 3] Timeout
+	   [ 4] auto_boot_2nd_fail
+	   [ 5] Memory Erase
+	   [ 9] auto_boot_1st_fail
+	   [10] Non-JTAG configuration is active
+	   [17] sspi_mode
+	[24:23] CPU Bus Width: no BWD pattern is detected
+pollFlag: 290 (80)
+pollFlag: 2b0 (20)
+after erase sram: displayReadReg 000002b0
+	   [ 4] auto_boot_2nd_fail
+	   [ 5] Memory Erase
+	   [ 7] System Edit Mode
+	   [ 9] auto_boot_1st_fail
+	[24:23] CPU Bus Width: no BWD pattern is detected
+pollFlag: 20230 (0)
+pollFlag: 2b0 (80)
+pollFlag: 2b0 (20)
+after erase sram: displayReadReg 000002b0
+	   [ 4] auto_boot_2nd_fail
+	   [ 5] Memory Erase
+	   [ 7] System Edit Mode
+	   [ 9] auto_boot_1st_fail
+	[24:23] CPU Bus Width: no BWD pattern is detected
+pollFlag: 20230 (0)
+after erase sram: displayReadReg 00020230
+	   [ 4] auto_boot_2nd_fail
+	   [ 5] Memory Erase
+	   [ 9] auto_boot_1st_fail
+	   [17] sspi_mode
+	[24:23] CPU Bus Width: no BWD pattern is detected
+DONE
+pollFlag: 2b0 (80)
+pollFlag: 20210 (0)
+toto: displayReadReg 00020210
+	   [ 4] auto_boot_2nd_fail
+	   [ 9] auto_boot_1st_fail
+	   [17] sspi_mode
+	[24:23] CPU Bus Width: no BWD pattern is detected
+Jtag probe limited to %d MHz6000000
+Jtag frequency : requested 10.00MHz   -> real 6.00MHz   
+b 40 18 b read b40180b
+Detail: 
+Jedec ID          : 0b
+memory type       : 40
+memory capacity   : 18
+b 40 18 b read b40180b
+Detail: 
+Jedec ID          : 0b
+memory type       : 40
+memory capacity   : 18
+RDSR : 0x00
+WIP  : 0
+WEL  : 0
+BP   : 0
+TB   : 0
+SRWD : 0
+RDSR : 0x00
+WIP  : 0
+WEL  : 0
+BP   : 0
+TB   : 0
+SRWD : 0
+flash chip unknown: use basic protection detection
+start addr: 00f00000, end_addr: 00f10000
+Erasing: [==================================================] 100.00%
+
+Done
+Writing: [==================================================] 100.00%
+
+Done
+Verifying write (May take time)
+Reading: [=======================================           ] 76.56%
+Reading: [==================================================] 100.00%
+
+Done

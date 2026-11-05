@@ -1,0 +1,28 @@
+{
+  "B_renewal_scope": "Generation across renewal; constant-zero B outputs do not independently establish context preservation.",
+  "checker_sha256": "e01cef786416ebd33ac1d4867ce44d722bb324902055514292ea825075e4009a",
+  "distinct_nonces": 7,
+  "electrical_power_cycles_tested": false,
+  "fpga_image_sha256": "cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e",
+  "full_private_arrays_replayed": true,
+  "matched_board_outputs": 68,
+  "models": {
+    "A": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+    "B": "761fdec33b08bfa8664b0c8091225fa06fb593b867882f5a31a631ce1faac635"
+  },
+  "numerical_reference_recomputed": true,
+  "raw_wire_command_frames": 90,
+  "raw_wire_grants": 5,
+  "raw_wire_reply_frames": 78,
+  "result": "PASS",
+  "revocation_rollback_and_replay_checked": true,
+  "scope": "Replay of published host observations, signed numerical fixtures, actual wire bytes and recorded installation receipts. Complete-array bytes are compared only when the original private workspace is supplied. Not physical attestation, entropy qualification or a universal command-stream proof.",
+  "unique_new_signing_leaves": [
+    19,
+    20,
+    21,
+    22
+  ],
+  "written_blocks_checked": 4,
+  "wrong_model_same_nonce_signature_checked": true
+}

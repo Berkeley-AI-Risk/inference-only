@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "array_write": false,
+  "volatile_configuration_reset": true,
+  "command": [
+    "/opt/homebrew/bin/openFPGALoader",
+    "-b",
+    "tangmega138k",
+    "--ftdi-serial",
+    "2025030317",
+    "--ftdi-channel",
+    "0",
+    "--freq",
+    "900000",
+    "-v",
+    "--dump-flash",
+    "--file-size",
+    "16777216",
+    "--offset",
+    "0",
+    "LOCAL_REPLACEMENT/campaign-v2/B-readback.bin"
+  ],
+  "tool_sha256": "f880eb583695f8056566da308248ba539a1a1c4cabb6305c3d801acfd58f9e1b",
+  "started_utc": "2026-11-05T16:54:26.447698+00:00",
+  "bytes": 16777216,
+  "sha256": "90ef4eaaaec1543997dfa6fbca3f899f147a89cbf9f5de59d69ff2ae6d7afe6c",
+  "expected_array_equal": true,
+  "elapsed_seconds": 337.12155508995056,
+  "log_sha256": "4c9e7e2ee89992bb31a4dcab309c683102966c15dea60c4edd9a38b0d2e9b0fe"
+}

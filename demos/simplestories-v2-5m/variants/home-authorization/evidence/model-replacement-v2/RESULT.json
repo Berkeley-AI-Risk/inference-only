@@ -1,0 +1,37 @@
+{
+  "result": "PASS",
+  "models": {
+    "A": {
+      "package_sha256": "05fd261a9fc79a9fd3acaedc53e7b996e0f402e97363281b017632dc837d6342",
+      "image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+      "version": 1,
+      "signers": 2,
+      "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+      "package_bytes": 7381380,
+      "boot_frame_bytes": 115396
+    },
+    "B": {
+      "package_sha256": "c9b863b0f054fb71b7265260ebc809b926b9e151365851f111132e425edc064b",
+      "image_sha256": "1ada1d7dfbbae137f8747945a7144a84428f2d1d6135afa13c071ab67e7f05ce",
+      "version": 2,
+      "signers": 2,
+      "model_root": "761fdec33b08bfa8664b0c8091225fa06fb593b867882f5a31a631ce1faac635",
+      "package_bytes": 7381380,
+      "boot_frame_bytes": 115396
+    }
+  },
+  "fpga_image_sha256": "cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e",
+  "model_A_reference_outputs": 34,
+  "model_B_reference_outputs": 34,
+  "B_renewal_preserves_context": true,
+  "A_revocation": true,
+  "same_nonce_wrong_model_grant_rejected": true,
+  "A_denied_after_rollback_and_two_restarts": true,
+  "captured_A_grant_replay_rejected": true,
+  "starting_flash_restored_exactly": true,
+  "original_sram_restored": true,
+  "electrical_power_cycles_tested": false,
+  "signer_start_leaf": 19,
+  "signer_end_leaf": 23,
+  "fixture_scope": "Synthetic changed normalization weights; public demo signing keys; finite board evidence, not entropy or physical-security qualification."
+}

@@ -44,6 +44,8 @@ An S-AWIC can require **periodic reauthorization**: model-specific approval from
 
 The [SimpleStories periodic-reauthorization demonstration](demos/simplestories-v2-5m/variants/home-authorization/README.md) supplies the implementation and evidence. Signed-update admission and permission to run are separate checks. Replacement starts a fresh session; the demonstration uses the host installation workflow and includes no automatic remote-update agent. Periodic reauthorization is an optional S-AWIC feature. In this variant, continued inference requires fresh approval.
 
+The [physical model-replacement test](demos/simplestories-v2-5m/variants/home-authorization/VALIDATION.md#physical-model-replacement) checks revoking the base model, running a signed synthetic replacement and rejecting the withdrawn model after rollback and fresh FPGA configurations.
+
 ## Token interface
 
 *Inference* uses an already-trained model to produce outputs without changing
