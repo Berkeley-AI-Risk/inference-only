@@ -7,6 +7,10 @@ chips in both an idealized sense and a practical, operational sense.
 language models behind a restricted hardware interface, rather than a
 general-purpose accelerator whose restrictions depend on its host software.
 
+**[Architecture and evidence map](docs/ARCHITECTURE.md):** compare the configurations,
+follow the hardware trust boundaries and proof obligations, and find the exact
+source and reproduction route for each result.
+
 The paper distinguishes two approaches in Section 4.3:
 
 - **Authenticated-Weight Inference-Only Chips (AWICs)** fix the model architecture and inference circuitry in hardware and authenticate weights loaded from memory under a hardware-enforced approval policy.
@@ -37,14 +41,28 @@ schematic; arithmetic may be shared across layers.*
 
 ### Optional periodic reauthorization
 
-An S-AWIC can require **periodic reauthorization**: model-specific approval from a remote authority at startup and periodically during operation. **Authorities can de-whitelist one set of weights and distribute a signed replacement**, supporting patches and future fine-tunes within the fixed architecture. The deployment host installs the replacement; the chip verifies its signatures and weights and obtains fresh permission for that exact model. Withholding renewal stops inference with the old weights no later than the current approval deadline.
+An S-AWIC can require **periodic reauthorization**: model-specific approval
+from a remote authority at startup and periodically during operation.
+Authorities can withdraw approval for old weights and authorize a signed
+replacement, supporting patches and fine-tunes within the fixed architecture.
+
+The deployment host installs the replacement. The chip verifies its signatures
+and weights, then obtains permission for that exact model. Withholding renewal
+stops inference with the old weights by the current approval deadline.
 
 <a href="docs/figures/s-awic-home-authorization.svg#gh-light-mode-only"><img src="docs/figures/s-awic-home-authorization.svg#gh-light-mode-only" alt="Optional S-AWIC feature: home base authorizes the exact model and fresh chip nonce; the deployment host relays messages, and current permission enables fixed inference circuitry." width="800"></a>
 <a href="docs/figures/s-awic-home-authorization-dark.svg#gh-dark-mode-only"><img src="docs/figures/s-awic-home-authorization-dark.svg#gh-dark-mode-only" alt="Optional S-AWIC feature: home base authorizes the exact model and fresh chip nonce; the deployment host relays messages, and current permission enables fixed inference circuitry." width="800"></a>
 
-The [SimpleStories periodic-reauthorization demonstration](demos/simplestories-v2-5m/variants/home-authorization/README.md) supplies the implementation and evidence. Signed-update admission and permission to run are separate checks. Replacement starts a fresh session; the demonstration uses the host installation workflow and includes no automatic remote-update agent. Periodic reauthorization is an optional S-AWIC feature. In this variant, continued inference requires fresh approval.
+The [SimpleStories periodic-reauthorization demonstration](demos/simplestories-v2-5m/variants/home-authorization/README.md)
+implements these separate admission and permission checks. Replacement starts a
+fresh session through the documented host installation workflow; the chip does
+not install remote updates itself.
 
-The [physical model-replacement test](demos/simplestories-v2-5m/variants/home-authorization/VALIDATION.md#physical-model-replacement) checks revoking the base model, running a signed synthetic replacement and rejecting the withdrawn model after rollback and fresh FPGA configurations.
+The [physical replacement record](demos/simplestories-v2-5m/variants/home-authorization/VALIDATION.md#physical-model-replacement)
+checks revocation, a signed synthetic replacement and withdrawn-model rejection
+for its identified image. The complete replacement test for the selected
+repaired controller remains open; its completed approval, renewal and
+revocation tests are recorded separately.
 
 ## Token interface
 
@@ -94,7 +112,9 @@ also encrypts both weights and K/V; its supplied keys are public demonstration
 keys. Seeded sampling uses the baseline's authenticated weights, without K/V
 integrity or encryption.
 
-The common benchmark uses **one input token, 128 outputs and two repetitions** for every design. The seeded-sampling row uses its stated temperature; the other rows use greedy decoding. Its cached rate is **254 divided by the sum of the two first-to-last reply durations**, measured on the local control host after validated replies return to the generation loop. It includes gaps between replies and excludes the first output. First-STEP latency and command-only timing are separate measurements.
+The common benchmark uses **one input token, 128 outputs and two repetitions** for every design. The seeded-sampling row uses its stated temperature; the other rows use greedy decoding.
+
+The cached rate is **254 divided by the sum of the two first-to-last reply durations**, measured on the local control host after validated replies return to the generation loop. It includes gaps between replies and excludes the first output. First-STEP latency and command-only timing are separate measurements.
 
 A dash means that a complete paired record satisfying this protocol is unavailable. Model-specific validation measurements are linked from each guide. The [benchmark protocol and reproducible calculations](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) specify the observation boundary, source identities and eligibility checks. These are workload-specific host-observed rates, not peak ratings.
 
@@ -104,10 +124,9 @@ its timing, security and proof limits. Availability does not guarantee every
 workload or independently attest a loaded device. No Tang version has complete
 vendor-DDR timing or physical-security certification.
 
-- **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** board selection,
-  the three greedy versions, optional seeded sampling, browser app,
-  installation, measured prompt/decode speeds,
-  and links to source, proofs and reproduction instructions.
+- **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** six hardware
+  configurations, board selection, browser and token-client workflows, measured
+  prompt/decode speeds, source, proofs and reproduction instructions.
 - **[Qwen3-1.7B / AWS F2 guide](demos/qwen3-1.7b/README.md):** the billion-parameter
   hardware result, measured prompt/decode speeds, frozen-model boundary,
   installation, browser app, hardware sources and numerical reference.
@@ -152,9 +171,11 @@ is not claimed to be inference-only.
 
 The [detailed inference-only assessment](demos/simplestories-v2-5m/INFERENCE-ONLY.md) explains these
 distinctions using the Tang Mega designs. Its [formal-verification report](demos/simplestories-v2-5m/FORMAL-STATUS.md)
-covers specific properties of the baseline and K/V-protected RTL and a
-separate source-bound extension for seeded sampling. These are scoped
-control/component proofs, without whole-machine refinement or a Qwen proof.
+covers source-bound control, authentication, state-ownership and numerical
+results for its named configurations. [Qwen3-1.7B has separate component
+results](demos/qwen3-1.7b/FORMAL-STATUS.md), whose complete development solver
+bundle is not supplied; [Qwen3-8B has no supplied proof suite](demos/qwen3-8b/FORMAL-STATUS.md).
+Whole-machine refinement remains open for all designs.
 The [conditional training-capacity analysis](demos/simplestories-v2-5m/TRAINING-CAPACITY.md)
 and [architecture-dependent analysis](docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md)
 make their assumptions explicit; their Tang Mega numerical factors are not
@@ -181,22 +202,33 @@ are also included.
 
 ## Experimental HWIC research
 
-The [attention profile and memory-process shortlist](research/hwic/PROGRESS-2026-11-05-ATTENTION.md) records attention-kernel simulation counts and candidate memory processes. The [memory and performance feasibility assessment](research/hwic/PROGRESS-2026-11-05-FEASIBILITY.md) records the current storage requirements, process screening and complete-model cycle profile. Full-chip feasibility and an achieved ASIC rate remain unproved; further physical optimization awaits a common-process memory/logic plan and a complete-model performance budget. The [physical progress note](research/hwic/PROGRESS-2026-11-04-PHYSICAL.md) records the matched query-block comparison. The [integrated regression note](research/hwic/PROGRESS-2026-11-04.md) records the completed full-model numerical and fault regression; the [November 3 note](research/hwic/PROGRESS-2026-11-03.md) records the mapped-ROM16 block results.
-
 The [SimpleStories-V2-5M HWIC checkpoint](research/hwic/simplestories-2026-10-27/README.md)
-includes complete fixed-weight RTL, reproduction tools and compact validation
-evidence. A fresh build passes seven complete-model numerical cases: **53 token
-outputs and 2,605,355 selected tensor/logit comparisons**. A deliberately changed
-weight is rejected by the independent tensor checker.
+uses fixed ROM feeding shared arithmetic and reuses the AWIC token core. It
+includes the complete RTL, reproduction tools and compact validation evidence.
+Its seven complete-model numerical cases cover **53 token outputs and
+2,605,355 selected tensor/logit comparisons**; the independent checker also
+rejects a deliberately changed weight.
 
-**This is RTL research, not a qualified ASIC or a fabricated chip.** The current
-baseline uses fixed ROM feeding shared arithmetic and reuses the AWIC token
-core. [HNLPU](https://arxiv.org/abs/2508.16151v2) informs the research direction;
-its custom physical weight-routing implementation has not been reproduced, and
-we have not established that the ROM baseline is faster or smaller.
-The checkpoint documents the remaining physical-memory, layout, timing and
-other ASIC gaps. These simulation results are separate from the FPGA
-measurements above.
+Later work explores spatial arithmetic, banked K/V memory and attention reuse.
+The [configuration and evidence map](research/hwic/simplestories-2026-10-27/README.md#configuration-and-evidence)
+distinguishes the public ROM checkpoint from those newer source selections.
+The [integrated regression](research/hwic/PROGRESS-2026-11-04.md) records the
+completed numerical and fault tests for its spatial implementation.
+
+The next engineering decision is the memory system. The
+[memory feasibility assessment](research/hwic/PROGRESS-2026-11-05-FEASIBILITY.md)
+and [attention profile](research/hwic/PROGRESS-2026-11-05-ATTENTION.md) connect
+storage and bandwidth requirements to candidate memory processes. Further
+physical optimization awaits compatible ROM, SRAM and logic implementations
+and a complete-model performance budget. The
+[query-block comparison](research/hwic/PROGRESS-2026-11-04-PHYSICAL.md) and
+[mapped-ROM16 results](research/hwic/PROGRESS-2026-11-03.md) are block studies.
+
+**This is RTL research. The project has not fabricated or physically qualified
+a complete HWIC.** [HNLPU](https://arxiv.org/abs/2508.16151v2) informs the research
+direction, but its custom physical weight-routing implementation has not been
+reproduced here. The ROM baseline has no established speed or area advantage.
+HWIC simulation results and the FPGA measurements above have separate scopes.
 
 ## AI design experiment and attribution
 
@@ -236,7 +268,9 @@ Start with the guide for [SimpleStories on Tang Mega](demos/simplestories-v2-5m/
 | Qwen3-1.7B / AWS F2 | [Guide](demos/qwen3-1.7b/README.md), [installation](demos/qwen3-1.7b/INSTALL.md) | [Hardware](demos/qwen3-1.7b/HARDWARE.md) | [Validation](demos/qwen3-1.7b/VALIDATION.md), [formal scope](demos/qwen3-1.7b/FORMAL-STATUS.md), [reproduction](demos/qwen3-1.7b/REPRODUCE.md) |
 | Qwen3-8B / AWS F2 | [Guide](demos/qwen3-8b/README.md), [installation](demos/qwen3-8b/INSTALL.md) | [Hardware](demos/qwen3-8b/HARDWARE.md) | [Validation](demos/qwen3-8b/VALIDATION.md), [formal scope](demos/qwen3-8b/FORMAL-STATUS.md), [reproduction](demos/qwen3-8b/REPRODUCE.md) |
 
-Each model's guide links to its configurations, recorded checks and limitations. Proofs and measurements apply only to their named circuits and assumptions. The formal-status pages state each model's published proof coverage, including the absence of a Qwen proof suite.
+Use each model's formal-status page for the supplied proofs, assumptions and
+open obligations, and its validation page for the circuit and workload behind
+each measurement.
 
 [Design references and prior work](docs/REFERENCES.md) credit the algorithms, arithmetic library and hardware antecedents.
 

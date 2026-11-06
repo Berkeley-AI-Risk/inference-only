@@ -1,9 +1,10 @@
-# Qwen hardware and source build
+# Qwen3-1.7B hardware and source build
 
 [Qwen guide](README.md) · [Run the prebuilt design](INSTALL.md) · [Licenses](NOTICES.md)
 
-The [design references](../../docs/REFERENCES.md) credit the model's algorithmic
-antecedents, reused arithmetic library and relevant hardware prior work.
+Use [INSTALL.md](INSTALL.md) to run the measured image without compiling it.
+This guide explains the circuit, the source/build selection and the rebuild
+procedure. A rebuilt image needs its own implementation and board validation.
 
 ## Circuit organization
 
@@ -105,6 +106,9 @@ and functional reset timing. The
 reports document those checks. This is not production ASIC signoff or a
 whole-machine formal proof.
 
+The [design references](../../docs/REFERENCES.md) credit the model's algorithmic
+antecedents, reused arithmetic library and relevant hardware prior work.
+
 <!-- BEGIN GENERATED QWEN CDC DISCLOSURE -->
 The [CDC report](evidence/implementation/cdc.rpt) retains **39 critical
 findings** in its summary (`CDC-1`: 1, `CDC-7`: 1, `CDC-10`: 35, `CDC-13`: 2).
@@ -112,6 +116,74 @@ These are reported finding counts, not a count of proved functional
 failures. Per-finding disposition and whole-path reset/CDC qualification
 remain open; positive setup/hold slack does not discharge them.
 <!-- END GENERATED QWEN CDC DISCLOSURE -->
+
+## Configuration and build authority
+
+Build this **released 1.7B baseline** from its own source selection. The 8B
+overlay and separate protected-K/V candidate are different configurations.
+
+| Field | Released selection |
+| --- | --- |
+| Source identity | [SOURCE-INPUTS.json](SOURCE-INPUTS.json), joined to [hardware/IMPLEMENTATION-INPUTS.json](hardware/IMPLEMENTATION-INPUTS.json) by the source-bundle manifest hash |
+| CL top and ordered inputs | `cl_qwen`; [qwen_sources.tcl](hardware/build/scripts/qwen_sources.tcl) selects 65 SystemVerilog and 12 Verilog files |
+| RTL compilation | [synth_cl_qwen.tcl](hardware/build/scripts/synth_cl_qwen.tcl) reads those lists, selects out-of-context `${CL}`, defines `XSDB_SLV_DIS`, and retains hierarchy |
+| Staging and build entry | [prepare_hardware.py](tools/prepare_hardware.py), then the pinned AWS builder and [build_all.tcl](hardware/build/scripts/build_all.tcl); `ENCRYPT=0`, `CL=cl_qwen`, small shell |
+| Explicit top parameter | `MODEL_PREFETCH_PAGES=32`; follow instantiated parameters rather than module defaults |
+| Model and numerical contract | Fixed 28-layer geometry, signed int8 projection weights and the specified integer/FP32/BF16 operations; [reference contract](reference/README.md) and [model installation](INSTALL.md#prepare-the-fixed-model) |
+| Application and management interfaces | APPEND, STEP and CLEAR; restricted startup model loader, status and [management display](README.md#management-display) |
+| Memory protection | Fixed-root weight-page authentication and retained private checked copies; external HBM K/V is **not authenticated** and weights are not encrypted |
+| Clocks and vendor inputs | A0/B0/C2/H1: 100 MHz core, 125 MHz memory interface, 250 MHz host; pinned Vivado/HDK/IP/shell inputs in the implementation inventory |
+| Evidence | [Validation](VALIDATION.md), [component formal scope](FORMAL-STATUS.md), and the selected installation and implementation records |
+
+The preparer checks hashes before copying files. The
+[source-selection check](REPRODUCE.md#source-selection-check) also checks that
+the lists, compile scripts, includes and top agree. These are static checks,
+not full RTL elaboration. The two shell interface includes and protected vendor
+IP come from the pinned HDK. Historical filenames remain unchanged so earlier
+build identities can be reproduced.
+
+### CDC and reset disposition
+
+Reset must put the host, core and memory interfaces into a consistent state and
+release each domain safely, including during function-level reset (FLR). The
+design uses targeted first-stage and Gray-bus constraints in
+[qwen_cdc_constraints.tcl](hardware/build/scripts/qwen_cdc_constraints.tcl).
+Its reset contract checks 48 chains and 154 asynchronous-clear (CLR) endpoints
+before selecting exceptions, and retains min/max timing on 106 interstage and
+14 functional-FLR endpoint pairs.
+
+The remaining engineering questions are:
+
+- **Safe reset waveforms.** Establish the mapped logic's polarity and
+  initialization, minimum assertion width, glitch behavior and arrival skew.
+  Positive timing between synchronizer stages does not answer these questions.
+- **Coordinated release.** Check recovery/removal and crossing behavior under
+  the real clock relationships, so reset release cannot expose stale ready or
+  transaction state across domains.
+- **Vendor behavior.** Establish the HBM controller's reset/warm-recovery
+  contract and shell FLR behavior, including the hidden vendor endpoints.
+
+These questions remain open for the released image. Local protected-K/V tests
+exercise a separate candidate and do not provide its physical CDC/HBM/timing
+qualification.
+
+A November 6 read-only query of the original routed checkpoint used
+`report_cdc -details -all_checks_per_endpoint`. That expanded reporting mode
+found 32 additional critical `CDC-11` fan-out rows, for 71 critical rows in
+total, and methodology reported 12 `LUTAR-1` warnings with zero waived findings.
+The [diagnostic summary](evidence/cdc-reset-diagnostic-2026-11-06/SUMMARY.json)
+identifies the unchanged checkpoint and sources and supplies native reports.
+The earlier 39-finding report remains unchanged: the expanded inventory reflects
+more checks per endpoint, not a circuit change or demonstrated regression.
+All findings remain open.
+
+The two CLR examples explain a report-counter correction: the observer expected
+`Startpoint:`, but native paths use `Source:`/`Slack:`. The paths exist; their
+slack is infinite under exceptions, so they supply arrival information rather
+than recovery/removal margins. The summary distinguishes original and sanitized
+hashes; only cloud hostnames and output paths were removed. Neither these paths
+nor an empty query settles reset waveform safety. The interface and numerical
+contract remain unchanged while this work proceeds.
 
 ## Rebuild from source
 

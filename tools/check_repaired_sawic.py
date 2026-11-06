@@ -17,6 +17,26 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def read(p):return json.loads(p.read_text())
 
 
+def check_home_selection_metadata(repository, model, timing, replacement):
+    """Keep a historical pass attached to its image, separately from selection."""
+    root_home=repository['demonstrations']['simplestories-v2-5m']['home_authorization']
+    model_home=model['variants']['home-authorization']
+    recorded=model_home['physical_model_replacement']
+    selected=timing['bitstream_sha256'];captured=replacement['fpga_image_sha256']
+    passed=replacement['result']=='PASS';same=selected==captured
+    for aggregate in [root_home,model_home]:
+        assert aggregate['selected_image_sha256']==selected
+        assert aggregate['reported_core_fmax_mhz']==timing['reported_core_fmax_mhz']
+    assert root_home['physical_model_replacement_campaign_passed']==passed
+    assert root_home['physical_model_replacement_campaign_image_sha256']==captured
+    assert root_home['physical_model_replacement_selected_image_passed']==(passed and same)
+    assert recorded['image_sha256']==captured and recorded['passed']==passed
+    assert recorded['applies_to_selected_image']==same
+    assert model_home['physical_model_replacement_selected_image_passed']==(passed and same)
+    return dict(recorded_image_sha256=captured,selected_image_sha256=selected,
+                recorded_pass=passed,selected_image_pass=passed and same)
+
+
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,path)
     value=importlib.util.module_from_spec(spec);spec.loader.exec_module(value)
@@ -57,6 +77,8 @@ def main():
             assert review['phase_qualified_startup_reset_source_and_mapping_checked']
             assert review['wrapper_routes_physical_nonce']and not review['physical_source_simulation_mode']
             assert review['reported_logic_latches']==21
+            metadata=check_home_selection_metadata(read(ROOT/'MANIFEST.json'),read(MODEL/'MANIFEST.json'),
+                timing,read(target/'evidence/model-replacement-v2/RESULT.json'))
         capture=target/'evidence/repair-board-2026-11-05'
         if home:
             checked=module('selected_home_evidence',target/'tools/check_evidence.py').verify(target,capture)
@@ -69,6 +91,7 @@ def main():
         assert checked['result']=='PASS'
         rows.append(dict(variant=rel,result='PASS',native_nonvendor_inputs=len(nonvendor),reported_fmax_MHz=frequency,
             bitstream_sha256=review['sha256'],physical_evidence_rechecked=True))
+        if home:rows[-1]['replacement_image_scope']=metadata
     commands=[
         ['demos/simplestories-v2-5m/variants/home-authorization/tools/check_model_replacement.py'],
         ['demos/simplestories-v2-5m/variants/signed-update/formal/page-consistency/check_recorded.py'],

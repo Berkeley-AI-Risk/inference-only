@@ -45,6 +45,26 @@ The first command independently rechecks stored token CRCs, the model/reference 
 
 The build command requires an existing authorized macOS Standard compiler installation (`gw_sh` SHA-256 `76b24d18ec9785be73de6e9e98866bbd7bec330aff67d1fa8462f71f79b5f72c`) and the four separately acquired vendor DDR/PLL inputs. It verifies the selected source, constraint, memory and vendor hashes before synthesis/place-and-route. Use a fresh output directory outside the demo. The compiler may contact its configured license server; the script does not accept licenses or download software. No hardware is accessed. Rebuilt outputs need their own mapping/timing review; bit-identical implementation is not promised. Complete DDR timing, analog metastability, entropy and production security remain open.
 
+## Physical build source list
+
+The wrapper verifies `SOURCE-IDENTITY.json`, copies the selected project, adds
+the four separately acquired vendor files and runs `hardware/run.tcl`.
+`product.gprj` selects 95 Verilog files and two VHDL files; Tcl selects
+`board1_home_auth_product_top`.
+
+The 91-entry `production_sources.f` is a base member list. The project also
+selects four home-authorization modules and both physical entropy sources.
+The [enclosing build guide](../../REPRODUCE.md#configuration-and-build-authority)
+lists them and explains the offline check:
+
+```sh
+# From demos/simplestories-v2-5m/
+python3.12 -I -S -B tools/check_configuration_sources.py --configuration home-authorization
+```
+
+Full-model simulation uses its recorded compiler command and explicit memory
+and entropy models. Physical builds use the VHDL/project route above.
+
 ## Common speed measurement
 
 Create the independent base-model reference using `../signed-update/tang/tools/common_speed_reference.py` with `--demo "$DEMO" --image "$DEMO/assets/board1-real-semantic-image2048.bin" --output "$WORK/reference.json"`. Follow [INSTALL.md](INSTALL.md), substituting `--reference "$WORK/reference.json"` for `--smoke` in the relay command. Start the relay before SRAM loading. It collects `[378]`, 128 greedy outputs twice, validates every returned ID and records raw frames and validated-return timestamps. It includes renewal and host handover gaps, excludes output one from the cached metric and never retries commands. Preserve separate successful programmer, model-data/readback and source identity receipts before selecting any new headline result.
@@ -84,6 +104,8 @@ For a physical repetition, use [INSTALL.md](INSTALL.md) and the [signed-update p
 4. Allow B, start a fresh session, and check `[1]` → `[0,0]` and the first 32 B reference outputs, with fresh approval between outputs 16 and 17.
 5. Reinstall A while only B remains allowlisted. Independently verify its complete array, confirm denial after two SRAM configurations, and replay the captured A approval against the fresh challenge.
 6. Restore the exact starting array and original SRAM image, then verify the baseline and CLEAR. Retain every partial/failure capture and restore through the reviewed recovery path on failure.
+
+The complete replacement capture is bound to image `cb0f7d60bbed...`, as stated in [validation](VALIDATION.md#physical-model-replacement). The selected repaired image is `92b334d6f160...`; its separate repaired-controller replacement qualification remains open. These identities are not interchangeable.
 
 The [captured runner](evidence/model-replacement-v2/RUNNER.py), programmer/readback receipts and raw trace specify the recorded sequence. Its machine paths are redacted; it is not a portable programming command. Keep UART access exclusive, pace grants in 16-byte chunks with 3 ms gaps, and wait 0.5 seconds **after the complete grant transmission** before sending application commands. No electrical power-cycle test, entropy qualification, update-rate limiter or automatic remote installer is implied.
 

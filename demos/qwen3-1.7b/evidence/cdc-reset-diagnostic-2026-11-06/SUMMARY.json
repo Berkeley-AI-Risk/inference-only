@@ -1,0 +1,214 @@
+{
+  "scope": "Read-only diagnostic queries of the unchanged original released routed baseline",
+  "date_UTC": "2026-11-06",
+  "model": "qwen3-1.7b",
+  "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
+  "checkpoint_ZIP_CRC_verified": true,
+  "SOURCE_INPUTS_json": {
+    "bytes": 17321,
+    "sha256": "ef224b5e0fbb4e6a86b64ff8a42034d0db9f18e72c4e52a192fa1f30312aa0f5"
+  },
+  "native_tool": "Vivado 2025.2",
+  "native_child_exit": 0,
+  "native_stop_reason": null,
+  "native_errors": [],
+  "native_elapsed_seconds": 1794.506609652,
+  "inputs_before_after_unchanged": true,
+  "operational_namespace_frozen": true,
+  "native_loaded_byte_attestation": false,
+  "cdc_command": "report_cdc -details -all_checks_per_endpoint",
+  "published_prior_critical_rows": 39,
+  "expanded_CDC_detail_rows": 165,
+  "expanded_CDC_summary": {
+    "CDC-1": {
+      "severity": "Critical",
+      "count": 1,
+      "description": "1-bit unknown CDC circuitry"
+    },
+    "CDC-3": {
+      "severity": "Info",
+      "count": 36,
+      "description": "1-bit synchronized with ASYNC_REG property"
+    },
+    "CDC-6": {
+      "severity": "Warning",
+      "count": 14,
+      "description": "Multi-bit synchronized with ASYNC_REG property"
+    },
+    "CDC-7": {
+      "severity": "Critical",
+      "count": 1,
+      "description": "Asynchronous reset unknown CDC circuitry"
+    },
+    "CDC-9": {
+      "severity": "Info",
+      "count": 44,
+      "description": "Asynchronous reset synchronized with ASYNC_REG property"
+    },
+    "CDC-10": {
+      "severity": "Critical",
+      "count": 35,
+      "description": "Combinational logic detected before a synchronizer"
+    },
+    "CDC-11": {
+      "severity": "Critical",
+      "count": 32,
+      "description": "Fan-out from launch flop to destination clock"
+    },
+    "CDC-13": {
+      "severity": "Critical",
+      "count": 2,
+      "description": "1-bit CDC path on a non-FD primitive"
+    }
+  },
+  "expanded_critical_rows": 71,
+  "additional_CDC11_rows_in_expanded_reporting": 32,
+  "RTL_changed": false,
+  "expanded_reporting_not_demonstrated_circuit_regression": true,
+  "LUTAR1_findings": 12,
+  "methodology_waived_findings": 0,
+  "disposition": "All critical rows and physical reset/CDC qualification remain OPEN",
+  "reset_chains": 48,
+  "raw_CLR_pins": 154,
+  "retained_timing_counts": {
+    "interstage-max": 106,
+    "interstage-min": 106,
+    "functional_flr-max": 14,
+    "functional_flr-min": 14
+  },
+  "retained_timing_ranges_ns": {
+    "interstage-max": [
+      3.355,
+      9.667
+    ],
+    "interstage-min": [
+      0.02,
+      0.232
+    ],
+    "functional_flr-max": [
+      3.205,
+      3.435
+    ],
+    "functional_flr-min": [
+      0.192,
+      0.313
+    ]
+  },
+  "observer_counter_reconciliation": {
+    "original_observer_counted": "Startpoint:",
+    "native_report_headers": "Source: and Slack:",
+    "reports_with_false_zero_path_counter": 1232,
+    "raw_receipts_preserved": true,
+    "all_CLR_slack_entries_infinite": true,
+    "infinite_or_ignored_slack_is_timing_pass": false,
+    "examples": [
+      "clr-0-ordinary-rise-max.rpt.gz",
+      "clr-0-ignored-rise-max.rpt.gz"
+    ]
+  },
+  "sanitization": [
+    "Only Host header values redacted and the exact cloud output-directory prefix replaced by <OUTPUT>",
+    "Native options, findings, mapped design names, dates and timing content otherwise retained",
+    "Deterministic gzip with mtime=0; original and sanitized hashes distinguished"
+  ],
+  "reports": {
+    "cdc-all.rpt.gz": {
+      "original_report": {
+        "bytes": 57239,
+        "sha256": "bd8f5bab58174c9cd1dd744027feed7b95ae3ed09d0f00d6ede0c06068ef1ed8"
+      },
+      "sanitized_text": {
+        "bytes": 57094,
+        "sha256": "1a1e0a4921f414d9f909d62f18bc698919bc84e434d94ebf95fd9e4367524db0"
+      },
+      "gzip": {
+        "bytes": 3385,
+        "sha256": "4d4bca4492ed36bf7bfef9d149ff2eaeaf3ab1228d0481bf34442a9645ca543a"
+      },
+      "native_command_with_output_path_normalized": "report_cdc -details -all_checks_per_endpoint -file <OUTPUT>/cdc-all.rpt"
+    },
+    "methodology-all.rpt.gz": {
+      "original_report": {
+        "bytes": 453680,
+        "sha256": "1b81b94206e7447da3a6480005d4e56b769b97f5ec4d2ed45b27335f54181124"
+      },
+      "sanitized_text": {
+        "bytes": 453540,
+        "sha256": "d374f8ff3c5aa2d4e1194a3f3cced815b1fedfd319ff6d59e90b1e4e8cc3e1b0"
+      },
+      "gzip": {
+        "bytes": 12811,
+        "sha256": "d89eeadb1597833a08b928c6dcf5d22993299646c4906ee3ab93e85c8c9107db"
+      },
+      "native_command_with_output_path_normalized": "report_methodology -file <OUTPUT>/methodology/methodology-all.rpt"
+    },
+    "methodology-waived.rpt.gz": {
+      "original_report": {
+        "bytes": 1547,
+        "sha256": "1b6d5aa6bb0df3aefbab6f6c17e8563ef02fb2048885a11773b559300e4193bd"
+      },
+      "sanitized_text": {
+        "bytes": 1407,
+        "sha256": "d709bc82570eb065ff1862fa467894eee3b43b8b69512e4d145e027b24391493"
+      },
+      "gzip": {
+        "bytes": 520,
+        "sha256": "36d2402e7c40b3c8f1453cf96ffccece2c25acf0be56710797aa9c1f8241855e"
+      },
+      "native_command_with_output_path_normalized": "report_methodology -waived -file <OUTPUT>/methodology/methodology-waived.rpt"
+    },
+    "methodology-LUTAR-1.rpt.gz": {
+      "original_report": {
+        "bytes": 13804,
+        "sha256": "f952a66a7529068af2cadf1d62b30f700bdfa39475da72bcb34f2f29a45e818e"
+      },
+      "sanitized_text": {
+        "bytes": 13664,
+        "sha256": "3d03967d6ce2405f228e53209d607ba0ec7d977f947a1fa9acdd31643f872740"
+      },
+      "gzip": {
+        "bytes": 1598,
+        "sha256": "4897133e51bbf03bbb368c7a8be0bad70c7ba234149c98a31351e7227b95df20"
+      },
+      "native_command_with_output_path_normalized": "report_methodology -checks LUTAR-1 -file <OUTPUT>/methodology/methodology-LUTAR-1.rpt"
+    },
+    "clr-0-ordinary-rise-max.rpt.gz": {
+      "original_report": {
+        "bytes": 11940,
+        "sha256": "15c158e0267db0eef8f4e5708618db6e00c8c6e237b336ccee51a5e2218be02a"
+      },
+      "sanitized_text": {
+        "bytes": 11795,
+        "sha256": "8d17a9fd3c2326460d26e1ff3bcd61810a121923e48f596b3ee21afd2fc06640"
+      },
+      "gzip": {
+        "bytes": 1691,
+        "sha256": "d265a011adc8a44b5ed430040c9767215ae6c71dee3d11b4c34d82072c384248"
+      },
+      "native_command_with_output_path_normalized": "report_timing -rise_to [get_pins -hier -quiet -filter {NAME == \"WRAPPER/CL/fixed_hbm_reset/axi_release_reg[0]/CLR\"}] -delay_type max -max_paths 100 -nworst 100 -input_pins -path_type full_clock_expanded -significant_digits 3 -file <OUTPUT>/clr-0-ordinary-rise-max.rpt"
+    },
+    "clr-0-ignored-rise-max.rpt.gz": {
+      "original_report": {
+        "bytes": 11979,
+        "sha256": "80f7263f31e6c4308cd40f9b07d181575ba94439d39bcaaa6b2013960d752ee8"
+      },
+      "sanitized_text": {
+        "bytes": 11834,
+        "sha256": "b4962a6e1853ff24bd120cbcc10109132f48d0dd085c8aba3dabac173776f5ae"
+      },
+      "gzip": {
+        "bytes": 1696,
+        "sha256": "dc89e7d0d0c5a127c3fce34ac0df640c1ca484f4258062bb5dc01a7ed16ccd88"
+      },
+      "native_command_with_output_path_normalized": "report_timing -rise_to [get_pins -hier -quiet -filter {NAME == \"WRAPPER/CL/fixed_hbm_reset/axi_release_reg[0]/CLR\"}] -delay_type max -max_paths 100 -nworst 100 -input_pins -path_type full_clock_expanded -significant_digits 3 -file <OUTPUT>/clr-0-ignored-rise-max.rpt -user_ignored"
+    }
+  },
+  "full_cloud_collection_or_thousands_of_CLR_reports_included": false,
+  "new_physical_image_or_private_KV_or_faster8B_qualification": false,
+  "caveats": [
+    "Raw CLR infinite slack is not recovery/removal or pulse/glitch/skew qualification",
+    "Abstract-shell connectivity limitations and hidden vendor endpoints remain",
+    "The original 39-critical report uses a different reporting scope and is unchanged",
+    "No complete numerical, clock/reset, security or image-equivalence theorem is inferred"
+  ]
+}

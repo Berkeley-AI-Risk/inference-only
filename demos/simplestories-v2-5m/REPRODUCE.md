@@ -1,10 +1,11 @@
 # Reproduce SimpleStories assets and evidence
 
-The package supplies one selected image for each of the baseline,
-K/V-protected, encrypted-memory and seeded configurations. Exact model/image
-and source associations are in [greedy qualification](GREEDY-QUALIFICATION.md)
-and [seeded qualification](CURRENT-QUALIFICATION.md). All use the same pinned
-SimpleStories-V2-5M numerical model. Their proof boundaries are separate.
+The package supplies six selected Tang configurations: four F-AWICs, a signed-update
+S-AWIC and an S-AWIC with periodic reauthorization. The packaged base weights use
+the fixed W10/A16/KV16 BFP-v5 numerical contract. Signed variants can admit other
+compatible, signed weights; their references must match the admitted image.
+[Greedy qualification](GREEDY-QUALIFICATION.md), [seeded qualification](CURRENT-QUALIFICATION.md)
+and the signed variants' validation pages state separate evidence boundaries.
 
 For running the prebuilt web demonstration, follow
 [PROGRAMMING.md](PROGRAMMING.md) and the [host guide](host-app/README.md).
@@ -80,6 +81,95 @@ A new route needs its own functional and physical checks; the supplied image's
 recorded results do not automatically qualify a rebuilt image.
 For byte-exact ciphertext reconstruction with public demonstration keys, use
 [encrypted-memory reproduction](ENCRYPTED-MEMORY.md#reproduce-and-inspect-the-package).
+
+## Configuration and build authority
+
+Each configuration has its own source inventory and FPGA image. The native
+build uses `product.gprj` for enabled sources and constraints, and `run.tcl`
+for the top module, language standards and implementation options.
+`production_sources.f` lists HDL members; it does not replace that build recipe.
+
+| Configuration | Selected input inventory | Native entry | Selected image SHA-256 prefix |
+| --- | --- | --- | --- |
+| F-AWIC baseline | [90 inputs](host-app/hardware-inputs.json) | [Project](hardware/project/product.gprj), [Tcl](hardware/run.tcl) | `01b040cb830c` |
+| F-AWIC + K/V protection | [93 inputs](host-app/hardware-inputs-kv-protected.json) | [Project](variants/kv-protected/hardware/project/product.gprj), [Tcl](variants/kv-protected/hardware/run.tcl) | `90ac68150d0c` |
+| F-AWIC + encrypted memory | [100 inputs](host-app/hardware-inputs-encrypted-memory.json) | [Project](variants/encrypted-memory/hardware/project/product.gprj), [Tcl](variants/encrypted-memory/hardware/run.tcl) | `cfc8a3d8832b` |
+| F-AWIC + seeded sampling | [91 inputs](host-app/hardware-inputs-seeded-sampling.json) | [Project](variants/seeded-sampling/hardware/project/product.gprj), [Tcl](variants/seeded-sampling/hardware/run.tcl) | `d271626a7fb9` |
+| S-AWIC | [105 inputs](variants/signed-update/tang/SOURCE-IDENTITY.json) | [Project](variants/signed-update/tang/hardware/project/product.gprj), [Tcl](variants/signed-update/tang/hardware/run.tcl) | `8472e592c68a` |
+| S-AWIC + periodic reauthorization | [112 inputs](variants/home-authorization/SOURCE-IDENTITY.json) | [Project](variants/home-authorization/hardware/project/product.gprj), [Tcl](variants/home-authorization/hardware/run.tcl) | `92b334d6f160` |
+
+Input totals include four separately acquired vendor files plus Tcl,
+constraints and memory data. The linked inventories contain full source and
+image hashes; the table shows image-hash prefixes.
+
+The physical tops are:
+
+- Four F-AWICs: `board1_fixed_shared_product_top`.
+- Signed-update S-AWIC: `board1_fixed_swic_product_top`.
+- Periodic-reauthorization S-AWIC: `board1_home_auth_product_top`.
+
+| Configuration | Enabled Verilog / VHDL | Member-list scope |
+| --- | ---: | --- |
+| F-AWIC baseline | 81 / 0 | Complete Verilog members |
+| F-AWIC + K/V protection | 83 / 0 | Complete Verilog members |
+| F-AWIC + encrypted memory | 88 / 0 | Complete Verilog members |
+| F-AWIC + seeded sampling | 82 / 0 | Complete Verilog members |
+| S-AWIC | 91 / 0 | Complete Verilog members |
+| S-AWIC + periodic reauthorization | 95 / 2 | 91 base members; project adds four Verilog and two VHDL files |
+
+Normalized common-member order matches in these selected files. The home
+project additionally includes `home/home_boot_gate.sv`,
+`home/home_uart_transport.sv`, `home/home_product_top.sv`,
+`home/nonce_frontend.sv`, `home/neoTRNG.vhd` and `home/entropy_source.vhd`.
+Its inherited list is not a complete physical-home build recipe.
+
+All selected `defines.v` files define `SYNTHESIS`. Baseline, seeded and both
+signed variants also define `BOARD1_PROJECTION_MAC_NATIVE`; protected and
+encrypted variants select their own arithmetic and memory implementations.
+These defines and the Tcl settings belong to the selected input set.
+
+All inference cores run at 25 MHz. DDR application transport runs at 100 MHz,
+the memory PLL at 400 MHz, and the trusted domain at 12.5 MHz. Boot roles differ
+by configuration: signed admission, hashing, LMS and home lease logic use the
+25 MHz core. [Hardware](HARDWARE.md) and the signed guides show the connections.
+
+For the four F-AWICs, use `host-app/build_hardware.py --variant` with
+`baseline`, `kv-protected`, `encrypted-memory` or `seeded-sampling` and the
+prerequisites in [VENDOR-SETUP.md](VENDOR-SETUP.md). Each signed variant uses
+its own `tools/build_native.py` and authorized Standard compiler:
+[signed-update reproduction](variants/signed-update/tang/REPRODUCE.md) or
+[periodic-authorization reproduction](variants/home-authorization/REPRODUCE.md).
+The inherited home list does not replace that wrapper/project/Tcl route.
+
+`candidate.sv` implements the selected `board1_fixed_vector_rne_shift_pipeline1`
+helper in all six projects. The selected attention module implements fixed GQA.
+Use the input inventory and [qualification guide](README.md#implementation-and-evidence)
+to identify the applicable implementation and tests; filenames and source
+comments are not qualification records.
+
+### Source selection check
+
+From the SimpleStories demo directory:
+
+```sh
+python3.12 -I -S -B tools/check_configuration_sources.py
+python3.12 -I -S -B -m unittest discover -s tools -p test_configuration_sources.py -v
+```
+
+The read-only checker compares all six source sets and image hashes with their
+selected build records. It checks the top declaration, enabled files and list
+scope. Use `--configuration home-authorization` for one row. Vendor files can
+remain unacquired; add `--vendor-dir /absolute/path/to/fpga-vendor-inputs` to
+verify an existing local copy. The checker neither downloads nor runs a
+compiler, solver or FPGA. A passing result establishes file consistency.
+
+The applicable evidence routes are [greedy qualification](GREEDY-QUALIFICATION.md),
+[seeded qualification](CURRENT-QUALIFICATION.md), [formal scope](FORMAL-STATUS.md),
+[signed-update validation](variants/signed-update/tang/VALIDATION.md) and
+[periodic-authorization validation](variants/home-authorization/VALIDATION.md).
+Replacement captures are image-bound; the periodic variant's validation page
+separates its completed observations from the open repaired-controller test.
+The linked guides state the remaining physical and numerical obligations.
 
 ## Fresh scoped RTL proofs
 

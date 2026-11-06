@@ -47,6 +47,109 @@ The central weights/supporting-data ROM payload is 7,245,312 bytes, with separat
 fixed norm/exp leaves; private K/V payload is 7,077,888 bytes. RTL arrays and
 `$readmemh` initializers do not establish manufacturable ROM/SRAM macros.
 
+## Configuration and evidence
+
+The public ROM design is the reproducible baseline. Later experiments explore
+spatial compute, a smaller K/V store and reuse of the AWIC's parallel attention
+architecture. The [configuration map](../evidence/configuration-map-2026-11-06/rows.json)
+records their exact source selections, compile settings and dated evidence.
+
+| Implementation | Architectural change | Validation as of November 6, 2026 |
+| --- | --- | --- |
+| Published ROM baseline | Shared projection arithmetic fed by fixed ROM, with private K/V | Seven complete-model cases, 53 outputs and 2,605,355 comparisons; public replay below |
+| Integrated spatial candidate | Layer-0 spatial projection paths and SiLU16 | [Complete regression](../PROGRESS-2026-11-04.md), including 28 genuine circuit-fault checks |
+| Split K/V candidate | Separate payload and metadata banks replace the flat K/V backing RAM | Component, admission and 28 fault checks passed; complete positive corpus pending |
+| Attention reuse candidate | Eight QK lanes and eight AV lanes, GQA pair-row reuse and prefix summaries from the AWIC | Source review complete; compilation and numerical validation pending |
+
+These experiments target the same fixed numerical contract and token interface.
+The newer three selections have separate source snapshots; their full RTL/build
+inputs are not bundled here. The public replay rebuilds the ROM baseline.
+Native compiled runs use Verilator with `SYNTHESIS` defined and do not establish
+four-state/X-clean behavior.
+
+### Reuse with the selected AWIC
+
+The ROM baseline shares **39 byte-identical source files** with the selected
+fixed-baseline Tang AWIC identified by
+[`hardware-inputs.json`](../../../demos/simplestories-v2-5m/host-app/hardware-inputs.json).
+Shared files include exact integer arithmetic, projection and elementwise
+operators, vector scratch RAMs and semantic sequencing. The configuration map
+contains the complete comparison, including changed files at shared paths.
+
+This reuse offers a way to maintain common arithmetic and carry targeted
+operator tests across designs. Each consumer still needs its own build and
+integration checks: for example, the Tang build enables
+`BOARD1_PROJECTION_MAC_NATIVE`, while the HWIC replay does not. File matches
+include potentially uninstantiated modules, so they do not measure the fraction
+of gates reused. Source-bound proofs and FPGA results apply to their named
+circuits; they do not qualify an ASIC successor.
+
+The attention proposal adds two exact AWIC files to the HWIC selection. Eight
+parent bindings connect layer identity and value-staging/commit events to the
+AWIC prefix summaries, while retaining HWIC arithmetic leaves. This integration
+needs its own unchanged-golden admission, fault and full-model regression.
+Its workspace and accumulator arrays add **42,384 bytes**, before prefix/control
+state; speed and physical cost remain to be measured.
+
+A later common-source candidate is
+`board1_unified_projection_head_dynamic_mul_exact.sv`. Maintaining one
+implementation could reduce arithmetic drift. Extraction requires explicit
+compile/parameter bindings, exact results for each used mode, correspondence
+for any selected vendor primitive, and affected integration regressions.
+Frozen experiments retain their original source copies; this checkpoint makes
+no source consolidation.
+
+### Memory and process decision
+
+**Hold further physical optimization until a compatible memory/process plan
+meets the complete model's requirements.** The
+[Dolphin TSMC 28HPC+ memory catalog](https://www.dolphin-ic.com/tsmc_28hpc%2B_mem.html)
+identifies a candidate family, not a selected set of legal macro instances.
+The next physical step requires:
+
+1. Access to compatible ROM, SRAM, standard cells and I/O in one process.
+2. Legal macro geometries and ports, with layout views and timing/power
+   characterization across the required process, voltage and temperature corners.
+3. A complete capacity, banking, bandwidth, area and clock budget using those
+   implementations.
+
+The functional central ROM contains **84,720 640-bit weight words** and
+**14,616 256-bit supporting-data words**. It can accept one request per clock
+with continuous response readiness; physical ROM banking and an achieved chip
+bandwidth remain unresolved. The spatial experiments add four layer-0
+constant-specialized matrices. Whole-model ROM pruning and complete logic area
+remain open.
+
+The split K/V candidate uses **192 1,024-by-256-bit payload banks** and
+**12 2,048-by-16-bit metadata banks**: **6,340,608 array bytes**, versus
+7,077,888 in the flat baseline. The 10.4167% capacity saving excludes read
+pipelines, tags, controls and workspace; it is not a measured area or power
+saving. K/V remains private and typed. CLEAR invalidates logical authority
+and drains accepted work without zeroizing the payload.
+
+Banking alone leaves the transport cost intact. At SRAM read latency one,
+the unchanged typed path takes **61 cycles for a committed K-only or V-only
+row and 109 for a full row**. The former core/application boundary already uses
+one clock on both sides, so a direct same-clock bridge is a concrete scheduling
+option. It has no RTL prototype or measured speedup yet. The
+[memory feasibility assessment](../PROGRESS-2026-11-05-FEASIBILITY.md) and
+[attention profile](../PROGRESS-2026-11-05-ATTENTION.md) provide the supporting
+capacity and service-cost analysis.
+
+ROM16 remains the lead query-block diagnostic; the grouped approach remains a
+capped comparator. Those block studies leave whole-chip memory implementation,
+PVT timing, physical verification, DFT, power integrity and activity-based power
+analysis open.
+
+From the release root, recompute the public source comparison and check the
+recorded scope and capacity arithmetic:
+
+```sh
+python3.12 -I -S -B research/hwic/evidence/configuration-map-2026-11-06/check_rows.py
+```
+
+This is a file-consistency check; the RTL replay is below.
+
 ## Reproduce
 
 Use Python 3.12 with NumPy 1.26.4, Verilator and a C++ build toolchain. No board,

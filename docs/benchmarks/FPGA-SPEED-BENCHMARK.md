@@ -64,8 +64,24 @@ Different models, numerical functions and hardware perform different work per to
 
 The S-AWIC row uses the signed base model, the same `[378]` prompt and greedy decoding as the fixed-commitment baseline. Its two complete 128-output trials use the source-bound S-AWIC bitstream at 25 MHz. The independent integer reference reconstructs the model from its physical image bytes. All 256 returned IDs match it.
 
-The [raw capture and reference](../../demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/FINISHED.json) and [offline evidence review](../../demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/RAW-REVIEW.json) retain the validated-return timestamps, all 262 command/reply transactions, and source/image identities. The common checker replays those frame and timing associations before admitting the row. See the [collector and reproduction instructions](../../demos/simplestories-v2-5m/variants/signed-update/tang/REPRODUCE.md#common-speed-benchmark).
+The [raw capture and reference](../../demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/FINISHED.json) and [offline evidence review](../../demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/RAW-REVIEW.json) retain the validated-return timestamps, all 262 command/reply transactions, and source/image identities. The common checker replays those frame and timing associations before admitting the row. See the [collector and reproduction instructions](../../demos/simplestories-v2-5m/variants/signed-update/tang/REPRODUCE.md#common-speed-benchmark).
 
 ## Signed updates with periodic reauthorization
 
-The [S-AWIC with periodic reauthorization](../../demos/simplestories-v2-5m/variants/home-authorization/README.md) uses the same `[378]`, 128-output, two-repetition greedy workload. Its [raw capture](../../demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/COMMON-SPEED.json) includes renewal pauses and host handover gaps: 254 cached outputs over 34.406163083 seconds, **~7.4 tokens/s** at 25 MHz. All 256 outputs match the independent integer reference. The offline auditor checks raw command/reply CRCs, returned-token timing, real approval signatures and restoration; the common table checker includes those checks. The ten-second permission period, five-second renewal interval and four-second response deadline are demonstration settings, not an enforced weight-update delay.
+The [periodic-reauthorization S-AWIC](../../demos/simplestories-v2-5m/variants/home-authorization/README.md)
+uses `[378]`, 128 greedy outputs and two repetitions. The selected repaired
+image `92b334d6f160...` measures **~7.6 tokens/s** at 25 MHz in its
+[paired capture](../../demos/simplestories-v2-5m/variants/home-authorization/evidence/repair-board-2026-11-05/COMMON-SPEED.json),
+including renewal and host handover gaps. All 256 outputs match the independent
+integer reference.
+
+The offline auditor checks raw frames, token timing, real approval signatures
+and restoration; the common table checker includes those checks. At 25 MHz,
+the permission period is nominally ten seconds, renewal starts five seconds
+before expiry, and the response deadline is four seconds. These authorize
+continued inference; they do not impose a weight-update delay.
+
+The [v9 capture](../../demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/COMMON-SPEED.json)
+records a separate ~7.4 tokens/s observation for its identified image. The
+[selection record](../../benchmarks/fpga-speed/selection.json) identifies the
+records admitted to each headline row.

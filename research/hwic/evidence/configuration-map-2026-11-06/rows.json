@@ -1,0 +1,948 @@
+{
+  "configurations": [
+    {
+      "build": {
+        "build_entry": "research/hwic/simplestories-2026-10-27/tools/replay.py",
+        "compiler_scope": "Two-state Verilator simulation with SYNTHESIS defined; not a four-state/X-clean or ASIC synthesis claim.",
+        "defines": [
+          "SYNTHESIS"
+        ],
+        "parameter_binding": "Top has no parameters; instantiated parameters and leaf defaults are bound by selected source bytes.",
+        "simulation_top": "tb_hwic_simplestories",
+        "source_list": "research/hwic/simplestories-2026-10-27/rtl/sources.f",
+        "source_operands": 68,
+        "top": "hwic_simplestories",
+        "top_parameter_overrides": {}
+      },
+      "configuration": "public-rom",
+      "development_source": {
+        "frozen": true,
+        "selection": "research/hwic/simplestories-2026-10-27/PROVENANCE.json"
+      },
+      "evidence": {
+        "fault_scope": "Separate replay --smoke --fault-weight changes a DUT embedding coefficient against unchanged fixtures.",
+        "numerical_cases": 7,
+        "outputs": 53,
+        "records": [
+          "research/hwic/simplestories-2026-10-27/evidence/original-rtl-validation.json"
+        ],
+        "tensor_logit_comparisons": 2605355
+      },
+      "interfaces": {
+        "application": [
+          "APPEND token/ready",
+          "STEP valid/ready",
+          "token valid/ready",
+          "CLEAR",
+          "busy/model_locked/fail_closed"
+        ],
+        "management": [
+          "clock",
+          "active-low reset"
+        ],
+        "model_loader": false,
+        "tensor_or_memory_port": false
+      },
+      "numerical_contract": {
+        "context_positions": 2048,
+        "contract": "simplestories-w10-a16-kv16-bfp-v5-context2048",
+        "model": "SimpleStories/SimpleStories-V2-5M",
+        "parameters": 5354496,
+        "revision": "c4b3a4bb81297f5316697098e1d4b65c1249daf8"
+      },
+      "open_obligations": [
+        "Characterized compatible ROM/SRAM, logic and I/O in one accessible process",
+        "Actual instance LEF/Liberty/GDS and port/latency/PVT/area/power characterization",
+        "Full-chip floorplan, clock/reset/DFT policy, routed parasitics and timing closure",
+        "Full-chip DRC/LVS, power integrity, representative-activity power and sign-off",
+        "Whole-device functional/security composition and physical correspondence"
+      ],
+      "protections_and_clocks": {
+        "clear": "logical invalidation and cancellation/drain, not payload zeroization",
+        "clocks": "One external clock; former core/application boundary clocks tied together. Transport logic remains.",
+        "protection": "typed private ownership and CLEAR/cancellation logic; not an encrypted external-memory design",
+        "weights": "fixed ROM data; no runtime weight admission",
+        "working_state": "private K/V and workspace"
+      },
+      "reproduction": {
+        "assets_bundled": false,
+        "automatic_asset_acquisition": false,
+        "entry": "research/hwic/simplestories-2026-10-27/README.md#reproduce",
+        "fresh_work_path": "whitespace-free",
+        "prerequisites": [
+          "Python 3.12",
+          "NumPy 1.26.4",
+          "Verilator and C++ tools",
+          "Eight authenticated Q0 files from reference/evidence/q0-receipt.json"
+        ],
+        "public_fresh_rtl_replay": true
+      },
+      "reuse": {
+        "awic_source_operands": 81,
+        "byte_identical_source_operands": 39,
+        "compared_awic_configuration": "SimpleStories fixed baseline Tang product (not all six variant images)",
+        "meaning": "Selected source-file bytes, including possibly uninstantiated modules; not an area, cell, proof or qualification fraction."
+      },
+      "selected_source": {
+        "authority": "research/hwic/simplestories-2026-10-27/PROVENANCE.json",
+        "availability": "public",
+        "public_release_parent": "527c5fc93adfb1124f5acd4bc7371ec62ca34705"
+      },
+      "status": "public-source-finite-rtl-regression"
+    },
+    {
+      "build": {
+        "actual_generation_record": "integrated-generation",
+        "build_entry": null,
+        "compiler_scope": "Two-state Verilator simulation with SYNTHESIS defined; not a four-state/X-clean or ASIC synthesis claim.",
+        "defines": [
+          "SYNTHESIS"
+        ],
+        "include_directories": 2,
+        "included_header_files": 2,
+        "normalized_source_inventory_sha256": "42f148e0234e70a0018b472f80f971e32c035a2b04eeba94af5a19d3de28bffe",
+        "parameter_binding": "Top has no parameters; instantiated parameters and leaf defaults are bound by selected source bytes.",
+        "reproduction": "Selected private file list/build assets are not bundled. A hash identifies a recorded selection, not a runnable public recipe.",
+        "simulation_top": "tb_hwic_simplestories",
+        "source_list": "integrated-selection",
+        "source_operands": 1962,
+        "top": "hwic_simplestories",
+        "top_parameter_overrides": {},
+        "workspace_relative_source_list": "inference-only/hwic-hnlpu/performance/simplestories-silu-up16-model-integration-preparation-v1/variant-v4-up0/up0_silu16_model_sources_v4.f"
+      },
+      "configuration": "integrated-spatial",
+      "development_source": {
+        "frozen": true,
+        "published": false,
+        "selection": "integrated-selection",
+        "workspace_relative_selection": "inference-only/hwic-hnlpu/performance/simplestories-silu-up16-model-integration-preparation-v1/variant-v4-up0/up0_silu16_model_sources_v4.f"
+      },
+      "evidence": {
+        "circuit_fault_cases": 28,
+        "numerical_cases": 7,
+        "outputs": 53,
+        "records": [
+          "research/hwic/evidence/integrated-model-2026-11-04/results.json"
+        ],
+        "scope": "Spatial UP/SiLU integrated selection, distinct from the public ROM baseline. Admission checks the 2048 bound, not full-window numerical inference.",
+        "tensor_logit_comparisons": 2605355
+      },
+      "interfaces": {
+        "application": [
+          "APPEND token/ready",
+          "STEP valid/ready",
+          "token valid/ready",
+          "CLEAR",
+          "busy/model_locked/fail_closed"
+        ],
+        "management": [
+          "clock",
+          "active-low reset"
+        ],
+        "model_loader": false,
+        "tensor_or_memory_port": false
+      },
+      "numerical_contract": {
+        "context_positions": 2048,
+        "contract": "simplestories-w10-a16-kv16-bfp-v5-context2048",
+        "model": "SimpleStories/SimpleStories-V2-5M",
+        "parameters": 5354496,
+        "revision": "c4b3a4bb81297f5316697098e1d4b65c1249daf8"
+      },
+      "open_obligations": [
+        "Characterized compatible ROM/SRAM, logic and I/O in one accessible process",
+        "Actual instance LEF/Liberty/GDS and port/latency/PVT/area/power characterization",
+        "Full-chip floorplan, clock/reset/DFT policy, routed parasitics and timing closure",
+        "Full-chip DRC/LVS, power integrity, representative-activity power and sign-off",
+        "Whole-device functional/security composition and physical correspondence"
+      ],
+      "protections_and_clocks": {
+        "clear": "logical invalidation and cancellation/drain, not payload zeroization",
+        "clocks": "One external clock; former core/application boundary clocks tied together. Transport logic remains.",
+        "protection": "typed private ownership and CLEAR/cancellation logic; not an encrypted external-memory design",
+        "weights": "fixed ROM data; no runtime weight admission",
+        "working_state": "private K/V and workspace"
+      },
+      "reproduction": {
+        "entry": "research/hwic/PROGRESS-2026-11-04.md",
+        "public_fresh_rtl_replay": false,
+        "public_recorded_evidence_check": true
+      },
+      "reuse": {
+        "awic_source_operands": 81,
+        "byte_identical_source_operands": 39,
+        "compared_awic_configuration": "SimpleStories fixed baseline Tang product (not all six variant images)",
+        "meaning": "Selected source-file bytes, including possibly uninstantiated modules; not an area, cell, proof or qualification fraction."
+      },
+      "selected_source": {
+        "authority": "integrated-selection",
+        "availability": "private-recorded-not-bundled",
+        "public_release_parent": null
+      },
+      "status": "recorded-complete-finite-rtl-regression-source-not-bundled"
+    },
+    {
+      "build": {
+        "actual_generation_record": "split-generation",
+        "build_entry": null,
+        "compiler_scope": "Two-state Verilator simulation with SYNTHESIS defined; not a four-state/X-clean or ASIC synthesis claim.",
+        "defines": [
+          "SYNTHESIS"
+        ],
+        "include_directories": 2,
+        "included_header_files": 2,
+        "normalized_source_inventory_sha256": "d4d3b38ad815be8857f3d7c532b3ae224f7778e2cacec1021b42897af9712248",
+        "parameter_binding": "Top has no parameters; instantiated parameters and leaf defaults are bound by selected source bytes.",
+        "reproduction": "Selected private file list/build assets are not bundled. A hash identifies a recorded selection, not a runnable public recipe.",
+        "simulation_top": "tb_hwic_simplestories",
+        "source_list": "split-selection",
+        "source_operands": 1963,
+        "split_sram_read_latency": 1,
+        "top": "hwic_simplestories",
+        "top_parameter_overrides": {},
+        "workspace_relative_source_list": "inference-only/hwic-hnlpu/performance/simplestories-split-kv-rtl-20261106-v1/full_model_sources.f"
+      },
+      "configuration": "split-kv",
+      "development_source": {
+        "frozen": true,
+        "published": false,
+        "selection": "split-selection",
+        "workspace_relative_selection": "inference-only/hwic-hnlpu/performance/simplestories-split-kv-rtl-20261106-v1/full_model_sources.f"
+      },
+      "evidence": {
+        "circuit_fault_cases": 28,
+        "full_corpus_accepted": false,
+        "logical_cycles": 1290441,
+        "outputs_including_replay": 3,
+        "pending_positive_cases": [
+          "around",
+          "cancel-held",
+          "cancel-kv",
+          "cancel-model",
+          "fox",
+          "moon"
+        ],
+        "positive_full_model_cases": 1,
+        "records": [
+          "split-components",
+          "split-admission-review",
+          "split-fault-review"
+        ],
+        "tensor_logit_comparisons": 98805
+      },
+      "interfaces": {
+        "application": [
+          "APPEND token/ready",
+          "STEP valid/ready",
+          "token valid/ready",
+          "CLEAR",
+          "busy/model_locked/fail_closed"
+        ],
+        "management": [
+          "clock",
+          "active-low reset"
+        ],
+        "model_loader": false,
+        "tensor_or_memory_port": false
+      },
+      "numerical_contract": {
+        "context_positions": 2048,
+        "contract": "simplestories-w10-a16-kv16-bfp-v5-context2048",
+        "model": "SimpleStories/SimpleStories-V2-5M",
+        "parameters": 5354496,
+        "revision": "c4b3a4bb81297f5316697098e1d4b65c1249daf8"
+      },
+      "open_obligations": [
+        "Characterized compatible ROM/SRAM, logic and I/O in one accessible process",
+        "Actual instance LEF/Liberty/GDS and port/latency/PVT/area/power characterization",
+        "Full-chip floorplan, clock/reset/DFT policy, routed parasitics and timing closure",
+        "Full-chip DRC/LVS, power integrity, representative-activity power and sign-off",
+        "Whole-device functional/security composition and physical correspondence"
+      ],
+      "protections_and_clocks": {
+        "clear": "logical invalidation and cancellation/drain, not payload zeroization",
+        "clocks": "One external clock; former core/application boundary clocks tied together. Transport logic remains.",
+        "protection": "typed private ownership and CLEAR/cancellation logic; not an encrypted external-memory design",
+        "weights": "fixed ROM data; no runtime weight admission",
+        "working_state": "private K/V and workspace"
+      },
+      "reproduction": {
+        "public_fresh_rtl_replay": false,
+        "source_and_full_campaign_receipts_bundled": false,
+        "source_review_and_native_results": "recorded private evidence only"
+      },
+      "reuse": {
+        "awic_source_operands": 81,
+        "byte_identical_source_operands": 39,
+        "compared_awic_configuration": "SimpleStories fixed baseline Tang product (not all six variant images)",
+        "meaning": "Selected source-file bytes, including possibly uninstantiated modules; not an area, cell, proof or qualification fraction."
+      },
+      "selected_source": {
+        "authority": "split-selection",
+        "availability": "private-recorded-not-bundled",
+        "public_release_parent": null
+      },
+      "status": "component-and-first-admission-accepted-six-full-corpus-cases-running"
+    },
+    {
+      "build": {
+        "actual_generation_record": null,
+        "build_entry": null,
+        "compiler_scope": "Two-state Verilator simulation with SYNTHESIS defined; not a four-state/X-clean or ASIC synthesis claim.",
+        "defines": [
+          "SYNTHESIS"
+        ],
+        "include_directories": 2,
+        "included_header_files": 2,
+        "normalized_source_inventory_sha256": "e2f6bfec7a8e70db6f3cc209e8c42af3cd6fe167bb50b6eccc228ebae0d245d5",
+        "parameter_binding": "Top has no parameters; instantiated parameters and leaf defaults are bound by selected source bytes.",
+        "reproduction": "Selected private file list/build assets are not bundled. A hash identifies a recorded selection, not a runnable public recipe.",
+        "simulation_top": "tb_hwic_simplestories",
+        "source_list": "attention-selection",
+        "source_operands": 1963,
+        "top": "hwic_simplestories",
+        "top_parameter_overrides": {},
+        "workspace_relative_source_list": "inference-only/hwic-hnlpu/performance/simplestories-awic-attention-reuse-20261106-v1/full_model_sources.f"
+      },
+      "configuration": "attention-reuse",
+      "development_source": {
+        "frozen": true,
+        "published": false,
+        "selection": "attention-selection",
+        "workspace_relative_selection": "inference-only/hwic-hnlpu/performance/simplestories-awic-attention-reuse-20261106-v1/full_model_sources.f"
+      },
+      "evidence": {
+        "native_invocations": 0,
+        "records": [
+          "attention-preparation",
+          "attention-source-review"
+        ],
+        "scope": "Two exact released AWIC attention files plus eight parent bindings; retained HWIC arithmetic leaves make this a new integration.",
+        "source_review_only": true
+      },
+      "interfaces": {
+        "application": [
+          "APPEND token/ready",
+          "STEP valid/ready",
+          "token valid/ready",
+          "CLEAR",
+          "busy/model_locked/fail_closed"
+        ],
+        "management": [
+          "clock",
+          "active-low reset"
+        ],
+        "model_loader": false,
+        "tensor_or_memory_port": false
+      },
+      "numerical_contract": {
+        "context_positions": 2048,
+        "contract": "simplestories-w10-a16-kv16-bfp-v5-context2048",
+        "model": "SimpleStories/SimpleStories-V2-5M",
+        "parameters": 5354496,
+        "revision": "c4b3a4bb81297f5316697098e1d4b65c1249daf8"
+      },
+      "open_obligations": [
+        "Characterized compatible ROM/SRAM, logic and I/O in one accessible process",
+        "Actual instance LEF/Liberty/GDS and port/latency/PVT/area/power characterization",
+        "Full-chip floorplan, clock/reset/DFT policy, routed parasitics and timing closure",
+        "Full-chip DRC/LVS, power integrity, representative-activity power and sign-off",
+        "Whole-device functional/security composition and physical correspondence"
+      ],
+      "protections_and_clocks": {
+        "clear": "logical invalidation and cancellation/drain, not payload zeroization",
+        "clocks": "One external clock; former core/application boundary clocks tied together. Transport logic remains.",
+        "protection": "typed private ownership and CLEAR/cancellation logic; not an encrypted external-memory design",
+        "weights": "fixed ROM data; no runtime weight admission",
+        "working_state": "private K/V and workspace"
+      },
+      "reproduction": {
+        "next_gate": "Fresh bounded 3-output/98805-comparison admission and genuine faults with unchanged goldens; record new cycles. Then complete regression.",
+        "public_fresh_rtl_replay": false,
+        "source_overlay_bundled": false
+      },
+      "reuse": {
+        "awic_source_operands": 81,
+        "byte_identical_source_operands": 41,
+        "compared_awic_configuration": "SimpleStories fixed baseline Tang product (not all six variant images)",
+        "meaning": "Selected source-file bytes, including possibly uninstantiated modules; not an area, cell, proof or qualification fraction."
+      },
+      "selected_source": {
+        "authority": "attention-selection",
+        "availability": "private-recorded-not-bundled",
+        "public_release_parent": null
+      },
+      "status": "source-reviewed-not-compiled-or-simulated"
+    }
+  ],
+  "future_common_module": {
+    "candidate": "board1_unified_projection_head_dynamic_mul_exact",
+    "earliest": "After this configuration checkpoint; no extraction or consolidation in this change.",
+    "gates": [
+      "Bind exact source, port widths, compile order, defines, parameters and used modes for each consumer",
+      "Check preprocessed/elaborated behavior and exact combinational results for all supported modes, including signed extrema and packed products",
+      "If a vendor primitive branch is selected, establish its correspondence separately",
+      "Run affected integration goldens and source-list checks; keep proof dependencies explicit without transferring FPGA/ASIC qualification"
+    ],
+    "maintenance_benefit": "One maintained arithmetic implementation and one mode/rounding regression, with immutable historical source snapshots retained.",
+    "path": "fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv"
+  },
+  "memory_process": {
+    "achieved_full_chip_clock_hz": null,
+    "attention_reuse_added_array_bytes": 42384,
+    "attention_reuse_area_scope": "Workspace and accumulators only; prefix summaries/control add more. Not free area or a physical estimate.",
+    "catalog": "https://www.dolphin-ic.com/tsmc_28hpc%2B_mem.html",
+    "central_rom_arrays": [
+      {
+        "depth": 84720,
+        "name": "fixed_weights640",
+        "width_bits": 640
+      },
+      {
+        "depth": 14616,
+        "name": "fixed_misc256",
+        "width_bits": 256
+      }
+    ],
+    "central_rom_payload_bytes": 7245312,
+    "central_rom_service": "Functional endpoint accepts at most one request per clock and returns a 640-bit response; misc data uses 256 bits with zero extension. One beat per clock requires continuous response readiness, not an achieved chip bandwidth.",
+    "characterized_views_or_access_obtained": false,
+    "common_process_candidate": "Conditional TSMC 28HPC+ with compatible Dolphin ROM/SRAM/cells/I/O; catalog screening only.",
+    "faster_same_clock_bridge": "Budgeted future option only; no RTL prototype or measured speedup.",
+    "full_chip_area_mm2": null,
+    "go_condition": "One legally accessible compatible process/library family, legal macro instances/ports/latencies, views and PVT, plus a complete capacity/banking/bandwidth/area/clock budget.",
+    "kv_service": "Unchanged typed transport: committed K-only or V-only 1+5*(L+11), full row 1+9*(L+11); pending service 1 cycle. At L=1: 61/109/1 cycles.",
+    "legal_instances_obtained": false,
+    "no_go": "Catalog depth and width maxima are independent; behavioral arrays and capacity scaling do not establish legal macros, measured area, frequency or a manufacturable chip.",
+    "original_kv_array_bytes": 7077888,
+    "physical_optimization": "hold",
+    "physical_rom_banking": "Unresolved. Prior 452 x 2048 x 64 node-only ROM capacity reference is not a legal common-process macro selection.",
+    "separate_norm_exp_leaves": true,
+    "spatial_weight_scope": "Four layer-0 spatial matrices have constant-specialized logic in addition to central ROM. No whole-model central-ROM pruning or full-chip logic area established.",
+    "split_kv_array_bytes": 6340608,
+    "split_metadata_banks": {
+      "count": 12,
+      "depth": 2048,
+      "width_bits": 16
+    },
+    "split_payload_banks": {
+      "count": 192,
+      "depth": 1024,
+      "width_bits": 256
+    },
+    "split_read_pipeline_bytes_per_latency_stage": 6168
+  },
+  "observed_utc": "2026-11-06T17:59:14.229555+00:00",
+  "parent_public_commit": "527c5fc93adfb1124f5acd4bc7371ec62ca34705",
+  "public_reuse": {
+    "awic_build_entry": "demos/simplestories-v2-5m/hardware/run.tcl",
+    "awic_defines": [
+      "SYNTHESIS",
+      "BOARD1_PROJECTION_MAC_NATIVE"
+    ],
+    "awic_manifest": "demos/simplestories-v2-5m/host-app/hardware-inputs.json",
+    "awic_native_project": "demos/simplestories-v2-5m/hardware/project/product.gprj",
+    "awic_source_list": "demos/simplestories-v2-5m/hardware/project/production_sources.f",
+    "caveat": "Byte equality does not establish equal preprocessing, elaboration, active module use or integration. The two builds have different tops and define sets. FPGA evidence and scoped proofs do not qualify an ASIC.",
+    "hwic_source_list": "research/hwic/simplestories-2026-10-27/rtl/sources.f",
+    "pairs": [
+      {
+        "awic_path": "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv",
+        "hwic_path": "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv",
+        "sha256": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv",
+        "hwic_path": "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv",
+        "sha256": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_private_issue_guard.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_private_issue_guard.sv",
+        "sha256": "95a555560d3b9f3c7e4d22bbabe1bdabc602364ce392e5a2da573e889f59499a"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_unified_dsp64.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_unified_dsp64.sv",
+        "sha256": "e99f1e5049af79b53e42f681a4082451158c9912a43eb35397fd76f9acb15560"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv",
+        "sha256": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv",
+        "sha256": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv",
+        "sha256": "1c60a777659e7dea8ba1e13ed9d76ac0e6df544a9c70ccc7327d0e20c0fba5a9"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv",
+        "sha256": "8d753b5e0e28b5f8bbbbdfdfe3b8894808e068068f44f57fa1b77cdec8a743eb"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv",
+        "sha256": "9e033db09b614f43999a94692d0f19a7ec58845dc65963d2e37a0e9d134bf7af"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv",
+        "sha256": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv",
+        "sha256": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv",
+        "sha256": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_scratch_ram.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_scratch_ram.sv",
+        "sha256": "dbf09b83baf263397db18970535e41c8c3ab487e9f8926ca8a8740b58f65f901"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector128_ram.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector128_ram.sv",
+        "sha256": "9282e788fc641f15f225986738a8a9d605c892b210e060763622026a5b05310a"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector256_ram.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector256_ram.sv",
+        "sha256": "0767c4a1c69432f9537385223101d2e6d69a86259313ed9a27cff10cb9ccff57"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_rope_raw_ram.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_rope_raw_ram.sv",
+        "sha256": "d8b9f6c8229af472f8d69858f9412cbcd58991f58b4f4fb2feb508fd5d0b0e21"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/fixed_vector_normalize0/rtl/board1_fixed_vector_rne_shift_iterative.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/fixed_vector_normalize0/rtl/board1_fixed_vector_rne_shift_iterative.sv",
+        "sha256": "22159952c558c41366eee3abc6f0932867e482a94bfde16d7f26f0a3228fd05b"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/shared_projection_scale0/rtl/board1_shared_projection_scale_engine.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/shared_projection_scale0/rtl/board1_shared_projection_scale_engine.sv",
+        "sha256": "443d16724abe6999af5af35c3685c8d5ef45b707cc1af6dd4514a5beefac209f"
+      },
+      {
+        "awic_path": "cluster-adapter.sv",
+        "hwic_path": "cluster-adapter.sv",
+        "sha256": "0b8d09a0fded73d93f5fddb6bc790b552968f2d8c38cf0e90d20eb5d49b9744b"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/unified_dsp0/rtl/board1_unified_projection_head_mul_exact.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/unified_dsp0/rtl/board1_unified_projection_head_mul_exact.sv",
+        "sha256": "ccf15c1ad0f5bef293a44e89ae56fb9fd6bf8382205d7b12bac472ad2fa295d2"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv",
+        "sha256": "21c3ebc878f36c7260bf203f78174584d0c3e0ce18546966707ead45a0631b83"
+      },
+      {
+        "awic_path": "fifo.sv",
+        "hwic_path": "fifo.sv",
+        "sha256": "25b9578703f1c44b67867fea92f1a6749fd692c209fecf36b1de0652cd37df81"
+      },
+      {
+        "awic_path": "mapper_portable.sv",
+        "hwic_path": "mapper_portable.sv",
+        "sha256": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_lookup.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_lookup.sv",
+        "sha256": "92d8043230d9df3ab917427c4c619a5b57f918c2669abec310fe805d440034ef"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv",
+        "sha256": "f7ebce15ce1d3ee97d968014d17051ddd942d3dd2d582368e4aa81b6e0e52205"
+      },
+      {
+        "awic_path": "bank.sv",
+        "hwic_path": "bank.sv",
+        "sha256": "ced8becfe26c4a733058119f5ec4c88025377973b09411f0ae5141ca9f594aa1"
+      },
+      {
+        "awic_path": "service.sv",
+        "hwic_path": "service.sv",
+        "sha256": "f9c0dc77430a1d08d85e2f2ebd8dfb38f13e09e4659bdc053976a3f321048cd6"
+      },
+      {
+        "awic_path": "cluster-mul.sv",
+        "hwic_path": "cluster-mul.sv",
+        "sha256": "93e12f47a8651a1c131609d132f7b50810ac1124200e583164fad3b83e589417"
+      },
+      {
+        "awic_path": "cluster-tile.sv",
+        "hwic_path": "cluster-tile.sv",
+        "sha256": "308e12f6337d9d84bc786e4b2c18fac0806cc5fba5fa7745e1a833ace58493af"
+      },
+      {
+        "awic_path": "cluster-engine.sv",
+        "hwic_path": "cluster-engine.sv",
+        "sha256": "97a3edaccef6dba1f095f82706c260cb0520fae49751ba34d76dda0ad314ec88"
+      },
+      {
+        "awic_path": "cdc.sv",
+        "hwic_path": "cdc.sv",
+        "sha256": "46cac96fb496d1679b8df1f594b277300f567b00d2479ce98ac2787f52b7bf40"
+      },
+      {
+        "awic_path": "adapter.sv",
+        "hwic_path": "adapter.sv",
+        "sha256": "dd45423f8cc645a04bef821130faa5c0a7e4d9a81333c571db23c0139b8314e9"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_private_ddr_lock_bridge.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_private_ddr_lock_bridge.sv",
+        "sha256": "71ecc05bad160b500ec2564dcbed62de196972d1b10673a1452af7049325b818"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_ddr_preboard_locked_boundary.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_ddr_preboard_locked_boundary.sv",
+        "sha256": "58760e39d6d82070f595b2b9d93d7116bc8864d4b0abc572cb2e2fc5fceaa8e9"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_semantic_image_auth_compact.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_semantic_image_auth_compact.sv",
+        "sha256": "0b35dc658c3d87a09777a257c994d9f5273bf287a73eb669f9de4132138c6e98"
+      },
+      {
+        "awic_path": "fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_ddr_locked_auth_watchdog_cdc.sv",
+        "hwic_path": "fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_ddr_locked_auth_watchdog_cdc.sv",
+        "sha256": "d30b40d79c02c03f1b6b159054b3ee7403985752763aa332fe86ca4fbfb11e37"
+      },
+      {
+        "awic_path": "handoff.sv",
+        "hwic_path": "handoff.sv",
+        "sha256": "25f6455dd70ccf92107184fa7f166b9ff1dc33018aa867d4a0275ace72e34366"
+      },
+      {
+        "awic_path": "booted_memory.sv",
+        "hwic_path": "booted_memory.sv",
+        "sha256": "7ddd3d2bb5fcab13fbaeae6b1947ddea2c39f5ec9d13ab2736a918d11562c1d8"
+      },
+      {
+        "awic_path": "thin_transport.sv",
+        "hwic_path": "thin_transport.sv",
+        "sha256": "b85e08fa0dfe0aefdc37aa0343175f8ea614025392bce0e112d11f12172eb84e"
+      }
+    ],
+    "same_path_changed": [
+      {
+        "awic_sha256": "042df8b9da13bc2a66f945b2942a30374d52fa38766ba73916999901fa63622f",
+        "hwic_sha256": "e47bf421e10435e6bffa10e0219415630d57ef00ccdc4040ca7d8d9f720e9477",
+        "path": "fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv"
+      },
+      {
+        "awic_sha256": "30ed1ba9546f9d81974452d786932bd54063c23338503045b4b1ce9eb31e2a9b",
+        "hwic_sha256": "c09e6e1f864a9827a372d7486b22d20d3e6db700df6aff410d982c7b93a84e2d",
+        "path": "fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv"
+      },
+      {
+        "awic_sha256": "a5a62b158671b4500cac88bf1a7d66cfb7f44cf74cbe49d4e865aebf397abbca",
+        "hwic_sha256": "7dece06c509b57f15859ec33cc758bc1734de572c5b3e55efa37774678f64854",
+        "path": "fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv"
+      },
+      {
+        "awic_sha256": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359",
+        "hwic_sha256": "3eeccf1123d19a99bd0f3557a06aaef3ba2a4e0c208d1b12880cd267cde465d8",
+        "path": "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv"
+      },
+      {
+        "awic_sha256": "653a0eebffff3724312847baf64c5eb188afdaea50ca3b2acb6d4e6e1e888339",
+        "hwic_sha256": "4871cbc1e257b22cca45e7d977eef63d3b37533ec64ba9a6a6470539a10833e7",
+        "path": "fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv"
+      },
+      {
+        "awic_sha256": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211",
+        "hwic_sha256": "5e70a42f6a47a0adede77589decf156bca1d53e722a50eb708245bf53edb5024",
+        "path": "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv"
+      },
+      {
+        "awic_sha256": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40",
+        "hwic_sha256": "58caef488aece51bef13f4a3d525f14b9b835426977c65a76a0c350919e0d4ad",
+        "path": "normalizer_pipeline.sv"
+      },
+      {
+        "awic_sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5",
+        "hwic_sha256": "94ff344fdc3b0cfdc9a62179e175261ba6bc051dc237a78369be5bf68cf075a1",
+        "path": "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv"
+      },
+      {
+        "awic_sha256": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561",
+        "hwic_sha256": "282390bc7cbdd0524b4a38764a38dfd809b61ebf4631c9103425887312731ba1",
+        "path": "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv"
+      },
+      {
+        "awic_sha256": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae",
+        "hwic_sha256": "ddf449271ea4d946444e32f8f1322969ba585b8aa701eeee108c62d15a4f84af",
+        "path": "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv"
+      },
+      {
+        "awic_sha256": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9",
+        "hwic_sha256": "4638aa3b19777ca7202343f938adcafdab279fa2a520c30099a311650b1f2d54",
+        "path": "fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv"
+      },
+      {
+        "awic_sha256": "cdeaf2adec59b811713f17bf2c4a0878d59fdb7020afac09c96c4619c9ec0857",
+        "hwic_sha256": "9cabbcc0bb892ac385edf0024cba2fd7502ee3fd088466248bc1ea77743a4c0b",
+        "path": "fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv"
+      },
+      {
+        "awic_sha256": "d030fc7fcee27c1b2fddd3503ad9a3d2160b4af4df393393c5b727e7571369f1",
+        "hwic_sha256": "123f22a7bcf258329e531ee79764c6d8fb4a1cf89663f4fd89dd8f33aa72a904",
+        "path": "fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv"
+      },
+      {
+        "awic_sha256": "093927da7f5d322a3beafe45734f80c0f81e7c26b649d76a23bb8d0957c8cfeb",
+        "hwic_sha256": "922a5777c17a967fde39a2b8336ad819fcb6709d2b9a8b3552675188d32d1c34",
+        "path": "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv"
+      },
+      {
+        "awic_sha256": "368596a5f8470cd28ccd429cd2ab479db5c77aef0b34eb9541c55aa44c0baf0c",
+        "hwic_sha256": "65ed4fe49d0f3af4bbe4363fb08ce0f93776e665c1331ecf29cb68de773ea254",
+        "path": "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv"
+      },
+      {
+        "awic_sha256": "ba17ba73a9c708aabd246cbc538f4e81e25b33cc116ded91da4fd554566ead39",
+        "hwic_sha256": "87fddc7e6e4c99c1eb85e130c7557523d3a3b08d4985da23001750039184be1a",
+        "path": "fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv"
+      },
+      {
+        "awic_sha256": "fd7b6ade26e99db09999709954630b6d358b2d6cd7fae1f7f18c878fefec0dc3",
+        "hwic_sha256": "6ca0521a007d49479edf4941178adb9c515316141dc2352a9892b07eb404d3e8",
+        "path": "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv"
+      },
+      {
+        "awic_sha256": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6",
+        "hwic_sha256": "75b72c7f3796f901c45bf1f80e3a996d7f6adecd3ab75e86f88b4956e5f168f9",
+        "path": "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv"
+      },
+      {
+        "awic_sha256": "55d56d5a4add9afa81b5622303ff0c81c27734fe23ac7ffa5b849d3944d8fe62",
+        "hwic_sha256": "37c0aeb1c0b82decd335b11f85d2d3daee819ae4baa1237a95347dd961010165",
+        "path": "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv"
+      },
+      {
+        "awic_sha256": "0e4a38023c711abae1bdf1173444601723dc90a25b1f414c5618bf908432d4da",
+        "hwic_sha256": "14f1c1a96f705775346daa19eb6f432d7de718ad08ab626cdfe5d7a1f5c6e126",
+        "path": "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv"
+      },
+      {
+        "awic_sha256": "c855d6621f4475b04fe662aa628e3d733d32fa2b15bf982ea8e7f269133da33e",
+        "hwic_sha256": "81108218101431351a8eb8815e4cf953b5356416767621b7469f663c7b67af17",
+        "path": "shared_token_probe.sv"
+      },
+      {
+        "awic_sha256": "d1b7785186aa486de41507e7a45876693690b52aff9eebe31ea8e31437bdff94",
+        "hwic_sha256": "7e4992bdf5c7a6e6405979a01a351254d4a84fb8c0e2e47afcbe3fc4ff7d3610",
+        "path": "sha.sv"
+      },
+      {
+        "awic_sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374",
+        "hwic_sha256": "5bf359615d7a2f3e48320855791be3174a5b15188ff6e10a2a6174726ce0e2cc",
+        "path": "candidate.sv"
+      },
+      {
+        "awic_sha256": "750ac05828f0d81c989c0985e311ef3ef02426da52ad0112f0314db28cc1a272",
+        "hwic_sha256": "287e2354477d6fe01254616d1b2b8b5a4937eb3ff8b6aa5dd40a8ada26b66ae6",
+        "path": "arbiter.sv"
+      },
+      {
+        "awic_sha256": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f",
+        "hwic_sha256": "0f2f5bc9be2869947ef1bc8b4508f714621027873ecb7dede2400ec0ac833a02",
+        "path": "fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv"
+      }
+    ],
+    "separately_acquired_vendor_sources": [
+      "official/ddr3_memory_interface.v",
+      "official/gowin_pll.v",
+      "official/gowin_pll_mod.v",
+      "official/pll_init.v"
+    ]
+  },
+  "schema": "hwic-configuration-evidence-fragment-v1",
+  "scope": "File/configuration consistency and recorded scope only; no new RTL execution, physical qualification or proof transfer.",
+  "source_records": [
+    {
+      "availability": "public",
+      "bytes": 41596,
+      "id": "research/hwic/simplestories-2026-10-27/PROVENANCE.json",
+      "path": "research/hwic/simplestories-2026-10-27/PROVENANCE.json",
+      "sha256": "72c7b4523155b83ff7eb3b453409a45864cbccc7dedd7a7d67a7f1425cbc2a9c"
+    },
+    {
+      "availability": "public",
+      "bytes": 4971,
+      "id": "research/hwic/simplestories-2026-10-27/rtl/sources.f",
+      "path": "research/hwic/simplestories-2026-10-27/rtl/sources.f",
+      "sha256": "301121c1b5a0084790147b3868b5775298c6c1b7a1a95d77bf2596178f295591"
+    },
+    {
+      "availability": "public",
+      "bytes": 13338,
+      "id": "demos/simplestories-v2-5m/host-app/hardware-inputs.json",
+      "path": "demos/simplestories-v2-5m/host-app/hardware-inputs.json",
+      "sha256": "61f1f05df3c87f0e2bb1b5e708eb6e4dc1a01252b310a572dd6eacb93215fe41"
+    },
+    {
+      "availability": "public",
+      "bytes": 5782,
+      "id": "demos/simplestories-v2-5m/hardware/project/production_sources.f",
+      "path": "demos/simplestories-v2-5m/hardware/project/production_sources.f",
+      "sha256": "2efa4055e6c9c2085462462a44aeb007dd6c75f75283c23c963723717bd8c09d"
+    },
+    {
+      "availability": "public",
+      "bytes": 4250,
+      "id": "research/hwic/PROGRESS-2026-11-04.md",
+      "path": "research/hwic/PROGRESS-2026-11-04.md",
+      "sha256": "da1ea94934b90a7d1b2fd2611fd77ed88fb7c3b50f3447696e92f254cb702053"
+    },
+    {
+      "availability": "public",
+      "bytes": 13873,
+      "id": "research/hwic/PROGRESS-2026-11-05-FEASIBILITY.md",
+      "path": "research/hwic/PROGRESS-2026-11-05-FEASIBILITY.md",
+      "sha256": "cd3c26401d0b28a800ce7f827ea546ed7bd74f1d8821c5f10e6cc75f439fa196"
+    },
+    {
+      "availability": "public",
+      "bytes": 55,
+      "id": "demos/simplestories-v2-5m/hardware/project/defines.v",
+      "path": "demos/simplestories-v2-5m/hardware/project/defines.v",
+      "sha256": "76cbe1576dbf6c7c6151072d6c1f8125eecc360140ba29784024d3f99b0f6f58"
+    },
+    {
+      "availability": "public",
+      "bytes": 10225,
+      "id": "demos/simplestories-v2-5m/hardware/project/product.gprj",
+      "path": "demos/simplestories-v2-5m/hardware/project/product.gprj",
+      "sha256": "38538d928d20a6d5f9914a0786e04366277dca5e6dfca27812d49db530deec71"
+    },
+    {
+      "availability": "public",
+      "bytes": 843,
+      "id": "demos/simplestories-v2-5m/hardware/run.tcl",
+      "path": "demos/simplestories-v2-5m/hardware/run.tcl",
+      "sha256": "0f17cd877087ee30c97ee102e758ac6625a1ac2790d8e9dc605c6a3c9fe51a5f"
+    },
+    {
+      "availability": "public",
+      "bytes": 11000,
+      "id": "research/hwic/simplestories-2026-10-27/tools/replay.py",
+      "path": "research/hwic/simplestories-2026-10-27/tools/replay.py",
+      "sha256": "4e5f2b765964c425c2b254dc29bc410163bc5ad5fa4e807e82e181737fe7401b"
+    },
+    {
+      "availability": "public",
+      "bytes": 10248,
+      "id": "research/hwic/simplestories-2026-10-27/evidence/original-rtl-validation.json",
+      "path": "research/hwic/simplestories-2026-10-27/evidence/original-rtl-validation.json",
+      "sha256": "8de14329a4107f8e6083e203c07d4cdb292f24f8319e227f7d056248b99be682"
+    },
+    {
+      "availability": "public",
+      "bytes": 2969,
+      "id": "research/hwic/simplestories-2026-10-27/evidence/physical-status-complete.json",
+      "path": "research/hwic/simplestories-2026-10-27/evidence/physical-status-complete.json",
+      "sha256": "571e118f9d6da8c8af0b61f3b2e5e5be32819fa1abcbb4200769a51979c9deb3"
+    },
+    {
+      "availability": "public",
+      "bytes": 116204,
+      "id": "research/hwic/evidence/integrated-model-2026-11-04/results.json",
+      "path": "research/hwic/evidence/integrated-model-2026-11-04/results.json",
+      "sha256": "78a1663d66bbe8dc2b578a440c5153d8789458f603af422d862e3559fced8dbe"
+    },
+    {
+      "availability": "public",
+      "bytes": 23944,
+      "id": "research/hwic/evidence/memory-profile-2026-11-05/metrics.json",
+      "path": "research/hwic/evidence/memory-profile-2026-11-05/metrics.json",
+      "sha256": "8c3f75d0daeab3cf29eac0befe97a3bd3d02fa472c4718f16a9681e7747e2004"
+    },
+    {
+      "availability": "public",
+      "bytes": 132553,
+      "id": "research/hwic/evidence/attention-profile-2026-11-05/results.json",
+      "path": "research/hwic/evidence/attention-profile-2026-11-05/results.json",
+      "sha256": "418c3b33ecce4c7481ca591402fa9e1f9cde02ae51a8d58f168571834ef6e419"
+    },
+    {
+      "availability": "private-recorded-not-bundled",
+      "bytes": 350530,
+      "id": "integrated-selection",
+      "sha256": "0c3dcf4044c71d1e52ade6762c297ddbb556b437e39741dd11f0e37613d6d74b"
+    },
+    {
+      "availability": "private-recorded-not-bundled",
+      "bytes": 7879,
+      "id": "integrated-generation",
+      "sha256": "0a6ebda93195d6587c5641cd4289395b64fb5938450e2be5b1a882841d3227e6"
+    },
+    {
+      "availability": "private-recorded-not-bundled",
+      "bytes": 350628,
+      "id": "split-selection",
+      "sha256": "b5b99e4cbffa559d8bde8f5c9d333022aff998be6b031c29f907d7998726e20c"
+    },
+    {
+      "availability": "private-recorded-not-bundled",
+      "bytes": 18410,
+      "id": "split-components",
+      "sha256": "dd3caea9495330569185c11a36c58908866ee89387b5f57951c21a11e1934537"
+    },
+    {
+      "availability": "private-recorded-not-bundled",
+      "bytes": 2138,
+      "id": "split-generation",
+      "sha256": "00a9cb45f03516fc9f0fe874723f65f901288d29ec0b0e14c8b69255ec7455a1"
+    },
+    {
+      "availability": "private-recorded-not-bundled",
+      "bytes": 21767,
+      "id": "split-admission-review",
+      "sha256": "d9c202bd453b5816069b8d32ba5baa2dbd925300d92bd5310bc69b82edbea13b"
+    },
+    {
+      "availability": "private-recorded-not-bundled",
+      "bytes": 146459,
+      "id": "split-fault-review",
+      "sha256": "e3aff1fc83ff8a58c2cf03e06a48487b8527e4441024b368d1dd92347c6ddd3a"
+    },
+    {
+      "availability": "private-recorded-not-bundled",
+      "bytes": 350358,
+      "id": "attention-selection",
+      "sha256": "56006757c19707e9f1a0d86bd2c8efc897954b3f2a225d5b624ef71ab85c7bf0"
+    },
+    {
+      "availability": "private-recorded-not-bundled",
+      "bytes": 7755,
+      "id": "attention-preparation",
+      "sha256": "10e091dd628a026b5c86544fb88836f62a9d1c28675215e38b692b2622022f73"
+    },
+    {
+      "availability": "private-recorded-not-bundled",
+      "bytes": 23758,
+      "id": "attention-source-review",
+      "sha256": "440e4d4cc6af871e0c1269b6f7ad040dd4f9efd19344594a4e7fa59519b30696"
+    }
+  ]
+}

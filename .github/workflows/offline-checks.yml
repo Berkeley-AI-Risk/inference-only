@@ -126,6 +126,22 @@ jobs:
         run: python -I -S -B research/hwic/evidence/memory-profile-2026-11-05/check_feasibility.py --check
       - name: Check recorded HWIC attention profile arithmetic
         run: python -I -S -B research/hwic/evidence/attention-profile-2026-11-05/check_recorded_profile.py
+      - name: Check the six selected Tang source configurations
+        run: |
+          python -I -S -B demos/simplestories-v2-5m/tools/check_configuration_sources.py
+          python -I -S -B -m unittest discover -s demos/simplestories-v2-5m/tools -p 'test_configuration_sources.py' -v
+      - name: Check the selected Qwen source configurations
+        run: |
+          python -I -S -B demos/qwen3-1.7b/tools/check_configuration.py
+          python -I -S -B -m unittest discover -s demos/qwen3-1.7b/tools -p 'test_configuration.py' -v
+          python -I -S -B demos/qwen3-8b/tools/check_configuration.py
+          python -I -S -B demos/qwen3-8b/tools/test_configuration.py
+      - name: Check HWIC configuration and reuse records
+        run: |
+          python -I -S -B research/hwic/evidence/configuration-map-2026-11-06/check_rows.py
+          python -I -S -B -m unittest discover -s research/hwic/tools -p 'test_configuration_rows.py' -v
+      - name: Test selected-image replacement metadata boundaries
+        run: python -I -S -B -m unittest discover -s tools -p 'test_sawic_selection_metadata.py' -v
       - name: Check selected documentation links
         run: python -I -S -B tools/check_release_hygiene.py --root . --contract tools/release-contract.json --output "$RUNNER_TEMP/release-links.json" --links-only --fail-on-findings
       - name: Confirm that the checks left the release unchanged

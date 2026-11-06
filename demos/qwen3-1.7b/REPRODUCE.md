@@ -2,13 +2,22 @@
 
 [Guide](README.md) · [Validation](VALIDATION.md) · [Formal scope](FORMAL-STATUS.md)
 
-Recorded-evidence checks, fresh model computations and FPGA/source-build work
-are separate operations. Use Python 3.12 for the commands below. The
-[validation page](VALIDATION.md) identifies the released image and evidence;
-[FORMAL-STATUS.md](FORMAL-STATUS.md) summarizes the component RTL results and
-open obligations. This release supplies a [source-bound status record](evidence/formal/STATUS.json),
-rather than the complete development solver/evidence bundle. The commands
-below check the supplied records and do not rerun the formal campaigns.
+Start with the offline checks to confirm the release and selected sources.
+Then choose a software reference run, a board test or a hardware rebuild.
+All Python commands below use Python 3.12.
+
+| Task | Start here | Requirements and result |
+| --- | --- | --- |
+| Check the delivered release | [Offline checks](#check-the-recorded-release-offline) and [source selection](#source-selection-check) | Python standard library; checks supplied files and recorded measurements. |
+| Compute expected tokens | [Fresh reference](#reconstruct-the-model-and-run-a-fresh-reference) | Accepted model assets and the reference's Python dependencies; a new software computation. |
+| Run or measure the FPGA | [Hardware checks](#repeat-hardware-checks-and-measurements) | Matching image/model and exclusive FPGA access; a new board capture. |
+| Compile a new implementation | [Hardware rebuild](#rebuild-the-hardware) | Linux, Vivado 2025.2 and pinned HDK/IP/shell inputs; a new build needing its own validation. |
+
+The [validation guide](VALIDATION.md) identifies the measured image and results.
+For proofs, [FORMAL-STATUS.md](FORMAL-STATUS.md) describes the supplied
+[component status record](evidence/formal/STATUS.json). The complete development
+solver bundle, bindings and replay commands are not included; checking that
+record does not rerun a proof.
 
 ## Check the recorded release offline
 
@@ -22,13 +31,40 @@ python3.12 -I -S -B tools/check_qwen_disclosures.py
 python3.12 -I -S -B tools/fpga_speed_benchmark.py --check
 ```
 
-These checks use the supplied files and recorded observations. They do not
-contact AWS, run a model, execute a solver or access an FPGA. `--strict` rejects
-unlisted files; on a working copy with environments or generated outputs, omit
-that flag rather than deleting local work to satisfy the clean-release check.
-The disclosure checker binds the management-display description to the frozen
-top-level source and the critical-CDC counts to the packaged report. It does
-not inspect a routed checkpoint, attest a loaded FPGA or prove operand use.
+These commands use the supplied artifacts without AWS, model execution or FPGA
+access. `--strict` rejects unlisted files. On a working copy with environments
+or generated outputs, omit it rather than deleting local work.
+The disclosure checker compares the management-display description with the
+frozen top-level source and the CDC totals with the packaged report; routed
+image correspondence and actual operand use require separate verification.
+
+## Source selection check
+
+From the repository root, run:
+
+```sh
+python3.12 -I -S -B demos/qwen3-1.7b/tools/check_configuration.py
+python3.12 -I -S -B demos/qwen3-1.7b/tools/test_configuration.py
+```
+
+This is a quick check that the intended design reaches the build scripts.
+It verifies file hashes, ordered Tcl source lists and their staging/synthesis
+readers, the CL top, explicit prefetch setting and local includes. It prints
+the selected source order; the tests exercise missing or duplicate files,
+unsupported dynamic lists, escaping paths and changed reader forms.
+These are static Python checks, not Tcl execution or HDL elaboration; no model,
+vendor tools or output build directory is needed.
+
+## Inspect the recorded CDC and reset reports
+
+The [hardware guide](HARDWARE.md#cdc-and-reset-disposition) explains the reset
+strategy and remaining physical questions. Its
+[November 6 summary](evidence/cdc-reset-diagnostic-2026-11-06/SUMMARY.json) supplies
+gzip native CDC/methodology reports, two CLR timing examples, the original
+checkpoint identity and exact report options. Host headers and output paths are
+normalized, with original and derivative hashes recorded separately. This is
+a recorded subset, not a fresh Vivado run or the complete private collection;
+the checkpoint itself is not included in that subset.
 
 ## Reconstruct the model and run a fresh reference
 

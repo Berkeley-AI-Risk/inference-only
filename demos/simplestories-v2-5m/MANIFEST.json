@@ -146,12 +146,12 @@
       "sha256": "357946afca80efdb71e4d5e7b480a15a9db6d3dd1c933f260a120af14871af85"
     },
     "README.md": {
-      "bytes": 6479,
-      "sha256": "82134b18092f4a29a27d82e046e51f4b9fa04262e2aacd2c3821b521707b1aa3"
+      "bytes": 7686,
+      "sha256": "2491c1e4afd17b44251b44cb326703d4fa4dd4260eeec612b8b2fcf4a5254db5"
     },
     "REPRODUCE.md": {
-      "bytes": 7701,
-      "sha256": "7b53a50100842fcc237e57fe65edf9b41cd587b20844391b32840844c7f71f90"
+      "bytes": 13519,
+      "sha256": "6f5b1cac35fe036f764688472a9b81cec39e414ec0ce1289fc874df6ab868468"
     },
     "STOCHASTIC-GENERATION.md": {
       "bytes": 11426,
@@ -60910,8 +60910,8 @@
       "sha256": "4a80873521428d4a4315aa6713f5a8b279281774cdf74e16efd04f9797f5dbfa"
     },
     "formal/kv-clear-epoch/PACKAGE.json": {
-      "bytes": 1484,
-      "sha256": "d4baef8d6aa17a13e82c06bff1338d7e815418bec7143f2bb282f4649c4e69a3"
+      "bytes": 1622,
+      "sha256": "26ece3b3eb06067607563eb271949101b17fd67ef93d6fe277be0028227b2867"
     },
     "formal/kv-clear-epoch/PROOF-GRAPH.json": {
       "bytes": 11650,
@@ -60924,6 +60924,10 @@
     "formal/kv-clear-epoch/README.md": {
       "bytes": 3679,
       "sha256": "9ed22dc785de14c6ef7061899869969838f58e3d1aaea0cf0675d89e60f116a8"
+    },
+    "formal/kv-clear-epoch/REPLAY-EXAMPLE.md": {
+      "bytes": 4593,
+      "sha256": "b538bf2df621696a9942b20988bea0a15314f2b7a9580a8fe4006f8ba86812e9"
     },
     "formal/kv-clear-epoch/SOURCE.json": {
       "bytes": 2653,
@@ -65421,6 +65425,10 @@
       "bytes": 6759,
       "sha256": "690dc7356f6936a18fbf9e1392bdfc648b4143fc710cf3ee4861421c128e00c1"
     },
+    "tools/check_configuration_sources.py": {
+      "bytes": 10540,
+      "sha256": "bde723ed21334f25fb62ac0b344f41820b2ed2ffb25de763503caf772193e884"
+    },
     "tools/check_current_seeded_page_bank.py": {
       "bytes": 5877,
       "sha256": "56d9506a37fbe14861002810dc50c7b359ff11b0778c57d6aba37704ad0c96aa"
@@ -65430,8 +65438,8 @@
       "sha256": "0f43d1387cc51bfc32243ed60252a8a53a7051dbd3e6e64693ff99ef4c9fa935"
     },
     "tools/check_current_three_greedy_v15_v4.py": {
-      "bytes": 6136275,
-      "sha256": "f3a7d5b6cb9fed35278fb016a98d0f1b1edf9b4c6bb9d046866efa265d1f457a"
+      "bytes": 6136924,
+      "sha256": "d9798ed89b2ab5127a6141ee4ea720113b66febfb13db16773477e6d03b6083d"
     },
     "tools/check_encrypted_flash.py": {
       "bytes": 1848,
@@ -65608,6 +65616,10 @@
     "tools/speed_release_history.py": {
       "bytes": 2838,
       "sha256": "81bb50025a5bb8ed318fdbe029708d40ad6bd57b1e50fb48c31e749e0ee66f2c"
+    },
+    "tools/test_configuration_sources.py": {
+      "bytes": 6072,
+      "sha256": "085d22fab90192f62f07182d180618aeedc2441ead717c1632a3b9ce09b6b0ed"
     },
     "tools/test_current_seeded_recorded_v1.py": {
       "bytes": 5266,
@@ -66074,8 +66086,8 @@
       "sha256": "042d8598d4e27200e1ca7242160ae65920bdfea188b63df41225b7c4ad7d7270"
     },
     "variants/home-authorization/REPRODUCE.md": {
-      "bytes": 9825,
-      "sha256": "9ad1849b8216c7ced98820c14aa84abe0727fe271dea845550f72442581a004c"
+      "bytes": 10978,
+      "sha256": "2e75beedfa3ccd53288296bb6552c08ab7768ad45bf795ba3921b6c4f1210d03"
     },
     "variants/home-authorization/RESET-REVIEW.md": {
       "bytes": 1469,
@@ -72303,19 +72315,23 @@
       "periodic_reauthorization_required": true,
       "physical_entropy_qualified": false,
       "physical_model_replacement": {
+        "applies_to_selected_image": false,
         "campaign": "variants/home-authorization/evidence/model-replacement-v2/RESULT.json",
         "complete_array_restoration_verified_locally": true,
         "electrical_power_cycles_tested": false,
+        "image_sha256": "cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e",
         "matched_reference_outputs": 68,
         "passed": true,
         "synthetic_replacement": true
       },
+      "physical_model_replacement_selected_image_passed": false,
       "portable_recipient_rehearsal_complete": true,
       "prebuilt": "variants/home-authorization/prebuilt/home_product.fs",
       "public_demonstration_keys_only": true,
       "renewable_model_specific_permission": true,
-      "reported_core_fmax_mhz": 25.005,
+      "reported_core_fmax_mhz": 25.002,
       "reset_entry_exceptions_used": false,
+      "selected_image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
       "source_root": "variants/home-authorization/hardware",
       "whole_machine_refinement_complete": false
     },
