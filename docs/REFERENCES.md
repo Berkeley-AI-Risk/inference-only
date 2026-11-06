@@ -25,6 +25,10 @@ security properties. Exact borrowed-file revisions and licenses remain in
   [pinned Qwen3-1.7B checkpoint](https://huggingface.co/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e).
   Its quantized numerical reference and fixed greedy rule are documented
   [separately](../demos/qwen3-1.7b/reference/README.md).
+  The 8B demonstration uses the separate
+  [pinned Qwen3-8B checkpoint](https://huggingface.co/Qwen/Qwen3-8B/tree/b968826d9c46dd6066d109eabc6255188de91218);
+  its fixed numerical conversion is documented in the
+  [8B model guide](../demos/qwen3-8b/README.md#what-is-fixed).
 - **Transformer attention:** Vaswani et al.,
   [*Attention Is All You Need* (NeurIPS 2017)](https://arxiv.org/abs/1706.03762).
   The demonstrations implement attention internally; they do not expose it
@@ -73,6 +77,18 @@ tables and model conversions are part of each demonstration's numerical contract
   digests additionally enforce current contents; authenticating an old record
   does not establish freshness.
 
+- **LMS signatures:** McGrew, Curcio and Fluhrer,
+  [*Leighton-Micali Hash-Based Signatures*, RFC 8554 (2019)](https://www.rfc-editor.org/rfc/rfc8554).
+  The signed-update and periodic-reauthorization prototypes use the documented
+  LMS construction and selected parameters. Protocol, state management and
+  implementation correctness require their own evidence.
+- **neoTRNG:** Stephan Nolting's
+  [neoTRNG project](https://github.com/stnolting/neoTRNG/tree/c688149f70fbd582eac1029cbfec4fcf97b719b2).
+  The home-authorization variant retains version 3.4 and its BSD license;
+  [the dependency record](../demos/simplestories-v2-5m/variants/home-authorization/nonce/DEPENDENCY.json)
+  identifies the exact included source. This citation does not establish entropy
+  quality or physical-security qualification.
+
 Using these specifications is not NIST validation or certification of our RTL.
 The encrypted demonstration's published test keys provide reproducibility,
 not secrecy from someone who has the package.
@@ -110,3 +126,14 @@ operand/result paths. Their particular guarantees and remaining assumptions
 are assessed in [INFERENCE-ONLY.md](../demos/simplestories-v2-5m/INFERENCE-ONLY.md) and the
 [Qwen3-1.7B interface assessment](../demos/qwen3-1.7b/README.md#interface-and-inference-only-scope)
 and [Qwen3-8B interface scope](../demos/qwen3-8b/README.md#inference-only-scope).
+
+## Hardwired-weight architectural research
+
+The experimental HWIC work draws on Liu et al.,
+[*Hardwired-Neurons Language Processing Units as General-Purpose Cognitive
+Substrates*, arXiv:2508.16151v2](https://arxiv.org/abs/2508.16151v2).
+Our [published ROM baseline](../research/hwic/simplestories-2026-10-27/README.md)
+and [physical study](../research/hwic/PROGRESS-2026-11-04-PHYSICAL.md) use generated
+RTL and standard cells. HNLPU's custom physical weight-routing implementation
+has not been reproduced, and its reported silicon-performance estimates are
+not results of this repository.

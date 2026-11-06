@@ -146,7 +146,7 @@ DDR-bus access or control of internal multiplier connections. Physical memory
 tampering and faults that compromise internal enforcement require separate
 analysis. Conversely, an implementation flaw could be software-triggered;
 the absence of a general arithmetic command is not an exhaustive bug-freedom
-proof. The [capacity analysis](TRAINING-CAPACITY.md#access-assumptions-software-versus-hardware)
+proof. The [capacity analysis](TRAINING-CAPACITY.md#access-assumptions-and-arithmetic)
 states which access assumptions each estimate grants.
 
 “Directly” here means no software-accessible injection/extraction point. It

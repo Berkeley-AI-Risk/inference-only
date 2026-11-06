@@ -24,7 +24,7 @@ The connected model retains 37 arbitrary private-output boundaries.
 SHA compression arithmetic, private-bank/SHA composition, numerical sampling
 equivalence and whole-machine refinement are not established.
 
-[The formal-status guide](../../demos/simplestories-v2-5m/FORMAL-STATUS.md)
+[The formal-status guide](../../FORMAL-STATUS.md)
 describes the properties and limits. Hardware/browser qualification is separate.
 
 From the repository root, check the recorded completion without running solvers:

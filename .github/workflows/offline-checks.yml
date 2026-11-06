@@ -80,6 +80,10 @@ jobs:
         run: |
           python -I -S -B demos/simplestories-v2-5m/tools/estimate_training_capacity.py --check
           python -I -S -B tools/architecture_work_counts.py --check
+      - name: Check reported timing and maintenance helpers
+        run: |
+          python -I -S -B demos/simplestories-v2-5m/tools/check_timing_disclosure.py
+          python -I -S -B tools/test_release_hygiene.py
       - name: Check recorded H100 and Qwen evidence
         run: |
           python -I -S -B demos/simplestories-v2-5m/tools/check_h100_reference.py
@@ -103,6 +107,8 @@ jobs:
         # any current circuit. Current-design proof bindings are checked below.
         working-directory: demos/simplestories-v2-5m
         run: python -I -S -B -m unittest discover -s formal/kv-integrity -p test_contract_auditor.py -v
+      - name: Check selected documentation links
+        run: python -I -S -B tools/check_release_hygiene.py --root . --contract tools/release-contract.json --output "$RUNNER_TEMP/release-links.json" --links-only --fail-on-findings
       - name: Confirm that the checks left the release unchanged
         run: python -I -S -B tools/verify_release.py --strict
 

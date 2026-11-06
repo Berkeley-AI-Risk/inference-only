@@ -60,11 +60,13 @@ python3.12 -I -S -B ../../tools/verify_release.py
 
 Set these shell variables to **your actual paths and device**, not another
 owner's USB identifiers. Keep the recovery directory outside the repository.
+`FPGA_PACKAGE` is the absolute SimpleStories demo directory, which contains
+`assets/` and `prebuilt/`; it is not the top-level checkout directory.
 
 ```sh
 FPGA_PROGRAMMER="/absolute/path/to/Programmer/bin/programmer_cli"
 FPGA_OPENLOADER="/absolute/path/to/openFPGALoader"
-FPGA_PACKAGE="/absolute/path/to/this/repository"
+FPGA_PACKAGE="/absolute/path/to/inference-only/demos/simplestories-v2-5m"
 FPGA_RECOVERY="/absolute/path/to/durable-recovery-directory"
 "$FPGA_PROGRAMMER" --scan-cables
 "$FPGA_OPENLOADER" -V

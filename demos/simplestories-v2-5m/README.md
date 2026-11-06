@@ -20,16 +20,17 @@ owns model evaluation, attention state and next-token selection.
 | Authenticated weights | About **10.0 tokens/s** | None | Runnable release |
 | K/V-protected | About **7.0 tokens/s** | Private expected SHA-256 digests | Runnable release |
 | K/V protection + encrypted memory | About **6.0 tokens/s** | AES-SIV plus private expected digests | Runnable release; public demonstration keys |
-| Seeded sampling at temperature 0 | About **10.0 tokens/s** | None | Runnable release |
+| Seeded sampling at temperature 1 | About **9.9 tokens/s** | None | Runnable release |
 
-The common workload uses one prompt token and two 128-output greedy trials.
-The rate pools the 254 cached outputs between validated replies, including
-host control and inter-command gaps. See the
+Each row uses a one-token prompt and two 128-output trials: greedy selection
+for the first three rows, temperature 1 and the recorded public seed for the
+seeded row. The rate pools the 254 cached outputs between validated replies,
+including host control and inter-command gaps. See the
 [common protocol and exact results](../../docs/benchmarks/FPGA-SPEED-BENCHMARK.md).
-At temperature 1, seeded sampling separately measured **9.94 cached tokens/s**
-using command/reply durations; it has bounded temperature and public-seed
-controls at an empty, idle tape. [Seeded generation](STOCHASTIC-GENERATION.md)
-states its numerical and protocol contract.
+For seeded sampling, the same trials give **9.928 cached host tokens/s** and
+**9.942 command-only tokens/s**; those are distinct timing scopes.
+[Seeded generation](STOCHASTIC-GENERATION.md) states its bounded temperature,
+public-seed and numerical contract.
 
 The three greedy images support 2,048 input positions plus one final output
 slot, with browser limits of 2,048 prompt tokens, 128 new tokens and 2,049
@@ -67,8 +68,10 @@ bounded settings at an empty, idle tape. No command supplies tensor operands,
 gradients, memory addresses or new accepted weights.
 
 These are functional demonstrations under the frozen-circuit assumption.
-All selected images retain incomplete vendor-DDR timing signoff. Scoped RTL
-proofs and finite model/board tests do not establish whole-machine numerical
+All selected images have known negative vendor-DDR timing slack and are not
+fully timing-closed; [validation](VALIDATION.md#recorded-negative-timing-slack)
+lists each image's endpoint counts and worst slacks. Scoped RTL proofs and
+finite model/board tests do not establish whole-machine numerical
 refinement, independent loaded-image attestation or physical-security certification.
 The [Qwen3-1.7B](../qwen3-1.7b/README.md) and [Qwen3-8B](../qwen3-8b/README.md)
 demonstrations have separate implementation and evidence.

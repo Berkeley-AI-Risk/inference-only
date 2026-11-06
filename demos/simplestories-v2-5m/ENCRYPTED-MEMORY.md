@@ -151,17 +151,21 @@ vendor dependency identities, and the selected prebuilt image. No vendor
 primitive simulation-library sources are bundled. The existing vendor
 download/build instructions and license boundaries still apply.
 
-From the root of a clean checkout or release archive:
+From the SimpleStories demo directory (`demos/simplestories-v2-5m/`) in a
+clean checkout or release archive:
 
 The first command uses `--strict` to check all listed files and reject any
 extras, including local Python environments and generated build files.
 If you have already used this checkout, omit `--strict` to verify the listed
 files while allowing those extras; do not delete your local files just to
 run the check. See [release checks](REPRODUCE.md).
+For the current-greedy checker, first create the external `FPGA_EVIDENCE_ENV`
+with the pinned dependencies in [offline reproduction](GREEDY-QUALIFICATION.md#offline-reproduction).
+The environment stays outside this checkout.
 
 ```sh
 python3.12 -I -S -B ../../tools/verify_release.py --strict
-python3.12 -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
+"$FPGA_EVIDENCE_ENV/bin/python" -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
 python3.12 -I -S -B tools/check_encrypted_inherited_components_v1.py
 python3.12 -I -S -B tools/encrypt_model_image.py --openssl /absolute/path/to/openssl
 ```
@@ -201,7 +205,9 @@ them outside the repository. Stop the app and other UART/JTAG users.
 Do not proceed on any ID mismatch, tool error or protection warning.
 
 Follow sections 1 and 2 of that guide unchanged. With its checked shell
-variables, replace section 3's plaintext installation with:
+variables, with `FPGA_PACKAGE` pointing to the absolute SimpleStories demo
+directory containing `assets/` and `prebuilt/`, replace section 3's plaintext
+installation with:
 
 ```sh
 "$FPGA_PROGRAMMER" --device GW5AST-138C --cable-index 4 --location "$FPGA_USB_LOCATION" --frequency 0.9MHz --operation_index 52

@@ -48,15 +48,18 @@ merely because the model's apparent outputs look similar. For fresh RTL proofs, 
 Use a whitespace-free work path (an existing alias is acceptable).
 
 Choose a dedicated asset directory **outside the source repository**. Replace
-the example absolute paths below with your own paths. The downloader accepts
+the example absolute paths below with your own paths. Keep both the asset directory
+and `FPGA_REFERENCE_ENV` outside the entire checkout so strict release checking
+does not encounter an unlisted Python environment. The downloader accepts
 only the six pinned, hash-checked model/tokenizer data files and does not run
 upstream model code. Retain the downloaded upstream notices.
 
 ```sh
-python3.12 -m venv ../fpga-reference-env
-../fpga-reference-env/bin/python -m pip install -r reference/requirements.txt
-../fpga-reference-env/bin/python -I -B reference/scripts/fetch_upstream.py /absolute/asset-directory/upstream
-../fpga-reference-env/bin/python -I -B reference/scripts/quantize.py /absolute/asset-directory/upstream /absolute/asset-directory/rom
+FPGA_REFERENCE_ENV="/absolute/path/outside-the-checkout/fpga-reference-env"
+python3.12 -m venv "$FPGA_REFERENCE_ENV"
+"$FPGA_REFERENCE_ENV/bin/python" -m pip install -r reference/requirements.txt
+"$FPGA_REFERENCE_ENV/bin/python" -I -B reference/scripts/fetch_upstream.py /absolute/asset-directory/upstream
+"$FPGA_REFERENCE_ENV/bin/python" -I -B reference/scripts/quantize.py /absolute/asset-directory/upstream /absolute/asset-directory/rom
 ```
 
 The first command that fetches assets uses the network. Once the snapshot is

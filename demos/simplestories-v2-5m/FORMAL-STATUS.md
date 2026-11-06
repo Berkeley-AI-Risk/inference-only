@@ -42,11 +42,14 @@ the restrictions for arbitrary command sequences.
 
 The following sections state the established scopes and the remaining boundaries.
 
-**The source proofs establish restricted model writes, authentication through
-use, and fixed private access paths.** The [authentication/access package](formal/authentication-access/README.md)
-connects the actual SHA engines, checked model RAM, fixed six-layer schedule,
-operand/address routing and protected K/V capture/use. These are source-bound
-component compositions, with explicit cryptographic and physical assumptions.
+**The source proofs establish model-write exclusion, scoped authentication and
+checked-copy properties, and named controller/operand-route safety.** The
+[authentication/access package](formal/authentication-access/README.md) connects
+actual SHA engines and checked model RAM with stage sequencing, selected operand
+mux equalities, address/control bounds and protected K/V capture/use in its named
+scopes. Numerical child outputs remain arbitrary where stated. These component
+results do not exhaustively establish every arithmetic admission or tensor's
+fixed-graph meaning, or one adversarial-memory non-interference theorem.
 
 **After runtime LOCK, the custom RTL
 cannot issue a write to the model region through the vendor DDR application
@@ -65,9 +68,13 @@ of DRAM.
 
 The baseline now has a [composed model-read value proof](formal/upstream-model-values/README.md)
 through the actual custom DDR transport, runtime wrappers, shared model/K/V
-routing, model CDC and production four-bank cache. Successful cache words are
-the fixed model words at their accepted request addresses. The cache's correct
-raw-reply premise is discharged through those custom RTL modules.
+routing, model CDC and production four-bank cache. Under its explicit vendor
+storage, runtime-entry image-identity and metadata-ROM binding conditions,
+successful cache words are the fixed model words at their accepted request
+addresses. The cache's correct raw-reply premise is discharged through those
+custom RTL modules. Those external conditions remain assumptions: this baseline
+functional theorem does not establish resistance to malicious DDR substitution
+or successful boot authentication/loading.
 
 | Result | What is established | Remaining boundary |
 | --- | --- | --- |
@@ -111,7 +118,9 @@ numerical leaves in its parent control model remain unrestricted. The proof
 establishes operand provenance, without claiming arithmetic-result correctness.
 
 The [complete Q operator package](formal/q-operator/README.md) joins that operand
-layer to the numerical implementation and actual Q effects. Its 326 UNSAT
+layer to the numerical implementation and actual Q effects. Its
+[finalized normalization specification and published method review](formal/q-operator/DOCUMENTATION.md)
+explain the unchanged frozen algorithm and the explicitly trusted semantic rules. Its 326 UNSAT
 implications and three SAT controls have an executable common-trace composition.
 The portable qualification recompiles seven numerical models identically and
 reruns 17 selected solver queries; all 329 canonical/actual new engine inputs and
@@ -152,9 +161,13 @@ result supports the **fixed-model requirement**: after LOCK, the checked RTL
 cannot issue writes that update stored model weights through this interface,
 while permitting the K/V state needed for inference to evolve. Checking the
 underlying write path establishes hardware enforcement of that restriction.
-The model-read value proof closes the complementary operand gap: a word claimed
-to come from that fixed model really arrives as its requested model word,
-rather than K/V contents, a different read's word or an assumed private reply.
+Under its stated physical-storage, runtime-image and metadata-ROM contracts,
+the model-read value proof closes the complementary operand gap: a word claimed
+to come from that fixed model arrives as its requested model word, rather than
+K/V contents, a different read's word or an assumed private reply. An attacker
+that substitutes external memory is outside that theorem's storage contract;
+the separate authentication/checked-copy results do not yet form a joined
+whole-device tamper theorem.
 The Q operand proof now connects those words to the actual Q MAC and
 postscale coefficient inputs, with matching current accepted activations.
 The Q operator proof establishes the specified numerical result and its
@@ -164,11 +177,11 @@ query payloads, closing those numerical producer and storage interfaces. Connect
 command-to-graph schedule belongs to the whole-device proof.
 
 The authentication/access proofs supply further parts of that argument: they
-check the actual SHA engines and accepted byte streams, preserve the checked
-model copy through consumption, restrict arithmetic to fixed private scheduling
-and operand/address paths, and join protected K/V verification to attention use.
-They remove ordinary mechanisms for changing model parameters or directly
-programming internal tensor computation through the token interface.
+check actual SHA engines and accepted byte streams, preserve checked model
+copies in their named use paths, constrain stage/mux/address behavior, and join
+protected K/V verification to named attention capture/use scopes. Complete
+command-to-graph authorization, all arithmetic operand provenance and a paired
+adversarial-memory theorem remain separate obligations.
 
 These facts do not establish that every token-only algorithm has negligible
 training utility. Cryptographic resistance and trusted on-chip state remain

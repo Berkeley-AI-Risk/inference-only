@@ -9,7 +9,7 @@ These records identify the supplied SimpleStories-V2-5M seeded image `d271626a7f
 - [Current formal completion](../../formal/current-seeded-sampling/CURRENT-REPLAY.json): the named RTL-only result, with all 196 connected primary assertions and 194 secondary conclusions; CRC conclusions 38 and 73 remain unresolved. The 35/57/63/94 components and separate 42-assertion bank scope overlap and must not be added.
 - [Browser status](current-browser.json): twelve Chrome cases and 100 exact outputs, independent checks of automatic seeds, full-context generation, Stop and resumed generation. The record names its exact host-source context.
 
-[CURRENT-QUALIFICATION.md](../../demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md) also describes full-array readback, the exact payload/source comparison and recipient reload/registration. [FORMAL-STATUS.md](../../demos/simplestories-v2-5m/FORMAL-STATUS.md) states the private-service boundaries and proof limits.
+[CURRENT-QUALIFICATION.md](../../CURRENT-QUALIFICATION.md) also describes full-array readback, the exact payload/source comparison and recipient reload/registration. [FORMAL-STATUS.md](../../FORMAL-STATUS.md) states the private-service boundaries and proof limits.
 
 From the repository root, recheck recorded evidence without hardware, solvers or numerical-model execution:
 

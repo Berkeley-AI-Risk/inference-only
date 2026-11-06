@@ -100,11 +100,18 @@ refinement, cryptographic security or physical-security certification.
 
 ## Offline reproduction
 
-From a clean repository copy, install the pinned host dependencies, then run:
+From the SimpleStories demo directory (`demos/simplestories-v2-5m/`) in a
+clean checkout, check release integrity before creating any local outputs. Put
+the Python environment outside the entire checkout; replace the example path
+with an absolute external path. Dependency installation may access the package
+index; the verification commands themselves are offline.
 
 ```sh
 python3.12 -I -S -B ../../tools/verify_release.py --strict
-python3.12 -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
+FPGA_EVIDENCE_ENV="/absolute/path/outside-the-checkout/fpga-evidence-env"
+python3.12 -m venv "$FPGA_EVIDENCE_ENV"
+"$FPGA_EVIDENCE_ENV/bin/python" -m pip install -r reference/requirements.txt -r host-app/requirements.txt
+"$FPGA_EVIDENCE_ENV/bin/python" -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
 python3.12 -I -S -B ../../tools/fpga_speed_benchmark.py --check
 ```
 

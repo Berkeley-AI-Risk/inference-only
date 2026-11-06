@@ -94,10 +94,13 @@ The design assumes that the guard, its private memories, and the rest of the
 on-chip control circuit remain intact. Its integrity argument relies on a
 correct SHA-256 implementation and cryptographic collision resistance, so
 an attacker cannot practically substitute different data with the accepted
-digest. SHA computation is independently simulation-tested, not formally
-proved here. Tags need protection against writes, not secrecy. It is not protection
-against arbitrary modifications to those circuits or a certified bound on
-training capacity. A physical attacker can also disrupt operation; integrity
+digest. The [authentication/access package](formal/authentication-access/README.md)
+contains separate source-bound SHA compression/chaining proofs and their actual
+hash-framing applications; simulation supplements those proofs. Cryptographic
+collision/second-preimage resistance is an assumption. Tags need protection
+against writes, not secrecy. The scoped proofs are not one whole-device tamper
+non-interference theorem, protection against arbitrary on-chip modifications,
+or a certified bound on training capacity. A physical attacker can also disrupt operation; integrity
 checking does not guarantee availability.
 
 As in the [repository's assessment](../../README.md#in-what-sense-is-it-inference-only),

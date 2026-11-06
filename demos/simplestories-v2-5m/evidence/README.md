@@ -1,6 +1,6 @@
 # Evidence guide
 
-The current SimpleStories images, numerical model, source inventories and qualification scopes are described in [greedy qualification](../demos/simplestories-v2-5m/GREEDY-QUALIFICATION.md) and [seeded qualification](../demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md). Qwen3-1.7B and Qwen3-8B have their own evidence within their [model directories](../demos/).
+The current SimpleStories images, numerical model, source inventories and qualification scopes are described in [greedy qualification](../GREEDY-QUALIFICATION.md) and [seeded qualification](../CURRENT-QUALIFICATION.md). Qwen3-1.7B and Qwen3-8B have their own evidence within their [model directories](../../).
 
 ## Greedy SimpleStories
 
@@ -12,7 +12,7 @@ python3.12 -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage 
 
 Each selected image passed ten CLI cases and seven browser cases. The [common speed captures](../benchmarks/fpga-speed/) separately contain the two full 128-output trials for each selected image. Their validated-reply timestamps, command durations and all generated/reference IDs support the common benchmark calculation.
 
-The baseline's [analysis inputs](current-greedy/baseline/analysis/) bind its fixed-context measurements, native resources and complete mapped multiplier census to the conditional [capacity assessment](../demos/simplestories-v2-5m/TRAINING-CAPACITY.md). They do not demonstrate usable attacker access or certify a training factor.
+The baseline's [analysis inputs](current-greedy/baseline/analysis/) bind its fixed-context measurements, native resources and complete mapped multiplier census to the conditional [capacity assessment](../TRAINING-CAPACITY.md). They do not demonstrate usable attacker access or certify a training factor.
 
 ## Seeded SimpleStories
 
@@ -20,6 +20,6 @@ The baseline's [analysis inputs](current-greedy/baseline/analysis/) bind its fix
 
 ## Interpretation
 
-Raw records apply only to the source, image and workload identities they name. Supporting source and component records preserve the inputs needed for scoped checks; they do not add another runnable design or transfer a result to a changed image. Assertion counts overlap. Read [formal status](../demos/simplestories-v2-5m/FORMAL-STATUS.md) for the private-service cuts and unresolved conclusions.
+Raw records apply only to the source, image and workload identities they name. Supporting source and component records preserve the inputs needed for scoped checks; they do not add another runnable design or transfer a result to a changed image. Assertion counts overlap. Read [formal status](../FORMAL-STATUS.md) for the private-service cuts and unresolved conclusions.
 
-All selected Tang images retain incomplete vendor-DDR timing signoff. Native route/resource observations, finite correct outputs and file hashes do not establish whole-machine refinement, cryptographic security, physical security or independent attestation of the loaded FPGA. [Release integrity](../demos/simplestories-v2-5m/REPRODUCE.md) is a separate byte check.
+All selected Tang images retain incomplete vendor-DDR timing signoff. Native route/resource observations, finite correct outputs and file hashes do not establish whole-machine refinement, cryptographic security, physical security or independent attestation of the loaded FPGA. [Release integrity](../REPRODUCE.md) is a separate byte check.

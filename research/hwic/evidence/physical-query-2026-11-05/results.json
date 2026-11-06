@@ -1,0 +1,148 @@
+{
+  "schema": "hwic.physical-query-public-summary.v1",
+  "recorded_utc": "2026-11-05T23:30:27.465596+00:00",
+  "model": "SimpleStories-V2-5M",
+  "component": "Complete layer-0 Q0 256x256 query projection",
+  "arithmetic": "W10/A16/KV16 BFP-v5, unchanged numerical function",
+  "physical_views": "Predictive Nangate45/FreePDK45 research views; no selected manufacturable process",
+  "target_clock_ns": 2,
+  "nominal_voltage_V": 1.1,
+  "nominal_temperature_C": 25,
+  "historical_comparison": {
+    "recorded_utc": "2026-11-04T21:45:34.801264+00:00",
+    "points": [
+      {
+        "variant": "grouped",
+        "vector_count": 47,
+        "checked_result_rows": 12032,
+        "sequential_cycles_per_projection": 55,
+        "cell_area_mm2": 3.259676,
+        "query_block_floorplan_area_mm2": 6.971316105624999,
+        "local_routing_overflow": 9579078,
+        "worst_setup_slack_ns": -0.76251,
+        "worst_hold_slack_ns": -0.08917,
+        "setup_TNS_ns": -1143.81714,
+        "estimated_total_power_W": 2.10372329,
+        "estimated_energy_per_projection_J": 2.3140956189999998e-07,
+        "all_reportable_pins_with_actual_SAIF": 7452604,
+        "unannotated_activity_pins": 0,
+        "fully_RC_covered_loaded_driver_count": 2427833,
+        "individually_proven_zero_load_or_disconnected_RC_exceptions": 95060,
+        "partially_unannotated_loaded_drivers": 0,
+        "routing_accepted": false,
+        "timing_closed": false
+      },
+      {
+        "variant": "rom16",
+        "vector_count": 47,
+        "checked_result_rows": 12032,
+        "sequential_cycles_per_projection": 107,
+        "cell_area_mm2": 2.187934,
+        "query_block_floorplan_area_mm2": 5.2256588408999995,
+        "local_routing_overflow": 569407,
+        "worst_setup_slack_ns": -0.98901,
+        "worst_hold_slack_ns": -0.0395,
+        "setup_TNS_ns": -33.98875,
+        "estimated_total_power_W": 1.6301434,
+        "estimated_energy_per_projection_J": 3.488506876e-07,
+        "all_reportable_pins_with_actual_SAIF": 5245415,
+        "unannotated_activity_pins": 0,
+        "fully_RC_covered_loaded_driver_count": 1591888,
+        "individually_proven_zero_load_or_disconnected_RC_exceptions": 86811,
+        "partially_unannotated_loaded_drivers": 0,
+        "routing_accepted": false,
+        "timing_closed": false
+      }
+    ],
+    "power_basis": "Zero-delay inference activity; saved-guide global-route RC; 47 vectors per point; no delay-glitch, full-model, KV-memory or package power.",
+    "valid_only_for_these_exact_historical_points": true
+  },
+  "ROM16_current_extracted_point": {
+    "query_cycles": 107,
+    "native_route_diagnostics": {
+      "signal_routes_present": true,
+      "native_router_DRVs": 0,
+      "fresh_native_DRC_report_bytes": 0,
+      "router_DRC_report_bytes": 0,
+      "preliminary_router_checks_met": true,
+      "reported_violation_history": [
+        236367,
+        41590,
+        27410,
+        409,
+        10,
+        3,
+        3,
+        0
+      ],
+      "final_wirelength_um": 38963058,
+      "final_vias": 10082267
+    },
+    "timing_ns": {
+      "max_ns": 0.03048,
+      "min_ns": 0.0396,
+      "TNS_ns": 0.0
+    },
+    "fresh_minus_export_ns": {
+      "max_ns": 0.0,
+      "min_ns": 0.0,
+      "TNS_ns": 0.0
+    },
+    "native_electrical_counts": {
+      "slew": 0,
+      "capacitance": 0,
+      "fanout": 0
+    },
+    "separate_fresh_process_readback": true,
+    "required_loaded_nets": 1541937,
+    "represented_loaded_nets": 1541937,
+    "exact_terminal_connections": 4877756,
+    "explicit_resistors": 6381844,
+    "ground_capacitance_records": 7923781,
+    "mirrored_coupling_records": 31874504,
+    "connected_zero_load_exceptions": 80373,
+    "genuine_disconnected_clock_output_exceptions": 7170,
+    "current_DEF_projection_identity": true,
+    "explicit_terminal_resistor_numeric_coupling_checks_passed": true,
+    "current_point_power_or_energy_measured": false,
+    "historical_power_not_transferred": true
+  },
+  "record_identities": {
+    "historical_comparison": {
+      "bytes": 24291,
+      "sha256": "9f97769aaa752f34c183d1a12e26872e99c3ea35fd9f8cc94bd6e490aba20d77"
+    },
+    "grouped_power_review": {
+      "bytes": 2110206,
+      "sha256": "c89dab4f9f11e4fadc5f59f583584ae6f4a7016fd608e4268a28e04c717b52dd"
+    },
+    "ROM16_power_review": {
+      "bytes": 1926713,
+      "sha256": "b07e4aa1ea685743d6b872c6e26f06d1d7841e6331c705ef02291b82ce5ca89b"
+    },
+    "current_detail_review": {
+      "bytes": 9095,
+      "sha256": "bcdfb448f2f56fe6e6bced36e8de75377d4a9635735fa0cd88db0a87265169c6"
+    },
+    "current_extraction_review": {
+      "bytes": 11570,
+      "sha256": "eaa17404045677cf48b6606784b880b4ee4de0dc006787a240095c2ca5fc8fd2"
+    },
+    "current_coverage": {
+      "bytes": 1952,
+      "sha256": "c0d8c34a200c06aa0fcf105aa09e95709a08ed48ca07386d8d47b024b91bc948"
+    },
+    "current_coverage_review": {
+      "bytes": 6447,
+      "sha256": "55055d4f4187f68b61751708ac1b18b8e20689533447283b5725259c7261f3b2"
+    }
+  },
+  "publication_scope": "Compact result summary and record identities only. Raw physical databases, generated weighted netlists, tool/process assets and private review files are not included; this summary is not an independently reproducible physical implementation package.",
+  "independent_review_scope": "A separately tasked AI reviewer checked source, controls, provenance and actual results; no outside human certification is claimed.",
+  "all_terminal_geometric_connectivity_accepted": false,
+  "foundry_LVS_or_DRC_signoff": false,
+  "broader_PVT_or_power_delivery_qualified": false,
+  "whole_chip_area_frequency_or_token_rate_established": false,
+  "ASIC_qualified": false,
+  "fabricated": false
+}

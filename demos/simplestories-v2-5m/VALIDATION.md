@@ -29,8 +29,51 @@ source-bound qualification. Seven physical suites include eight matched
 128-output trials and 16 context cases. Twelve ordinary Chrome cases checked
 100 outputs, including independent verification of automatic public seeds.
 The long Stop case drains one active reply and clears without a second STEP.
-The common greedy temperature-zero rate is separately recorded in the shared
-benchmark; temperature-one measurements retain their named sampling workload.
+The common benchmark records seeded sampling at temperature 1: **9.928 cached
+host tokens/s**, or **9.942 command-only tokens/s** over the same two trials.
+It does not contain a separate seeded temperature-zero rate. Temperature-zero
+functional qualification is separate from the published common speed row.
+
+## Recorded negative timing slack
+
+All four selected images have **known negative slack in vendor-DDR paths**;
+they are not fully timing-closed. The following counts are distinct failing
+endpoints within each check category, with the worst reported negative slack
+in nanoseconds. They are recorded implementation results, not new timing runs.
+
+| Image | Setup: count (worst ns) | Hold: count (worst ns) | Recovery: count (worst ns) |
+| --- | ---: | ---: | ---: |
+| Authenticated weights | 36 (−6.847) | 2 (−1.056) | 109 (−9.095) |
+| K/V-protected | 36 (−5.699) | 10 (−1.096) | 154 (−9.192) |
+| K/V protection + encrypted memory | 36 (−6.305) | 10 (−1.112) | 109 (−8.451) |
+| Seeded sampling | 36 (−5.838) | 10 (−1.112) | 109 (−8.739) |
+
+No negative removal endpoint is listed in these censuses. The listed negative
+paths lie within `u_raw_controller/u_ddr3/`, including controller/PHY
+initialization, calibration and reset paths between the reported board, app
+and memory clocks. The recorded nonvendor/custom-logic screen is clear; that
+does not waive the vendor failures or establish complete external-I/O signoff.
+The vendor report's global “setup” union also includes recovery endpoints, so
+these category counts must not be added as disjoint physical endpoints.
+
+[The generated timing disclosure](evidence/timing-disclosure.json) pins the four
+selected image identities and source censuses, including the
+[seeded native summary](evidence/seeded-sampling/current-native-summary-v8-baseline-selected-native.json).
+Reconstruct the disclosure without a compiler, solver or board:
+
+```sh
+python3.12 -I -S -B tools/check_timing_disclosure.py
+```
+
+The raw greedy evidence capsules retain `release_qualified: false`,
+`semantic_closure_replay_pending: true`, `final_release_index: false` and their
+captured construction-phase labels. Those flags are not rewritten into later
+success claims. The [current role index](evidence/current-greedy/INDEX.json),
+[functional qualification](GREEDY-QUALIFICATION.md) and offline source/evidence
+checker identify the named completed scopes. “Runnable release” describes the
+supplied image/model/application/instructions and finite demonstrated behavior;
+it does not assert blanket release, timing or physical-security qualification.
+All selected build records retain `timing_qualified: false`.
 
 ## Proof and physical boundaries
 
@@ -40,9 +83,9 @@ controller does not inherit another image's whole-controller proof. Component
 simulation and finite model comparisons do not establish a universal numerical,
 whole-machine, SHA/AES or cryptographic-security theorem.
 
-All selected images retain `timing_qualified: false`. Native implementation,
-positive reported custom-logic margins and successful board tests do not
-provide complete vendor-DDR or external-I/O timing signoff. Build hashes identify
+Native implementation, positive reported custom-logic margins and successful
+board tests do not close the negative vendor-DDR paths listed above or provide
+complete external-I/O timing signoff. Build hashes identify
 recorded inputs and files; they do not independently attest a loaded FPGA.
 The demonstration assumes a frozen, intact circuit and synchronous digital
 behavior. It does not certify invasive/side-channel resistance or a residual

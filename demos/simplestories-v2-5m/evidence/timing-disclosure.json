@@ -1,0 +1,245 @@
+{
+  "global_setup_note": "The global setup union includes setup/recovery endpoints. Do not add the per-check endpoint counts as disjoint physical endpoints.",
+  "schema": "SimpleStories-recorded-timing-disclosure-v1",
+  "scope": "Recorded selected-image endpoint census; no new native build, timing closure, hardware execution or physical attestation.",
+  "variants": {
+    "baseline": {
+      "captured_action_flags": {
+        "final_release_index": false,
+        "phase": "two-closed-browser-campaigns-allthree-completion-pending",
+        "release_qualified": false,
+        "semantic_closure_replay_pending": true
+      },
+      "checks": {
+        "hold": {
+          "clock_families": {
+            "app_clk100:[R] -> board_clk50:[R] / D": 2
+          },
+          "negative_endpoints": 2,
+          "negative_paths": 2,
+          "worst_slack_ns": -1.056
+        },
+        "recovery": {
+          "clock_families": {
+            "board_clk50:[R] -> app_clk100:[F] / CLEAR": 8,
+            "board_clk50:[R] -> memory_clk400:[F] / RESET": 69,
+            "board_clk50:[R] -> memory_clk400:[R] / RESET": 141
+          },
+          "negative_endpoints": 109,
+          "negative_paths": 218,
+          "worst_slack_ns": -9.095
+        },
+        "removal": {
+          "clock_families": {},
+          "negative_endpoints": 0,
+          "negative_paths": 0,
+          "worst_slack_ns": 0.278
+        },
+        "setup": {
+          "clock_families": {
+            "app_clk100:[R] -> memory_clk400:[F] / HOLD": 4,
+            "app_clk100:[R] -> memory_clk400:[R] / CALIB": 32
+          },
+          "negative_endpoints": 36,
+          "negative_paths": 36,
+          "worst_slack_ns": -6.847
+        }
+      },
+      "complete_timing_signoff": false,
+      "evidence_capsule": {
+        "bytes": 1231295,
+        "path": "evidence/current-greedy/baseline-CAPSULE.json",
+        "sha256": "60185b9841ccbec395bfdf794cd85bdb29dca47d6de551eaaba676639449999e"
+      },
+      "global_violated_endpoints": {
+        "hold": 2,
+        "setup": 145
+      },
+      "image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+      "reported_nonvendor_negative_paths": 0,
+      "reported_nonvendor_screen_clear": true,
+      "timing_inspection_object": {
+        "bytes": 6961,
+        "path": "evidence/current-greedy/objects/116b549e8e3417ec4ee6d6871a7547c02e5edc87436a20df9ba44f675078b4c4.gz",
+        "sha256": "c283c72e11d48d78f115293eee51c75bc5e28c93fa2047c022c94e1b8cc22460"
+      },
+      "timing_inspection_sha256": "116b549e8e3417ec4ee6d6871a7547c02e5edc87436a20df9ba44f675078b4c4",
+      "timing_qualified": false
+    },
+    "encrypted-memory": {
+      "captured_action_flags": {
+        "final_release_index": false,
+        "phase": "three-closed-browser-campaigns-final-source-contract-pending",
+        "release_qualified": false,
+        "semantic_closure_replay_pending": true
+      },
+      "checks": {
+        "hold": {
+          "clock_families": {
+            "app_clk100:[R] -> board_clk50:[R] / D": 2,
+            "memory_clk400:[R] -> app_clk100:[R] / D": 8
+          },
+          "negative_endpoints": 10,
+          "negative_paths": 10,
+          "worst_slack_ns": -1.112
+        },
+        "recovery": {
+          "clock_families": {
+            "board_clk50:[R] -> app_clk100:[F] / CLEAR": 8,
+            "board_clk50:[R] -> memory_clk400:[F] / RESET": 69,
+            "board_clk50:[R] -> memory_clk400:[R] / RESET": 141
+          },
+          "negative_endpoints": 109,
+          "negative_paths": 218,
+          "worst_slack_ns": -8.451
+        },
+        "removal": {
+          "clock_families": {},
+          "negative_endpoints": 0,
+          "negative_paths": 0,
+          "worst_slack_ns": 0.281
+        },
+        "setup": {
+          "clock_families": {
+            "app_clk100:[R] -> memory_clk400:[F] / HOLD": 4,
+            "app_clk100:[R] -> memory_clk400:[R] / CALIB": 32
+          },
+          "negative_endpoints": 36,
+          "negative_paths": 36,
+          "worst_slack_ns": -6.305
+        }
+      },
+      "complete_timing_signoff": false,
+      "evidence_capsule": {
+        "bytes": 2211045,
+        "path": "evidence/current-greedy/encrypted-memory-CAPSULE.json",
+        "sha256": "50f58c230c9a0eb65d25a4dd4b8d84a145eabd66171f9d2f321cba5e955c115c"
+      },
+      "global_violated_endpoints": {
+        "hold": 10,
+        "setup": 145
+      },
+      "image_sha256": "cfc8a3d8832b4a2959606f0e9f01c511357ec68380f521b5f28a4fc737edf1d2",
+      "reported_nonvendor_negative_paths": 0,
+      "reported_nonvendor_screen_clear": true,
+      "timing_inspection_object": {
+        "bytes": 7396,
+        "path": "evidence/current-greedy/objects/a0e607ca7a71d4df7a7409302330ceb0548d69885f53ced81baa54943203e243.gz",
+        "sha256": "aa8ad6da6a33ab579c7ea2e9a65390524fae0526367be4469cb6455b4d4b0e38"
+      },
+      "timing_inspection_sha256": "a0e607ca7a71d4df7a7409302330ceb0548d69885f53ced81baa54943203e243",
+      "timing_qualified": false
+    },
+    "kv-protected": {
+      "captured_action_flags": {
+        "final_release_index": false,
+        "phase": "two-closed-browser-campaigns-allthree-completion-pending",
+        "release_qualified": false,
+        "semantic_closure_replay_pending": true
+      },
+      "checks": {
+        "hold": {
+          "clock_families": {
+            "app_clk100:[R] -> board_clk50:[R] / D": 2,
+            "memory_clk400:[R] -> app_clk100:[R] / D": 8
+          },
+          "negative_endpoints": 10,
+          "negative_paths": 10,
+          "worst_slack_ns": -1.096
+        },
+        "recovery": {
+          "clock_families": {
+            "board_clk50:[R] -> app_clk100:[F] / CLEAR": 8,
+            "board_clk50:[R] -> app_clk100:[R] / CLEAR": 42,
+            "board_clk50:[R] -> app_clk100:[R] / PRESET": 3,
+            "board_clk50:[R] -> memory_clk400:[F] / RESET": 69,
+            "board_clk50:[R] -> memory_clk400:[R] / RESET": 141
+          },
+          "negative_endpoints": 154,
+          "negative_paths": 263,
+          "worst_slack_ns": -9.192
+        },
+        "removal": {
+          "clock_families": {},
+          "negative_endpoints": 0,
+          "negative_paths": 0,
+          "worst_slack_ns": 0.344
+        },
+        "setup": {
+          "clock_families": {
+            "app_clk100:[R] -> memory_clk400:[F] / HOLD": 4,
+            "app_clk100:[R] -> memory_clk400:[R] / CALIB": 32
+          },
+          "negative_endpoints": 36,
+          "negative_paths": 36,
+          "worst_slack_ns": -5.699
+        }
+      },
+      "complete_timing_signoff": false,
+      "evidence_capsule": {
+        "bytes": 3357786,
+        "path": "evidence/current-greedy/kv-protected-CAPSULE.json",
+        "sha256": "73e530fee2f22d0bd8ee1afa370435533c31c2723f825589e90e7b1daecdeecf"
+      },
+      "global_violated_endpoints": {
+        "hold": 10,
+        "setup": 190
+      },
+      "image_sha256": "90ac68150d0c297b666bc1963d05e32d1d2d0d7d69706593e58d48d5ab2e79e2",
+      "reported_nonvendor_negative_paths": 0,
+      "reported_nonvendor_screen_clear": true,
+      "timing_inspection_object": {
+        "bytes": 8222,
+        "path": "evidence/current-greedy/objects/8b1f06c847ca2d5a508ccf05c339c54ef1da4093dbe48d452f3aecf763a4fcfe.gz",
+        "sha256": "1edf33954dc8dbf66bf30790afe175afa3f78750d46903e1226d6c489b786a72"
+      },
+      "timing_inspection_sha256": "8b1f06c847ca2d5a508ccf05c339c54ef1da4093dbe48d452f3aecf763a4fcfe",
+      "timing_qualified": false
+    },
+    "seeded-sampling": {
+      "checks": {
+        "hold": {
+          "all_listed_negative_paths_vendor_ddr": true,
+          "negative_endpoints": 10,
+          "negative_paths": 10,
+          "worst_negative_slack_ns": -1.112
+        },
+        "recovery": {
+          "all_listed_negative_paths_vendor_ddr": true,
+          "negative_endpoints": 109,
+          "negative_paths": 218,
+          "worst_negative_slack_ns": -8.739
+        },
+        "removal": {
+          "all_listed_negative_paths_vendor_ddr": true,
+          "negative_endpoints": 0,
+          "negative_paths": 0,
+          "worst_negative_slack_ns": null
+        },
+        "setup": {
+          "all_listed_negative_paths_vendor_ddr": true,
+          "negative_endpoints": 36,
+          "negative_paths": 36,
+          "worst_negative_slack_ns": -5.838
+        }
+      },
+      "complete_timing_signoff": false,
+      "global_violated_endpoints": {
+        "hold": 10,
+        "setup": 145
+      },
+      "image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725",
+      "native_summary": {
+        "bytes": 78232,
+        "path": "evidence/seeded-sampling/current-native-summary-v8-baseline-selected-native.json",
+        "sha256": "cca6d4856dd0d64a0b19420b4c54046284375b6039e5f3ffc49668a65721c72d"
+      },
+      "reported_nonvendor_screen_clear": true,
+      "source_timing_report": {
+        "bytes": 3950664,
+        "sha256": "7eb5c788a269f2fde7cda8ee0fd653c43f321b8e0bfd9b01f04cb0001d2f7f3f"
+      },
+      "timing_qualified": false
+    }
+  }
+}

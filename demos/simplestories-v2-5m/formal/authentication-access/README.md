@@ -13,7 +13,7 @@ training strategy using the device is impractical.
 | Boot success requires the complete ordered image readback and matching fixed digest | Actual authentication-to-LOCK composition: 45 assertions per configuration, both solvers. Native image length, one boot BEGIN per hard reset, byte order and padding are checked. Full native-size LOCK reachability is exercised by the board campaign, not supplied as a formal witness. |
 | The actual SHA engines implement SHA-256 compression and preserve the required chaining state | Separate one-round, two-round and encrypted owner-held engines are checked against a FIPS-based reference. At least one solver completes unbounded induction for each engine; the other solver's incomplete phases remain recorded. Native DSP arithmetic is checked against the pinned vendor functional model. Hash resistance is an assumption, not an arithmetic theorem. |
 | Model data used by the private service comes from the checked RAM copy | Actual fixed digest/metadata ROM selection, complete page fill/hash/seal, native RAM ownership and queued consumer routing are composed. Baseline/seeded/protected bank scopes retain the full RAM and SHA; the encrypted scope retains all four RAMs and the native two-engine SHA pool. No unchecked refetch substitutes for the sealed copy. Private decryption outputs remain arbitrary in the encrypted bank theorem. |
-| Arithmetic is reached through fixed private scheduling and operand/address paths | The actual six-layer sequence (22 assertions), semantic datapath access logic (53), group/metadata reader (23), and semantic lookup (9) pass both solvers' bases, unbounded induction and covers. Whole numerical-child replies remain arbitrary in the datapath proof; all reachable reader children are retained in the address proofs. |
+| Named stage admissions, selected operand muxes and address/control bounds are checked | The actual six-layer sequence (22 assertions), semantic datapath access logic (53), group/metadata reader (23), and semantic lookup (9) pass both solvers' bases, unbounded induction and covers. Whole numerical-child replies remain arbitrary in the datapath proof; all reachable reader children are retained in the address proofs. |
 | Protected K/V verification reaches the copy captured and used by attention | Both protected configurations have complete 221-assertion native history proofs and 357-assertion current guard/cache proofs, with both solvers. Actual typed hash framing and chaining (43 assertions per configuration) are joined to the proved SHA engines. Separate 34-assertion attention scopes prove owned capture and operand use. Actual clock/reset/CLEAR, fault, identity and data connections are checked. |
 
 Counts overlap and must not be added. Component proofs quantify over their
@@ -49,10 +49,12 @@ stated checked-copy safety result independent of those numerical promises.
 The [write-exclusion theorem](../implementation-assurance/README.md) prevents
 the custom RTL from issuing model-region writes after runtime LOCK until the
 common hard reset. Authentication checks restrict which image can gain LOCK and
-which model pages can be consumed. Fixed scheduling and private operand routes
-remove the ordinary programmable tensor/arithmetic interface used for training.
-Protected K/V checks additionally restrict attempts to supply chosen internal
-operands by replacing external cache contents.
+which model pages can be consumed. The checked stage, selected-mux and address properties constrain named private
+access paths. They do not exhaustively establish every arithmetic admission,
+operand value or observation producer as an authorized fixed-graph operation.
+Protected K/V checks additionally constrain external substitutions at their
+verified-copy boundaries; one whole-device tamper non-interference theorem is
+not claimed by these scoped facts.
 
 For protected K/V, the formal facts are exact hashing, trusted tag publication
 and comparison, identity/epoch ownership, and use of the same verified copy.

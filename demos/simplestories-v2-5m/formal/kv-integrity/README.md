@@ -1,5 +1,14 @@
 # Protected K/V: scoped, source-bound safety proofs
 
+This page describes the standalone **221/325/34** proof scopes below. The
+separate [authentication/access package](../authentication-access/README.md)
+records the extended current **357-assertion** guard/cache scopes and separate
+source-bound SHA compression/chaining and framing applications. Its production
+source/image bindings and limits must be checked separately. These are different
+scopes, not interchangeable counts or one whole-device tamper theorem. SHA is
+abstracted in this standalone replay; that abstraction does not negate the
+separate SHA proofs. Counts overlap and must not be added.
+
 This replay checks the K/V-protected variant's actual RTL. It does not change
 the configuration or use the FPGA. Both Z3 and cvc5 prove every conclusion
 in each of these reset-initialized, length-two inductions:
@@ -165,7 +174,7 @@ but this package does not claim a single joint guard-to-attention induction.
 ## Reproduce
 
 From the repository root, with Python 3.12 and the recorded Yosys, Z3 and cvc5
-versions in [REPRODUCE.md](../../REPRODUCE.md#formal-toolchain-and-replay-results)
+versions in [REPRODUCE.md](../../REPRODUCE.md#fresh-scoped-rtl-proofs)
 on PATH:
 
 ```sh

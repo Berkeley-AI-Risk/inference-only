@@ -35,7 +35,9 @@ python3.12 -I -S -B ../../tools/verify_release.py
 Stop the browser app and every other serial/JTAG user. Retain the exact
 known-good SRAM image you intend to reload when returning to your previous
 version. Use the current cable index and USB location from the programming
-guide's fresh scan. For its tested cable index 4:
+guide's fresh scan. Set `FPGA_PACKAGE` to the absolute
+`demos/simplestories-v2-5m/` directory, as in that guide. For its tested cable
+index 4:
 
 ```sh
 "$FPGA_PROGRAMMER" --device GW5AST-138C --cable-index 4 --location "$FPGA_USB_LOCATION" --frequency 0.9MHz --operation_index 2 --fsFile "$FPGA_PACKAGE/prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs"
