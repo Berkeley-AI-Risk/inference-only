@@ -276,6 +276,7 @@ that the command queue is empty when LOCK arrives.
 | Native SHA and sealed model RAM through consumption | SHA compression/chaining, fixed digest/metadata selection, complete fill/hash/seal and current service/consumer ownership are source-bound and composed | SHA resistance is assumed. That package leaves private decryption replies unrestricted; the normal K/V return proof below has a separate scope. |
 | Fixed schedule and arithmetic/state access | Six-layer sequence: 22 assertions; actual datapath: 53; group/metadata addresses: 23; lookup: 9. Both solvers complete bases, induction and covers | Numerical-child outputs remain arbitrary in the datapath scope; no whole-transformer numerical theorem. |
 | Protected K/V guard/cache and separate attention boundaries | Current authentication/access records: 357-assertion guard/cache, 43-assertion actual hash framing/chaining and separate 34-assertion attention scopes; both solvers | K is tied to the captured row at score-lane inputs. V is tied to the aligner request and to its reply; reply-to-request identity and a joined legitimate-record-to-consumption theorem remain open. SHA resistance and trusted on-chip state are assumptions. |
+| [Protected K/V CLEAR epoch](formal/kv-clear-epoch/THEOREM.md) | Unbounded native 64-bit counter/reference preservation: fresh CLEAR advances once, held CLEAR does not count repeatedly, and fresh exhaustion causes immediate/sticky fault | Plaintext K/V-protected source only. Full tag/RAM/cache preservation, authenticated read-value identity and the joined consumer theorem remain open. |
 
 For the current variant sources, use the authentication/access package below.
 The standalone `formal/kv-integrity` replay pins a separate source snapshot;
@@ -295,6 +296,13 @@ states the actual source/image joins, proof boundaries, semantic fault controls
 and incomplete secondary results. It records the actual port, reset, CLEAR,
 fault, identity and data bindings; each proof retains its stated component
 scope. The baseline and seeded designs do not gain integrity against an external K/V-memory attacker.
+
+The [CLEAR epoch proof and reproduction](formal/kv-clear-epoch/README.md)
+establish that, between common hard resets, nonterminal execution cannot reuse an
+epoch through counter wrap. The actual 64-bit counter and fault latch are retained;
+held CLEAR and healthy held-at-max cases remain in scope. This closes a scalar
+freshness dependency of the K/V argument. It does not establish authenticated
+read-value identity or complete row/consumer provenance.
 
 ## Working-memory ownership and CLEAR
 

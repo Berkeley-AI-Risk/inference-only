@@ -1,0 +1,59 @@
+{
+  "DDR_TIMEOUT_CYCLES": 50000000,
+  "assembly_header": "`undef FORMAL\n`define SYNTHESIS\n`default_nettype none\n",
+  "assumption_cells": 0,
+  "digital_semantics": "Complete two-state Yosys native model, one core clock, common reset with retained async2sync views; physical timing/reset and bitstream mapping outside scope.",
+  "epoch_width": 64,
+  "model": "SimpleStories-V2-5M plaintext K/V-protected",
+  "module_file_order": [
+    "kv_integrity_guard.sv",
+    "kv_page_hash.sv",
+    "sha.sv"
+  ],
+  "native_json_sha256": "2561b7f0a8f0cc81b699a0aece615444ff912cc7090f5f7e5419905185681684",
+  "native_private_cuts": [],
+  "native_smt_sha256": "2b3003b0459f1eba364014c9a3d017fb5a54cf857379bdad75d74f11fef8b070",
+  "pilot_certificate_sha256": "357d70e23d44074075c78195636c567c1d75ecf5e0676678e4137a2b0ffe35d4",
+  "pilot_composition_review_sha256": "0d254139111f4e031a4f7711f90abfea0e0167b358d60d25d8691a2458eb2841",
+  "pilot_manifest_sha256": "1adef83db7130a20bd11240e90026bc8fc56170c0e09c8b9b59afcd2c1516c7e",
+  "pilot_plan_review_sha256": "5ae0884ba04138bafc3ab24d59acacffadca3f203a6df30fab86d520a5648cce",
+  "production_files": {
+    "variants/kv-protected/hardware/project/kv_integrity_guard.sv": {
+      "bytes": 20548,
+      "modules": [
+        "board1_kv_integrity_guard"
+      ],
+      "public_blob_sha": "af4ab66731f60bac0e3c34e5d887782dcd9f63b5",
+      "sha256": "4a90d4233f628c3ca69e42266c0a9064c5ffd766b45e2e403389696a0a2d2299",
+      "snapshot": "sources/current/kv_integrity_guard.sv"
+    },
+    "variants/kv-protected/hardware/project/kv_page_hash.sv": {
+      "bytes": 5251,
+      "modules": [
+        "kv_page_hash"
+      ],
+      "public_blob_sha": "86ddb9e2d021774e8877ea41264bcbd6511f592e",
+      "sha256": "3ee9a8a716916dcaba6d3434f722b301b3e4fb6b258ee429a457bb246191faba",
+      "snapshot": "sources/current/kv_page_hash.sv"
+    },
+    "variants/kv-protected/hardware/project/sha.sv": {
+      "bytes": 35523,
+      "modules": [
+        "board1_sha256_compact_compress"
+      ],
+      "public_blob_sha": "614e5a97ca5e9a8cb5115cdb08f02e51df8ed8da",
+      "sha256": "1ce6301721efee93f30db9aec6a81bfa4a1340dcc0eb9f8f0ce8ae465efaa15d",
+      "snapshot": "sources/current/sha.sv"
+    }
+  },
+  "public_base_commit": "a8dd2cc3b6b8338e9f042e68a4af087f2b0160ed",
+  "recipe_sha256": "96a067baae2da2154c93d21a5536d1b10cfa48766931fa1d2a6118ab2e8628d7",
+  "schema": "CLEAR-epoch-public-source-v1",
+  "selected_modules": [
+    "board1_kv_integrity_guard",
+    "kv_page_hash",
+    "board1_sha256_compact_compress"
+  ],
+  "source_sha256": "f946ba98211df72e84fd51ab76b503a2be78bf61012432e28574fd0ad4200531",
+  "top": "board1_kv_integrity_guard"
+}

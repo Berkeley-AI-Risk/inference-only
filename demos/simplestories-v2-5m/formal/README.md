@@ -23,8 +23,15 @@ The current [implementation-assurance checks](implementation-assurance/README.md
 
 The [authentication/access package](authentication-access/README.md) verifies the
 actual SHA engines, model checked-copy consumption, fixed private schedule and
-operand/address paths, and protected K/V through attention capture/use. Recorded
-checks and fresh selected-query replay are separate commands.
+operand/address paths, and separate protected K/V guard/cache and attention
+capture/pin properties. The legitimate-record-to-consumption join remains open.
+Recorded checks and fresh selected-query replay are separate commands.
+
+The [protected-K/V CLEAR epoch package](kv-clear-epoch/README.md) proves the
+native 64-bit epoch/reference relation and CLEAR sampling by unbounded induction,
+including exhausted-counter fault behavior. Recorded validation and fresh
+native/solver replay are separate modes. This closes one scalar dependency;
+full tag/RAM/cache preservation and the joined attention consumer remain open.
 
 The [working-memory/session package](session-isolation/README.md) adds native RAM
 histories, current-writer ownership and connected model/K/V cancellation

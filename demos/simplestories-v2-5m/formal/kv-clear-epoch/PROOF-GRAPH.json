@@ -1,0 +1,320 @@
+{
+  "activation_guard": "(and (|board1_kv_integrity_guard_n reset_n| a) (|board1_kv_integrity_guard_n reset_n| b) (not (|board1_kv_integrity_guard_n terminal_now| b)) (|board1_kv_integrity_guard_n clear_i| a) (not (|board1_kv_integrity_guard_n clear_seen_q| a)))",
+  "application_nodes": [
+    "joint-math-activation",
+    "original-math-activation"
+  ],
+  "consumer_nodes": [
+    "joint-composed-step",
+    "original-composed-step"
+  ],
+  "guarded_math_conclusion": "(=> (and (|board1_kv_integrity_guard_n reset_n| a) (|board1_kv_integrity_guard_n reset_n| b) (not (|board1_kv_integrity_guard_n terminal_now| b)) (|board1_kv_integrity_guard_n clear_i| a) (not (|board1_kv_integrity_guard_n clear_seen_q| a))) (and (<= 0 (+ (r-generation ra) 1)) (< (+ (r-generation ra) 1) 18446744073709551616) (= (bvadd (|board1_kv_integrity_guard_n epoch_q| a) (_ bv1 64)) ((_ int_to_bv 64) (+ (r-generation ra) 1)))))",
+  "instantiated_math_premise": "(and (<= 0 (r-generation ra)) (< (r-generation ra) 18446744073709551616) (= (|board1_kv_integrity_guard_n epoch_q| a) ((_ int_to_bv 64) (r-generation ra))) (not (= (|board1_kv_integrity_guard_n epoch_q| a) (_ bv18446744073709551615 64))))",
+  "joint_antecedent": [
+    "(|board1_kv_integrity_guard_h| a)",
+    "(|board1_kv_integrity_guard_h| b)",
+    "(|board1_kv_integrity_guard_t| a b)",
+    "(= rb (legitimate-next a b ra))",
+    "(epoch-joint a ra)"
+  ],
+  "math_provider": {
+    "assumptions": [
+      "(<= 0 g)",
+      "(< g 18446744073709551616)",
+      "(= e ((_ int_to_bv 64) g))",
+      "(not (= e (_ bv18446744073709551615 64)))"
+    ],
+    "conclusion": "(and (<= 0 (+ g 1)) (< (+ g 1) 18446744073709551616) (= (bvadd e (_ bv1 64)) ((_ int_to_bv 64) (+ g 1))))",
+    "declarations": [
+      [
+        "g",
+        "Int"
+      ],
+      [
+        "e",
+        "(_ BitVec 64)"
+      ]
+    ]
+  },
+  "scope": "Scalar CLEAR epoch result only; full local read integrity and whole-device theorem remain open.",
+  "selected_queries": {
+    "R6-supplies-joint": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/R6-supplies-joint.smt2",
+      "query_sha256": "5f5fafb4d32fa4e0adb6c13d1c221b31f9920c113bd8c45f0b9f9d5680f81a93"
+    },
+    "composed-epoch-case-coverage": {
+      "dependencies": [
+        "native-update",
+        "native-sticky",
+        "native-exhaustion",
+        "reference-update",
+        "R6-supplies-joint",
+        "math-increment",
+        "original-math-activation"
+      ],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/composed-epoch-case-coverage.smt2",
+      "query_sha256": "193d01b1f6f2be96052dd2bbb27f869c28340e9873f4d4fe07713a920a891301"
+    },
+    "composed-epoch-fresh-clear": {
+      "dependencies": [
+        "native-update",
+        "native-sticky",
+        "native-exhaustion",
+        "reference-update",
+        "R6-supplies-joint",
+        "math-increment",
+        "original-math-activation"
+      ],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/composed-epoch-fresh-clear.smt2",
+      "query_sha256": "3a611b40790929f12d1f9b5d853465e667551f48daf73465201e4ed1baa7f429"
+    },
+    "composed-epoch-not-fresh-clear": {
+      "dependencies": [
+        "native-update",
+        "native-sticky",
+        "native-exhaustion",
+        "reference-update",
+        "R6-supplies-joint",
+        "math-increment",
+        "original-math-activation"
+      ],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/composed-epoch-not-fresh-clear.smt2",
+      "query_sha256": "34ba70d22967c48abb8c340ef8f050a6425c5c40b8408fe38e85711492275df3"
+    },
+    "composed-epoch-reset-edge": {
+      "dependencies": [
+        "native-update",
+        "native-sticky",
+        "native-exhaustion",
+        "reference-update",
+        "R6-supplies-joint",
+        "math-increment",
+        "original-math-activation"
+      ],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/composed-epoch-reset-edge.smt2",
+      "query_sha256": "e54ab81490090f034afb228bbad6143169277106b1348f39b25c72e3aebc53e4"
+    },
+    "control-omit-increment-epoch": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "sat",
+      "query_in_project": "obligations/control-omit-increment-epoch.smt2",
+      "query_sha256": "b58fdce296a32717d53f3f700e6f7002254301d484cec5c809f62bf47806a8a6"
+    },
+    "control-suppress-exhaustion-fault-epoch": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "sat",
+      "query_in_project": "obligations/control-suppress-exhaustion-fault-epoch.smt2",
+      "query_sha256": "efc435e6d56f82d76284866a88e98f53a2d2cddf1bc39fd9d0880124820c4a52"
+    },
+    "fresh-exhaustion-fault-context": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "sat",
+      "query_in_project": "obligations/fresh-exhaustion-fault-context.smt2",
+      "query_sha256": "938faefa66a8622c0348490c42c3ac659de48df20531a37d0676cdb5ba0e4b3d"
+    },
+    "held-clear-context": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "sat",
+      "query_in_project": "obligations/held-clear-context.smt2",
+      "query_sha256": "6fa26f2d012bee217aa7a14435b46e192e6f37ecf4d42668fd8a37c4c39ed150"
+    },
+    "held-max-epoch-healthy-context": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "sat",
+      "query_in_project": "obligations/held-max-epoch-healthy-context.smt2",
+      "query_sha256": "849f2e45fffe9f732dc031f7c331b2667f4f07eaec3185f4ed5b1e1ebf1c0540"
+    },
+    "joint-composed-step": {
+      "dependencies": [
+        "native-update",
+        "native-sticky",
+        "native-exhaustion",
+        "reference-update",
+        "math-increment",
+        "joint-math-activation"
+      ],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/joint-composed-step.smt2",
+      "query_sha256": "2c4783c8be642aac721a4c8491af5b711c25fd9d948396be1a691ec3071de7af"
+    },
+    "joint-math-activation": {
+      "dependencies": [
+        "native-update",
+        "native-sticky",
+        "native-exhaustion",
+        "reference-update"
+      ],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/joint-math-activation.smt2",
+      "query_sha256": "1a20a36d65debdcab3ebcebf6924265bd1a3b4c8dd9c953dd9ec5df24a963469"
+    },
+    "joint-reset-base": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/joint-reset-base.smt2",
+      "query_sha256": "ef1bea20b39797e8f7b706f355a7e50293237b2261fea73685650239db63f7ad"
+    },
+    "joint-supplies-original": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/joint-supplies-original.smt2",
+      "query_sha256": "8bdcf1bfda61a6248e9cdf139c696f6580f3ee043d9afa137e9171cfdac1b89f"
+    },
+    "math-boundary": {
+      "dependencies": [],
+      "engine": "cvc5",
+      "expected": "unsat",
+      "query_in_project": "obligations/math-boundary.smt2",
+      "query_sha256": "eb10c1cc427d7410fd2fcf1e4136c10a24f9db00a3ed4b1ca5a508cad4096415"
+    },
+    "math-increment": {
+      "dependencies": [],
+      "engine": "cvc5",
+      "expected": "unsat",
+      "query_in_project": "obligations/math-increment.smt2",
+      "query_sha256": "f1f29126f666384c824e04ec7b2a0dcad4059fceb238f0839b2e60747caae73f"
+    },
+    "math-inverse": {
+      "dependencies": [],
+      "engine": "cvc5",
+      "expected": "unsat",
+      "query_in_project": "obligations/math-inverse.smt2",
+      "query_sha256": "e50d0bccbbe5e00cbef9629aa66afe78c2041b6ffec7465949cc00b11ca48e6b"
+    },
+    "native-exhaustion": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/native-exhaustion.smt2",
+      "query_sha256": "0ec3fd42bd5ac01de69078e1cf90ebf4caac7f988a810a5d832f76d76a3846d6"
+    },
+    "native-provider-premises": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/native-provider-premises.smt2",
+      "query_sha256": "c3f849b1f5027864bec2651230f56f5de80eebeddcf28f2edfd7004a3d2d5a85"
+    },
+    "native-sticky": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/native-sticky.smt2",
+      "query_sha256": "156e3af3f7312575330abb978985999fc9908fa61c061bdebfbaf21ce1da5a69"
+    },
+    "native-update": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/native-update.smt2",
+      "query_sha256": "4eed907df24e437257e1475bcfcb9cde12a64acf759aa6a0f1bc5da22a9ac2c7"
+    },
+    "normal-first-clear-context": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "sat",
+      "query_in_project": "obligations/normal-first-clear-context.smt2",
+      "query_sha256": "7290fbbbcb042084382f9b9a990712aa1b1de2b3a48274ecabc1099456c7baf8"
+    },
+    "original-composed-step": {
+      "dependencies": [
+        "native-update",
+        "native-sticky",
+        "native-exhaustion",
+        "reference-update",
+        "R6-supplies-joint",
+        "math-increment",
+        "original-math-activation"
+      ],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/original-composed-step.smt2",
+      "query_sha256": "55987809fdbcb9fa5872b3ca19a3aede2a786aaa4ffdc9d35517593e7f8909fe"
+    },
+    "original-math-activation": {
+      "dependencies": [
+        "native-update",
+        "native-sticky",
+        "native-exhaustion",
+        "reference-update",
+        "R6-supplies-joint"
+      ],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/original-math-activation.smt2",
+      "query_sha256": "3275caaea0b570d36225e491c3a036c7b432bb583e61012e7359bbdd3f014ef9"
+    },
+    "original-supplies-joint-antecedent": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/original-supplies-joint-antecedent.smt2",
+      "query_sha256": "dd96a8f88317e6c340d17ed90994c6f7c7566d4c289eeb8511b9a3aba5e12970"
+    },
+    "reference-update": {
+      "dependencies": [],
+      "engine": "z3",
+      "expected": "unsat",
+      "query_in_project": "obligations/reference-update.smt2",
+      "query_sha256": "008674708c139f2ff978fb38e34b86e342123461dea7c00e96ca60a1535fc170"
+    }
+  },
+  "source_providers": {
+    "native-exhaustion": {
+      "assumptions": [
+        "(|board1_kv_integrity_guard_h| a)",
+        "(|board1_kv_integrity_guard_h| b)",
+        "(|board1_kv_integrity_guard_t| a b)"
+      ],
+      "conclusion": "(epoch-native-exhaustion a b)"
+    },
+    "native-sticky": {
+      "assumptions": [
+        "(|board1_kv_integrity_guard_h| a)",
+        "(|board1_kv_integrity_guard_h| b)",
+        "(|board1_kv_integrity_guard_t| a b)"
+      ],
+      "conclusion": "(epoch-native-sticky a b)"
+    },
+    "native-update": {
+      "assumptions": [
+        "(|board1_kv_integrity_guard_h| a)",
+        "(|board1_kv_integrity_guard_h| b)",
+        "(|board1_kv_integrity_guard_t| a b)"
+      ],
+      "conclusion": "(epoch-native-update a b)"
+    },
+    "reference-update": {
+      "assumptions": [
+        "(|board1_kv_integrity_guard_h| a)",
+        "(|board1_kv_integrity_guard_h| b)",
+        "(= rb (legitimate-next a b ra))"
+      ],
+      "conclusion": "(epoch-reference-update a b ra rb)"
+    }
+  },
+  "typed_substitution": {
+    "e": "(|board1_kv_integrity_guard_n epoch_q| a)",
+    "g": "(r-generation ra)"
+  }
+}

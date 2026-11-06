@@ -48,6 +48,10 @@ jobs:
       - name: Check current authentication and access evidence (recorded only)
         working-directory: demos/simplestories-v2-5m
         run: python -I -S -B formal/authentication-access/check_recorded.py
+      - name: Check protected-K/V CLEAR epoch proof and corruption controls (recorded only)
+        run: |
+          python -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/run.py --recorded-only --out "$RUNNER_TEMP/clear-epoch-recorded" --model demos/simplestories-v2-5m
+          python -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/self_test.py --out "$RUNNER_TEMP/clear-epoch-checks" --model demos/simplestories-v2-5m
       - name: Check composed model-read proof packet (recorded only)
         run: python -I -S -B demos/simplestories-v2-5m/formal/upstream-model-values/run.py --recorded-only
       - name: Check baseline Q operand-provenance proof packet (recorded only)

@@ -1,0 +1,534 @@
+{
+  "SAT_contexts_and_controls": 6,
+  "UNSAT_nodes": 20,
+  "compiler_banner_only_normalization_checked": true,
+  "corruption_controls": {
+    "changed-archive": "rejected",
+    "changed-production-source": "rejected",
+    "circular-activation": "rejected",
+    "missing-activation-dependency": "rejected",
+    "missing-fresh-case": "rejected",
+    "removed-native-transition": "rejected",
+    "unconditional-arithmetic": "rejected",
+    "unknown-is-not-proof": "rejected",
+    "weakened-original-goal": "rejected",
+    "wrong-control-model": "rejected",
+    "wrong-generation-binding": "rejected"
+  },
+  "epoch_preservation_closed": true,
+  "independent_review_kind": "Fresh independent AI plan and composition reviews of the underlying argument; no claimed human audit.",
+  "joint_reset_and_induction_closed": true,
+  "new_environmental_or_cryptographic_premise": false,
+  "production_RTL_changed": false,
+  "public_packaging_validation": {
+    "compiler_metadata_policy": "Only the first SMT generator comment and top-level JSON creator may differ; all logical SMT bytes and other circuit fields must match.",
+    "fresh_native_recompilations": [
+      {
+        "bound_query_model_sha256": "aec6ae9ba09086ad33d557c1e9757491a50126bbb5a20deb6248016f65c35509",
+        "circuit_json_equal_except_creator": true,
+        "command": [
+          "yosys",
+          "-Q",
+          "compile.ys"
+        ],
+        "exit_code": 0,
+        "logical_smt_byte_identical": true,
+        "native_json_sha256": "b7c132aa9c8863b2bf215e6dc0171e3c4f9d6fcca166b7464fd8a4128a7773d3",
+        "native_smt_sha256": "aec6ae9ba09086ad33d557c1e9757491a50126bbb5a20deb6248016f65c35509",
+        "normalization": "Only first Yosys generator comment and top-level JSON creator metadata; all logical/model content exact",
+        "raw_byte_identical": true,
+        "role": "omit-increment",
+        "seconds": 0.4871811671182513
+      },
+      {
+        "bound_query_model_sha256": "2b3003b0459f1eba364014c9a3d017fb5a54cf857379bdad75d74f11fef8b070",
+        "circuit_json_equal_except_creator": true,
+        "command": [
+          "yosys",
+          "-Q",
+          "compile.ys"
+        ],
+        "exit_code": 0,
+        "logical_smt_byte_identical": true,
+        "native_json_sha256": "2561b7f0a8f0cc81b699a0aece615444ff912cc7090f5f7e5419905185681684",
+        "native_smt_sha256": "2b3003b0459f1eba364014c9a3d017fb5a54cf857379bdad75d74f11fef8b070",
+        "normalization": "Only first Yosys generator comment and top-level JSON creator metadata; all logical/model content exact",
+        "raw_byte_identical": true,
+        "role": "original",
+        "seconds": 0.47327120788395405
+      },
+      {
+        "bound_query_model_sha256": "97bcda8d279c1b0faae402ed9af143e427735a9b30c47fcd30d400fcc320f585",
+        "circuit_json_equal_except_creator": true,
+        "command": [
+          "yosys",
+          "-Q",
+          "compile.ys"
+        ],
+        "exit_code": 0,
+        "logical_smt_byte_identical": true,
+        "native_json_sha256": "7b3a4dcbd0991d4f1480ba2fd3d2c78d242a40d5fe8a97005a415d7c125562f6",
+        "native_smt_sha256": "97bcda8d279c1b0faae402ed9af143e427735a9b30c47fcd30d400fcc320f585",
+        "normalization": "Only first Yosys generator comment and top-level JSON creator metadata; all logical/model content exact",
+        "raw_byte_identical": true,
+        "role": "suppress-exhaustion-fault",
+        "seconds": 0.4114503748714924
+      }
+    ],
+    "fresh_solver_queries": {
+      "R6-supplies-joint": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/R6-supplies-joint.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 147456,
+        "query_sha256": "5f5fafb4d32fa4e0adb6c13d1c221b31f9920c113bd8c45f0b9f9d5680f81a93",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.1210077500436455,
+        "stop_reason": null
+      },
+      "composed-epoch-case-coverage": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/composed-epoch-case-coverage.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 2162688,
+        "query_sha256": "193d01b1f6f2be96052dd2bbb27f869c28340e9873f4d4fe07713a920a891301",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.1213429591152817,
+        "stop_reason": null
+      },
+      "composed-epoch-fresh-clear": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/composed-epoch-fresh-clear.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 101367808,
+        "query_sha256": "3a611b40790929f12d1f9b5d853465e667551f48daf73465201e4ed1baa7f429",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.6926062500569969,
+        "stop_reason": null
+      },
+      "composed-epoch-not-fresh-clear": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/composed-epoch-not-fresh-clear.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 360103936,
+        "query_sha256": "34ba70d22967c48abb8c340ef8f050a6425c5c40b8408fe38e85711492275df3",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 4.410288874991238,
+        "stop_reason": null
+      },
+      "composed-epoch-reset-edge": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/composed-epoch-reset-edge.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 23707648,
+        "query_sha256": "e54ab81490090f034afb228bbad6143169277106b1348f39b25c72e3aebc53e4",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.1149734160862863,
+        "stop_reason": null
+      },
+      "control-omit-increment-epoch": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/control-omit-increment-epoch.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "sat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 45383680,
+        "query_sha256": "b58fdce296a32717d53f3f700e6f7002254301d484cec5c809f62bf47806a8a6",
+        "raw_log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+        "seconds": 0.2325966248754412,
+        "stop_reason": null
+      },
+      "control-suppress-exhaustion-fault-epoch": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/control-suppress-exhaustion-fault-epoch.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "sat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 23658496,
+        "query_sha256": "efc435e6d56f82d76284866a88e98f53a2d2cddf1bc39fd9d0880124820c4a52",
+        "raw_log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+        "seconds": 0.11751362518407404,
+        "stop_reason": null
+      },
+      "fresh-exhaustion-fault-context": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/fresh-exhaustion-fault-context.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "sat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 23855104,
+        "query_sha256": "938faefa66a8622c0348490c42c3ac659de48df20531a37d0676cdb5ba0e4b3d",
+        "raw_log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+        "seconds": 0.11864295811392367,
+        "stop_reason": null
+      },
+      "held-clear-context": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/held-clear-context.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "sat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 23707648,
+        "query_sha256": "6fa26f2d012bee217aa7a14435b46e192e6f37ecf4d42668fd8a37c4c39ed150",
+        "raw_log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+        "seconds": 0.11664108303375542,
+        "stop_reason": null
+      },
+      "held-max-epoch-healthy-context": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/held-max-epoch-healthy-context.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "sat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 23756800,
+        "query_sha256": "849f2e45fffe9f732dc031f7c331b2667f4f07eaec3185f4ed5b1e1ebf1c0540",
+        "raw_log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+        "seconds": 0.11637908290140331,
+        "stop_reason": null
+      },
+      "joint-composed-step": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/joint-composed-step.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 87949312,
+        "query_sha256": "2c4783c8be642aac721a4c8491af5b711c25fd9d948396be1a691ec3071de7af",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 2.372688625007868,
+        "stop_reason": null
+      },
+      "joint-math-activation": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/joint-math-activation.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 23773184,
+        "query_sha256": "1a20a36d65debdcab3ebcebf6924265bd1a3b4c8dd9c953dd9ec5df24a963469",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.118485416052863,
+        "stop_reason": null
+      },
+      "joint-reset-base": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/joint-reset-base.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 23724032,
+        "query_sha256": "ef1bea20b39797e8f7b706f355a7e50293237b2261fea73685650239db63f7ad",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.11826233402825892,
+        "stop_reason": null
+      },
+      "joint-supplies-original": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/joint-supplies-original.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 23822336,
+        "query_sha256": "8bdcf1bfda61a6248e9cdf139c696f6580f3ee043d9afa137e9171cfdac1b89f",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.1171396248973906,
+        "stop_reason": null
+      },
+      "math-boundary": {
+        "command": [
+          "cvc5",
+          "--lang=smt2",
+          "--tlimit=120000",
+          "--solve-bv-as-int=sum",
+          "obligations/math-boundary.smt2"
+        ],
+        "engine": "cvc5",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 32768,
+        "query_sha256": "eb10c1cc427d7410fd2fcf1e4136c10a24f9db00a3ed4b1ca5a508cad4096415",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.12291875015944242,
+        "stop_reason": null
+      },
+      "math-increment": {
+        "command": [
+          "cvc5",
+          "--lang=smt2",
+          "--tlimit=120000",
+          "--solve-bv-as-int=sum",
+          "obligations/math-increment.smt2"
+        ],
+        "engine": "cvc5",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 14336000,
+        "query_sha256": "f1f29126f666384c824e04ec7b2a0dcad4059fceb238f0839b2e60747caae73f",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.1178263749461621,
+        "stop_reason": null
+      },
+      "math-inverse": {
+        "command": [
+          "cvc5",
+          "--lang=smt2",
+          "--tlimit=120000",
+          "--solve-bv-as-int=sum",
+          "obligations/math-inverse.smt2"
+        ],
+        "engine": "cvc5",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 0,
+        "query_sha256": "e50d0bccbbe5e00cbef9629aa66afe78c2041b6ffec7465949cc00b11ca48e6b",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.11809533298946917,
+        "stop_reason": null
+      },
+      "native-exhaustion": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/native-exhaustion.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 23707648,
+        "query_sha256": "0ec3fd42bd5ac01de69078e1cf90ebf4caac7f988a810a5d832f76d76a3846d6",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.11764820897951722,
+        "stop_reason": null
+      },
+      "native-provider-premises": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/native-provider-premises.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 23887872,
+        "query_sha256": "c3f849b1f5027864bec2651230f56f5de80eebeddcf28f2edfd7004a3d2d5a85",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.116233125096187,
+        "stop_reason": null
+      },
+      "native-sticky": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/native-sticky.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 43024384,
+        "query_sha256": "156e3af3f7312575330abb978985999fc9908fa61c061bdebfbaf21ce1da5a69",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.45763262500986457,
+        "stop_reason": null
+      },
+      "native-update": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/native-update.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 59801600,
+        "query_sha256": "4eed907df24e437257e1475bcfcb9cde12a64acf759aa6a0f1bc5da22a9ac2c7",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 1.017332874936983,
+        "stop_reason": null
+      },
+      "normal-first-clear-context": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/normal-first-clear-context.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "sat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 45580288,
+        "query_sha256": "7290fbbbcb042084382f9b9a990712aa1b1de2b3a48274ecabc1099456c7baf8",
+        "raw_log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+        "seconds": 0.22685320815071464,
+        "stop_reason": null
+      },
+      "original-composed-step": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/original-composed-step.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 287506432,
+        "query_sha256": "55987809fdbcb9fa5872b3ca19a3aede2a786aaa4ffdc9d35517593e7f8909fe",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 1.7068040419835597,
+        "stop_reason": null
+      },
+      "original-math-activation": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/original-math-activation.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 23822336,
+        "query_sha256": "3275caaea0b570d36225e491c3a036c7b432bb583e61012e7359bbdd3f014ef9",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.11502679204568267,
+        "stop_reason": null
+      },
+      "original-supplies-joint-antecedent": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/original-supplies-joint-antecedent.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 23592960,
+        "query_sha256": "dd96a8f88317e6c340d17ed90994c6f7c7566d4c289eeb8511b9a3aba5e12970",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.11644474999047816,
+        "stop_reason": null
+      },
+      "reference-update": {
+        "command": [
+          "z3",
+          "-memory:4096",
+          "-T:120",
+          "obligations/reference-update.smt2"
+        ],
+        "engine": "z3",
+        "exit_code": 0,
+        "expected": "unsat",
+        "expected_result_matched": true,
+        "peak_RSS_bytes": 23674880,
+        "query_sha256": "008674708c139f2ff978fb38e34b86e342123461dea7c00e96ca60a1535fc170",
+        "raw_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+        "seconds": 0.11921962513588369,
+        "stop_reason": null
+      }
+    },
+    "passed": true,
+    "project_archive_sha256": "6b927736a2294ba803c033314ad4524a913f30e60fa16c97efbeaff99bf5b5d1",
+    "seconds": 10.800157041987404
+  },
+  "schema": "CLEAR-epoch-public-qualification-v1",
+  "scope": "Plaintext K/V-protected scalar epoch only",
+  "selected_nodes": 26,
+  "whole_device_theorem": false,
+  "whole_local_read_integrity_closed": false
+}
