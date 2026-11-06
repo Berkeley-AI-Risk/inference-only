@@ -55,7 +55,13 @@ For a baseline-preserving install, [prepare_preserving_flash.py](tools/prepare_p
 
 The 13 RMSNorm vectors each contain 256 W10 coefficients. Transformer coefficients occupy words 211800–211919; transformer norm metadata occupies 214248–214249. Final-norm coefficients occupy 214250–214259, with metadata at 214260. The store rejects the forbidden `-512` coefficient, zero or out-of-format multipliers and nonzero padding. Its outputs are masked before lock. The active RMSNorm services use these ports, not model-compiled coefficient ROMs.
 
-The fixed RoPE, softmax-exponential and SiLU suffix begins at word 214261 and has 409,632 bytes. Its SHA-256 is `fea751d73eb4fd28f160a4dcc4b8d1fa39c125cb05d10393ac45ad4e3e1bb76b`. A signer may authorize new learned parameters; it cannot change these arithmetic functions. This uses the existing signed image and does not add a new package payload.
+The fixed RoPE, softmax-exponential and SiLU suffix begins at word 214261 and has 409,632 bytes. Its SHA-256 is `fea751d73eb4fd28f160a4dcc4b8d1fa39c125cb05d10393ac45ad4e3e1bb76b`. The boot checker compares this suffix with the hardwired digest before model lock. This check uses the signed image and does not add a new package payload. Its runtime guarantee is limited by the page-binding gap below.
+
+## Boot-to-runtime page binding limit
+
+The released RTL checks the whole image and fixed-function suffix at boot, but does not compare every signed page digest with that same ordered readback. Runtime page authentication uses the separately signed page table. The boot suffix check therefore does not establish fixed runtime arithmetic tables against an approving signer threshold that also controls external DDR.
+
+This limit applies to plain S-AWIC and S-AWIC with periodic reauthorization. Model-specific home approval does not repair this binding gap. Repaired RTL and prebuilt images require native routing, timing and board qualification before they replace the released artifacts.
 
 ## Build and security boundaries
 

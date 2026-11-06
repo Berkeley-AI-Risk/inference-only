@@ -18,4 +18,6 @@ The design runs at **25 MHz** and measures **~7.4 tokens/s** on the common paire
 | [Reproduction](REPRODUCE.md) | Software, RTL, native build and evidence checks |
 | [Formal status](FORMAL-STATUS.md) | Scoped proofs and remaining obligations |
 
+**Current security limit:** this variant inherits the signed-update design's incomplete [boot-to-runtime page binding](../signed-update/tang/HARDWARE.md#boot-to-runtime-page-binding-limit). Periodic approval of a model commitment does not close that gap.
+
 The physical target is Tang Mega **138K Basic / non-Pro, GW5AST-138C / PG484A**. The token application remains APPEND, STEP and CLEAR. This variant uses unprotected external K/V memory and greedy decoding. It is a functional FPGA demonstration; public test keys and an unqualified entropy source do not establish deployment security.
