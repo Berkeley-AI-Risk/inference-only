@@ -118,6 +118,8 @@ jobs:
           python -I -S -B demos/qwen3-8b/reference/run_campaign.py --check-record demos/qwen3-8b/evidence/software-campaign-2026-11-05/result.json
       - name: Check recorded HWIC feasibility arithmetic
         run: python -I -S -B research/hwic/evidence/memory-profile-2026-11-05/check_feasibility.py --check
+      - name: Check recorded HWIC attention profile arithmetic
+        run: python -I -S -B research/hwic/evidence/attention-profile-2026-11-05/check_recorded_profile.py
       - name: Check selected documentation links
         run: python -I -S -B tools/check_release_hygiene.py --root . --contract tools/release-contract.json --output "$RUNNER_TEMP/release-links.json" --links-only --fail-on-findings
       - name: Confirm that the checks left the release unchanged
