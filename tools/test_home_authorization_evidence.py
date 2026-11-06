@@ -3,6 +3,7 @@ from pathlib import Path
 import hashlib
 import importlib.util
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -20,11 +21,12 @@ class HomeEvidenceTests(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.capture=Path(self.temp.name)/'capture'
-        shutil.copytree(TARGET/'evidence/board-25mhz-v9',self.capture)
+        shutil.copytree(TARGET/'evidence/repair-board-2026-11-05',self.capture)
+        self.baseline=evidence.verify(TARGET,self.capture)
 
     def test_actual_record_passes(self):
-        result=evidence.verify(TARGET,self.capture)
-        self.assertEqual(result['distinct_nonces'],20)
+        result=self.baseline
+        self.assertEqual(result['distinct_nonces'],10)
         self.assertEqual(result['benchmark_counted_outputs'],254)
 
     def test_raw_time_cannot_be_replaced_by_capture_self_agreement(self):
@@ -36,7 +38,8 @@ class HomeEvidenceTests(unittest.TestCase):
         data=json.loads(capture.read_text())
         data['cases'][0]['raw_capture_sha256']=hashlib.sha256(raw.read_bytes()).hexdigest()
         capture.write_text(json.dumps(data,indent=2)+'\n')
-        with self.assertRaises(ValueError):evidence.verify(TARGET,self.capture)
+        with self.assertRaisesRegex(ValueError,re.escape("assert case['reply_monotonic_ns']==")):
+            evidence.verify(TARGET,self.capture)
 
     def test_corrupt_home_signature_is_rejected(self):
         path=self.capture/'TRANSCRIPT.json'
@@ -45,7 +48,8 @@ class HomeEvidenceTests(unittest.TestCase):
         grant=bytearray.fromhex(event['grant_hex']);grant[-1]^=1;event['grant_hex']=grant.hex()
         path.write_text(json.dumps(events,indent=2)+'\n')
         (self.capture/'EVENTS.jsonl').write_text(''.join(json.dumps(e)+'\n'for e in events))
-        with self.assertRaises(ValueError):evidence.verify(TARGET,self.capture)
+        with self.assertRaisesRegex(ValueError,re.escape('assert h.su.lms_verify(key,request,grant[128:])')):
+            evidence.verify(TARGET,self.capture)
 
     def test_old_grant_cannot_be_substituted_for_renewal(self):
         path=self.capture/'TRANSCRIPT.json'
@@ -54,7 +58,14 @@ class HomeEvidenceTests(unittest.TestCase):
         grants[1]['grant_hex']=grants[0]['grant_hex']
         path.write_text(json.dumps(events,indent=2)+'\n')
         (self.capture/'EVENTS.jsonl').write_text(''.join(json.dumps(e)+'\n'for e in events))
-        with self.assertRaises(ValueError):evidence.verify(TARGET,self.capture)
+        with self.assertRaisesRegex(ValueError,re.escape('grant[:128]==request')):
+            evidence.verify(TARGET,self.capture)
+
+
+    def test_historical_capture_is_rejected_by_current_identity(self):
+        refusal="assert recovery['candidate_sha256']==review['sha256']==sha(a.candidate)"
+        with self.assertRaisesRegex(ValueError,re.escape(refusal)):
+            evidence.verify(TARGET,TARGET/'evidence/board-25mhz-v9')
 
 
 class ReplacementEvidenceTests(unittest.TestCase):

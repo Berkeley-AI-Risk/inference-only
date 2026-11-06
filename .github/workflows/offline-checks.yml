@@ -102,7 +102,7 @@ jobs:
       - name: Test retained independent helper boundaries
         # Explicit module list avoids importing old-release ZIP dispatchers.
         run: |
-          for test in test_architecture_work_counts.py test_qwen_measurements.py test_verify_release.py test_fpga_speed_benchmark.py test_qwen_h100_results.py test_qwen_training_capacity.py; do
+          for test in test_architecture_work_counts.py test_qwen_measurements.py test_verify_release.py test_fpga_speed_benchmark.py test_qwen_h100_results.py test_qwen_training_capacity.py test_home_authorization_evidence.py; do
             python -I -S -B -m unittest discover -s tools -p "$test" -v
           done
           for test in test_fetch_vendor.py test_flash_layout.py test_h100_reference.py test_kv_integrity_runner.py test_model_rtl.py test_photo_metadata.py test_replay_diagnostics.py test_training_capacity.py test_current_seeded_recorded_v1.py test_encrypted_inherited_components_v1.py; do
