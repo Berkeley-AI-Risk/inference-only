@@ -15,10 +15,17 @@ The [hardware guide](HARDWARE.md) describes the fixed inference schedule,
 private checked-weight storage, clock crossings and implementation checks.
 Those records have their stated engineering scopes; they are not solver proofs
 of the complete inference circuit or its cryptographic security.
+The checked-copy path is an implementation intent supported by source
+inspection, not a proof of actual scalar operand admission, selection and use.
+Neither the 1.7B reader's component results nor the SimpleStories proofs
+discharge that 8B-specific obligation.
 
 The [interface assessment](README.md#inference-only-scope)
 describes the inference operations, restricted startup loader, status facilities
-and attention-control diagnostic. Its inference-only interpretation assumes a
+and source-level [management display](README.md#management-display). The display
+carries lifecycle, clock, HBM and error flags; its correspondence to the
+published routed checkpoint remains unverified. The inference-only interpretation
+assumes a
 frozen configuration or eventual fixed ASIC. The reprogrammable AWS management
 platform and physical attacks require separate assessment. K/V integrity and
 weight encryption are not features of this released image.

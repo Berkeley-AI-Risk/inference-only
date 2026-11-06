@@ -48,6 +48,9 @@ The fixed model-image SHA-256 is:
 There is no secret authentication key or manufacturer model-update command.
 The current circuit **does not authenticate K/V or encrypt weights**.
 Those are possible later variants, not features credited to these results.
+With physical access to external memory, modification of K/V and observation
+of later writes remain unresolved under the physical-possession assessment;
+the restricted application interface does not close that path.
 
 ## Interface and inference-only scope
 
@@ -62,9 +65,9 @@ inference operations:
 - A restricted startup upload path loads the fixed model; it is not a
   general-purpose HBM read/write interface.
 - Status registers report readiness, received-byte count and errors.
-- The tested engineering image has a 16-bit diagnostic status readout for
-  attention-control states and valid flags. It is not a matrix-result port,
-  but it is observable information beyond returned tokens.
+- The packaged top-level source exposes a 16-bit lifecycle/clock/HBM
+  management display, detailed below. Its correspondence to the published
+  routed image has not been independently checked.
 - AWS manages FPGA configuration, clocks and resets. The general-purpose
   cloud host and AWS management plane are not claimed to be inference-only.
 
@@ -84,6 +87,32 @@ resistance certification or measured training-capacity bound is claimed here.
 Qwen-specific [formal work](FORMAL-STATUS.md) has qualified named authentication,
 reader, response-queue and physical storage scopes. Actual fixed-core operand
 use, whole-machine refinement and image equivalence remain open.
+
+<!-- BEGIN GENERATED QWEN MANAGEMENT DISPLAY -->
+### Management display
+
+The [packaged top-level RTL](hardware/design/cl_qwen.sv) drives
+`cl_sh_status_vled` from this 16-bit management display, sampled on
+`clk_main_a0` with synchronous reset to zero:
+
+| Bits | Source |
+| --- | --- |
+| `15:12` | `lifecycle_error_code` |
+| `11:8` | `clock_error_code` |
+| `7:6` | `2'b0` |
+| `5` | `clock_failed` |
+| `4` | `pcis_guard_error` |
+| `3` | `hbm_ready` |
+| `2` | `clock_ready` |
+| `1` | `lifecycle_failed` |
+| `0` | `online` |
+
+This expression contains lifecycle, clock, HBM and error status, not
+attention-control state or arithmetic results. It is observable status
+beyond returned tokens. This is a source-wiring statement: correspondence
+of this display to the published routed checkpoint remains unverified.
+It is not a complete test/debug or physical-access assessment.
+<!-- END GENERATED QWEN MANAGEMENT DISPLAY -->
 
 ## Analysis
 

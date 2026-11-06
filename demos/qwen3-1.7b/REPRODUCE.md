@@ -18,6 +18,7 @@ Run from the repository root:
 python3.12 -I -S -B tools/verify_release.py --strict
 python3.12 -I -S -B tools/check_qwen_measurements.py
 python3.12 -I -S -B tools/check_qwen_package.py
+python3.12 -I -S -B tools/check_qwen_disclosures.py
 python3.12 -I -S -B tools/fpga_speed_benchmark.py --check
 ```
 
@@ -25,6 +26,9 @@ These checks use the supplied files and recorded observations. They do not
 contact AWS, run a model, execute a solver or access an FPGA. `--strict` rejects
 unlisted files; on a working copy with environments or generated outputs, omit
 that flag rather than deleting local work to satisfy the clean-release check.
+The disclosure checker binds the management-display description to the frozen
+top-level source and the critical-CDC counts to the packaged report. It does
+not inspect a routed checkpoint, attest a loaded FPGA or prove operand use.
 
 ## Reconstruct the model and run a fresh reference
 

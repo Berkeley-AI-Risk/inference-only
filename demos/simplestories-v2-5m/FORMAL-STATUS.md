@@ -274,7 +274,20 @@ that the command queue is empty when LOCK arrives.
 | Authentication to runtime LOCK | 45 assertions per image, both solvers; native ordered byte stream, padding and one BEGIN per hard reset | No formal full native-size successful-boot reachability witness. |
 | Native SHA and sealed model RAM through consumption | SHA compression/chaining, fixed digest/metadata selection, complete fill/hash/seal and current service/consumer ownership are source-bound and composed | SHA resistance is assumed. That package leaves private decryption replies unrestricted; the normal K/V return proof below has a separate scope. |
 | Fixed schedule and arithmetic/state access | Six-layer sequence: 22 assertions; actual datapath: 53; group/metadata addresses: 23; lookup: 9. Both solvers complete bases, induction and covers | Numerical-child outputs remain arbitrary in the datapath scope; no whole-transformer numerical theorem. |
-| Protected K/V through attention use | Both protected designs: 221-assertion history, 357-assertion current guard/cache, 43-assertion actual hash framing/chaining and separate 34-assertion attention scopes; both solvers | Component scopes overlap. The integrity interpretation assumes SHA resistance and trusted on-chip tags/state; confidentiality and physical tampering are separate. |
+| Protected K/V guard/cache and separate attention boundaries | Current authentication/access records: 357-assertion guard/cache, 43-assertion actual hash framing/chaining and separate 34-assertion attention scopes; both solvers | K is tied to the captured row at score-lane inputs. V is tied to the aligner request and to its reply; reply-to-request identity and a joined legitimate-record-to-consumption theorem remain open. SHA resistance and trusted on-chip state are assumptions. |
+
+For the current variant sources, use the authentication/access package below.
+The standalone `formal/kv-integrity` replay pins a separate source snapshot;
+its source checks reject the current variant tree where those hashes differ.
+Do not substitute current source hashes into that recorded proof. Its
+221/325/34 counts and the current 357-assertion scope are not interchangeable.
+
+The current parent and attention proofs leave their respective interface inputs
+free. Their source connections support separate scoped facts, while the written
+join from original guard tickets through complete rows to consumption remains
+open. Pending on-chip rows need their own provenance case because they do not
+perform guard reads. These limits also apply when reading broader wording in
+the component guides.
 
 The [current authentication/access evidence and reproduction guide](formal/authentication-access/README.md)
 states the actual source/image joins, proof boundaries, semantic fault controls
@@ -461,8 +474,8 @@ The selected greedy-source records retain these scoped results:
 | Design | Checked source scope | Boundary |
 | --- | --- | --- |
 | Baseline | 34 attention-controller assertions; 72 recorded query checks | Child arithmetic and memory replies remain unrestricted at the listed outputs. No numerical-attention or concrete-memory composition theorem. |
-| K/V-protected | Current joint guard/cache proof: 357 assertions; actual hash and separate 34-assertion attention use composed through checked source connections | Cryptographic resistance and trusted on-chip state are assumptions. No whole-machine numerical refinement. |
-| K/V protection and encrypted memory | Native encrypted guard/current cache: 357 assertions; actual hash and separate 34-assertion attention use composed | That authentication/access scope abstracts decryption. The separate normal-return proof below checks K/V data values; confidentiality and numerical attention remain outside it. |
+| K/V-protected | Current guard/cache: 357 assertions; actual hash/framing and separate 34-assertion attention capture/pin scopes | Cryptographic resistance and trusted on-chip state are assumptions. The V aligner identity and joined guard-to-consumer theorem remain open; no whole-machine numerical refinement. |
+| K/V protection and encrypted memory | Native encrypted guard/current cache: 357 assertions; actual hash/framing and separate 34-assertion attention capture/pin scopes | That authentication/access scope abstracts decryption. The separate normal-return proof checks K/V values under its contracts; V aligner identity, the joined consumer theorem, confidentiality and numerical attention remain separate. |
 
 Counts are nonadditive. The [qualification guide](GREEDY-QUALIFICATION.md)
 identifies the exact source associations and recorded solver/audit results.

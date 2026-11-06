@@ -35,7 +35,15 @@ it to the F2 host using your usual authenticated connection. Do not upload
 credentials or private keys to this repository.
 
 On the Linux F2 host, install the AWS SDK, a C++17 compiler, `make`, and
-OpenSSL development headers, then source the SDK and build the exact client:
+OpenSSL development headers. For a new AWS dependency checkout, use its pinned
+revision (do not switch an existing checkout with local changes):
+
+```sh
+git clone https://github.com/aws/aws-fpga.git /path/to/aws-fpga
+git -C /path/to/aws-fpga checkout b603a81f65666e0cf7a67ee5cf18b148eb6b08c3
+```
+
+Then source the SDK and build the exact client:
 
 ```sh
 cd /path/to/aws-fpga
@@ -76,9 +84,13 @@ generation command returns raw token IDs and timings. This candidate does
 not yet include an 8B browser interface. The C++ client performs no inference;
 the FPGA produces the output IDs.
 
-The full model upload is a separate startup cost. A fresh configuration is
-required for another complete upload. `CLEAR` resets the conversation, not
-the fixed model. Do not use multiple clients on the same slot concurrently.
+The full model upload is a separate startup cost. Use a fresh configuration for
+the documented repeat-upload procedure. `CLEAR` resets the conversation, not
+the fixed model. This procedure is not a hardware-enforced minimum reload
+cost: the packaged [lifecycle source](hardware/design/qwen_aws_lifecycle.sv)
+also resets the machine through function-level reset (FLR). FLR/reload behavior
+is not separately qualified by the installation rehearsal. Do not use multiple
+clients on the same slot concurrently.
 
 When finished, stop the EC2 instance and check its state. Closing an app or
 SSH session does not stop billing; retained storage can incur charges too.

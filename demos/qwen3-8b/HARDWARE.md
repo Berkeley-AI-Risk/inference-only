@@ -20,7 +20,15 @@ floating-point inference. Embeddings and the output projection are distinct.
 
 HBM holds weights and K/V. Weight pages are read into private storage,
 authenticated against fixed expected digests, and retained for consumption.
-The datapath consumes the verified copy, not a second unchecked memory read.
+By source inspection, the intended datapath consumes the verified copy rather
+than issuing a second unchecked memory read. End-to-end authenticated operand
+admission, selection and use have not been formally established for this 8B
+reader and core; the 1.7B component results do not qualify them.
+The [reader](hardware/design/qwen_model_reader.sv) installs authenticated output
+in private cache banks and publishes completed pages; the
+[parent queue](hardware/design/qwen_model_verified_machine.sv) forwards those
+private responses to the token machine. Joining this path to the core's
+actual scalar selections and consumers remains an open obligation.
 The core, memory interface and host interface are separate clock domains,
 at 100, 125 and 250 MHz respectively. The clock-crossing and reset logic is
 part of the design, not an assumption that all interfaces share one clock.
@@ -123,6 +131,14 @@ the measured routed checkpoint and the accompanying reports. For that build,
 setup slack was +0.001 ns and hold slack +0.007 ns, with no routing errors.
 Some vendor-shell and reset/clock-crossing findings require scoped review;
 the reports are not a blanket statement that every warning disappeared.
+
+<!-- BEGIN GENERATED QWEN CDC DISCLOSURE -->
+The [CDC report](evidence/implementation/cdc.rpt) retains **39 critical
+findings** in its summary (`CDC-1`: 1, `CDC-7`: 1, `CDC-10`: 35, `CDC-13`: 2).
+These are reported finding counts, not a count of proved functional
+failures. Per-finding disposition and whole-path reset/CDC qualification
+remain open; positive setup/hold slack does not discharge them.
+<!-- END GENERATED QWEN CDC DISCLOSURE -->
 
 Creating an AWS image from a rebuild requires the vendor packaging and image
 acceptance workflow and a new hardware correctness test. The public image in

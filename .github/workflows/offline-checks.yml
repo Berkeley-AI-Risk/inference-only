@@ -107,6 +107,15 @@ jobs:
         # any current circuit. Current-design proof bindings are checked below.
         working-directory: demos/simplestories-v2-5m
         run: python -I -S -B -m unittest discover -s formal/kv-integrity -p test_contract_auditor.py -v
+      - name: Check Qwen disclosure, campaign and component harness helpers
+        run: |
+          python -I -S -B tools/check_qwen_disclosures.py
+          python -I -S -B tools/test_qwen_disclosures.py
+          python -I -S -B tools/test_qwen8b_training_capacity.py
+          python -I -S -B demos/qwen3-8b/tools/test_reference_campaign.py
+          python -I -S -B demos/qwen3-8b/tests/rtl/test_runner.py
+          python -I -S -B demos/qwen3-8b/tests/rtl/test_norm_runner.py
+          python -I -S -B demos/qwen3-8b/reference/run_campaign.py --check-record demos/qwen3-8b/evidence/software-campaign-2026-11-05/result.json
       - name: Check selected documentation links
         run: python -I -S -B tools/check_release_hygiene.py --root . --contract tools/release-contract.json --output "$RUNNER_TEMP/release-links.json" --links-only --fail-on-findings
       - name: Confirm that the checks left the release unchanged

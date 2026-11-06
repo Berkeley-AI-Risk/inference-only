@@ -32,6 +32,9 @@ Weights and K/V are stored in HBM. Hardware owns the inference schedule and
 intermediate addresses. Startup checks the complete fixed model image;
 runtime page authentication checks weights before using their private on-chip
 copies. Authentication is not bypassed to obtain these measurements.
+The [checked-copy path](HARDWARE.md#organization) is supported by source
+inspection, not a formal proof that every actual operand admission and use
+has the intended authenticated provenance.
 
 The accepted model image is 8,828,026,880 bytes, with SHA-256:
 
@@ -41,14 +44,17 @@ a1e8a91912dfa79fb602601e256a4a07da64c57dda146529c08886532d42f833
 
 There is no secret authentication key or manufacturer model-update command.
 This version does not authenticate K/V or encrypt weights.
+Modification of K/V and observation of later writes under physical possession
+have not been assessed for this 8B implementation. A restricted host command
+interface is not evidence that this external-memory path is harmless.
 
 ## Inference-only scope
 
 The application operations are `APPEND(token)`, `STEP` and `CLEAR`.
 The application does not submit matrix operands, operator programs, tensor
 addresses or replacement model weights. A restricted startup loader, status
-registers and an attention-control diagnostic are separate engineering
-facilities, not additional inference operations.
+registers and the source-level management display below are separate
+engineering facilities, not additional inference operations.
 
 The assessment assumes a frozen FPGA configuration or an eventual fixed ASIC.
 It does not call the AWS host or reprogrammable management platform
@@ -56,6 +62,32 @@ inference-only. External-memory access, diagnostic/test interfaces and physical
 tampering need their own assessment. No whole-machine formal refinement proof,
 physical-tampering certification or measured residual training fraction is
 claimed for this 8B implementation.
+
+<!-- BEGIN GENERATED QWEN MANAGEMENT DISPLAY -->
+### Management display
+
+The [packaged top-level RTL](hardware/design/cl_qwen.sv) drives
+`cl_sh_status_vled` from this 16-bit management display, sampled on
+`clk_main_a0` with synchronous reset to zero:
+
+| Bits | Source |
+| --- | --- |
+| `15:12` | `lifecycle_error_code` |
+| `11:8` | `clock_error_code` |
+| `7:6` | `2'b0` |
+| `5` | `clock_failed` |
+| `4` | `pcis_guard_error` |
+| `3` | `hbm_ready` |
+| `2` | `clock_ready` |
+| `1` | `lifecycle_failed` |
+| `0` | `online` |
+
+This expression contains lifecycle, clock, HBM and error status, not
+attention-control state or arithmetic results. It is observable status
+beyond returned tokens. This is a source-wiring statement: correspondence
+of this display to the published routed checkpoint remains unverified.
+It is not a complete test/debug or physical-access assessment.
+<!-- END GENERATED QWEN MANAGEMENT DISPLAY -->
 
 ## Measured performance
 
@@ -152,4 +184,6 @@ python3.12 tools/check_package.py
 
 The [shared residual-training assessment](../../TRAINING-CAPACITY.md#model-assessments)
 groups the model assessments and [methodology](../../docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md).
-A model-specific residual-training assessment for Qwen3-8B has not been completed.
+The [conditional arithmetic accounting](TRAINING-CAPACITY.md) provides a reproducible
+inventory and workload calculator. An 8B H100 reference, achieved useful access
+and a certified residual-training factor remain unestablished.

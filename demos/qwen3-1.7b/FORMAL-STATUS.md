@@ -33,9 +33,12 @@ The target is that the configured circuit's observable behavior refines this
 abstract interface under its declared environment contracts. Invalid commands,
 backpressure, faults, cancellation and commands issued while busy must have
 specified rejection, waiting or error behavior. Restricted fixed-model startup
-provisioning, status registers and the 16-bit attention-status diagnostic are
+provisioning, status registers and the source-level 16-bit management display are
 also explicit parts of the interface; the complete engineering image has
 facilities beyond the three normal inference operations.
+The [display wiring](README.md#management-display) carries lifecycle, clock,
+HBM and error flags, not attention-control state. Its correspondence to the
+published routed checkpoint remains unverified.
 
 `CLEAR` concerns logical state ownership and later inference: previous tape
 contents and derived context must not be used after a completed clear. It does

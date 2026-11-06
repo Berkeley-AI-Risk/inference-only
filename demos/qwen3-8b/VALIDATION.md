@@ -37,3 +37,12 @@ attest the FPGA currently loaded in another machine. The
 
 [REPRODUCE.md](REPRODUCE.md) separates offline record checks, fresh numerical
 reference execution, hardware tests and source rebuilding.
+
+## Local software and component checks
+
+The [recorded CPU campaign](evidence/software-campaign-2026-11-05/README.md) matches
+197 token IDs across three prompts with the complete fixed numerical engine.
+The [dot-product/scale](tests/rtl/README.md) and [RMSNorm](tests/rtl/RMSNORM.md)
+harnesses add finite component arithmetic and local protocol regressions. These
+checks do not establish whole-core RTL equivalence, CDC closure, FPGA timing or
+a hardware speed measurement.

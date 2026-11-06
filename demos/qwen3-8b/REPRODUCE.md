@@ -16,6 +16,7 @@ Run from the repository root:
 python3.12 -I -S -B tools/verify_release.py --strict
 python3.12 -I -S -B demos/qwen3-8b/tools/check_measurements.py
 python3.12 -I -S -B demos/qwen3-8b/tools/check_package.py
+python3.12 -I -S -B tools/check_qwen_disclosures.py
 python3.12 -I -S -B tools/fpga_speed_benchmark.py --check
 ```
 
@@ -23,6 +24,9 @@ These checks use the supplied files and recorded observations. They do not
 contact AWS, run a model, execute a solver or access an FPGA. `--strict` rejects
 unlisted files; on a working copy with environments or generated outputs, omit
 that flag rather than deleting local work to satisfy the clean-release check.
+The disclosure checker binds the management-display description to the frozen
+top-level source and the critical-CDC counts to the packaged report. It does
+not inspect a routed checkpoint, attest a loaded FPGA or prove operand use.
 
 ## Reconstruct the model and run a fresh reference
 
@@ -61,3 +65,11 @@ reports, create its independently identified image through the AWS workflow,
 and repeat numerical hardware tests. The released image's measurements do not
 qualify another build. Formal proof work is separate from these reproduction
 steps; SimpleStories' proofs do not qualify Qwen.
+
+## Local numerical reproduction
+
+The [CPU campaign guide](reference/CAMPAIGNS.md) runs the fixed numerical reference
+and compares token IDs for the three recorded prompts. Its
+[197-output software result](evidence/software-campaign-2026-11-05/README.md) is a finite
+CPU check, separate from FPGA validation. The [component harnesses](tests/rtl/README.md)
+and [RMSNorm harness](tests/rtl/RMSNORM.md) describe local arithmetic/protocol cases.

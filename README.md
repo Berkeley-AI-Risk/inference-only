@@ -226,7 +226,7 @@ Start with the guide for [SimpleStories on Tang Mega](demos/simplestories-v2-5m/
 | Subject | Documentation |
 | --- | --- |
 | Residual training assessment and model comparison | [Overview](TRAINING-CAPACITY.md), [methodology](docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md), [architecture and workload analysis](docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md) |
-| Model training-capacity assessments | [SimpleStories](demos/simplestories-v2-5m/TRAINING-CAPACITY.md), [Qwen3-1.7B](demos/qwen3-1.7b/TRAINING-CAPACITY.md), [Qwen3-8B status](demos/qwen3-8b/README.md#analysis) |
+| Model training-capacity assessments | [SimpleStories](demos/simplestories-v2-5m/TRAINING-CAPACITY.md), [Qwen3-1.7B](demos/qwen3-1.7b/TRAINING-CAPACITY.md), [Qwen3-8B conditional accounting](demos/qwen3-8b/TRAINING-CAPACITY.md) |
 | FPGA speed comparison | [Common workload, timing and recorded results](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) |
 | GPU reference measurements | [H100 benchmarks and reproduction](docs/benchmarks/H100-BENCHMARK.md) |
 

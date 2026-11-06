@@ -16,7 +16,7 @@ The assessment concerns this frozen inference circuit or an eventual fixed ASIC.
 | Physical access to external memory | Unauthenticated K/V can potentially be changed and later K/V writes observed. Q and softmax operands remain circuit-derived; downstream observations transform products. Whether these paths enable useful general arithmetic is unresolved. |
 | Internal faults or physical changes | May defeat ownership, checks or schedule restrictions. Every-cycle allowances below assume the required useful access succeeds; they do not establish a feasible modification or success rate. |
 
-Diagnostic exposure also needs reconciliation. The README describes a 16-bit attention-control diagnostic; the [packaged top-level source](hardware/design/cl_qwen.sv) instead assigns its 16-bit management display from lifecycle, clock, HBM and error flags. Source inspection alone does not resolve a possible checkpoint overlay. Carry this as an audit item rather than assuming either a token-only observation boundary or a tensor readout.
+The [management-display disclosure](README.md#management-display) now follows the packaged top-level source: its sixteen bits carry lifecycle, clock, HBM and error flags, not attention-control state. Correspondence of this display to the published routed checkpoint remains unverified. Do not assume either a token-only observation boundary or a tensor readout from that unresolved image-level item.
 
 ## Arithmetic inventory
 

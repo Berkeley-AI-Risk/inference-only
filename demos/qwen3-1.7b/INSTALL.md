@@ -109,8 +109,12 @@ sudo host/qwen_host --slot 0 clear
 The client verifies the image hash before starting an upload; hardware checks
 the received fixed image independently. Upload is a startup operation, not
 part of the reported token-generation latency. The client reports upload
-progress and waits for model readiness. A fresh FPGA load is required before
-another complete startup upload; `CLEAR` clears the token tape, not the weights.
+progress and waits for model readiness. Use a fresh FPGA load for the documented
+repeat-upload procedure; `CLEAR` clears the token tape, not the weights.
+This procedure is not a hardware-enforced minimum reload cost: the packaged
+[lifecycle source](hardware/design/qwen_aws_lifecycle.sv) also resets the machine
+through function-level reset (FLR). FLR/reload behavior is not separately
+qualified by the installation rehearsal.
 
 The self-test starts with CLEAR and must return tokens **25, 358, 1184**
 after appending token **9707**; the next command clears the completed test tape.

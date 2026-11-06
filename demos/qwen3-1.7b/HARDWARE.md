@@ -26,7 +26,10 @@ APPEND, STEP and CLEAR, with an exclusive slot lock; it performs tokenization
 and presentation, not inference. Host-side end-marker stopping changes the
 number of STEPs issued, not the circuit's greedy numerical rule.
 The [interface assessment](README.md#interface-and-inference-only-scope)
-also discloses status registers and the 16-bit attention-state diagnostic.
+also discloses status registers and the source-level
+[management display](README.md#management-display). A routed-image check of
+that display remains open; the top-level source does not expose the previously
+described attention-state readout through this output.
 
 ### Detailed hardware diagram
 
@@ -101,6 +104,14 @@ and functional reset timing. The
 [payload memory timing](evidence/implementation/payload-retained-timing.tsv)
 reports document those checks. This is not production ASIC signoff or a
 whole-machine formal proof.
+
+<!-- BEGIN GENERATED QWEN CDC DISCLOSURE -->
+The [CDC report](evidence/implementation/cdc.rpt) retains **39 critical
+findings** in its summary (`CDC-1`: 1, `CDC-7`: 1, `CDC-10`: 35, `CDC-13`: 2).
+These are reported finding counts, not a count of proved functional
+failures. Per-finding disposition and whole-path reset/CDC qualification
+remain open; positive setup/hold slack does not discharge them.
+<!-- END GENERATED QWEN CDC DISCLOSURE -->
 
 ## Rebuild from source
 
