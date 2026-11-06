@@ -203,9 +203,7 @@ measurements above.
 A secondary goal is an experiment in AI capabilities in chip design.
 **GPT 5.6 Sol, GPT 6 Astra, and GPT 6.1 Sol wrote the custom RTL, implementation code,
 verification and host tools, and the documentation**, under the project owner's
-direction. Incorporated review feedback for the Tang Mega work came from
-**Fable 5.1 and Opus 5.5**, including Fable's suggestion to separate fast DDR
-transport from slower inference control.
+direction. Incorporated review feedback came from **Fable 5.1 and Opus 5.5**.
 
 Hardware is primarily SystemVerilog/Verilog; numerical references and tests
 use Python and C++; host software uses Python and C++; implementation flows
