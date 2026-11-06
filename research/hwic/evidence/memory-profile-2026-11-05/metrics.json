@@ -1,0 +1,568 @@
+{
+  "ASIC_qualified": false,
+  "ASIC_tokens_per_second": null,
+  "H100_reference": {
+    "aggregate_fixed_context_evaluations_per_second": 2951332.875,
+    "batch": 32768,
+    "context": 128,
+    "historical_FP16_batch_one_compiled_fixed_context_evaluations_per_second": 6512.74602819,
+    "historical_software": "Transformers4.48.3",
+    "matched_current_HWIC_generation_or_quantized_function": false,
+    "report": "../../../../docs/benchmarks/H100-BENCHMARK.md",
+    "scope": "Repeated cached fixed-context evaluations; aggregate and batch-one are different metrics. Historical batch-one is not an autoregressive continuation or bit-exact HWIC comparison.",
+    "software": "Transformers5.17.0"
+  },
+  "HBM_required": null,
+  "accounting": {
+    "CPU_seconds_for_analysis": null,
+    "local_energy_USD": null,
+    "new_EDA_simulation_model_build_cloud_jobs": 0,
+    "new_paid_service_charges_USD": 0,
+    "provider_billing_USD": null,
+    "provider_tokens": null,
+    "total_research_cost_USD": null
+  },
+  "achieved_full_chip_clock_Hz": null,
+  "arithmetic": "W10/A16/KV16 BFP-v5; unchanged accepted integrated numerical function",
+  "assumed_clock_Hz_for_sensitivity_only": 500000000,
+  "configured_context_capacity": 2048,
+  "contexts": [
+    1,
+    128,
+    2048
+  ],
+  "current_measured_max_context": 16,
+  "derived": {
+    "KV_bytes_at_configured_capacity": 7077888,
+    "KV_depth_words256": 221184,
+    "SRAM_geometry_tiling": [
+      {
+        "allocated_bits": 56623104,
+        "depth_banks": 27,
+        "id": "IHP-SG13G2-8192x32",
+        "instances": 216,
+        "macro_rectangles_only_mm2": 203.021624448,
+        "parallel_width_tiles": 8
+      },
+      {
+        "allocated_bits": 56623104,
+        "depth_banks": 108,
+        "id": "IHP-SG13G2-2048x64-BIST",
+        "instances": 432,
+        "macro_rectangles_only_mm2": 212.385722112,
+        "parallel_width_tiles": 4
+      },
+      {
+        "allocated_bits": 56623104,
+        "depth_banks": 432,
+        "id": "GF180MCU-512x8",
+        "instances": 13824,
+        "macro_rectangles_only_mm2": 2894.7494264832,
+        "parallel_width_tiles": 32
+      },
+      {
+        "allocated_bits": 56623104,
+        "depth_banks": 27,
+        "id": "ChipFoundry-listed-8192x32",
+        "instances": 216,
+        "macro_rectangles_only_mm2": 289.44,
+        "parallel_width_tiles": 8
+      }
+    ],
+    "aggregate_reference_context128_current_schedule_read_Bps_scenario": 3598265041200.0,
+    "aggregate_reference_context128_required_port_equivalents_scenario": 224.891565075,
+    "assumed_single_port_payload_Bps": 16000000000,
+    "central_ROM_bytes": 7245312,
+    "central_ROM_plus_KV_MiB": 13.65966796875,
+    "central_ROM_plus_KV_bytes": 14323200,
+    "clean_context1_active_family_percent": {
+      "GATE_UP_DOWN_projections": 24.332908416463177,
+      "KV_stage_commit": 0.6557910269993614,
+      "QKVO_projections": 13.032591044219258,
+      "RoPE": 8.282769820219507,
+      "SiLU_times_UP": 1.0547186101630868,
+      "attention_including_softmax_normalization_KV_reads": 24.890402538977952,
+      "head_including_projection_argmax": 8.536284951007005,
+      "layer_RMS": 14.054304854336424,
+      "residual_elementwise": 5.160228737614231
+    },
+    "clean_workload_SiLU_UP_percent_range": [
+      0.9029733622858126,
+      1.0456770383391203
+    ],
+    "clean_workload_attention_percent_range": [
+      25.534279316697873,
+      36.739187407609
+    ],
+    "context1_zero_projection_service_active_speedup_scenario": 1.596564180107527,
+    "context1_zero_projection_service_full_counter_speedup_scenario": 1.580975401149062,
+    "context_scorecard": [
+      {
+        "conditional_active_work_floor_clocks": 388881,
+        "conditional_floor_scope": "Counts only serialized QK/AV coordinate work and fixed46-iteration divider busy clocks, then adds measured invariant non-attention stages. Omits attention cache/query/control/shift/normalization/output work. Not an achieved performance projection or proven all-input full-model timing bound; conditional source-schedule analysis only.",
+        "context": 1,
+        "logical_KV_read_bytes_per_step": 0,
+        "logical_KV_read_words256_per_step": 0,
+        "logical_KV_write_bytes_per_step": 3456,
+        "measured_current_full_model_cycles": 425148,
+        "serial_attention_inner_work_clocks": 74832,
+        "stored_KV_bytes_at_active_context": 3456
+      },
+      {
+        "conditional_active_work_floor_clocks": 919233,
+        "conditional_floor_scope": "Counts only serialized QK/AV coordinate work and fixed46-iteration divider busy clocks, then adds measured invariant non-attention stages. Omits attention cache/query/control/shift/normalization/output work. Not an achieved performance projection or proven all-input full-model timing bound; conditional source-schedule analysis only.",
+        "context": 128,
+        "logical_KV_read_bytes_per_step": 1219200,
+        "logical_KV_read_words256_per_step": 38100,
+        "logical_KV_write_bytes_per_step": 3456,
+        "measured_current_full_model_cycles": null,
+        "serial_attention_inner_work_clocks": 605184,
+        "stored_KV_bytes_at_active_context": 442368,
+        "unvalidated_sensitivity_harness_cycles": [
+          1442410,
+          1967682
+        ]
+      },
+      {
+        "conditional_active_work_floor_clocks": 8937153,
+        "conditional_floor_scope": "Counts only serialized QK/AV coordinate work and fixed46-iteration divider busy clocks, then adds measured invariant non-attention stages. Omits attention cache/query/control/shift/normalization/output work. Not an achieved performance projection or proven all-input full-model timing bound; conditional source-schedule analysis only.",
+        "context": 2048,
+        "logical_KV_read_bytes_per_step": 19651200,
+        "logical_KV_read_words256_per_step": 614100,
+        "logical_KV_write_bytes_per_step": 3456,
+        "measured_current_full_model_cycles": null,
+        "serial_attention_inner_work_clocks": 8623104,
+        "stored_KV_bytes_at_active_context": 7077888,
+        "unvalidated_sensitivity_harness_cycles": [
+          16821610,
+          25288002
+        ]
+      }
+    ]
+  },
+  "full_chip_area_mm2": null,
+  "interfaces": {
+    "KV": "One synchronous256-bit read OR write request stream. Accepted write retires without response; read response is held. No bulk data reset; CLEAR revokes committed ownership.",
+    "ROM16_alternative": "16 concurrent64x640 fixed-ROM reads for the query block. Not an additional memory in the accepted integrated grouped candidate.",
+    "SiLU": "16 parallel combinational fixed table functions; one shared stage across six layers, not96 copies.",
+    "central_ROM": "One held ready/valid synchronous read stream;640-bit weight or zero-extended256-bit misc response; immutable payload and no write port.",
+    "scratch": "Separate1R1W and16-bank scratch, shared wide normalizers, FIFOs and parallel accumulator/cut registers need their own port/latency mapping; not a uniform one-port SRAM pool."
+  },
+  "model": "SimpleStories-V2-5M",
+  "process_screen": {
+    "IHP_exact_view_identities": [
+      {
+        "area_um2": 491633.61600000004,
+        "bytes": 248019,
+        "git_blob_sha1": "572918707cca76c3146c3e2007fadc83456abb7e",
+        "git_blob_verified": true,
+        "height_um": 626.7,
+        "name": "RM_IHPSG13_1P_2048x64_c2_bm_bist.lef",
+        "url": "https://raw.githubusercontent.com/IHP-GmbH/IHP-Open-PDK/5e6d592e4002946a4616f798c357f0f3c06cf3b6/ihp-sg13g2/libs.ref/sg13g2_sram/lef/RM_IHPSG13_1P_2048x64_c2_bm_bist.lef",
+        "width_um": 784.48
+      },
+      {
+        "area_um2": 939914.928,
+        "bytes": 227815,
+        "git_blob_sha1": "a08f1bc1ba64a34f0836e9a0ba164b34a65a3a23",
+        "git_blob_verified": true,
+        "height_um": 618.3,
+        "name": "RM_IHPSG13_1P_8192x32_c4.lef",
+        "url": "https://raw.githubusercontent.com/IHP-GmbH/IHP-Open-PDK/5e6d592e4002946a4616f798c357f0f3c06cf3b6/ihp-sg13g2/libs.ref/sg13g2_sram/lef/RM_IHPSG13_1P_8192x32_c4.lef",
+        "width_um": 1520.16
+      },
+      {
+        "area_um2": 491633.616,
+        "bytes": 49374,
+        "clock_to_Q_table_values": 84,
+        "git_blob_sha1": "d90cb793fe96af9c73fd22ef2425b5c41632a1ff",
+        "git_blob_verified": true,
+        "maximum_clock_to_Q_ns": 9.2941,
+        "minimum_clock_to_Q_ns": 8.8843,
+        "name": "RM_IHPSG13_1P_2048x64_c2_bm_bist_slow_1p08V_125C.lib",
+        "nom_temperature": 125,
+        "nom_voltage": 1.08,
+        "time_unit": "1ns",
+        "url": "https://raw.githubusercontent.com/IHP-GmbH/IHP-Open-PDK/5e6d592e4002946a4616f798c357f0f3c06cf3b6/ihp-sg13g2/libs.ref/sg13g2_sram/lib/RM_IHPSG13_1P_2048x64_c2_bm_bist_slow_1p08V_125C.lib"
+      },
+      {
+        "area_um2": 491633.616,
+        "bytes": 49363,
+        "clock_to_Q_table_values": 84,
+        "git_blob_sha1": "356aeced2e73b43f1e9e7ed45d1a890e4cae2123",
+        "git_blob_verified": true,
+        "maximum_clock_to_Q_ns": 5.5958,
+        "minimum_clock_to_Q_ns": 5.3319,
+        "name": "RM_IHPSG13_1P_2048x64_c2_bm_bist_typ_1p20V_25C.lib",
+        "nom_temperature": 25,
+        "nom_voltage": 1.2,
+        "time_unit": "1ns",
+        "url": "https://raw.githubusercontent.com/IHP-GmbH/IHP-Open-PDK/5e6d592e4002946a4616f798c357f0f3c06cf3b6/ihp-sg13g2/libs.ref/sg13g2_sram/lib/RM_IHPSG13_1P_2048x64_c2_bm_bist_typ_1p20V_25C.lib"
+      },
+      {
+        "area_um2": 939914.928,
+        "bytes": 24704,
+        "clock_to_Q_table_values": 84,
+        "git_blob_sha1": "5bf7026180a4b566d6ca579e20f51a4ed4f12d43",
+        "git_blob_verified": true,
+        "maximum_clock_to_Q_ns": 9.6611,
+        "minimum_clock_to_Q_ns": 9.2587,
+        "name": "RM_IHPSG13_1P_8192x32_c4_slow_1p08V_125C.lib",
+        "nom_temperature": 125,
+        "nom_voltage": 1.08,
+        "time_unit": "1ns",
+        "url": "https://raw.githubusercontent.com/IHP-GmbH/IHP-Open-PDK/5e6d592e4002946a4616f798c357f0f3c06cf3b6/ihp-sg13g2/libs.ref/sg13g2_sram/lib/RM_IHPSG13_1P_8192x32_c4_slow_1p08V_125C.lib"
+      },
+      {
+        "area_um2": 939914.928,
+        "bytes": 24695,
+        "clock_to_Q_table_values": 84,
+        "git_blob_sha1": "dd68126139cbdbd5e2f1b12909b9dc0bafaf834b",
+        "git_blob_verified": true,
+        "maximum_clock_to_Q_ns": 5.8048,
+        "minimum_clock_to_Q_ns": 5.5345,
+        "name": "RM_IHPSG13_1P_8192x32_c4_typ_1p20V_25C.lib",
+        "nom_temperature": 25,
+        "nom_voltage": 1.2,
+        "time_unit": "1ns",
+        "url": "https://raw.githubusercontent.com/IHP-GmbH/IHP-Open-PDK/5e6d592e4002946a4616f798c357f0f3c06cf3b6/ihp-sg13g2/libs.ref/sg13g2_sram/lib/RM_IHPSG13_1P_8192x32_c4_typ_1p20V_25C.lib"
+      }
+    ],
+    "IHP_open_release": "Preview/alpha; no production qualification claimed.",
+    "IHP_repository_commit": "5e6d592e4002946a4616f798c357f0f3c06cf3b6",
+    "SRAM_geometry_examples": [
+      {
+        "SS_clock_to_Q_table_ns": [
+          9.2587,
+          9.6611
+        ],
+        "TT_clock_to_Q_table_ns": [
+          5.5345,
+          5.8048
+        ],
+        "area_source": "pinned LEF",
+        "area_um2": "939914.928",
+        "depth": 8192,
+        "id": "IHP-SG13G2-8192x32",
+        "ports": "one synchronous read OR write",
+        "width_bits": 32
+      },
+      {
+        "SS_clock_to_Q_table_ns": [
+          8.8843,
+          9.2941
+        ],
+        "TT_clock_to_Q_table_ns": [
+          5.3319,
+          5.5958
+        ],
+        "area_source": "pinned LEF",
+        "area_um2": "491633.616",
+        "depth": 2048,
+        "id": "IHP-SG13G2-2048x64-BIST",
+        "ports": "one synchronous read OR write; BIST wrapper",
+        "width_bits": 64
+      },
+      {
+        "SS_1p62V_125C_minimum_period_ns": 56.5713,
+        "TT_1p8V_minimum_period_ns": 23.5606,
+        "area_source": "431.86um x484.88um in official datasheet",
+        "area_um2": "209400.2768",
+        "depth": 512,
+        "id": "GF180MCU-512x8",
+        "ports": "one synchronous read OR write",
+        "width_bits": 8
+      },
+      {
+        "area_source": "vendor quoted 1.34mm2 per32KiB",
+        "area_um2": "1340000",
+        "depth": 8192,
+        "id": "ChipFoundry-listed-8192x32",
+        "ports": "Wishbone-wrapped offering; raw physical port not qualified here",
+        "timing_unknown": true,
+        "width_bits": 32
+      }
+    ],
+    "commercial_common_process_catalog_example": {
+      "ROM": "https://www.synopsys.com/dw/ipdir.php?c=dwc_comp_ts28nph41p10asdvl01ms",
+      "SRAM": "https://www.synopsys.com/dw/ipdir.php?c=dwc_comp_ts28nph41p11sassl01ms",
+      "process": "TSMC28HPC+",
+      "status": "Public catalog lists same-process via-ROM and SRAM families; actual legal geometries, generated views, timing, licenses and pricing are unavailable to this study. No access, contact or fit claim."
+    },
+    "complete_local_same_process_ROM_SRAM_views_qualified": false,
+    "scope": "Screened public views and catalog entries, not a selected foundry/library or full-chip layout. Macro-rectangle tiling excludes glue, halos, ECC/repair, logic, clocks, PDN and IO. SRAM is volatile and cannot replace immutable weights without changing the HWIC architecture."
+  },
+  "profile": {
+    "accounting_gap_cycles": 0,
+    "attention_substate_split_measured": false,
+    "case_counter_summaries": [
+      {
+        "E_IDLE_cycles": 25200,
+        "active_cycles": 1265209,
+        "clean_performance_case": true,
+        "disjoint_family_cycles": {
+          "GATE_UP_DOWN_projections": 305223,
+          "KV_stage_commit": 8226,
+          "QKVO_projections": 163476,
+          "RoPE": 103896,
+          "SiLU_times_UP": 13230,
+          "attention_including_softmax_normalization_KV_reads": 323062,
+          "head_including_projection_argmax": 107076,
+          "layer_RMS": 176292,
+          "residual_elementwise": 64728
+        },
+        "final_test_wait_cycles": 32,
+        "full_harness_cycles": 1290441,
+        "last_profiled_cycles": 1290409,
+        "log_bytes": 21229,
+        "log_sha256": "6d81add1f53e23debd59bfdc7f636d9dd176852885e4e89501cc651e4849f500",
+        "name": "admission",
+        "token_outputs": 3
+      },
+      {
+        "E_IDLE_cycles": 126358,
+        "active_cycles": 8790957,
+        "clean_performance_case": true,
+        "disjoint_family_cycles": {
+          "GATE_UP_DOWN_projections": 1831338,
+          "KV_stage_commit": 49356,
+          "QKVO_projections": 980856,
+          "RoPE": 623376,
+          "SiLU_times_UP": 79380,
+          "attention_including_softmax_normalization_KV_reads": 3138075,
+          "head_including_projection_argmax": 642456,
+          "layer_RMS": 1057752,
+          "residual_elementwise": 388368
+        },
+        "final_test_wait_cycles": 32,
+        "full_harness_cycles": 8917347,
+        "last_profiled_cycles": 8917315,
+        "log_bytes": 96707,
+        "log_sha256": "00327cb838f27c708a17652989ce2906cbfa5aab2258a5cb59630a414a18be74",
+        "name": "around",
+        "token_outputs": 18
+      },
+      {
+        "E_IDLE_cycles": 28208,
+        "active_cycles": 1683330,
+        "clean_performance_case": false,
+        "disjoint_family_cycles": {
+          "GATE_UP_DOWN_projections": 406964,
+          "KV_stage_commit": 10968,
+          "QKVO_projections": 217968,
+          "RoPE": 138528,
+          "SiLU_times_UP": 17640,
+          "attention_including_softmax_normalization_KV_reads": 427134,
+          "head_including_projection_argmax": 142768,
+          "layer_RMS": 235056,
+          "residual_elementwise": 86304
+        },
+        "final_test_wait_cycles": 32,
+        "full_harness_cycles": 1711570,
+        "last_profiled_cycles": 1711538,
+        "log_bytes": 21305,
+        "log_sha256": "5c2eff0d93c1875e0dd3a5bc37a9dfc11d6d37410d7cbe83fb6321a213089ae4",
+        "name": "cancel-held",
+        "token_outputs": 3
+      },
+      {
+        "E_IDLE_cycles": 36591,
+        "active_cycles": 2171678,
+        "clean_performance_case": false,
+        "disjoint_family_cycles": {
+          "GATE_UP_DOWN_projections": 508705,
+          "KV_stage_commit": 13973,
+          "QKVO_projections": 276159,
+          "RoPE": 178932,
+          "SiLU_times_UP": 22050,
+          "attention_including_softmax_normalization_KV_reads": 586802,
+          "head_including_projection_argmax": 178460,
+          "layer_RMS": 298717,
+          "residual_elementwise": 107880
+        },
+        "final_test_wait_cycles": 32,
+        "full_harness_cycles": 2208301,
+        "last_profiled_cycles": 2208269,
+        "log_bytes": 31219,
+        "log_sha256": "635afdb17d7c081e8e450cc4b79f851a8718f33060478588be2f905314927cef",
+        "name": "cancel-kv",
+        "token_outputs": 5
+      },
+      {
+        "E_IDLE_cycles": 35191,
+        "active_cycles": 2157047,
+        "clean_performance_case": false,
+        "disjoint_family_cycles": {
+          "GATE_UP_DOWN_projections": 508705,
+          "KV_stage_commit": 13710,
+          "QKVO_projections": 272460,
+          "RoPE": 173160,
+          "SiLU_times_UP": 22050,
+          "attention_including_softmax_normalization_KV_reads": 586802,
+          "head_including_projection_argmax": 178460,
+          "layer_RMS": 293820,
+          "residual_elementwise": 107880
+        },
+        "final_test_wait_cycles": 32,
+        "full_harness_cycles": 2192270,
+        "last_profiled_cycles": 2192238,
+        "log_bytes": 31202,
+        "log_sha256": "f3322263e07dc974f0d39a64693f29df309c625f1594ecc4ff7bf4ae361e508a",
+        "name": "cancel-model",
+        "token_outputs": 5
+      },
+      {
+        "E_IDLE_cycles": 99788,
+        "active_cycles": 11020416,
+        "clean_performance_case": true,
+        "disjoint_family_cycles": {
+          "GATE_UP_DOWN_projections": 2441784,
+          "KV_stage_commit": 65808,
+          "QKVO_projections": 1307808,
+          "RoPE": 831168,
+          "SiLU_times_UP": 105840,
+          "attention_including_softmax_normalization_KV_reads": 3982928,
+          "head_including_projection_argmax": 356920,
+          "layer_RMS": 1410336,
+          "residual_elementwise": 517824
+        },
+        "final_test_wait_cycles": 32,
+        "full_harness_cycles": 11120236,
+        "last_profiled_cycles": 11120204,
+        "log_bytes": 56866,
+        "log_sha256": "b831964f62c058651e026b339b5da3f42b4cf4dbb0906939f061a16e38532f27",
+        "name": "fox",
+        "token_outputs": 10
+      },
+      {
+        "E_IDLE_cycles": 96995,
+        "active_cycles": 11508156,
+        "clean_performance_case": true,
+        "disjoint_family_cycles": {
+          "GATE_UP_DOWN_projections": 2543525,
+          "KV_stage_commit": 68550,
+          "QKVO_projections": 1362300,
+          "RoPE": 865800,
+          "SiLU_times_UP": 110250,
+          "attention_including_softmax_normalization_KV_reads": 4228003,
+          "head_including_projection_argmax": 321228,
+          "layer_RMS": 1469100,
+          "residual_elementwise": 539400
+        },
+        "final_test_wait_cycles": 32,
+        "full_harness_cycles": 11605183,
+        "last_profiled_cycles": 11605151,
+        "log_bytes": 51841,
+        "log_sha256": "8d4a1e1198478b610c6c8d48dfdcb27300892928be127fd34ce660703badfde4",
+        "name": "moon",
+        "token_outputs": 9
+      }
+    ],
+    "clean_context1": {
+      "E_IDLE_cycles": 7027,
+      "active_cycles": 418121,
+      "case": "around",
+      "disjoint_family_cycles": {
+        "GATE_UP_DOWN_projections": 101741,
+        "KV_stage_commit": 2742,
+        "QKVO_projections": 54492,
+        "RoPE": 34632,
+        "SiLU_times_UP": 4410,
+        "attention_including_softmax_normalization_KV_reads": 104072,
+        "head_including_projection_argmax": 35692,
+        "layer_RMS": 58764,
+        "residual_elementwise": 21576
+      },
+      "harness_cycles": 425148
+    },
+    "conditional_floor_scope": "Counts only serialized QK/AV coordinate work and fixed46-iteration divider busy clocks, then adds measured invariant non-attention stages. Omits attention cache/query/control/shift/normalization/output work. Not an achieved performance projection or proven all-input full-model timing bound; conditional source-schedule analysis only.",
+    "image_sha256": "c2011f690769519a803d7e988413fa63a044b79e4515dc4da5b5e9e8db69f1f0",
+    "notes": [
+      "ENGINE and STAGE overlap; nested RMS/NORM/STREAM/JOB histograms must not be added.",
+      "First fox/moon output aggregates prefill; cancellation cases are excluded from performance ranges.",
+      "E_IDLE includes useful embedding and final-shell RMS as well as sequencing/test handshake work.",
+      "Long-context numerical cycles are not measured for this current candidate. Sensitivity scenarios are not bounds, confidence intervals or validated forecasts."
+    ],
+    "observed_adjacent_context_increment_envelope": [
+      8010,
+      12146
+    ],
+    "ordinary_E_IDLE_clocks": 7019,
+    "ordinary_nonattention_active_clocks": 314049,
+    "selected_source_pins_rechecked": 9,
+    "terminal_log_pins_rechecked": 7,
+    "token_checkpoints": 53
+  },
+  "provenance": {
+    "private_IHP_view_fact_record": {
+      "bytes": 4048,
+      "name": "PRIMARY-IHP-VIEW-FACTS.json",
+      "sha256": "658f1cc266039b223d26f41de411e0f3d44cc3ecc99946d2a7b476c97faeb3a5"
+    },
+    "private_memory_inventory": {
+      "bytes": 920259,
+      "name": "MEMORY-INVENTORY-v1.json",
+      "sha256": "a171aa7cbe3cb006c769d8edefa29ffcb4b9fc906e5867df007e6267ddfd0ed3"
+    },
+    "private_profile_record": {
+      "bytes": 179912,
+      "name": "CURRENT-PROFILE.json",
+      "sha256": "1f8ac5a5d51172671795df11b8d3e1fb59f77f38c805d9583f0b5c5294198555"
+    },
+    "public_integrated_record_sha256": "78a1663d66bbe8dc2b578a440c5153d8789458f603af422d862e3559fced8dbe",
+    "scope": "Source/log identities record private read-only verification, not full public reproduction of the current unpublished candidate. The public full-model record pins the same image and case logs; this checker recomputes arithmetic only."
+  },
+  "recorded_utc": "2026-11-06T04:49:40.630169+00:00",
+  "retained_query_result": {
+    "ASIC_qualification": false,
+    "TNS_ns": 0,
+    "current_genuine_disconnected_clock_outputs": 7170,
+    "current_zero_load_exceptions": 80373,
+    "foundry_or_LVS_acceptance": false,
+    "geometric_connectivity_acceptance": false,
+    "hold_slack_ns": 0.0396,
+    "loaded_nets": 1541937,
+    "native_electrical_counts": {
+      "capacitance": 0,
+      "fanout": 0,
+      "slew": 0
+    },
+    "private_milestone_record": {
+      "bytes": 3575,
+      "name": "ROM16-COMPLETE-QUERY-EXTRACTION-COVERAGE-MILESTONE-v1.json",
+      "sha256": "b32cd38c05514d17f6f2e2b866f4b42eed07134075ef906d16f9f4254c4629aa"
+    },
+    "query_cycles": 107,
+    "scope": "One complete ROM16 query block;predictiveNangate45 typical extracted timing. No full-chip, power-grid, foundry, geometricterminalconnectivity, LVS or finalpointpower/numericalreplay qualification.",
+    "setup_slack_ns": 0.03048,
+    "target_clock_ns": 2
+  },
+  "schema": "simplestories-memory-process-profile-study-v1",
+  "source_counts": {
+    "KV": {
+      "capacity_positions": 2048,
+      "combined_KV_head_rows_per_layer_position": 2,
+      "layers": 6,
+      "word_bits": 256,
+      "words_per_combined_head_row": 9
+    },
+    "additional_gamma_exp_declared_ROM_bits": 244256,
+    "central_duplicate_pruning_proved": false,
+    "central_misc": {
+      "depth": 14616,
+      "width_bits": 256
+    },
+    "central_weights": {
+      "depth": 84720,
+      "width_bits": 640
+    },
+    "complete_mapped_FF_count": null,
+    "four_layer0_matrix_dense_equivalent_bits": 5893120,
+    "mutable_nonKV_unpacked_bits": 583592,
+    "shared_SiLU_stage_lanes": 16,
+    "shared_SiLU_stage_logical_table_bits": 2359296,
+    "source_files_rebound_to_accepted_make_plan": 1965,
+    "spatial_cut_output_register_bits": 761598
+  },
+  "study_status": "Assessment complete; full-chip feasibility unproved; hold new physical optimization until a common-process memory path and performance budget are established."
+}

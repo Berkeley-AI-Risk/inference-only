@@ -123,8 +123,8 @@
       "sha256": "797c5975a20a3b09d5101f84f7e3343261916da1a7f0a70baf92922591895055"
     },
     ".github/workflows/offline-checks.yml": {
-      "bytes": 9104,
-      "sha256": "13e1a7428c18756f066cb00871f861f095ecd805fddf37c83cb8734d4ce120ac"
+      "bytes": 9268,
+      "sha256": "32903852857a7b4f2c8c503aab263708835f8d2e096b2323a89cfb6160d39f9d"
     },
     ".gitignore": {
       "bytes": 502,
@@ -167,8 +167,8 @@
       "sha256": "58a1fc0e3f86ff8d12a02ff8b78b5e5294d8ef43ce5b77604ac96922f8e454fd"
     },
     "README.md": {
-      "bytes": 19764,
-      "sha256": "b9da1d0065a4d8a5c7a4e1a529541a8fb24d2229e533f9f807c2fc24d70f9a9f"
+      "bytes": 20044,
+      "sha256": "849ab2801ca211eb55f70ded64f3e7e1fc2b547cf2285e61b8d2b4580020dd74"
     },
     "REFERENCES.md": {
       "bytes": 613,
@@ -72638,9 +72638,21 @@
       "bytes": 4250,
       "sha256": "da1ea94934b90a7d1b2fd2611fd77ed88fb7c3b50f3447696e92f254cb702053"
     },
+    "research/hwic/PROGRESS-2026-11-05-FEASIBILITY.md": {
+      "bytes": 13873,
+      "sha256": "cd3c26401d0b28a800ce7f827ea546ed7bd74f1d8821c5f10e6cc75f439fa196"
+    },
     "research/hwic/evidence/integrated-model-2026-11-04/results.json": {
       "bytes": 116204,
       "sha256": "78a1663d66bbe8dc2b578a440c5153d8789458f603af422d862e3559fced8dbe"
+    },
+    "research/hwic/evidence/memory-profile-2026-11-05/check_feasibility.py": {
+      "bytes": 7224,
+      "sha256": "25fcc1d70c9288b12c33a88dffb800201df0bd5fe0862778785be32c60b7b722"
+    },
+    "research/hwic/evidence/memory-profile-2026-11-05/metrics.json": {
+      "bytes": 23944,
+      "sha256": "8c3f75d0daeab3cf29eac0befe97a3bd3d02fa472c4718f16a9681e7747e2004"
     },
     "research/hwic/evidence/physical-query-2026-11-05/results.json": {
       "bytes": 5698,
@@ -73107,8 +73119,8 @@
       "sha256": "1dd88cb09483da8cd53c9d3959ae90b7b276aa2127d9282a34712dbb96d82640"
     },
     "tools/release-contract.json": {
-      "bytes": 4435471,
-      "sha256": "6c467de0ad2ac293c379050bb71229f3589b3144a6d79b9c413b9f370718b4d2"
+      "bytes": 4436014,
+      "sha256": "c6520114799af9a745c89f6c1464af85ae038069f55db7a271955e41df16ae2c"
     },
     "tools/test_architecture_work_counts.py": {
       "bytes": 18992,
@@ -73152,7 +73164,7 @@
     },
     "tools/verify_release.py": {
       "bytes": 10128,
-      "sha256": "21ebd67704aebaf0dad75d519f73cdef630cb0e4b9267688074865bc2bf1457e"
+      "sha256": "70502e3e85eccf047258a2c045e8facfe144bf7171d57366e041a85de8cd56ff"
     }
   },
   "full_context_evidence_scope": "Each selected greedy image passed 2,047/2,048-token CLI and browser contexts, boundary refusals, CLEAR races, pending-STEP Stop and resumed generation. The seeded image has a separate 16-case context matrix and browser record. Exact workload timestamps remain distinct from cached generation rates.",
