@@ -16,12 +16,18 @@ H100_DENSE_FLOPS = 989e12
 H100_MEMORY_BYTES_PER_SECOND = 3.35e12
 ILLUSTRATIVE_TARGETS = (0.01, 0.001, 0.0001)
 REFERENCE_FILE = 'evidence/h100/h100-compiled-fp16-repeat/ctx128-batch32768-float16-compile-graph.json'
+SHARED_HELPER = '../../tools/qwen_h100_results.py'
+SHARED_EVIDENCE = '../../evidence/qwen-h100-2026-10-25'
 GEOMETRY_FILE = 'reference/reference/model.py'
 ROUNDING_FILE = 'evidence/h100/correctness/compiled-rounding-batch1024.json'
 METRICS_FILE = 'evidence/current-greedy/baseline/analysis/metrics.json'
 IMPLEMENTATION_FILE = 'evidence/current-greedy/baseline/analysis/implementation.json'
 CENSUS_FILE = 'evidence/current-greedy/baseline/analysis/mapped-census.json'
 SELECTED_IMAGE = '01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57'
+REFERENCE_START = '<!-- capacity-reference:start -->'
+REFERENCE_END = '<!-- capacity-reference:end -->'
+TABLE_START = '<!-- capacity-scenarios:start -->'
+TABLE_END = '<!-- capacity-scenarios:end -->'
 
 
 def positive(value):
@@ -91,9 +97,17 @@ def estimate(package, reference_rates=None):
     checker = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(checker)
     verified_reference = checker.verify(package)
+    shared_spec = importlib.util.spec_from_file_location('shared_h100_reference', package / SHARED_HELPER)
+    shared = importlib.util.module_from_spec(shared_spec)
+    shared_spec.loader.exec_module(shared)
+    shared_measurements = shared.reference_measurements(package.parents[1])
+    current_case = shared_measurements['cases']['small_fixed']
+    current_selection = shared_measurements['selection']['cases']['small_fixed']
     relative_inputs = (METRICS_FILE, IMPLEMENTATION_FILE,
                        'hardware/project/uart_core.sv', CENSUS_FILE, 'prebuilt/inference/BUILD.json', REFERENCE_FILE, 'evidence/h100/IMPORT.json',
-                       GEOMETRY_FILE, ROUNDING_FILE, 'tools/estimate_training_capacity.py')
+                       GEOMETRY_FILE, ROUNDING_FILE, 'tools/estimate_training_capacity.py',
+                       SHARED_HELPER, SHARED_EVIDENCE + '/SELECTED-REFERENCES.json',
+                       SHARED_EVIDENCE + '/REMOTE-ARCHIVE.json')
     raw = {name: (package / name).read_bytes() for name in relative_inputs}
     physical = json.loads(raw[relative_inputs[0]])
     implementation = json.loads(raw[relative_inputs[1]])
@@ -110,9 +124,13 @@ def estimate(package, reference_rates=None):
     counts = model_work_counts(geometry, 128)
     if counts['projection_and_head_macs'] + counts['normalization_squares'] != benchmark['model']['parameters']:
         raise ValueError('Tied model parameter census changed')
-    measured_reference_rate = positive(benchmark['timing']['aggregate_tokens_per_second'])
-    if measured_reference_rate != verified_reference['selected_reference_tps']:
+    historical_reference_rate = positive(benchmark['timing']['aggregate_tokens_per_second'])
+    if historical_reference_rate != verified_reference['selected_reference_tps']:
         raise ValueError('Reference identity/rate mismatch')
+    if (current_case['model']['revision'] != benchmark['model']['revision']
+            or current_case['model']['unique_parameters'] != benchmark['model']['parameters']):
+        raise ValueError('Shared and historical references describe different parent models')
+    measured_reference_rate = positive(shared_measurements['rates']['small_fixed'])
     if '.CLKS_PER_BIT(217)' not in raw[relative_inputs[2]].decode():
         raise ValueError('UART contract changed; re-audit this calculation')
     core_hz = implementation['nominal_inference_clock_hz']
@@ -193,6 +211,7 @@ def estimate(package, reference_rates=None):
     def headroom_row(rate, kind):
         return {'reference_tps': rate, 'multiple_of_measured_reference': rate / measured_reference_rate,
                 'kind': kind, 'measured': False,
+                'exceeds_combined_ideal_roof': rate > min(compute_roof, kv_roof),
                 'scenario_proxy_residual_training_factors': {
                     name: proxy_residual_training_factor(row['operation_rate_proxy'], fpga_tps, rate)
                     for name, row in scenarios.items()}}
@@ -203,7 +222,7 @@ def estimate(package, reference_rates=None):
     kv_roof = H100_MEMORY_BYTES_PER_SECOND / kv_bytes
     reference_for_unit_proxy = H100_DENSE_FLOPS * fpga_tps / scenarios['all_mapped_multipliers_full_credit']['operation_rate_proxy']
     return {
-        'schema': 'conditional-training-capacity-v4',
+        'schema': 'conditional-training-capacity-v5',
         'source_sha256': {name: hashlib.sha256(data).hexdigest() for name, data in raw.items()},
         'inputs': {
             'selected_fpga_image_sha256': SELECTED_IMAGE,
@@ -225,11 +244,30 @@ def estimate(package, reference_rates=None):
             'reference_tps_are_sensitivity_inputs_not_measurements': custom_rates,
         },
         'measured_reference': {
-            'file': REFERENCE_FILE, 'aggregate_tokens_per_second': measured_reference_rate,
+            'file': SHARED_EVIDENCE + '/raw-evidence.tar.gz',
+            'member': current_selection['member'], 'member_sha256': current_selection['sha256'],
+            'selection_sha256': hashlib.sha256(shared_measurements['selection_raw']).hexdigest(),
+            'archive_sha256': shared_measurements['receipt']['sha256'],
+            'verified_payload_files': len(shared_measurements['inventory']['files']),
+            'aggregate_tokens_per_second': measured_reference_rate,
+            'context_positions': 128, 'batch': current_case['workload']['batch'],
+            'mode': current_case['workload']['mode'], 'precision': current_case['model']['dtype'],
+            'model_revision': current_case['model']['revision'], 'fpga_bit_exact': False,
+            'transformers_version': current_case['environment']['packages']['transformers'],
+            'kind': 'Repeated fixed-context cached-decode evaluation; not an autoregressive stream or certified peak rating.',
+            'greedy_comparisons': current_case['checks']['optimized']['token_comparisons'],
+            'greedy_disagreements': current_case['checks']['optimized']['greedy_mismatch_count'],
+            'greedy_agreement_with_eager_fp16': 1 - current_case['checks']['optimized']['greedy_mismatch_count'] / current_case['checks']['optimized']['token_comparisons'],
+            'numerical_acceptance': 'Recorded all-logit tolerances and nonfinite rejection, with greedy disagreements retained; not exact greedy equivalence.',
+            'fpga_integer_model_agreement_measured': False,
+            'timing_scope': 'Median host-wall time, launches and synchronization included; model/prefill/compile/warmup/host-token-transfer/text/network excluded.',
+        },
+        'historical_reference_sensitivity': {
+            'file': REFERENCE_FILE, 'aggregate_tokens_per_second': historical_reference_rate,
+            'transformers_version': '4.48.3',
             'context_positions': 128, 'batch': benchmark['workload']['batch'],
             'mode': benchmark['workload']['mode'], 'precision': benchmark['model']['dtype'],
-            'model_revision': benchmark['model']['revision'], 'fpga_bit_exact': False,
-            'kind': 'Repeated fixed-context cached-decode evaluation; not an autoregressive stream or certified peak rating.',
+            'model_revision': benchmark['model']['revision'],
             'greedy_agreement_with_eager_fp16': benchmark['checks']['optimized_vs_eager']['comparison']['argmax_agreement_fraction'],
             'numerical_acceptance': 'Original logit tolerances with explicitly reported FP16 greedy rounding differences.',
             'strict_alternative_tps': verified_reference['strict_reference_tps'],
@@ -241,6 +279,10 @@ def estimate(package, reference_rates=None):
                 'covers_selected_reference_disagreements': False,
             },
             'timing_scope': 'Median host-wall time, launches and synchronization included; model/prefill/compile/warmup/host-token-transfer/text/network excluded.',
+            'scenario_proxy_residual_training_factors': {
+                name: proxy_residual_training_factor(row['operation_rate_proxy'], fpga_tps, historical_reference_rate)
+                for name, row in scenarios.items()},
+            'scope': 'Measured older implementation used only as a reference-performance sensitivity, not the selected current denominator.',
         },
         'uart_baud': uart_baud, 'combined_wire_token_rate_ceiling': wire_token_rate,
         'model_work_counts': counts,
@@ -267,6 +309,62 @@ def estimate(package, reference_rates=None):
     }
 
 
+def reference_summary(result):
+    r = result['measured_reference']
+    old = result['historical_reference_sensitivity']
+    return (
+        f"The selected GPU reference is the FP16 parent model with Transformers **{r['transformers_version']}**,\n"
+        f"at about **{r['aggregate_tokens_per_second']/1e6:.3g} million evaluations/s**, batch **{r['batch']:,}**,\n"
+        f"at the same 128-position geometry. Its stated all-logit tolerance policy\n"
+        f"passes with **{r['greedy_disagreements']}/{r['greedy_comparisons']:,} greedy disagreements** against eager FP16;\n"
+        f"this is not exact-token agreement. The selected case, source snapshots and\n"
+        f"all {r['verified_payload_files']} archived payload files are checked by the shared reference reader.\n\n"
+        f"The older Transformers **{old['transformers_version']}** campaign measured about\n"
+        f"**{old['aggregate_tokens_per_second']/1e6:.3g} million evaluations/s**. Its measured result and the corresponding\n"
+        f"conditional scenarios are retained as a reference-performance sensitivity\n"
+        f"in [the calculation record](evidence/training-capacity-estimates.json), not\n"
+        f"as the current reference. Neither GPU implementation evaluates the FPGA's\n"
+        f"integer function bit for bit. The [H100 report](../../docs/benchmarks/H100-BENCHMARK.md)\n"
+        f"states both campaigns' numerical acceptance and timing boundaries."
+    )
+
+
+def scenario_table(result):
+    n = result['inputs']['dynamic_multiplier_instances']
+    all_units = sum(result['inputs']['mapped_multiplier_primitives'].values())
+    rows = [
+        '| Scenario | Assumed operation rate `T` | Calculated `φ_proxy` | `φ_proxy / 0.01` | `φ_proxy / 0.001` | `φ_proxy / 0.0001` |',
+        '| --- | ---: | ---: | ---: | ---: | ---: |',
+    ]
+    for name, label in (
+        ('token_channel_wire_ceiling', 'Explicit matrix I/O through tokens'),
+        ('dynamic_lanes_full_credit', f'Full useful access to {n} scheduled runtime-operand units'),
+        ('all_mapped_multipliers_full_credit', f'Full useful access to all {all_units} mapped multipliers'),
+        ('fixed_schedule_dynamic_work_allowance', 'Named dynamic work on the fixed 128-position decode schedule'),
+        ('weight_enforcement_failure_fixed_schedule', 'Chosen accepted weights, same decode schedule'),
+    ):
+        row = result['scenarios'][name]
+        ratio = row['ratios'][0]
+        values = [ratio['proxy_residual_training_factor']]
+        values += [v['proxy_over_target'] for v in ratio['illustrative_target_comparisons']]
+        rows.append(f"| {label} | {row['operation_rate_proxy']:,.0f}/s | "
+                    + ' | '.join(f'{v:.2g}' for v in values) + ' |')
+    return '\n'.join(rows)
+
+
+def check_block(text, start, end, expected):
+    if text.count(start) != 1 or text.count(end) != 1 or text.index(start) >= text.index(end):
+        raise ValueError('Missing, duplicate or unordered capacity block: ' + start)
+    if text.split(start, 1)[1].split(end, 1)[0].strip() != expected:
+        raise ValueError('Capacity prose/table differs from the calculation: ' + start)
+
+
+def check_document(package, result):
+    text = (Path(package) / 'TRAINING-CAPACITY.md').read_text(encoding='utf-8')
+    check_block(text, REFERENCE_START, REFERENCE_END, reference_summary(result))
+    check_block(text, TABLE_START, TABLE_END, scenario_table(result))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--package', type=Path, default=Path(__file__).resolve().parents[1])
@@ -288,6 +386,7 @@ def main():
         expected = args.package / 'evidence/training-capacity-estimates.json'
         if expected.read_text() != encoded:
             parser.error('Packaged estimates do not match these inputs')
+        check_document(args.package, result)
         print('Conditional capacity calculations match the packaged evidence; no hardware accessed.')
     elif args.output:
         with args.output.open('x') as stream:

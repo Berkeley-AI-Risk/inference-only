@@ -20,14 +20,27 @@ The [H100 benchmark report](docs/benchmarks/H100-BENCHMARK.md) specifies the sof
 
 These alternative access assumptions overlap and must not be added. They grant useful access that has not been demonstrated, and use identified single FPGA steps rather than licensed peak ratings.
 
+<!-- capacity-comparison-table:start -->
 | Hypothetical access and schedule | Qwen `phi_proxy` | SimpleStories `phi_proxy` |
 | --- | ---: | ---: |
-| Named dynamic work on the same decode schedule | 0.00199995 | 0.00239112 |
-| Useful MAC every cycle from all named runtime/square units | 0.235071 | 0.288571 |
-| Useful MAC every cycle from all functional multipliers | 0.974066 | 1.36691 |
-| Chosen accepted weights make all counted matrix work useful | 0.216341 | 0.0342843 |
+| Named dynamic work on the same decode schedule | 0.002 | 0.0024 |
+| Useful MAC every cycle from all named runtime/square units | 0.24 | 0.29 |
+| Useful MAC every cycle from all functional multipliers | 0.97 | 1.4 |
+| Chosen accepted weights make all counted matrix work useful | 0.22 | 0.034 |
+<!-- capacity-comparison-table:end -->
 
-With these grants, Qwen's scheduled-work proxy is about 16% lower and its full-use-of-runtime-units proxy is about 19% lower. The assumed access and schedule therefore determine the ordering. The [benchmark report](docs/benchmarks/H100-BENCHMARK.md#conditional-capacity-comparison) gives the inputs, numerical acceptance policies and remaining qualifications. The SimpleStories assessment uses a Transformers 4.48.3 reference; this comparison uses Transformers 5.17.0 for both models. Those reference rates are implementation-specific.
+<!-- capacity-comparison-summary:start -->
+With the selected shared references, Qwen's named scheduled-work proxy is
+about **16% lower** and its hypothetical every-cycle runtime-unit proxy
+is about **19% lower** than SimpleStories'. These are conditional calculations,
+not demonstrated training capabilities or certified residual training factors.
+The GPU parent models and FPGA numerical functions differ.
+<!-- capacity-comparison-summary:end -->
+
+Both current assessments use the selected shared-method references. The older
+SimpleStories campaign is retained as an explicitly identified sensitivity, not
+a second current reference. Displayed proxies are rounded;
+[the calculation record](evidence/qwen-h100-2026-10-25/computed-results.json) retains full precision.
 
 ## Reproduce the calculations
 

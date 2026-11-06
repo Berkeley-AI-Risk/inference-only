@@ -21,6 +21,12 @@ START = '<!-- architecture-work-table:start -->'
 END = '<!-- architecture-work-table:end -->'
 WORKLOAD_START = '<!-- architecture-workload-table:start -->'
 WORKLOAD_END = '<!-- architecture-workload-table:end -->'
+SUMMARY_START = '<!-- architecture-summary:start -->'
+SUMMARY_END = '<!-- architecture-summary:end -->'
+CYCLE_START = '<!-- architecture-cycle-budget:start -->'
+CYCLE_END = '<!-- architecture-cycle-budget:end -->'
+REFERENCE_START = '<!-- architecture-reference:start -->'
+REFERENCE_END = '<!-- architecture-reference:end -->'
 
 
 def integer(value, minimum, name):
@@ -173,11 +179,84 @@ def cycle_fraction(package):
     return row['credited_operations_per_second'] / peak
 
 
+def capacity_facts(package):
+    package = Path(package)
+    saved = json.loads((package / 'demos/simplestories-v2-5m/evidence/training-capacity-estimates.json').read_text(encoding='utf-8'))
+    row = recorded_workload_comparison(package)[0]
+    counts = work_counts(TINY, cached_tokens=127)
+    inputs = saved['inputs']
+    reference = saved['measured_reference']['aggregate_tokens_per_second']
+    peak = inputs['core_clock_hz'] * inputs['dynamic_multiplier_instances'] * inputs['credited_operations_per_multiply']
+    dynamic = counts['named_dynamic_mac_equivalent_operations']
+    total = counts['matrix_plus_named_extra_operations']
+    return dict(dynamic=dynamic, matrix=counts['matrix_operations'], total=total,
+                rho=dynamic/total, eta=total*reference/inputs['h100_dense_flops_per_second'],
+                matrix_eta=counts['matrix_operations']*reference/inputs['h100_dense_flops_per_second'],
+                proxy=row['conditional_proxy'], units=inputs['dynamic_multiplier_instances'],
+                peak=peak, cycle_budget=peak*row['seconds'], occupancy=row['credited_operations_per_second']/peak,
+                reference=reference)
+
+
+def summary_text(package):
+    f = capacity_facts(package)
+    return (
+        f"- At the measured 128-position workload, the scheduled estimate is about\n"
+        f"  **{100*f['rho']:.2g}% credited dynamic work × {100*f['eta']:.3g}% reference arithmetic efficiency ≈ {f['proxy']:.2g}**.\n"
+        f"  Both factors matter; this is not an architecture-only result.\n"
+        f"- The roughly **{1/f['occupancy']:.0f}-fold** gap to the every-clock estimate compares the\n"
+        f"  counted operations with **{100*f['occupancy']:.3g}% of {f['units']} units' credited cycle capacity**."
+    )
+
+
+def cycle_budget_text(package):
+    f = capacity_facts(package)
+    return (
+        f"At 128 input positions, the calculation credits **{f['dynamic']:,}** dynamic\n"
+        f"MAC-equivalent operations per decode. The **{f['units']}** named units, credited with a\n"
+        f"useful MAC on every clock, would supply **{f['cycle_budget']:,.0f}** operations over\n"
+        f"the measured interval. The counted work occupies **{100*f['occupancy']:.3g}%** of that allowance,\n"
+        f"explaining the approximately **{1/f['occupancy']:.0f}-fold** difference.\n\n"
+        f"This is not the dynamic fraction of the model's arithmetic or a measured\n"
+        f"utilization trace. It compares model work with hypothetical multiplier-cycle\n"
+        f"capacity; it does not establish attacker access. The remaining time includes\n"
+        f"fixed-coefficient work, other stages, waits and host overhead."
+    )
+
+
+def reference_text(package):
+    f = capacity_facts(package)
+    return (
+        '```text\n'
+        f"C_dynamic  = {f['dynamic']:,}\n"
+        f"C_total    = {f['matrix']:,} matrix operations + {f['total']-f['matrix']:,} other credited operations\n"
+        f"           = {f['total']:,}\n"
+        f"rho        = {f['rho']:.8f}\n"
+        f"eta_ref    = {f['eta']:.8f}\n"
+        f"φ_schedule = {f['proxy']:.9f}\n"
+        '```\n\n'
+        f"These use the selected H100 reference, about **{f['reference']/1e6:.3g} million evaluations/s**,\n"
+        f"and the 989e12 operations/s reference rating. The matrix-only and expanded\n"
+        f"useful-work efficiencies both round to **{100*f['eta']:.3g}%**. This bookkeeping\n"
+        f"does not change the measurement or the\n"
+        f"scheduled proxy. Product/square credits remain hypothetical allowances.\n\n"
+        f"The proxy combines roughly **{100*f['rho']:.2g}% credited dynamic work with {100*f['eta']:.3g}%\n"
+        f"effective reference arithmetic throughput**. It is not an architecture-only\n"
+        f"number. A faster reference increases it; GPU/FPGA numerical and timing\n"
+        f"differences still apply."
+    )
+
+
 def check_document(path, *, package=None):
     package = package or Path(__file__).resolve().parents[1]
     text = path.read_text(encoding='utf-8')
     check_table(text, START, END, llama_table())
     check_table(text, WORKLOAD_START, WORKLOAD_END, recorded_workload_table(package))
+    for start, end, expected in (
+        (SUMMARY_START, SUMMARY_END, summary_text(package)),
+        (CYCLE_START, CYCLE_END, cycle_budget_text(package)),
+        (REFERENCE_START, REFERENCE_END, reference_text(package)),
+    ):
+        check_table(text, start, end, expected)
     expected = f'Here `u_dynamic` is approximately {cycle_fraction(package):.5f}.'
     if text.count(expected) != 1 or text.count('Here `u_dynamic` is approximately ') != 1:
         raise ValueError('Architecture cycle fraction differs from the calculation')

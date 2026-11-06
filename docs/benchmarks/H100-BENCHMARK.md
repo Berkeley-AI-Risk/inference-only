@@ -9,7 +9,13 @@ This report describes single-H100 inference references for Qwen3-1.7B and Simple
 
 On one H100 SXM 80 GB, the selected repeated FP16 reference scores are **61,656 fixed-context evaluations/s for Qwen3-1.7B** and **2,951,333/s for SimpleStories-V2-5M**, both at 128 input positions. The standardized Qwen one-token, 128-output continuation achieves **62,538 generated tokens/s in aggregate across 2,048 independent sequences**, or **219.7 tokens/s at batch one**.
 
-The conditional comparison has no single ordering. With the shared benchmark method, Qwen's named scheduled-work proxy is about 16% lower; its hypothetical full-use-of-runtime-units proxy is about twice as high. Neither is a measured training capability or a certified residual training factor. The GPU parents and FPGA numerical functions differ.
+<!-- capacity-comparison-summary:start -->
+With the selected shared references, Qwen's named scheduled-work proxy is
+about **16% lower** and its hypothetical every-cycle runtime-unit proxy
+is about **19% lower** than SimpleStories'. These are conditional calculations,
+not demonstrated training capabilities or certified residual training factors.
+The GPU parent models and FPGA numerical functions differ.
+<!-- capacity-comparison-summary:end -->
 
 Measured October 25, 2026 Pacific (October 25–26 UTC). The evidence archive contains **897 files**, verified against its SHA-256 inventory, with **32 passing and five failed benchmark cases** and the associated numerical diagnostics.
 
@@ -65,12 +71,14 @@ For the [Qwen analysis](../../demos/qwen3-1.7b/TRAINING-CAPACITY.md), use `phi_p
 
 The following alternatives use the shared-method repeated H100 references above. Rows overlap and must not be added. Every-cycle rows grant useful operand control, readout and continuous utilization that have not been demonstrated. Narrow products, squares and standalone multiplication are generously credited as full MACs.
 
-| Hypothetical access and schedule | Qwen phi_proxy | SimpleStories phi_proxy | Qwen / SimpleStories |
+<!-- capacity-comparison-table:start -->
+| Hypothetical access and schedule | Qwen `phi_proxy` | SimpleStories `phi_proxy` | Qwen / SimpleStories |
 | --- | ---: | ---: | ---: |
-| Named dynamic work on the same decode schedule | 0.00199995 | 0.00239112 | 0.836 |
-| Useful MAC every cycle from all named runtime/square units | 0.235071 | 0.288571 | 0.815 |
-| Useful MAC every cycle from all functional multipliers | 0.974066 | 1.36691 | 0.713 |
-| Chosen accepted weights make all counted matrix work useful | 0.216341 | 0.0342843 | 6.31 |
+| Named dynamic work on the same decode schedule | 0.002 | 0.0024 | 0.84 |
+| Useful MAC every cycle from all named runtime/square units | 0.24 | 0.29 | 0.81 |
+| Useful MAC every cycle from all functional multipliers | 0.97 | 1.4 | 0.71 |
+| Chosen accepted weights make all counted matrix work useful | 0.22 | 0.034 | 6.3 |
+<!-- capacity-comparison-table:end -->
 
 The counts in the named scheduled-work row are 32,080,640 and 801,272 operations/decode. Under that row's matched-workload assumption, `T=C*F` and device speed cancels. The every-cycle runtime row grants 33.4 billion operations/s for Qwen's 167 named units and 950 million/s for SimpleStories' 19 scheduled runtime-operand instances. Its inferred ratio depends on both the FPGA rate and GPU reference. A value near 0.24 describes credited training arithmetic per unit of inference service; it does not say one FPGA supplies 24% of an H100's raw training arithmetic.
 
@@ -104,7 +112,10 @@ result within 0.02%. The batch-one compiled microbenchmark measured about
 6,500 evaluations/s. These are different capacity/latency measurements, not
 a claim that one chat produces a million tokens each second.
 
-This reference informs the [conditional residual training factor analysis](../../demos/simplestories-v2-5m/TRAINING-CAPACITY.md).
+This older reference is retained as a measured sensitivity in the
+[conditional training-capacity analysis](../../demos/simplestories-v2-5m/TRAINING-CAPACITY.md),
+not its current default reference. The current calculations use the selected
+Transformers 5.17.0 shared-method repeat above.
 It is **not bit-exact FPGA W10/A16/KV16 inference**, an end-to-end chat-service
 benchmark, or a certified peak H100 rating. FPGA and host measurements are
 documented in [VALIDATION.md](../../demos/simplestories-v2-5m/VALIDATION.md).
@@ -206,9 +217,10 @@ explicit numerical-equivalence criterion.
 
 The default benchmark policy remains strict. The alternative needs
 `--allow-greedy-rounding`, and the JSON records that choice. The original
-failures were not overwritten or reclassified. The capacity analysis uses
-the faster, explicitly qualified FP16 result rather than selecting the
-slower strict implementation for a smaller residual training factor estimate.
+failures were not overwritten or reclassified. Within this historical campaign,
+the explicitly qualified compiled result was faster than the strict reference.
+The current default is the separately identified, faster Transformers 5.17.0
+shared-method repeat, not either historical rate.
 
 Additional batch-16 GPU checks in both modes passed: changed tokens and
 changed prompts agreed with uncached inference within tolerance and in
@@ -265,7 +277,7 @@ python3.12 -I -S -B demos/simplestories-v2-5m/tools/estimate_training_capacity.p
 
 An achieved rate is evidence that this workload can run at least that fast,
 not proof of the hardware's absolute maximum. The
-[capacity analysis](../../demos/simplestories-v2-5m/TRAINING-CAPACITY.md#gpu-performance-headroom-and-sensitivity)
+[capacity analysis](../../demos/simplestories-v2-5m/TRAINING-CAPACITY.md#limits-and-reproduction)
 derives an ideal minimum-K/V-traffic bandwidth roof of 8.52 million
 evaluations/s, and a looser arithmetic-only roof of 86.08 million/s. Neither
 is achieved performance or a prediction of a particular optimized kernel.

@@ -67,8 +67,8 @@ class ArchitectureCountsTests(unittest.TestCase):
 
     def test_workload_table_drift_is_rejected(self):
         original = (HERE.parent / 'docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md').read_text(encoding='utf-8')
-        self.assertEqual(original.count('0.001721 |'), 1)
-        for text in (original.replace('0.001721 |', '0.001722 |'),
+        self.assertEqual(original.count('0.004988 |'), 1)
+        for text in (original.replace('0.004988 |', '0.004989 |'),
                      original+COUNTS.WORKLOAD_START, original+COUNTS.WORKLOAD_END,
                      original.replace(COUNTS.WORKLOAD_START, ''),
                      original.replace(COUNTS.WORKLOAD_END, '| extra row |\n'+COUNTS.WORKLOAD_END)):
@@ -181,7 +181,7 @@ class ArchitectureCountsTests(unittest.TestCase):
         rate = report['measured_reference']['aggregate_tokens_per_second']
         expected = report['scenarios']['fixed_schedule_dynamic_work_allowance']['ratios'][0]['proxy_residual_training_factor']
         self.assertAlmostEqual(dynamic/total, 0.06965397, places=8)
-        self.assertAlmostEqual(total*rate/CAPACITY.H100_DENSE_FLOPS, 0.01184148, places=8)
+        self.assertAlmostEqual(total*rate/CAPACITY.H100_DENSE_FLOPS, 0.03432859, places=8)
         self.assertAlmostEqual((dynamic/total)*(total*rate/CAPACITY.H100_DENSE_FLOPS), expected, places=15)
 
     def test_weight_replacement_proxy_equals_matrix_only_reference_efficiency(self):
@@ -190,7 +190,7 @@ class ArchitectureCountsTests(unittest.TestCase):
         rate = report['measured_reference']['aggregate_tokens_per_second']
         efficiency = row['matrix_operations']*rate/CAPACITY.H100_DENSE_FLOPS
         expected = report['scenarios']['weight_enforcement_failure_fixed_schedule']['ratios'][0]['proxy_residual_training_factor']
-        self.assertAlmostEqual(efficiency, 0.0118262002608871, places=15)
+        self.assertAlmostEqual(efficiency, 0.03428430605384472, places=15)
         self.assertAlmostEqual(efficiency, expected, places=15)
 
     def test_document_worked_decomposition_matches_counts(self):
@@ -214,7 +214,10 @@ class ArchitectureCountsTests(unittest.TestCase):
     def test_recorded_workloads_use_fixed_inference_comparison(self):
         report = CAPACITY.estimate(HERE.parent / 'demos/simplestories-v2-5m')
         rows = COUNTS.recorded_workload_comparison(HERE.parent)
-        expected = ((1, 127, 801272, 0.1017904375, 0.000824805856941451), (1, 254, 1581560, 0.118947709, 0.001393183560497634), (512, 0, 814215680, 49.5862185, 0.0017205100835338569), (128, 0, 52559360, 10.012547041, 0.0005500273043224096))
+        expected = ((1, 127, 801272, 0.1017904375, 0.0023911227453088323),
+                    (1, 254, 1581560, 0.118947709, 0.0040388569890243975),
+                    (512, 0, 814215680, 49.5862185, 0.004987780772467325),
+                    (128, 0, 52559360, 10.012547041, 0.001594536201262178))
         self.assertEqual(len(rows), len(expected))
         inference_comparison = (report['inputs']['fpga_inference_rate_proxy'] /
                                 report['measured_reference']['aggregate_tokens_per_second'])
@@ -229,6 +232,22 @@ class ArchitectureCountsTests(unittest.TestCase):
                                        dynamic/seconds/CAPACITY.H100_DENSE_FLOPS/inference_comparison, places=15)
         self.assertGreater(rows[1]['conditional_proxy'], 0.001)
         self.assertGreater(rows[2]['conditional_proxy'], 0.001)
+
+    def test_quantitative_prose_drift_is_rejected(self):
+        original = (HERE.parent / 'docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md').read_text(encoding='utf-8')
+        mutations = (original.replace('121-fold', '48-fold'),
+                     original.replace('0.829%', '2.10%'),
+                     original.replace('**19** named units', '**5** named units'),
+                     original.replace('2.95 million', '1.02 million'),
+                     original.replace(COUNTS.SUMMARY_START, ''),
+                     original + COUNTS.CYCLE_END, original + COUNTS.REFERENCE_START)
+        for altered in mutations:
+            self.assertNotEqual(altered, original)
+            with self.subTest(text=altered[:30]), tempfile.TemporaryDirectory() as temporary:
+                path = Path(temporary) / 'example.md'
+                path.write_text(altered, encoding='utf-8')
+                with self.assertRaises(ValueError):
+                    COUNTS.check_document(path, package=HERE.parent)
 
     def test_mismatched_recorded_reference_is_rejected(self):
         report = CAPACITY.estimate(HERE.parent / 'demos/simplestories-v2-5m')

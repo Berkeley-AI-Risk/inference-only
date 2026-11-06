@@ -36,15 +36,22 @@ pooling them gives **9.82410553 outputs/s** at this fixed context. The
 measures cached generation across growing contexts using the complete 128-output
 sequences. Each quantity retains its workload and timing boundary.
 
-The GPU reference used in this assessment is the measured FP16 parent model
-with Transformers 4.48.3: **1,018,047.545 evaluations/s**, batch 32,768, at the
-same 128-position geometry. It passes the recorded logit tolerances with
-**99.8352% greedy agreement** against eager FP16. An uncompiled CUDA-graph
-reference with exact eager-greedy agreement measured 609,285/s. These are
-parent-model measurements, not bit-exact evaluations of the FPGA numerical
-function. The [H100 report](../../docs/benchmarks/H100-BENCHMARK.md) states the
-precision, numerical acceptance, batching and timing conditions. Its matched
-Transformers 5.17.0 cross-model panel uses a separately identified reference.
+<!-- capacity-reference:start -->
+The selected GPU reference is the FP16 parent model with Transformers **5.17.0**,
+at about **2.95 million evaluations/s**, batch **32,768**,
+at the same 128-position geometry. Its stated all-logit tolerance policy
+passes with **61/32,768 greedy disagreements** against eager FP16;
+this is not exact-token agreement. The selected case, source snapshots and
+all 897 archived payload files are checked by the shared reference reader.
+
+The older Transformers **4.48.3** campaign measured about
+**1.02 million evaluations/s**. Its measured result and the corresponding
+conditional scenarios are retained as a reference-performance sensitivity
+in [the calculation record](evidence/training-capacity-estimates.json), not
+as the current reference. Neither GPU implementation evaluates the FPGA's
+integer function bit for bit. The [H100 report](../../docs/benchmarks/H100-BENCHMARK.md)
+states both campaigns' numerical acceptance and timing boundaries.
+<!-- capacity-reference:end -->
 
 ## Access assumptions and arithmetic
 
@@ -63,15 +70,18 @@ establish equivalent numerical precision or usefulness for training.
 
 The scenarios overlap and must not be added:
 
+<!-- capacity-scenarios:start -->
 | Scenario | Assumed operation rate `T` | Calculated `φ_proxy` | `φ_proxy / 0.01` | `φ_proxy / 0.001` | `φ_proxy / 0.0001` |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Explicit matrix I/O through tokens | 100,362/s | 1.05159e-05 | 0.00105159 | 0.0105159 | 0.105159 |
-| Full useful access to 19 scheduled runtime-operand units | 950,000,000/s | 0.0995411 | 9.95411 | 99.5411 | 995.411 |
-| Full useful access to all 90 mapped multipliers | 4,500,000,000/s | 0.47151 | 47.151 | 471.51 | 4715.1 |
-| Named dynamic work on the fixed128-position decode schedule | 7,871,781/s | 0.000824806 | 0.0824806 | 0.824806 | 8.24806 |
-| Chosen accepted weights, same decode schedule | 112,866,869/s | 0.0118262 | 1.18262 | 11.8262 | 118.262 |
+| Explicit matrix I/O through tokens | 100,362/s | 3e-05 | 0.003 | 0.03 | 0.3 |
+| Full useful access to 19 scheduled runtime-operand units | 950,000,000/s | 0.29 | 29 | 2.9e+02 | 2.9e+03 |
+| Full useful access to all 90 mapped multipliers | 4,500,000,000/s | 1.4 | 1.4e+02 | 1.4e+03 | 1.4e+04 |
+| Named dynamic work on the fixed 128-position decode schedule | 7,871,781/s | 0.0024 | 0.24 | 2.4 | 24 |
+| Chosen accepted weights, same decode schedule | 112,866,869/s | 0.034 | 3.4 | 34 | 3.4e+02 |
+<!-- capacity-scenarios:end -->
 
-The comparison targets 0.01,0.001 and0.0001 are illustrative paper values,
+Displayed proxies are rounded; the calculation record retains
+full precision. The comparison targets 0.01,0.001 and0.0001 are illustrative paper values,
 not certification thresholds. The source and all computed quantities are in
 [the calculation record](evidence/training-capacity-estimates.json).
 

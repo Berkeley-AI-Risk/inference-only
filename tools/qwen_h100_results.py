@@ -17,6 +17,10 @@ MODELS = {'qwen_fixed': 'Qwen/Qwen3-1.7B',
           'qwen_primary': 'Qwen/Qwen3-1.7B',
           'small_fixed': 'SimpleStories/SimpleStories-V2-5M'}
 H = 989_000_000_000_000
+SUMMARY_START = '<!-- capacity-comparison-summary:start -->'
+SUMMARY_END = '<!-- capacity-comparison-summary:end -->'
+TABLE_START = '<!-- capacity-comparison-table:start -->'
+TABLE_END = '<!-- capacity-comparison-table:end -->'
 
 
 def require(condition, message):
@@ -69,7 +73,12 @@ def checked_case(source, inventory, entry, role):
     return case, rate
 
 
-def analyze(package_root, evidence_root=None):
+def reference_measurements(package_root, evidence_root=None):
+    """Verify the common archive and selection without invoking a calculator.
+
+    Both model assessments use this evidence boundary. Keeping it separate
+    from comparison arithmetic avoids a circular dependency on either model.
+    """
     package = Path(package_root)
     evidence = Path(evidence_root) if evidence_root else package / EVIDENCE
     selection_raw = (evidence / 'SELECTED-REFERENCES.json').read_bytes()
@@ -104,6 +113,16 @@ def analyze(package_root, evidence_root=None):
                                   'model': case.get('model', {}).get('repository'),
                                   'workload': case.get('workload'),
                                   'rate': case.get('timing', {}).get('aggregate_tokens_per_second')})
+    return dict(selection_raw=selection_raw, selection=selection, receipt=receipt,
+                inventory=inventory, cases=cases, rates=rates, all_cases=all_cases)
+
+
+def analyze(package_root, evidence_root=None):
+    package = Path(package_root)
+    measured = reference_measurements(package, evidence_root)
+    selection_raw, selection, receipt, inventory, cases, rates, all_cases = (
+        measured[key] for key in ('selection_raw', 'selection', 'receipt', 'inventory',
+                                 'cases', 'rates', 'all_cases'))
     spec = importlib.util.spec_from_file_location('qwen_capacity',
                 Path(__file__).with_name('estimate_qwen_training_capacity.py'))
     capacity = importlib.util.module_from_spec(spec)
@@ -118,6 +137,10 @@ def analyze(package_root, evidence_root=None):
     small_spec.loader.exec_module(small_capacity)
     small_package = package / 'demos/simplestories-v2-5m'
     small_inputs = small_capacity.estimate(small_package)
+    require(small_inputs['measured_reference']['member_sha256'] == selection['cases']['small_fixed']['sha256']
+            and small_inputs['measured_reference']['archive_sha256'] == receipt['sha256']
+            and small_inputs['measured_reference']['aggregate_tokens_per_second'] == rates['small_fixed'],
+            'SimpleStories and cross-model calculations selected different references')
     fs = positive(small_inputs['inputs']['fpga_inference_rate_proxy'])
     require(small_inputs['inputs']['fpga_context_positions'] ==128
             and small_inputs['inputs']['measured_single_step_repetitions'] ==2,
@@ -182,6 +205,52 @@ def analyze(package_root, evidence_root=None):
                             'The upstream floating-point parents differ from the FPGA numerical functions.']}
 
 
+def comparison_summary(result):
+    rows = result['fixed_context_conditional_comparison']
+    scheduled = 100 * (1 - rows['named_schedule']['qwen_divided_by_simplestories'])
+    runtime = 100 * (1 - rows['all_named_runtime_units_every_cycle']['qwen_divided_by_simplestories'])
+    return (
+        f"With the selected shared references, Qwen's named scheduled-work proxy is\n"
+        f"about **{scheduled:.0f}% lower** and its hypothetical every-cycle runtime-unit proxy\n"
+        f"is about **{runtime:.0f}% lower** than SimpleStories'. These are conditional calculations,\n"
+        f"not demonstrated training capabilities or certified residual training factors.\n"
+        f"The GPU parent models and FPGA numerical functions differ."
+    )
+
+
+def comparison_table(result, include_ratio=False):
+    header = '| Hypothetical access and schedule | Qwen `phi_proxy` | SimpleStories `phi_proxy` |'
+    divider = '| --- | ---: | ---: |'
+    if include_ratio:
+        header += ' Qwen / SimpleStories |'
+        divider += ' ---: |'
+    rows = [header, divider]
+    for key, label in (
+        ('named_schedule', 'Named dynamic work on the same decode schedule'),
+        ('all_named_runtime_units_every_cycle', 'Useful MAC every cycle from all named runtime/square units'),
+        ('all_functional_multipliers_every_cycle', 'Useful MAC every cycle from all functional multipliers'),
+        ('replace_accepted_weights_same_schedule', 'Chosen accepted weights make all counted matrix work useful'),
+    ):
+        row = result['fixed_context_conditional_comparison'][key]
+        values = [row['qwen_phi_proxy'], row['simplestories_phi_proxy']]
+        if include_ratio:
+            values.append(row['qwen_divided_by_simplestories'])
+        rows.append('| ' + label + ' | ' + ' | '.join(f'{v:.2g}' for v in values) + ' |')
+    return '\n'.join(rows)
+
+
+def check_documents(package, result):
+    for name, include_ratio in (('TRAINING-CAPACITY.md', False),
+                                ('docs/benchmarks/H100-BENCHMARK.md', True)):
+        text = (Path(package) / name).read_text(encoding='utf-8')
+        for start, end, expected in ((SUMMARY_START, SUMMARY_END, comparison_summary(result)),
+                                     (TABLE_START, TABLE_END, comparison_table(result, include_ratio))):
+            require(text.count(start) == text.count(end) == 1 and text.index(start) < text.index(end),
+                    'Missing, duplicate or unordered comparison markers in ' + name)
+            require(text.split(start, 1)[1].split(end, 1)[0].strip() == expected,
+                    'Comparison prose/table differs from the calculation in ' + name)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--package-root', type=Path, default=Path(__file__).resolve().parents[1])
@@ -193,6 +262,7 @@ def main():
         evidence = args.evidence_root or args.package_root / EVIDENCE
         require(result == json.loads((evidence / 'computed-results.json').read_text()),
                 'Saved conditional calculations differ from the evidence')
+        check_documents(args.package_root, result)
         print(json.dumps({'passed': True, 'verified_payload_files': result['verified_payload_files'],
                           'case_counts': result['case_counts'], 'references': result['references']}))
     else:

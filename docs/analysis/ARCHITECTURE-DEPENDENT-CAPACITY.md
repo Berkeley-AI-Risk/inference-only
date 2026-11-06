@@ -7,14 +7,17 @@ implementation's use of its arithmetic units, and the reference GPU's throughput
 
 In brief:
 
+<!-- architecture-summary:start -->
 - At the measured 128-position workload, the scheduled estimate is about
-  **7% credited dynamic work × 1.18% reference arithmetic efficiency = 0.000825**.
+  **7% credited dynamic work × 3.43% reference arithmetic efficiency ≈ 0.0024**.
   Both factors matter; this is not an architecture-only result.
-- The roughly 48-fold gap to the every-clock estimate is a different comparison:
-  the counted operations use **2.10% of the five multipliers' cycle capacity**.
-- Context and workload matter. FPGA speed cancels only for a matched workload
-  or a uniform speedup across workloads. For Llama 405B, attention's share of
-  matrix work rises from 0.131% at 128 positions to 25.10% at 32,768.
+- The roughly **121-fold** gap to the every-clock estimate compares the
+  counted operations with **0.829% of 19 units' credited cycle capacity**.
+<!-- architecture-summary:end -->
+
+Context and workload matter. FPGA speed cancels only for a matched workload
+or a uniform speedup across workloads. For Llama 405B, attention's share of
+matrix work rises from 0.131% at 128 positions to 25.10% at 32,768.
 
 The formulas and Llama examples below are **derived work counts, not measured
 training rates or certified residual training factors**. Assuming that an attacker can
@@ -38,19 +41,23 @@ The two scenarios grant different capabilities:
 
 - **Scheduled operations:** useful arithmetic only when the unchanged model
   schedule performs the counted dynamic operations.
-- **Every-clock operation:** useful arithmetic from all five counted multiplier
+- **Every-clock operation:** useful arithmetic from all named runtime-operand
   instances on every clock, including times when inference normally uses them
   for other roles or leaves them idle. This assumes that scheduling and data
   movement no longer prevent their continuous use.
 
-At 128 input positions, the FPGA calculation credits 801,272 MAC-equivalent
-operations per decode. Five continuously productive multipliers would provide
-38,232,406.25 operations over the measured 0.152929625-second decode. The former
-is 2.10% of the latter, explaining the approximately 48-fold difference.
-This is not the dynamic fraction of the model's arithmetic, nor a measured
-utilization trace. It compares counted work with available multiplier-cycle
-capacity. The remaining time includes fixed-coefficient work, other stages,
-waits and host overhead.
+<!-- architecture-cycle-budget:start -->
+At 128 input positions, the calculation credits **801,272** dynamic
+MAC-equivalent operations per decode. The **19** named units, credited with a
+useful MAC on every clock, would supply **96,700,916** operations over
+the measured interval. The counted work occupies **0.829%** of that allowance,
+explaining the approximately **121-fold** difference.
+
+This is not the dynamic fraction of the model's arithmetic or a measured
+utilization trace. It compares model work with hypothetical multiplier-cycle
+capacity; it does not establish attacker access. The remaining time includes
+fixed-coefficient work, other stages, waits and host overhead.
+<!-- architecture-cycle-budget:end -->
 
 The difference is not an established security advantage. The scheduled scenario
 requires a justified limit on the work an attacker could trigger, including
@@ -102,19 +109,18 @@ below; elapsed times come from the saved
 <!-- architecture-workload-table:start -->
 | Recorded workload | Credited dynamic operations | Time (s) | Credited rate (million/s) | Proxy using the 128-position inference comparison |
 | --- | ---: | ---: | ---: | ---: |
-| `around128`, last STEP: 128-position decode | 801,272 | 0.1018 | 7.872 | 0.000825 |
-| `prefix128`, last STEP: 255-position decode | 1,581,560 | 0.1189 | 13.296 | 0.001393 |
-| `prefix512`, first STEP: 512-token prefill | 814,215,680 | 49.5862 | 16.420 | 0.001721 |
-| `prefix128`, first STEP: 128-token prefill | 52,559,360 | 10.0125 | 5.249 | 0.000550 |
+| `around128`, last STEP: 128-position decode | 801,272 | 0.1018 | 7.872 | 0.002391 |
+| `prefix128`, last STEP: 255-position decode | 1,581,560 | 0.1189 | 13.296 | 0.004039 |
+| `prefix512`, first STEP: 512-token prefill | 814,215,680 | 49.5862 | 16.420 | 0.004988 |
+| `prefix128`, first STEP: 128-token prefill | 52,559,360 | 10.0125 | 5.249 | 0.001595 |
 <!-- architecture-workload-table:end -->
 
 The 128-position row pools the two matching last-STEP intervals. The longer-context rows use single host-timed intervals. These are finite observations, not sustained peak measurements. The
 prefill counts credit the named operations across the prompt, with final
 normalization counted only for the final logits. They do not establish useful
 attacker access, the overhead of repeating an attack, or a peak training rate.
-The two longer-workload examples exceed the paper's illustrative 0.001 under
-these assumptions; that is **not evidence of an attack achieving that factor**.
-Nor does the 128-position estimate of 0.000825 establish a limit for other
+These conditional values are **not evidence of an attack achieving those
+factors**. The 128-position estimate does not establish a limit for other
 workloads. We do not extrapolate these rates to full context. The
 [full-window measurements](../../demos/simplestories-v2-5m/KV-PROTECTION.md#measured-performance) are separate
 observations and do not turn the fixed-context estimates into universal limits.
@@ -138,26 +144,27 @@ implementation, precision, batch size and memory traffic.
 To recover the released FPGA's scheduled row, count its credited gate products
 and RMSNorm squares in both numerator and denominator:
 
+<!-- architecture-reference:start -->
 ```text
 C_dynamic  = 801,272
 C_total    = 11,488,768 matrix operations + 14,840 other credited operations
            = 11,503,608
 rho        = 0.06965397
-eta_ref    = 0.01184148
-φ_schedule = 0.000824806
+eta_ref    = 0.03432859
+φ_schedule = 0.002391123
 ```
 
-These use the packaged H100 rate, 1,018,047.545 evaluations/s, and the recorded
-989e12 operations/s reference rating. The main document's matrix-only efficiency
-figure is 1.1826%; including the 14,840 credited operations makes it 1.1841%.
-The bookkeeping difference changes neither the measurement nor `φ_schedule`.
-The square/product credits are allowances, not measured useful training work.
+These use the selected H100 reference, about **2.95 million evaluations/s**,
+and the 989e12 operations/s reference rating. The matrix-only and expanded
+useful-work efficiencies both round to **3.43%**. This bookkeeping
+does not change the measurement or the
+scheduled proxy. Product/square credits remain hypothetical allowances.
 
-Thus the small proxy combines roughly **7% credited dynamic work with 1.18%
+The proxy combines roughly **7% credited dynamic work with 3.43%
 effective reference arithmetic throughput**. It is not an architecture-only
-number. A faster reference increases it. The GPU/FPGA numerical differences and
-other comparison limitations in [TRAINING-CAPACITY.md](../../demos/simplestories-v2-5m/TRAINING-CAPACITY.md)
-still apply.
+number. A faster reference increases it; GPU/FPGA numerical and timing
+differences still apply.
+<!-- architecture-reference:end -->
 
 For comparison, write `T_peak` for the 19 named scheduled units' credited every-clock rate
 and `u_dynamic = C_dynamic * F / T_peak`. Then
@@ -185,7 +192,7 @@ performance and justified access and execution assumptions.
 The weight-replacement scenario in [TRAINING-CAPACITY.md](../../demos/simplestories-v2-5m/TRAINING-CAPACITY.md)
 credits all counted matrix work under its separate, unproved assumptions. In
 that matrix-only bookkeeping, `rho = 1`, so its matched-workload estimate
-equals the matrix-only `eta_ref`, approximately 0.0118. This identity does not
+equals the matrix-only `eta_ref` given above. This identity does not
 establish that replacing weights makes every counted operation useful for
 training.
 

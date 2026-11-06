@@ -3,6 +3,37 @@
   "combined_wire_token_rate_ceiling": 5760.3686635944705,
   "h100_inference_benchmark_measured": true,
   "hardware_access": false,
+  "historical_reference_sensitivity": {
+    "aggregate_tokens_per_second": 1018047.5450472439,
+    "batch": 32768,
+    "context_positions": 128,
+    "file": "evidence/h100/h100-compiled-fp16-repeat/ctx128-batch32768-float16-compile-graph.json",
+    "fpga_integer_model_agreement_measured": false,
+    "greedy_agreement_with_eager_fp16": 0.99835205078125,
+    "mode": "compile-graph",
+    "model_revision": "c4b3a4bb81297f5316697098e1d4b65c1249daf8",
+    "numerical_acceptance": "Original logit tolerances with explicitly reported FP16 greedy rounding differences.",
+    "precision": "float16",
+    "rounding_diagnostic": {
+      "batch": 1024,
+      "covers_selected_reference_disagreements": false,
+      "file": "evidence/h100/correctness/compiled-rounding-batch1024.json",
+      "mismatching_rows_investigated": 4,
+      "seed": 20260916
+    },
+    "scenario_proxy_residual_training_factors": {
+      "all_mapped_multipliers_full_credit": 0.47151038678232515,
+      "dynamic_lanes_full_credit": 0.09954108165404642,
+      "fixed_schedule_dynamic_work_allowance": 0.0008248058569414512,
+      "token_channel_wire_ceiling": 1.0515940551839813e-05,
+      "weight_enforcement_failure_fixed_schedule": 0.011826200260887093
+    },
+    "scope": "Measured older implementation used only as a reference-performance sensitivity, not the selected current denominator.",
+    "strict_alternative_mode": "uncompiled_cuda_graph",
+    "strict_alternative_tps": 609284.8305763772,
+    "timing_scope": "Median host-wall time, launches and synchronization included; model/prefill/compile/warmup/host-token-transfer/text/network excluded.",
+    "transformers_version": "4.48.3"
+  },
   "inputs": {
     "core_clock_hz": 25000000,
     "credited_operations_per_multiply": 2,
@@ -44,28 +75,27 @@
     "uart_framing_bits_omitted": true
   },
   "measured_reference": {
-    "aggregate_tokens_per_second": 1018047.5450472439,
+    "aggregate_tokens_per_second": 2951332.874617403,
+    "archive_sha256": "1693f9d44e40d13cfd142223f6522ce0e4e47d4a64125d08f8f4f6cd4c9deb0c",
     "batch": 32768,
     "context_positions": 128,
-    "file": "evidence/h100/h100-compiled-fp16-repeat/ctx128-batch32768-float16-compile-graph.json",
+    "file": "../../evidence/qwen-h100-2026-10-25/raw-evidence.tar.gz",
     "fpga_bit_exact": false,
     "fpga_integer_model_agreement_measured": false,
-    "greedy_agreement_with_eager_fp16": 0.99835205078125,
+    "greedy_agreement_with_eager_fp16": 0.998138427734375,
+    "greedy_comparisons": 32768,
+    "greedy_disagreements": 61,
     "kind": "Repeated fixed-context cached-decode evaluation; not an autoregressive stream or certified peak rating.",
+    "member": "results/small-ctx128-b32768-compiled-fp16-repeat/result.json",
+    "member_sha256": "cbe08afe99011bfedcc740c179b4715bb17172464d0ffc5230cf83582a3e65d4",
     "mode": "compile-graph",
     "model_revision": "c4b3a4bb81297f5316697098e1d4b65c1249daf8",
-    "numerical_acceptance": "Original logit tolerances with explicitly reported FP16 greedy rounding differences.",
+    "numerical_acceptance": "Recorded all-logit tolerances and nonfinite rejection, with greedy disagreements retained; not exact greedy equivalence.",
     "precision": "float16",
-    "rounding_diagnostic": {
-      "batch": 1024,
-      "covers_selected_reference_disagreements": false,
-      "file": "evidence/h100/correctness/compiled-rounding-batch1024.json",
-      "mismatching_rows_investigated": 4,
-      "seed": 20260916
-    },
-    "strict_alternative_mode": "uncompiled_cuda_graph",
-    "strict_alternative_tps": 609284.8305763772,
-    "timing_scope": "Median host-wall time, launches and synchronization included; model/prefill/compile/warmup/host-token-transfer/text/network excluded."
+    "selection_sha256": "17f503551ad97568f8b0c3eee5bb6cfad713cce8ba47b6ae059fdd93dd2e800b",
+    "timing_scope": "Median host-wall time, launches and synchronization included; model/prefill/compile/warmup/host-token-transfer/text/network excluded.",
+    "transformers_version": "5.17.0",
+    "verified_payload_files": 897
   },
   "model_work_counts": {
     "attention_macs": 393216,
@@ -80,12 +110,13 @@
   },
   "network_access": false,
   "reference_performance_models": {
-    "all_mapped_proxy_equals_one_at_multiple_of_measured": 2.120844053561972,
+    "all_mapped_proxy_equals_one_at_multiple_of_measured": 0.7315745711797114,
     "all_mapped_proxy_equals_one_at_reference_tps": 2159120.0821568114,
     "arithmetic_only_roof": {
+      "exceeds_combined_ideal_roof": true,
       "kind": "Ideal dense matrix-work roof ignoring memory and all other operations.",
       "measured": false,
-      "multiple_of_measured_reference": 84.55801338890817,
+      "multiple_of_measured_reference": 29.167864690901556,
       "reference_tps": 86084077.94464993,
       "scenario_proxy_residual_training_factors": {
         "all_mapped_multipliers_full_credit": 39.86998159854911,
@@ -99,12 +130,13 @@
     "combined_roof_rule": "min(arithmetic rate, bandwidth rate), equivalently max of their per-step time floors; no assumption that these times add.",
     "fractions_are_profiled_hardware_utilization": false,
     "hardware_specification": "https://www.nvidia.com/en-us/data-center/h100/",
-    "measured_minimum_kv_bytes_fraction_of_peak_bandwidth": 0.11949629357411852,
-    "measured_useful_matrix_flops_fraction_of_dense_peak": 0.011826200260887092,
+    "measured_minimum_kv_bytes_fraction_of_peak_bandwidth": 0.3464212858583751,
+    "measured_useful_matrix_flops_fraction_of_dense_peak": 0.03428430605384472,
     "minimum_kv_traffic_only_roof": {
+      "exceeds_combined_ideal_roof": false,
       "kind": "Ideal KV-bandwidth roof: each FP16 K/V element read from HBM once; no extra copies, writes, weights or other traffic.",
       "measured": false,
-      "multiple_of_measured_reference": 8.368460393959769,
+      "multiple_of_measured_reference": 2.8866586460533568,
       "reference_tps": 8519490.559895834,
       "scenario_proxy_residual_training_factors": {
         "all_mapped_multipliers_full_credit": 3.9458159971285394,
@@ -117,29 +149,31 @@
     "scope": "Idealized models for this independent-cache FP16 workload, not achieved rates, forecasts or a standardized peak rating. Assume the stated useful-work count and no cross-row cache sharing; omit overhead.",
     "unmeasured_speedup_sensitivities_not_forecasts": [
       {
+        "exceeds_combined_ideal_roof": true,
         "kind": "Unmeasured sensitivity example, not a predicted kernel speedup.",
         "measured": false,
         "multiple_of_measured_reference": 3.0,
-        "reference_tps": 3054142.6351417317,
+        "reference_tps": 8853998.623852208,
         "scenario_proxy_residual_training_factors": {
-          "all_mapped_multipliers_full_credit": 1.4145311603469755,
-          "dynamic_lanes_full_credit": 0.29862324496213927,
-          "fixed_schedule_dynamic_work_allowance": 0.0024744175708243535,
-          "token_channel_wire_ceiling": 3.154782165551944e-05,
-          "weight_enforcement_failure_fixed_schedule": 0.035478600782661275
+          "all_mapped_multipliers_full_credit": 4.100743954457445,
+          "dynamic_lanes_full_credit": 0.8657126126076831,
+          "fixed_schedule_dynamic_work_allowance": 0.007173368235926498,
+          "token_channel_wire_ceiling": 9.145753911737051e-05,
+          "weight_enforcement_failure_fixed_schedule": 0.10285291816153415
         }
       },
       {
+        "exceeds_combined_ideal_roof": true,
         "kind": "Unmeasured sensitivity example, not a predicted kernel speedup.",
         "measured": false,
         "multiple_of_measured_reference": 6.0,
-        "reference_tps": 6108285.270283463,
+        "reference_tps": 17707997.247704417,
         "scenario_proxy_residual_training_factors": {
-          "all_mapped_multipliers_full_credit": 2.829062320693951,
-          "dynamic_lanes_full_credit": 0.5972464899242785,
-          "fixed_schedule_dynamic_work_allowance": 0.004948835141648707,
-          "token_channel_wire_ceiling": 6.309564331103888e-05,
-          "weight_enforcement_failure_fixed_schedule": 0.07095720156532255
+          "all_mapped_multipliers_full_credit": 8.20148790891489,
+          "dynamic_lanes_full_credit": 1.7314252252153661,
+          "fixed_schedule_dynamic_work_allowance": 0.014346736471852996,
+          "token_channel_wire_ceiling": 0.00018291507823474103,
+          "weight_enforcement_failure_fixed_schedule": 0.2057058363230683
         }
       }
     ]
@@ -154,21 +188,21 @@
         {
           "illustrative_target_comparisons": [
             {
-              "proxy_over_target": 47.15103867823252,
+              "proxy_over_target": 136.69146514858153,
               "target": 0.01
             },
             {
-              "proxy_over_target": 471.51038678232516,
+              "proxy_over_target": 1366.9146514858153,
               "target": 0.001
             },
             {
-              "proxy_over_target": 4715.103867823252,
+              "proxy_over_target": 13669.146514858152,
               "target": 0.0001
             }
           ],
-          "proxy_residual_training_factor": 0.47151038678232515,
+          "proxy_residual_training_factor": 1.3669146514858153,
           "reference_kind": "measured_fp16_parent_model",
-          "reference_tps": 1018047.5450472439
+          "reference_tps": 2951332.874617403
         }
       ]
     },
@@ -181,21 +215,21 @@
         {
           "illustrative_target_comparisons": [
             {
-              "proxy_over_target": 9.95410816540464,
+              "proxy_over_target": 28.857087086922768,
               "target": 0.01
             },
             {
-              "proxy_over_target": 99.54108165404642,
+              "proxy_over_target": 288.5708708692277,
               "target": 0.001
             },
             {
-              "proxy_over_target": 995.4108165404641,
+              "proxy_over_target": 2885.7087086922766,
               "target": 0.0001
             }
           ],
-          "proxy_residual_training_factor": 0.09954108165404642,
+          "proxy_residual_training_factor": 0.28857087086922767,
           "reference_kind": "measured_fp16_parent_model",
-          "reference_tps": 1018047.5450472439
+          "reference_tps": 2951332.874617403
         }
       ]
     },
@@ -210,21 +244,21 @@
         {
           "illustrative_target_comparisons": [
             {
-              "proxy_over_target": 0.08248058569414513,
+              "proxy_over_target": 0.23911227453088327,
               "target": 0.01
             },
             {
-              "proxy_over_target": 0.8248058569414513,
+              "proxy_over_target": 2.3911227453088326,
               "target": 0.001
             },
             {
-              "proxy_over_target": 8.248058569414512,
+              "proxy_over_target": 23.911227453088326,
               "target": 0.0001
             }
           ],
-          "proxy_residual_training_factor": 0.0008248058569414512,
+          "proxy_residual_training_factor": 0.0023911227453088327,
           "reference_kind": "measured_fp16_parent_model",
-          "reference_tps": 1018047.5450472439
+          "reference_tps": 2951332.874617403
         }
       ]
     },
@@ -237,21 +271,21 @@
         {
           "illustrative_target_comparisons": [
             {
-              "proxy_over_target": 0.0010515940551839814,
+              "proxy_over_target": 0.003048584637245684,
               "target": 0.01
             },
             {
-              "proxy_over_target": 0.010515940551839813,
+              "proxy_over_target": 0.030485846372456844,
               "target": 0.001
             },
             {
-              "proxy_over_target": 0.10515940551839813,
+              "proxy_over_target": 0.30485846372456843,
               "target": 0.0001
             }
           ],
-          "proxy_residual_training_factor": 1.0515940551839813e-05,
+          "proxy_residual_training_factor": 3.0485846372456844e-05,
           "reference_kind": "measured_fp16_parent_model",
-          "reference_tps": 1018047.5450472439
+          "reference_tps": 2951332.874617403
         }
       ]
     },
@@ -265,29 +299,32 @@
         {
           "illustrative_target_comparisons": [
             {
-              "proxy_over_target": 1.1826200260887094,
+              "proxy_over_target": 3.428430605384472,
               "target": 0.01
             },
             {
-              "proxy_over_target": 11.826200260887093,
+              "proxy_over_target": 34.28430605384472,
               "target": 0.001
             },
             {
-              "proxy_over_target": 118.26200260887093,
+              "proxy_over_target": 342.8430605384472,
               "target": 0.0001
             }
           ],
-          "proxy_residual_training_factor": 0.011826200260887093,
+          "proxy_residual_training_factor": 0.03428430605384472,
           "reference_kind": "measured_fp16_parent_model",
-          "reference_tps": 1018047.5450472439
+          "reference_tps": 2951332.874617403
         }
       ],
       "weight_enforcement_failure_demonstrated": false
     }
   },
-  "schema": "conditional-training-capacity-v4",
+  "schema": "conditional-training-capacity-v5",
   "scope": "Conditional arithmetic scenarios using a measured FP16 parent-model reference by default; not exact FPGA-model inference, a measured training attack or a certified residual training factor.",
   "source_sha256": {
+    "../../evidence/qwen-h100-2026-10-25/REMOTE-ARCHIVE.json": "f7445f85b2990d557dd3c126f180e730a7cb190944191f9c147af11735e84836",
+    "../../evidence/qwen-h100-2026-10-25/SELECTED-REFERENCES.json": "17f503551ad97568f8b0c3eee5bb6cfad713cce8ba47b6ae059fdd93dd2e800b",
+    "../../tools/qwen_h100_results.py": "1dd88cb09483da8cd53c9d3959ae90b7b276aa2127d9282a34712dbb96d82640",
     "evidence/current-greedy/baseline/analysis/implementation.json": "d903b6e980ea0966bbe12c44196ab8c71c0103395e0e37f930789a9f1ef55423",
     "evidence/current-greedy/baseline/analysis/mapped-census.json": "5ce797c87d11b838e7b990a34a662b15ba3fac221d0201d6d17c8ba849cc65e0",
     "evidence/current-greedy/baseline/analysis/metrics.json": "4ad893f57af44d1d74d40da894242919feef8b4dfcad1d843daa81b981e1b2f0",
@@ -297,7 +334,7 @@
     "hardware/project/uart_core.sv": "315f5d20fa93a5f974eeef1b26220952c6f9ab4264cd6309a1de7cb35ea1832a",
     "prebuilt/inference/BUILD.json": "d9f4c40614b90f704190bad934ec2a0624293a3b4b1b0ed736ab4b8787658e5d",
     "reference/reference/model.py": "58d0d8d6d858a74d9bb11a7103b1574b3a0be8eccd0d149363bd10380ffac049",
-    "tools/estimate_training_capacity.py": "97dbdce9adee834939b7b37a7f6962f48bbdd99f94fe0dc1b9fcf3553b036f8a"
+    "tools/estimate_training_capacity.py": "c1261c6dcbe06cbfd671e75e1c4a1f68fd9eb563edbc7dc76431259ee2928111"
   },
   "training_attack_demonstrated": false,
   "uart_baud": 115207.3732718894

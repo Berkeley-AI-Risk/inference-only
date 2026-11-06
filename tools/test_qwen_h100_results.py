@@ -7,7 +7,9 @@ import json
 import os
 from pathlib import Path
 import tarfile
+import tempfile
 import unittest
+from unittest import mock
 
 spec = importlib.util.spec_from_file_location('h100_results', Path(__file__).with_name('qwen_h100_results.py'))
 results = importlib.util.module_from_spec(spec)
@@ -56,10 +58,56 @@ class EvidenceChecks(unittest.TestCase):
         self.assertEqual(actual['verified_payload_files'], 897)
         self.assertEqual(actual['case_counts'], {'total': 37, 'pass': 32, 'failed': 5})
 
+    def test_shared_reference_reader_is_independent_of_comparison(self):
+        with mock.patch.object(results, 'analyze', side_effect=AssertionError('circular calculator dependency')):
+            measured = results.reference_measurements(ROOT, EVIDENCE)
+        self.assertAlmostEqual(measured['rates']['small_fixed'], 2951332.874617403)
+        self.assertEqual(measured['cases']['small_fixed']['environment']['packages']['transformers'], '5.17.0')
+        saved = json.loads((ROOT / 'demos/simplestories-v2-5m/evidence/training-capacity-estimates.json').read_text())
+        self.assertEqual(saved['measured_reference']['aggregate_tokens_per_second'], measured['rates']['small_fixed'])
+        self.assertEqual(saved['measured_reference']['member_sha256'], measured['selection']['cases']['small_fixed']['sha256'])
+        self.assertEqual(saved['measured_reference']['archive_sha256'], measured['receipt']['sha256'])
+
+    def test_comparison_documents_and_negative_prose_drift(self):
+        actual = results.analyze(ROOT, EVIDENCE)
+        results.check_documents(ROOT, actual)
+        names = ('TRAINING-CAPACITY.md', 'docs/benchmarks/H100-BENCHMARK.md')
+        originals = {name: (ROOT / name).read_text(encoding='utf-8') for name in names}
+        for target in names:
+            text = originals[target]
+            mutations = (text.replace('19% lower', 'twice as high'),
+                         text.replace('0.29 |', '0.10 |'),
+                         text.replace(results.SUMMARY_START, ''), text + results.TABLE_END)
+            for altered in mutations:
+                self.assertNotEqual(altered, text)
+                with self.subTest(target=target), tempfile.TemporaryDirectory() as temporary:
+                    package = Path(temporary)
+                    for name, content in originals.items():
+                        path = package / name
+                        path.parent.mkdir(parents=True, exist_ok=True)
+                        path.write_text(altered if name == target else content, encoding='utf-8')
+                    with self.assertRaises(ValueError):
+                        results.check_documents(package, actual)
+
     def test_changed_selected_identity_rejected(self):
         entry = dict(self.entry, sha256='0' * 64)
         with self.assertRaisesRegex(ValueError, 'identity'):
             self.checked(entry=entry)
+
+    def test_shared_selection_roles_and_hashes_are_checked(self):
+        path = EVIDENCE / 'SELECTED-REFERENCES.json'
+        real_read = Path.read_bytes
+        selection = json.loads(real_read(path))
+        wrong_role = copy.deepcopy(selection)
+        wrong_role['cases']['unexpected'] = wrong_role['cases'].pop('small_fixed')
+        wrong_hash = copy.deepcopy(selection)
+        wrong_hash['cases']['small_fixed']['sha256'] = '0' * 64
+        for altered in (wrong_role, wrong_hash):
+            def read(selected):
+                return json.dumps(altered).encode() if selected == path else real_read(selected)
+            with self.subTest(selection=altered), mock.patch.object(Path, 'read_bytes', read):
+                with self.assertRaises(ValueError):
+                    results.reference_measurements(ROOT, EVIDENCE)
 
     def test_wrong_model_and_workload_roles_rejected(self):
         for role in ('small_fixed', 'qwen_primary'):
