@@ -1,0 +1,7 @@
+{
+  "negative_control": {
+    "name": "header-check",
+    "replace": "(index_q<128 && grant_byte_i!=selected_message_byte)",
+    "with": "1'b0"
+  }
+}

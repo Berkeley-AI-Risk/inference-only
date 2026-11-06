@@ -1,0 +1,7 @@
+read_verilog -formal -D SYNTHESIS -sv design.sv
+chparam -set USE_SHARED_VERIFIER 1 -set RESPONSE_LIMIT_CYCLES 100000000 -set LEASE_CYCLES 250000000 -set RENEW_LEAD_CYCLES 125000000 -set DEVICE_ID 128'h395c83e440d5252bfa59f6138e5ed3b8 -set GEOMETRY 256'h2128664c0025b4ed2ddbd53b2178ea926fe1b3c5e817a2b043a2abc9ee41f078 home_boot_gate
+prep -top home_boot_gate -flatten
+delete home_boot_gate/shared_signature_byte_o
+async2sync
+opt -full
+sat -verify -prove-asserts -tempinduct -tempinduct-def -seq 2 -maxsteps 5 -set clk 1 -set-at 1 reset_n 0 -set-def-inputs -set-def home_transport_fault -set-def home_uart_tx -set-def proof_model_valid -set-def proof_kv_valid -set-def proof_write -set-def proof_raw_ready -set-def proof_kv_rsp_ready -set-def proof_rsp_valid -set-def proof_rsp_error -set-def proof_model_word -set-def proof_kv_word -set-def proof_data -set-def proof_response_data -set-def proof_serial_rx -set-def proof_command_ready -set-def proof_result_valid -set-def proof_result_token -show-ports -show state_q -show lease_age_q -show age_q -show spec_consumed -show spec_had_grant -show home_mode_q -show token_reset_n -show token_uart_quiet -show proof_uart_flight -show proof_uart_first -show proof_uart_elapsed -show proof_uart_rank -show publication_allowed_o -show lease_cycles_remaining_o -show u_actual_token_uart.state_q -show u_actual_token_uart.response_index_q -dump_vcd failure.vcd

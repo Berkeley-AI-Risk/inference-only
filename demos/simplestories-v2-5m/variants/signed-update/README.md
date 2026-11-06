@@ -1,12 +1,12 @@
 # SimpleStories S-AWIC prototype
 
-This experimental **Signed-Update Authenticated-Weight Inference-Only Chip (S-AWIC)** accepts compatible, signed SimpleStories-V2-5M model packages. Fixed public verification keys authorize new model commitments. S-AWICs and Fixed-Commitment AWICs (F-AWICs) are subtypes of Authenticated-Weight Inference-Only Chips (AWICs). F-AWICs fix the accepted model commitment in hardware; S-AWICs permit new commitments authorized by signatures. This prototype does not establish a residual-training certificate.
+This **Signed-Update Authenticated-Weight Inference-Only Chip (S-AWIC)** accepts compatible, signed SimpleStories-V2-5M model packages. Fixed public verification keys authorize new model commitments. S-AWICs and Fixed-Commitment AWICs (F-AWICs) are subtypes of Authenticated-Weight Inference-Only Chips (AWICs). F-AWICs fix the accepted model commitment in hardware; S-AWICs permit new commitments authorized by signatures. This prototype does not establish a residual-training certificate.
 
 **Implemented scope:** a Python package/signature reference, the connected RTL component, and the complete isolated [Tang integration target](tang/README.md). The full target joins real LMS verification, read-only SPI boot, DDR loading/readback, private digest/metadata/norm storage, the four verified runtime page banks and the UART token machine. It accepts compatible full model parameters with the fixed SimpleStories architecture.
 
-**Current security limit:** the released RTL and prebuilt image have an incomplete [boot-to-runtime page binding](tang/HARDWARE.md#boot-to-runtime-page-binding-limit). Fixed arithmetic-table integrity remains unqualified against an approving signer threshold that also controls external DDR.
+Boot binds every signed page digest to the same ordered readback used for the whole-image and fixed-function-table checks. Runtime pages authenticate against that sealed table; [hardware](tang/HARDWARE.md#boot-to-runtime-page-binding) describes the binding and its assumptions.
 
-The Tang target's [validation status](tang/VALIDATION.md) separates numerical simulation, native build results and physical board evidence. It is experimental; no new whole-machine formal theorem or residual-training certificate is established. The released baseline and other variants are separate.
+The Tang target's [validation](tang/VALIDATION.md) separates numerical simulation, source-bound component proofs, native timing and board observations. The whole-machine inference-only theorem and a residual-training certificate remain open.
 
 ## Update policy
 

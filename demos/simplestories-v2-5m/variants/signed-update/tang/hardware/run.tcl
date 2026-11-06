@@ -5,14 +5,15 @@ set_option -use_cpu_as_gpio 1
 set_option -use_mspi_as_gpio 1
 set_option -convert_sdp32_36_to_sdp16_18 0
 set_option -output_base_name swic_product
-set_option -gen_text_timing_rpt 1
+set_option -opt_goal area
+set_option -retiming_resource none
 if {[catch {run syn} result options]} {puts stderr $result; exit 1}
 puts "SWIC_SYN_COMPLETE hardware_access=0"
 flush stdout
-set_option -place_option 3
+set_option -place_option 4
 set_option -route_option 0
 set_option -clock_route_order 0
-set_option -route_maxfan 60
+set_option -route_maxfan 45
 set_option -replicate_resources 0
 set_option -correct_hold_violation 1
 set_option -gen_verilog_sim_netlist 1

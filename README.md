@@ -82,7 +82,7 @@ The table lists **Authenticated-Weight Inference-Only Chip (AWIC) designs**, all
 | Same model, **F-AWIC with K/V protection + encrypted memory** | 25 | ~**6.0 tokens/s** | Runnable release; public demonstration keys |
 | Same model, **F-AWIC with seeded sampling at temperature 1**, without K/V integrity | 25 | ~**9.9 tokens/s** | Runnable release |
 | Same model, **S-AWIC**, without K/V integrity | 25 | ~**10.1 tokens/s** | Runnable release; public demonstration keys |
-| Same model, **S-AWIC with periodic reauthorization**, without K/V integrity | 25 | ~**7.4 tokens/s** | Runnable token-ID demonstration; public demonstration keys |
+| Same model, **S-AWIC with periodic reauthorization**, without K/V integrity | 25 | ~**7.6 tokens/s** | Runnable token-ID demonstration; public demonstration keys |
 | **Qwen3-1.7B — AWS F2**, **F-AWIC** | 100 | ~**9.0 tokens/s** | Runnable release; public AWS FPGA image |
 | **Qwen3-8B — AWS F2**, **F-AWIC** | 100 | ~**1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
 <!-- COMMON-FPGA-SPEED:END -->

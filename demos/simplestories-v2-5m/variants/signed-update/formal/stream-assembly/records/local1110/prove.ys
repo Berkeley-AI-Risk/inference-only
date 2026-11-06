@@ -1,0 +1,10 @@
+read_verilog -formal -D SYNTHESIS -sv miter.sv
+chparam -set SHARED 0 -set LIMIT 1110 -set FAST_COVER 0 packing_miter
+prep -top packing_miter -flatten
+async2sync
+dffunmap
+memory_map
+opt
+dffunmap
+opt_clean
+write_smt2 -wires model.smt2

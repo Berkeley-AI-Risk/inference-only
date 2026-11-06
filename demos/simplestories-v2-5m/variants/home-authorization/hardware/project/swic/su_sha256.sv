@@ -75,7 +75,7 @@ module su_sha256 #(
                     end
                 end
                 FILL: if(transfer) begin
-                    block_q[511-int'(offset_q[5:0])*8 -: 8]<=next_byte;
+                    block_q<={block_q[503:0],next_byte};
                     offset_q<=offset_q+1;
                     if(offset_q[5:0]==63) state_q<=LAUNCH;
                 end

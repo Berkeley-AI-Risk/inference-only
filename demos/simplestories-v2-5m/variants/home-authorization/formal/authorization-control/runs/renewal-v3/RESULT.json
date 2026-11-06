@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "job": "renewal",
+  "process": {
+    "exit_code": 0,
+    "peak_sampled_process_tree_rss_bytes": 1458405376,
+    "memory_stopped": false,
+    "log_sha256": "bb310e57f23bfb3a33c04d900b1b36a97327d888653fdcfec4bd04d1961c6821"
+  },
+  "design_sha256": "0dd0485f24857824311eb615d18d833abfbbdfc5e142373c873162ca62d4e926",
+  "proof_log_sha256": "bb310e57f23bfb3a33c04d900b1b36a97327d888653fdcfec4bd04d1961c6821",
+  "scope": "Actual production controller/timers: each challenge can grant only once; a subsequent grant uses a different nonce; renewal initiation preserves the decrementing old deadline; failure cannot be renewed away. Binary clocked async2sync model; not a whole-machine numerical or physical security theorem."
+}

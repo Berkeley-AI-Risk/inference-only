@@ -1,0 +1,459 @@
+{
+  "result": "PASS",
+  "kind": "source-pinned-static-correspondence",
+  "checks": [
+    {
+      "file": "home/home_product_top.sv",
+      "instance": "u_core",
+      "port": "private_nonce_i",
+      "connection": "registered_nonce"
+    },
+    {
+      "file": "home/home_product_top.sv",
+      "instance": "u_core",
+      "port": "private_nonce_valid_i",
+      "connection": "nonce_valid"
+    },
+    {
+      "file": "home/home_product_top.sv",
+      "instance": "u_core",
+      "port": "private_nonce_fault_i",
+      "connection": "nonce_fault"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "clk",
+      "connection": "core_clk"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "reset_n",
+      "connection": "core_reset_n"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "admitted_root_valid_i",
+      "connection": "model_locked"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "admitted_root_i",
+      "connection": "model_commitment"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "model_fault_i",
+      "connection": "memory_fault||source_fault||home_transport_fault"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "inference_enabled_o",
+      "connection": "home_enabled"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "failed_o",
+      "connection": "home_failed"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "new_lease_o",
+      "connection": "home_accepted"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "publication_allowed_o",
+      "connection": "home_publication_allowed"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "shared_reset_n_o",
+      "connection": "lease_crypto_reset_n"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "shared_start_o",
+      "connection": "lease_crypto_start"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "shared_message_byte_o",
+      "connection": "lease_message_byte"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "shared_signature_byte_o",
+      "connection": "lease_signature_byte"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "shared_signature_ready_o",
+      "connection": "lease_signature_ready"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "shared_signature_address_i",
+      "connection": "lease_signature_address"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "shared_message_address_i",
+      "connection": "lease_message_address"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "shared_done_i",
+      "connection": "lease_crypto_done"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "shared_valid_i",
+      "connection": "lease_crypto_valid"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "shared_fault_i",
+      "connection": "lease_crypto_fault"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_uart_core",
+      "port": "core_clk_i",
+      "connection": "core_clk"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_uart_core",
+      "port": "app_clk_i",
+      "connection": "core_clk"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_uart_core",
+      "port": "reset_n_i",
+      "connection": "token_reset_n"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_uart_core",
+      "port": "private_transport_pause_i",
+      "connection": "home_mode_q"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_uart_core",
+      "port": "private_publication_allowed_i",
+      "connection": "home_publication_allowed"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_uart_core",
+      "port": "uart_tx_o",
+      "connection": "token_uart_tx"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_uart_core",
+      "port": "private_endpoint_req_valid_o",
+      "connection": "request_valid"
+    },
+    {
+      "file": "uart_core.sv",
+      "instance": "u_fixed_uart",
+      "port": "rst_n",
+      "connection": "reset_n_i"
+    },
+    {
+      "file": "uart_core.sv",
+      "instance": "u_fixed_uart",
+      "port": "publication_allowed_i",
+      "connection": "private_publication_allowed_i"
+    },
+    {
+      "file": "uart_core.sv",
+      "instance": "u_fixed_uart",
+      "port": "transport_pause_i",
+      "connection": "private_transport_pause_i"
+    },
+    {
+      "file": "uart_core.sv",
+      "instance": "u_fixed_uart",
+      "port": "uart_tx_o",
+      "connection": "uart_tx_o"
+    },
+    {
+      "file": "uart_core.sv",
+      "instance": "u_machine",
+      "port": "reset_n_i",
+      "connection": "reset_n_i"
+    },
+    {
+      "file": "uart_core.sv",
+      "instance": "u_machine",
+      "port": "app_clk_i",
+      "connection": "app_clk_i"
+    },
+    {
+      "file": "uart_core.sv",
+      "instance": "u_machine",
+      "port": "private_endpoint_req_valid_o",
+      "connection": "private_endpoint_req_valid_o"
+    },
+    {
+      "file": "shared_token_probe.sv",
+      "instance": "u_shared",
+      "port": "clk",
+      "connection": "app_clk_i"
+    },
+    {
+      "file": "shared_token_probe.sv",
+      "instance": "u_shared",
+      "port": "reset_n",
+      "connection": "app_runtime_reset_n"
+    },
+    {
+      "file": "shared_token_probe.sv",
+      "instance": "u_shared",
+      "port": "raw_req_valid_o",
+      "connection": "private_endpoint_req_valid_o"
+    },
+    {
+      "file": "arbiter.sv",
+      "instance": "u_backend",
+      "port": "clk",
+      "connection": "clk"
+    },
+    {
+      "file": "arbiter.sv",
+      "instance": "u_backend",
+      "port": "reset_n",
+      "connection": "reset_n"
+    },
+    {
+      "file": "arbiter.sv",
+      "instance": "u_backend",
+      "port": "raw_req_valid_o",
+      "connection": "raw_req_valid_o"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "model_commitment_o",
+      "connection": "model_commitment"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "lease_key_id_i",
+      "connection": "HOME_KEY_ID"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "lease_key_root_i",
+      "connection": "HOME_KEY_ROOT"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "lease_crypto_reset_n_i",
+      "connection": "lease_crypto_reset_n"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "lease_crypto_start_i",
+      "connection": "lease_crypto_start"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "lease_signature_byte_i",
+      "connection": "lease_signature_byte"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "lease_signature_ready_i",
+      "connection": "lease_signature_ready"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "lease_message_byte_i",
+      "connection": "lease_message_byte"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "lease_signature_address_o",
+      "connection": "lease_signature_address"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "lease_message_address_o",
+      "connection": "lease_message_address"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "lease_crypto_done_o",
+      "connection": "lease_crypto_done"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "lease_crypto_valid_o",
+      "connection": "lease_crypto_valid"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "lease_crypto_fault_o",
+      "connection": "lease_crypto_fault"
+    },
+    {
+      "file": "swic/swic_boot_ingress.sv",
+      "instance": "u_admission",
+      "port": "lease_crypto_reset_n_i",
+      "connection": "lease_crypto_reset_n_i"
+    },
+    {
+      "file": "swic/swic_boot_ingress.sv",
+      "instance": "u_admission",
+      "port": "lease_crypto_start_i",
+      "connection": "lease_crypto_start_i"
+    },
+    {
+      "file": "swic/swic_boot_ingress.sv",
+      "instance": "u_admission",
+      "port": "lease_key_id_i",
+      "connection": "lease_key_id_i"
+    },
+    {
+      "file": "swic/swic_boot_ingress.sv",
+      "instance": "u_admission",
+      "port": "lease_key_root_i",
+      "connection": "lease_key_root_i"
+    },
+    {
+      "file": "swic/swic_boot_ingress.sv",
+      "instance": "u_admission",
+      "port": "lease_signature_byte_i",
+      "connection": "lease_signature_byte_i"
+    },
+    {
+      "file": "swic/swic_boot_ingress.sv",
+      "instance": "u_admission",
+      "port": "lease_signature_ready_i",
+      "connection": "lease_signature_ready_i"
+    },
+    {
+      "file": "swic/swic_boot_ingress.sv",
+      "instance": "u_admission",
+      "port": "lease_message_byte_i",
+      "connection": "lease_message_byte_i"
+    },
+    {
+      "file": "swic/swic_boot_ingress.sv",
+      "instance": "u_admission",
+      "port": "lease_signature_address_o",
+      "connection": "lease_signature_address_o"
+    },
+    {
+      "file": "swic/swic_boot_ingress.sv",
+      "instance": "u_admission",
+      "port": "lease_message_address_o",
+      "connection": "lease_message_address_o"
+    },
+    {
+      "file": "swic/swic_boot_ingress.sv",
+      "instance": "u_admission",
+      "port": "lease_crypto_done_o",
+      "connection": "lease_crypto_done_o"
+    },
+    {
+      "file": "swic/swic_boot_ingress.sv",
+      "instance": "u_admission",
+      "port": "lease_crypto_valid_o",
+      "connection": "lease_crypto_valid_o"
+    },
+    {
+      "file": "swic/swic_boot_ingress.sv",
+      "instance": "u_admission",
+      "port": "lease_crypto_fault_o",
+      "connection": "lease_crypto_fault_o"
+    },
+    {
+      "file": "swic/swic_boot_admission.sv",
+      "instance": "u_lms",
+      "port": "reset_n",
+      "connection": "selected_lms_reset_n"
+    },
+    {
+      "file": "swic/swic_boot_admission.sv",
+      "instance": "u_lms",
+      "port": "start_i",
+      "connection": "lease_owner?lease_crypto_start_i:state_q==AUTH_START"
+    },
+    {
+      "file": "swic/swic_boot_admission.sv",
+      "instance": "u_lms",
+      "port": "public_i_i",
+      "connection": "lease_owner?lease_key_id_i:su_authority_identifier(key_q)"
+    },
+    {
+      "file": "swic/swic_boot_admission.sv",
+      "instance": "u_lms",
+      "port": "public_root_i",
+      "connection": "lease_owner?lease_key_root_i:su_authority_root(key_q)"
+    },
+    {
+      "file": "swic/swic_boot_admission.sv",
+      "instance": "u_lms",
+      "port": "message_length_i",
+      "connection": "9'd128"
+    },
+    {
+      "file": "swic/swic_boot_admission.sv",
+      "instance": "u_lms",
+      "port": "signature_byte_i",
+      "connection": "lease_owner?lease_signature_byte_i:signature_read_q"
+    },
+    {
+      "file": "swic/swic_boot_admission.sv",
+      "instance": "u_lms",
+      "port": "signature_ready_i",
+      "connection": "lease_owner?lease_signature_ready_i:signature_ready"
+    },
+    {
+      "file": "swic/swic_boot_admission.sv",
+      "instance": "u_lms",
+      "port": "message_byte_i",
+      "connection": "lease_owner?lease_message_byte_i:manifest_q[lms_message_address[6:0]]"
+    }
+  ],
+  "timer_values_verified": true,
+  "source_pins_sha256": "4c055983af1a8c535764e81913a7af6ab648f26f0f57f0fb05d923f6f12ff97b",
+  "limitations": "Does not prove physical placement, CDC, clock/entropy integrity, authenticated boot, signature RAM freshness or LMS/SHA correctness."
+}

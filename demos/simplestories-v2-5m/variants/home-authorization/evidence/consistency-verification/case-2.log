@@ -1,0 +1,75 @@
+START integrated home authorization simulation
+RESET RELEASED time=5243220000
+MODEL LOCKED cycles=32798162
+PASS home UART turn=1 scenario=2
+PASS token UART status=82 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS token UART status=80 token=0
+PASS home UART turn=2 scenario=2
+PASS integrated lease loss cancels pending inference and suppresses output
+- tb_home_tang.sv:188: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 2s; walltime 220.972 s; speed 8.894 ms/s
+- Verilator: cpu 220.498 s on 1 threads; allocated 26 MB

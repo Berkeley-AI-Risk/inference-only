@@ -48,6 +48,8 @@ jobs:
       - name: Check current authentication and access evidence (recorded only)
         working-directory: demos/simplestories-v2-5m
         run: python -I -S -B formal/authentication-access/check_recorded.py
+      - name: Check selected S-AWIC repair sources, timing, proofs and board evidence (recorded only)
+        run: python -I -S -B tools/check_repaired_sawic.py --output "$RUNNER_TEMP/sawic-repair"
       - name: Check protected-K/V CLEAR epoch proof and corruption controls (recorded only)
         run: |
           python -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/run.py --recorded-only --out "$RUNNER_TEMP/clear-epoch-recorded" --model demos/simplestories-v2-5m

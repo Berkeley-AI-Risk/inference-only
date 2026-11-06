@@ -1,0 +1,10 @@
+read_verilog -formal -D SYNTHESIS -sv design.sv
+chparam -set USE_SHARED_HASH 1 -set MAX_MESSAGE_BYTES 128 su_lms_verify
+chparam -set SHARE_VERIFIER 1 -set SHARE_NONCE_HASH 1 -set SHARE_LMS_HASH 1 swic_boot_admission
+prep -top swic_boot_admission -flatten
+delete swic_boot_admission/digest_data_o swic_boot_admission/metadata_data_o
+async2sync
+dffunmap
+opt -full
+dffunmap
+write_smt2 -wires model.smt2

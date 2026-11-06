@@ -1,0 +1,38 @@
+{
+  "result": "PASS",
+  "cases": [
+    {
+      "case": "actual",
+      "expected_behavior_observed": true,
+      "simulation_exit_code": 0,
+      "controller_sha256": "13e175169d55ed26c1c4ceba7f9dc5db638469b4abfeddf003e69b65d7e44405",
+      "compile_log_sha256": "71c1991d31dcdd2e5598f4add3bb460f2293d790043628cfc89b83829ae1be03",
+      "simulation_log_sha256": "0f3ec2eca840147d44acbba54ced2b75bbbeed5aec4705a525e98d86a1a24a25"
+    },
+    {
+      "case": "header-check",
+      "expected_behavior_observed": true,
+      "simulation_exit_code": 1,
+      "controller_sha256": "e11e2f20bf79c8872bc921d0e4478bd292c74759ffa7c4438e3fab7d3bdc0d32",
+      "compile_log_sha256": "a1be1a7b1edd539778ca811c00a8c3b48f9e10799c29b53fe53934f6808ad091",
+      "simulation_log_sha256": "769abd8747709dc5aff6b6943ece3ef245c166f9ce4e018b78168f006fc27b2c"
+    },
+    {
+      "case": "model-binding",
+      "expected_behavior_observed": true,
+      "simulation_exit_code": 1,
+      "controller_sha256": "87acf024d7a94de5fc16ad50b31c48d6eab7a2167d2c443f56fc37532c4d6749",
+      "compile_log_sha256": "05f4d20de67797bc43febd653f315851dbeb09e9b4f82b5bf7f89d64fa21ce76",
+      "simulation_log_sha256": "46acfdc641203f292ad7f6491bad7f383c70bf43beefb4f9c56f9db224c30211"
+    },
+    {
+      "case": "ram-data",
+      "expected_behavior_observed": true,
+      "simulation_exit_code": 1,
+      "controller_sha256": "19a82b4887e1a8ff25d187d6f1baf08468e5acce9122b376122b7da821991566",
+      "compile_log_sha256": "9c844081d86b49da28dfa773dd185d8f3f7a436c21c9458ee4904c286aafc942",
+      "simulation_log_sha256": "7343c7a69ab8b3ad420cb71b700212f35242d010503c59d2c96daa0f3c63fdd1"
+    }
+  ],
+  "scope": "Simulation witness with actual controller timer values and abstract successful crypto verdict; reaches an initial lease after full transcript, checks all 1292 RAM bytes, then checks binding/failure/reset and deliberately broken guards/RAM. No real LMS signature, nonce entropy, renewal deadline or board-power claim."
+}

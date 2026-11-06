@@ -1,0 +1,354 @@
+
+-- Executing script file `prove.ys' --
+
+1. Executing Verilog-2005 frontend: design.sv
+Parsing formal SystemVerilog input from `design.sv' to AST representation.
+Generating RTLIL representation for module `\su_page_table_check'.
+Generating RTLIL representation for module `\swic_boot_compressor_mux3'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: sha_contract.sv
+Parsing formal SystemVerilog input from `sha_contract.sv' to AST representation.
+Generating RTLIL representation for module `\su_sha256'.
+Generating RTLIL representation for module `\board1_sha256_compact_compress'.
+Successfully finished Verilog frontend.
+
+3. Executing PREP pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \swic_boot_compressor_mux3
+Used module:     \board1_sha256_compact_compress
+
+3.1.2. Analyzing design hierarchy..
+Top module:  \swic_boot_compressor_mux3
+Used module:     \board1_sha256_compact_compress
+Removing unused module `\su_sha256'.
+Removing unused module `\su_page_table_check'.
+Removed 2 unused modules.
+Module swic_boot_compressor_mux3 directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 3 switch rules as full_case in process $proc$design.sv:162$111 in module swic_boot_compressor_mux3.
+Marked 1 switch rules as full_case in process $proc$design.sv:147$99 in module swic_boot_compressor_mux3.
+Marked 10 switch rules as full_case in process $proc$design.sv:115$61 in module swic_boot_compressor_mux3.
+Marked 2 switch rules as full_case in process $proc$sha_contract.sv:59$181 in module board1_sha256_compact_compress.
+Removed a total of 0 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 3 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\swic_boot_compressor_mux3.$proc$design.sv:157$166'.
+  Set init value: \spec_initial = 1'1
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \reset_n in `\swic_boot_compressor_mux3.$proc$design.sv:162$111'.
+Found async reset \reset_n in `\swic_boot_compressor_mux3.$proc$design.sv:147$99'.
+Found async reset \reset_n_i in `\board1_sha256_compact_compress.$proc$sha_contract.sv:59$181'.
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~29 debug messages>
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\swic_boot_compressor_mux3.$proc$design.sv:157$166'.
+Creating decoders for process `\swic_boot_compressor_mux3.$proc$design.sv:174$116'.
+     1/16: $assert$design.sv:189$165_EN
+     2/16: $assert$design.sv:188$158_EN
+     3/16: $assert$design.sv:187$154_EN
+     4/16: $assert$design.sv:186$150_EN
+     5/16: $assert$design.sv:185$147_EN
+     6/16: $assert$design.sv:184$144_EN
+     7/16: $assert$design.sv:183$141_EN
+     8/16: $assert$design.sv:182$139_EN
+     9/16: $assert$design.sv:182$137_EN
+    10/16: $assert$design.sv:181$135_EN
+    11/16: $assert$design.sv:180$132_EN
+    12/16: $assert$design.sv:179$129_EN
+    13/16: $assert$design.sv:178$126_EN
+    14/16: $assert$design.sv:177$123_EN
+    15/16: $assert$design.sv:176$120_EN
+    16/16: $assert$design.sv:175$117_EN
+Creating decoders for process `\swic_boot_compressor_mux3.$proc$design.sv:162$111'.
+     1/2: $0\spec_owner[1:0]
+     2/2: $0\spec_pending[0:0]
+Creating decoders for process `\swic_boot_compressor_mux3.$proc$design.sv:159$108'.
+     1/1: $assume$design.sv:159$109_EN
+Creating decoders for process `\swic_boot_compressor_mux3.$proc$design.sv:158$107'.
+Creating decoders for process `\swic_boot_compressor_mux3.$proc$design.sv:147$99'.
+     1/4: $0\last_owner_q[1:0]
+     2/4: $0\owner_q[1:0]
+     3/4: $0\occupied_q[0:0]
+     4/4: $0\fault_q[0:0]
+Creating decoders for process `\swic_boot_compressor_mux3.$proc$design.sv:115$61'.
+     1/10: $10\choice[1:0]
+     2/10: $9\choice[1:0]
+     3/10: $8\choice[1:0]
+     4/10: $7\choice[1:0]
+     5/10: $6\choice[1:0]
+     6/10: $5\choice[1:0]
+     7/10: $4\choice[1:0]
+     8/10: $3\choice[1:0]
+     9/10: $2\choice[1:0]
+    10/10: $1\choice[1:0]
+Creating decoders for process `\board1_sha256_compact_compress.$proc$sha_contract.sv:59$181'.
+     1/2: $0\done_o[0:0]
+     2/2: $0\busy_o[0:0]
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\swic_boot_compressor_mux3.\choice' from process `\swic_boot_compressor_mux3.$proc$design.sv:115$61'.
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\swic_boot_compressor_mux3.\spec_pending' using process `\swic_boot_compressor_mux3.$proc$design.sv:162$111'.
+  created $adff cell `$procdff$365' with positive edge clock and positive level reset.
+Creating register for signal `\swic_boot_compressor_mux3.\spec_owner' using process `\swic_boot_compressor_mux3.$proc$design.sv:162$111'.
+  created $adff cell `$procdff$370' with positive edge clock and positive level reset.
+Creating register for signal `\swic_boot_compressor_mux3.\spec_initial' using process `\swic_boot_compressor_mux3.$proc$design.sv:158$107'.
+  created $dff cell `$procdff$371' with positive edge clock.
+Creating register for signal `\swic_boot_compressor_mux3.\fault_q' using process `\swic_boot_compressor_mux3.$proc$design.sv:147$99'.
+  created $adff cell `$procdff$376' with positive edge clock and positive level reset.
+Creating register for signal `\swic_boot_compressor_mux3.\occupied_q' using process `\swic_boot_compressor_mux3.$proc$design.sv:147$99'.
+  created $adff cell `$procdff$381' with positive edge clock and positive level reset.
+Creating register for signal `\swic_boot_compressor_mux3.\owner_q' using process `\swic_boot_compressor_mux3.$proc$design.sv:147$99'.
+  created $adff cell `$procdff$386' with positive edge clock and positive level reset.
+Creating register for signal `\swic_boot_compressor_mux3.\last_owner_q' using process `\swic_boot_compressor_mux3.$proc$design.sv:147$99'.
+  created $adff cell `$procdff$391' with positive edge clock and positive level reset.
+Creating register for signal `\board1_sha256_compact_compress.\busy_o' using process `\board1_sha256_compact_compress.$proc$sha_contract.sv:59$181'.
+  created $adff cell `$procdff$396' with positive edge clock and positive level reset.
+Creating register for signal `\board1_sha256_compact_compress.\done_o' using process `\board1_sha256_compact_compress.$proc$sha_contract.sv:59$181'.
+  created $adff cell `$procdff$401' with positive edge clock and positive level reset.
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `swic_boot_compressor_mux3.$proc$design.sv:157$166'.
+Found and cleaned up 9 empty switches in `\swic_boot_compressor_mux3.$proc$design.sv:174$116'.
+Removing empty process `swic_boot_compressor_mux3.$proc$design.sv:174$116'.
+Found and cleaned up 4 empty switches in `\swic_boot_compressor_mux3.$proc$design.sv:162$111'.
+Removing empty process `swic_boot_compressor_mux3.$proc$design.sv:162$111'.
+Found and cleaned up 1 empty switch in `\swic_boot_compressor_mux3.$proc$design.sv:159$108'.
+Removing empty process `swic_boot_compressor_mux3.$proc$design.sv:159$108'.
+Removing empty process `swic_boot_compressor_mux3.$proc$design.sv:158$107'.
+Found and cleaned up 3 empty switches in `\swic_boot_compressor_mux3.$proc$design.sv:147$99'.
+Removing empty process `swic_boot_compressor_mux3.$proc$design.sv:147$99'.
+Found and cleaned up 10 empty switches in `\swic_boot_compressor_mux3.$proc$design.sv:115$61'.
+Removing empty process `swic_boot_compressor_mux3.$proc$design.sv:115$61'.
+Found and cleaned up 2 empty switches in `\board1_sha256_compact_compress.$proc$sha_contract.sv:59$181'.
+Removing empty process `board1_sha256_compact_compress.$proc$sha_contract.sv:59$181'.
+Cleaned up 29 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module swic_boot_compressor_mux3.
+<suppressed ~24 debug messages>
+Optimizing module board1_sha256_compact_compress.
+<suppressed ~4 debug messages>
+
+3.3. Executing FLATTEN pass (flatten design).
+Deleting now unused module board1_sha256_compact_compress.
+<suppressed ~1 debug messages>
+
+3.4. Executing FUTURE pass.
+
+3.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module swic_boot_compressor_mux3.
+
+3.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \swic_boot_compressor_mux3..
+Removed 19 unused cells and 136 unused wires.
+<suppressed ~22 debug messages>
+
+3.7. Executing CHECK pass (checking for obvious problems).
+Checking module swic_boot_compressor_mux3...
+Found and reported 0 problems.
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module swic_boot_compressor_mux3.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\swic_boot_compressor_mux3'.
+Computing hashes of 193 cells of `\swic_boot_compressor_mux3'.
+Finding duplicate cells in `\swic_boot_compressor_mux3'.
+Computing hashes of 166 cells of `\swic_boot_compressor_mux3'.
+Finding duplicate cells in `\swic_boot_compressor_mux3'.
+Computing hashes of 164 cells of `\swic_boot_compressor_mux3'.
+Finding duplicate cells in `\swic_boot_compressor_mux3'.
+<suppressed ~87 debug messages>
+Removed a total of 29 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \swic_boot_compressor_mux3..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$300.
+    dead port 1/2 on $mux $procmux$298.
+    dead port 1/2 on $mux $procmux$295.
+    dead port 1/3 on $pmux $procmux$287.
+    dead port 2/3 on $pmux $procmux$287.
+    dead port 1/3 on $pmux $procmux$280.
+    dead port 2/3 on $pmux $procmux$280.
+    dead port 1/2 on $mux $procmux$277.
+    dead port 1/3 on $pmux $procmux$270.
+    dead port 2/3 on $pmux $procmux$270.
+    dead port 2/2 on $mux $procmux$345.
+    dead port 1/2 on $mux $procmux$267.
+    dead port 1/2 on $mux $procmux$264.
+    dead port 2/2 on $mux $procmux$338.
+    dead port 1/2 on $mux $procmux$307.
+    dead port 1/2 on $mux $procmux$336.
+    dead port 2/2 on $mux $procmux$328.
+    dead port 1/2 on $mux $procmux$326.
+    dead port 1/2 on $mux $procmux$323.
+    dead port 2/2 on $mux $procmux$315.
+    dead port 2/2 on $mux $procmux$309.
+Removed 21 multiplexer ports.
+<suppressed ~94 debug messages>
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \swic_boot_compressor_mux3.
+Performed a total of 0 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\swic_boot_compressor_mux3'.
+Computing hashes of 146 cells of `\swic_boot_compressor_mux3'.
+Finding duplicate cells in `\swic_boot_compressor_mux3'.
+Computing hashes of 139 cells of `\swic_boot_compressor_mux3'.
+Finding duplicate cells in `\swic_boot_compressor_mux3'.
+Computing hashes of 138 cells of `\swic_boot_compressor_mux3'.
+Finding duplicate cells in `\swic_boot_compressor_mux3'.
+<suppressed ~24 debug messages>
+Removed a total of 8 cells.
+
+3.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \swic_boot_compressor_mux3..
+Removed 0 unused cells and 55 unused wires.
+<suppressed ~1 debug messages>
+
+3.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module swic_boot_compressor_mux3.
+
+3.8.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \swic_boot_compressor_mux3..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+3.8.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \swic_boot_compressor_mux3.
+Performed a total of 0 changes.
+
+3.8.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\swic_boot_compressor_mux3'.
+Computing hashes of 138 cells of `\swic_boot_compressor_mux3'.
+Finding duplicate cells in `\swic_boot_compressor_mux3'.
+Removed a total of 0 cells.
+
+3.8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \swic_boot_compressor_mux3..
+
+3.8.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module swic_boot_compressor_mux3.
+
+3.8.14. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 2) from port B of cell swic_boot_compressor_mux3.$eq$design.sv:136$66 ($eq).
+Removed top 1 bits (of 2) from port B of cell swic_boot_compressor_mux3.$eq$design.sv:139$78 ($eq).
+Removed top 30 bits (of 32) from port B of cell swic_boot_compressor_mux3.$lt$design.sv:182$140 ($lt).
+Removed top 1 bits (of 2) from port B of cell swic_boot_compressor_mux3.$eq$design.sv:187$155 ($eq).
+Removed top 1 bits (of 2) from mux cell swic_boot_compressor_mux3.$procmux$261 ($mux).
+Removed top 1 bits (of 2) from port B of cell swic_boot_compressor_mux3.$procmux$349_CMP0 ($eq).
+Removed top 1 bits (of 2) from wire swic_boot_compressor_mux3.$10\choice[1:0].
+
+3.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \swic_boot_compressor_mux3..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+3.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.12. Executing OPT pass (performing simple optimizations).
+
+3.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module swic_boot_compressor_mux3.
+
+3.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\swic_boot_compressor_mux3'.
+Computing hashes of 138 cells of `\swic_boot_compressor_mux3'.
+Finding duplicate cells in `\swic_boot_compressor_mux3'.
+Removed a total of 0 cells.
+
+3.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \swic_boot_compressor_mux3..
+
+3.12.4. Finished fast OPT passes.
+
+3.13. Executing SORT pass.
+
+3.14. Printing statistics.
+
+=== swic_boot_compressor_mux3 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      138 wires
+     3218 wire bits
+       38 public wires
+     3105 public wire bits
+       19 ports
+     2572 port bits
+      138 cells
+        8   $adff
+        2   $anyseq
+       17   $check
+        1   $dff
+        9   $eq
+       38   $logic_and
+       16   $logic_not
+        3   $logic_or
+        1   $lt
+       41   $mux
+        1   $pmux
+        1   $scopeinfo
+
+3.15. Executing CHECK pass (checking for obvious problems).
+Checking module swic_boot_compressor_mux3...
+Found and reported 0 problems.
+
+4. Executing ASYNC2SYNC pass.
+Replacing swic_boot_compressor_mux3.$flatten\u_compress.$procdff$396 ($adff): ARST=\reset_n, D=$flatten\u_compress.$0\busy_o[0:0], Q=\u_compress.busy_o
+Replacing swic_boot_compressor_mux3.$flatten\u_compress.$procdff$401 ($adff): ARST=\reset_n, D=$flatten\u_compress.$0\done_o[0:0], Q=\u_compress.done_o
+Replacing swic_boot_compressor_mux3.$procdff$365 ($adff): ARST=\reset_n, D=$0\spec_pending[0:0], Q=\spec_pending
+Replacing swic_boot_compressor_mux3.$procdff$370 ($adff): ARST=\reset_n, D=$0\spec_owner[1:0], Q=\spec_owner
+Replacing swic_boot_compressor_mux3.$procdff$376 ($adff): ARST=\reset_n, D=$0\fault_q[0:0], Q=\fault_q
+Replacing swic_boot_compressor_mux3.$procdff$381 ($adff): ARST=\reset_n, D=$0\occupied_q[0:0], Q=\occupied_q
+Replacing swic_boot_compressor_mux3.$procdff$386 ($adff): ARST=\reset_n, D=$0\owner_q[1:0], Q=\owner_q
+Replacing swic_boot_compressor_mux3.$procdff$391 ($adff): ARST=\reset_n, D=$0\last_owner_q[1:0], Q=\last_owner_q
+
+5. Executing DFFUNMAP pass (unmap clock enable and synchronous reset from FFs).
+
+6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \swic_boot_compressor_mux3..
+Removed 34 unused cells and 34 unused wires.
+<suppressed ~35 debug messages>
+
+7. Executing SMT2 backend.
+
+7.1. Executing BMUXMAP pass.
+
+7.2. Executing DEMUXMAP pass.
+Creating SMT-LIBv2 representation of module swic_boot_compressor_mux3.

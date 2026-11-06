@@ -1,0 +1,61 @@
+{
+  "result": "PASS",
+  "records": {
+    "prepare": {
+      "command": [
+        "yosys",
+        "-Q",
+        "-T",
+        "prove.ys"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 0.11497591692022979,
+      "log_sha256": "f6ece72d6d11eaf32248e5bb7597f32cf2c07245b986642c0020482a165f9b98"
+    },
+    "base": {
+      "command": [
+        "yosys-smtbmc",
+        "-s",
+        "cvc5",
+        "--presat",
+        "--noprogress",
+        "-t",
+        "12",
+        "--dump-vcd",
+        "base.vcd",
+        "model.smt2"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 7.953058999963105,
+      "log_sha256": "14be174ce14b7696398356c3ac8b249a34901e15f475bd649574dbb80ed4af92"
+    },
+    "induction": {
+      "command": [
+        "yosys-smtbmc",
+        "-s",
+        "cvc5",
+        "--presat",
+        "--noprogress",
+        "-i",
+        "-t",
+        "12",
+        "--dump-vcd",
+        "induction.vcd",
+        "model.smt2"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 0.34481508401222527,
+      "log_sha256": "4bcd6a4a667011b428206b806432778dbc42350edff8c59f9b0a1070b5ffe81b"
+    }
+  },
+  "source_sha256": "c1c4bcde577fceb53fc0a49497dd79ab00f5212d881e77710bdf3d00f99af338",
+  "properties_sha256": "570946ae30e578b119a69ce2f2306937f2d8715d1080d8b75a82b961447a0e0b",
+  "sha_contract_sha256": "a259e82c29ccf72e79df66d6614e825c589508f0a1ca19950d5190b84d9805f6",
+  "job": "page",
+  "image_bytes": 7265984,
+  "page_bytes": 4096,
+  "scope": "Binary clocked controller: exact input/page coverage before verification, page bounds, reset, padding region, sticky failure and verdict checks. SHA flow abstracted; no hash correctness, DDR or whole-machine theorem."
+}

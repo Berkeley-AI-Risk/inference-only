@@ -1,14 +1,9 @@
-# Experimental Tang S-AWIC SRAM image
+# Tang S-AWIC SRAM image
 
-[`swic_product.fs`](swic_product.fs) is the routed image used for the three directed [physical board cases](../evidence/board/RESULT.json).
+`swic_product.fs` is the selected, board-tested Tang Mega 138K Basic / GW5AST-138C configuration at 25 MHz.
 
-- Target: Tang Mega 138K non-Pro, GW5AST-138C / PG484A.
-- Bytes: 42197772.
-- SHA-256: `4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2`.
-- Complete vendor-DDR timing signoff: **open**.
+SHA-256: `8472e592c68a4b2425be4ecb8f57bde855d3be5df140f96bbe417226d1dca370`.
 
-The [native input inventory](../evidence/native-build/INPUTS.json), [build receipt](../evidence/native-build/RESULT.json) and [timing review](../evidence/native-build/REVIEW.json) identify the source and implementation. Proprietary vendor source is acquired separately; it is not bundled.
+The [source identity](../SOURCE-IDENTITY.json), [native review](../evidence/repair-native-2026-11-05/REVIEW.json) and [board validation](../VALIDATION.md) bind its source, timing and physical observations. Separately licensed vendor source is not bundled. Use SRAM programming operation 2 with a freshly discovered cable location and the matching model/admission flash data; [reproduction](../REPRODUCE.md) gives the commands.
 
-Use SRAM programming operation 2 after verifying the board and cable as described in [REPRODUCE.md](../REPRODUCE.md). The file is an FPGA configuration, not a model/admission flash data file. It requires the matching fixed flash layout. Do not use it as a complete raw flash array.
-
-This is an experimental demonstration with public signing material, no deliberate delay, no update cap and no antirollback. It carries no new formal certificate or physical tamper-resistance claim.
+The image uses public demonstration keys. It implements no deliberate update delay, lifetime cap or independent antirollback policy. Whole-machine certification, production timing and physical security remain open.

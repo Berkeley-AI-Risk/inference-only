@@ -51,8 +51,10 @@ def verify(root,capture_dir):
     need(identity['fpga_image_sha256']==sha(root/'prebuilt/swic_product.fs'),'Different FPGA image')
     need(identity['model_image_sha256']==ref['image_sha256']==sha(root.parents[2]/'assets/board1-real-semantic-image2048.bin'),'Different model image')
     need(identity['collector_sha256']==sha(root/'tools/collect_common_speed.py') and identity['uart_client_sha256']==sha(root/'tools/uart_check.py'),'Changed collection source')
-    need(identity['board_result_sha256']==sha(root/'evidence/board/RESULT.json'),'Different physical qualification')
-    board=json.loads((root/'evidence/board/RESULT.json').read_text())
+    board_path=capture_dir/'BOARD-RESULT.json'
+    if not board_path.exists():board_path=root/'evidence/board/RESULT.json'
+    need(identity['board_result_sha256']==sha(board_path),'Different physical qualification')
+    board=json.loads(board_path.read_text())
     base=next(c for c in board['cases'] if c['case']=='base')
     need(identity['clock_hz']==25000000 and identity['variant']=='S-AWIC'
          and identity['admission_slot_sha256']==base['admission_slot_sha256'],'Different configured clock or admitted fixture')

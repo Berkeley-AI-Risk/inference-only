@@ -1,0 +1,221 @@
+
+-- Executing script file `prove.ys' --
+
+1. Executing Verilog-2005 frontend: design.sv
+Parsing formal SystemVerilog input from `design.sv' to AST representation.
+Generating RTLIL representation for module `\model_lock_origin'.
+Successfully finished Verilog frontend.
+
+2. Executing PREP pass.
+
+2.1. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1.1. Analyzing design hierarchy..
+Top module:  \model_lock_origin
+
+2.1.2. Analyzing design hierarchy..
+Top module:  \model_lock_origin
+Removed 0 unused modules.
+Module model_lock_origin directly or indirectly contains formal properties -> setting "keep" attribute.
+
+2.2. Executing PROC pass (convert processes to netlists).
+
+2.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+2.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+2.2.4. Executing PROC_INIT pass (extract init attributes).
+
+2.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+2.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~2 debug messages>
+
+2.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\model_lock_origin.$proc$design.sv:8$15'.
+     1/2: $assert$design.sv:10$21_EN
+     2/2: $assert$design.sv:9$16_EN
+
+2.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+2.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+2.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+2.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 2 empty switches in `\model_lock_origin.$proc$design.sv:8$15'.
+Removing empty process `model_lock_origin.$proc$design.sv:8$15'.
+Cleaned up 2 empty switches.
+
+2.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module model_lock_origin.
+<suppressed ~1 debug messages>
+
+2.3. Executing FLATTEN pass (flatten design).
+
+2.4. Executing FUTURE pass.
+
+2.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module model_lock_origin.
+
+2.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \model_lock_origin..
+Removed 1 unused cells and 9 unused wires.
+<suppressed ~2 debug messages>
+
+2.7. Executing CHECK pass (checking for obvious problems).
+Checking module model_lock_origin...
+Found and reported 0 problems.
+
+2.8. Executing OPT pass (performing simple optimizations).
+
+2.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module model_lock_origin.
+
+2.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\model_lock_origin'.
+Computing hashes of 22 cells of `\model_lock_origin'.
+Finding duplicate cells in `\model_lock_origin'.
+Removed a total of 0 cells.
+
+2.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \model_lock_origin..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+2.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \model_lock_origin.
+Performed a total of 0 changes.
+
+2.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\model_lock_origin'.
+Computing hashes of 22 cells of `\model_lock_origin'.
+Finding duplicate cells in `\model_lock_origin'.
+Removed a total of 0 cells.
+
+2.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \model_lock_origin..
+
+2.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module model_lock_origin.
+
+2.8.8. Finished fast OPT passes. (There is nothing left to do.)
+
+2.9. Executing WREDUCE pass (reducing word size of cells).
+
+2.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \model_lock_origin..
+
+2.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+2.12. Executing OPT pass (performing simple optimizations).
+
+2.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module model_lock_origin.
+
+2.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\model_lock_origin'.
+Computing hashes of 22 cells of `\model_lock_origin'.
+Finding duplicate cells in `\model_lock_origin'.
+Removed a total of 0 cells.
+
+2.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \model_lock_origin..
+
+2.12.4. Finished fast OPT passes.
+
+2.13. Executing SORT pass.
+
+2.14. Printing statistics.
+
+=== model_lock_origin ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       32 wires
+       32 wire bits
+       16 public wires
+       16 public wire bits
+       12 ports
+       12 port bits
+       22 cells
+        2   $check
+       13   $logic_and
+        5   $logic_not
+        2   $mux
+
+2.15. Executing CHECK pass (checking for obvious problems).
+Checking module model_lock_origin...
+Found and reported 0 problems.
+
+3. Executing SAT pass (solving SAT problems in the circuit).
+Using SAT solver `minisat`.
+
+Setting up SAT problem:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \sealed_i
+Import def constraint for this timestep: \slot_done_q
+Import def constraint for this timestep: \ingress_fault_i
+Import def constraint for this timestep: \boot_state_locked_i
+Import def constraint for this timestep: \image_verified
+Import def constraint for this timestep: \lut_ok_q
+Import def constraint for this timestep: \norm_loaded
+Import def constraint for this timestep: \boot_fault_i
+Import def constraint for this timestep: \runtime_owned_i
+Import def constraint for this timestep: \handoff_fault_i
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \memory_fault_i
+Imported 26 cells to SAT database.
+Import proof for assert: $logic_and$design.sv:9$19_Y when $assert$design.sv:9$16_EN.
+Import proof for assert: $logic_not$design.sv:10$22_Y when $assert$design.sv:10$21_EN.
+Import show expression: \boot_fault_i
+Import show expression: \boot_state_locked_i
+Import show expression: \handoff_fault_i
+Import show expression: \image_verified
+Import show expression: \ingress_fault_i
+Import show expression: \lut_ok_q
+Import show expression: \memory_fault_i
+Import show expression: \norm_loaded
+Import show expression: \reset_n
+Import show expression: \runtime_owned_i
+Import show expression: \sealed_i
+Import show expression: \slot_done_q
+
+Solving problem with 455 variables and 1185 clauses..
+SAT proof finished - model found: FAIL!
+
+   ______                   ___       ___       _ _            _ _ 
+  (_____ \                 / __)     / __)     (_) |          | | |
+   _____) )___ ___   ___ _| |__    _| |__ _____ _| | _____  __| | |
+  |  ____/ ___) _ \ / _ (_   __)  (_   __|____ | | || ___ |/ _  |_|
+  | |   | |  | |_| | |_| || |       | |  / ___ | | || ____( (_| |_ 
+  |_|   |_|   \___/ \___/ |_|       |_|  \_____|_|\_)_____)\____|_|
+
+
+  Signal Name                       Dec       Hex           Bin
+  ------------------------- ----------- --------- -------------
+  \boot_fault_i                       0         0             0
+  \boot_state_locked_i                1         1             1
+  \handoff_fault_i                    0         0             0
+  \image_verified                     1         1             1
+  \ingress_fault_i                    0         0             0
+  \lut_ok_q                           1         1             1
+  \memory_fault_i                     0         0             0
+  \norm_loaded                        1         1             1
+  \reset_n                            1         1             1
+  \runtime_owned_i                    1         1             1
+  \sealed_i                           0         0             0
+  \slot_done_q                        0         0             0
+Dumping SAT model to VCD file failure.vcd
+
+ERROR: Called with -verify and proof did fail!

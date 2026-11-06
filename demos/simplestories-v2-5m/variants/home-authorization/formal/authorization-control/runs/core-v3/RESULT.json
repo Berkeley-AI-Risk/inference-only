@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "exit_code": 0,
+  "job": "core",
+  "negative_control": null,
+  "peak_sampled_rss_bytes": 603258880,
+  "memory_stopped": false,
+  "proof_log_sha256": "ad4399209d099f4faa806578e0f8c5e5882f72e3d795308654f525bebc6a745e",
+  "design_sha256": "edc9e907bc174cd484e1e831dcec07a8a13ed8b4043e65e50b5dec1c6ad91f19",
+  "source_pins_sha256": "a2b06bd35d188f6864876757fe1209553a94718962a7a00773934fa19901bf76",
+  "scope": "Selected controller plus exact top-level permit/mux and runtime reset excerpts; actual backend arbiter, arbitrary numerical-client requests/responses. Reset/permission suppression and runtime admission. Physical hierarchy correspondence needs separate wiring audit. Two-state clocked async2sync model. No LMS/SHA correctness, entropy, analog timing or unconditional whole-chip security claim."
+}

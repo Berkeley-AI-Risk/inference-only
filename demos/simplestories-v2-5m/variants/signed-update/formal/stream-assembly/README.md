@@ -1,0 +1,9 @@
+# SHA stream-assembly equivalence
+
+The selected S-AWIC stream wrapper assembles each 512-bit SHA input block with fixed shift wiring. Five unbounded base/induction results compare it with the reset-full indexed-byte implementation: shared compressors at limits 4,096, 7,265,984 and 409,632 bytes, and local compressors at limits 112,688 and 1,110 bytes. These cover both selected Tang images.
+
+The actual wrapper control, padding, chaining and meaningful outputs agree under common arbitrary compressor responses after a common initial reset. During filling, a 512-bit rotation invariant relates the two buffers; complete blocks agree at every compression launch. A reset-rooted launch witness reaches step 67, and a deliberately changed byte fails the exact checker. This is wrapper equivalence, not a proof of SHA-256, signature security, native mapping, physical timing or whole-device behavior.
+
+Run `python3.12 -I -S -B check_recorded.py` for source, recipe and saved-log checks. It launches no tools. Add `--compile-only --output /tmp/sha-assembly-compile` to rebuild all five native SMT models and compare every logical byte with the saved inputs. Add `--replay --output /tmp/sha-assembly-replay` for those compilations and ten fresh cvc5 queries. Use a new output directory outside the demo. Fresh reproduction requires Yosys with yosys-smtbmc and cvc5; it runs one job at a time and does not impose a wall-clock timeout. Unknown, interruption or a failed query does not count as success.
+
+The generator files retain the recorded construction recipe. The entry point is `check_recorded.py`; it reconstructs the miter from the two exact source snapshots and binds the candidate to all three selected public copies. Full SHA unit checks are in the adjacent [page-consistency packet](../page-consistency/README.md). The baseline snapshot is a comparison implementation and is not credited as the selected hardware.

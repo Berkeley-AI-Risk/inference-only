@@ -43,13 +43,13 @@ python3 -I -B tools/build_native.py --ide "$GOWIN_IDE" --vendor-dir "$VENDOR_INP
 
 The first command independently rechecks stored token CRCs, the model/reference binding, unique nonces and signing leaves, real LMS grants, renewal/replay/revocation observations, paired timing and restoration. It checks exact hardware input and prebuilt hashes. It accesses no board or network. Redacted capture hash mappings are preserved in `evidence/PUBLIC-COPIES.json`.
 
-The build command requires the pinned Education compiler and the four separately acquired vendor DDR/PLL inputs. It verifies tool and input hashes, copies the frozen composition and runs synthesis/place-and-route without accessing hardware. Rebuilt outputs need their own mapping/timing review; bit-identical implementation is not promised. Complete DDR timing, analog metastability, entropy and production security remain open.
+The build command requires an existing authorized macOS Standard compiler installation (`gw_sh` SHA-256 `76b24d18ec9785be73de6e9e98866bbd7bec330aff67d1fa8462f71f79b5f72c`) and the four separately acquired vendor DDR/PLL inputs. It verifies the selected source, constraint, memory and vendor hashes before synthesis/place-and-route. Use a fresh output directory outside the demo. The compiler may contact its configured license server; the script does not accept licenses or download software. No hardware is accessed. Rebuilt outputs need their own mapping/timing review; bit-identical implementation is not promised. Complete DDR timing, analog metastability, entropy and production security remain open.
 
 ## Common speed measurement
 
 Create the independent base-model reference using `../signed-update/tang/tools/common_speed_reference.py` with `--demo "$DEMO" --image "$DEMO/assets/board1-real-semantic-image2048.bin" --output "$WORK/reference.json"`. Follow [INSTALL.md](INSTALL.md), substituting `--reference "$WORK/reference.json"` for `--smoke` in the relay command. Start the relay before SRAM loading. It collects `[378]`, 128 greedy outputs twice, validates every returned ID and records raw frames and validated-return timestamps. It includes renewal and host handover gaps, excludes output one from the cached metric and never retries commands. Preserve separate successful programmer, model-data/readback and source identity receipts before selecting any new headline result.
 
-The published record is `evidence/board-25mhz-v9/COMMON-SPEED.json`; its two raw trial files, reference, collector and complete campaign audit accompany it. The repository's common benchmark checker admits the row only after the offline audit passes.
+The published record is `evidence/repair-board-2026-11-05/COMMON-SPEED.json`; its two raw trial files, reference, collector and complete campaign audit accompany it. The repository's common benchmark checker admits the row only after the offline audit passes.
 
 ## Model-replacement evidence
 
@@ -99,3 +99,9 @@ python3 -I -B integration/test_qspi_phase_reset.py --project hardware/project \
 ```
 
 `VENDOR_PRIMITIVES` is the vendor's `simlib/gw5a/prim_sim.v`. The recorded receipts identify their model files; another library requires its own result. The flash-reset simulation uses the actual vendor LUT model. Its binary sequencing proof uses the documented LUT truth function. These digital checks do not quantify analog metastability or physical source entropy.
+
+## Selected repair evidence
+
+From the repository root, `python3.12 -I -S -B tools/check_repaired_sawic.py --output /tmp/sawic-recorded-check` checks both selected source/artifact identities, timing records, physical frames/grants and the recorded component proofs. Use a new output directory; no hardware, compiler or solver is launched. The stream packet offers a separate fresh compile/replay mode.
+
+For board access, discover the current cable location with `programmer_cli --scan-cables F`. A cached location can become stale after USB changes. Require the actual `ID Code is: 0x0001081B` line, `Finished` and no error text; the command header and a zero exit code alone are insufficient.

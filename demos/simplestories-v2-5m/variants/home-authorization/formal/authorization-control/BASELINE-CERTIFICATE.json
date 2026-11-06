@@ -1,0 +1,417 @@
+{
+  "result": "PASS",
+  "formal_jobs": {
+    "controller": {
+      "job": "controller",
+      "run": "controller-v10",
+      "result": "PASS",
+      "induction_length": 3,
+      "result_sha256": "3d5ebeb47f1159eed2f682e8adbb52f17b5487cf1b6285b7ebb63f82886ef54b",
+      "design_sha256": "894b5297c6447ae6f72438a4a9ca6150e3d8dd025ed3e725f2d4024fea8284c6",
+      "proof_log_sha256": "e29e838f77823fa30bad898d4705b069e3c45f4ac98c197485a84d1ee5284c07"
+    },
+    "core": {
+      "job": "core",
+      "run": "core-v3",
+      "result": "PASS",
+      "induction_length": 1,
+      "result_sha256": "a8bd579518b3e7569e7a5c82a756d4678a98cf4aebc2a5bbdd5964f41fcce7ce",
+      "design_sha256": "edc9e907bc174cd484e1e831dcec07a8a13ed8b4043e65e50b5dec1c6ad91f19",
+      "proof_log_sha256": "ad4399209d099f4faa806578e0f8c5e5882f72e3d795308654f525bebc6a745e"
+    },
+    "publication": {
+      "job": "publication",
+      "run": "publication-v1",
+      "result": "PASS",
+      "induction_length": 2,
+      "result_sha256": "93812f99041acbc70f09386f23fc3291b2ffcd4f799d5d11fbbf18375a4bfab9",
+      "design_sha256": "c4c14a6556b650fc49f96d2a2253de3185a5ad6ec830eff54c70873ce06dfdd2",
+      "proof_log_sha256": "2906bd506a3dd572d96e9b5a9477701749cb06567e0a5360b2f4cdceab74eb8e"
+    },
+    "verifier": {
+      "job": "verifier",
+      "run": "verifier-v2",
+      "result": "PASS",
+      "induction_length": 1,
+      "result_sha256": "06c5c9d70b0efcdf12c5d282e10481750037aed884c6c3446e0771a433bd224c",
+      "design_sha256": "ad26d0b133eb8096154d40ed040522b18fc50579ee4e4ebb7e402bcda4646670",
+      "proof_log_sha256": "a39a42e7f5b9f5655b4814535f7584732e2da2d12f05971b308a7c437e0ac1bb"
+    },
+    "signature-memory": {
+      "job": "signature-memory",
+      "run": "memory-v2",
+      "result": "PASS",
+      "result_sha256": "03844426695bd61298abf0bfba8506017e812248fd02cc1dc15265ac64efb285"
+    },
+    "uart-deadline": {
+      "result": "PASS",
+      "run": "uart-deadline-v2",
+      "induction_length": 1,
+      "result_sha256": "7a1e141aabe20052b27fa66a110a49923ed8a2ffe7ba0d99a95e12bd83518b91"
+    },
+    "renewal": {
+      "result": "PASS",
+      "run": "renewal-v3",
+      "induction_length": 3,
+      "result_sha256": "b71627e5e9ee8bc272f4f5ed4860a4e7550e0eac6f6f94021704690499d79769"
+    },
+    "composition": {
+      "result": "PASS",
+      "run": "composition-v7",
+      "induction_length": 3,
+      "result_sha256": "a462eb355c7f08d12838b0a4aa8903514c5da38fd35d4bbd2deddeb36bb2d189"
+    },
+    "verifier-join": {
+      "result": "PASS",
+      "run": "verifier-join-v4",
+      "result_sha256": "2effbab38fd3d8846152c4a2cb1158c1c3f55f66fbe482c932ad65bea72ede0b"
+    },
+    "model-lock": {
+      "result": "PASS",
+      "run": "model-lock-origin-v4",
+      "result_sha256": "ede854d5ff7f298932c072669cf9c932c758f4250b3211dd2cf52fdfd2ac881f",
+      "kind": "combinational-all-inputs"
+    },
+    "owner-factor": {
+      "result": "PASS",
+      "run": "owner-factor-v1",
+      "result_sha256": "88fd1a13e93ed3d76e81c8ab4a0c81faf3f7b1cc190d9fc5ce4edce21616c0d5",
+      "kind": "combinational-all-inputs"
+    },
+    "boot-handoff": {
+      "result": "PASS",
+      "run": "boot-handoff-v4",
+      "result_sha256": "af2d6c582a194a7059ef61b2bca4ee01035ec1abd0527837fb409c57de75ff1f",
+      "kind": "temporal-induction"
+    }
+  },
+  "formal_job_count": 12,
+  "additional_negative_controls": [
+    {
+      "run": "negative-uart-stall-v1",
+      "detected": true,
+      "kind": "induction mutation rejection; not counted as a new positive theorem"
+    },
+    {
+      "run": "negative-midframe-pause-v1",
+      "detected": true,
+      "kind": "induction mutation rejection; not counted as a new positive theorem"
+    },
+    {
+      "run": "negative-short-guard-v1",
+      "detected": true,
+      "kind": "induction mutation rejection; not counted as a new positive theorem"
+    }
+  ],
+  "earlier_audit": {
+    "result": "PASS",
+    "formal_jobs": [
+      {
+        "job": "controller",
+        "run": "controller-v10",
+        "result": "PASS",
+        "induction_length": 3,
+        "result_sha256": "3d5ebeb47f1159eed2f682e8adbb52f17b5487cf1b6285b7ebb63f82886ef54b",
+        "design_sha256": "894b5297c6447ae6f72438a4a9ca6150e3d8dd025ed3e725f2d4024fea8284c6",
+        "proof_log_sha256": "e29e838f77823fa30bad898d4705b069e3c45f4ac98c197485a84d1ee5284c07"
+      },
+      {
+        "job": "core",
+        "run": "core-v3",
+        "result": "PASS",
+        "induction_length": 1,
+        "result_sha256": "a8bd579518b3e7569e7a5c82a756d4678a98cf4aebc2a5bbdd5964f41fcce7ce",
+        "design_sha256": "edc9e907bc174cd484e1e831dcec07a8a13ed8b4043e65e50b5dec1c6ad91f19",
+        "proof_log_sha256": "ad4399209d099f4faa806578e0f8c5e5882f72e3d795308654f525bebc6a745e"
+      },
+      {
+        "job": "publication",
+        "run": "publication-v1",
+        "result": "PASS",
+        "induction_length": 2,
+        "result_sha256": "93812f99041acbc70f09386f23fc3291b2ffcd4f799d5d11fbbf18375a4bfab9",
+        "design_sha256": "c4c14a6556b650fc49f96d2a2253de3185a5ad6ec830eff54c70873ce06dfdd2",
+        "proof_log_sha256": "2906bd506a3dd572d96e9b5a9477701749cb06567e0a5360b2f4cdceab74eb8e"
+      },
+      {
+        "job": "verifier",
+        "run": "verifier-v2",
+        "result": "PASS",
+        "induction_length": 1,
+        "result_sha256": "06c5c9d70b0efcdf12c5d282e10481750037aed884c6c3446e0771a433bd224c",
+        "design_sha256": "ad26d0b133eb8096154d40ed040522b18fc50579ee4e4ebb7e402bcda4646670",
+        "proof_log_sha256": "a39a42e7f5b9f5655b4814535f7584732e2da2d12f05971b308a7c437e0ac1bb"
+      },
+      {
+        "job": "signature-memory",
+        "run": "memory-v2",
+        "result": "PASS",
+        "result_sha256": "03844426695bd61298abf0bfba8506017e812248fd02cc1dc15265ac64efb285"
+      }
+    ],
+    "negative_controls": [
+      {
+        "run": "negative-header-v1",
+        "detected": true,
+        "kind": "induction-rejected; reachable simulation control checked separately",
+        "result_sha256": "329df8fbf7b4019ce1dc657454cbd071a24c45988e05f03c217bc159d4cf9f07"
+      },
+      {
+        "run": "negative-binding-v1",
+        "detected": true,
+        "kind": "induction-rejected; reachable simulation control checked separately",
+        "result_sha256": "ff0364ff75701076702c11e48afa876d253958fdbfb43d05746ae73a6db2c684"
+      },
+      {
+        "run": "negative-permit-v1",
+        "detected": true,
+        "kind": "base-counterexample",
+        "result_sha256": "6ac243c958895659f6d4905d57401338027baaea87aab68edd9607be120f2f2b"
+      }
+    ],
+    "witness_result_sha256": "68ca3abdb2157405b2855ee04a51d0a4e56f561d697928288f7dbaf8ce2d50db",
+    "wiring_audit_sha256": "abe87bdef402aae3b79de6ac8fbaece437b7d149b751cc9d55ebe3efce13b278",
+    "connections_checked": 75,
+    "source_pins_sha256": "4c055983af1a8c535764e81913a7af6ab648f26f0f57f0fb05d923f6f12ff97b",
+    "scope": "Five compositional authorization-control lemmas plus source-pinned static correspondence, three formal mutation controls, and reachable simulation controls. Not an unconditional whole-chip theorem."
+  },
+  "boot_handoff_audit": {
+    "result": "PASS",
+    "jobs": {
+      "model-lock": {
+        "result": "PASS",
+        "run": "model-lock-origin-v4",
+        "result_sha256": "ede854d5ff7f298932c072669cf9c932c758f4250b3211dd2cf52fdfd2ac881f",
+        "kind": "combinational-all-inputs"
+      },
+      "owner-factor": {
+        "result": "PASS",
+        "run": "owner-factor-v1",
+        "result_sha256": "88fd1a13e93ed3d76e81c8ab4a0c81faf3f7b1cc190d9fc5ce4edce21616c0d5",
+        "kind": "combinational-all-inputs"
+      },
+      "boot-handoff": {
+        "result": "PASS",
+        "run": "boot-handoff-v4",
+        "result_sha256": "af2d6c582a194a7059ef61b2bca4ee01035ec1abd0527837fb409c57de75ff1f",
+        "kind": "temporal-induction"
+      }
+    },
+    "additional_connections": [
+      {
+        "file": "top.sv",
+        "instance": "u_signed_boot",
+        "port": "allow_model_o",
+        "connection": "source_ready"
+      },
+      {
+        "file": "top.sv",
+        "instance": "u_signed_boot",
+        "port": "model_commitment_o",
+        "connection": "model_commitment"
+      },
+      {
+        "file": "top.sv",
+        "instance": "u_memory",
+        "port": "private_signed_admitted_i",
+        "connection": "source_ready"
+      },
+      {
+        "file": "top.sv",
+        "instance": "u_memory",
+        "port": "private_model_locked_o",
+        "connection": "model_locked"
+      },
+      {
+        "file": "top.sv",
+        "instance": "u_home",
+        "port": "admitted_root_valid_i",
+        "connection": "model_locked"
+      },
+      {
+        "file": "top.sv",
+        "instance": "u_home",
+        "port": "admitted_root_i",
+        "connection": "model_commitment"
+      },
+      {
+        "file": "swic/swic_boot_ingress.sv",
+        "instance": "u_admission",
+        "port": "sealed_o",
+        "connection": "admitted"
+      },
+      {
+        "file": "booted_memory.sv",
+        "instance": "u_boot",
+        "port": "admitted_i",
+        "connection": "private_signed_admitted_i"
+      },
+      {
+        "file": "booted_memory.sv",
+        "instance": "u_boot",
+        "port": "boot_locked_o",
+        "connection": "boot_locked"
+      },
+      {
+        "file": "booted_memory.sv",
+        "instance": "u_handoff",
+        "port": "boot_locked_i",
+        "connection": "boot_locked"
+      },
+      {
+        "file": "booted_memory.sv",
+        "instance": "u_handoff",
+        "port": "runtime_locked_o",
+        "connection": "handoff_locked"
+      },
+      {
+        "file": "top.sv",
+        "instance": "u_signed_boot",
+        "port": "digest_read_i",
+        "connection": "swic_boot_digest_read||swic_digest_read"
+      },
+      {
+        "file": "top.sv",
+        "instance": "u_signed_boot",
+        "port": "digest_address_i",
+        "connection": "swic_boot_digest_read?swic_boot_digest_address:swic_digest_address"
+      },
+      {
+        "file": "top.sv",
+        "instance": "u_signed_boot",
+        "port": "digest_data_o",
+        "connection": "swic_digest_data"
+      },
+      {
+        "file": "top.sv",
+        "instance": "u_memory",
+        "port": "private_boot_digest_read_o",
+        "connection": "swic_boot_digest_read"
+      },
+      {
+        "file": "top.sv",
+        "instance": "u_memory",
+        "port": "private_boot_digest_address_o",
+        "connection": "swic_boot_digest_address"
+      },
+      {
+        "file": "top.sv",
+        "instance": "u_memory",
+        "port": "private_boot_digest_data_i",
+        "connection": "swic_digest_data"
+      },
+      {
+        "file": "booted_memory.sv",
+        "instance": "u_boot",
+        "port": "digest_read_o",
+        "connection": "private_boot_digest_read_o"
+      },
+      {
+        "file": "booted_memory.sv",
+        "instance": "u_boot",
+        "port": "digest_address_o",
+        "connection": "private_boot_digest_address_o"
+      },
+      {
+        "file": "booted_memory.sv",
+        "instance": "u_boot",
+        "port": "digest_data_i",
+        "connection": "private_boot_digest_data_i"
+      },
+      {
+        "file": "swic/swic_ddr_boot.sv",
+        "instance": "u_pages",
+        "port": "digest_read_o",
+        "connection": "digest_read_o"
+      },
+      {
+        "file": "swic/swic_ddr_boot.sv",
+        "instance": "u_pages",
+        "port": "digest_address_o",
+        "connection": "digest_address_o"
+      },
+      {
+        "file": "swic/swic_ddr_boot.sv",
+        "instance": "u_pages",
+        "port": "digest_data_i",
+        "connection": "digest_data_i"
+      },
+      {
+        "file": "swic/swic_ddr_boot.sv",
+        "instance": "u_pages",
+        "port": "verified_o",
+        "connection": "page_verified"
+      },
+      {
+        "file": "swic/swic_ddr_boot.sv",
+        "instance": "u_pages",
+        "port": "readback_valid_i",
+        "connection": "byte_valid&&image_ready&&(!in_lut||lut_ready)"
+      },
+      {
+        "file": "swic/swic_ddr_boot.sv",
+        "instance": "u_pages",
+        "port": "readback_byte_i",
+        "connection": "readback_byte"
+      },
+      {
+        "file": "swic/swic_ddr_boot.sv",
+        "instance": "u_pages",
+        "port": "readback_last_i",
+        "connection": "last_byte"
+      },
+      {
+        "file": "swic/swic_ddr_boot.sv",
+        "instance": "u_image",
+        "port": "readback_valid_i",
+        "connection": "byte_valid&&page_ready&&(!in_lut||lut_ready)"
+      },
+      {
+        "file": "swic/swic_ddr_boot.sv",
+        "instance": "u_image",
+        "port": "readback_byte_i",
+        "connection": "readback_byte"
+      },
+      {
+        "file": "swic/swic_ddr_boot.sv",
+        "instance": "u_image",
+        "port": "readback_last_i",
+        "connection": "last_byte"
+      },
+      {
+        "file": "swic/swic_ddr_boot.sv",
+        "instance": "u_fixed_luts",
+        "port": "byte_valid_i",
+        "connection": "byte_valid&&in_lut&&image_ready&&page_ready"
+      },
+      {
+        "file": "swic/swic_ddr_boot.sv",
+        "instance": "u_fixed_luts",
+        "port": "byte_i",
+        "connection": "readback_byte"
+      }
+    ],
+    "auxiliary_boolean_factorization_checked": true,
+    "controls": [
+      {
+        "run": "negative-model-lock-v1",
+        "detected": true,
+        "kind": "combinational counterexample"
+      },
+      {
+        "run": "negative-boot-reset-v1",
+        "detected": true,
+        "kind": "induction rejection; reachable simulation also detects reset bypass"
+      }
+    ],
+    "witness_result_sha256": "2049c249cd454c6e5d762c26cde443a854cdb79b1c33235d08426aa14436460c",
+    "boot_owner_handoff_assumed": false,
+    "cryptographic_algorithm_correctness_proved": false,
+    "complete_boot_payload_correctness_proved": false
+  },
+  "production_timer_witness_sha256": "2871699c8c41a96503c5cbe2ac88f4143ac7a745f836c4fe7d7fb897abc3d142",
+  "conditional_authorization_control_composition": true,
+  "whole_machine_theorem": false,
+  "cryptographic_algorithm_correctness_proved": false,
+  "physical_power_cycle_tested": false
+}

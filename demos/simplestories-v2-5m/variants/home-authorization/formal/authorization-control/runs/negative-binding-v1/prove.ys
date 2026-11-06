@@ -1,0 +1,8 @@
+read_verilog -formal -D SYNTHESIS -sv design.sv
+chparam -set USE_SHARED_VERIFIER 1 -set RESPONSE_LIMIT_CYCLES 100000000 -set LEASE_CYCLES 250000000 -set RENEW_LEAD_CYCLES 125000000 -set DEVICE_ID 128'h395c83e440d5252bfa59f6138e5ed3b8 -set GEOMETRY 256'h2128664c0025b4ed2ddbd53b2178ea926fe1b3c5e817a2b043a2abc9ee41f078 home_boot_gate
+prep -top home_boot_gate -flatten
+delete home_boot_gate/shared_signature_byte_o
+async2sync
+memory_map
+opt -full
+sat -verify -prove-asserts -tempinduct -tempinduct-def -seq 2 -maxsteps 6 -set clk 1 -set-at 1 reset_n 0 -set-def-inputs -show-ports -show-regs -show state_q -show age_q -show lease_age_q -show index_q -show spec_received -show spec_frame -show spec_started -show spec_permitted -dump_vcd failure.vcd

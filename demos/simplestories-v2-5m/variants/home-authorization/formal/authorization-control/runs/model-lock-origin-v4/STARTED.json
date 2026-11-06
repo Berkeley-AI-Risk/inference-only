@@ -1,0 +1,12 @@
+{
+  "job": "model-lock",
+  "runner_sha256": "d4bd94429d4e3a6963c9f6861379f5b199fbb68a367b09f3425a48a48cf36620",
+  "source_pins_sha256": "8cde42dfd2bdab08a761be816d797c98d601f253f1f45b342429e2bc6cf0af22",
+  "command": [
+    "yosys",
+    "-Q",
+    "-T",
+    "prove.ys"
+  ],
+  "scope": "Combinational Boolean guard cone"
+}

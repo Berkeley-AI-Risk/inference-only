@@ -1,0 +1,10 @@
+START integrated home authorization simulation
+RESET RELEASED time=5243220000
+MODEL LOCKED cycles=32798162
+%Warning: /Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/Codex/2026-10-25/in-t/work/sawic-audit-fixes-20261105/home-resetless-positive-v1/grant-wrong-model.hex:0: $readmem file not found
+PASS home UART turn=1 scenario=1
+PASS integrated wrong-model authorization rejection
+- tb_home_tang.sv:148: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 1s; walltime 157.053 s; speed 9.244 ms/s
+- Verilator: cpu 156.527 s on 1 threads; allocated 26 MB

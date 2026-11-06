@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "job": "model-lock",
+  "records": {
+    "prepare": {
+      "exit_code": 0,
+      "memory_stopped": false,
+      "peak_sampled_process_tree_rss_bytes": null,
+      "memory_measurement": "Not sampled for this small combinational Boolean guard-cone query",
+      "elapsed_seconds": 0.014667625073343515,
+      "log_sha256": "f112288b1aecdea8d9973d3240e1326ae26755070b778b4af4d68fc5cc0ee4b3"
+    }
+  },
+  "design_sha256": "480601ce90a1a78b0f36e9bea58f7f6c9bd53c4cc4a06830e09595d3f13b2cfc",
+  "scope": "Actual selected model-lock guard cone: runtime lock requires sealed admission and boot page verification, all hidden binary state arbitrary. No cryptographic or numerical-function theorem."
+}

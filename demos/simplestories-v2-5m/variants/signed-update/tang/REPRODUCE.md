@@ -41,14 +41,14 @@ Large image/hex stimuli, generated packages and compilation directories are omit
 
 ## Native Tang build
 
+The selected macOS Standard compiler is pinned by `tools/build_native.py`: `gw_sh` SHA-256 `76b24d18ec9785be73de6e9e98866bbd7bec330aff67d1fa8462f71f79b5f72c`. Supply an existing authorized installation. The compiler may contact its configured license server; the script does not accept licenses or download software.
+
 ```sh
-python3 tools/build_native.py --ide "$GOWIN_IDE" --vendor-dir "$VENDOR_INPUTS" \
-  --dependency-manifest "$DEMO/VENDOR-DEPENDENCIES.json"
+python3.12 tools/build_native.py --ide "$GOWIN_IDE" --vendor-dir "$VENDOR_INPUTS" \
+  --dependency-manifest "$DEMO/VENDOR-DEPENDENCIES.json" --output "$WORK/native"
 ```
 
-`GOWIN_IDE` is the pinned GOWIN IDE directory containing `bin/gw_sh`; `VENDOR_INPUTS` contains the four separately acquired DDR/PLL files. The script verifies the executable and all vendor file hashes, copies the isolated project into a fresh temporary build directory, and runs synthesis and place-and-route without hardware access. Its receipts identify that directory and exact copied inputs. On macOS the IDE may need execution outside an application-service sandbox. No license acceptance or software download is performed by the script.
-
-Native output is experimental until routing and timing have been reviewed. A diagnostic SDC report is not complete DDR signoff. Never substitute a released fixed-digest bitstream for this source target.
+Use a new output directory outside the demo. The builder checks the tool, every selected source/constraint/memory input and all four separately acquired vendor files. It copies the exact reproduction Tcl and writes new native receipts without replacing recorded evidence or accessing hardware. Source and bitstream identities are in [SOURCE-IDENTITY.json](SOURCE-IDENTITY.json). Fresh routing and timing require a new review; full vendor-DDR/physical signoff is separate.
 
 ## Offline flash data and board qualification
 
@@ -99,7 +99,7 @@ This read resets volatile FPGA configuration. Reload the S-AWIC bitstream into S
 
 The derived candidate is an S-AWIC installation, not an assertion that the original array has been restored. Preserve the original backups. Do not send a complete raw array to GOWIN operation 56 or send flash data to the SRAM bitstream loader.
 
-The [experimental prebuilt image](prebuilt/README.md) has the source and finite board-test association recorded in the validation document. Check its hash and the target identity first. Load it only into SRAM, with the pinned programmer and cable/location selected using the enclosing programming guide:
+The [prebuilt image](prebuilt/README.md) has the source and finite board-test association recorded in the validation document. Check its hash and the target identity first. Load it only into SRAM, with the pinned programmer and cable/location selected using the enclosing programming guide:
 
 ```sh
 "$PROGRAMMER" --device GW5AST-138C --cable-index "$CABLE_INDEX" \
@@ -129,12 +129,19 @@ python3 tools/common_speed_reference.py --demo "$DEMO" \
 python3 tools/collect_common_speed.py --device "$UART" \
   --reference "$WORK/reference.json" --bitstream prebuilt/swic_product.fs \
   --load-record "$SRAM_LOAD_RECORD" --flash-readback "$FLASH_READBACK" \
-  --flash-record "$FLASH_READBACK_RECORD" --board-result evidence/board/RESULT.json \
+  --flash-record "$FLASH_READBACK_RECORD" --board-result evidence/repair-board-2026-11-05/BOARD-RESULT.json \
   --output "$WORK/capture"
 cp "$WORK/reference.json" "$WORK/capture/reference.json"
+cp evidence/repair-board-2026-11-05/BOARD-RESULT.json "$WORK/capture/BOARD-RESULT.json"
 python3 tools/check_common_speed.py --capture "$WORK/capture"
 ```
 
 The load record is the successful SRAM programmer receipt: `command` (including `--operation_index 2` and `--fsFile`), `exit_code`, `started_utc` and `completed_utc`. The readback record is the JSON receipt from `read_flash_jtag.py`. Its complete-array capture must precede that SRAM load. The collector checks the corresponding configuration file, full-array hash, signed model package and independent reference. These host records do not independently attest physical configuration.
 
 Each repetition uses `[378]` and 128 greedy outputs, continuing through end markers. Returned tokens are validated before sampling the monotonic caller clock. The primary rate is 254 divided by the sum of the two first-to-last validated-return intervals; it includes host-loop gaps. Per-STEP durations and first-STEP latency are retained separately. Raw observations are buffered in memory during each measured run, then saved. Failures remain in their own record; there is no automatic retry.
+
+## Selected repair evidence
+
+From the repository root, `python3.12 -I -S -B tools/check_repaired_sawic.py --output /tmp/sawic-recorded-check` checks both selected source/artifact identities, timing records, physical frames/grants and the recorded component proofs. Use a new output directory; no hardware, compiler or solver is launched. The stream packet offers a separate fresh compile/replay mode.
+
+For board access, discover the current cable location with `programmer_cli --scan-cables F`. A cached location can become stale after USB changes. Require the actual `ID Code is: 0x0001081B` line, `Finished` and no error text; the command header and a zero exit code alone are insufficient.

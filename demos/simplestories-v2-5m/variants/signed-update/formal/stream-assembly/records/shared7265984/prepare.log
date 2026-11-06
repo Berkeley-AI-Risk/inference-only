@@ -1,0 +1,592 @@
+
+-- Executing script file `prove.ys' --
+
+1. Executing Verilog-2005 frontend: miter.sv
+Parsing formal SystemVerilog input from `miter.sv' to AST representation.
+Generating RTLIL representation for module `\packing_candidate'.
+Generating RTLIL representation for module `\packing_reference'.
+Generating RTLIL representation for module `\packing_miter'.
+Successfully finished Verilog frontend.
+Parameter \SHARED = 1
+Parameter \LIMIT = 7265984
+Parameter \FAST_COVER = 0
+
+2. Executing AST frontend in derive mode using pre-parsed AST for module `\packing_miter'.
+Parameter \SHARED = 1
+Parameter \LIMIT = 7265984
+Parameter \FAST_COVER = 0
+Generating RTLIL representation for module `$paramod$4f04e70b34949843978c50d3480ea0a924e3816c\packing_miter'.
+
+3. Executing PREP pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \packing_miter
+Used module:     \packing_candidate
+Used module:     \packing_reference
+Parameter \USE_SHARED_COMPRESSOR = 1
+Parameter \MAX_BYTES = 7265984
+
+3.1.2. Executing AST frontend in derive mode using pre-parsed AST for module `\packing_candidate'.
+Parameter \USE_SHARED_COMPRESSOR = 1
+Parameter \MAX_BYTES = 7265984
+Generating RTLIL representation for module `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate'.
+Parameter \USE_SHARED_COMPRESSOR = 1
+Parameter \MAX_BYTES = 7265984
+
+3.1.3. Executing AST frontend in derive mode using pre-parsed AST for module `\packing_reference'.
+Parameter \USE_SHARED_COMPRESSOR = 1
+Parameter \MAX_BYTES = 7265984
+Generating RTLIL representation for module `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference'.
+
+3.1.4. Analyzing design hierarchy..
+Top module:  \packing_miter
+Used module:     $paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate
+Used module:     $paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference
+
+3.1.5. Analyzing design hierarchy..
+Top module:  \packing_miter
+Used module:     $paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate
+Used module:     $paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference
+Removing unused module `\packing_reference'.
+Removing unused module `\packing_candidate'.
+Removed 2 unused modules.
+Module packing_miter directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\packing_miter.$proc$miter.sv:247$149'.
+Removing empty process `packing_miter.$proc$miter.sv:247$149'.
+Cleaned up 1 empty switch.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 6 switch rules as full_case in process $proc$miter.sv:170$246 in module $paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.
+Marked 3 switch rules as full_case in process $proc$miter.sv:146$223 in module $paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.
+Marked 5 switch rules as full_case in process $proc$miter.sv:65$202 in module $paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.
+Marked 3 switch rules as full_case in process $proc$miter.sv:41$180 in module $paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.
+Removed a total of 0 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 8 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\packing_miter.$proc$miter.sv:242$172'.
+  Set init value: \past_valid = 1'0
+Found init rule in `\packing_miter.$proc$miter.sv:243$173'.
+  Set init value: \witness_cycle = 8'00000000
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \reset_n in `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+Found async reset \reset_n in `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:65$202'.
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~29 debug messages>
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\packing_miter.$proc$miter.sv:245$142'.
+     1/1: $0\witness_cycle[7:0]
+Creating decoders for process `\packing_miter.$proc$miter.sv:246$145'.
+     1/1: $assume$miter.sv:246$147_EN
+Creating decoders for process `\packing_miter.$proc$miter.sv:244$141'.
+Creating decoders for process `\packing_miter.$proc$miter.sv:257$151'.
+     1/6: $cover$miter.sv:266$168_EN
+     2/6: $assert$miter.sv:265$166_EN
+     3/6: $assert$miter.sv:263$163_EN
+     4/6: $assert$miter.sv:262$161_EN
+     5/6: $assert$miter.sv:260$154_EN
+     6/6: $assert$miter.sv:258$152_EN
+Creating decoders for process `\packing_miter.$proc$miter.sv:242$172'.
+Creating decoders for process `\packing_miter.$proc$miter.sv:243$173'.
+Creating decoders for process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+     1/16: $4$lookahead\block_q$245[511:0]$266
+     2/16: $4$bitselwrite$pos$miter.sv:188$216[31:0]$265
+     3/16: $3$lookahead\block_q$245[511:0]$260
+     4/16: $3$bitselwrite$pos$miter.sv:188$216[31:0]$259
+     5/16: $2$lookahead\block_q$245[511:0]$258
+     6/16: $2$bitselwrite$pos$miter.sv:188$216[31:0]$257
+     7/16: $1$lookahead\block_q$245[511:0]$251
+     8/16: $1$bitselwrite$pos$miter.sv:188$216[31:0]$250
+     9/16: $0\done_o[0:0]
+    10/16: $0\chain_q[255:0]
+    11/16: $0\offset_q[31:0]
+    12/16: $0\padded_q[31:0]
+    13/16: $0\length_q[31:0]
+    14/16: $0\state_q[2:0]
+    15/16: $0\digest_o[255:0]
+    16/16: $0\fault_o[0:0]
+Creating decoders for process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:146$223'.
+     1/3: $3\next_byte[7:0]
+     2/3: $2\next_byte[7:0]
+     3/3: $1\next_byte[7:0]
+Creating decoders for process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:65$202'.
+     1/9: $0\done_o[0:0]
+     2/9: $0\chain_q[255:0]
+     3/9: $0\block_q[511:0]
+     4/9: $0\offset_q[31:0]
+     5/9: $0\padded_q[31:0]
+     6/9: $0\length_q[31:0]
+     7/9: $0\state_q[2:0]
+     8/9: $0\digest_o[255:0]
+     9/9: $0\fault_o[0:0]
+Creating decoders for process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:41$180'.
+     1/3: $3\next_byte[7:0]
+     2/3: $2\next_byte[7:0]
+     3/3: $1\next_byte[7:0]
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.\next_byte' from process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:146$223'.
+No latch inferred for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.\next_byte' from process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:41$180'.
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\packing_miter.\witness_cycle' using process `\packing_miter.$proc$miter.sv:245$142'.
+  created $dff cell `$procdff$660' with positive edge clock.
+Creating register for signal `\packing_miter.\past_valid' using process `\packing_miter.$proc$miter.sv:244$141'.
+  created $dff cell `$procdff$661' with positive edge clock.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.\done_o' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+  created $adff cell `$procdff$666' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.\fault_o' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+  created $adff cell `$procdff$671' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.\digest_o' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+  created $adff cell `$procdff$676' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.\state_q' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+  created $adff cell `$procdff$681' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.\length_q' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+  created $adff cell `$procdff$686' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.\padded_q' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+  created $adff cell `$procdff$691' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.\offset_q' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+  created $adff cell `$procdff$696' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.\block_q' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+  created $adff cell `$procdff$701' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.\chain_q' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+  created $adff cell `$procdff$706' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$bitselwrite$pos$miter.sv:188$216' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+  created $adff cell `$procdff$711' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$lookahead\block_q$245' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+  created $adff cell `$procdff$716' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.\done_o' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:65$202'.
+  created $adff cell `$procdff$721' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.\fault_o' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:65$202'.
+  created $adff cell `$procdff$726' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.\digest_o' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:65$202'.
+  created $adff cell `$procdff$731' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.\state_q' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:65$202'.
+  created $adff cell `$procdff$736' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.\length_q' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:65$202'.
+  created $adff cell `$procdff$741' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.\padded_q' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:65$202'.
+  created $adff cell `$procdff$746' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.\offset_q' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:65$202'.
+  created $adff cell `$procdff$751' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.\block_q' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:65$202'.
+  created $adff cell `$procdff$756' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.\chain_q' using process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:65$202'.
+  created $adff cell `$procdff$761' with positive edge clock and positive level reset.
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\packing_miter.$proc$miter.sv:245$142'.
+Removing empty process `packing_miter.$proc$miter.sv:245$142'.
+Found and cleaned up 1 empty switch in `\packing_miter.$proc$miter.sv:246$145'.
+Removing empty process `packing_miter.$proc$miter.sv:246$145'.
+Removing empty process `packing_miter.$proc$miter.sv:244$141'.
+Found and cleaned up 3 empty switches in `\packing_miter.$proc$miter.sv:257$151'.
+Removing empty process `packing_miter.$proc$miter.sv:257$151'.
+Removing empty process `packing_miter.$proc$miter.sv:242$172'.
+Removing empty process `packing_miter.$proc$miter.sv:243$173'.
+Found and cleaned up 9 empty switches in `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+Removing empty process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:170$246'.
+Found and cleaned up 3 empty switches in `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:146$223'.
+Removing empty process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.$proc$miter.sv:146$223'.
+Found and cleaned up 9 empty switches in `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:65$202'.
+Removing empty process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:65$202'.
+Found and cleaned up 3 empty switches in `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:41$180'.
+Removing empty process `$paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.$proc$miter.sv:41$180'.
+Cleaned up 29 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module packing_miter.
+<suppressed ~3 debug messages>
+Optimizing module $paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.
+<suppressed ~37 debug messages>
+Optimizing module $paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.
+<suppressed ~33 debug messages>
+
+3.3. Executing FLATTEN pass (flatten design).
+Deleting now unused module $paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_reference.
+Deleting now unused module $paramod$0ad5ab17c66402e27a74d0fe8388feec9855be0d\packing_candidate.
+<suppressed ~2 debug messages>
+
+3.4. Executing FUTURE pass.
+
+3.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module packing_miter.
+
+3.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \packing_miter..
+Removed 39 unused cells and 226 unused wires.
+<suppressed ~41 debug messages>
+
+3.7. Executing CHECK pass (checking for obvious problems).
+Checking module packing_miter...
+Found and reported 0 problems.
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module packing_miter.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\packing_miter'.
+Computing hashes of 271 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+Computing hashes of 217 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+Computing hashes of 216 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+<suppressed ~165 debug messages>
+Removed a total of 55 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \packing_miter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $flatten\a.$procmux$646.
+    dead port 1/2 on $mux $flatten\a.$procmux$649.
+    dead port 1/2 on $mux $flatten\a.$procmux$655.
+    dead port 2/2 on $mux $flatten\b.$procmux$310.
+    dead port 1/2 on $mux $flatten\b.$procmux$313.
+    dead port 1/2 on $mux $flatten\b.$procmux$334.
+    dead port 1/2 on $mux $flatten\b.$procmux$487.
+    dead port 1/2 on $mux $flatten\b.$procmux$490.
+    dead port 1/2 on $mux $flatten\b.$procmux$496.
+Removed 9 multiplexer ports.
+<suppressed ~135 debug messages>
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \packing_miter.
+    New ctrl vector for $pmux cell $flatten\a.$procmux$629: { $auto$opt_reduce.cc:137:opt_pmux$765 $flatten\a.$procmux$524_CMP }
+    New ctrl vector for $pmux cell $flatten\b.$procmux$460: { $flatten\b.$procmux$359_CMP $auto$opt_reduce.cc:137:opt_pmux$767 }
+    New ctrl vector for $pmux cell $flatten\b.$procmux$470: { $auto$opt_reduce.cc:137:opt_pmux$769 $flatten\b.$procmux$374_CMP }
+    New ctrl vector for $pmux cell $flatten\a.$procmux$619: { $flatten\a.$procmux$509_CMP $auto$opt_reduce.cc:137:opt_pmux$771 }
+  Optimizing cells in module \packing_miter.
+Performed a total of 4 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\packing_miter'.
+Computing hashes of 211 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+Computing hashes of 207 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+Computing hashes of 206 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+<suppressed ~15 debug messages>
+Removed a total of 5 cells.
+
+3.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \packing_miter..
+Removed 0 unused cells and 69 unused wires.
+<suppressed ~1 debug messages>
+
+3.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module packing_miter.
+
+3.8.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \packing_miter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~121 debug messages>
+
+3.8.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \packing_miter.
+Performed a total of 0 changes.
+
+3.8.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\packing_miter'.
+Computing hashes of 206 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+Removed a total of 0 cells.
+
+3.8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \packing_miter..
+
+3.8.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module packing_miter.
+
+3.8.14. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 2 bits (of 3) from mux cell packing_miter.$flatten\b.$procmux$430 ($mux).
+Removed top 1 bits (of 3) from port B of cell packing_miter.$flatten\b.$procmux$359_CMP0 ($eq).
+Removed top 31 bits (of 32) from port B of cell packing_miter.$flatten\b.$add$miter.sv:189$278 ($add).
+Converting cell packing_miter.$flatten\b.$neg$miter.sv:188$271 ($neg) from signed to unsigned.
+Removed top 1 bits (of 33) from port A of cell packing_miter.$flatten\b.$neg$miter.sv:188$271 ($neg).
+Removed top 28 bits (of 32) from port B of cell packing_miter.$flatten\b.$sub$miter.sv:188$270 ($sub).
+Removed top 31 bits (of 32) from port B of cell packing_miter.$flatten\b.$add$miter.sv:188$269 ($add).
+Removed top 23 bits (of 32) from port A of cell packing_miter.$flatten\b.$sub$miter.sv:188$268 ($sub).
+Removed top 26 bits (of 32) from port A of cell packing_miter.$flatten\b.$mul$miter.sv:188$267 ($mul).
+Removed top 28 bits (of 32) from port B of cell packing_miter.$flatten\b.$mul$miter.sv:188$267 ($mul).
+Removed top 22 bits (of 32) from port Y of cell packing_miter.$flatten\b.$mul$miter.sv:188$267 ($mul).
+Removed top 1 bits (of 3) from port B of cell packing_miter.$flatten\b.$eq$miter.sv:157$241 ($eq).
+Removed top 28 bits (of 32) from port B of cell packing_miter.$flatten\b.$sub$miter.sv:151$232 ($sub).
+Removed top 31 bits (of 32) from port B of cell packing_miter.$flatten\b.$add$miter.sv:151$231 ($add).
+Removed top 26 bits (of 32) from port A of cell packing_miter.$flatten\b.$sub$miter.sv:151$230 ($sub).
+Removed top 28 bits (of 32) from port B of cell packing_miter.$flatten\b.$mul$miter.sv:151$229 ($mul).
+Removed top 28 bits (of 32) from port B of cell packing_miter.$flatten\b.$sub$miter.sv:150$225 ($sub).
+Removed top 2 bits (of 3) from port B of cell packing_miter.$flatten\b.$eq$miter.sv:144$219 ($eq).
+Removed top 1 bits (of 3) from port B of cell packing_miter.$flatten\a.$procmux$597_CMP0 ($eq).
+Removed top 2 bits (of 3) from mux cell packing_miter.$flatten\a.$procmux$590 ($mux).
+Removed top 2 bits (of 3) from port B of cell packing_miter.$flatten\a.$procmux$535_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell packing_miter.$flatten\a.$procmux$509_CMP0 ($eq).
+Removed top 31 bits (of 32) from port B of cell packing_miter.$flatten\a.$add$miter.sv:84$213 ($add).
+Removed top 25 bits (of 32) from port B of cell packing_miter.$flatten\a.$add$miter.sv:78$210 ($add).
+Removed top 9 bits (of 32) from port B of cell packing_miter.$flatten\a.$gt$miter.sv:76$209 ($gt).
+Removed top 28 bits (of 32) from port B of cell packing_miter.$flatten\a.$sub$miter.sv:46$189 ($sub).
+Removed top 31 bits (of 32) from port B of cell packing_miter.$flatten\a.$add$miter.sv:46$188 ($add).
+Removed top 26 bits (of 32) from port A of cell packing_miter.$flatten\a.$sub$miter.sv:46$187 ($sub).
+Removed top 28 bits (of 32) from port B of cell packing_miter.$flatten\a.$mul$miter.sv:46$186 ($mul).
+Removed top 28 bits (of 32) from port B of cell packing_miter.$flatten\a.$sub$miter.sv:46$184 ($sub).
+Removed top 22 bits (of 32) from wire packing_miter.$flatten\b.$mul$miter.sv:188$267_Y.
+Removed top 2 bits (of 3) from wire packing_miter.$flatten\a.$procmux$590_Y.
+Removed top 2 bits (of 3) from wire packing_miter.$flatten\b.$procmux$430_Y.
+
+3.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \packing_miter..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+3.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.12. Executing OPT pass (performing simple optimizations).
+
+3.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module packing_miter.
+
+3.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\packing_miter'.
+Computing hashes of 206 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+Removed a total of 0 cells.
+
+3.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \packing_miter..
+
+3.12.4. Finished fast OPT passes.
+
+3.13. Executing SORT pass.
+
+3.14. Printing statistics.
+
+=== packing_miter ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      281 wires
+    23160 wire bits
+      116 public wires
+    11281 public wire bits
+       12 ports
+      560 port bits
+      206 cells
+        6   $add
+       18   $adff
+        1   $and
+        7   $check
+        1   $dff
+       18   $eq
+        2   $ge
+        1   $gt
+       12   $logic_and
+        8   $logic_not
+        4   $logic_or
+        2   $lt
+        3   $mul
+       85   $mux
+        2   $ne
+        1   $neg
+        1   $not
+        1   $or
+       10   $pmux
+        2   $reduce_bool
+        4   $reduce_or
+        2   $scopeinfo
+        2   $shift
+        2   $shiftx
+        1   $shl
+       10   $sub
+
+3.15. Executing CHECK pass (checking for obvious problems).
+Checking module packing_miter...
+Found and reported 0 problems.
+
+4. Executing ASYNC2SYNC pass.
+Replacing packing_miter.$flatten\a.$procdff$721 ($adff): ARST=\reset_n, D=$flatten\a.$0\done_o[0:0], Q=\a.done_o
+Replacing packing_miter.$flatten\a.$procdff$726 ($adff): ARST=\reset_n, D=$flatten\a.$0\fault_o[0:0], Q=\a.fault_o
+Replacing packing_miter.$flatten\a.$procdff$731 ($adff): ARST=\reset_n, D=$flatten\a.$0\digest_o[255:0], Q=\a.digest_o
+Replacing packing_miter.$flatten\a.$procdff$736 ($adff): ARST=\reset_n, D=$flatten\a.$0\state_q[2:0], Q=\a.state_q
+Replacing packing_miter.$flatten\a.$procdff$741 ($adff): ARST=\reset_n, D=$flatten\a.$0\length_q[31:0], Q=\a.length_q
+Replacing packing_miter.$flatten\a.$procdff$746 ($adff): ARST=\reset_n, D=$flatten\a.$0\padded_q[31:0], Q=\a.padded_q
+Replacing packing_miter.$flatten\a.$procdff$751 ($adff): ARST=\reset_n, D=$flatten\a.$0\offset_q[31:0], Q=\a.offset_q
+Replacing packing_miter.$flatten\a.$procdff$756 ($adff): ARST=\reset_n, D=$flatten\a.$0\block_q[511:0], Q=\a.block_q
+Replacing packing_miter.$flatten\a.$procdff$761 ($adff): ARST=\reset_n, D=$flatten\a.$0\chain_q[255:0], Q=\a.chain_q
+Replacing packing_miter.$flatten\b.$procdff$666 ($adff): ARST=\reset_n, D=$flatten\b.$0\done_o[0:0], Q=\b.done_o
+Replacing packing_miter.$flatten\b.$procdff$671 ($adff): ARST=\reset_n, D=$flatten\b.$0\fault_o[0:0], Q=\b.fault_o
+Replacing packing_miter.$flatten\b.$procdff$676 ($adff): ARST=\reset_n, D=$flatten\b.$0\digest_o[255:0], Q=\b.digest_o
+Replacing packing_miter.$flatten\b.$procdff$681 ($adff): ARST=\reset_n, D=$flatten\b.$0\state_q[2:0], Q=\b.state_q
+Replacing packing_miter.$flatten\b.$procdff$686 ($adff): ARST=\reset_n, D=$flatten\b.$0\length_q[31:0], Q=\b.length_q
+Replacing packing_miter.$flatten\b.$procdff$691 ($adff): ARST=\reset_n, D=$flatten\b.$0\padded_q[31:0], Q=\b.padded_q
+Replacing packing_miter.$flatten\b.$procdff$696 ($adff): ARST=\reset_n, D=$flatten\b.$0\offset_q[31:0], Q=\b.offset_q
+Replacing packing_miter.$flatten\b.$procdff$701 ($adff): ARST=\reset_n, D=$flatten\b.$0$lookahead\block_q$245[511:0]$248, Q=\b.block_q
+Replacing packing_miter.$flatten\b.$procdff$706 ($adff): ARST=\reset_n, D=$flatten\b.$0\chain_q[255:0], Q=\b.chain_q
+
+5. Executing DFFUNMAP pass (unmap clock enable and synchronous reset from FFs).
+
+6. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+7. Executing OPT pass (performing simple optimizations).
+
+7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module packing_miter.
+<suppressed ~7 debug messages>
+
+7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\packing_miter'.
+Computing hashes of 269 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+Computing hashes of 261 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+<suppressed ~24 debug messages>
+Removed a total of 8 cells.
+
+7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \packing_miter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~175 debug messages>
+
+7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \packing_miter.
+Performed a total of 0 changes.
+
+7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\packing_miter'.
+Computing hashes of 261 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+Removed a total of 0 cells.
+
+7.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $flatten\a.$procdff$736 ($dff) from module packing_miter (D = $flatten\a.$0\state_q[2:0], Q = $auto$async2sync.cc:253:execute$817, rval = 3'000).
+Adding SRST signal on $flatten\a.$procdff$731 ($dff) from module packing_miter (D = $flatten\a.$procmux$619_Y, Q = $auto$async2sync.cc:253:execute$815, rval = 256'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding SRST signal on $flatten\a.$procdff$726 ($dff) from module packing_miter (D = $flatten\a.$0\fault_o[0:0], Q = $auto$async2sync.cc:253:execute$813, rval = 1'0).
+Adding SRST signal on $flatten\b.$procdff$676 ($dff) from module packing_miter (D = $flatten\b.$procmux$460_Y, Q = $auto$async2sync.cc:253:execute$833, rval = 256'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding SRST signal on $flatten\b.$procdff$671 ($dff) from module packing_miter (D = $flatten\b.$0\fault_o[0:0], Q = $auto$async2sync.cc:253:execute$831, rval = 1'0).
+Adding SRST signal on $flatten\b.$procdff$666 ($dff) from module packing_miter (D = $flatten\b.$procmux$354_Y, Q = $auto$async2sync.cc:253:execute$829, rval = 1'0).
+Adding SRST signal on $flatten\a.$procdff$761 ($dff) from module packing_miter (D = $flatten\a.$0\chain_q[255:0], Q = $auto$async2sync.cc:253:execute$827, rval = 256'0110101000001001111001100110011110111011011001111010111010000101001111000110111011110011011100101010010101001111111101010011101001010001000011100101001001111111100110110000010101101000100011000001111110000011110110011010101101011011111000001100110100011001).
+Adding SRST signal on $flatten\a.$procdff$756 ($dff) from module packing_miter (D = $flatten\a.$0\block_q[511:0], Q = $auto$async2sync.cc:253:execute$825, rval = 512'00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding SRST signal on $flatten\a.$procdff$751 ($dff) from module packing_miter (D = $flatten\a.$0\offset_q[31:0], Q = $auto$async2sync.cc:253:execute$823, rval = 0).
+Adding SRST signal on $auto$async2sync.cc:110:execute$795 ($dff) from module packing_miter (D = $procmux$291_Y, Q = $auto$async2sync.cc:107:execute$793, rval = 1'0).
+Adding SRST signal on $flatten\a.$procdff$746 ($dff) from module packing_miter (D = $flatten\a.$0\padded_q[31:0], Q = $auto$async2sync.cc:253:execute$821, rval = 0).
+Adding SRST signal on $auto$async2sync.cc:110:execute$801 ($dff) from module packing_miter (D = $procmux$287_Y, Q = $auto$async2sync.cc:107:execute$799, rval = 1'0).
+Adding SRST signal on $flatten\a.$procdff$741 ($dff) from module packing_miter (D = $flatten\a.$0\length_q[31:0], Q = $auto$async2sync.cc:253:execute$819, rval = 0).
+Adding SRST signal on $flatten\a.$procdff$721 ($dff) from module packing_miter (D = $flatten\a.$procmux$504_Y, Q = $auto$async2sync.cc:253:execute$811, rval = 1'0).
+Adding SRST signal on $flatten\b.$procdff$706 ($dff) from module packing_miter (D = $flatten\b.$0\chain_q[255:0], Q = $auto$async2sync.cc:253:execute$845, rval = 256'0110101000001001111001100110011110111011011001111010111010000101001111000110111011110011011100101010010101001111111101010011101001010001000011100101001001111111100110110000010101101000100011000001111110000011110110011010101101011011111000001100110100011001).
+Adding SRST signal on $flatten\b.$procdff$701 ($dff) from module packing_miter (D = $flatten\b.$0$lookahead\block_q$245[511:0]$248, Q = $auto$async2sync.cc:253:execute$843, rval = 512'00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding SRST signal on $flatten\b.$procdff$696 ($dff) from module packing_miter (D = $flatten\b.$0\offset_q[31:0], Q = $auto$async2sync.cc:253:execute$841, rval = 0).
+Adding SRST signal on $flatten\b.$procdff$691 ($dff) from module packing_miter (D = $flatten\b.$0\padded_q[31:0], Q = $auto$async2sync.cc:253:execute$839, rval = 0).
+Adding SRST signal on $flatten\b.$procdff$686 ($dff) from module packing_miter (D = $flatten\b.$0\length_q[31:0], Q = $auto$async2sync.cc:253:execute$837, rval = 0).
+Adding SRST signal on $flatten\b.$procdff$681 ($dff) from module packing_miter (D = $flatten\b.$0\state_q[2:0], Q = $auto$async2sync.cc:253:execute$835, rval = 3'000).
+
+7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \packing_miter..
+Removed 40 unused cells and 51 unused wires.
+<suppressed ~41 debug messages>
+
+7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module packing_miter.
+
+7.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \packing_miter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~147 debug messages>
+
+7.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \packing_miter.
+Performed a total of 0 changes.
+
+7.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\packing_miter'.
+Computing hashes of 232 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+Computing hashes of 228 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+<suppressed ~12 debug messages>
+Removed a total of 4 cells.
+
+7.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \packing_miter..
+Removed 0 unused cells and 4 unused wires.
+<suppressed ~1 debug messages>
+
+7.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module packing_miter.
+
+7.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \packing_miter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~147 debug messages>
+
+7.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \packing_miter.
+Performed a total of 0 changes.
+
+7.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\packing_miter'.
+Computing hashes of 228 cells of `\packing_miter'.
+Finding duplicate cells in `\packing_miter'.
+Removed a total of 0 cells.
+
+7.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \packing_miter..
+
+7.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module packing_miter.
+
+7.23. Finished fast OPT passes. (There is nothing left to do.)
+
+8. Executing DFFUNMAP pass (unmap clock enable and synchronous reset from FFs).
+
+9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \packing_miter..
+
+10. Executing SMT2 backend.
+
+10.1. Executing BMUXMAP pass.
+
+10.2. Executing DEMUXMAP pass.
+Creating SMT-LIBv2 representation of module packing_miter.

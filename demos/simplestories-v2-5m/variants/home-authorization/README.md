@@ -8,7 +8,7 @@ The [physical replacement campaign](VALIDATION.md#physical-model-replacement) te
 
 The update starts a fresh session. The prototype has no automatic remote-update agent, deliberate update delay, update cap or rollback prevention independent of home policy. Deauthorization does not erase external weight memory. Compatible fine-tunes can be admitted under the same fixed architecture.
 
-The design runs at **25 MHz** and measures **~7.4 tokens/s** on the common paired 128-output greedy benchmark, including renewal and host handover gaps. All 256 benchmark outputs match the integer reference. The board campaign also checks eight volatile startups, renewal with context preserved, revocation and old-grant replay rejection. The [validation record](VALIDATION.md) states the exact timing, entropy and proof limits.
+The design runs at **25 MHz** and measures **~7.6 tokens/s** on the common paired 128-output greedy benchmark, including renewal and host handover gaps. All 256 benchmark outputs match the integer reference. The selected-image board campaign checks approval, renewal with context preserved, revocation, a fresh reconfiguration nonce and old-grant replay rejection. The [validation record](VALIDATION.md) states the exact timing, entropy and proof limits.
 
 | Document | Purpose |
 | --- | --- |
@@ -18,6 +18,6 @@ The design runs at **25 MHz** and measures **~7.4 tokens/s** on the common paire
 | [Reproduction](REPRODUCE.md) | Software, RTL, native build and evidence checks |
 | [Formal status](FORMAL-STATUS.md) | Scoped proofs and remaining obligations |
 
-**Current security limit:** this variant inherits the signed-update design's incomplete [boot-to-runtime page binding](../signed-update/tang/HARDWARE.md#boot-to-runtime-page-binding-limit). Periodic approval of a model commitment does not close that gap.
+Boot compares every signed page digest with the same ordered readback used for the whole image and fixed-function tables. Runtime page authentication uses that sealed table; [hardware](../signed-update/tang/HARDWARE.md#boot-to-runtime-page-binding) states the binding.
 
 The physical target is Tang Mega **138K Basic / non-Pro, GW5AST-138C / PG484A**. The token application remains APPEND, STEP and CLEAR. This variant uses unprotected external K/V memory and greedy decoding. It is a functional FPGA demonstration; public test keys and an unqualified entropy source do not establish deployment security.

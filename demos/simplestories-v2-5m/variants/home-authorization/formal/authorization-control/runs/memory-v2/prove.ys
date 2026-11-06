@@ -1,0 +1,7 @@
+read_verilog -formal -D SYNTHESIS -sv design.sv
+chparam -set USE_SHARED_VERIFIER 1 -set RESPONSE_LIMIT_CYCLES 100000000 -set LEASE_CYCLES 250000000 -set RENEW_LEAD_CYCLES 125000000 home_boot_gate
+prep -top home_boot_gate -flatten
+async2sync
+dffunmap
+opt_clean
+write_smt2 -wires model.smt2

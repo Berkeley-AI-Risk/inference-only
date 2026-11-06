@@ -84,6 +84,7 @@ swic/su_sha256.sv
 swic/su_lms_verify.sv
 swic/swic_boot_admission.sv
 swic/su_image_check.sv
+swic/su_page_table_check.sv
 swic/swic_read03_master.sv
 swic/swic_qspi_boot_source.sv
 swic/swic_boot_ingress.sv

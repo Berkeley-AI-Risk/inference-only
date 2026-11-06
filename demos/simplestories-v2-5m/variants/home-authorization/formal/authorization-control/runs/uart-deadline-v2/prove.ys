@@ -1,0 +1,7 @@
+read_verilog -formal -D SYNTHESIS -sv design.sv
+chparam -set CLKS_PER_BIT 217 token_only_model0_uart_bridge
+prep -top token_only_model0_uart_bridge -flatten
+
+async2sync
+opt -full
+sat -verify -prove-asserts -tempinduct -tempinduct-def -seq 2 -maxsteps 5 -set clk 1 -set-at 1 rst_n 0 -set-def-inputs  -show-ports -show state_q -show response_index_q -show spec_flight -show spec_rank -show spec_elapsed -show proof_tx_remaining -dump_vcd failure.vcd

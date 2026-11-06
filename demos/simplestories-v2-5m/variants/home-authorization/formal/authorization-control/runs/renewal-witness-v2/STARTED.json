@@ -1,0 +1,27 @@
+{
+  "command": [
+    "verilator",
+    "--cc",
+    "--exe",
+    "--build",
+    "-j",
+    "1",
+    "-Wno-fatal",
+    "-CFLAGS",
+    "-std=c++17",
+    "--top-module",
+    "home_boot_gate",
+    "-GUSE_SHARED_VERIFIER=1",
+    "-GRESPONSE_LIMIT_CYCLES=100000000",
+    "-GLEASE_CYCLES=250000000",
+    "-GRENEW_LEAD_CYCLES=125000000",
+    "-GDEVICE_ID=128'h395c83e440d5252bfa59f6138e5ed3b8",
+    "-GGEOMETRY=256'h2128664c0025b4ed2ddbd53b2178ea926fe1b3c5e817a2b043a2abc9ee41f078",
+    "controller.sv",
+    "witness.cpp"
+  ],
+  "controller_sha256": "13e175169d55ed26c1c4ceba7f9dc5db638469b4abfeddf003e69b65d7e44405",
+  "witness_sha256": "97f8209f841ae5c609db92010f38a720aeb71d71066ffe65557a7f760bca5faf",
+  "simulation_threads": 1,
+  "cycle_values_reduced": false
+}

@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "positive_models": 2,
+  "rows_per_model": 3328,
+  "read_ports": 2,
+  "negative_cases": [
+    "coefficient -512",
+    "zero scale multiplier"
+  ],
+  "reset_and_output_masking": true,
+  "source_sha256": {
+    "hardware/project/swic/swic_norm_store.sv": "b8bd781d22b1904a2e20f46a8e0896d4abf39efa0b40f98f2816824d7493fadd",
+    "tests/tb_norm_store.sv": "895bd197175e5fc5fd4638fa811918b71d353805820637df194362d2a98dc8cc"
+  }
+}

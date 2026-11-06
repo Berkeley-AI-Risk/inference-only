@@ -161,22 +161,22 @@
         "one-token-128-trial1",
         "one-token-128-trial2"
       ],
-      "evidence_review": "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/RAW-REVIEW.json",
+      "evidence_review": "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/RAW-REVIEW.json",
       "format": "canonical",
       "id": "simplestories-signed-update",
       "identity": {
         "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
         "baud_rate": 115200,
-        "board_result_sha256": "c2a6f2d19cccf62c0b1ca40bbf6b85bbd09fda13464f8a6d801ec12bff26c610",
+        "board_result_sha256": "2546a893646f1435c4337a7271a64b366f51e144d37511f6acdf634567506ad9",
         "clock": "time.monotonic_ns",
         "clock_hz": 25000000,
         "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
-        "fpga_image_sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2",
+        "fpga_image_sha256": "8472e592c68a4b2425be4ecb8f57bde855d3be5df140f96bbe417226d1dca370",
         "host_platform": "macOS-27.0.1-arm64-arm-64bit",
         "model": "SimpleStories-V2-5M",
         "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
         "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
-        "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+        "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
         "signed_manifest_version": 1,
         "timestamp_boundary": "generation_loop_validated_reply",
         "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
@@ -186,8 +186,8 @@
       "prompt_tokens": [
         378
       ],
-      "reference_source": "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/reference.json",
-      "source": "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/FINISHED.json",
+      "reference_source": "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/reference.json",
+      "source": "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/FINISHED.json",
       "status": "Runnable release; public demonstration keys"
     },
     {
@@ -196,18 +196,18 @@
         "one-token-128-trial1",
         "one-token-128-trial2"
       ],
-      "evidence_review": "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/EVIDENCE-AUDIT.json",
+      "evidence_review": "demos/simplestories-v2-5m/variants/home-authorization/evidence/repair-board-2026-11-05/EVIDENCE-AUDIT.json",
       "format": "canonical",
       "id": "simplestories-home-authorization",
       "identity": {
         "clock": "time.monotonic_ns",
         "clock_hz": 25000000,
         "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
-        "fpga_image_sha256": "cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e",
+        "fpga_image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
         "model": "SimpleStories-V2-5M",
         "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
         "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
-        "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+        "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
         "timestamp_boundary": "generation_loop_validated_reply",
         "variant": "S-AWIC with renewable home authorization"
       },
@@ -215,8 +215,8 @@
       "prompt_tokens": [
         378
       ],
-      "reference_source": "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/common-reference.json",
-      "source": "demos/simplestories-v2-5m/variants/home-authorization/evidence/board-25mhz-v9/COMMON-SPEED.json",
+      "reference_source": "demos/simplestories-v2-5m/variants/home-authorization/evidence/repair-board-2026-11-05/common-reference.json",
+      "source": "demos/simplestories-v2-5m/variants/home-authorization/evidence/repair-board-2026-11-05/COMMON-SPEED.json",
       "status": "Runnable token-ID demonstration; public demonstration keys"
     },
     {
@@ -376,6 +376,18 @@
       "bytes": 2267,
       "sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18"
     },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/repair-board-2026-11-05/COMMON-SPEED.json": {
+      "bytes": 30826,
+      "sha256": "d4ff280ef00a68f7e095df62248b08a40c78fe3a285af37fb085de57c9c57a47"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/repair-board-2026-11-05/EVIDENCE-AUDIT.json": {
+      "bytes": 3140,
+      "sha256": "5accb696b36c654f8d37a9c4c04a0ff85b0c0c27af95a68fff258b4f0f8d18a8"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/repair-board-2026-11-05/common-reference.json": {
+      "bytes": 2273,
+      "sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9"
+    },
     "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/FINISHED.json": {
       "bytes": 30948,
       "sha256": "c3bfe64c344fd4fa60c475e1cc15902de1b6b9fec38d340dc62ef11d48105edc"
@@ -387,6 +399,18 @@
     "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/reference.json": {
       "bytes": 2267,
       "sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/FINISHED.json": {
+      "bytes": 30907,
+      "sha256": "c363930c7791c05058a769311de3641eefe6583d5981878bd1ee0820e7235db9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/RAW-REVIEW.json": {
+      "bytes": 593,
+      "sha256": "a6523e4bed902d2460ab1190c166df78b526ffd46a625fcd112d659afe9031ee"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/reference.json": {
+      "bytes": 2273,
+      "sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9"
     }
   },
   "timestamp_boundary": "generation_loop_validated_reply"

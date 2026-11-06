@@ -2,13 +2,17 @@
 `default_nettype none
 // Serial boot owner at the native Gowin application seam. Every image word is
 // written, read back, and hashed. Norm extraction and fixed-function LUT
-// authentication consume that exact readback, before one-way runtime handoff.
+// authentication and all signed page digests consume that exact readback,
+// before one-way runtime handoff. The final page uses fixed zero padding.
 module swic_ddr_boot(
     input wire clk,reset_n,
     input wire admitted_i,source_fault_i,progress_i,loader_done_i,loader_valid_i,
     input wire [255:0] loader_data_i,expected_image_sha_i,
     output wire loader_ready_o,
     output wire boot_locked_o,fault_o,
+    output wire digest_read_o,
+    output wire [13:0] digest_address_o,
+    input wire [31:0] digest_data_i,
     output wire metadata_read_o,
     output wire [11:0] metadata_address_o,
     input wire [191:0] metadata_data_i,
@@ -49,7 +53,8 @@ module swic_ddr_boot(
     wire in_lut=word_q>=18'(LUT_FIRST_WORD);
     wire byte_valid=state_q==READ_BYTES;
     wire [7:0] readback_byte=readback_q[int'(byte_q)*8 +:8];
-    wire byte_fire=byte_valid && image_ready && (!in_lut || lut_ready);
+    wire page_ready,page_verified,page_fault;
+    wire byte_fire=byte_valid && image_ready && page_ready && (!in_lut || lut_ready);
     wire last_byte=word_q==18'd227061 && byte_q==31;
     wire norm_ready,norm_loaded,norm_fault;
     wire norm_word=state_q==READ_WAIT && rsp_valid && !rsp_error;
@@ -60,9 +65,9 @@ module swic_ddr_boot(
     end
     assign metadata_read_o=state_q==READ_ISSUE && word_q>=211920 && word_q<214248;
     assign metadata_address_o=12'(word_q-211920);
-    assign fault_o=local_fault_q || source_fault_i || adapter_fault || image_fault || lut_fault || norm_fault;
+    assign fault_o=local_fault_q || source_fault_i || adapter_fault || image_fault || lut_fault || norm_fault || compressor_mux_fault || page_fault;
     assign loader_ready_o=state_q==WRITE && admitted_i && adapter_ready && !fault_o;
-    assign boot_locked_o=state_q==LOCKED && admitted_i && image_verified && lut_ok_q && norm_loaded && !fault_o;
+    assign boot_locked_o=state_q==LOCKED && admitted_i && image_verified && page_verified && lut_ok_q && norm_loaded && !fault_o;
     board1_gowin_ddr3_app_adapter #(.ADDR_W(19),.MAX_OUTSTANDING_READS(1)) u_boot_adapter(
         .clk(clk),.reset_n(reset_n),.phy_req_valid_i(req_valid && !fault_o),.phy_req_ready_o(adapter_ready),
         .phy_req_write_i(req_write),.phy_req_word_addr_i({1'b0,word_q}),.phy_req_wdata_i(loader_data_i),
@@ -74,15 +79,41 @@ module swic_ddr_boot(
         .app_wr_data_end_o(app_data_end_o),.app_wr_data_mask_o(app_mask_o),
         .app_rd_data_i(app_read_data_i),.app_rd_data_valid_i(app_read_valid_i),.app_rd_data_end_i(app_read_end_i),
         .app_burst_o(),.app_self_refresh_req_o(),.app_refresh_req_o());
-    su_image_check u_image(
+    wire image_compress_request,lut_compress_request,page_compress_request;
+    wire image_compress_accept,lut_compress_accept,page_compress_accept;
+    wire image_compress_done,lut_compress_done,page_compress_done;
+    wire [511:0] image_compress_block,lut_compress_block,page_compress_block;
+    wire [255:0] image_compress_state,lut_compress_state,page_compress_state,compress_digest;
+    wire compressor_mux_fault;
+    swic_boot_compressor_mux3 u_boot_compressor(
+        .clk(clk),.reset_n(reset_n),
+        .request0_i(image_compress_request),.request1_i(lut_compress_request),.request2_i(page_compress_request),
+        .block0_i(image_compress_block),.block1_i(lut_compress_block),.block2_i(page_compress_block),
+        .state0_i(image_compress_state),.state1_i(lut_compress_state),.state2_i(page_compress_state),
+        .accept0_o(image_compress_accept),.accept1_o(lut_compress_accept),.accept2_o(page_compress_accept),
+        .done0_o(image_compress_done),.done1_o(lut_compress_done),.done2_o(page_compress_done),
+        .digest_o(compress_digest),.fault_o(compressor_mux_fault));
+    su_image_check #(.USE_SHARED_COMPRESSOR(1'b1)) u_image(
         .clk(clk),.reset_n(reset_n),.start_i(state_q==READ_START),.expected_sha_i(expected_image_sha_i),
-        .readback_valid_i(byte_valid && (!in_lut || lut_ready)),.readback_ready_o(image_ready),
-        .readback_byte_i(readback_byte),.readback_last_i(last_byte),.verified_o(image_verified),.fault_o(image_fault));
-    su_sha256 #(.MAX_BYTES(LUT_BYTES)) u_fixed_luts(
+        .readback_valid_i(byte_valid && page_ready && (!in_lut || lut_ready)),.readback_ready_o(image_ready),
+        .readback_byte_i(readback_byte),.readback_last_i(last_byte),.verified_o(image_verified),.fault_o(image_fault),
+        .shared_request_o(image_compress_request),.shared_block_o(image_compress_block),.shared_state_o(image_compress_state),
+        .shared_accept_i(image_compress_accept),.shared_done_i(image_compress_done),.shared_digest_i(compress_digest));
+    su_sha256 #(.MAX_BYTES(LUT_BYTES),.USE_SHARED_COMPRESSOR(1'b1)) u_fixed_luts(
         .clk(clk),.reset_n(reset_n),.start_i(state_q==READ_ISSUE && word_q==18'(LUT_FIRST_WORD) && req_fire),
-        .length_i(32'(LUT_BYTES)),.byte_valid_i(byte_valid && in_lut && image_ready),
+        .length_i(32'(LUT_BYTES)),.byte_valid_i(byte_valid && in_lut && image_ready && page_ready),
         .byte_ready_o(lut_ready),.byte_i(readback_byte),.byte_offset_o(lut_offset),
-        .busy_o(lut_busy),.done_o(lut_done),.fault_o(lut_fault),.digest_o(lut_digest));
+        .busy_o(lut_busy),.done_o(lut_done),.fault_o(lut_fault),.digest_o(lut_digest),
+        .shared_request_o(lut_compress_request),.shared_block_o(lut_compress_block),.shared_state_o(lut_compress_state),
+        .shared_accept_i(lut_compress_accept),.shared_done_i(lut_compress_done),.shared_digest_i(compress_digest));
+    su_page_table_check #(.USE_SHARED_COMPRESSOR(1'b1)) u_pages(
+        .clk(clk),.reset_n(reset_n),.start_i(state_q==READ_START),
+        .readback_valid_i(byte_valid && image_ready && (!in_lut || lut_ready)),
+        .readback_ready_o(page_ready),.readback_byte_i(readback_byte),.readback_last_i(last_byte),
+        .digest_read_o(digest_read_o),.digest_address_o(digest_address_o),.digest_data_i(digest_data_i),
+        .verified_o(page_verified),.fault_o(page_fault),
+        .shared_request_o(page_compress_request),.shared_block_o(page_compress_block),.shared_state_o(page_compress_state),
+        .shared_accept_i(page_compress_accept),.shared_done_i(page_compress_done),.shared_digest_i(compress_digest));
     swic_norm_store u_norms(
         .clk(clk),.reset_n(reset_n),.word_valid_i(norm_word),.word_ready_o(norm_ready),
         .word_index_i(word_q),.word_data_i(rsp_data),.loaded_o(norm_loaded),.fault_o(norm_fault),
@@ -121,7 +152,7 @@ module swic_ddr_boot(
                         else begin word_q<=word_q+1;state_q<=READ_ISSUE;end
                     end else byte_q<=byte_q+1;
                 end
-                READ_FINISH: if(image_verified && lut_ok_q && norm_loaded) state_q<=LOCKED;
+                READ_FINISH: if(image_verified && page_verified && lut_ok_q && norm_loaded) state_q<=LOCKED;
                 LOCKED: begin end
                 FAILED: local_fault_q<=1;
                 default: begin state_q<=FAILED;local_fault_q<=1;end

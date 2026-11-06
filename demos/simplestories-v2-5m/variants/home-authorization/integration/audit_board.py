@@ -2,6 +2,7 @@
 """Audit saved physical-test frames, grants, reference tokens and restoration."""
 import argparse
 import hashlib
+import gzip
 import json
 import sys
 from pathlib import Path
@@ -12,6 +13,9 @@ import home_auth as h
 
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def image_sha(path):
+    raw=path.read_bytes()
+    return hashlib.sha256(gzip.decompress(raw) if path.suffix=='.gz' else raw).hexdigest()
 def crc(data):
     value=0
     for byte in data:
@@ -182,7 +186,7 @@ def main():
         if operation=='2':
             image=a.candidate;expected_sha=review['sha256']
             if path.name=='restore-sawic.command.json':image=a.restored_image;expected_sha='4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2'
-            assert sha(image)==expected_sha
+            assert image_sha(image)==expected_sha
             log=path.with_name(path.name.replace('.command.json','.log'))
             assert 'Finished'in log.read_text()
             files.append(log.name)

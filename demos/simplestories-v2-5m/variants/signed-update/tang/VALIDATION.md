@@ -1,58 +1,25 @@
 # Tang S-AWIC validation
 
-The evidence concerns the complete native Tang source composition. It is not a new formal certificate, a physical security assessment or a residual-training bound. Source and input identities accompany the campaigns.
+The selected [source identity](SOURCE-IDENTITY.json) and [SRAM image](prebuilt/README.md) describe the current complete Tang composition. Its inference clock is 25 MHz. Source-level proofs, modeled RTL runs and physical observations retain separate scopes.
 
-| Campaign | Result and scope | Evidence |
-| --- | --- | --- |
-| Native-copy LMS verifier | 17 positive/negative cases pass, including published RFC 8554 vectors; real native SHA throughout | [Result](evidence/rtl-lms/result.json), [log](evidence/rtl-lms/run.log) |
-| Native-copy admission and page memory | 26 cases pass with private shared RAM ports; real full-image readbacks and native page verification | [Result](evidence/rtl-memory/result.json), [log](evidence/rtl-memory/run.log) |
-| Image-derived normalization storage | Both models' 3,328 rows pass on both synchronous ports; reset/masking and illegal coefficient/scale rejection checked | [Result](evidence/norm-store/result.json) |
-| Fast complete-token integration | Three signed images boot and produce exact expected UART tokens; invalid signature rejected before model loading | [Base](evidence/tang-fast-simulation/case-0-result.json), [changed norm](evidence/tang-fast-simulation/case-1-result.json), [zero matrices](evidence/tang-fast-simulation/case-3-result.json), [bad signature](evidence/tang-fast-simulation/case-2-result.json) |
-| Complete-boot faults | Five cases pass: unsigned image mutation, signed fixed-LUT mutation, signed metadata/image mismatch, signed zero norm multiplier and non-erased slot padding; no model lock | [Result and source hashes](evidence/boot-faults/result.json) |
-| Full pin-level SPI integration | Base and changed-norm models pass complete flash transactions, native FIFO/clock ratios, DDR readback and exact UART generation/replay; invalid signature rejected before model loading | [Base](evidence/tang-simulation/case-0-result.json), [changed norm](evidence/tang-simulation/case-1-result.json), [bad signature](evidence/tang-simulation/case-2-result.json), [build](evidence/tang-simulation/BUILD.json) |
-| Flash/UART host tooling | Seventeen offline flash-preparation/readback cases, including full-array preservation and aligned block planning, and seven UART framing/status cases pass; no hardware access | [Result](evidence/host-tools/result.json) |
-| Evidence overwrite guards | Compile and run wrappers refuse existing campaign outputs; saved receipts/logs remain byte-identical | [Result](evidence/runner-guards.json) |
-| Native GOWIN synthesis | Pass: 98,268 / 138,240 logic resources (72%), 55,877 registers and 246 / 340 BSRAM blocks (73%) | [Synthesis report](evidence/native-build/swic_product_syn.rpt.html), [build status](evidence/native-build/STATUS.json) |
-| Common speed benchmark | Two runs of input `[378]` and 128 feedback-dependent greedy outputs pass; all 256 IDs match the independent reference; pooled host-observed rate **~10.1 tokens/s** | [Capture](evidence/common-speed-20261103/FINISHED.json), [reference](evidence/common-speed-20261103/reference.json), [raw review](evidence/common-speed-20261103/RAW-REVIEW.json) |
+| Check | Result and evidence |
+| --- | --- |
+| Boot page accounting and compressor ownership | Two full-geometry component induction jobs; [scope and records](../formal/page-consistency/README.md) |
+| Stream assembly | Five unbounded wrapper-equivalence configurations, launch witness and changed-byte control; [packet](../formal/stream-assembly/README.md) |
+| Actual SHA | Three deterministic geometries, including all 1,774 pages and the final zero tail; [unit receipt](../formal/page-consistency/records/unit/RESULT.json) |
+| Normalization | Both models' 3,328 rows on both read ports, reset and output masking; [unit](evidence/consistency-verification/normalization-unit/result.json) |
+| Complete numerical RTL | Signed base and zero-final-norm model produce `[108,32]` and `[0,0]`, with CLEAR/replay and all norm rows checked; [build](evidence/consistency-verification/BUILD.json), [base](evidence/consistency-verification/case-0-result.json), [changed model](evidence/consistency-verification/case-1-result.json) |
+| Native route and timing | Route completes; reported core maximum 25.377 MHz. All five real-clock setup/hold summaries are clean; [review](evidence/repair-native-2026-11-05/REVIEW.json), [raw timing](evidence/repair-native-2026-11-05/swic_product.tr) |
+| Physical base model | Prompt `[1]` generates `[108,32]`; [candidate observation](evidence/repair-board-2026-11-05/candidate-base.json) and [image identity](evidence/repair-board-2026-11-05/BOARD-RESULT.json) |
+| Common speed | Two one-token `[378]` prompts, each with 128 feedback-dependent greedy outputs; **~10.1 tokens/s**; [capture](evidence/repair-board-2026-11-05/FINISHED.json), [reference](evidence/repair-board-2026-11-05/reference.json), [raw replay](evidence/repair-board-2026-11-05/RAW-REVIEW.json) |
+| Recovery | Original S-AWIC restored and UART verified; no flash write; [result](evidence/repair-board-2026-11-05/RESULT.json), [restoration](evidence/repair-board-2026-11-05/RESTORED.json) |
 
-Native routing has completed successfully. The 25 MHz inference clock has a reported Fmax of 25.227 MHz. The timing summary reports 148 setup and 10 hold violated endpoints. Every negative path shown in the bounded setup, hold and recovery tables has both endpoints within the vendor DDR hierarchy; those tables do not exhaust all paths. Generic routing of `clk_50mhz_d` also produces warning PR1014. Complete timing signoff remains open. See the [review](evidence/native-build/REVIEW.json) and [timing report](evidence/native-build/swic_product.tr). Physical board results are recorded separately after their completion checks pass.
+The paired cached intervals are 12.579301666 and 12.562350208 seconds. The pooled rate is `254 / (12.579301666 + 12.562350208)`, approximately 10.1 tokens/s. First-STEP latencies are retained separately. All 262 CLEAR/APPEND/STEP transactions are replayed offline for CRCs, reference IDs, order and monotonic caller timestamps. Host-loop gaps are included.
 
-## Physical board qualification
+The [complete-array readback receipt](evidence/repair-board-2026-11-05/readback-record.json) records exact equality with the expected 16 MiB base-model array. Its [reuse provenance](evidence/repair-board-2026-11-05/READBACK-REUSE.json) retains the original capture from the same SRAM-only campaign; intervening recovery uses SRAM/USB/UART operations and no flash write. Raw arrays remain private.
 
-All three cases use the same routed bitstream on the Tang Mega 138K non-Pro. The [campaign summary](evidence/board/RESULT.json) binds its hash, model/slot hashes and UART observations.
+The oracle reconstructs matrices, projection scales, normalization parameters and lookup tables directly from the physical image using [tang_image.py](reference/tang_image.py) and the enclosing independent IntegerLlama reference. Expected outputs are not derived from HDL observations. The changed-norm fixture is synthetic and supplies no fine-tune-quality result.
 
-| Flash fixture | Observed behavior | Evidence |
-| --- | --- | --- |
-| Base image with one deliberately corrupted signature byte | CLEAR acknowledged; valid APPEND and STEP explicitly rejected with valid CRCs | [UART](evidence/board/bad-signature-uart.json) |
-| Valid signed zero-final-norm image | Prompt `[1]` produces `[0, 0]`; CLEAR/replay produces first token `0` | [Generation](evidence/board/changed-norm-uart.json), [replay](evidence/board/changed-norm-replay.json) |
-| Valid signed base image | Prompt `[1]` produces `[108, 32]`; CLEAR/replay produces first token `108` | [Generation](evidence/board/base-uart.json), [replay](evidence/board/base-replay.json) |
+Complete-model simulations retain actual numerical and LMS/SHA RTL with fast flash, modeled DDR storage and behavioral DSP branches. They do not exercise analog DDR or establish native primitive equivalence. The bounded native negative-path tables retain only vendor-DDR negatives; full timing/PVT/CDC signoff, physical attestation, hostile-memory tolerance, production keys and the whole-machine inference-only theorem remain open.
 
-Before writing flash, two independently initiated complete 16 MiB maintenance-reader captures matched, with another verified durable recovery copy. A faster JTAG read transport was qualified byte-for-byte against both captures. Every installed fixture has an independent complete-array readback matching its expected candidate. All readbacks preserve every byte outside the model and admission regions. Raw flash captures and recovery records remain private. The final running fixture is the signed base model.
-
-These are finite directed hardware observations. They do not establish behavior for every compatible model or command stream, physical attestation, production-key security or complete timing signoff. The inference configuration is in volatile SRAM; the flash updates contain model data and the admission slot.
-
-## Numerical acceptance
-
-The common speed benchmark uses the signed base image. Its two cached intervals are 12.579277084 and 12.545297166 seconds, each spanning validated returns 1 through 128. The headline rate is `254 / (12.579277084 + 12.545297166) = 10.109624...` tokens/s. First-STEP latencies are about 85 ms and are excluded from that rate. The retained raw frames cover all 262 CLEAR, APPEND and STEP transactions; the offline checker verifies their CRCs, tokens, order and caller timestamps. The benchmark does not change the FPGA configuration or flash.
-
-The oracle reconstructs every matrix tensor, projection scale, normalization parameter and arithmetic lookup table directly from the physical image, using [tang_image.py](reference/tang_image.py), then runs the enclosing demo's independent IntegerLlama reference. It does not derive expected tokens from the HDL or simulator observations.
-
-| Signed fixture | Prompt | Two feedback-dependent greedy outputs | Meaning |
-| --- | --- | --- | --- |
-| Released base image | `[1]` | `[108, 32]` | Native numerical model |
-| Synthetic image with the final RMSNorm coefficient vector zeroed | `[1]` | `[0, 0]` | A signed model-parameter change reaches actual token generation |
-| Synthetic image with all matrix weights zeroed, retaining base norm parameters | `[1]` | `[0, 0]` | Distinct matrix-weight acceptance fixture |
-
-The changed fixtures are not trained fine-tunes and do not establish model quality. The changed-norm case specifically distinguishes a working dynamic norm path from accidentally retaining the base model's compiled norm ROM. The zero-matrix case changes the other principal model-parameter path while keeping the base norms. Simulated positive cases also CLEAR and replay the prompt, checking the first expected output again. The independent fixtures are described in [fixtures.json](evidence/fixtures/fixtures.json).
-
-## Scope of simulation
-
-The fast campaign supplies tagged flash bytes at core speed, while the full campaign uses the actual SPI pin-level read source and native asynchronous FIFO. Both execute real signature verification, DDR load/readback authentication, fixed-LUT checking, dynamic norm extraction, the native four runtime page banks and complete UART/token arithmetic.
-
-Both replace the raw vendor PHY with the explicit [DDR simulation model](tests/phy_model.sv). That model supplies native clock ratios, calibration, storage, ordered responses and periodic backpressure. The native arithmetic wrappers use their existing integer-equivalent behavioral branches. No analog PHY, native DSP primitive equivalence, timing closure, physical fault resistance or exhaustive command-stream property follows from these traces.
-
-The complete elaboration has 26 width warnings (`WIDTHTRUNC` and `WIDTHEXPAND`); it is not warning-free lint. The separate component's four-state results remain available in the parent [validation document](../VALIDATION.md) and do not become complete-machine unknown/fault-injection proofs.
-
-The [fixture identity check](evidence/fixtures/INPUTS.json) binds the simulator's complete hex stimuli to the signed binary packages and exact norm rows. Additional source audits compare the retained compiled copies, including the fast flash replacement, against the concrete source snapshot: [fast](evidence/tang-fast-simulation/SOURCE-AUDIT.json), [full SPI](evidence/tang-simulation/SOURCE-AUDIT.json). These provenance checks supplement the per-campaign receipts; they do not enlarge their functional scope.
-
-Public evidence copies replace local filesystem paths with descriptive placeholders. Cross-file hashes identify those public copies; [PUBLIC-COPIES.json](evidence/PUBLIC-COPIES.json) records their original capture hashes. The complete original captures remain preserved locally. This formatting does not turn file checksums into a publisher signature or physical attestation.
+Additional [component](../evidence/component-snapshot/) and [directed board](evidence/board/RESULT.json) packets retain their own source and bitstream identities. Their observations have those explicit scopes.

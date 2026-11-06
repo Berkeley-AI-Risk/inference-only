@@ -46,7 +46,13 @@ module board1_fixed_swic_product_top (
     wire swic_byte_valid,swic_byte_ready,swic_byte_model,swic_byte_last,swic_qspi_fault,swic_ingress_fault;
     wire [7:0] swic_byte;
     wire [255:0] swic_image_sha;
-    wire swic_digest_read,swic_metadata_read,swic_boot_metadata_read;
+    wire swic_digest_read,swic_boot_digest_read,swic_metadata_read,swic_boot_metadata_read;
+    wire [13:0] swic_boot_digest_address;
+    logic swic_digest_collision_q;
+    always_ff @(posedge core_clk or negedge core_reset_n) begin
+        if(!core_reset_n) swic_digest_collision_q<=0;
+        else if(swic_boot_digest_read && swic_digest_read) swic_digest_collision_q<=1;
+    end
     wire [13:0] swic_digest_address;
     wire [11:0] swic_metadata_address,swic_boot_metadata_address;
     wire [31:0] swic_digest_data;
@@ -81,7 +87,12 @@ module board1_fixed_swic_product_top (
         .ddr_addr(ddr_addr),.ddr_bank(ddr_bank),.ddr_cs(ddr_cs),.ddr_ras(ddr_ras),.ddr_cas(ddr_cas),
         .ddr_we(ddr_we),.ddr_ck(ddr_ck),.ddr_ck_n(ddr_ck_n),.ddr_cke(ddr_cke),.ddr_odt(ddr_odt),
         .ddr_reset_n(ddr_reset_n),.ddr_dm(ddr_dm),.ddr_dq(ddr_dq),.ddr_dqs(ddr_dqs),.ddr_dqs_n(ddr_dqs_n));
-    assign source_fault=swic_qspi_fault || swic_ingress_fault || (swic_boot_metadata_read && swic_metadata_read);
+    logic metadata_collision_q;
+    always_ff @(posedge core_clk or negedge core_reset_n) begin
+        if(!core_reset_n) metadata_collision_q<=0;
+        else if(swic_boot_metadata_read && swic_metadata_read) metadata_collision_q<=1;
+    end
+    assign source_fault=swic_qspi_fault || swic_ingress_fault || swic_digest_collision_q || metadata_collision_q;
     swic_qspi_boot_source u_fixed_qspi_boot(
         .trusted_clk_i(trusted_clk),.trusted_reset_n_i(trusted_reset_n),.core_clk_i(core_clk),.core_reset_n_i(core_reset_n),
         .allow_model_i(source_ready),.byte_valid_o(swic_byte_valid),.byte_ready_i(swic_byte_ready),
@@ -93,7 +104,8 @@ module board1_fixed_swic_product_top (
         .allow_model_o(source_ready),.progress_o(boot_progress),.loader_valid_o(loader_valid),
         .loader_data_o(loader_data),.loader_ready_i(loader_ready),.loader_done_o(loader_done),
         .image_sha_o(swic_image_sha),.fault_o(swic_ingress_fault),
-        .digest_read_i(swic_digest_read),.digest_address_i(swic_digest_address),.digest_data_o(swic_digest_data),
+        .digest_read_i(swic_boot_digest_read || swic_digest_read),
+        .digest_address_i(swic_boot_digest_read ? swic_boot_digest_address : swic_digest_address),.digest_data_o(swic_digest_data),
         .metadata_read_i(swic_boot_metadata_read || swic_metadata_read),
         .metadata_address_i(swic_boot_metadata_read ? swic_boot_metadata_address : swic_metadata_address),
         .metadata_data_o(swic_metadata_data));
@@ -112,6 +124,8 @@ module board1_fixed_swic_product_top (
         .app_wr_data_mask_o(sem_wr_mask),.app_rd_data_i(sem_rd_data),.app_rd_data_valid_i(sem_rd_valid),.app_rd_data_end_i(sem_rd_end),
          .app_burst_o(sem_burst),.app_self_refresh_req_o(sem_sr),.app_refresh_req_o(sem_ref),
         .private_signed_admitted_i(source_ready),.private_signed_image_sha_i(swic_image_sha),
+        .private_boot_digest_read_o(swic_boot_digest_read),.private_boot_digest_address_o(swic_boot_digest_address),
+        .private_boot_digest_data_i(swic_digest_data),
         .private_boot_metadata_read_o(swic_boot_metadata_read),.private_boot_metadata_address_o(swic_boot_metadata_address),
         .private_boot_metadata_data_i(swic_metadata_data),
         .private_body_norm_read_i(swic_body_norm_read),.private_head_norm_read_i(swic_head_norm_read),

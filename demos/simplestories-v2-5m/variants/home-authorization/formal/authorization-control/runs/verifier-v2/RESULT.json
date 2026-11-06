@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "exit_code": 0,
+  "job": "verifier",
+  "negative_control": null,
+  "peak_sampled_rss_bytes": 806158336,
+  "memory_stopped": false,
+  "proof_log_sha256": "a39a42e7f5b9f5655b4814535f7584732e2da2d12f05971b308a7c437e0ac1bb",
+  "design_sha256": "ad26d0b133eb8096154d40ed040522b18fc50579ee4e4ebb7e402bcda4646670",
+  "source_pins_sha256": "a2b06bd35d188f6864876757fe1209553a94718962a7a00773934fa19901bf76",
+  "scope": "Actual LMS controller with arbitrary private hash results/bytes: a valid verdict requires a start since reset; selected key and message length are latched on that start. Unused address and outgoing hash-byte cones removed; no LMS/SHA algorithm claim. Two-state clocked async2sync model. No LMS/SHA correctness, entropy, analog timing or unconditional whole-chip security claim."
+}

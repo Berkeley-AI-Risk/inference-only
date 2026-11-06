@@ -8,7 +8,7 @@ recompute numerical references or compare original private full-array captures.
 No network, programming, solver, simulator or hardware access is performed.
 """
 from pathlib import Path
-import argparse, hashlib, json, sys
+import argparse, gzip, hashlib, json, sys
 
 ROOT = Path(__file__).resolve().parents[1]
 DEMO = ROOT.parents[1]
@@ -133,8 +133,8 @@ def installation_receipts(out, images, slots, blocks, private_workspace=None):
                 sram.append(name)
     assert sorted(writes) == sorted(wanted) and len(writes) == 4
     assert sram.count('home_product.fs') == 5 and sram.count('original_swic_product.fs') == 1
-    assert sha(ROOT / 'prebuilt/home_product.fs') == FPGA_SHA
-    assert sha(SIGNED / 'prebuilt/swic_product.fs') == RESTORE_SHA
+    assert digest(gzip.decompress((ROOT / 'evidence/recorded-images/home-cb0f7d60.fs.gz').read_bytes())) == FPGA_SHA
+    assert digest(gzip.decompress((ROOT / 'evidence/recorded-images/swic-4545bd0b.fs.gz').read_bytes())) == RESTORE_SHA
     inputs = read(out / 'INPUTS.json')
     for label in ['A', 'B']:
         assert inputs['model-' + label + '/package.swic'] == PACKAGE_SHA[label]

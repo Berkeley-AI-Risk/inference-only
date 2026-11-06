@@ -3,6 +3,7 @@
 // Private byte-stream wrapper. SHA padding is generated here, never supplied
 // by the package. The compressor is the frozen native SimpleStories module.
 module su_sha256 #(
+    parameter bit USE_SHARED_COMPRESSOR=1'b0,
     parameter integer MAX_BYTES=8000000
 ) (
     input wire clk, reset_n, start_i,
@@ -13,7 +14,12 @@ module su_sha256 #(
     output wire [31:0] byte_offset_o,
     output wire busy_o,
     output logic done_o, fault_o,
-    output logic [255:0] digest_o
+    output logic [255:0] digest_o,
+    output wire shared_request_o,
+    output wire [511:0] shared_block_o,
+    output wire [255:0] shared_state_o,
+    input wire shared_accept_i,shared_done_i,
+    input wire [255:0] shared_digest_i
 );
     localparam [255:0] IV=256'h6a09e667bb67ae853c6ef372a54ff53a510e527f9b05688c1f83d9ab5be0cd19;
     localparam [2:0] IDLE=0,FILL=1,LAUNCH=2,WAIT_HASH=3,FAILED=7;
@@ -37,10 +43,20 @@ module su_sha256 #(
     assign byte_ready_o=state_q==FILL && payload && !fault_o;
     assign byte_offset_o=offset_q;
     assign busy_o=state_q!=IDLE && state_q!=FAILED;
+    wire compressor_accept=USE_SHARED_COMPRESSOR ? shared_accept_i : 1'b1;
+    assign shared_request_o=USE_SHARED_COMPRESSOR && state_q==LAUNCH && !fault_o;
+    assign shared_block_o=block_q;
+    assign shared_state_o=chain_q;
+    generate if(USE_SHARED_COMPRESSOR) begin:g_shared_compressor
+        assign compressor_busy=1'b0;
+        assign compressor_done=shared_done_i;
+        assign compressor_digest=shared_digest_i;
+    end else begin:g_local_compressor
     board1_sha256_compact_compress u_compress(
         .clk_i(clk),.reset_n_i(reset_n),.start_i(state_q==LAUNCH),
         .block_i(block_q),.state_i(chain_q),.busy_o(compressor_busy),
         .done_o(compressor_done),.state_o(compressor_digest));
+    end endgenerate
     always_ff @(posedge clk or negedge reset_n) begin
         if(!reset_n) begin
             state_q<=IDLE;length_q<=0;padded_q<=0;offset_q<=0;
@@ -59,11 +75,11 @@ module su_sha256 #(
                     end
                 end
                 FILL: if(transfer) begin
-                    block_q[511-int'(offset_q[5:0])*8 -: 8]<=next_byte;
+                    block_q<={block_q[503:0],next_byte};
                     offset_q<=offset_q+1;
                     if(offset_q[5:0]==63) state_q<=LAUNCH;
                 end
-                LAUNCH: state_q<=WAIT_HASH;
+                LAUNCH: if(compressor_accept) state_q<=WAIT_HASH;
                 WAIT_HASH: if(compressor_done) begin
                     chain_q<=compressor_digest;
                     if(offset_q==padded_q) begin

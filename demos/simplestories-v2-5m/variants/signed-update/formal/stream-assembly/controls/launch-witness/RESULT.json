@@ -1,0 +1,46 @@
+{
+  "result": "PASS",
+  "shared": 1,
+  "max_bytes": 4096,
+  "cover_only": true,
+  "records": {
+    "prepare": {
+      "command": [
+        "yosys",
+        "-Q",
+        "-T",
+        "prove.ys"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 0.435257125,
+      "log_sha256": "1663322930b71b3db998815be61e50660b7cfecbf04e18c3a80e01c42594784f"
+    },
+    "cover": {
+      "command": [
+        "yosys-smtbmc",
+        "-s",
+        "z3",
+        "--presat",
+        "--noprogress",
+        "-c",
+        "-t",
+        "66:68",
+        "--dump-vcd",
+        "cover.vcd",
+        "model.smt2"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 16.601961792,
+      "log_sha256": "92c4376c76fc56b166544142f7f567af1453f0c6bb9c22a88073a3f0cf8b7288"
+    }
+  },
+  "baseline_sha256": "f5a2b98f77924c37f80314bd2812fab5bb15d6fd75b016886be57cde579e6f33",
+  "candidate_sha256": "d004ab01cf7faa75a48a7e2ff59e7fe8dd28a53cc7113ae8575774300a55b117",
+  "miter_sha256": "53ed44f544fa71adf655e215d668e0c0e7b824d7bd80798ed80a9c397d301456",
+  "reference_helper_sha256": "230209260de780d872d7be6b7fecd8e6aaf128fefc1e129347bfc677735acb6c",
+  "recipe_sha256": "f07e752660b9ab3317c6e9f7ac440792a5775f3cc0281a67ed89e321b8ef618c",
+  "production_RTL_changed": false,
+  "scope": "Compositional wrapper equivalence under common arbitrary compressor responses. Control, length/padding, chain and externally meaningful outputs agree; during fill, the shift buffer is an explicitly proved rotation of the indexed buffer. Complete512-bit blocks agree at every compressor launch. Intermediate shared block outputs need not agree. No SHA specification, mapped timing or whole-chip theorem."
+}

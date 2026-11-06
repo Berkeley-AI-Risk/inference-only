@@ -1,0 +1,64 @@
+{
+  "result": "PASS",
+  "shared": 0,
+  "max_bytes": 1110,
+  "cover_only": false,
+  "records": {
+    "prepare": {
+      "command": [
+        "yosys",
+        "-Q",
+        "-T",
+        "prove.ys"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 0.46277658299999996,
+      "log_sha256": "9f66422d99fe656f362d6c81bb3343cf43f75ee7093f3c97da36adaba1306482"
+    },
+    "base": {
+      "command": [
+        "yosys-smtbmc",
+        "-s",
+        "cvc5",
+        "--presat",
+        "--noprogress",
+        "-t",
+        "4",
+        "--dump-vcd",
+        "base.vcd",
+        "model.smt2"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 0.48053987499999995,
+      "log_sha256": "3273a834336e1a38321dfe67b0bde9f86bfa6130eb398d67890f9544fbef41d2"
+    },
+    "induction": {
+      "command": [
+        "yosys-smtbmc",
+        "-s",
+        "cvc5",
+        "--presat",
+        "--noprogress",
+        "-i",
+        "-t",
+        "4",
+        "--dump-vcd",
+        "induction.vcd",
+        "model.smt2"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 151.84872625,
+      "log_sha256": "4ee645d3da6bc5314246b99825629c0258248d7e6eef5ab73b2b977e361b934a"
+    }
+  },
+  "baseline_sha256": "f5a2b98f77924c37f80314bd2812fab5bb15d6fd75b016886be57cde579e6f33",
+  "candidate_sha256": "d004ab01cf7faa75a48a7e2ff59e7fe8dd28a53cc7113ae8575774300a55b117",
+  "miter_sha256": "53ed44f544fa71adf655e215d668e0c0e7b824d7bd80798ed80a9c397d301456",
+  "reference_helper_sha256": "230209260de780d872d7be6b7fecd8e6aaf128fefc1e129347bfc677735acb6c",
+  "recipe_sha256": "f3f783296b018ec3537b0d55441786ddd9be33ad7fa67c6137b2d87dd2338768",
+  "production_RTL_changed": false,
+  "scope": "Compositional wrapper equivalence under common arbitrary compressor responses. Control, length/padding, chain and externally meaningful outputs agree; during fill, the shift buffer is an explicitly proved rotation of the indexed buffer. Complete512-bit blocks agree at every compressor launch. Intermediate shared block outputs need not agree. No SHA specification, mapped timing or whole-chip theorem."
+}

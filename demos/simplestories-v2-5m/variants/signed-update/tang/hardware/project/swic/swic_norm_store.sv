@@ -19,7 +19,14 @@ module swic_norm_store(
     (* ram_style="block" *) logic [9:0] coefficients_q[0:3327];
     logic [23:0] metadata_q[0:12];
     logic [12:0] coefficients_loaded_q,metadata_loaded_q;
-    logic [2559:0] vector_q;
+    (* ram_style="block" *) logic [255:0] packed_words_q[0:9];
+    logic [255:0] packed_read_q;
+    logic [265:0] unpack_q;
+    logic [8:0] unpack_bits_q;
+    logic [3:0] packed_index_q;
+    logic packed_clear_q;
+    localparam [1:0] FETCH=0,MERGE=1,EMIT=2;
+    logic [1:0] unpack_state_q;
     logic building_q;
     logic [3:0] selector_q;
     logic [7:0] row_q;
@@ -29,12 +36,19 @@ module swic_norm_store(
     wire [6:0] transformer_offset=7'(word_index_i-211800);
     wire [3:0] vector_selector=final_norm ? 4'd12 : 4'(transformer_offset/10);
     wire [3:0] vector_word=final_norm ? 4'(word_index_i-214250) : 4'(transformer_offset%10);
-    assign word_ready_o=!building_q && !fault_o;
+    assign word_ready_o=!building_q && !packed_clear_q && !fault_o;
     assign loaded_o=(&coefficients_loaded_q) && (&metadata_loaded_q) && !fault_o;
     assign body_data_o=model_locked_i && !fault_o ? body_q : 34'd0;
     assign head_data_o=model_locked_i && !fault_o ? head_q : 34'd0;
     always_ff @(posedge clk) begin
-        if(building_q && !fault_o) coefficients_q[{selector_q,row_q}]<=vector_q[9:0];
+        if(packed_clear_q)
+            packed_words_q[packed_index_q]<=0;
+        else if(word_valid_i && word_ready_o && (transformer_norm || final_norm))
+            packed_words_q[vector_word]<=word_data_i;
+        else if(building_q && unpack_state_q==FETCH && packed_index_q<10)
+            packed_read_q<=packed_words_q[packed_index_q];
+        if(building_q && unpack_state_q==EMIT && unpack_bits_q>=10 && !fault_o)
+            coefficients_q[{selector_q,row_q}]<=unpack_q[9:0];
         if(body_read_i && model_locked_i && body_address_i<3328)
             body_q<={metadata_q[body_address_i[11:8]],coefficients_q[body_address_i]};
         if(head_read_i && model_locked_i && head_address_i<3328)
@@ -42,22 +56,50 @@ module swic_norm_store(
     end
     always_ff @(posedge clk or negedge reset_n) begin
         if(!reset_n) begin
-            coefficients_loaded_q<=0;metadata_loaded_q<=0;vector_q<=0;
+            coefficients_loaded_q<=0;metadata_loaded_q<=0;unpack_q<=0;
+            unpack_bits_q<=0;packed_index_q<=0;packed_clear_q<=1;unpack_state_q<=FETCH;
             building_q<=0;selector_q<=0;row_q<=0;fault_o<=0;
         end else if((word_valid_i && !word_ready_o) ||
                     (model_locked_i && ((body_read_i && body_address_i>=3328) ||
                                         (head_read_i && head_address_i>=3328)))) fault_o<=1;
         else begin
+            if(packed_clear_q) begin
+                if(packed_index_q==9) begin packed_clear_q<=0;packed_index_q<=0;end
+                else packed_index_q<=packed_index_q+1;
+            end
             if(building_q) begin
-                if(vector_q[9:0]==10'h200) fault_o<=1;
-                vector_q<=vector_q>>10;
-                if(row_q==255) begin building_q<=0;coefficients_loaded_q[selector_q]<=1;end
-                else row_q<=row_q+1;
+                case(unpack_state_q)
+                    FETCH: begin
+                        if(packed_index_q>=10) fault_o<=1;
+                        else unpack_state_q<=MERGE;
+                    end
+                    MERGE: begin
+                        if(unpack_bits_q>=10) fault_o<=1;
+                        unpack_q<={256'd0,unpack_q[9:0]} | ({10'd0,packed_read_q} << unpack_bits_q[3:0]);
+                        unpack_bits_q<=unpack_bits_q+9'd256;
+                        packed_index_q<=packed_index_q+1;
+                        unpack_state_q<=EMIT;
+                    end
+                    EMIT: begin
+                        if(unpack_bits_q>=10) begin
+                            if(unpack_q[9:0]==10'h200) fault_o<=1;
+                            unpack_q<=unpack_q>>10;
+                            unpack_bits_q<=unpack_bits_q-9'd10;
+                            if(row_q==255) begin
+                                building_q<=0;coefficients_loaded_q[selector_q]<=1;
+                                packed_clear_q<=1;packed_index_q<=0;
+                            end else row_q<=row_q+1;
+                        end else unpack_state_q<=FETCH;
+                    end
+                    default: fault_o<=1;
+                endcase
             end
             if(word_valid_i && word_ready_o) begin
                 if(transformer_norm || final_norm) begin
-                    vector_q[int'(vector_word)*256 +:256]<=word_data_i;
-                    if(vector_word==9) begin selector_q<=vector_selector;row_q<=0;building_q<=1;end
+                    if(vector_word==9) begin
+                        selector_q<=vector_selector;row_q<=0;building_q<=1;
+                        unpack_q<=0;unpack_bits_q<=0;packed_index_q<=0;unpack_state_q<=FETCH;
+                    end
                 end
                 if(word_index_i==214248 || word_index_i==214249) begin
                     for(integer j=0;j<8;j=j+1) begin

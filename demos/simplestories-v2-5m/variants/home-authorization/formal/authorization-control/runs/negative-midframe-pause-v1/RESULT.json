@@ -1,0 +1,14 @@
+{
+  "result": "NOT_PROVEN",
+  "job": "composition",
+  "negative_control": "pause-midframe",
+  "process": {
+    "exit_code": 1,
+    "peak_sampled_process_tree_rss_bytes": 1743618048,
+    "memory_stopped": false,
+    "log_sha256": "5b76966dc89666000bf9248a085d6a61282acb5229c72df165a00edc9daefe46"
+  },
+  "design_sha256": "dcb8c41bbd6a4c72de8714766e138225c9499ca792954b2ce7c06ae431ae4c32",
+  "proof_log_sha256": "5b76966dc89666000bf9248a085d6a61282acb5229c72df165a00edc9daefe46",
+  "scope": "Joined actual home controller, top-level permit/mux, runtime reset/backend arbiter and UART bridge/TX/RX. Response admission is model-bound and authorized, an in-flight packet retains enough permission budget and cannot be interrupted by nonterminal home transport; revoked/expired permission suppresses runtime requests and token output. Crypto verdicts/private boot/nonce seams remain abstract. Binary clocked async2sync model; not a whole-machine numerical or physical security theorem."
+}

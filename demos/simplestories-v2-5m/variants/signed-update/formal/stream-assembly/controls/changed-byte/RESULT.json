@@ -1,0 +1,40 @@
+{
+  "result": "PASS",
+  "records": {
+    "prepare": {
+      "command": [
+        "yosys",
+        "-Q",
+        "-T",
+        "prove.ys"
+      ],
+      "exit_code": 0,
+      "expected_result_matched": true,
+      "log_sha256": "5d4297eaba6ee49e6dfc136d13ede753b10920731cfb2c0328d2aa285de754fc",
+      "elapsed_seconds": 0.425970416
+    },
+    "mutated-buffer-must-fail": {
+      "command": [
+        "yosys-smtbmc",
+        "-s",
+        "cvc5",
+        "--presat",
+        "--noprogress",
+        "-t",
+        "8",
+        "--dump-vcd",
+        "failure.vcd",
+        "model.smt2"
+      ],
+      "exit_code": 1,
+      "expected_result_matched": true,
+      "log_sha256": "55aa141c08e0b448252922f94ec21aff4c2b9f771594c03afb8b7f442a92c5fc",
+      "elapsed_seconds": 0.7636458340000001
+    }
+  },
+  "original_miter_sha256": "53ed44f544fa71adf655e215d668e0c0e7b824d7bd80798ed80a9c397d301456",
+  "mutant_miter_sha256": "24cbdd5ed08e30620376e4e61a60d0b13ceb64678cb5effaece304849488e66a",
+  "mutation": "Candidate shifts one bit-flipped byte; reference and exact safety assertions/common initial-reset premise unchanged. Eight steps reach first mutated write; earlier four-step test was insufficient and is retained.",
+  "production_RTL_changed": false,
+  "hardware_access": false
+}

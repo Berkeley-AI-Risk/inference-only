@@ -1,0 +1,49 @@
+{
+  "result": "PASS",
+  "device": "/dev/cu.usbserial-20250303171",
+  "prompt": [
+    1
+  ],
+  "expected": [
+    108,
+    32
+  ],
+  "transactions": [
+    {
+      "opcode": 2,
+      "input_token": 0,
+      "output_token": 0,
+      "request_hex": "a502000067",
+      "response_hex": "5a820000bd"
+    },
+    {
+      "opcode": 0,
+      "input_token": 1,
+      "output_token": 0,
+      "request_hex": "a5000100a4",
+      "response_hex": "5a8000006b"
+    },
+    {
+      "opcode": 1,
+      "input_token": 0,
+      "output_token": 108,
+      "request_hex": "a5010000da",
+      "response_hex": "5a816c0009"
+    },
+    {
+      "opcode": 1,
+      "input_token": 0,
+      "output_token": 32,
+      "request_hex": "a5010000da",
+      "response_hex": "5a812000ae"
+    },
+    {
+      "opcode": 2,
+      "input_token": 0,
+      "output_token": 0,
+      "request_hex": "a502000067",
+      "response_hex": "5a820000bd"
+    }
+  ],
+  "captured_utc": "2026-11-06T07:40:02.358624+00:00"
+}

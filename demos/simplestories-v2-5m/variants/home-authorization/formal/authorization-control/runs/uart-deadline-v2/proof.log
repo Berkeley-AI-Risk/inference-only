@@ -1,0 +1,1081 @@
+
+-- Executing script file `prove.ys' --
+
+1. Executing Verilog-2005 frontend: design.sv
+Parsing formal SystemVerilog input from `design.sv' to AST representation.
+Generating RTLIL representation for module `\token_only_model0_uart_bridge'.
+Generating RTLIL representation for module `\fixed_uart_tx'.
+Generating RTLIL representation for module `\fixed_uart_rx'.
+Successfully finished Verilog frontend.
+Parameter \CLKS_PER_BIT = 217
+
+2. Executing AST frontend in derive mode using pre-parsed AST for module `\token_only_model0_uart_bridge'.
+Parameter \CLKS_PER_BIT = 217
+Generating RTLIL representation for module `$paramod\token_only_model0_uart_bridge\CLKS_PER_BIT=s32'00000000000000000000000011011001'.
+
+3. Executing PREP pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \token_only_model0_uart_bridge
+Used module:     \fixed_uart_rx
+Used module:     \fixed_uart_tx
+Parameter \CLKS_PER_BIT = 217
+
+3.1.2. Executing AST frontend in derive mode using pre-parsed AST for module `\fixed_uart_rx'.
+Parameter \CLKS_PER_BIT = 217
+Generating RTLIL representation for module `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001'.
+Parameter \CLKS_PER_BIT = 217
+
+3.1.3. Executing AST frontend in derive mode using pre-parsed AST for module `\fixed_uart_tx'.
+Parameter \CLKS_PER_BIT = 217
+Generating RTLIL representation for module `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001'.
+
+3.1.4. Analyzing design hierarchy..
+Top module:  \token_only_model0_uart_bridge
+Used module:     $paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001
+Used module:     $paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001
+
+3.1.5. Analyzing design hierarchy..
+Top module:  \token_only_model0_uart_bridge
+Used module:     $paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001
+Used module:     $paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001
+Removing unused module `\fixed_uart_rx'.
+Removing unused module `\fixed_uart_tx'.
+Removed 2 unused modules.
+Module $paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001 directly or indirectly contains formal properties -> setting "keep" attribute.
+Module token_only_model0_uart_bridge directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:369$1301'.
+Removing empty process `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:369$1301'.
+Found and cleaned up 1 empty switch in `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:435$1277'.
+Removing empty process `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:435$1277'.
+Cleaned up 2 empty switches.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 4 switch rules as full_case in process $proc$design.sv:377$1280 in module $paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.
+Removed 1 dead cases from process $proc$design.sv:440$1250 in module $paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.
+Marked 7 switch rules as full_case in process $proc$design.sv:440$1250 in module $paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.
+Marked 18 switch rules as full_case in process $proc$design.sv:139$714 in module token_only_model0_uart_bridge.
+Marked 9 switch rules as full_case in process $proc$design.sv:279$1024 in module token_only_model0_uart_bridge.
+Marked 2 switch rules as full_case in process $proc$design.sv:302$1029 in module token_only_model0_uart_bridge.
+Marked 4 switch rules as full_case in process $proc$design.sv:319$1047 in module token_only_model0_uart_bridge.
+Removed a total of 1 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 4 redundant assignments.
+Promoted 49 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:377$1280'.
+Found async reset \rst_n in `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+Found async reset \rst_n in `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+Found async reset \rst_n in `\token_only_model0_uart_bridge.$proc$design.sv:302$1029'.
+Found async reset \rst_n in `\token_only_model0_uart_bridge.$proc$design.sv:319$1047'.
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~57 debug messages>
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:402$1292'.
+     1/3: $assert$design.sv:405$1297_EN
+     2/3: $assert$design.sv:404$1295_EN
+     3/3: $assert$design.sv:403$1293_EN
+Creating decoders for process `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:377$1280'.
+     1/4: $0\busy_q[0:0]
+     2/4: $0\shift_q[9:0]
+     3/4: $0\bit_q[3:0]
+     4/4: $0\counter_q[7:0]
+Creating decoders for process `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+     1/13: $3$lookahead\shift_q$1249[7:0]$1264
+     2/13: $3$bitselwrite$pos$design.sv:476$1248[2:0]$1263
+     3/13: $2$lookahead\shift_q$1249[7:0]$1257
+     4/13: $2$bitselwrite$pos$design.sv:476$1248[2:0]$1256
+     5/13: $1$lookahead\shift_q$1249[7:0]$1255
+     6/13: $1$bitselwrite$pos$design.sv:476$1248[2:0]$1254
+     7/13: $0\byte_valid_o[0:0]
+     8/13: $0\serial_sync_q[0:0]
+     9/13: $0\serial_meta_q[0:0]
+    10/13: $0\bit_q[2:0]
+    11/13: $0\counter_q[7:0]
+    12/13: $0\byte_o[7:0]
+    13/13: $0\state_q[1:0]
+Creating decoders for process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+     1/112: $5\prepare_response$func$design.sv:240$667.token[11:0]$1007
+     2/112: $4\prepare_response$func$design.sv:240$667.token[11:0]$1005
+     3/112: $5\prepare_response$func$design.sv:232$665.kind[7:0]$1002
+     4/112: $4\prepare_response$func$design.sv:232$665.kind[7:0]$997
+     5/112: $3\prepare_response$func$design.sv:232$665.kind[7:0]$995
+     6/112: $3\prepare_response$func$design.sv:240$667.token[11:0]$996
+     7/112: $8\prepare_response$func$design.sv:204$662.kind[7:0]$993
+     8/112: $7\prepare_response$func$design.sv:204$662.kind[7:0]$989
+     9/112: $6\prepare_response$func$design.sv:204$662.kind[7:0]$985
+    10/112: $5\prepare_response$func$design.sv:204$662.kind[7:0]$969
+    11/112: $5\crc8_next$func$design.sv:162$656.$result[7:0]$832
+    12/112: $5\crc8_next$func$design.sv:162$656.i[31:0]$834
+    13/112: $5\crc8_next$func$design.sv:162$656.value[7:0]$835
+    14/112: $5\crc8_next$func$design.sv:162$656.data_in[7:0]$833
+    15/112: $4\crc8_next$func$design.sv:162$656.value[7:0]$814
+    16/112: $4\crc8_next$func$design.sv:162$656.i[31:0]$813
+    17/112: $4\crc8_next$func$design.sv:162$656.data_in[7:0]$812
+    18/112: $4\crc8_next$func$design.sv:162$656.$result[7:0]$811
+    19/112: $4\prepare_response$func$design.sv:204$662.kind[7:0]$830
+    20/112: $4\crc8_next$func$design.sv:178$659.value[7:0]$829
+    21/112: $4\crc8_next$func$design.sv:178$659.i[31:0]$828
+    22/112: $4\crc8_next$func$design.sv:178$659.data_in[7:0]$827
+    23/112: $4\crc8_next$func$design.sv:178$659.crc_in[7:0]$826
+    24/112: $4\crc8_next$func$design.sv:178$659.$result[7:0]$825
+    25/112: $4\crc8_next$func$design.sv:173$658.value[7:0]$824
+    26/112: $4\crc8_next$func$design.sv:173$658.i[31:0]$823
+    27/112: $4\crc8_next$func$design.sv:173$658.data_in[7:0]$822
+    28/112: $4\crc8_next$func$design.sv:173$658.crc_in[7:0]$821
+    29/112: $4\crc8_next$func$design.sv:173$658.$result[7:0]$820
+    30/112: $4\crc8_next$func$design.sv:168$657.value[7:0]$819
+    31/112: $4\crc8_next$func$design.sv:168$657.i[31:0]$818
+    32/112: $4\crc8_next$func$design.sv:168$657.data_in[7:0]$817
+    33/112: $4\crc8_next$func$design.sv:168$657.crc_in[7:0]$816
+    34/112: $4\crc8_next$func$design.sv:168$657.$result[7:0]$815
+    35/112: $3\prepare_response$func$design.sv:204$662.kind[7:0]$810
+    36/112: $3\crc8_next$func$design.sv:178$659.value[7:0]$809
+    37/112: $3\crc8_next$func$design.sv:178$659.i[31:0]$808
+    38/112: $3\crc8_next$func$design.sv:178$659.data_in[7:0]$807
+    39/112: $3\crc8_next$func$design.sv:178$659.crc_in[7:0]$806
+    40/112: $3\crc8_next$func$design.sv:178$659.$result[7:0]$805
+    41/112: $3\crc8_next$func$design.sv:173$658.value[7:0]$804
+    42/112: $3\crc8_next$func$design.sv:173$658.i[31:0]$803
+    43/112: $3\crc8_next$func$design.sv:173$658.data_in[7:0]$802
+    44/112: $3\crc8_next$func$design.sv:173$658.crc_in[7:0]$801
+    45/112: $3\crc8_next$func$design.sv:173$658.$result[7:0]$800
+    46/112: $3\crc8_next$func$design.sv:168$657.value[7:0]$799
+    47/112: $3\crc8_next$func$design.sv:168$657.i[31:0]$798
+    48/112: $3\crc8_next$func$design.sv:168$657.data_in[7:0]$797
+    49/112: $3\crc8_next$func$design.sv:168$657.crc_in[7:0]$796
+    50/112: $3\crc8_next$func$design.sv:168$657.$result[7:0]$795
+    51/112: $3\crc8_next$func$design.sv:162$656.value[7:0]$794
+    52/112: $3\crc8_next$func$design.sv:162$656.i[31:0]$793
+    53/112: $3\crc8_next$func$design.sv:162$656.data_in[7:0]$792
+    54/112: $3\crc8_next$func$design.sv:162$656.$result[7:0]$791
+    55/112: $2\prepare_response$func$design.sv:240$667.token[11:0]$782
+    56/112: $2\prepare_response$func$design.sv:232$665.kind[7:0]$781
+    57/112: $2\prepare_response$func$design.sv:204$662.kind[7:0]$780
+    58/112: $2\crc8_next$func$design.sv:178$659.value[7:0]$779
+    59/112: $2\crc8_next$func$design.sv:178$659.i[31:0]$778
+    60/112: $2\crc8_next$func$design.sv:178$659.data_in[7:0]$777
+    61/112: $2\crc8_next$func$design.sv:178$659.crc_in[7:0]$776
+    62/112: $2\crc8_next$func$design.sv:178$659.$result[7:0]$775
+    63/112: $2\crc8_next$func$design.sv:173$658.value[7:0]$774
+    64/112: $2\crc8_next$func$design.sv:173$658.i[31:0]$773
+    65/112: $2\crc8_next$func$design.sv:173$658.data_in[7:0]$772
+    66/112: $2\crc8_next$func$design.sv:173$658.crc_in[7:0]$771
+    67/112: $2\crc8_next$func$design.sv:173$658.$result[7:0]$770
+    68/112: $2\crc8_next$func$design.sv:168$657.value[7:0]$769
+    69/112: $2\crc8_next$func$design.sv:168$657.i[31:0]$768
+    70/112: $2\crc8_next$func$design.sv:168$657.data_in[7:0]$767
+    71/112: $2\crc8_next$func$design.sv:168$657.crc_in[7:0]$766
+    72/112: $2\crc8_next$func$design.sv:168$657.$result[7:0]$765
+    73/112: $2\crc8_next$func$design.sv:162$656.value[7:0]$764
+    74/112: $2\crc8_next$func$design.sv:162$656.i[31:0]$763
+    75/112: $2\crc8_next$func$design.sv:162$656.data_in[7:0]$762
+    76/112: $2\crc8_next$func$design.sv:162$656.$result[7:0]$761
+    77/112: $1\prepare_response$func$design.sv:240$667.token[11:0]$759
+    78/112: $1\prepare_response$func$design.sv:232$665.kind[7:0]$758
+    79/112: $1\prepare_response$func$design.sv:204$662.kind[7:0]$757
+    80/112: $1\crc8_next$func$design.sv:178$659.value[7:0]$756
+    81/112: $1\crc8_next$func$design.sv:178$659.i[31:0]$755
+    82/112: $1\crc8_next$func$design.sv:178$659.data_in[7:0]$754
+    83/112: $1\crc8_next$func$design.sv:178$659.crc_in[7:0]$753
+    84/112: $1\crc8_next$func$design.sv:178$659.$result[7:0]$752
+    85/112: $1\crc8_next$func$design.sv:173$658.value[7:0]$751
+    86/112: $1\crc8_next$func$design.sv:173$658.i[31:0]$750
+    87/112: $1\crc8_next$func$design.sv:173$658.data_in[7:0]$749
+    88/112: $1\crc8_next$func$design.sv:173$658.crc_in[7:0]$748
+    89/112: $1\crc8_next$func$design.sv:173$658.$result[7:0]$747
+    90/112: $1\crc8_next$func$design.sv:168$657.value[7:0]$746
+    91/112: $1\crc8_next$func$design.sv:168$657.i[31:0]$745
+    92/112: $1\crc8_next$func$design.sv:168$657.data_in[7:0]$744
+    93/112: $1\crc8_next$func$design.sv:168$657.crc_in[7:0]$743
+    94/112: $1\crc8_next$func$design.sv:168$657.$result[7:0]$742
+    95/112: $1\crc8_next$func$design.sv:162$656.value[7:0]$741
+    96/112: $1\crc8_next$func$design.sv:162$656.i[31:0]$740
+    97/112: $1\crc8_next$func$design.sv:162$656.data_in[7:0]$739
+    98/112: $1\crc8_next$func$design.sv:162$656.$result[7:0]$738
+    99/112: $0\recovery_clear_q[0:0]
+   100/112: $0\clear_pending_q[0:0]
+   101/112: $0\response_index_q[2:0]
+   102/112: $0\response_crc_q[7:0]
+   103/112: $0\response_token_q[11:0]
+   104/112: $0\response_kind_q[7:0]
+   105/112: $0\command_token_q[11:0]
+   106/112: $0\command_q[1:0]
+   107/112: $0\request_token_high_q[7:0]
+   108/112: $0\request_token_low_q[7:0]
+   109/112: $0\request_opcode_q[7:0]
+   110/112: $0\request_crc_q[7:0]
+   111/112: $0\request_index_q[2:0]
+   112/112: $0\state_q[2:0]
+Creating decoders for process `\token_only_model0_uart_bridge.$proc$design.sv:279$1024'.
+     1/9: $9\clear_command_next[0:0]
+     2/9: $8\clear_command_next[0:0]
+     3/9: $7\clear_command_next[0:0]
+     4/9: $6\clear_command_next[0:0]
+     5/9: $5\clear_command_next[0:0]
+     6/9: $4\clear_command_next[0:0]
+     7/9: $3\clear_command_next[0:0]
+     8/9: $2\clear_command_next[0:0]
+     9/9: $1\clear_command_next[0:0]
+Creating decoders for process `\token_only_model0_uart_bridge.$proc$design.sv:302$1029'.
+     1/1: $0\clear_command_q[0:0]
+Creating decoders for process `\token_only_model0_uart_bridge.$proc$design.sv:319$1047'.
+     1/2: $0\spec_elapsed[13:0]
+     2/2: $0\spec_flight[0:0]
+Creating decoders for process `\token_only_model0_uart_bridge.$proc$design.sv:328$1050'.
+     1/3: $assert$design.sv:332$1065_EN
+     2/3: $assert$design.sv:331$1062_EN
+     3/3: $assert$design.sv:329$1051_EN
+Creating decoders for process `\token_only_model0_uart_bridge.$proc$design.sv:334$1067'.
+     1/5: $assert$design.sv:341$1088_EN
+     2/5: $assert$design.sv:340$1085_EN
+     3/5: $assert$design.sv:339$1082_EN
+     4/5: $assert$design.sv:338$1079_EN
+     5/5: $assert$design.sv:336$1070_EN
+Creating decoders for process `\token_only_model0_uart_bridge.$proc$design.sv:96$1089'.
+Creating decoders for process `\token_only_model0_uart_bridge.$proc$design.sv:96$1128'.
+Creating decoders for process `\token_only_model0_uart_bridge.$proc$design.sv:96$1168'.
+Creating decoders for process `\token_only_model0_uart_bridge.$proc$design.sv:96$1208'.
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\token_only_model0_uart_bridge.\clear_command_next' from process `\token_only_model0_uart_bridge.$proc$design.sv:279$1024'.
+No latch inferred for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:96$652.$result' from process `\token_only_model0_uart_bridge.$proc$design.sv:96$1089'.
+No latch inferred for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:96$653.$result' from process `\token_only_model0_uart_bridge.$proc$design.sv:96$1128'.
+No latch inferred for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:96$654.$result' from process `\token_only_model0_uart_bridge.$proc$design.sv:96$1168'.
+No latch inferred for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:96$655.$result' from process `\token_only_model0_uart_bridge.$proc$design.sv:96$1208'.
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.\counter_q' using process `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:377$1280'.
+  created $adff cell `$procdff$2611' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.\bit_q' using process `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:377$1280'.
+  created $adff cell `$procdff$2616' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.\shift_q' using process `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:377$1280'.
+  created $adff cell `$procdff$2621' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.\busy_q' using process `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:377$1280'.
+  created $adff cell `$procdff$2626' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.\state_q' using process `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+  created $adff cell `$procdff$2631' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.\byte_valid_o' using process `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+  created $adff cell `$procdff$2636' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.\byte_o' using process `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+  created $adff cell `$procdff$2641' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.\counter_q' using process `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+  created $adff cell `$procdff$2646' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.\bit_q' using process `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+  created $adff cell `$procdff$2651' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.\shift_q' using process `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+  created $adff cell `$procdff$2656' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.\serial_meta_q' using process `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+  created $adff cell `$procdff$2661' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.\serial_sync_q' using process `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+  created $adff cell `$procdff$2666' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$bitselwrite$pos$design.sv:476$1248' using process `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+  created $adff cell `$procdff$2671' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$lookahead\shift_q$1249' using process `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+  created $adff cell `$procdff$2676' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\state_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2681' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\request_index_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2686' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\request_crc_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2691' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\request_opcode_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2696' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\request_token_low_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2701' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\request_token_high_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2706' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\command_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2711' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\command_token_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2716' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\response_kind_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2721' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\response_token_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2726' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\response_crc_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2731' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\response_index_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2736' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\clear_pending_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2741' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\recovery_clear_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2746' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:162$656.$result' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2751' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:162$656.data_in' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2756' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:162$656.i' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2761' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:162$656.value' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2766' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:168$657.$result' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2771' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:168$657.crc_in' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2776' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:168$657.data_in' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2781' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:168$657.i' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2786' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:168$657.value' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2791' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:173$658.$result' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2796' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:173$658.crc_in' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2801' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:173$658.data_in' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2806' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:173$658.i' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2811' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:173$658.value' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2816' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:178$659.$result' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2821' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:178$659.crc_in' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2826' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:178$659.data_in' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2831' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:178$659.i' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2836' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\crc8_next$func$design.sv:178$659.value' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2841' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\prepare_response$func$design.sv:204$662.kind' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2846' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\prepare_response$func$design.sv:232$665.kind' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2851' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\prepare_response$func$design.sv:240$667.token' using process `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+  created $adff cell `$procdff$2856' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\clear_command_q' using process `\token_only_model0_uart_bridge.$proc$design.sv:302$1029'.
+  created $adff cell `$procdff$2861' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\spec_flight' using process `\token_only_model0_uart_bridge.$proc$design.sv:319$1047'.
+  created $adff cell `$procdff$2866' with positive edge clock and positive level reset.
+Creating register for signal `\token_only_model0_uart_bridge.\spec_elapsed' using process `\token_only_model0_uart_bridge.$proc$design.sv:319$1047'.
+  created $adff cell `$procdff$2871' with positive edge clock and positive level reset.
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 2 empty switches in `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:402$1292'.
+Removing empty process `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:402$1292'.
+Found and cleaned up 4 empty switches in `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:377$1280'.
+Removing empty process `$paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:377$1280'.
+Found and cleaned up 8 empty switches in `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+Removing empty process `$paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.$proc$design.sv:440$1250'.
+Found and cleaned up 22 empty switches in `\token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+Removing empty process `token_only_model0_uart_bridge.$proc$design.sv:139$714'.
+Found and cleaned up 9 empty switches in `\token_only_model0_uart_bridge.$proc$design.sv:279$1024'.
+Removing empty process `token_only_model0_uart_bridge.$proc$design.sv:279$1024'.
+Found and cleaned up 1 empty switch in `\token_only_model0_uart_bridge.$proc$design.sv:302$1029'.
+Removing empty process `token_only_model0_uart_bridge.$proc$design.sv:302$1029'.
+Found and cleaned up 4 empty switches in `\token_only_model0_uart_bridge.$proc$design.sv:319$1047'.
+Removing empty process `token_only_model0_uart_bridge.$proc$design.sv:319$1047'.
+Found and cleaned up 3 empty switches in `\token_only_model0_uart_bridge.$proc$design.sv:328$1050'.
+Removing empty process `token_only_model0_uart_bridge.$proc$design.sv:328$1050'.
+Found and cleaned up 4 empty switches in `\token_only_model0_uart_bridge.$proc$design.sv:334$1067'.
+Removing empty process `token_only_model0_uart_bridge.$proc$design.sv:334$1067'.
+Removing empty process `token_only_model0_uart_bridge.$proc$design.sv:96$1089'.
+Removing empty process `token_only_model0_uart_bridge.$proc$design.sv:96$1128'.
+Removing empty process `token_only_model0_uart_bridge.$proc$design.sv:96$1168'.
+Removing empty process `token_only_model0_uart_bridge.$proc$design.sv:96$1208'.
+Cleaned up 57 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.
+<suppressed ~13 debug messages>
+Optimizing module $paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.
+<suppressed ~32 debug messages>
+Optimizing module token_only_model0_uart_bridge.
+<suppressed ~423 debug messages>
+
+3.3. Executing FLATTEN pass (flatten design).
+Deleting now unused module $paramod\fixed_uart_tx\CLKS_PER_BIT=s32'00000000000000000000000011011001.
+Deleting now unused module $paramod\fixed_uart_rx\CLKS_PER_BIT=s32'00000000000000000000000011011001.
+<suppressed ~2 debug messages>
+
+3.4. Executing FUTURE pass.
+
+3.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module token_only_model0_uart_bridge.
+<suppressed ~4 debug messages>
+
+3.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \token_only_model0_uart_bridge..
+Removed 309 unused cells and 1080 unused wires.
+<suppressed ~328 debug messages>
+
+3.7. Executing CHECK pass (checking for obvious problems).
+Checking module token_only_model0_uart_bridge...
+Found and reported 0 problems.
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module token_only_model0_uart_bridge.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\token_only_model0_uart_bridge'.
+Computing hashes of 617 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 516 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 510 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+<suppressed ~321 debug messages>
+Removed a total of 107 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \token_only_model0_uart_bridge..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port B of cell $flatten\transmitter.$procmux$1314: \transmitter.busy_q -> 1'1
+      Replacing known input bits on port A of cell $flatten\transmitter.$procmux$1311: \transmitter.busy_q -> 1'1
+      Replacing known input bits on port A of cell $flatten\transmitter.$procmux$1317: \transmitter.busy_q -> 1'0
+      Replacing known input bits on port A of cell $procmux$2565: \spec_flight -> 1'0
+      Replacing known input bits on port A of cell $procmux$2563: \spec_flight -> 1'1
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $flatten\receiver.$procmux$1358.
+    dead port 2/2 on $mux $procmux$2540.
+    dead port 2/2 on $mux $procmux$2531.
+    dead port 2/2 on $mux $procmux$2523.
+    dead port 1/2 on $mux $procmux$2521.
+    dead port 2/2 on $mux $procmux$2512.
+    dead port 2/2 on $mux $procmux$2505.
+    dead port 1/2 on $mux $procmux$2503.
+    dead port 2/2 on $mux $procmux$2495.
+    dead port 1/2 on $mux $procmux$2493.
+    dead port 1/2 on $mux $procmux$2490.
+    dead port 2/2 on $mux $procmux$2482.
+    dead port 1/2 on $mux $procmux$2480.
+    dead port 1/2 on $mux $procmux$2477.
+    dead port 1/2 on $mux $procmux$2474.
+    dead port 2/2 on $mux $procmux$2466.
+Removed 16 multiplexer ports.
+<suppressed ~573 debug messages>
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \token_only_model0_uart_bridge.
+    New ctrl vector for $pmux cell $flatten\receiver.$procmux$1366: { $auto$opt_reduce.cc:137:opt_pmux$3005 $flatten\receiver.$procmux$1436_CMP }
+  Optimizing cells in module \token_only_model0_uart_bridge.
+Performed a total of 1 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\token_only_model0_uart_bridge'.
+Computing hashes of 495 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 488 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 483 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 481 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 479 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 477 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 475 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 473 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 471 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 469 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 467 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 465 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 463 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 461 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 459 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 457 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+<suppressed ~114 debug messages>
+Removed a total of 38 cells.
+
+3.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \token_only_model0_uart_bridge..
+Removed 0 unused cells and 176 unused wires.
+<suppressed ~1 debug messages>
+
+3.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module token_only_model0_uart_bridge.
+
+3.8.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \token_only_model0_uart_bridge..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~528 debug messages>
+
+3.8.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \token_only_model0_uart_bridge.
+    New ctrl vector for $pmux cell $procmux$2380: { $auto$opt_reduce.cc:137:opt_pmux$3007 $procmux$2387_CMP }
+  Optimizing cells in module \token_only_model0_uart_bridge.
+Performed a total of 1 changes.
+
+3.8.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\token_only_model0_uart_bridge'.
+Computing hashes of 458 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Removed a total of 0 cells.
+
+3.8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \token_only_model0_uart_bridge..
+
+3.8.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module token_only_model0_uart_bridge.
+
+3.8.14. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.15. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \token_only_model0_uart_bridge..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~524 debug messages>
+
+3.8.16. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \token_only_model0_uart_bridge.
+Performed a total of 0 changes.
+
+3.8.17. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\token_only_model0_uart_bridge'.
+Computing hashes of 458 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Removed a total of 0 cells.
+
+3.8.18. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \token_only_model0_uart_bridge..
+
+3.8.19. Executing OPT_EXPR pass (perform const folding).
+Optimizing module token_only_model0_uart_bridge.
+
+3.8.20. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 3) from port B of cell token_only_model0_uart_bridge.$eq$design.sv:115$693 ($eq).
+Removed top 1 bits (of 3) from port B of cell token_only_model0_uart_bridge.$ne$design.sv:117$700 ($ne).
+Removed top 2 bits (of 3) from port B of cell token_only_model0_uart_bridge.$eq$design.sv:119$707 ($eq).
+Removed top 1 bits (of 3) from port B of cell token_only_model0_uart_bridge.$eq$design.sv:120$708 ($eq).
+Removed top 1 bits (of 3) from port B of cell token_only_model0_uart_bridge.$eq$design.sv:121$709 ($eq).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$840 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$844 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$848 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$852 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$856 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$860 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$864 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$868 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$873 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$877 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$881 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$885 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$889 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$893 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$897 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$901 ($mux).
+Removed top 6 bits (of 8) from port B of cell token_only_model0_uart_bridge.$eq$design.sv:188$973 ($eq).
+Removed top 6 bits (of 8) from port B of cell token_only_model0_uart_bridge.$gt$design.sv:195$983 ($gt).
+Removed top 1 bits (of 13) from port A of cell token_only_model0_uart_bridge.$ge$design.sv:198$987 ($ge).
+Removed top 1 bits (of 13) from port B of cell token_only_model0_uart_bridge.$ge$design.sv:198$987 ($ge).
+Removed top 1 bits (of 2) from port B of cell token_only_model0_uart_bridge.$eq$design.sv:225$999 ($eq).
+Removed top 11 bits (of 14) from port A of cell token_only_model0_uart_bridge.$sub$design.sv:317$1039 ($sub).
+Removed top 11 bits (of 14) from port B of cell token_only_model0_uart_bridge.$sub$design.sv:317$1039 ($sub).
+Removed top 10 bits (of 14) from port Y of cell token_only_model0_uart_bridge.$sub$design.sv:317$1039 ($sub).
+Converting cell token_only_model0_uart_bridge.$mul$design.sv:317$1040 ($mul) from unsigned to signed.
+Removed top 10 bits (of 14) from port A of cell token_only_model0_uart_bridge.$mul$design.sv:317$1040 ($mul).
+Removed top 1 bits (of 14) from port B of cell token_only_model0_uart_bridge.$mul$design.sv:317$1040 ($mul).
+Removed top 2 bits (of 14) from port B of cell token_only_model0_uart_bridge.$add$design.sv:317$1041 ($add).
+Removed top 13 bits (of 14) from port B of cell token_only_model0_uart_bridge.$add$design.sv:317$1042 ($add).
+Removed top 2 bits (of 14) from port A of cell token_only_model0_uart_bridge.$add$design.sv:318$1044 ($add).
+Removed top 13 bits (of 14) from port B of cell token_only_model0_uart_bridge.$add$design.sv:318$1044 ($add).
+Removed top 1 bits (of 14) from port Y of cell token_only_model0_uart_bridge.$add$design.sv:318$1044 ($add).
+Removed top 1 bits (of 14) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:318$1045 ($mux).
+Removed top 29 bits (of 32) from port B of cell token_only_model0_uart_bridge.$le$design.sv:331$1063 ($le).
+Removed top 31 bits (of 32) from port B of cell token_only_model0_uart_bridge.$ge$design.sv:337$1074 ($ge).
+Removed top 18 bits (of 32) from port B of cell token_only_model0_uart_bridge.$le$design.sv:339$1083 ($le).
+Removed top 31 bits (of 32) from port B of cell token_only_model0_uart_bridge.$gt$design.sv:340$1086 ($gt).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1139 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1143 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1147 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1151 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1155 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1159 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1163 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1167 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1179 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1183 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1187 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1191 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1195 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1199 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1203 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1207 ($mux).
+Removed top 4 bits (of 8) from port B of cell token_only_model0_uart_bridge.$xor$design.sv:43$1215 ($xor).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1219 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1223 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1227 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1231 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1235 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1239 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1243 ($mux).
+Removed top 5 bits (of 8) from mux cell token_only_model0_uart_bridge.$ternary$design.sv:45$1247 ($mux).
+Removed top 2 bits (of 3) from port B of cell token_only_model0_uart_bridge.$procmux$2193_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell token_only_model0_uart_bridge.$procmux$2225_CMP0 ($eq).
+Removed top 6 bits (of 8) from mux cell token_only_model0_uart_bridge.$procmux$2275 ($mux).
+Removed top 1 bits (of 3) from port B of cell token_only_model0_uart_bridge.$procmux$2348_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell token_only_model0_uart_bridge.$procmux$2359_CMP0 ($eq).
+Removed top 2 bits (of 3) from port B of cell token_only_model0_uart_bridge.$procmux$2371_CMP0 ($eq).
+Removed top 1 bits (of 3) from mux cell token_only_model0_uart_bridge.$procmux$2412 ($mux).
+Removed top 1 bits (of 3) from mux cell token_only_model0_uart_bridge.$procmux$2415 ($mux).
+Removed top 1 bits (of 3) from mux cell token_only_model0_uart_bridge.$procmux$2418 ($mux).
+Removed top 2 bits (of 3) from mux cell token_only_model0_uart_bridge.$procmux$2429 ($mux).
+Removed top 2 bits (of 3) from mux cell token_only_model0_uart_bridge.$procmux$2455 ($mux).
+Removed top 20 bits (of 32) from port B of cell token_only_model0_uart_bridge.$flatten\transmitter.$le$design.sv:405$1299 ($le).
+Removed top 31 bits (of 32) from port B of cell token_only_model0_uart_bridge.$flatten\transmitter.$gt$design.sv:405$1298 ($gt).
+Removed top 24 bits (of 32) from port B of cell token_only_model0_uart_bridge.$flatten\transmitter.$lt$design.sv:404$1296 ($lt).
+Removed top 28 bits (of 32) from port B of cell token_only_model0_uart_bridge.$flatten\transmitter.$le$design.sv:403$1294 ($le).
+Removed top 11 bits (of 12) from port B of cell token_only_model0_uart_bridge.$flatten\transmitter.$add$design.sv:401$1290 ($add).
+Removed top 4 bits (of 12) from port B of cell token_only_model0_uart_bridge.$flatten\transmitter.$add$design.sv:401$1289 ($add).
+Removed top 4 bits (of 12) from port B of cell token_only_model0_uart_bridge.$flatten\transmitter.$mul$design.sv:401$1288 ($mul).
+Removed top 8 bits (of 12) from port A of cell token_only_model0_uart_bridge.$flatten\transmitter.$sub$design.sv:401$1287 ($sub).
+Removed top 8 bits (of 12) from port B of cell token_only_model0_uart_bridge.$flatten\transmitter.$sub$design.sv:401$1287 ($sub).
+Removed top 7 bits (of 12) from port Y of cell token_only_model0_uart_bridge.$flatten\transmitter.$sub$design.sv:401$1287 ($sub).
+Removed top 1 bits (of 2) from port B of cell token_only_model0_uart_bridge.$flatten\receiver.$procmux$1443_CMP0 ($eq).
+Converting cell token_only_model0_uart_bridge.$flatten\receiver.$neg$design.sv:476$1266 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell token_only_model0_uart_bridge.$flatten\receiver.$neg$design.sv:476$1266 ($neg).
+Removed top 2 bits (of 3) from wire token_only_model0_uart_bridge.$procmux$2455_Y.
+Removed top 1 bits (of 3) from wire token_only_model0_uart_bridge.$procmux$2412_Y.
+Removed top 1 bits (of 3) from wire token_only_model0_uart_bridge.$procmux$2415_Y.
+Removed top 1 bits (of 3) from wire token_only_model0_uart_bridge.$procmux$2418_Y.
+Removed top 2 bits (of 3) from wire token_only_model0_uart_bridge.$procmux$2429_Y.
+Removed top 6 bits (of 8) from wire token_only_model0_uart_bridge.$procmux$2275_Y.
+Removed top 4 bits (of 8) from wire token_only_model0_uart_bridge.response_byte3.
+Removed top 1 bits (of 14) from wire token_only_model0_uart_bridge.$add$design.sv:318$1044_Y.
+Removed top 1 bits (of 14) from wire token_only_model0_uart_bridge.$ternary$design.sv:318$1045_Y.
+
+3.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \token_only_model0_uart_bridge..
+Removed 0 unused cells and 44 unused wires.
+<suppressed ~1 debug messages>
+
+3.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.12. Executing OPT pass (performing simple optimizations).
+
+3.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module token_only_model0_uart_bridge.
+
+3.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\token_only_model0_uart_bridge'.
+Computing hashes of 458 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Removed a total of 0 cells.
+
+3.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \token_only_model0_uart_bridge..
+
+3.12.4. Finished fast OPT passes.
+
+3.13. Executing SORT pass.
+
+3.14. Printing statistics.
+
+=== token_only_model0_uart_bridge ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      488 wires
+     2400 wire bits
+       88 public wires
+      547 public wire bits
+       15 ports
+       38 port bits
+      458 cells
+       10   $add
+       29   $adff
+        1   $and
+       11   $check
+       24   $eq
+        2   $ge
+        3   $gt
+        4   $le
+       33   $logic_and
+       13   $logic_not
+       12   $logic_or
+        1   $lt
+        2   $mul
+      233   $mux
+        3   $ne
+        1   $neg
+       42   $not
+        1   $or
+       14   $pmux
+        6   $reduce_bool
+        2   $reduce_or
+        2   $scopeinfo
+        2   $shift
+        4   $sub
+        3   $xor
+
+3.15. Executing CHECK pass (checking for obvious problems).
+Checking module token_only_model0_uart_bridge...
+Found and reported 0 problems.
+
+4. Executing ASYNC2SYNC pass.
+Replacing token_only_model0_uart_bridge.$flatten\receiver.$procdff$2631 ($adff): ARST=\receiver.rst_n, D=$flatten\receiver.$0\state_q[1:0], Q=\receiver.state_q
+Replacing token_only_model0_uart_bridge.$flatten\receiver.$procdff$2636 ($adff): ARST=\receiver.rst_n, D=$flatten\receiver.$0\byte_valid_o[0:0], Q=\receiver.byte_valid_o
+Replacing token_only_model0_uart_bridge.$flatten\receiver.$procdff$2641 ($adff): ARST=\receiver.rst_n, D=$flatten\receiver.$0\byte_o[7:0], Q=\receiver.byte_o
+Replacing token_only_model0_uart_bridge.$flatten\receiver.$procdff$2646 ($adff): ARST=\receiver.rst_n, D=$flatten\receiver.$0\counter_q[7:0], Q=\receiver.counter_q
+Replacing token_only_model0_uart_bridge.$flatten\receiver.$procdff$2651 ($adff): ARST=\receiver.rst_n, D=$flatten\receiver.$0\bit_q[2:0], Q=\receiver.bit_q
+Replacing token_only_model0_uart_bridge.$flatten\receiver.$procdff$2656 ($adff): ARST=\receiver.rst_n, D=$flatten\receiver.$0$lookahead\shift_q$1249[7:0]$1252, Q=\receiver.shift_q
+Replacing token_only_model0_uart_bridge.$flatten\receiver.$procdff$2661 ($adff): ARST=\receiver.rst_n, D=\uart_rx_i, Q=\receiver.serial_meta_q
+Replacing token_only_model0_uart_bridge.$flatten\receiver.$procdff$2666 ($adff): ARST=\receiver.rst_n, D=\receiver.serial_meta_q, Q=\receiver.serial_sync_q
+Replacing token_only_model0_uart_bridge.$flatten\transmitter.$procdff$2611 ($adff): ARST=\receiver.rst_n, D=$flatten\transmitter.$0\counter_q[7:0], Q=\transmitter.counter_q
+Replacing token_only_model0_uart_bridge.$flatten\transmitter.$procdff$2616 ($adff): ARST=\receiver.rst_n, D=$flatten\transmitter.$0\bit_q[3:0], Q=\transmitter.bit_q
+Replacing token_only_model0_uart_bridge.$flatten\transmitter.$procdff$2621 ($adff): ARST=\receiver.rst_n, D=$flatten\transmitter.$0\shift_q[9:0], Q=\transmitter.shift_q
+Replacing token_only_model0_uart_bridge.$flatten\transmitter.$procdff$2626 ($adff): ARST=\receiver.rst_n, D=$flatten\transmitter.$0\busy_q[0:0], Q=\transmitter.busy_q
+Replacing token_only_model0_uart_bridge.$procdff$2681 ($adff): ARST=\rst_n, D=$0\state_q[2:0], Q=\state_q
+Replacing token_only_model0_uart_bridge.$procdff$2686 ($adff): ARST=\rst_n, D=$0\request_index_q[2:0], Q=\request_index_q
+Replacing token_only_model0_uart_bridge.$procdff$2691 ($adff): ARST=\rst_n, D=$0\request_crc_q[7:0], Q=\request_crc_q
+Replacing token_only_model0_uart_bridge.$procdff$2696 ($adff): ARST=\rst_n, D=$0\request_opcode_q[7:0], Q=\request_opcode_q
+Replacing token_only_model0_uart_bridge.$procdff$2701 ($adff): ARST=\rst_n, D=$0\request_token_low_q[7:0], Q=\request_token_low_q
+Replacing token_only_model0_uart_bridge.$procdff$2706 ($adff): ARST=\rst_n, D=$0\request_token_high_q[7:0], Q=\request_token_high_q
+Replacing token_only_model0_uart_bridge.$procdff$2711 ($adff): ARST=\rst_n, D=$0\command_q[1:0], Q=\command_q
+Replacing token_only_model0_uart_bridge.$procdff$2716 ($adff): ARST=\rst_n, D=$0\command_token_q[11:0], Q=\command_token_q
+Replacing token_only_model0_uart_bridge.$procdff$2721 ($adff): ARST=\rst_n, D=$0\response_kind_q[7:0], Q=\response_kind_q
+Replacing token_only_model0_uart_bridge.$procdff$2726 ($adff): ARST=\rst_n, D=$0\response_token_q[11:0], Q=\response_token_q
+Replacing token_only_model0_uart_bridge.$procdff$2731 ($adff): ARST=\rst_n, D=$0\response_crc_q[7:0], Q=\response_crc_q
+Replacing token_only_model0_uart_bridge.$procdff$2736 ($adff): ARST=\rst_n, D=$0\response_index_q[2:0], Q=\response_index_q
+Replacing token_only_model0_uart_bridge.$procdff$2741 ($adff): ARST=\rst_n, D=$0\clear_pending_q[0:0], Q=\clear_pending_q
+Replacing token_only_model0_uart_bridge.$procdff$2746 ($adff): ARST=\rst_n, D=$0\recovery_clear_q[0:0], Q=\recovery_clear_q
+Replacing token_only_model0_uart_bridge.$procdff$2861 ($adff): ARST=\rst_n, D=$0\clear_command_q[0:0], Q=\clear_command_q
+Replacing token_only_model0_uart_bridge.$procdff$2866 ($adff): ARST=\rst_n, D=$0\spec_flight[0:0], Q=\spec_flight
+Replacing token_only_model0_uart_bridge.$procdff$2871 ($adff): ARST=\rst_n, D=$0\spec_elapsed[13:0], Q=\spec_elapsed
+
+5. Executing OPT pass (performing simple optimizations).
+
+5.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module token_only_model0_uart_bridge.
+<suppressed ~283 debug messages>
+
+5.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\token_only_model0_uart_bridge'.
+Computing hashes of 497 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 496 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+5.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \token_only_model0_uart_bridge..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~575 debug messages>
+
+5.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \token_only_model0_uart_bridge.
+    Consolidated identical input bits for $mux cell $flatten\receiver.$procmux$1438:
+      Old ports: A=2'10, B=2'00, Y=$flatten\receiver.$procmux$1438_Y
+      New ports: A=1'1, B=1'0, Y=$flatten\receiver.$procmux$1438_Y [1]
+      New connections: $flatten\receiver.$procmux$1438_Y [0] = 1'0
+    Consolidated identical input bits for $mux cell $procmux$2275:
+      Old ports: A=2'10, B=2'00, Y=$auto$wreduce.cc:514:run$3013 [1:0]
+      New ports: A=1'1, B=1'0, Y=$auto$wreduce.cc:514:run$3013 [1]
+      New connections: $auto$wreduce.cc:514:run$3013 [0] = 1'0
+    Consolidated identical input bits for $mux cell $procmux$2412:
+      Old ports: A=2'01, B=2'11, Y=$auto$wreduce.cc:514:run$3009 [1:0]
+      New ports: A=1'0, B=1'1, Y=$auto$wreduce.cc:514:run$3009 [1]
+      New connections: $auto$wreduce.cc:514:run$3009 [0] = 1'1
+  Optimizing cells in module \token_only_model0_uart_bridge.
+    Consolidated identical input bits for $mux cell $procmux$2415:
+      Old ports: A=$auto$wreduce.cc:514:run$3009 [1:0], B=2'11, Y=$auto$wreduce.cc:514:run$3010 [1:0]
+      New ports: A=$auto$wreduce.cc:514:run$3009 [1], B=1'1, Y=$auto$wreduce.cc:514:run$3010 [1]
+      New connections: $auto$wreduce.cc:514:run$3010 [0] = 1'1
+  Optimizing cells in module \token_only_model0_uart_bridge.
+    Consolidated identical input bits for $mux cell $procmux$2418:
+      Old ports: A=$auto$wreduce.cc:514:run$3010 [1:0], B=2'11, Y=$auto$wreduce.cc:514:run$3011 [1:0]
+      New ports: A=$auto$wreduce.cc:514:run$3010 [1], B=1'1, Y=$auto$wreduce.cc:514:run$3011 [1]
+      New connections: $auto$wreduce.cc:514:run$3011 [0] = 1'1
+  Optimizing cells in module \token_only_model0_uart_bridge.
+Performed a total of 5 changes.
+
+5.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\token_only_model0_uart_bridge'.
+Computing hashes of 496 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Removed a total of 0 cells.
+
+5.6. Executing OPT_SHARE pass.
+
+5.7. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $flatten\receiver.$procdff$2666 ($sdff) from module token_only_model0_uart_bridge (D = $auto$async2sync.cc:253:execute$3029, Q = $auto$async2sync.cc:253:execute$3031, rval = 1'1).
+Adding SRST signal on $procdff$2861 ($sdff) from module token_only_model0_uart_bridge (D = \clear_command_next, Q = $auto$async2sync.cc:253:execute$3069, rval = 1'0).
+Adding SRST signal on $procdff$2866 ($sdff) from module token_only_model0_uart_bridge (D = $procmux$2568_Y, Q = $auto$async2sync.cc:253:execute$3071, rval = 1'0).
+Adding SRST signal on $procdff$2871 ($sdff) from module token_only_model0_uart_bridge (D = $procmux$2554_Y, Q = $auto$async2sync.cc:253:execute$3073, rval = 14'00000000000000).
+
+5.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \token_only_model0_uart_bridge..
+Removed 27 unused cells and 123 unused wires.
+<suppressed ~29 debug messages>
+
+5.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module token_only_model0_uart_bridge.
+<suppressed ~5 debug messages>
+
+5.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \token_only_model0_uart_bridge..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~548 debug messages>
+
+5.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \token_only_model0_uart_bridge.
+Performed a total of 0 changes.
+
+5.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\token_only_model0_uart_bridge'.
+Computing hashes of 474 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 472 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Computing hashes of 471 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+5.14. Executing OPT_SHARE pass.
+
+5.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \token_only_model0_uart_bridge..
+Removed 0 unused cells and 4 unused wires.
+<suppressed ~1 debug messages>
+
+5.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module token_only_model0_uart_bridge.
+
+5.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \token_only_model0_uart_bridge..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~548 debug messages>
+
+5.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \token_only_model0_uart_bridge.
+Performed a total of 0 changes.
+
+5.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\token_only_model0_uart_bridge'.
+Computing hashes of 471 cells of `\token_only_model0_uart_bridge'.
+Finding duplicate cells in `\token_only_model0_uart_bridge'.
+Removed a total of 0 cells.
+
+5.22. Executing OPT_SHARE pass.
+
+5.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \token_only_model0_uart_bridge..
+
+5.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module token_only_model0_uart_bridge.
+
+5.26. Finished fast OPT passes. (There is nothing left to do.)
+
+6. Executing SAT pass (solving SAT problems in the circuit).
+Using SAT solver `minisat`.
+
+Setting up time step 1:
+Import set-constraint: \clk = 1'1
+Import set-constraint for this timestep: \rst_n = 1'0
+Final constraint equation: { \rst_n \clk } = 2'01
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \rst_n
+Import def constraint for this timestep: \transport_pause_i
+Import def constraint for this timestep: \publication_allowed_i
+Import def constraint for this timestep: \uart_rx_i
+Import def constraint for this timestep: \cmd_ready_i
+Import def constraint for this timestep: \out_valid_i
+Import def constraint for this timestep: \out_token_i
+Imported 471 cells to SAT database.
+No constraints for initial state found.
+
+
+Setting up time step 2:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \rst_n
+Import def constraint for this timestep: \transport_pause_i
+Import def constraint for this timestep: \publication_allowed_i
+Import def constraint for this timestep: \uart_rx_i
+Import def constraint for this timestep: \cmd_ready_i
+Import def constraint for this timestep: \out_valid_i
+Import def constraint for this timestep: \out_token_i
+Imported 471 cells to SAT database.
+
+Setting up time step 1:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \rst_n
+Import def constraint for this timestep: \transport_pause_i
+Import def constraint for this timestep: \publication_allowed_i
+Import def constraint for this timestep: \uart_rx_i
+Import def constraint for this timestep: \cmd_ready_i
+Import def constraint for this timestep: \out_valid_i
+Import def constraint for this timestep: \out_token_i
+Imported 471 cells to SAT database.
+Import proof for assert: $logic_or$design.sv:329$1060_Y when \rst_n.
+Import proof for assert: $le$design.sv:331$1063_Y when $assert$design.sv:331$1062_EN.
+Import proof for assert: $eq$design.sv:248$1010_Y when $assert$design.sv:332$1065_EN.
+Import proof for assert: $logic_or$design.sv:336$1078_Y when $assert$design.sv:336$1070_EN.
+Import proof for assert: $gt$design.sv:340$1086_Y when $assert$design.sv:340$1085_EN.
+Import proof for assert: $le$design.sv:339$1083_Y when $assert$design.sv:336$1070_EN.
+Import proof for assert: $flatten\transmitter.$logic_and$design.sv:405$1300_Y when $flatten\transmitter.$assert$design.sv:405$1297_EN.
+Import proof for assert: $flatten\transmitter.$le$design.sv:403$1294_Y when \receiver.rst_n.
+Import proof for assert: \uart_quiet_o when $assert$design.sv:341$1088_EN.
+Import proof for assert: $flatten\transmitter.$lt$design.sv:404$1296_Y when \receiver.rst_n.
+Import proof for assert: $eq$design.sv:338$1081_Y when $assert$design.sv:336$1070_EN.
+
+** Trying induction with length 1 **
+
+Setting up time step 3:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \rst_n
+Import def constraint for this timestep: \transport_pause_i
+Import def constraint for this timestep: \publication_allowed_i
+Import def constraint for this timestep: \uart_rx_i
+Import def constraint for this timestep: \cmd_ready_i
+Import def constraint for this timestep: \out_valid_i
+Import def constraint for this timestep: \out_token_i
+Imported 471 cells to SAT database.
+Import proof for assert: $logic_or$design.sv:329$1060_Y when \rst_n.
+Import proof for assert: $le$design.sv:331$1063_Y when $assert$design.sv:331$1062_EN.
+Import proof for assert: $eq$design.sv:248$1010_Y when $assert$design.sv:332$1065_EN.
+Import proof for assert: $logic_or$design.sv:336$1078_Y when $assert$design.sv:336$1070_EN.
+Import proof for assert: $gt$design.sv:340$1086_Y when $assert$design.sv:340$1085_EN.
+Import proof for assert: $le$design.sv:339$1083_Y when $assert$design.sv:336$1070_EN.
+Import proof for assert: $flatten\transmitter.$logic_and$design.sv:405$1300_Y when $flatten\transmitter.$assert$design.sv:405$1297_EN.
+Import proof for assert: $flatten\transmitter.$le$design.sv:403$1294_Y when \receiver.rst_n.
+Import proof for assert: \uart_quiet_o when $assert$design.sv:341$1088_EN.
+Import proof for assert: $flatten\transmitter.$lt$design.sv:404$1296_Y when \receiver.rst_n.
+Import proof for assert: $eq$design.sv:338$1081_Y when $assert$design.sv:336$1070_EN.
+Import show expression: \state_q
+Import show expression: \response_index_q
+Import show expression: \spec_flight
+Import show expression: \spec_rank
+Import show expression: \spec_elapsed
+Import show expression: \proof_tx_remaining
+Import show expression: \clk
+Import show expression: \cmd_ready_i
+Import show expression: \out_token_i
+Import show expression: \out_valid_i
+Import show expression: \publication_allowed_i
+Import show expression: \rst_n
+Import show expression: \transport_pause_i
+Import show expression: \uart_rx_i
+Import show expression: \clear_command_o
+Import show expression: \cmd_o
+Import show expression: \cmd_valid_o
+Import show expression: \in_token_o
+Import show expression: \out_ready_o
+Import show expression: \uart_quiet_o
+Import show expression: \uart_tx_o
+
+[base case 1] Solving problem with 134747 variables and 371090 clauses..
+Base case for induction length 1 proven.
+
+Setting up time step 2:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \rst_n
+Import def constraint for this timestep: \transport_pause_i
+Import def constraint for this timestep: \publication_allowed_i
+Import def constraint for this timestep: \uart_rx_i
+Import def constraint for this timestep: \cmd_ready_i
+Import def constraint for this timestep: \out_valid_i
+Import def constraint for this timestep: \out_token_i
+Imported 471 cells to SAT database.
+Import proof for assert: $logic_or$design.sv:329$1060_Y when \rst_n.
+Import proof for assert: $le$design.sv:331$1063_Y when $assert$design.sv:331$1062_EN.
+Import proof for assert: $eq$design.sv:248$1010_Y when $assert$design.sv:332$1065_EN.
+Import proof for assert: $logic_or$design.sv:336$1078_Y when $assert$design.sv:336$1070_EN.
+Import proof for assert: $gt$design.sv:340$1086_Y when $assert$design.sv:340$1085_EN.
+Import proof for assert: $le$design.sv:339$1083_Y when $assert$design.sv:336$1070_EN.
+Import proof for assert: $flatten\transmitter.$logic_and$design.sv:405$1300_Y when $flatten\transmitter.$assert$design.sv:405$1297_EN.
+Import proof for assert: $flatten\transmitter.$le$design.sv:403$1294_Y when \receiver.rst_n.
+Import proof for assert: \uart_quiet_o when $assert$design.sv:341$1088_EN.
+Import proof for assert: $flatten\transmitter.$lt$design.sv:404$1296_Y when \receiver.rst_n.
+Import proof for assert: $eq$design.sv:338$1081_Y when $assert$design.sv:336$1070_EN.
+Import show expression: \state_q
+Import show expression: \response_index_q
+Import show expression: \spec_flight
+Import show expression: \spec_rank
+Import show expression: \spec_elapsed
+Import show expression: \proof_tx_remaining
+Import show expression: \clk
+Import show expression: \cmd_ready_i
+Import show expression: \out_token_i
+Import show expression: \out_valid_i
+Import show expression: \publication_allowed_i
+Import show expression: \rst_n
+Import show expression: \transport_pause_i
+Import show expression: \uart_rx_i
+Import show expression: \clear_command_o
+Import show expression: \cmd_o
+Import show expression: \cmd_valid_o
+Import show expression: \in_token_o
+Import show expression: \out_ready_o
+Import show expression: \uart_quiet_o
+Import show expression: \uart_tx_o
+
+[induction step 1] Solving problem with 88766 variables and 244362 clauses..
+Induction step proven: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+

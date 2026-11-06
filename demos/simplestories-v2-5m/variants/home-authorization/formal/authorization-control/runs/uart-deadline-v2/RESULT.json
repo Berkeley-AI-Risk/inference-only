@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "job": "uart-deadline",
+  "negative_control": null,
+  "process": {
+    "exit_code": 0,
+    "peak_sampled_process_tree_rss_bytes": 2539520,
+    "memory_stopped": false,
+    "log_sha256": "043290733a45801827b998afb04bf90a308c4d6ffa29b6b25ed5e8e79ae4a8c8"
+  },
+  "design_sha256": "cfd95be0c658ed769afca353045398a3ced44ccb5a1ab2d4894c635b5b339ecd",
+  "proof_log_sha256": "043290733a45801827b998afb04bf90a308c4d6ffa29b6b25ed5e8e79ae4a8c8",
+  "scope": "Actual UART bridge/TX/RX at 217 clocks/bit, observation-only remaining-cycle port: complete frame reaches quiet within 10855 clocks absent reset/pause. Binary clocked async2sync model; not a whole-machine numerical or physical security theorem."
+}

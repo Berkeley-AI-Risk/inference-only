@@ -1,0 +1,24 @@
+{
+  "result": "PASS",
+  "records": {
+    "prepare": {
+      "exit_code": 0,
+      "peak_sampled_process_tree_rss_bytes": 32768,
+      "memory_stopped": false,
+      "log_sha256": "658525ca3bd474dcec0a1523b5ff35fbdb6173e55e68d7b9437ad8847cc6f7d9"
+    },
+    "base": {
+      "exit_code": 0,
+      "peak_sampled_process_tree_rss_bytes": 219824128,
+      "memory_stopped": false,
+      "log_sha256": "d56b0a0d43ddb1bb6f0efc2858759e5310a47590cf93956331fddc1b626a294d"
+    },
+    "induction": {
+      "exit_code": 0,
+      "peak_sampled_process_tree_rss_bytes": 262144,
+      "memory_stopped": false,
+      "log_sha256": "795af31178e63cd7934cbaacc4f84b5d10aa492d99db757e70a008806902bf24"
+    }
+  },
+  "scope": "Real synchronous signature RAM, all 1292 byte addresses via one arbitrary constant address; current-frame write coverage and verifier-visible registered-read freshness at START/VERIFY. Actual timer values; binary clocked model. No signature or SHA correctness claim."
+}

@@ -37,13 +37,15 @@ module swic_verified_memory (
     logic [10:0] page_q;
     logic [255:0] expected_q;
     wire [31:0] digest_data;
+    wire boot_digest_read,page_verified,page_fault,image_ready,page_ready;
+    wire [13:0] boot_digest_address;
     wire [191:0] metadata_data;
     wire bank_begin_ready,bank_fill_ready,bank_read_ready,bank_response_valid;
     wire bank_assigned,bank_verified;
     wire [10:0] bank_page;
     wire [255:0] bank_response_data;
-    assign fault_o=local_fault_q || admission_fault || image_fault || bank_fault;
-    assign model_ready_o=sealed && image_verified && !fault_o;
+    assign fault_o=local_fault_q || admission_fault || image_fault || bank_fault || page_fault;
+    assign model_ready_o=sealed && image_verified && page_verified && !fault_o;
     assign page_begin_ready_o=model_ready_o && state_q==IDLE && bank_begin_ready;
     assign page_fill_ready_o=model_ready_o && bank_fill_ready;
     assign page_read_ready_o=model_ready_o && bank_read_ready;
@@ -54,13 +56,21 @@ module swic_verified_memory (
         .clk(clk),.reset_n(reset_n),.boot_valid_i(boot_valid_i),.boot_ready_o(boot_ready_o),
         .boot_byte_i(boot_byte_i),.boot_last_i(boot_last_i),.sealed_o(sealed),
         .fail_closed_o(admission_fault),.expected_image_sha_o(image_sha),
-        .digest_read_i(state_q==DIGEST_REQUEST),.digest_address_i({page_q,digest_word_q}),.digest_data_o(digest_data),
+        .digest_read_i(boot_digest_read || state_q==DIGEST_REQUEST),
+        .digest_address_i(boot_digest_read ? boot_digest_address : {page_q,digest_word_q}),.digest_data_o(digest_data),
         .metadata_read_i(metadata_read_i && model_ready_o),.metadata_address_i(metadata_address_i),.metadata_data_o(metadata_data));
     su_image_check u_image(
         .clk(clk),.reset_n(reset_n),.start_i(sealed && !image_started_q && !fault_o),.expected_sha_i(image_sha),
-        .readback_valid_i(readback_valid_i),.readback_ready_o(readback_ready_o),
+        .readback_valid_i(readback_valid_i && page_ready),.readback_ready_o(image_ready),
         .readback_byte_i(readback_byte_i),.readback_last_i(readback_last_i),
         .verified_o(image_verified),.fault_o(image_fault));
+    assign readback_ready_o=image_ready && page_ready;
+    su_page_table_check u_pages(
+        .clk(clk),.reset_n(reset_n),.start_i(sealed && !image_started_q && !fault_o),
+        .readback_valid_i(readback_valid_i && image_ready),.readback_ready_o(page_ready),
+        .readback_byte_i(readback_byte_i),.readback_last_i(readback_last_i),
+        .digest_read_o(boot_digest_read),.digest_address_o(boot_digest_address),.digest_data_i(digest_data),
+        .verified_o(page_verified),.fault_o(page_fault));
     board1_verified_page_bank u_bank(
         .clk(clk),.reset_n(reset_n),.cancel_read_i(cancel_read_i),
         .begin_valid_i(state_q==ALLOCATE && model_ready_o),.begin_ready_o(bank_begin_ready),

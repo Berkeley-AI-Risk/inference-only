@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "exit_code": 0,
+  "job": "publication",
+  "negative_control": null,
+  "peak_sampled_rss_bytes": 32768,
+  "memory_stopped": false,
+  "proof_log_sha256": "2906bd506a3dd572d96e9b5a9477701749cb06567e0a5360b2f4cdceab74eb8e",
+  "design_sha256": "c4c14a6556b650fc49f96d2a2253de3185a5ad6ec830eff54c70873ce06dfdd2",
+  "source_pins_sha256": "a2b06bd35d188f6864876757fe1209553a94718962a7a00773934fa19901bf76",
+  "scope": "Actual UART bridge, RX and TX at 217 cycles/bit: result acceptance and first response-byte admission require publication permission; pause suppresses offers; quiet implies transmitter ready. No bound on complete frame drain. Two-state clocked async2sync model. No LMS/SHA correctness, entropy, analog timing or unconditional whole-chip security claim."
+}

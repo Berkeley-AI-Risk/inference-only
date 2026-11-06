@@ -1,33 +1,48 @@
 #!/usr/bin/env python3
-"""Build the frozen source composition without accessing hardware."""
+"""Build the selected source with pinned vendor inputs; never access hardware.
+
+The compiler uses the caller's authorized installation and may contact its
+configured license server. Recorded evidence and prebuilt images are unchanged.
+"""
 from pathlib import Path
-import argparse,hashlib,json,os,shutil,subprocess,time
+import argparse,datetime,hashlib,json,os,shutil,subprocess,time
 ROOT=Path(__file__).resolve().parents[1]
-p=argparse.ArgumentParser(description=__doc__)
-p.add_argument('--ide',type=Path,required=True)
-p.add_argument('--vendor-dir',type=Path,required=True)
-p.add_argument('--output',type=Path,required=True)
-p.add_argument('--dependency-manifest',type=Path,default=ROOT.parents[1]/'VENDOR-DEPENDENCIES.json')
-a=p.parse_args();out=a.output.resolve();out.mkdir(parents=True,exist_ok=False)
-sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
-tool=a.ide/'bin/gw_sh'
-assert sha(tool)=='1a2497e6752a4561b64f620e0aa68ae5da599b118f8d723ca70c491f6688678e','Different Gowin executable'
-identity=json.loads((ROOT/'SOURCE-IDENTITY.json').read_text())
-for name,digest in identity['native_inputs'].items():assert sha(ROOT/'hardware'/name)==digest,name
-shutil.copytree(ROOT/'hardware/project',out/'project')
-official=out/'project/official';official.mkdir(exist_ok=True)
-for name,record in json.loads(a.dependency_manifest.read_text())['downloads'].items():
- source=a.vendor_dir/name
- assert source.stat().st_size==record['bytes']and sha(source)==record['sha256'],name
- shutil.copyfile(source,official/name)
-shutil.copyfile(ROOT/'hardware/run.tcl',out/'run.tcl')
-inputs={str(q.relative_to(out)):sha(q)for q in out.rglob('*')if q.is_file()}
-(out/'INPUTS.json').write_text(json.dumps(inputs,indent=2)+'\n')
-env=os.environ.copy();env['DYLD_LIBRARY_PATH']=str(a.ide/'lib');env['DYLD_FRAMEWORK_PATH']=str(a.ide/'lib')
-env['QT_QPA_PLATFORM']='offscreen';env['QT_OPENGL']='software'
-for key,folder in [('TMPDIR','tmp'),('XDG_CACHE_HOME','cache'),('XDG_CONFIG_HOME','config'),('XDG_DATA_HOME','data')]:
- d=out/folder;d.mkdir();env[key]=str(d)+'/'
-command=[str(tool),str(out/'run.tcl')];started=time.monotonic()
-with (out/'build.log').open('w')as log:r=subprocess.run(command,cwd=out,env=env,stdout=log,stderr=subprocess.STDOUT)
-(out/'RESULT.json').write_text(json.dumps({'exit_code':r.returncode,'elapsed_seconds':time.monotonic()-started,'tool_sha256':sha(tool),'hardware_access':False,'full_timing_signoff':False},indent=2)+'\n')
-raise SystemExit(r.returncode)
+MODEL=ROOT.parents[1]
+TOOL_SHA='76b24d18ec9785be73de6e9e98866bbd7bec330aff67d1fa8462f71f79b5f72c'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def main():
+ p=argparse.ArgumentParser(description=__doc__)
+ p.add_argument('--ide',type=Path,required=True)
+ p.add_argument('--vendor-dir',type=Path,required=True)
+ p.add_argument('--output',type=Path,required=True)
+ p.add_argument('--dependency-manifest',type=Path,default=MODEL/'VENDOR-DEPENDENCIES.json')
+ p.add_argument('--synthesis-only',action='store_true')
+ a=p.parse_args();tool=a.ide/'bin/gw_sh'
+ assert sha(tool)==TOOL_SHA,'Different Gowin executable'
+ identity=json.loads((ROOT/'SOURCE-IDENTITY.json').read_text())
+ for name,pin in identity['native_inputs'].items():assert sha(ROOT/'hardware'/name)==pin,name
+ deps=json.loads(a.dependency_manifest.read_text())['downloads']
+ for name,row in deps.items():
+  f=a.vendor_dir/name;assert f.stat().st_size==row['bytes']and sha(f)==row['sha256'],name
+ out=a.output.resolve();assert not out.exists()and not out.is_relative_to(ROOT),'Use a new output directory outside this demo'
+ out.mkdir(parents=True);shutil.copytree(ROOT/'hardware/project',out/'project')
+ official=out/'project/official';official.mkdir(exist_ok=True)
+ for name in deps:shutil.copyfile(a.vendor_dir/name,official/name)
+ tcl=(ROOT/'hardware/run.tcl').read_text()
+ if a.synthesis_only:
+  marker='if {[catch {run pnr}'
+  assert tcl.count(marker)==1
+  tcl=tcl[:tcl.index(marker)]+'run close\nexit 0\n'
+ (out/'run.tcl').write_text(tcl)
+ pins={str(f.relative_to(out)):sha(f)for f in out.rglob('*')if f.is_file()}
+ (out/'INPUTS.json').write_text(json.dumps(pins,indent=2)+'\n')
+ env=os.environ.copy();env.update(DYLD_LIBRARY_PATH=str(a.ide/'lib'),DYLD_FRAMEWORK_PATH=str(a.ide/'lib'),QT_QPA_PLATFORM='offscreen',QT_OPENGL='software')
+ for name,folder in [('TMPDIR','tmp'),('XDG_CACHE_HOME','cache'),('XDG_CONFIG_HOME','config'),('XDG_DATA_HOME','data')]:
+  f=out/folder;f.mkdir();env[name]=str(f)+'/'
+ command=[str(tool),str(out/'run.tcl')];start=time.monotonic()
+ record=dict(command=command,started_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),tool_sha256=TOOL_SHA,source_identity_sha256=sha(ROOT/'SOURCE-IDENTITY.json'),synthesis_only=a.synthesis_only,hardware_access=False)
+ (out/'STARTED.json').write_text(json.dumps(record,indent=2)+'\n')
+ with(out/'build.log').open('w')as log:r=subprocess.run(command,cwd=out,env=env,stdout=log,stderr=subprocess.STDOUT)
+ record.update(exit_code=r.returncode,elapsed_seconds=time.monotonic()-start,inputs_sha256=sha(out/'INPUTS.json'),full_timing_signoff=False)
+ (out/'RESULT.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record));raise SystemExit(r.returncode)
+if __name__=='__main__':main()

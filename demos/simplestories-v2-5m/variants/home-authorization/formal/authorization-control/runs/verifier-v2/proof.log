@@ -1,0 +1,1237 @@
+
+-- Executing script file `prove.ys' --
+
+1. Executing Verilog-2005 frontend: design.sv
+Parsing formal SystemVerilog input from `design.sv' to AST representation.
+Generating RTLIL representation for module `\su_lms_verify'.
+Successfully finished Verilog frontend.
+Parameter \MAX_MESSAGE_BYTES = 128
+Parameter \USE_SHARED_HASH = 1
+
+2. Executing AST frontend in derive mode using pre-parsed AST for module `\su_lms_verify'.
+Parameter \MAX_MESSAGE_BYTES = 128
+Parameter \USE_SHARED_HASH = 1
+Generating RTLIL representation for module `$paramod$cbad67afb472139597b7dd9819d7887089ea3286\su_lms_verify'.
+
+3. Executing PREP pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \su_lms_verify
+
+3.1.2. Analyzing design hierarchy..
+Top module:  \su_lms_verify
+Removed 0 unused modules.
+Module su_lms_verify directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\su_lms_verify.$proc$design.sv:153$775'.
+Removing empty process `su_lms_verify.$proc$design.sv:153$775'.
+Cleaned up 1 empty switch.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$design.sv:122$598 in module su_lms_verify.
+Marked 1 switch rules as full_case in process $proc$design.sv:126$607 in module su_lms_verify.
+Marked 16 switch rules as full_case in process $proc$design.sv:154$616 in module su_lms_verify.
+Marked 1 switch rules as full_case in process $proc$design.sv:249$697 in module su_lms_verify.
+Marked 1 switch rules as full_case in process $proc$design.sv:256$703 in module su_lms_verify.
+Marked 17 switch rules as full_case in process $proc$design.sv:68$419 in module su_lms_verify.
+Removed a total of 0 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 36 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \reset_n in `\su_lms_verify.$proc$design.sv:126$607'.
+Found async reset \reset_n in `\su_lms_verify.$proc$design.sv:154$616'.
+Found async reset \reset_n in `\su_lms_verify.$proc$design.sv:249$697'.
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~47 debug messages>
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\su_lms_verify.$proc$design.sv:122$598'.
+     1/4: $1$memwr$\z_q$design.sv:123$397_EN[255:0]$605
+     2/4: $1$memwr$\z_q$design.sv:123$397_DATA[255:0]$604
+     3/4: $1$memwr$\z_q$design.sv:123$397_ADDR[5:0]$603
+     4/4: $0\z_word_q[255:0]
+Creating decoders for process `\su_lms_verify.$proc$design.sv:126$607'.
+     1/2: $0\z_word_valid_q[0:0]
+     2/2: $0\z_word_index_q[5:0]
+Creating decoders for process `\su_lms_verify.$proc$design.sv:154$616'.
+     1/51: $5\b256$func$design.sv:205$396.$result[7:0]$674
+     2/51: $5\b256$func$design.sv:205$396.n[31:0]$676
+     3/51: $5\b256$func$design.sv:205$396.x[255:0]$675
+     4/51: $4\b256$func$design.sv:205$396.n[31:0]$672
+     5/51: $4\b256$func$design.sv:205$396.x[255:0]$671
+     6/51: $4\b256$func$design.sv:205$396.$result[7:0]$670
+     7/51: $4\b256$func$design.sv:198$395.$result[7:0]$659
+     8/51: $4\b256$func$design.sv:198$395.n[31:0]$661
+     9/51: $4\b256$func$design.sv:198$395.x[255:0]$660
+    10/51: $3\b256$func$design.sv:205$396.n[31:0]$644
+    11/51: $3\b256$func$design.sv:205$396.x[255:0]$643
+    12/51: $3\b256$func$design.sv:205$396.$result[7:0]$642
+    13/51: $3\b256$func$design.sv:198$395.n[31:0]$641
+    14/51: $3\b256$func$design.sv:198$395.x[255:0]$640
+    15/51: $3\b256$func$design.sv:198$395.$result[7:0]$639
+    16/51: $2\b256$func$design.sv:205$396.n[31:0]$638
+    17/51: $2\b256$func$design.sv:205$396.x[255:0]$637
+    18/51: $2\b256$func$design.sv:205$396.$result[7:0]$636
+    19/51: $2\b256$func$design.sv:198$395.n[31:0]$635
+    20/51: $2\b256$func$design.sv:198$395.x[255:0]$634
+    21/51: $2\b256$func$design.sv:198$395.$result[7:0]$633
+    22/51: $1\b256$func$design.sv:205$396.n[31:0]$629
+    23/51: $1\b256$func$design.sv:205$396.x[255:0]$628
+    24/51: $1\b256$func$design.sv:205$396.$result[7:0]$627
+    25/51: $1\b256$func$design.sv:198$395.n[31:0]$626
+    26/51: $1\b256$func$design.sv:198$395.x[255:0]$625
+    27/51: $1\b256$func$design.sv:198$395.$result[7:0]$624
+    28/51: $0\message_length_q[8:0]
+    29/51: $0\level_q[2:0]
+    30/51: $0\checksum_q[15:0]
+    31/51: $0\coefficient_q[7:0]
+    32/51: $0\iteration_q[7:0]
+    33/51: $0\byte_q[5:0]
+    34/51: $0\element_q[5:0]
+    35/51: $0\header_q[3:0]
+    36/51: $0\node_q[31:0]
+    37/51: $0\lms_type_q[31:0]
+    38/51: $0\ots_type_q[31:0]
+    39/51: $0\leaf_q[31:0]
+    40/51: $0\sibling_q[255:0]
+    41/51: $0\ots_q[255:0]
+    42/51: $0\tmp_q[255:0]
+    43/51: $0\qhash_q[255:0]
+    44/51: $0\root_q[255:0]
+    45/51: $0\identifier_q[127:0]
+    46/51: $0\mode_q[2:0]
+    47/51: $0\after_hash_q[4:0]
+    48/51: $0\state_q[4:0]
+    49/51: $0\fault_o[0:0]
+    50/51: $0\valid_o[0:0]
+    51/51: $0\done_o[0:0]
+Creating decoders for process `\su_lms_verify.$proc$design.sv:249$697'.
+     1/4: $0\spec_length[8:0]
+     2/4: $0\spec_root[255:0]
+     3/4: $0\spec_identifier[127:0]
+     4/4: $0\spec_started[0:0]
+Creating decoders for process `\su_lms_verify.$proc$design.sv:256$703'.
+     1/9: $assert$design.sv:270$771_EN
+     2/9: $assert$design.sv:269$767_EN
+     3/9: $assert$design.sv:268$760_EN
+     4/9: $assert$design.sv:266$754_EN
+     5/9: $assert$design.sv:264$753_EN
+     6/9: $assert$design.sv:263$748_EN
+     7/9: $assert$design.sv:262$744_EN
+     8/9: $assert$design.sv:260$732_EN
+     9/9: $assert$design.sv:257$704_EN
+Creating decoders for process `\su_lms_verify.$proc$design.sv:68$419'.
+     1/112: $8\signature_address_o[10:0]
+     2/112: $7\signature_address_o[10:0]
+     3/112: $6\signature_address_o[10:0]
+     4/112: $13\hash_byte[7:0]
+     5/112: $5\b256$func$design.sv:111$393.$result[7:0]$568
+     6/112: $5\b256$func$design.sv:111$393.n[31:0]$570
+     7/112: $5\b256$func$design.sv:111$393.x[255:0]$569
+     8/112: $5\b256$func$design.sv:112$394.n[31:0]$573
+     9/112: $5\b256$func$design.sv:112$394.x[255:0]$572
+    10/112: $5\b256$func$design.sv:112$394.$result[7:0]$571
+    11/112: $12\hash_byte[7:0]
+    12/112: $4\b256$func$design.sv:112$394.n[31:0]$566
+    13/112: $4\b256$func$design.sv:112$394.x[255:0]$565
+    14/112: $4\b256$func$design.sv:112$394.$result[7:0]$564
+    15/112: $4\b256$func$design.sv:111$393.n[31:0]$563
+    16/112: $4\b256$func$design.sv:111$393.x[255:0]$562
+    17/112: $4\b256$func$design.sv:111$393.$result[7:0]$561
+    18/112: $11\hash_byte[7:0]
+    19/112: $4\b256$func$design.sv:107$392.n[31:0]$553
+    20/112: $4\b256$func$design.sv:107$392.x[255:0]$552
+    21/112: $4\b256$func$design.sv:107$392.$result[7:0]$551
+    22/112: $10\hash_byte[7:0]
+    23/112: $5\b256$func$design.sv:102$391.$result[7:0]$540
+    24/112: $5\b256$func$design.sv:102$391.n[31:0]$542
+    25/112: $5\b256$func$design.sv:102$391.x[255:0]$541
+    26/112: $9\hash_byte[7:0]
+    27/112: $4\b256$func$design.sv:102$391.n[31:0]$536
+    28/112: $4\b256$func$design.sv:102$391.x[255:0]$535
+    29/112: $4\b256$func$design.sv:102$391.$result[7:0]$534
+    30/112: $4\k[31:0]
+    31/112: $8\hash_byte[7:0]
+    32/112: $6\b256$func$design.sv:96$390.n[31:0]$526
+    33/112: $6\b256$func$design.sv:96$390.x[255:0]$525
+    34/112: $6\b256$func$design.sv:96$390.$result[7:0]$524
+    35/112: $7\hash_byte[7:0]
+    36/112: $5\b256$func$design.sv:96$390.n[31:0]$522
+    37/112: $5\b256$func$design.sv:96$390.x[255:0]$521
+    38/112: $5\b256$func$design.sv:96$390.$result[7:0]$520
+    39/112: $6\hash_byte[7:0]
+    40/112: $4\b256$func$design.sv:96$390.n[31:0]$518
+    41/112: $4\b256$func$design.sv:96$390.x[255:0]$517
+    42/112: $4\b256$func$design.sv:96$390.$result[7:0]$516
+    43/112: $5\hash_byte[7:0]
+    44/112: $5\signature_address_o[10:0]
+    45/112: $5\message_address_o[7:0]
+    46/112: $4\hash_byte[7:0]
+    47/112: $4\message_address_o[7:0]
+    48/112: $4\signature_address_o[10:0]
+    49/112: $3\hash_byte[7:0]
+    50/112: $3\message_address_o[7:0]
+    51/112: $3\signature_address_o[10:0]
+    52/112: $3\b256$func$design.sv:112$394.n[31:0]$509
+    53/112: $3\b256$func$design.sv:112$394.x[255:0]$508
+    54/112: $3\b256$func$design.sv:112$394.$result[7:0]$507
+    55/112: $3\b256$func$design.sv:111$393.n[31:0]$506
+    56/112: $3\b256$func$design.sv:111$393.x[255:0]$505
+    57/112: $3\b256$func$design.sv:111$393.$result[7:0]$504
+    58/112: $3\b256$func$design.sv:107$392.n[31:0]$503
+    59/112: $3\b256$func$design.sv:107$392.x[255:0]$502
+    60/112: $3\b256$func$design.sv:107$392.$result[7:0]$501
+    61/112: $3\b256$func$design.sv:102$391.n[31:0]$500
+    62/112: $3\b256$func$design.sv:102$391.x[255:0]$499
+    63/112: $3\b256$func$design.sv:102$391.$result[7:0]$498
+    64/112: $3\b256$func$design.sv:96$390.n[31:0]$497
+    65/112: $3\b256$func$design.sv:96$390.x[255:0]$496
+    66/112: $3\b256$func$design.sv:96$390.$result[7:0]$495
+    67/112: $3\k[31:0]
+    68/112: $2\hash_byte[7:0]
+    69/112: $2\b32$func$design.sv:85$389.$result[7:0]$471
+    70/112: $2\b32$func$design.sv:85$389.n[31:0]$473
+    71/112: $2\b32$func$design.sv:85$389.x[31:0]$472
+    72/112: $2\b256$func$design.sv:112$394.n[31:0]$488
+    73/112: $2\b256$func$design.sv:112$394.x[255:0]$487
+    74/112: $2\b256$func$design.sv:112$394.$result[7:0]$486
+    75/112: $2\b256$func$design.sv:111$393.n[31:0]$485
+    76/112: $2\b256$func$design.sv:111$393.x[255:0]$484
+    77/112: $2\b256$func$design.sv:111$393.$result[7:0]$483
+    78/112: $2\b256$func$design.sv:107$392.n[31:0]$482
+    79/112: $2\b256$func$design.sv:107$392.x[255:0]$481
+    80/112: $2\b256$func$design.sv:107$392.$result[7:0]$480
+    81/112: $2\b256$func$design.sv:102$391.n[31:0]$479
+    82/112: $2\b256$func$design.sv:102$391.x[255:0]$478
+    83/112: $2\b256$func$design.sv:102$391.$result[7:0]$477
+    84/112: $2\b256$func$design.sv:96$390.n[31:0]$476
+    85/112: $2\b256$func$design.sv:96$390.x[255:0]$475
+    86/112: $2\b256$func$design.sv:96$390.$result[7:0]$474
+    87/112: $2\k[31:0]
+    88/112: $2\message_address_o[7:0]
+    89/112: $2\signature_address_o[10:0]
+    90/112: $1\hash_byte[7:0]
+    91/112: $1\b256$func$design.sv:112$394.n[31:0]$464
+    92/112: $1\b256$func$design.sv:112$394.x[255:0]$463
+    93/112: $1\b256$func$design.sv:112$394.$result[7:0]$462
+    94/112: $1\b256$func$design.sv:111$393.n[31:0]$461
+    95/112: $1\b256$func$design.sv:111$393.x[255:0]$460
+    96/112: $1\b256$func$design.sv:111$393.$result[7:0]$459
+    97/112: $1\b256$func$design.sv:107$392.n[31:0]$458
+    98/112: $1\b256$func$design.sv:107$392.x[255:0]$457
+    99/112: $1\b256$func$design.sv:107$392.$result[7:0]$456
+   100/112: $1\b256$func$design.sv:102$391.n[31:0]$455
+   101/112: $1\b256$func$design.sv:102$391.x[255:0]$454
+   102/112: $1\b256$func$design.sv:102$391.$result[7:0]$453
+   103/112: $1\b256$func$design.sv:96$390.n[31:0]$452
+   104/112: $1\b256$func$design.sv:96$390.x[255:0]$451
+   105/112: $1\b256$func$design.sv:96$390.$result[7:0]$450
+   106/112: $1\b32$func$design.sv:85$389.n[31:0]$449
+   107/112: $1\b32$func$design.sv:85$389.x[31:0]$448
+   108/112: $1\b32$func$design.sv:85$389.$result[7:0]$447
+   109/112: $1\k[31:0]
+   110/112: $1\message_address_o[7:0]
+   111/112: $1\signature_address_o[10:0]
+   112/112: $1\hash_length[31:0]
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\su_lms_verify.\a' from process `\su_lms_verify.$proc$design.sv:68$419'.
+No latch inferred for signal `\su_lms_verify.\signature_address_o' from process `\su_lms_verify.$proc$design.sv:68$419'.
+No latch inferred for signal `\su_lms_verify.\message_address_o' from process `\su_lms_verify.$proc$design.sv:68$419'.
+No latch inferred for signal `\su_lms_verify.\hash_length' from process `\su_lms_verify.$proc$design.sv:68$419'.
+No latch inferred for signal `\su_lms_verify.\hash_byte' from process `\su_lms_verify.$proc$design.sv:68$419'.
+No latch inferred for signal `\su_lms_verify.\k' from process `\su_lms_verify.$proc$design.sv:68$419'.
+No latch inferred for signal `\su_lms_verify.\header_node' from process `\su_lms_verify.$proc$design.sv:68$419'.
+No latch inferred for signal `\su_lms_verify.\left_value' from process `\su_lms_verify.$proc$design.sv:68$419'.
+No latch inferred for signal `\su_lms_verify.\right_value' from process `\su_lms_verify.$proc$design.sv:68$419'.
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\su_lms_verify.\z_word_q' using process `\su_lms_verify.$proc$design.sv:122$598'.
+  created $dff cell `$procdff$2779' with positive edge clock.
+Creating register for signal `\su_lms_verify.$memwr$\z_q$design.sv:123$397_ADDR' using process `\su_lms_verify.$proc$design.sv:122$598'.
+  created $dff cell `$procdff$2780' with positive edge clock.
+Creating register for signal `\su_lms_verify.$memwr$\z_q$design.sv:123$397_DATA' using process `\su_lms_verify.$proc$design.sv:122$598'.
+  created $dff cell `$procdff$2781' with positive edge clock.
+Creating register for signal `\su_lms_verify.$memwr$\z_q$design.sv:123$397_EN' using process `\su_lms_verify.$proc$design.sv:122$598'.
+  created $dff cell `$procdff$2782' with positive edge clock.
+Creating register for signal `\su_lms_verify.\z_word_index_q' using process `\su_lms_verify.$proc$design.sv:126$607'.
+  created $adff cell `$procdff$2787' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\z_word_valid_q' using process `\su_lms_verify.$proc$design.sv:126$607'.
+  created $adff cell `$procdff$2792' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\done_o' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2797' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\valid_o' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2802' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\fault_o' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2807' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\state_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2812' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\after_hash_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2817' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\mode_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2822' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\identifier_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2827' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\root_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2832' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\qhash_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2837' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\tmp_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2842' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\ots_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2847' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\sibling_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2852' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\leaf_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2857' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\ots_type_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2862' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\lms_type_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2867' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\node_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2872' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\header_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2877' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\element_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2882' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\byte_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2887' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\iteration_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2892' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\coefficient_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2897' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\checksum_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2902' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\level_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2907' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\message_length_q' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2912' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\b256$func$design.sv:198$395.$result' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2917' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\b256$func$design.sv:198$395.x' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2922' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\b256$func$design.sv:198$395.n' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2927' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\b256$func$design.sv:205$396.$result' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2932' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\b256$func$design.sv:205$396.x' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2937' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\b256$func$design.sv:205$396.n' using process `\su_lms_verify.$proc$design.sv:154$616'.
+  created $adff cell `$procdff$2942' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\spec_started' using process `\su_lms_verify.$proc$design.sv:249$697'.
+  created $adff cell `$procdff$2947' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\spec_identifier' using process `\su_lms_verify.$proc$design.sv:249$697'.
+  created $adff cell `$procdff$2952' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\spec_root' using process `\su_lms_verify.$proc$design.sv:249$697'.
+  created $adff cell `$procdff$2957' with positive edge clock and positive level reset.
+Creating register for signal `\su_lms_verify.\spec_length' using process `\su_lms_verify.$proc$design.sv:249$697'.
+  created $adff cell `$procdff$2962' with positive edge clock and positive level reset.
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 2 empty switches in `\su_lms_verify.$proc$design.sv:122$598'.
+Removing empty process `su_lms_verify.$proc$design.sv:122$598'.
+Found and cleaned up 1 empty switch in `\su_lms_verify.$proc$design.sv:126$607'.
+Removing empty process `su_lms_verify.$proc$design.sv:126$607'.
+Found and cleaned up 19 empty switches in `\su_lms_verify.$proc$design.sv:154$616'.
+Removing empty process `su_lms_verify.$proc$design.sv:154$616'.
+Found and cleaned up 1 empty switch in `\su_lms_verify.$proc$design.sv:249$697'.
+Removing empty process `su_lms_verify.$proc$design.sv:249$697'.
+Found and cleaned up 7 empty switches in `\su_lms_verify.$proc$design.sv:256$703'.
+Removing empty process `su_lms_verify.$proc$design.sv:256$703'.
+Found and cleaned up 17 empty switches in `\su_lms_verify.$proc$design.sv:68$419'.
+Removing empty process `su_lms_verify.$proc$design.sv:68$419'.
+Cleaned up 47 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_lms_verify.
+<suppressed ~108 debug messages>
+
+3.3. Executing FLATTEN pass (flatten design).
+
+3.4. Executing FUTURE pass.
+
+3.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_lms_verify.
+
+3.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_lms_verify..
+Removed 406 unused cells and 1100 unused wires.
+<suppressed ~413 debug messages>
+
+3.7. Executing CHECK pass (checking for obvious problems).
+Checking module su_lms_verify...
+Found and reported 0 problems.
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_lms_verify.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\su_lms_verify'.
+Computing hashes of 619 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Computing hashes of 460 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Computing hashes of 457 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Computing hashes of 455 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Computing hashes of 453 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Computing hashes of 451 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+<suppressed ~504 debug messages>
+Removed a total of 168 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \su_lms_verify..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$2296.
+    dead port 1/2 on $mux $procmux$2299.
+    dead port 1/2 on $mux $procmux$2302.
+    dead port 1/2 on $mux $procmux$2313.
+    dead port 1/2 on $mux $procmux$2058.
+    dead port 2/2 on $mux $procmux$2315.
+    dead port 1/2 on $mux $procmux$2318.
+    dead port 1/2 on $mux $procmux$2150.
+    dead port 1/2 on $mux $procmux$2147.
+    dead port 2/2 on $mux $procmux$2144.
+    dead port 1/2 on $mux $procmux$2142.
+    dead port 1/2 on $mux $procmux$1927.
+    dead port 1/2 on $mux $procmux$1924.
+    dead port 2/2 on $mux $procmux$1921.
+    dead port 1/2 on $mux $procmux$2698.
+    dead port 1/2 on $mux $procmux$2704.
+    dead port 1/2 on $mux $procmux$1684.
+    dead port 1/2 on $mux $procmux$1681.
+    dead port 2/2 on $mux $procmux$1678.
+    dead port 1/2 on $mux $procmux$1676.
+    dead port 1/2 on $mux $procmux$1919.
+    dead port 1/2 on $mux $procmux$2321.
+    dead port 2/2 on $mux $procmux$2331.
+    dead port 1/2 on $mux $procmux$2334.
+    dead port 1/2 on $mux $procmux$2337.
+    dead port 2/2 on $mux $procmux$2347.
+    dead port 1/2 on $mux $procmux$2350.
+    dead port 1/2 on $mux $procmux$2353.
+    dead port 2/2 on $mux $procmux$2363.
+    dead port 1/2 on $mux $procmux$1871.
+    dead port 1/2 on $mux $procmux$1868.
+    dead port 2/2 on $mux $procmux$1865.
+    dead port 1/2 on $mux $procmux$2366.
+    dead port 1/2 on $mux $procmux$2379.
+    dead port 1/2 on $mux $procmux$2382.
+    dead port 1/2 on $mux $procmux$2069.
+    dead port 1/2 on $mux $procmux$2392.
+    dead port 1/2 on $mux $procmux$2395.
+    dead port 1/2 on $mux $procmux$2066.
+    dead port 1/2 on $mux $procmux$2578.
+    dead port 1/2 on $mux $procmux$2405.
+    dead port 1/2 on $mux $procmux$2408.
+    dead port 1/2 on $mux $procmux$2216.
+    dead port 2/2 on $mux $procmux$2213.
+    dead port 1/2 on $mux $procmux$2283.
+    dead port 1/2 on $mux $procmux$2294.
+    dead port 1/2 on $mux $procmux$2061.
+    dead port 2/2 on $mux $procmux$2063.
+    dead port 1/2 on $mux $procmux$1786.
+    dead port 1/2 on $mux $procmux$1783.
+    dead port 1/2 on $mux $procmux$2369.
+    dead port 2/2 on $mux $procmux$1780.
+    dead port 1/2 on $mux $procmux$2219.
+    dead port 1/2 on $mux $procmux$2275.
+    dead port 2/2 on $mux $procmux$2277.
+    dead port 1/2 on $mux $procmux$1992.
+    dead port 1/2 on $mux $procmux$1989.
+    dead port 2/2 on $mux $procmux$1986.
+    dead port 1/2 on $mux $procmux$2280.
+Removed 59 multiplexer ports.
+<suppressed ~287 debug messages>
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \su_lms_verify.
+    Consolidated identical input bits for $mux cell $procmux$777:
+      Old ports: A=256'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, B=256'1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111, Y=$0$memwr$\z_q$design.sv:123$397_EN[255:0]$601
+      New ports: A=1'0, B=1'1, Y=$0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0]
+      New connections: $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [255:1] = { $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] $0$memwr$\z_q$design.sv:123$397_EN[255:0]$601 [0] }
+    New ctrl vector for $pmux cell $procmux$1587: { $auto$opt_reduce.cc:137:opt_pmux$2965 $procmux$1592_CMP $procmux$1604_CMP $procmux$1611_CMP }
+    New ctrl vector for $pmux cell $procmux$1565: { $auto$opt_reduce.cc:137:opt_pmux$2967 $procmux$1592_CMP }
+    New ctrl vector for $pmux cell $procmux$1352: $auto$opt_reduce.cc:137:opt_pmux$2969
+    New ctrl vector for $pmux cell $procmux$1538: { $auto$opt_reduce.cc:137:opt_pmux$2971 $procmux$1604_CMP $procmux$1611_CMP }
+    New ctrl vector for $pmux cell $procmux$1480: { $auto$opt_reduce.cc:137:opt_pmux$2973 $procmux$1592_CMP $procmux$1593_CMP $procmux$1594_CMP $procmux$1595_CMP $procmux$1596_CMP $procmux$1597_CMP $procmux$1598_CMP $procmux$1599_CMP $procmux$1600_CMP $procmux$1604_CMP $procmux$1605_CMP $procmux$1611_CMP }
+  Optimizing cells in module \su_lms_verify.
+Performed a total of 6 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\su_lms_verify'.
+Computing hashes of 397 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Computing hashes of 395 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Computing hashes of 394 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+3.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_lms_verify..
+Removed 0 unused cells and 230 unused wires.
+<suppressed ~1 debug messages>
+
+3.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_lms_verify.
+
+3.8.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \su_lms_verify..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~229 debug messages>
+
+3.8.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \su_lms_verify.
+    New ctrl vector for $pmux cell $procmux$1133: { $eq$design.sv:259$726_Y $auto$opt_reduce.cc:137:opt_pmux$2975 $eq$design.sv:259$722_Y $eq$design.sv:123$602_Y $eq$design.sv:258$714_Y }
+  Optimizing cells in module \su_lms_verify.
+Performed a total of 1 changes.
+
+3.8.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\su_lms_verify'.
+Computing hashes of 395 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Removed a total of 0 cells.
+
+3.8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_lms_verify..
+
+3.8.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_lms_verify.
+
+3.8.14. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.15. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \su_lms_verify..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~224 debug messages>
+
+3.8.16. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \su_lms_verify.
+Performed a total of 0 changes.
+
+3.8.17. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\su_lms_verify'.
+Computing hashes of 395 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Removed a total of 0 cells.
+
+3.8.18. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_lms_verify..
+
+3.8.19. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_lms_verify.
+
+3.8.20. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 25 bits (of 32) from port B of cell su_lms_verify.$div$design.sv:101$538 ($div).
+Removed top 25 bits (of 32) from port B of cell su_lms_verify.$mod$design.sv:102$544 ($mod).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$ge$design.sv:54$399 ($ge).
+Removed top 21 bits (of 32) from port B of cell su_lms_verify.$lt$design.sv:54$401 ($lt).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:55$403 ($sub).
+Removed top 21 bits (of 32) from port Y of cell su_lms_verify.$sub$design.sv:55$403 ($sub).
+Removed top 21 bits (of 32) from port A of cell su_lms_verify.$sub$design.sv:55$403 ($sub).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$lt$design.sv:57$412 ($lt).
+Removed top 26 bits (of 32) from port A of cell su_lms_verify.$add$design.sv:77$445 ($add).
+Removed top 23 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:77$445 ($add).
+Removed top 22 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:77$445 ($add).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$lt$design.sv:84$446 ($lt).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$mul$design.sv:84$465 ($mul).
+Removed top 24 bits (of 32) from port A of cell su_lms_verify.$sub$design.sv:84$466 ($sub).
+Removed top 30 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:84$467 ($add).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:84$468 ($sub).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$lt$design.sv:85$470 ($lt).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:85$489 ($sub).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$mul$design.sv:66$490 ($mul).
+Removed top 26 bits (of 32) from port A of cell su_lms_verify.$sub$design.sv:66$491 ($sub).
+Removed top 30 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:66$492 ($add).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:66$493 ($sub).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$lt$design.sv:88$510 ($lt).
+Removed top 25 bits (of 32) from port B of cell su_lms_verify.$lt$design.sv:89$511 ($lt).
+Removed top 27 bits (of 32) from port A of cell su_lms_verify.$add$design.sv:89$512 ($add).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:89$513 ($sub).
+Removed top 21 bits (of 32) from port Y of cell su_lms_verify.$sub$design.sv:89$513 ($sub).
+Removed top 21 bits (of 32) from port A of cell su_lms_verify.$sub$design.sv:89$513 ($sub).
+Removed top 25 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:90$514 ($sub).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$eq$design.sv:93$515 ($eq).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$eq$design.sv:94$519 ($eq).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$eq$design.sv:95$523 ($eq).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:96$527 ($sub).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$mul$design.sv:63$528 ($mul).
+Removed top 23 bits (of 32) from port A of cell su_lms_verify.$sub$design.sv:63$529 ($sub).
+Removed top 30 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:63$530 ($add).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:63$531 ($sub).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:101$537 ($sub).
+Removed top 25 bits (of 32) from port B of cell su_lms_verify.$lt$design.sv:102$539 ($lt).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$mul$design.sv:63$545 ($mul).
+Removed top 23 bits (of 32) from port A of cell su_lms_verify.$sub$design.sv:63$546 ($sub).
+Removed top 30 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:63$547 ($add).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:63$548 ($sub).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$mul$design.sv:63$555 ($mul).
+Removed top 23 bits (of 32) from port A of cell su_lms_verify.$sub$design.sv:63$556 ($sub).
+Removed top 30 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:63$557 ($add).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:63$558 ($sub).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$mul$design.sv:63$581 ($mul).
+Removed top 23 bits (of 32) from port A of cell su_lms_verify.$sub$design.sv:63$582 ($sub).
+Removed top 30 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:63$583 ($add).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:63$584 ($sub).
+Removed top 28 bits (of 32) from port B of cell su_lms_verify.$lt$design.sv:116$587 ($lt).
+Removed top 21 bits (of 32) from port A of cell su_lms_verify.$add$design.sv:116$588 ($add).
+Removed top 28 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:116$588 ($add).
+Removed top 21 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:116$588 ($add).
+Removed top 26 bits (of 32) from port A of cell su_lms_verify.$mul$design.sv:117$591 ($mul).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$mul$design.sv:117$591 ($mul).
+Removed top 20 bits (of 32) from port Y of cell su_lms_verify.$mul$design.sv:117$591 ($mul).
+Removed top 26 bits (of 32) from port A of cell su_lms_verify.$add$design.sv:117$592 ($add).
+Removed top 20 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:117$592 ($add).
+Removed top 19 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:117$592 ($add).
+Removed top 19 bits (of 32) from port A of cell su_lms_verify.$add$design.sv:117$593 ($add).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:117$593 ($add).
+Removed top 21 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:117$593 ($add).
+Removed top 2 bits (of 13) from port A of cell su_lms_verify.$add$design.sv:117$593 ($add).
+Removed top 29 bits (of 32) from port A of cell su_lms_verify.$mul$design.sv:118$595 ($mul).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$mul$design.sv:118$595 ($mul).
+Removed top 23 bits (of 32) from port Y of cell su_lms_verify.$mul$design.sv:118$595 ($mul).
+Removed top 21 bits (of 32) from port A of cell su_lms_verify.$add$design.sv:118$596 ($add).
+Removed top 23 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:118$596 ($add).
+Removed top 20 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:118$596 ($add).
+Removed top 20 bits (of 32) from port A of cell su_lms_verify.$add$design.sv:118$597 ($add).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:118$597 ($add).
+Removed top 21 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:118$597 ($add).
+Removed top 1 bits (of 12) from port A of cell su_lms_verify.$add$design.sv:118$597 ($add).
+Removed top 1 bits (of 5) from port B of cell su_lms_verify.$ne$design.sv:152$612 ($ne).
+Removed top 23 bits (of 32) from port A of cell su_lms_verify.$gt$design.sv:168$646 ($gt).
+Removed top 24 bits (of 32) from port B of cell su_lms_verify.$gt$design.sv:168$646 ($gt).
+Removed top 29 bits (of 32) from port B of cell su_lms_verify.$lt$design.sv:173$648 ($lt).
+Removed top 31 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:177$651 ($add).
+Removed top 28 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:177$651 ($add).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$ge$design.sv:180$652 ($ge).
+Removed top 29 bits (of 32) from port B of cell su_lms_verify.$ne$design.sv:180$653 ($ne).
+Removed top 29 bits (of 32) from port B of cell su_lms_verify.$ne$design.sv:180$655 ($ne).
+Removed top 31 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:191$657 ($add).
+Removed top 24 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:191$657 ($add).
+Removed top 26 bits (of 32) from port B of cell su_lms_verify.$lt$design.sv:197$658 ($lt).
+Removed top 25 bits (of 32) from port A of cell su_lms_verify.$mul$design.sv:63$662 ($mul).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$mul$design.sv:63$662 ($mul).
+Converting cell su_lms_verify.$mul$design.sv:63$662 ($mul) from signed to unsigned.
+Removed top 20 bits (of 32) from port Y of cell su_lms_verify.$mul$design.sv:63$662 ($mul).
+Removed top 1 bits (of 7) from port A of cell su_lms_verify.$mul$design.sv:63$662 ($mul).
+Removed top 1 bits (of 5) from port B of cell su_lms_verify.$mul$design.sv:63$662 ($mul).
+Removed top 2 bits (of 12) from port Y of cell su_lms_verify.$mul$design.sv:63$662 ($mul).
+Removed top 23 bits (of 32) from port A of cell su_lms_verify.$sub$design.sv:63$663 ($sub).
+Removed top 21 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:63$663 ($sub).
+Converting cell su_lms_verify.$sub$design.sv:63$663 ($sub) from signed to unsigned.
+Removed top 20 bits (of 32) from port Y of cell su_lms_verify.$sub$design.sv:63$663 ($sub).
+Removed top 1 bits (of 9) from port A of cell su_lms_verify.$sub$design.sv:63$663 ($sub).
+Removed top 1 bits (of 11) from port B of cell su_lms_verify.$sub$design.sv:63$663 ($sub).
+Removed top 1 bits (of 12) from port Y of cell su_lms_verify.$sub$design.sv:63$663 ($sub).
+Converting cell su_lms_verify.$add$design.sv:63$664 ($add) from unsigned to signed.
+Removed top 21 bits (of 32) from port A of cell su_lms_verify.$add$design.sv:63$664 ($add).
+Removed top 30 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:63$664 ($add).
+Removed top 20 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:63$664 ($add).
+Converting cell su_lms_verify.$sub$design.sv:63$665 ($sub) from unsigned to signed.
+Removed top 20 bits (of 32) from port A of cell su_lms_verify.$sub$design.sv:63$665 ($sub).
+Removed top 27 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:63$665 ($sub).
+Removed top 19 bits (of 32) from port Y of cell su_lms_verify.$sub$design.sv:63$665 ($sub).
+Removed top 19 bits (of 32) from port B of cell su_lms_verify.$shiftx$design.sv:63$666 ($shiftx).
+Removed top 24 bits (of 32) from port A of cell su_lms_verify.$sub$design.sv:198$667 ($sub).
+Removed top 24 bits (of 32) from port B of cell su_lms_verify.$sub$design.sv:198$667 ($sub).
+Removed top 23 bits (of 32) from port Y of cell su_lms_verify.$sub$design.sv:198$667 ($sub).
+Removed top 16 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:198$668 ($add).
+Removed top 31 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:199$669 ($add).
+Removed top 26 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:199$669 ($add).
+Removed top 1 bits (of 6) from port B of cell su_lms_verify.$eq$design.sv:204$673 ($eq).
+Removed top 31 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:208$686 ($add).
+Removed top 26 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:208$686 ($add).
+Removed top 26 bits (of 32) from port A of cell su_lms_verify.$add$design.sv:223$690 ($add).
+Removed top 31 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:236$696 ($add).
+Removed top 29 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:236$696 ($add).
+Removed top 2 bits (of 5) from port B of cell su_lms_verify.$eq$design.sv:260$734 ($eq).
+Removed top 2 bits (of 5) from port B of cell su_lms_verify.$eq$design.sv:260$736 ($eq).
+Removed top 1 bits (of 5) from port B of cell su_lms_verify.$eq$design.sv:261$738 ($eq).
+Removed top 1 bits (of 5) from port B of cell su_lms_verify.$eq$design.sv:261$740 ($eq).
+Removed top 1 bits (of 5) from port B of cell su_lms_verify.$eq$design.sv:261$742 ($eq).
+Removed top 2 bits (of 5) from mux cell su_lms_verify.$procmux$1484 ($mux).
+Removed top 2 bits (of 5) from mux cell su_lms_verify.$procmux$1495 ($mux).
+Removed top 1 bits (of 5) from mux cell su_lms_verify.$procmux$1499 ($mux).
+Removed top 1 bits (of 5) from port B of cell su_lms_verify.$procmux$1588_CMP0 ($eq).
+Removed top 1 bits (of 5) from port B of cell su_lms_verify.$procmux$1592_CMP0 ($eq).
+Removed top 1 bits (of 5) from port B of cell su_lms_verify.$procmux$1593_CMP0 ($eq).
+Removed top 1 bits (of 5) from port B of cell su_lms_verify.$procmux$1594_CMP0 ($eq).
+Removed top 1 bits (of 5) from port B of cell su_lms_verify.$procmux$1595_CMP0 ($eq).
+Removed top 2 bits (of 5) from port B of cell su_lms_verify.$procmux$1596_CMP0 ($eq).
+Removed top 2 bits (of 5) from port B of cell su_lms_verify.$procmux$1597_CMP0 ($eq).
+Removed top 2 bits (of 5) from port B of cell su_lms_verify.$procmux$1598_CMP0 ($eq).
+Removed top 2 bits (of 5) from port B of cell su_lms_verify.$procmux$1599_CMP0 ($eq).
+Removed top 3 bits (of 5) from port B of cell su_lms_verify.$procmux$1600_CMP0 ($eq).
+Removed top 3 bits (of 5) from port B of cell su_lms_verify.$procmux$1604_CMP0 ($eq).
+Removed top 4 bits (of 5) from port B of cell su_lms_verify.$procmux$1605_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell su_lms_verify.$procmux$1987_CMP0 ($eq).
+Removed top 2 bits (of 3) from port B of cell su_lms_verify.$procmux$2376_CMP0 ($eq).
+Removed top 21 bits (of 32) from mux cell su_lms_verify.$procmux$2773 ($pmux).
+Removed top 1 bits (of 3) from port B of cell su_lms_verify.$procmux$2775_CMP0 ($eq).
+Removed top 21 bits (of 32) from port Y of cell su_lms_verify.$add$design.sv:89$512 ($add).
+Removed top 21 bits (of 32) from port B of cell su_lms_verify.$add$design.sv:89$512 ($add).
+Removed top 2 bits (of 13) from port Y of cell su_lms_verify.$add$design.sv:117$592 ($add).
+Removed top 1 bits (of 12) from port B of cell su_lms_verify.$add$design.sv:117$592 ($add).
+Removed top 1 bits (of 12) from port Y of cell su_lms_verify.$add$design.sv:118$596 ($add).
+Removed top 1 bits (of 12) from port Y of cell su_lms_verify.$mul$design.sv:117$591 ($mul).
+Removed top 22 bits (of 32) from wire su_lms_verify.$add$design.sv:77$445_Y.
+Removed top 21 bits (of 32) from wire su_lms_verify.hash_length.
+Removed top 21 bits (of 32) from wire su_lms_verify.$add$design.sv:89$512_Y.
+Removed top 21 bits (of 32) from wire su_lms_verify.$sub$design.sv:89$513_Y.
+Removed top 2 bits (of 5) from wire su_lms_verify.$procmux$1484_Y.
+Removed top 2 bits (of 5) from wire su_lms_verify.$procmux$1495_Y.
+Removed top 1 bits (of 5) from wire su_lms_verify.$procmux$1499_Y.
+Removed top 21 bits (of 32) from wire su_lms_verify.$add$design.sv:116$588_Y.
+Removed top 21 bits (of 32) from wire su_lms_verify.$mul$design.sv:117$591_Y.
+Removed top 21 bits (of 32) from wire su_lms_verify.$add$design.sv:117$592_Y.
+Removed top 21 bits (of 32) from wire su_lms_verify.$add$design.sv:117$593_Y.
+Removed top 23 bits (of 32) from wire su_lms_verify.$mul$design.sv:118$595_Y.
+Removed top 21 bits (of 32) from wire su_lms_verify.$add$design.sv:118$596_Y.
+Removed top 21 bits (of 32) from wire su_lms_verify.$add$design.sv:118$597_Y.
+Removed top 28 bits (of 32) from wire su_lms_verify.$add$design.sv:177$651_Y.
+Removed top 24 bits (of 32) from wire su_lms_verify.$add$design.sv:191$657_Y.
+Removed top 22 bits (of 32) from wire su_lms_verify.$mul$design.sv:63$662_Y.
+Removed top 16 bits (of 32) from wire su_lms_verify.$sub$design.sv:198$667_Y.
+Removed top 16 bits (of 32) from wire su_lms_verify.$add$design.sv:198$668_Y.
+Removed top 26 bits (of 32) from wire su_lms_verify.$add$design.sv:199$669_Y.
+Removed top 21 bits (of 32) from wire su_lms_verify.$sub$design.sv:55$403_Y.
+Removed top 26 bits (of 32) from wire su_lms_verify.$add$design.sv:208$686_Y.
+Removed top 29 bits (of 32) from wire su_lms_verify.$add$design.sv:236$696_Y.
+
+3.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_lms_verify..
+Removed 0 unused cells and 24 unused wires.
+<suppressed ~1 debug messages>
+
+3.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.12. Executing OPT pass (performing simple optimizations).
+
+3.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_lms_verify.
+
+3.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\su_lms_verify'.
+Computing hashes of 394 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Removed a total of 0 cells.
+
+3.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_lms_verify..
+
+3.12.4. Finished fast OPT passes.
+
+3.13. Executing SORT pass.
+
+3.14. Printing statistics.
+
+=== su_lms_verify ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      423 wires
+    14978 wire bits
+       81 public wires
+     5429 public wire bits
+       25 ports
+      770 port bits
+      394 cells
+       21   $add
+       29   $adff
+        9   $check
+        1   $dff
+        1   $div
+       36   $eq
+        2   $ge
+        1   $gt
+       22   $logic_and
+       10   $logic_not
+       24   $logic_or
+       10   $lt
+        1   $mem_v2
+        1   $mod
+        9   $mul
+      158   $mux
+        4   $ne
+       19   $pmux
+        1   $reduce_bool
+        6   $reduce_or
+        8   $shiftx
+       21   $sub
+
+3.15. Executing CHECK pass (checking for obvious problems).
+Checking module su_lms_verify...
+Found and reported 0 problems.
+
+4. Executing ASYNC2SYNC pass.
+Replacing su_lms_verify.$procdff$2787 ($adff): ARST=\reset_n, D=$0\z_word_index_q[5:0], Q=\z_word_index_q
+Replacing su_lms_verify.$procdff$2792 ($adff): ARST=\reset_n, D=\key_payload, Q=\z_word_valid_q
+Replacing su_lms_verify.$procdff$2797 ($adff): ARST=\reset_n, D=$0\done_o[0:0], Q=\done_o
+Replacing su_lms_verify.$procdff$2802 ($adff): ARST=\reset_n, D=$0\valid_o[0:0], Q=\valid_o
+Replacing su_lms_verify.$procdff$2807 ($adff): ARST=\reset_n, D=$0\fault_o[0:0], Q=\fault_o
+Replacing su_lms_verify.$procdff$2812 ($adff): ARST=\reset_n, D=$0\state_q[4:0], Q=\state_q
+Replacing su_lms_verify.$procdff$2817 ($adff): ARST=\reset_n, D=$0\after_hash_q[4:0], Q=\after_hash_q
+Replacing su_lms_verify.$procdff$2822 ($adff): ARST=\reset_n, D=$0\mode_q[2:0], Q=\mode_q
+Replacing su_lms_verify.$procdff$2827 ($adff): ARST=\reset_n, D=$0\identifier_q[127:0], Q=\identifier_q
+Replacing su_lms_verify.$procdff$2832 ($adff): ARST=\reset_n, D=$0\root_q[255:0], Q=\root_q
+Replacing su_lms_verify.$procdff$2837 ($adff): ARST=\reset_n, D=$0\qhash_q[255:0], Q=\qhash_q
+Replacing su_lms_verify.$procdff$2842 ($adff): ARST=\reset_n, D=$0\tmp_q[255:0], Q=\tmp_q
+Replacing su_lms_verify.$procdff$2847 ($adff): ARST=\reset_n, D=$0\ots_q[255:0], Q=\ots_q
+Replacing su_lms_verify.$procdff$2852 ($adff): ARST=\reset_n, D=$0\sibling_q[255:0], Q=\sibling_q
+Replacing su_lms_verify.$procdff$2857 ($adff): ARST=\reset_n, D=$0\leaf_q[31:0], Q=\leaf_q
+Replacing su_lms_verify.$procdff$2862 ($adff): ARST=\reset_n, D=$0\ots_type_q[31:0], Q=\ots_type_q
+Replacing su_lms_verify.$procdff$2867 ($adff): ARST=\reset_n, D=$0\lms_type_q[31:0], Q=\lms_type_q
+Replacing su_lms_verify.$procdff$2872 ($adff): ARST=\reset_n, D=$0\node_q[31:0], Q=\node_q
+Replacing su_lms_verify.$procdff$2877 ($adff): ARST=\reset_n, D=$0\header_q[3:0], Q=\header_q
+Replacing su_lms_verify.$procdff$2882 ($adff): ARST=\reset_n, D=$0\element_q[5:0], Q=\element_q
+Replacing su_lms_verify.$procdff$2887 ($adff): ARST=\reset_n, D=$0\byte_q[5:0], Q=\byte_q
+Replacing su_lms_verify.$procdff$2892 ($adff): ARST=\reset_n, D=$0\iteration_q[7:0], Q=\iteration_q
+Replacing su_lms_verify.$procdff$2902 ($adff): ARST=\reset_n, D=$0\checksum_q[15:0], Q=\checksum_q
+Replacing su_lms_verify.$procdff$2907 ($adff): ARST=\reset_n, D=$0\level_q[2:0], Q=\level_q
+Replacing su_lms_verify.$procdff$2912 ($adff): ARST=\reset_n, D=$0\message_length_q[8:0], Q=\message_length_q
+Replacing su_lms_verify.$procdff$2947 ($adff): ARST=\reset_n, D=$0\spec_started[0:0], Q=\spec_started
+Replacing su_lms_verify.$procdff$2952 ($adff): ARST=\reset_n, D=$0\spec_identifier[127:0], Q=\spec_identifier
+Replacing su_lms_verify.$procdff$2957 ($adff): ARST=\reset_n, D=$0\spec_root[255:0], Q=\spec_root
+Replacing su_lms_verify.$procdff$2962 ($adff): ARST=\reset_n, D=$0\spec_length[8:0], Q=\spec_length
+
+5. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+Mapping memory \z_q in module \su_lms_verify:
+  created 34 $dff cells and 0 static cells of width 256.
+  read interface: 0 $dff and 63 $mux cells.
+  write interface: 34 write mux blocks.
+
+6. Executing OPT pass (performing simple optimizations).
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_lms_verify.
+<suppressed ~248 debug messages>
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\su_lms_verify'.
+Computing hashes of 623 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Computing hashes of 622 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Computing hashes of 621 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \su_lms_verify..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$1663.
+    dead port 2/2 on $mux $procmux$1663.
+    dead port 1/2 on $mux $procmux$1666.
+    dead port 2/2 on $mux $procmux$1666.
+    dead port 1/2 on $mux $procmux$1669.
+    dead port 2/2 on $mux $procmux$1669.
+    dead port 1/2 on $mux $procmux$1673.
+    dead port 2/2 on $mux $procmux$1673.
+    dead port 1/2 on $mux $procmux$1778.
+    dead port 2/2 on $mux $procmux$1778.
+    dead port 1/2 on $mux $procmux$1863.
+    dead port 2/2 on $mux $procmux$1863.
+    dead port 1/2 on $mux $procmux$1916.
+    dead port 2/2 on $mux $procmux$1916.
+    dead port 1/2 on $mux $procmux$1984.
+    dead port 2/2 on $mux $procmux$1984.
+    dead port 1/2 on $mux $procmux$2055.
+    dead port 2/2 on $mux $procmux$2055.
+    dead port 1/2 on $mux $procmux$2139.
+    dead port 2/2 on $mux $procmux$2139.
+    dead port 1/2 on $mux $procmux$2211.
+    dead port 2/2 on $mux $procmux$2211.
+    dead port 1/2 on $mux $procmux$2272.
+    dead port 2/2 on $mux $procmux$2272.
+    dead port 1/2 on $mux $procmux$2291.
+    dead port 2/2 on $mux $procmux$2291.
+    dead port 1/2 on $mux $procmux$2310.
+    dead port 2/2 on $mux $procmux$2310.
+    dead port 1/2 on $mux $procmux$2329.
+    dead port 2/2 on $mux $procmux$2329.
+    dead port 1/2 on $mux $procmux$2345.
+    dead port 2/2 on $mux $procmux$2345.
+    dead port 1/2 on $mux $procmux$2361.
+    dead port 2/2 on $mux $procmux$2361.
+    dead port 1/6 on $pmux $procmux$2372.
+    dead port 2/6 on $pmux $procmux$2372.
+    dead port 3/6 on $pmux $procmux$2372.
+    dead port 4/6 on $pmux $procmux$2372.
+    dead port 5/6 on $pmux $procmux$2372.
+    dead port 6/6 on $pmux $procmux$2372.
+    dead port 1/2 on $mux $procmux$2389.
+    dead port 2/2 on $mux $procmux$2389.
+    dead port 1/2 on $mux $procmux$2402.
+    dead port 2/2 on $mux $procmux$2402.
+    dead port 1/2 on $mux $procmux$2575.
+    dead port 2/2 on $mux $procmux$2575.
+    dead port 1/2 on $mux $procmux$2695.
+    dead port 2/2 on $mux $procmux$2695.
+    dead port 1/2 on $mux $procmux$2701.
+    dead port 2/2 on $mux $procmux$2701.
+    dead port 1/2 on $mux $procmux$2707.
+    dead port 2/2 on $mux $procmux$2707.
+    dead port 1/2 on $mux $procmux$2767.
+    dead port 2/2 on $mux $procmux$2767.
+    dead port 1/2 on $mux $procmux$2770.
+    dead port 2/2 on $mux $procmux$2770.
+    dead port 1/2 on $mux $ternary$design.sv:116$589.
+    dead port 2/2 on $mux $ternary$design.sv:116$589.
+Removed 58 multiplexer ports.
+<suppressed ~316 debug messages>
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \su_lms_verify.
+    Consolidated identical input bits for $mux cell $procmux$1484:
+      Old ports: A=3'010, B=3'100, Y=$auto$wreduce.cc:514:run$2980 [2:0]
+      New ports: A=2'01, B=2'10, Y=$auto$wreduce.cc:514:run$2980 [2:1]
+      New connections: $auto$wreduce.cc:514:run$2980 [0] = 1'0
+    Consolidated identical input bits for $mux cell $procmux$1495:
+      Old ports: A=3'110, B=3'011, Y=$auto$wreduce.cc:514:run$2981 [2:0]
+      New ports: A=2'10, B=2'01, Y={ $auto$wreduce.cc:514:run$2981 [2] $auto$wreduce.cc:514:run$2981 [0] }
+      New connections: $auto$wreduce.cc:514:run$2981 [1] = 1'1
+    Consolidated identical input bits for $mux cell $procmux$1499:
+      Old ports: A=4'0011, B=4'1000, Y=$auto$wreduce.cc:514:run$2982 [3:0]
+      New ports: A=2'01, B=2'10, Y={ $auto$wreduce.cc:514:run$2982 [3] $auto$wreduce.cc:514:run$2982 [0] }
+      New connections: $auto$wreduce.cc:514:run$2982 [2:1] = { 1'0 $auto$wreduce.cc:514:run$2982 [0] }
+    Consolidated identical input bits for $mux cell $procmux$1518:
+      Old ports: A=5'00011, B=5'11111, Y=$procmux$1518_Y
+      New ports: A=1'0, B=1'1, Y=$procmux$1518_Y [2]
+      New connections: { $procmux$1518_Y [4:3] $procmux$1518_Y [1:0] } = { $procmux$1518_Y [2] $procmux$1518_Y [2] 2'11 }
+    Consolidated identical input bits for $mux cell $procmux$1528:
+      Old ports: A=5'00001, B=5'11111, Y=$procmux$1528_Y
+      New ports: A=1'0, B=1'1, Y=$procmux$1528_Y [1]
+      New connections: { $procmux$1528_Y [4:2] $procmux$1528_Y [0] } = { $procmux$1528_Y [1] $procmux$1528_Y [1] $procmux$1528_Y [1] 1'1 }
+  Optimizing cells in module \su_lms_verify.
+Performed a total of 5 changes.
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\su_lms_verify'.
+Computing hashes of 594 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Removed a total of 0 cells.
+
+6.6. Executing OPT_SHARE pass.
+    Found cells that share an operand and can be merged by moving the $pmux $procmux$1587 in front of them:
+        $procmux$1602
+        $procmux$1590
+
+6.7. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$2779 ($dff) from module su_lms_verify (D = $memrd$\z_q$design.sv:124$606_DATA, Q = \z_word_q).
+Adding SRST signal on $procdff$2802 ($sdff) from module su_lms_verify (D = $procmux$1565_Y, Q = $auto$async2sync.cc:253:execute$3008, rval = 1'0).
+
+6.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_lms_verify..
+Removed 288 unused cells and 473 unused wires.
+<suppressed ~331 debug messages>
+
+6.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_lms_verify.
+<suppressed ~3 debug messages>
+
+6.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \su_lms_verify..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~177 debug messages>
+
+6.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \su_lms_verify.
+    New ctrl vector for $pmux cell $procmux$1587: { $eq$design.sv:251$699_Y $auto$opt_reduce.cc:137:opt_pmux$3659 $auto$opt_reduce.cc:137:opt_pmux$2965 }
+  Optimizing cells in module \su_lms_verify.
+Performed a total of 1 changes.
+
+6.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\su_lms_verify'.
+Computing hashes of 306 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Computing hashes of 305 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+6.14. Executing OPT_SHARE pass.
+
+6.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_lms_verify..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+6.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_lms_verify.
+
+6.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \su_lms_verify..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~177 debug messages>
+
+6.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \su_lms_verify.
+Performed a total of 0 changes.
+
+6.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\su_lms_verify'.
+Computing hashes of 305 cells of `\su_lms_verify'.
+Finding duplicate cells in `\su_lms_verify'.
+Removed a total of 0 cells.
+
+6.22. Executing OPT_SHARE pass.
+
+6.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_lms_verify..
+
+6.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_lms_verify.
+
+6.26. Finished fast OPT passes. (There is nothing left to do.)
+
+7. Executing SAT pass (solving SAT problems in the circuit).
+Using SAT solver `minisat`.
+
+Setting up time step 1:
+Import set-constraint: \clk = 1'1
+Import set-constraint for this timestep: \reset_n = 1'0
+Final constraint equation: { \reset_n \clk } = 2'01
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \start_i
+Import def constraint for this timestep: \signature_ready_i
+Import def constraint for this timestep: \shared_hash_ready_i
+Import def constraint for this timestep: \shared_hash_busy_i
+Import def constraint for this timestep: \shared_hash_done_i
+Import def constraint for this timestep: \shared_hash_fault_i
+Import def constraint for this timestep: \signature_byte_i
+Import def constraint for this timestep: \message_byte_i
+Import def constraint for this timestep: \message_length_i
+Import def constraint for this timestep: \shared_hash_offset_i
+Import def constraint for this timestep: \public_i_i
+Import def constraint for this timestep: \public_root_i
+Import def constraint for this timestep: \shared_hash_digest_i
+Imported 305 cells to SAT database.
+No constraints for initial state found.
+
+
+Setting up time step 2:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \start_i
+Import def constraint for this timestep: \signature_ready_i
+Import def constraint for this timestep: \shared_hash_ready_i
+Import def constraint for this timestep: \shared_hash_busy_i
+Import def constraint for this timestep: \shared_hash_done_i
+Import def constraint for this timestep: \shared_hash_fault_i
+Import def constraint for this timestep: \signature_byte_i
+Import def constraint for this timestep: \message_byte_i
+Import def constraint for this timestep: \message_length_i
+Import def constraint for this timestep: \shared_hash_offset_i
+Import def constraint for this timestep: \public_i_i
+Import def constraint for this timestep: \public_root_i
+Import def constraint for this timestep: \shared_hash_digest_i
+Imported 305 cells to SAT database.
+
+Setting up time step 1:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \start_i
+Import def constraint for this timestep: \signature_ready_i
+Import def constraint for this timestep: \shared_hash_ready_i
+Import def constraint for this timestep: \shared_hash_busy_i
+Import def constraint for this timestep: \shared_hash_done_i
+Import def constraint for this timestep: \shared_hash_fault_i
+Import def constraint for this timestep: \signature_byte_i
+Import def constraint for this timestep: \message_byte_i
+Import def constraint for this timestep: \message_length_i
+Import def constraint for this timestep: \shared_hash_offset_i
+Import def constraint for this timestep: \public_i_i
+Import def constraint for this timestep: \public_root_i
+Import def constraint for this timestep: \shared_hash_digest_i
+Imported 305 cells to SAT database.
+Import proof for assert: $eq$design.sv:259$728_Y when $assert$design.sv:263$748_EN.
+Import proof for assert: \spec_started when $assert$design.sv:264$753_EN.
+Import proof for assert: $logic_or$design.sv:257$731_Y when \reset_n.
+Import proof for assert: $logic_and$design.sv:270$774_Y when $assert$design.sv:270$771_EN.
+Import proof for assert: $logic_or$design.sv:260$743_Y when \reset_n.
+Import proof for assert: $eq$design.sv:259$730_Y when $assert$design.sv:262$744_EN.
+Import proof for assert: $logic_and$design.sv:269$770_Y when $assert$design.sv:269$767_EN.
+Import proof for assert: $logic_and$design.sv:266$759_Y when $assert$design.sv:266$754_EN.
+Import proof for assert: $logic_and$design.sv:268$765_Y when $assert$design.sv:268$760_EN.
+
+** Trying induction with length 1 **
+
+Setting up time step 3:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \start_i
+Import def constraint for this timestep: \signature_ready_i
+Import def constraint for this timestep: \shared_hash_ready_i
+Import def constraint for this timestep: \shared_hash_busy_i
+Import def constraint for this timestep: \shared_hash_done_i
+Import def constraint for this timestep: \shared_hash_fault_i
+Import def constraint for this timestep: \signature_byte_i
+Import def constraint for this timestep: \message_byte_i
+Import def constraint for this timestep: \message_length_i
+Import def constraint for this timestep: \shared_hash_offset_i
+Import def constraint for this timestep: \public_i_i
+Import def constraint for this timestep: \public_root_i
+Import def constraint for this timestep: \shared_hash_digest_i
+Imported 305 cells to SAT database.
+Import proof for assert: $eq$design.sv:259$728_Y when $assert$design.sv:263$748_EN.
+Import proof for assert: \spec_started when $assert$design.sv:264$753_EN.
+Import proof for assert: $logic_or$design.sv:257$731_Y when \reset_n.
+Import proof for assert: $logic_and$design.sv:270$774_Y when $assert$design.sv:270$771_EN.
+Import proof for assert: $logic_or$design.sv:260$743_Y when \reset_n.
+Import proof for assert: $eq$design.sv:259$730_Y when $assert$design.sv:262$744_EN.
+Import proof for assert: $logic_and$design.sv:269$770_Y when $assert$design.sv:269$767_EN.
+Import proof for assert: $logic_and$design.sv:266$759_Y when $assert$design.sv:266$754_EN.
+Import proof for assert: $logic_and$design.sv:268$765_Y when $assert$design.sv:268$760_EN.
+Import show expression: \state_q
+Import show expression: \after_hash_q
+Import show expression: \spec_started
+Import show expression: \clk
+Import show expression: \message_byte_i
+Import show expression: \message_length_i
+Import show expression: \public_i_i
+Import show expression: \public_root_i
+Import show expression: \reset_n
+Import show expression: \shared_hash_busy_i
+Import show expression: \shared_hash_digest_i
+Import show expression: \shared_hash_done_i
+Import show expression: \shared_hash_fault_i
+Import show expression: \shared_hash_offset_i
+Import show expression: \shared_hash_ready_i
+Import show expression: \signature_byte_i
+Import show expression: \signature_ready_i
+Import show expression: \start_i
+Import show expression: \busy_o
+Import show expression: \done_o
+Import show expression: \fault_o
+Import show expression: \shared_hash_byte_valid_o
+Import show expression: \shared_hash_length_o
+Import show expression: \shared_hash_start_o
+Import show expression: \valid_o
+
+[base case 1] Solving problem with 658182 variables and 1825202 clauses..
+Base case for induction length 1 proven.
+
+Setting up time step 2:
+Import set-constraint: \clk = 1'1
+Final constraint equation: \clk = 1'1
+Import def constraint for this timestep: \clk
+Import def constraint for this timestep: \reset_n
+Import def constraint for this timestep: \start_i
+Import def constraint for this timestep: \signature_ready_i
+Import def constraint for this timestep: \shared_hash_ready_i
+Import def constraint for this timestep: \shared_hash_busy_i
+Import def constraint for this timestep: \shared_hash_done_i
+Import def constraint for this timestep: \shared_hash_fault_i
+Import def constraint for this timestep: \signature_byte_i
+Import def constraint for this timestep: \message_byte_i
+Import def constraint for this timestep: \message_length_i
+Import def constraint for this timestep: \shared_hash_offset_i
+Import def constraint for this timestep: \public_i_i
+Import def constraint for this timestep: \public_root_i
+Import def constraint for this timestep: \shared_hash_digest_i
+Imported 305 cells to SAT database.
+Import proof for assert: $eq$design.sv:259$728_Y when $assert$design.sv:263$748_EN.
+Import proof for assert: \spec_started when $assert$design.sv:264$753_EN.
+Import proof for assert: $logic_or$design.sv:257$731_Y when \reset_n.
+Import proof for assert: $logic_and$design.sv:270$774_Y when $assert$design.sv:270$771_EN.
+Import proof for assert: $logic_or$design.sv:260$743_Y when \reset_n.
+Import proof for assert: $eq$design.sv:259$730_Y when $assert$design.sv:262$744_EN.
+Import proof for assert: $logic_and$design.sv:269$770_Y when $assert$design.sv:269$767_EN.
+Import proof for assert: $logic_and$design.sv:266$759_Y when $assert$design.sv:266$754_EN.
+Import proof for assert: $logic_and$design.sv:268$765_Y when $assert$design.sv:268$760_EN.
+Import show expression: \state_q
+Import show expression: \after_hash_q
+Import show expression: \spec_started
+Import show expression: \clk
+Import show expression: \message_byte_i
+Import show expression: \message_length_i
+Import show expression: \public_i_i
+Import show expression: \public_root_i
+Import show expression: \reset_n
+Import show expression: \shared_hash_busy_i
+Import show expression: \shared_hash_digest_i
+Import show expression: \shared_hash_done_i
+Import show expression: \shared_hash_fault_i
+Import show expression: \shared_hash_offset_i
+Import show expression: \shared_hash_ready_i
+Import show expression: \signature_byte_i
+Import show expression: \signature_ready_i
+Import show expression: \start_i
+Import show expression: \busy_o
+Import show expression: \done_o
+Import show expression: \fault_o
+Import show expression: \shared_hash_byte_valid_o
+Import show expression: \shared_hash_length_o
+Import show expression: \shared_hash_start_o
+Import show expression: \valid_o
+
+[induction step 1] Solving problem with 428581 variables and 1187648 clauses..
+Induction step proven: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+

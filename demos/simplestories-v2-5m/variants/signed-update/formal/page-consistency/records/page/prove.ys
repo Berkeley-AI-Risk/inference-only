@@ -1,0 +1,6 @@
+read_verilog -formal -D SYNTHESIS -sv design.sv sha_contract.sv
+prep -top su_page_table_check -flatten
+async2sync
+dffunmap
+opt_clean
+write_smt2 -wires model.smt2

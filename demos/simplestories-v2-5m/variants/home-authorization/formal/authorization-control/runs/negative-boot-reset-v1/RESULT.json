@@ -1,0 +1,20 @@
+{
+  "result": "NOT_PROVEN",
+  "job": "boot-handoff",
+  "records": {
+    "prepare": {
+      "exit_code": 0,
+      "peak_sampled_process_tree_rss_bytes": 125665280,
+      "memory_stopped": false,
+      "log_sha256": "a074010cf9d3e85525795fd490442328c2eafbe8baf9891e5eeae3512e202015"
+    },
+    "induction": {
+      "exit_code": 1,
+      "peak_sampled_process_tree_rss_bytes": 256475136,
+      "memory_stopped": false,
+      "log_sha256": "67693cd50974f2c6b9e74ca197501600e5768bfa065667a1960a7c53f6486c95"
+    }
+  },
+  "design_sha256": "308d0b9fccd9debe714f43d437cfe1c0cfc1f840a09a2f37215067fcf534dcc5",
+  "scope": "Source-derived actual admission-to-model-lock guard cone (all hidden state arbitrary), or full actual admission-controller/shared-verifier/home-controller handoff with real signature/manifest RAM and abstract shared-SHA results. Proves ownership/reset/epoch isolation, not SHA/LMS algorithm or boot payload numerical correctness."
+}

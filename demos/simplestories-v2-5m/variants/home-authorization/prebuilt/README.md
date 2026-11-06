@@ -1,9 +1,7 @@
-# Prebuilt home-authorization image
+# Prebuilt periodic-reauthorization image
 
-`home_product.fs` is the tested SRAM configuration for the Tang Mega 138K Basic / GW5AST-138C, at 25 MHz. SHA256:
+`home_product.fs` is the selected, board-tested SRAM configuration for Tang Mega 138K Basic / GW5AST-138C at 25 MHz.
 
-```text
-cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e
-```
+SHA-256: `92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323`.
 
-It needs the signed base-model flash data and a live authorization relay before startup. Its public test keys support 32 unique home grants per signing tree. Use [INSTALL.md](../INSTALL.md). It is not a flash data file. [Validation](../VALIDATION.md) and the [reset review](../RESET-REVIEW.md) limit its timing/security claims.
+It requires the matching signed base-model flash data and a live authorization relay. The public demonstration key supports 32 unique home grants per signing tree; signer state must persist and must not be rolled back. Use [INSTALL.md](../INSTALL.md) with a freshly discovered cable location. The FPGA file is a volatile configuration, not flash model data. [Validation](../VALIDATION.md), [source identity](../SOURCE-IDENTITY.json) and [reset review](../RESET-REVIEW.md) state the qualification limits, including the small reported timing margin.

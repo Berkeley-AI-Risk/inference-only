@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "job": "model-lock",
+  "records": {
+    "prepare": {
+      "exit_code": 0,
+      "peak_sampled_process_tree_rss_bytes": 2375680,
+      "memory_stopped": false,
+      "log_sha256": "8a61c74c62a5ae9eea6854b8ef6c07f711189f86dd8d0b0612edc02b3b3fdc07"
+    }
+  },
+  "design_sha256": "c44794f0ffd7f4db0712f09f1409edbd4902c06cf88660ed1120f7b139d2e390",
+  "scope": "Source-derived actual admission-to-model-lock guard cone (all hidden state arbitrary), or full actual admission-controller/shared-verifier/home-controller handoff with real signature/manifest RAM and abstract shared-SHA results. Proves ownership/reset/epoch isolation, not SHA/LMS algorithm or boot payload numerical correctness."
+}

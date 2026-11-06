@@ -1,0 +1,4 @@
+read_verilog -formal -sv design.sv
+prep -top owner_factor -flatten
+chformal -lower
+sat -verify -prove-asserts -set-def-inputs -show-ports -dump_vcd failure.vcd

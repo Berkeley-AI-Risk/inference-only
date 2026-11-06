@@ -1,0 +1,10 @@
+{
+  "top_core_block_sha256": "0e6c406f03a2a548d53ef89cc2e87697d3ad60c9247613fb5096003e776dafd7",
+  "runtime_reset_block_sha256": "be52959d93e2079b7693ccffb9d7555b2892ea09a181fcc47d38e806b0366205",
+  "arbiter_exclusion": "existing FORMAL assertion block only; first module retained; request/response data and valid logic unchanged",
+  "negative_control": {
+    "name": "permit-register",
+    "replace": "wire token_reset_n=~token_reset_asserted;",
+    "with": "wire token_reset_n=1'b1;"
+  }
+}

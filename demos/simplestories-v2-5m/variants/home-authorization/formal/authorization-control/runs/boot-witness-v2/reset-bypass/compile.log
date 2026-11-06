@@ -1,0 +1,138 @@
+%Warning-PINMISSING: design.sv:350:99: Instance has missing pin: 'nonce_request_o'
+  350 |         .RESPONSE_LIMIT_CYCLES(100000000),.LEASE_CYCLES(250000000),.RENEW_LEAD_CYCLES(125000000)) u_home (
+      |                                                                                                   ^~~~~~
+                     design.sv:421:17: ... Location of port declaration
+  421 |     output wire nonce_request_o,
+      |                 ^~~~~~~~~~~~~~~
+                     ... For warning description see https://verilator.org/warn/PINMISSING?v=5.050
+                     ... Use "/* verilator lint_off PINMISSING */" and lint_on around source to disable this message.
+%Warning-PINMISSING: design.sv:350:99: Instance has missing pin: 'lease_cycles_remaining_o'
+  350 |         .RESPONSE_LIMIT_CYCLES(100000000),.LEASE_CYCLES(250000000),.RENEW_LEAD_CYCLES(125000000)) u_home (
+      |                                                                                                   ^~~~~~
+                     design.sv:432:24: ... Location of port declaration
+  432 |     output wire [63:0] lease_cycles_remaining_o,
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:350:99: Instance has missing pin: 'publication_allowed_o'
+  350 |         .RESPONSE_LIMIT_CYCLES(100000000),.LEASE_CYCLES(250000000),.RENEW_LEAD_CYCLES(125000000)) u_home (
+      |                                                                                                   ^~~~~~
+                     design.sv:433:17: ... Location of port declaration
+  433 |     output wire publication_allowed_o,
+      |                 ^~~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'shared_hash_start_o'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:674:17: ... Location of port declaration
+  674 |     output wire shared_hash_start_o,shared_hash_byte_valid_o,
+      |                 ^~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'shared_hash_byte_valid_o'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:674:37: ... Location of port declaration
+  674 |     output wire shared_hash_start_o,shared_hash_byte_valid_o,
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'shared_hash_length_o'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:675:24: ... Location of port declaration
+  675 |     output wire [31:0] shared_hash_length_o,
+      |                        ^~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'shared_hash_byte_o'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:676:23: ... Location of port declaration
+  676 |     output wire [7:0] shared_hash_byte_o,
+      |                       ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'shared_hash_ready_i'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:677:16: ... Location of port declaration
+  677 |     input wire shared_hash_ready_i,shared_hash_busy_i,shared_hash_done_i,shared_hash_fault_i,
+      |                ^~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'shared_hash_busy_i'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:677:36: ... Location of port declaration
+  677 |     input wire shared_hash_ready_i,shared_hash_busy_i,shared_hash_done_i,shared_hash_fault_i,
+      |                                    ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'shared_hash_done_i'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:677:55: ... Location of port declaration
+  677 |     input wire shared_hash_ready_i,shared_hash_busy_i,shared_hash_done_i,shared_hash_fault_i,
+      |                                                       ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'shared_hash_fault_i'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:677:74: ... Location of port declaration
+  677 |     input wire shared_hash_ready_i,shared_hash_busy_i,shared_hash_done_i,shared_hash_fault_i,
+      |                                                                          ^~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'shared_hash_offset_i'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:678:23: ... Location of port declaration
+  678 |     input wire [31:0] shared_hash_offset_i,
+      |                       ^~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'shared_hash_digest_i'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:679:24: ... Location of port declaration
+  679 |     input wire [255:0] shared_hash_digest_i,
+      |                        ^~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'proof_lease_owner_i'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:680:16: ... Location of port declaration
+  680 |     input wire proof_lease_owner_i,
+      |                ^~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'proof_started_o'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:681:17: ... Location of port declaration
+  681 |     output wire proof_started_o,proof_lease_epoch_o,
+      |                 ^~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'proof_lease_epoch_o'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:681:33: ... Location of port declaration
+  681 |     output wire proof_started_o,proof_lease_epoch_o,
+      |                                 ^~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'proof_identifier_o'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:682:25: ... Location of port declaration
+  682 |     output wire [127:0] proof_identifier_o,
+      |                         ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'proof_root_o'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:683:25: ... Location of port declaration
+  683 |     output wire [255:0] proof_root_o,
+      |                         ^~~~~~~~~~~~
+%Warning-PINMISSING: design.sv:546:48: Instance has missing pin: 'proof_length_o'
+  546 |       su_lms_verify #(.MAX_MESSAGE_BYTES(128)) u_home_signature(
+      |                                                ^~~~~~~~~~~~~~~~
+                     design.sv:684:23: ... Location of port declaration
+  684 |     output wire [8:0] proof_length_o
+      |                       ^~~~~~~~~~~~~~
+c++  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -std=c++17   -Os  -c -o witness.o ../witness.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -std=c++17   -c -o verilated.o /opt/homebrew/Cellar/verilator/5.050/share/verilator/include/verilated.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -std=c++17   -c -o verilated_threads.o /opt/homebrew/Cellar/verilator/5.050/share/verilator/include/verilated_threads.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+python3 /opt/homebrew/Cellar/verilator/5.050/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vswic_boot_admission.cpp Vswic_boot_admission___024root__0.cpp Vswic_boot_admission__ConstPool__0__Slow.cpp Vswic_boot_admission___024root__Slow.cpp Vswic_boot_admission___024root__0__Slow.cpp Vswic_boot_admission_vm_classes_Slow_0.cpp Vswic_boot_admission__Syms__Slow.cpp > Vswic_boot_admission__ALL.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.050/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unnecessary-virtual-specifier -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -std=c++17   -c -o Vswic_boot_admission__ALL.o Vswic_boot_admission__ALL.cpp
+warning: unknown warning option '-Wno-unnecessary-virtual-specifier'; did you mean '-Wno-duplicate-decl-specifier'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+2 warnings generated.
+c++  -Wl,-U,__Z15vl_time_stamp64v,-U,__Z13sc_time_stampv,-U,_vlog_startup_routines   witness.o verilated.o verilated_threads.o Vswic_boot_admission__ALL.a    -pthread -lpthread   -o Vswic_boot_admission
+rm Vswic_boot_admission__ALL.verilator_deplist.tmp
+- V e r i l a t i o n   R e p o r t: Verilator 5.050 2026-07-01 rev vUNKNOWN-built20260701
+- Verilator: Built from 0.076 MB sources in 6 modules, into 0.643 MB in 8 C++ files needing 0.001 MB
+- Verilator: Walltime 3.424 s (elab=0.007, cvt=0.052, bld=3.352); cpu 0.072 s on 1 threads; allocated 22.766 MB

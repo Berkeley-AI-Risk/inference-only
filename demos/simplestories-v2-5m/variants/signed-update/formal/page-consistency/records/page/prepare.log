@@ -1,0 +1,440 @@
+
+-- Executing script file `prove.ys' --
+
+1. Executing Verilog-2005 frontend: design.sv
+Parsing formal SystemVerilog input from `design.sv' to AST representation.
+Generating RTLIL representation for module `\su_page_table_check'.
+Generating RTLIL representation for module `\swic_boot_compressor_mux3'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: sha_contract.sv
+Parsing formal SystemVerilog input from `sha_contract.sv' to AST representation.
+Generating RTLIL representation for module `\su_sha256'.
+Generating RTLIL representation for module `\board1_sha256_compact_compress'.
+Successfully finished Verilog frontend.
+
+3. Executing PREP pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \su_page_table_check
+Used module:     \su_sha256
+Parameter \USE_SHARED_COMPRESSOR = 1'0
+Parameter \MAX_BYTES = 4096
+
+3.1.2. Executing AST frontend in derive mode using pre-parsed AST for module `\su_sha256'.
+Parameter \USE_SHARED_COMPRESSOR = 1'0
+Parameter \MAX_BYTES = 4096
+Generating RTLIL representation for module `$paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256'.
+
+3.1.3. Analyzing design hierarchy..
+Top module:  \su_page_table_check
+Used module:     $paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256
+
+3.1.4. Analyzing design hierarchy..
+Top module:  \su_page_table_check
+Used module:     $paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256
+Removing unused module `\board1_sha256_compact_compress'.
+Removing unused module `\su_sha256'.
+Removing unused module `\swic_boot_compressor_mux3'.
+Removed 3 unused modules.
+Module su_page_table_check directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\su_page_table_check.$proc$design.sv:94$181'.
+Removing empty process `su_page_table_check.$proc$design.sv:94$181'.
+Cleaned up 1 empty switch.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$sha_contract.sv:34$262 in module $paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.
+Marked 1 switch rules as full_case in process $proc$design.sv:105$61 in module su_page_table_check.
+Marked 9 switch rules as full_case in process $proc$design.sv:54$36 in module su_page_table_check.
+Removed a total of 0 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 8 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\su_page_table_check.$proc$design.sv:100$182'.
+  Set init value: \spec_initial = 1'1
+Found init rule in `\su_page_table_check.$proc$design.sv:147$183'.
+  Set init value: \spec_past_valid = 1'0
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \reset_n in `$paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.$proc$sha_contract.sv:34$262'.
+Found async reset \reset_n in `\su_page_table_check.$proc$design.sv:105$61'.
+Found async reset \reset_n in `\su_page_table_check.$proc$design.sv:54$36'.
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~37 debug messages>
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.$proc$sha_contract.sv:34$262'.
+     1/4: $0\done_o[0:0]
+     2/4: $0\count_q[12:0]
+     3/4: $0\busy_q[0:0]
+     4/4: $0\digest_o[255:0]
+Creating decoders for process `\su_page_table_check.$proc$design.sv:100$182'.
+Creating decoders for process `\su_page_table_check.$proc$design.sv:147$183'.
+Creating decoders for process `\su_page_table_check.$proc$design.sv:148$159'.
+     1/3: $assert$design.sv:155$170_EN
+     2/3: $assert$design.sv:153$167_EN
+     3/3: $assert$design.sv:151$166_EN
+Creating decoders for process `\su_page_table_check.$proc$design.sv:113$70'.
+     1/22: $assert$design.sv:145$155_EN
+     2/22: $assert$design.sv:144$153_EN
+     3/22: $assert$design.sv:143$147_EN
+     4/22: $assert$design.sv:140$144_EN
+     5/22: $assert$design.sv:139$142_EN
+     6/22: $assert$design.sv:138$140_EN
+     7/22: $assert$design.sv:137$138_EN
+     8/22: $assert$design.sv:134$135_EN
+     9/22: $assert$design.sv:133$130_EN
+    10/22: $assert$design.sv:131$127_EN
+    11/22: $assert$design.sv:130$121_EN
+    12/22: $assert$design.sv:128$112_EN
+    13/22: $assert$design.sv:126$105_EN
+    14/22: $assert$design.sv:125$103_EN
+    15/22: $assert$design.sv:124$101_EN
+    16/22: $assert$design.sv:123$99_EN
+    17/22: $assert$design.sv:121$97_EN
+    18/22: $assert$design.sv:120$95_EN
+    19/22: $assert$design.sv:119$93_EN
+    20/22: $assert$design.sv:118$91_EN
+    21/22: $assert$design.sv:117$89_EN
+    22/22: $assert$design.sv:114$71_EN
+Creating decoders for process `\su_page_table_check.$proc$design.sv:105$61'.
+     1/2: $0\spec_pages[11:0]
+     2/2: $0\spec_inputs[23:0]
+Creating decoders for process `\su_page_table_check.$proc$design.sv:102$58'.
+     1/1: $assume$design.sv:102$59_EN
+Creating decoders for process `\su_page_table_check.$proc$design.sv:101$57'.
+Creating decoders for process `\su_page_table_check.$proc$design.sv:54$36'.
+     1/6: $0\fault_q[0:0]
+     2/6: $0\expected_q[255:0]
+     3/6: $0\digest_word_q[2:0]
+     4/6: $0\page_byte_q[12:0]
+     5/6: $0\page_q[10:0]
+     6/6: $0\state_q[3:0]
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `$paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.\done_o' using process `$paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.$proc$sha_contract.sv:34$262'.
+  created $adff cell `$procdff$535' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.\digest_o' using process `$paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.$proc$sha_contract.sv:34$262'.
+  created $adff cell `$procdff$540' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.\busy_q' using process `$paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.$proc$sha_contract.sv:34$262'.
+  created $adff cell `$procdff$545' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.\count_q' using process `$paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.$proc$sha_contract.sv:34$262'.
+  created $adff cell `$procdff$550' with positive edge clock and positive level reset.
+Creating register for signal `\su_page_table_check.\spec_past_valid' using process `\su_page_table_check.$proc$design.sv:148$159'.
+  created $dff cell `$procdff$551' with positive edge clock.
+Creating register for signal `\su_page_table_check.$past$design.sv:150$1$0' using process `\su_page_table_check.$proc$design.sv:148$159'.
+  created $dff cell `$procdff$552' with positive edge clock.
+Creating register for signal `\su_page_table_check.$past$design.sv:151$2$0' using process `\su_page_table_check.$proc$design.sv:148$159'.
+  created $dff cell `$procdff$553' with positive edge clock.
+Creating register for signal `\su_page_table_check.$past$design.sv:152$3$0' using process `\su_page_table_check.$proc$design.sv:148$159'.
+  created $dff cell `$procdff$554' with positive edge clock.
+Creating register for signal `\su_page_table_check.$past$design.sv:154$4$0' using process `\su_page_table_check.$proc$design.sv:148$159'.
+  created $dff cell `$procdff$555' with positive edge clock.
+Creating register for signal `\su_page_table_check.\spec_inputs' using process `\su_page_table_check.$proc$design.sv:105$61'.
+  created $adff cell `$procdff$560' with positive edge clock and positive level reset.
+Creating register for signal `\su_page_table_check.\spec_pages' using process `\su_page_table_check.$proc$design.sv:105$61'.
+  created $adff cell `$procdff$565' with positive edge clock and positive level reset.
+Creating register for signal `\su_page_table_check.\spec_initial' using process `\su_page_table_check.$proc$design.sv:101$57'.
+  created $dff cell `$procdff$566' with positive edge clock.
+Creating register for signal `\su_page_table_check.\state_q' using process `\su_page_table_check.$proc$design.sv:54$36'.
+  created $adff cell `$procdff$571' with positive edge clock and positive level reset.
+Creating register for signal `\su_page_table_check.\page_q' using process `\su_page_table_check.$proc$design.sv:54$36'.
+  created $adff cell `$procdff$576' with positive edge clock and positive level reset.
+Creating register for signal `\su_page_table_check.\page_byte_q' using process `\su_page_table_check.$proc$design.sv:54$36'.
+  created $adff cell `$procdff$581' with positive edge clock and positive level reset.
+Creating register for signal `\su_page_table_check.\digest_word_q' using process `\su_page_table_check.$proc$design.sv:54$36'.
+  created $adff cell `$procdff$586' with positive edge clock and positive level reset.
+Creating register for signal `\su_page_table_check.\expected_q' using process `\su_page_table_check.$proc$design.sv:54$36'.
+  created $adff cell `$procdff$591' with positive edge clock and positive level reset.
+Creating register for signal `\su_page_table_check.\fault_q' using process `\su_page_table_check.$proc$design.sv:54$36'.
+  created $adff cell `$procdff$596' with positive edge clock and positive level reset.
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 4 empty switches in `$paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.$proc$sha_contract.sv:34$262'.
+Removing empty process `$paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.$proc$sha_contract.sv:34$262'.
+Removing empty process `su_page_table_check.$proc$design.sv:100$182'.
+Removing empty process `su_page_table_check.$proc$design.sv:147$183'.
+Found and cleaned up 4 empty switches in `\su_page_table_check.$proc$design.sv:148$159'.
+Removing empty process `su_page_table_check.$proc$design.sv:148$159'.
+Found and cleaned up 12 empty switches in `\su_page_table_check.$proc$design.sv:113$70'.
+Removing empty process `su_page_table_check.$proc$design.sv:113$70'.
+Found and cleaned up 3 empty switches in `\su_page_table_check.$proc$design.sv:105$61'.
+Removing empty process `su_page_table_check.$proc$design.sv:105$61'.
+Found and cleaned up 1 empty switch in `\su_page_table_check.$proc$design.sv:102$58'.
+Removing empty process `su_page_table_check.$proc$design.sv:102$58'.
+Removing empty process `su_page_table_check.$proc$design.sv:101$57'.
+Found and cleaned up 13 empty switches in `\su_page_table_check.$proc$design.sv:54$36'.
+Removing empty process `su_page_table_check.$proc$design.sv:54$36'.
+Cleaned up 37 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.
+<suppressed ~8 debug messages>
+Optimizing module su_page_table_check.
+<suppressed ~24 debug messages>
+
+3.3. Executing FLATTEN pass (flatten design).
+Deleting now unused module $paramod$5b698da02acfaf9abb42dc98bee252e51c9cd6f6\su_sha256.
+<suppressed ~1 debug messages>
+
+3.4. Executing FUTURE pass.
+
+3.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_page_table_check.
+<suppressed ~1 debug messages>
+
+3.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_page_table_check..
+Removed 18 unused cells and 184 unused wires.
+<suppressed ~20 debug messages>
+
+3.7. Executing CHECK pass (checking for obvious problems).
+Checking module su_page_table_check...
+Found and reported 0 problems.
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_page_table_check.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\su_page_table_check'.
+Computing hashes of 312 cells of `\su_page_table_check'.
+Finding duplicate cells in `\su_page_table_check'.
+Computing hashes of 245 cells of `\su_page_table_check'.
+Finding duplicate cells in `\su_page_table_check'.
+Computing hashes of 242 cells of `\su_page_table_check'.
+Finding duplicate cells in `\su_page_table_check'.
+Computing hashes of 241 cells of `\su_page_table_check'.
+Finding duplicate cells in `\su_page_table_check'.
+Computing hashes of 240 cells of `\su_page_table_check'.
+Finding duplicate cells in `\su_page_table_check'.
+<suppressed ~216 debug messages>
+Removed a total of 72 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \su_page_table_check..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $flatten\u_sha.$procmux$284: \u_sha.busy_q -> 1'0
+      Replacing known input bits on port A of cell $flatten\u_sha.$procmux$282: \u_sha.busy_q -> 1'1
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~139 debug messages>
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \su_page_table_check.
+    New ctrl vector for $pmux cell $procmux$400: { $auto$opt_reduce.cc:137:opt_pmux$599 $procmux$501_CMP $procmux$518_CMP }
+    New ctrl vector for $pmux cell $procmux$490: { $auto$opt_reduce.cc:137:opt_pmux$601 $procmux$501_CMP $procmux$507_CMP $procmux$518_CMP $procmux$522_CMP $procmux$523_CMP $procmux$524_CMP $procmux$527_CMP }
+  Optimizing cells in module \su_page_table_check.
+Performed a total of 2 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\su_page_table_check'.
+Computing hashes of 242 cells of `\su_page_table_check'.
+Finding duplicate cells in `\su_page_table_check'.
+Computing hashes of 231 cells of `\su_page_table_check'.
+Finding duplicate cells in `\su_page_table_check'.
+Computing hashes of 225 cells of `\su_page_table_check'.
+Finding duplicate cells in `\su_page_table_check'.
+<suppressed ~51 debug messages>
+Removed a total of 17 cells.
+
+3.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_page_table_check..
+Removed 0 unused cells and 89 unused wires.
+<suppressed ~1 debug messages>
+
+3.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_page_table_check.
+
+3.8.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \su_page_table_check..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~115 debug messages>
+
+3.8.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \su_page_table_check.
+Performed a total of 0 changes.
+
+3.8.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\su_page_table_check'.
+Computing hashes of 225 cells of `\su_page_table_check'.
+Finding duplicate cells in `\su_page_table_check'.
+Removed a total of 0 cells.
+
+3.8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_page_table_check..
+
+3.8.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_page_table_check.
+
+3.8.14. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 13) from port B of cell su_page_table_check.$eq$design.sv:38$6 ($eq).
+Removed top 1 bits (of 4) from port B of cell su_page_table_check.$ne$design.sv:58$41 ($ne).
+Removed top 31 bits (of 32) from port B of cell su_page_table_check.$add$design.sv:70$48 ($add).
+Removed top 29 bits (of 32) from port Y of cell su_page_table_check.$add$design.sv:70$48 ($add).
+Removed top 1 bits (of 13) from port B of cell su_page_table_check.$eq$design.sv:81$52 ($eq).
+Removed top 31 bits (of 32) from port B of cell su_page_table_check.$add$design.sv:82$53 ($add).
+Removed top 19 bits (of 32) from port Y of cell su_page_table_check.$add$design.sv:82$53 ($add).
+Removed top 31 bits (of 32) from port B of cell su_page_table_check.$add$design.sv:87$56 ($add).
+Removed top 21 bits (of 32) from port Y of cell su_page_table_check.$add$design.sv:87$56 ($add).
+Removed top 31 bits (of 32) from port B of cell su_page_table_check.$add$design.sv:108$64 ($add).
+Removed top 8 bits (of 32) from port Y of cell su_page_table_check.$add$design.sv:108$64 ($add).
+Removed top 31 bits (of 32) from port B of cell su_page_table_check.$add$design.sv:110$69 ($add).
+Removed top 20 bits (of 32) from port Y of cell su_page_table_check.$add$design.sv:110$69 ($add).
+Removed top 21 bits (of 32) from port B of cell su_page_table_check.$lt$design.sv:117$90 ($lt).
+Removed top 19 bits (of 32) from port B of cell su_page_table_check.$lt$design.sv:118$92 ($lt).
+Removed top 9 bits (of 32) from port B of cell su_page_table_check.$le$design.sv:119$94 ($le).
+Removed top 21 bits (of 32) from port B of cell su_page_table_check.$le$design.sv:120$96 ($le).
+Removed top 1 bits (of 12) from port B of cell su_page_table_check.$eq$design.sv:124$102 ($eq).
+Removed top 1 bits (of 4) from port B of cell su_page_table_check.$ne$design.sv:128$109 ($ne).
+Removed top 1 bits (of 12) from port B of cell su_page_table_check.$eq$design.sv:128$113 ($eq).
+Removed top 11 bits (of 24) from port B of cell su_page_table_check.$add$design.sv:133$132 ($add).
+Removed top 7 bits (of 32) from port Y of cell su_page_table_check.$add$design.sv:133$132 ($add).
+Removed top 7 bits (of 32) from port B of cell su_page_table_check.$eq$design.sv:133$133 ($eq).
+Removed top 20 bits (of 32) from port B of cell su_page_table_check.$lt$design.sv:134$136 ($lt).
+Removed top 1 bits (of 24) from port B of cell su_page_table_check.$eq$design.sv:138$141 ($eq).
+Removed top 20 bits (of 32) from port B of cell su_page_table_check.$ge$design.sv:139$143 ($ge).
+Removed top 19 bits (of 32) from port B of cell su_page_table_check.$mul$design.sv:143$148 ($mul).
+Removed top 8 bits (of 32) from port Y of cell su_page_table_check.$mul$design.sv:143$148 ($mul).
+Removed top 19 bits (of 32) from mux cell su_page_table_check.$ternary$design.sv:143$150 ($mux).
+Removed top 11 bits (of 24) from port B of cell su_page_table_check.$add$design.sv:143$151 ($add).
+Removed top 7 bits (of 32) from port Y of cell su_page_table_check.$add$design.sv:143$151 ($add).
+Removed top 7 bits (of 32) from port B of cell su_page_table_check.$eq$design.sv:143$152 ($eq).
+Removed top 18 bits (of 32) from port B of cell su_page_table_check.$lt$design.sv:144$154 ($lt).
+Removed top 1 bits (of 4) from port B of cell su_page_table_check.$procmux$492_CMP0 ($eq).
+Removed top 1 bits (of 4) from mux cell su_page_table_check.$procmux$494 ($mux).
+Removed top 1 bits (of 4) from port B of cell su_page_table_check.$procmux$501_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell su_page_table_check.$procmux$507_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell su_page_table_check.$procmux$518_CMP0 ($eq).
+Removed top 1 bits (of 4) from mux cell su_page_table_check.$procmux$520 ($mux).
+Removed top 2 bits (of 4) from port B of cell su_page_table_check.$procmux$522_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell su_page_table_check.$procmux$523_CMP0 ($eq).
+Removed top 3 bits (of 4) from port B of cell su_page_table_check.$procmux$524_CMP0 ($eq).
+Removed top 31 bits (of 32) from port B of cell su_page_table_check.$flatten\u_sha.$add$sha_contract.sv:40$265 ($add).
+Removed top 19 bits (of 32) from port Y of cell su_page_table_check.$flatten\u_sha.$add$sha_contract.sv:40$265 ($add).
+Removed top 7 bits (of 32) from wire su_page_table_check.$add$design.sv:143$151_Y.
+Removed top 19 bits (of 32) from wire su_page_table_check.$ternary$design.sv:143$150_Y.
+Removed top 7 bits (of 32) from wire su_page_table_check.$add$design.sv:133$132_Y.
+Removed top 8 bits (of 32) from wire su_page_table_check.$mul$design.sv:130$122_Y.
+Removed top 19 bits (of 32) from wire su_page_table_check.$flatten\u_sha.$add$sha_contract.sv:40$265_Y.
+Removed top 20 bits (of 32) from wire su_page_table_check.$add$design.sv:110$69_Y.
+Removed top 8 bits (of 32) from wire su_page_table_check.$add$design.sv:108$64_Y.
+Removed top 21 bits (of 32) from wire su_page_table_check.$add$design.sv:87$56_Y.
+Removed top 19 bits (of 32) from wire su_page_table_check.$add$design.sv:76$51_Y.
+Removed top 29 bits (of 32) from wire su_page_table_check.$add$design.sv:70$48_Y.
+Removed top 1 bits (of 4) from wire su_page_table_check.$procmux$494_Y.
+Removed top 1 bits (of 4) from wire su_page_table_check.$procmux$520_Y.
+
+3.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_page_table_check..
+Removed 0 unused cells and 12 unused wires.
+<suppressed ~1 debug messages>
+
+3.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.12. Executing OPT pass (performing simple optimizations).
+
+3.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module su_page_table_check.
+
+3.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\su_page_table_check'.
+Computing hashes of 225 cells of `\su_page_table_check'.
+Finding duplicate cells in `\su_page_table_check'.
+Removed a total of 0 cells.
+
+3.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_page_table_check..
+
+3.12.4. Finished fast OPT passes.
+
+3.13. Executing SORT pass.
+
+3.14. Printing statistics.
+
+=== su_page_table_check ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      231 wires
+     5255 wire bits
+       59 public wires
+     3338 public wire bits
+       18 ports
+     1090 port bits
+      225 cells
+        8   $add
+       12   $adff
+        3   $anyseq
+       26   $check
+        6   $dff
+       20   $eq
+        1   $ge
+        2   $le
+       29   $logic_and
+        7   $logic_not
+       13   $logic_or
+        5   $lt
+        1   $mul
+       78   $mux
+        5   $ne
+        5   $pmux
+        1   $reduce_bool
+        2   $reduce_or
+        1   $scopeinfo
+
+3.15. Executing CHECK pass (checking for obvious problems).
+Checking module su_page_table_check...
+Found and reported 0 problems.
+
+4. Executing ASYNC2SYNC pass.
+Replacing su_page_table_check.$flatten\u_sha.$procdff$535 ($adff): ARST=\reset_n, D=$flatten\u_sha.$0\done_o[0:0], Q=\u_sha.done_o
+Replacing su_page_table_check.$flatten\u_sha.$procdff$540 ($adff): ARST=\reset_n, D=$flatten\u_sha.$0\digest_o[255:0], Q=\u_sha.digest_o
+Replacing su_page_table_check.$flatten\u_sha.$procdff$545 ($adff): ARST=\reset_n, D=$flatten\u_sha.$0\busy_q[0:0], Q=\u_sha.busy_q
+Replacing su_page_table_check.$flatten\u_sha.$procdff$550 ($adff): ARST=\reset_n, D=$flatten\u_sha.$0\count_q[12:0], Q=\u_sha.count_q
+Replacing su_page_table_check.$procdff$560 ($adff): ARST=\reset_n, D=$0\spec_inputs[23:0], Q=\spec_inputs
+Replacing su_page_table_check.$procdff$565 ($adff): ARST=\reset_n, D=$0\spec_pages[11:0], Q=\spec_pages
+Replacing su_page_table_check.$procdff$571 ($adff): ARST=\reset_n, D=$0\state_q[3:0], Q=\state_q
+Replacing su_page_table_check.$procdff$576 ($adff): ARST=\reset_n, D=$0\page_q[10:0], Q=\page_q
+Replacing su_page_table_check.$procdff$581 ($adff): ARST=\reset_n, D=$0\page_byte_q[12:0], Q=\page_byte_q
+Replacing su_page_table_check.$procdff$586 ($adff): ARST=\reset_n, D=$0\digest_word_q[2:0], Q=\digest_word_q
+Replacing su_page_table_check.$procdff$591 ($adff): ARST=\reset_n, D=$0\expected_q[255:0], Q=\expected_q
+Replacing su_page_table_check.$procdff$596 ($adff): ARST=\reset_n, D=$0\fault_q[0:0], Q=\fault_q
+
+5. Executing DFFUNMAP pass (unmap clock enable and synchronous reset from FFs).
+
+6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \su_page_table_check..
+Removed 55 unused cells and 55 unused wires.
+<suppressed ~56 debug messages>
+
+7. Executing SMT2 backend.
+
+7.1. Executing BMUXMAP pass.
+
+7.2. Executing DEMUXMAP pass.
+Creating SMT-LIBv2 representation of module su_page_table_check.

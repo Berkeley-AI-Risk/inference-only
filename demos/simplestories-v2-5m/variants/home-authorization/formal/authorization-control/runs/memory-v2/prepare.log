@@ -1,0 +1,451 @@
+
+-- Executing script file `prove.ys' --
+
+1. Executing Verilog-2005 frontend: design.sv
+Parsing formal SystemVerilog input from `design.sv' to AST representation.
+Generating RTLIL representation for module `\home_boot_gate'.
+Generating RTLIL representation for module `\home_equal256_tree'.
+Successfully finished Verilog frontend.
+Parameter \USE_SHARED_VERIFIER = 1
+Parameter \RESPONSE_LIMIT_CYCLES = 100000000
+Parameter \LEASE_CYCLES = 250000000
+Parameter \RENEW_LEAD_CYCLES = 125000000
+
+2. Executing AST frontend in derive mode using pre-parsed AST for module `\home_boot_gate'.
+Parameter \USE_SHARED_VERIFIER = 1
+Parameter \RESPONSE_LIMIT_CYCLES = 100000000
+Parameter \LEASE_CYCLES = 250000000
+Parameter \RENEW_LEAD_CYCLES = 125000000
+Generating RTLIL representation for module `$paramod$ffcdea5c0387e40838c77e880664ea28a42717f4\home_boot_gate'.
+
+3. Executing PREP pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \home_boot_gate
+Used module:     \home_equal256_tree
+
+3.1.2. Analyzing design hierarchy..
+Top module:  \home_boot_gate
+Used module:     \home_equal256_tree
+Removed 0 unused modules.
+Module home_boot_gate directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\home_boot_gate.$proc$design.sv:113$605'.
+Removing empty process `home_boot_gate.$proc$design.sv:113$605'.
+Cleaned up 1 empty switch.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$design.sv:119$469 in module home_boot_gate.
+Marked 1 switch rules as full_case in process $proc$design.sv:125$483 in module home_boot_gate.
+Marked 9 switch rules as full_case in process $proc$design.sv:151$486 in module home_boot_gate.
+Marked 1 switch rules as full_case in process $proc$design.sv:217$518 in module home_boot_gate.
+Marked 1 switch rules as full_case in process $proc$design.sv:86$585 in module home_boot_gate.
+Marked 1 switch rules as full_case in process $proc$design.sv:64$394 in module home_boot_gate.
+Removed a total of 0 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 3 redundant assignments.
+Promoted 11 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\home_boot_gate.$proc$design.sv:211$606'.
+  Set init value: \spec_initial = 1'1
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \reset_n in `\home_boot_gate.$proc$design.sv:125$483'.
+Found async reset \reset_n in `\home_boot_gate.$proc$design.sv:151$486'.
+Found async reset \reset_n in `\home_boot_gate.$proc$design.sv:217$518'.
+Found async reset \reset_n in `\home_boot_gate.$proc$design.sv:64$394'.
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~30 debug messages>
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\home_boot_gate.$proc$design.sv:119$469'.
+     1/3: $1$memwr$\signature_mem$design.sv:121$391_EN[7:0]$480
+     2/3: $1$memwr$\signature_mem$design.sv:121$391_DATA[7:0]$479
+     3/3: $1$memwr$\signature_mem$design.sv:121$391_ADDR[31:0]$478
+Creating decoders for process `\home_boot_gate.$proc$design.sv:125$483'.
+     1/1: $0\signature_read_valid_q[0:0]
+Creating decoders for process `\home_boot_gate.$proc$design.sv:151$486'.
+     1/12: $0\index_q[10:0]
+     2/12: $0\previous_nonce_q[255:0]
+     3/12: $0\seen_nonce_q[0:0]
+     4/12: $0\lease_active_q[0:0]
+     5/12: $0\lease_age_q[27:0]
+     6/12: $0\age_q[26:0]
+     7/12: $0\fault_q[0:0]
+     8/12: $0\have_root_q[0:0]
+     9/12: $0\have_nonce_q[0:0]
+    10/12: $0\root_q[255:0]
+    11/12: $0\nonce_q[255:0]
+    12/12: $0\state_q[3:0]
+Creating decoders for process `\home_boot_gate.$proc$design.sv:212$511'.
+Creating decoders for process `\home_boot_gate.$proc$design.sv:213$512'.
+     1/1: $assume$design.sv:213$513_EN
+Creating decoders for process `\home_boot_gate.$proc$design.sv:216$515'.
+Creating decoders for process `\home_boot_gate.$proc$design.sv:217$518'.
+     1/2: $0\spec_value[7:0]
+     2/2: $0\spec_written[0:0]
+Creating decoders for process `\home_boot_gate.$proc$design.sv:226$530'.
+     1/8: $assert$design.sv:240$583_EN
+     2/8: $assert$design.sv:237$572_EN
+     3/8: $assert$design.sv:235$560_EN
+     4/8: $assert$design.sv:233$559_EN
+     5/8: $assert$design.sv:232$555_EN
+     6/8: $assert$design.sv:230$552_EN
+     7/8: $assert$design.sv:229$549_EN
+     8/8: $assert$design.sv:227$531_EN
+Creating decoders for process `\home_boot_gate.$proc$design.sv:86$585'.
+     1/1: $1\message_byte$func$design.sv:86$390.$result[7:0]$589
+Creating decoders for process `\home_boot_gate.$proc$design.sv:64$394'.
+     1/1: $0\crypto_reset_release_q[0:0]
+Creating decoders for process `\home_boot_gate.$proc$design.sv:211$606'.
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\home_boot_gate.\message_byte$func$design.sv:86$389.$result' from process `\home_boot_gate.$proc$design.sv:86$585'.
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\home_boot_gate.\signature_address_q' using process `\home_boot_gate.$proc$design.sv:119$469'.
+  created $dff cell `$procdff$920' with positive edge clock.
+Creating register for signal `\home_boot_gate.\signature_byte_q' using process `\home_boot_gate.$proc$design.sv:119$469'.
+  created $dff cell `$procdff$921' with positive edge clock.
+Creating register for signal `\home_boot_gate.$memwr$\signature_mem$design.sv:121$391_ADDR' using process `\home_boot_gate.$proc$design.sv:119$469'.
+  created $dff cell `$procdff$922' with positive edge clock.
+Creating register for signal `\home_boot_gate.$memwr$\signature_mem$design.sv:121$391_DATA' using process `\home_boot_gate.$proc$design.sv:119$469'.
+  created $dff cell `$procdff$923' with positive edge clock.
+Creating register for signal `\home_boot_gate.$memwr$\signature_mem$design.sv:121$391_EN' using process `\home_boot_gate.$proc$design.sv:119$469'.
+  created $dff cell `$procdff$924' with positive edge clock.
+Creating register for signal `\home_boot_gate.\signature_read_valid_q' using process `\home_boot_gate.$proc$design.sv:125$483'.
+  created $adff cell `$procdff$929' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\state_q' using process `\home_boot_gate.$proc$design.sv:151$486'.
+  created $adff cell `$procdff$934' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\nonce_q' using process `\home_boot_gate.$proc$design.sv:151$486'.
+  created $adff cell `$procdff$939' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\root_q' using process `\home_boot_gate.$proc$design.sv:151$486'.
+  created $adff cell `$procdff$944' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\have_nonce_q' using process `\home_boot_gate.$proc$design.sv:151$486'.
+  created $adff cell `$procdff$949' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\have_root_q' using process `\home_boot_gate.$proc$design.sv:151$486'.
+  created $adff cell `$procdff$954' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\fault_q' using process `\home_boot_gate.$proc$design.sv:151$486'.
+  created $adff cell `$procdff$959' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\age_q' using process `\home_boot_gate.$proc$design.sv:151$486'.
+  created $adff cell `$procdff$964' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\lease_age_q' using process `\home_boot_gate.$proc$design.sv:151$486'.
+  created $adff cell `$procdff$969' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\lease_active_q' using process `\home_boot_gate.$proc$design.sv:151$486'.
+  created $adff cell `$procdff$974' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\seen_nonce_q' using process `\home_boot_gate.$proc$design.sv:151$486'.
+  created $adff cell `$procdff$979' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\previous_nonce_q' using process `\home_boot_gate.$proc$design.sv:151$486'.
+  created $adff cell `$procdff$984' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\index_q' using process `\home_boot_gate.$proc$design.sv:151$486'.
+  created $adff cell `$procdff$989' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\spec_initial' using process `\home_boot_gate.$proc$design.sv:212$511'.
+  created $dff cell `$procdff$990' with positive edge clock.
+Creating register for signal `\home_boot_gate.\spec_written' using process `\home_boot_gate.$proc$design.sv:217$518'.
+  created $adff cell `$procdff$995' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\spec_value' using process `\home_boot_gate.$proc$design.sv:217$518'.
+  created $adff cell `$procdff$1000' with positive edge clock and positive level reset.
+Creating register for signal `\home_boot_gate.\crypto_reset_release_q' using process `\home_boot_gate.$proc$design.sv:64$394'.
+  created $adff cell `$procdff$1005' with positive edge clock and positive level reset.
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\home_boot_gate.$proc$design.sv:119$469'.
+Removing empty process `home_boot_gate.$proc$design.sv:119$469'.
+Removing empty process `home_boot_gate.$proc$design.sv:125$483'.
+Found and cleaned up 17 empty switches in `\home_boot_gate.$proc$design.sv:151$486'.
+Removing empty process `home_boot_gate.$proc$design.sv:151$486'.
+Removing empty process `home_boot_gate.$proc$design.sv:212$511'.
+Found and cleaned up 1 empty switch in `\home_boot_gate.$proc$design.sv:213$512'.
+Removing empty process `home_boot_gate.$proc$design.sv:213$512'.
+Removing empty process `home_boot_gate.$proc$design.sv:216$515'.
+Found and cleaned up 2 empty switches in `\home_boot_gate.$proc$design.sv:217$518'.
+Removing empty process `home_boot_gate.$proc$design.sv:217$518'.
+Found and cleaned up 8 empty switches in `\home_boot_gate.$proc$design.sv:226$530'.
+Removing empty process `home_boot_gate.$proc$design.sv:226$530'.
+Found and cleaned up 1 empty switch in `\home_boot_gate.$proc$design.sv:86$585'.
+Removing empty process `home_boot_gate.$proc$design.sv:86$585'.
+Removing empty process `home_boot_gate.$proc$design.sv:64$394'.
+Removing empty process `home_boot_gate.$proc$design.sv:211$606'.
+Cleaned up 30 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module home_equal256_tree.
+Optimizing module home_boot_gate.
+<suppressed ~48 debug messages>
+
+3.3. Executing FLATTEN pass (flatten design).
+Deleting now unused module home_equal256_tree.
+<suppressed ~2 debug messages>
+
+3.4. Executing FUTURE pass.
+
+3.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module home_boot_gate.
+
+3.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \home_boot_gate..
+Removed 23 unused cells and 525 unused wires.
+<suppressed ~24 debug messages>
+
+3.7. Executing CHECK pass (checking for obvious problems).
+Checking module home_boot_gate...
+Found and reported 0 problems.
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module home_boot_gate.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\home_boot_gate'.
+Computing hashes of 688 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+Computing hashes of 608 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+Computing hashes of 602 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+Computing hashes of 600 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+Computing hashes of 599 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+<suppressed ~267 debug messages>
+Removed a total of 89 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \home_boot_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $procmux$684: \lease_active_q -> 1'0
+      Replacing known input bits on port A of cell $procmux$682: \lease_active_q -> 1'1
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~149 debug messages>
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \home_boot_gate.
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:264$388: { \u_nonce_equal.g_pairs[112].same \u_nonce_equal.g_pairs[113].same \u_nonce_equal.g_pairs[114].same \u_nonce_equal.g_pairs[115].same \u_nonce_equal.g_pairs[116].same \u_nonce_equal.g_pairs[117].same \u_nonce_equal.g_pairs[118].same \u_nonce_equal.g_pairs[119].same \u_nonce_equal.g_pairs[120].same \u_nonce_equal.g_pairs[121].same \u_nonce_equal.g_pairs[122].same \u_nonce_equal.g_pairs[123].same \u_nonce_equal.g_pairs[124].same \u_nonce_equal.g_pairs[125].same \u_nonce_equal.g_pairs[126].same \u_nonce_equal.g_pairs[127].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:264$387: { \u_nonce_equal.g_pairs[96].same \u_nonce_equal.g_pairs[97].same \u_nonce_equal.g_pairs[98].same \u_nonce_equal.g_pairs[99].same \u_nonce_equal.g_pairs[100].same \u_nonce_equal.g_pairs[101].same \u_nonce_equal.g_pairs[102].same \u_nonce_equal.g_pairs[103].same \u_nonce_equal.g_pairs[104].same \u_nonce_equal.g_pairs[105].same \u_nonce_equal.g_pairs[106].same \u_nonce_equal.g_pairs[107].same \u_nonce_equal.g_pairs[108].same \u_nonce_equal.g_pairs[109].same \u_nonce_equal.g_pairs[110].same \u_nonce_equal.g_pairs[111].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:264$386: { \u_nonce_equal.g_pairs[80].same \u_nonce_equal.g_pairs[81].same \u_nonce_equal.g_pairs[82].same \u_nonce_equal.g_pairs[83].same \u_nonce_equal.g_pairs[84].same \u_nonce_equal.g_pairs[85].same \u_nonce_equal.g_pairs[86].same \u_nonce_equal.g_pairs[87].same \u_nonce_equal.g_pairs[88].same \u_nonce_equal.g_pairs[89].same \u_nonce_equal.g_pairs[90].same \u_nonce_equal.g_pairs[91].same \u_nonce_equal.g_pairs[92].same \u_nonce_equal.g_pairs[93].same \u_nonce_equal.g_pairs[94].same \u_nonce_equal.g_pairs[95].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:264$385: { \u_nonce_equal.g_pairs[64].same \u_nonce_equal.g_pairs[65].same \u_nonce_equal.g_pairs[66].same \u_nonce_equal.g_pairs[67].same \u_nonce_equal.g_pairs[68].same \u_nonce_equal.g_pairs[69].same \u_nonce_equal.g_pairs[70].same \u_nonce_equal.g_pairs[71].same \u_nonce_equal.g_pairs[72].same \u_nonce_equal.g_pairs[73].same \u_nonce_equal.g_pairs[74].same \u_nonce_equal.g_pairs[75].same \u_nonce_equal.g_pairs[76].same \u_nonce_equal.g_pairs[77].same \u_nonce_equal.g_pairs[78].same \u_nonce_equal.g_pairs[79].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:264$384: { \u_nonce_equal.g_pairs[48].same \u_nonce_equal.g_pairs[49].same \u_nonce_equal.g_pairs[50].same \u_nonce_equal.g_pairs[51].same \u_nonce_equal.g_pairs[52].same \u_nonce_equal.g_pairs[53].same \u_nonce_equal.g_pairs[54].same \u_nonce_equal.g_pairs[55].same \u_nonce_equal.g_pairs[56].same \u_nonce_equal.g_pairs[57].same \u_nonce_equal.g_pairs[58].same \u_nonce_equal.g_pairs[59].same \u_nonce_equal.g_pairs[60].same \u_nonce_equal.g_pairs[61].same \u_nonce_equal.g_pairs[62].same \u_nonce_equal.g_pairs[63].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:264$383: { \u_nonce_equal.g_pairs[32].same \u_nonce_equal.g_pairs[33].same \u_nonce_equal.g_pairs[34].same \u_nonce_equal.g_pairs[35].same \u_nonce_equal.g_pairs[36].same \u_nonce_equal.g_pairs[37].same \u_nonce_equal.g_pairs[38].same \u_nonce_equal.g_pairs[39].same \u_nonce_equal.g_pairs[40].same \u_nonce_equal.g_pairs[41].same \u_nonce_equal.g_pairs[42].same \u_nonce_equal.g_pairs[43].same \u_nonce_equal.g_pairs[44].same \u_nonce_equal.g_pairs[45].same \u_nonce_equal.g_pairs[46].same \u_nonce_equal.g_pairs[47].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:264$382: { \u_nonce_equal.g_pairs[16].same \u_nonce_equal.g_pairs[17].same \u_nonce_equal.g_pairs[18].same \u_nonce_equal.g_pairs[19].same \u_nonce_equal.g_pairs[20].same \u_nonce_equal.g_pairs[21].same \u_nonce_equal.g_pairs[22].same \u_nonce_equal.g_pairs[23].same \u_nonce_equal.g_pairs[24].same \u_nonce_equal.g_pairs[25].same \u_nonce_equal.g_pairs[26].same \u_nonce_equal.g_pairs[27].same \u_nonce_equal.g_pairs[28].same \u_nonce_equal.g_pairs[29].same \u_nonce_equal.g_pairs[30].same \u_nonce_equal.g_pairs[31].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:264$381: { \u_nonce_equal.g_pairs[0].same \u_nonce_equal.g_pairs[1].same \u_nonce_equal.g_pairs[2].same \u_nonce_equal.g_pairs[3].same \u_nonce_equal.g_pairs[4].same \u_nonce_equal.g_pairs[5].same \u_nonce_equal.g_pairs[6].same \u_nonce_equal.g_pairs[7].same \u_nonce_equal.g_pairs[8].same \u_nonce_equal.g_pairs[9].same \u_nonce_equal.g_pairs[10].same \u_nonce_equal.g_pairs[11].same \u_nonce_equal.g_pairs[12].same \u_nonce_equal.g_pairs[13].same \u_nonce_equal.g_pairs[14].same \u_nonce_equal.g_pairs[15].same }
+    New input vector for $reduce_and cell $flatten\u_nonce_equal.$reduce_and$design.sv:268$220: { \u_nonce_equal.g_pairs[0].same \u_nonce_equal.g_pairs[1].same \u_nonce_equal.g_pairs[2].same \u_nonce_equal.g_pairs[3].same \u_nonce_equal.g_pairs[4].same \u_nonce_equal.g_pairs[5].same \u_nonce_equal.g_pairs[6].same \u_nonce_equal.g_pairs[7].same \u_nonce_equal.g_pairs[8].same \u_nonce_equal.g_pairs[9].same \u_nonce_equal.g_pairs[10].same \u_nonce_equal.g_pairs[11].same \u_nonce_equal.g_pairs[12].same \u_nonce_equal.g_pairs[13].same \u_nonce_equal.g_pairs[14].same \u_nonce_equal.g_pairs[15].same \u_nonce_equal.g_pairs[16].same \u_nonce_equal.g_pairs[17].same \u_nonce_equal.g_pairs[18].same \u_nonce_equal.g_pairs[19].same \u_nonce_equal.g_pairs[20].same \u_nonce_equal.g_pairs[21].same \u_nonce_equal.g_pairs[22].same \u_nonce_equal.g_pairs[23].same \u_nonce_equal.g_pairs[24].same \u_nonce_equal.g_pairs[25].same \u_nonce_equal.g_pairs[26].same \u_nonce_equal.g_pairs[27].same \u_nonce_equal.g_pairs[28].same \u_nonce_equal.g_pairs[29].same \u_nonce_equal.g_pairs[30].same \u_nonce_equal.g_pairs[31].same \u_nonce_equal.g_pairs[32].same \u_nonce_equal.g_pairs[33].same \u_nonce_equal.g_pairs[34].same \u_nonce_equal.g_pairs[35].same \u_nonce_equal.g_pairs[36].same \u_nonce_equal.g_pairs[37].same \u_nonce_equal.g_pairs[38].same \u_nonce_equal.g_pairs[39].same \u_nonce_equal.g_pairs[40].same \u_nonce_equal.g_pairs[41].same \u_nonce_equal.g_pairs[42].same \u_nonce_equal.g_pairs[43].same \u_nonce_equal.g_pairs[44].same \u_nonce_equal.g_pairs[45].same \u_nonce_equal.g_pairs[46].same \u_nonce_equal.g_pairs[47].same \u_nonce_equal.g_pairs[48].same \u_nonce_equal.g_pairs[49].same \u_nonce_equal.g_pairs[50].same \u_nonce_equal.g_pairs[51].same \u_nonce_equal.g_pairs[52].same \u_nonce_equal.g_pairs[53].same \u_nonce_equal.g_pairs[54].same \u_nonce_equal.g_pairs[55].same \u_nonce_equal.g_pairs[56].same \u_nonce_equal.g_pairs[57].same \u_nonce_equal.g_pairs[58].same \u_nonce_equal.g_pairs[59].same \u_nonce_equal.g_pairs[60].same \u_nonce_equal.g_pairs[61].same \u_nonce_equal.g_pairs[62].same \u_nonce_equal.g_pairs[63].same \u_nonce_equal.g_pairs[64].same \u_nonce_equal.g_pairs[65].same \u_nonce_equal.g_pairs[66].same \u_nonce_equal.g_pairs[67].same \u_nonce_equal.g_pairs[68].same \u_nonce_equal.g_pairs[69].same \u_nonce_equal.g_pairs[70].same \u_nonce_equal.g_pairs[71].same \u_nonce_equal.g_pairs[72].same \u_nonce_equal.g_pairs[73].same \u_nonce_equal.g_pairs[74].same \u_nonce_equal.g_pairs[75].same \u_nonce_equal.g_pairs[76].same \u_nonce_equal.g_pairs[77].same \u_nonce_equal.g_pairs[78].same \u_nonce_equal.g_pairs[79].same \u_nonce_equal.g_pairs[80].same \u_nonce_equal.g_pairs[81].same \u_nonce_equal.g_pairs[82].same \u_nonce_equal.g_pairs[83].same \u_nonce_equal.g_pairs[84].same \u_nonce_equal.g_pairs[85].same \u_nonce_equal.g_pairs[86].same \u_nonce_equal.g_pairs[87].same \u_nonce_equal.g_pairs[88].same \u_nonce_equal.g_pairs[89].same \u_nonce_equal.g_pairs[90].same \u_nonce_equal.g_pairs[91].same \u_nonce_equal.g_pairs[92].same \u_nonce_equal.g_pairs[93].same \u_nonce_equal.g_pairs[94].same \u_nonce_equal.g_pairs[95].same \u_nonce_equal.g_pairs[96].same \u_nonce_equal.g_pairs[97].same \u_nonce_equal.g_pairs[98].same \u_nonce_equal.g_pairs[99].same \u_nonce_equal.g_pairs[100].same \u_nonce_equal.g_pairs[101].same \u_nonce_equal.g_pairs[102].same \u_nonce_equal.g_pairs[103].same \u_nonce_equal.g_pairs[104].same \u_nonce_equal.g_pairs[105].same \u_nonce_equal.g_pairs[106].same \u_nonce_equal.g_pairs[107].same \u_nonce_equal.g_pairs[108].same \u_nonce_equal.g_pairs[109].same \u_nonce_equal.g_pairs[110].same \u_nonce_equal.g_pairs[111].same \u_nonce_equal.g_pairs[112].same \u_nonce_equal.g_pairs[113].same \u_nonce_equal.g_pairs[114].same \u_nonce_equal.g_pairs[115].same \u_nonce_equal.g_pairs[116].same \u_nonce_equal.g_pairs[117].same \u_nonce_equal.g_pairs[118].same \u_nonce_equal.g_pairs[119].same \u_nonce_equal.g_pairs[120].same \u_nonce_equal.g_pairs[121].same \u_nonce_equal.g_pairs[122].same \u_nonce_equal.g_pairs[123].same \u_nonce_equal.g_pairs[124].same \u_nonce_equal.g_pairs[125].same \u_nonce_equal.g_pairs[126].same \u_nonce_equal.g_pairs[127].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:264$388: { \u_root_equal.g_pairs[112].same \u_root_equal.g_pairs[113].same \u_root_equal.g_pairs[114].same \u_root_equal.g_pairs[115].same \u_root_equal.g_pairs[116].same \u_root_equal.g_pairs[117].same \u_root_equal.g_pairs[118].same \u_root_equal.g_pairs[119].same \u_root_equal.g_pairs[120].same \u_root_equal.g_pairs[121].same \u_root_equal.g_pairs[122].same \u_root_equal.g_pairs[123].same \u_root_equal.g_pairs[124].same \u_root_equal.g_pairs[125].same \u_root_equal.g_pairs[126].same \u_root_equal.g_pairs[127].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:264$387: { \u_root_equal.g_pairs[96].same \u_root_equal.g_pairs[97].same \u_root_equal.g_pairs[98].same \u_root_equal.g_pairs[99].same \u_root_equal.g_pairs[100].same \u_root_equal.g_pairs[101].same \u_root_equal.g_pairs[102].same \u_root_equal.g_pairs[103].same \u_root_equal.g_pairs[104].same \u_root_equal.g_pairs[105].same \u_root_equal.g_pairs[106].same \u_root_equal.g_pairs[107].same \u_root_equal.g_pairs[108].same \u_root_equal.g_pairs[109].same \u_root_equal.g_pairs[110].same \u_root_equal.g_pairs[111].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:264$386: { \u_root_equal.g_pairs[80].same \u_root_equal.g_pairs[81].same \u_root_equal.g_pairs[82].same \u_root_equal.g_pairs[83].same \u_root_equal.g_pairs[84].same \u_root_equal.g_pairs[85].same \u_root_equal.g_pairs[86].same \u_root_equal.g_pairs[87].same \u_root_equal.g_pairs[88].same \u_root_equal.g_pairs[89].same \u_root_equal.g_pairs[90].same \u_root_equal.g_pairs[91].same \u_root_equal.g_pairs[92].same \u_root_equal.g_pairs[93].same \u_root_equal.g_pairs[94].same \u_root_equal.g_pairs[95].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:264$385: { \u_root_equal.g_pairs[64].same \u_root_equal.g_pairs[65].same \u_root_equal.g_pairs[66].same \u_root_equal.g_pairs[67].same \u_root_equal.g_pairs[68].same \u_root_equal.g_pairs[69].same \u_root_equal.g_pairs[70].same \u_root_equal.g_pairs[71].same \u_root_equal.g_pairs[72].same \u_root_equal.g_pairs[73].same \u_root_equal.g_pairs[74].same \u_root_equal.g_pairs[75].same \u_root_equal.g_pairs[76].same \u_root_equal.g_pairs[77].same \u_root_equal.g_pairs[78].same \u_root_equal.g_pairs[79].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:264$384: { \u_root_equal.g_pairs[48].same \u_root_equal.g_pairs[49].same \u_root_equal.g_pairs[50].same \u_root_equal.g_pairs[51].same \u_root_equal.g_pairs[52].same \u_root_equal.g_pairs[53].same \u_root_equal.g_pairs[54].same \u_root_equal.g_pairs[55].same \u_root_equal.g_pairs[56].same \u_root_equal.g_pairs[57].same \u_root_equal.g_pairs[58].same \u_root_equal.g_pairs[59].same \u_root_equal.g_pairs[60].same \u_root_equal.g_pairs[61].same \u_root_equal.g_pairs[62].same \u_root_equal.g_pairs[63].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:264$383: { \u_root_equal.g_pairs[32].same \u_root_equal.g_pairs[33].same \u_root_equal.g_pairs[34].same \u_root_equal.g_pairs[35].same \u_root_equal.g_pairs[36].same \u_root_equal.g_pairs[37].same \u_root_equal.g_pairs[38].same \u_root_equal.g_pairs[39].same \u_root_equal.g_pairs[40].same \u_root_equal.g_pairs[41].same \u_root_equal.g_pairs[42].same \u_root_equal.g_pairs[43].same \u_root_equal.g_pairs[44].same \u_root_equal.g_pairs[45].same \u_root_equal.g_pairs[46].same \u_root_equal.g_pairs[47].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:264$382: { \u_root_equal.g_pairs[16].same \u_root_equal.g_pairs[17].same \u_root_equal.g_pairs[18].same \u_root_equal.g_pairs[19].same \u_root_equal.g_pairs[20].same \u_root_equal.g_pairs[21].same \u_root_equal.g_pairs[22].same \u_root_equal.g_pairs[23].same \u_root_equal.g_pairs[24].same \u_root_equal.g_pairs[25].same \u_root_equal.g_pairs[26].same \u_root_equal.g_pairs[27].same \u_root_equal.g_pairs[28].same \u_root_equal.g_pairs[29].same \u_root_equal.g_pairs[30].same \u_root_equal.g_pairs[31].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:264$381: { \u_root_equal.g_pairs[0].same \u_root_equal.g_pairs[1].same \u_root_equal.g_pairs[2].same \u_root_equal.g_pairs[3].same \u_root_equal.g_pairs[4].same \u_root_equal.g_pairs[5].same \u_root_equal.g_pairs[6].same \u_root_equal.g_pairs[7].same \u_root_equal.g_pairs[8].same \u_root_equal.g_pairs[9].same \u_root_equal.g_pairs[10].same \u_root_equal.g_pairs[11].same \u_root_equal.g_pairs[12].same \u_root_equal.g_pairs[13].same \u_root_equal.g_pairs[14].same \u_root_equal.g_pairs[15].same }
+    New input vector for $reduce_and cell $flatten\u_root_equal.$reduce_and$design.sv:268$220: { \u_root_equal.g_pairs[0].same \u_root_equal.g_pairs[1].same \u_root_equal.g_pairs[2].same \u_root_equal.g_pairs[3].same \u_root_equal.g_pairs[4].same \u_root_equal.g_pairs[5].same \u_root_equal.g_pairs[6].same \u_root_equal.g_pairs[7].same \u_root_equal.g_pairs[8].same \u_root_equal.g_pairs[9].same \u_root_equal.g_pairs[10].same \u_root_equal.g_pairs[11].same \u_root_equal.g_pairs[12].same \u_root_equal.g_pairs[13].same \u_root_equal.g_pairs[14].same \u_root_equal.g_pairs[15].same \u_root_equal.g_pairs[16].same \u_root_equal.g_pairs[17].same \u_root_equal.g_pairs[18].same \u_root_equal.g_pairs[19].same \u_root_equal.g_pairs[20].same \u_root_equal.g_pairs[21].same \u_root_equal.g_pairs[22].same \u_root_equal.g_pairs[23].same \u_root_equal.g_pairs[24].same \u_root_equal.g_pairs[25].same \u_root_equal.g_pairs[26].same \u_root_equal.g_pairs[27].same \u_root_equal.g_pairs[28].same \u_root_equal.g_pairs[29].same \u_root_equal.g_pairs[30].same \u_root_equal.g_pairs[31].same \u_root_equal.g_pairs[32].same \u_root_equal.g_pairs[33].same \u_root_equal.g_pairs[34].same \u_root_equal.g_pairs[35].same \u_root_equal.g_pairs[36].same \u_root_equal.g_pairs[37].same \u_root_equal.g_pairs[38].same \u_root_equal.g_pairs[39].same \u_root_equal.g_pairs[40].same \u_root_equal.g_pairs[41].same \u_root_equal.g_pairs[42].same \u_root_equal.g_pairs[43].same \u_root_equal.g_pairs[44].same \u_root_equal.g_pairs[45].same \u_root_equal.g_pairs[46].same \u_root_equal.g_pairs[47].same \u_root_equal.g_pairs[48].same \u_root_equal.g_pairs[49].same \u_root_equal.g_pairs[50].same \u_root_equal.g_pairs[51].same \u_root_equal.g_pairs[52].same \u_root_equal.g_pairs[53].same \u_root_equal.g_pairs[54].same \u_root_equal.g_pairs[55].same \u_root_equal.g_pairs[56].same \u_root_equal.g_pairs[57].same \u_root_equal.g_pairs[58].same \u_root_equal.g_pairs[59].same \u_root_equal.g_pairs[60].same \u_root_equal.g_pairs[61].same \u_root_equal.g_pairs[62].same \u_root_equal.g_pairs[63].same \u_root_equal.g_pairs[64].same \u_root_equal.g_pairs[65].same \u_root_equal.g_pairs[66].same \u_root_equal.g_pairs[67].same \u_root_equal.g_pairs[68].same \u_root_equal.g_pairs[69].same \u_root_equal.g_pairs[70].same \u_root_equal.g_pairs[71].same \u_root_equal.g_pairs[72].same \u_root_equal.g_pairs[73].same \u_root_equal.g_pairs[74].same \u_root_equal.g_pairs[75].same \u_root_equal.g_pairs[76].same \u_root_equal.g_pairs[77].same \u_root_equal.g_pairs[78].same \u_root_equal.g_pairs[79].same \u_root_equal.g_pairs[80].same \u_root_equal.g_pairs[81].same \u_root_equal.g_pairs[82].same \u_root_equal.g_pairs[83].same \u_root_equal.g_pairs[84].same \u_root_equal.g_pairs[85].same \u_root_equal.g_pairs[86].same \u_root_equal.g_pairs[87].same \u_root_equal.g_pairs[88].same \u_root_equal.g_pairs[89].same \u_root_equal.g_pairs[90].same \u_root_equal.g_pairs[91].same \u_root_equal.g_pairs[92].same \u_root_equal.g_pairs[93].same \u_root_equal.g_pairs[94].same \u_root_equal.g_pairs[95].same \u_root_equal.g_pairs[96].same \u_root_equal.g_pairs[97].same \u_root_equal.g_pairs[98].same \u_root_equal.g_pairs[99].same \u_root_equal.g_pairs[100].same \u_root_equal.g_pairs[101].same \u_root_equal.g_pairs[102].same \u_root_equal.g_pairs[103].same \u_root_equal.g_pairs[104].same \u_root_equal.g_pairs[105].same \u_root_equal.g_pairs[106].same \u_root_equal.g_pairs[107].same \u_root_equal.g_pairs[108].same \u_root_equal.g_pairs[109].same \u_root_equal.g_pairs[110].same \u_root_equal.g_pairs[111].same \u_root_equal.g_pairs[112].same \u_root_equal.g_pairs[113].same \u_root_equal.g_pairs[114].same \u_root_equal.g_pairs[115].same \u_root_equal.g_pairs[116].same \u_root_equal.g_pairs[117].same \u_root_equal.g_pairs[118].same \u_root_equal.g_pairs[119].same \u_root_equal.g_pairs[120].same \u_root_equal.g_pairs[121].same \u_root_equal.g_pairs[122].same \u_root_equal.g_pairs[123].same \u_root_equal.g_pairs[124].same \u_root_equal.g_pairs[125].same \u_root_equal.g_pairs[126].same \u_root_equal.g_pairs[127].same }
+    New ctrl vector for $pmux cell $procmux$739: { $auto$opt_reduce.cc:137:opt_pmux$1010 $procmux$843_CMP $procmux$855_CMP $procmux$869_CMP }
+    Consolidated identical input bits for $mux cell $procmux$608:
+      Old ports: A=8'00000000, B=8'11111111, Y=$0$memwr$\signature_mem$design.sv:121$391_EN[7:0]$472
+      New ports: A=1'0, B=1'1, Y=$0$memwr$\signature_mem$design.sv:121$391_EN[7:0]$472 [0]
+      New connections: $0$memwr$\signature_mem$design.sv:121$391_EN[7:0]$472 [7:1] = { $0$memwr$\signature_mem$design.sv:121$391_EN[7:0]$472 [0] $0$memwr$\signature_mem$design.sv:121$391_EN[7:0]$472 [0] $0$memwr$\signature_mem$design.sv:121$391_EN[7:0]$472 [0] $0$memwr$\signature_mem$design.sv:121$391_EN[7:0]$472 [0] $0$memwr$\signature_mem$design.sv:121$391_EN[7:0]$472 [0] $0$memwr$\signature_mem$design.sv:121$391_EN[7:0]$472 [0] $0$memwr$\signature_mem$design.sv:121$391_EN[7:0]$472 [0] }
+  Optimizing cells in module \home_boot_gate.
+Performed a total of 20 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\home_boot_gate'.
+Computing hashes of 600 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+Removed a total of 0 cells.
+
+3.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \home_boot_gate..
+Removed 80 unused cells and 173 unused wires.
+<suppressed ~165 debug messages>
+
+3.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module home_boot_gate.
+
+3.8.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \home_boot_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~149 debug messages>
+
+3.8.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \home_boot_gate.
+Performed a total of 0 changes.
+
+3.8.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\home_boot_gate'.
+Computing hashes of 520 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+Removed a total of 0 cells.
+
+3.8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \home_boot_gate..
+
+3.8.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module home_boot_gate.
+
+3.8.14. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 21 address bits (of 32) from memory init port home_boot_gate.$auto$proc_memwr.cc:45:proc_memwr$1006 (signature_mem).
+Removed top 4 bits (of 11) from port B of cell home_boot_gate.$eq$design.sv:103$453 ($eq).
+Removed top 36 bits (of 64) from mux cell home_boot_gate.$ternary$design.sv:107$465 ($mux).
+Removed top 24 bits (of 32) from port B of cell home_boot_gate.$ge$design.sv:120$476 ($ge).
+Removed top 24 bits (of 32) from port B of cell home_boot_gate.$sub$design.sv:121$481 ($sub).
+Removed top 20 bits (of 32) from port Y of cell home_boot_gate.$sub$design.sv:121$481 ($sub).
+Removed top 24 bits (of 32) from port B of cell home_boot_gate.$lt$design.sv:187$502 ($lt).
+Removed top 1 bits (of 28) from port A of cell home_boot_gate.$add$design.sv:197$508 ($add).
+Removed top 1 bits (of 28) from port B of cell home_boot_gate.$ge$design.sv:200$509 ($ge).
+Removed top 21 bits (of 32) from port B of cell home_boot_gate.$lt$design.sv:216$517 ($lt).
+Removed top 24 bits (of 32) from port B of cell home_boot_gate.$add$design.sv:221$527 ($add).
+Removed top 20 bits (of 32) from port Y of cell home_boot_gate.$add$design.sv:221$527 ($add).
+Removed top 20 bits (of 32) from port B of cell home_boot_gate.$eq$design.sv:221$528 ($eq).
+Removed top 25 bits (of 32) from port B of cell home_boot_gate.$le$design.sv:230$553 ($le).
+Removed top 21 bits (of 32) from port B of cell home_boot_gate.$le$design.sv:232$556 ($le).
+Removed top 20 bits (of 32) from port B of cell home_boot_gate.$gt$design.sv:233$558 ($gt).
+Removed top 25 bits (of 32) from port A of cell home_boot_gate.$add$design.sv:74$591 ($add).
+Removed top 31 bits (of 32) from port B of cell home_boot_gate.$add$design.sv:74$591 ($add).
+Removed top 24 bits (of 32) from port Y of cell home_boot_gate.$add$design.sv:74$591 ($add).
+Removed top 23 bits (of 32) from port B of cell home_boot_gate.$shiftx$design.sv:74$592 ($shiftx).
+Removed top 23 bits (of 32) from port B of cell home_boot_gate.$shiftx$design.sv:75$595 ($shiftx).
+Removed top 24 bits (of 32) from port A of cell home_boot_gate.$add$design.sv:76$597 ($add).
+Removed top 31 bits (of 32) from port B of cell home_boot_gate.$add$design.sv:76$597 ($add).
+Removed top 23 bits (of 32) from port Y of cell home_boot_gate.$add$design.sv:76$597 ($add).
+Removed top 22 bits (of 32) from port B of cell home_boot_gate.$shiftx$design.sv:76$598 ($shiftx).
+Removed top 22 bits (of 32) from port B of cell home_boot_gate.$shiftx$design.sv:77$601 ($shiftx).
+Removed top 22 bits (of 32) from port B of cell home_boot_gate.$shiftx$design.sv:78$604 ($shiftx).
+Removed top 21 bits (of 32) from mux cell home_boot_gate.$procmux$614 ($mux).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$837_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$843_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell home_boot_gate.$procmux$844_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$845_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$846_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell home_boot_gate.$procmux$855_CMP0 ($eq).
+Removed top 3 bits (of 4) from port B of cell home_boot_gate.$procmux$861_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$915_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$915_CMP1 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$916_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell home_boot_gate.$procmux$916_CMP1 ($eq).
+Removed top 2 bits (of 4) from port B of cell home_boot_gate.$procmux$917_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell home_boot_gate.$procmux$917_CMP1 ($eq).
+Removed top 3 bits (of 4) from port B of cell home_boot_gate.$procmux$918_CMP0 ($eq).
+Removed top 1 bits (of 12) from port Y of cell home_boot_gate.$sub$design.sv:121$481 ($sub).
+Removed top 21 bits (of 32) from wire home_boot_gate.$0$memwr$\signature_mem$design.sv:121$391_ADDR[31:0]$470.
+Removed top 21 bits (of 32) from wire home_boot_gate.$sub$design.sv:121$481_Y.
+Removed top 20 bits (of 32) from wire home_boot_gate.$add$design.sv:221$527_Y.
+Removed top 24 bits (of 32) from wire home_boot_gate.$add$design.sv:74$591_Y.
+Removed top 23 bits (of 32) from wire home_boot_gate.$add$design.sv:76$597_Y.
+
+3.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \home_boot_gate..
+Removed 0 unused cells and 5 unused wires.
+<suppressed ~1 debug messages>
+
+3.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.12. Executing OPT pass (performing simple optimizations).
+
+3.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module home_boot_gate.
+
+3.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\home_boot_gate'.
+Computing hashes of 518 cells of `\home_boot_gate'.
+Finding duplicate cells in `\home_boot_gate'.
+Removed a total of 0 cells.
+
+3.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \home_boot_gate..
+
+3.12.4. Finished fast OPT passes.
+
+3.13. Executing SORT pass.
+
+3.14. Printing statistics.
+
+=== home_boot_gate ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      541 wires
+     6826 wire bits
+      336 public wires
+     3158 public wire bits
+       33 ports
+      651 port bits
+      518 cells
+        7   $add
+       16   $adff
+        1   $anyconst
+       10   $check
+        3   $dff
+      278   $eq
+        4   $ge
+        1   $gt
+        2   $le
+       34   $logic_and
+        9   $logic_not
+       30   $logic_or
+        4   $lt
+        1   $mem_v2
+       92   $mux
+        2   $ne
+        2   $not
+        7   $pmux
+        2   $reduce_and
+        4   $reduce_or
+        2   $scopeinfo
+        5   $shiftx
+        2   $sub
+
+3.15. Executing CHECK pass (checking for obvious problems).
+Checking module home_boot_gate...
+Found and reported 0 problems.
+
+4. Executing ASYNC2SYNC pass.
+Replacing home_boot_gate.$procdff$1000 ($adff): ARST=\reset_n, D=$0\spec_value[7:0], Q=\spec_value
+Replacing home_boot_gate.$procdff$1005 ($adff): ARST=\reset_n, D=$0\crypto_reset_release_q[0:0], Q=\crypto_reset_release_q
+Replacing home_boot_gate.$procdff$929 ($adff): ARST=\reset_n, D=1'1, Q=\signature_read_valid_q
+Replacing home_boot_gate.$procdff$934 ($adff): ARST=\reset_n, D=$0\state_q[3:0], Q=\state_q
+Replacing home_boot_gate.$procdff$939 ($adff): ARST=\reset_n, D=$0\nonce_q[255:0], Q=\nonce_q
+Replacing home_boot_gate.$procdff$944 ($adff): ARST=\reset_n, D=$0\root_q[255:0], Q=\root_q
+Replacing home_boot_gate.$procdff$949 ($adff): ARST=\reset_n, D=$0\have_nonce_q[0:0], Q=\have_nonce_q
+Replacing home_boot_gate.$procdff$954 ($adff): ARST=\reset_n, D=$0\have_root_q[0:0], Q=\have_root_q
+Replacing home_boot_gate.$procdff$959 ($adff): ARST=\reset_n, D=$0\fault_q[0:0], Q=\fault_q
+Replacing home_boot_gate.$procdff$964 ($adff): ARST=\reset_n, D=$0\age_q[26:0], Q=\age_q
+Replacing home_boot_gate.$procdff$969 ($adff): ARST=\reset_n, D=$0\lease_age_q[27:0], Q=\lease_age_q
+Replacing home_boot_gate.$procdff$974 ($adff): ARST=\reset_n, D=$0\lease_active_q[0:0], Q=\lease_active_q
+Replacing home_boot_gate.$procdff$979 ($adff): ARST=\reset_n, D=$0\seen_nonce_q[0:0], Q=\seen_nonce_q
+Replacing home_boot_gate.$procdff$984 ($adff): ARST=\reset_n, D=$0\previous_nonce_q[255:0], Q=\previous_nonce_q
+Replacing home_boot_gate.$procdff$989 ($adff): ARST=\reset_n, D=$0\index_q[10:0], Q=\index_q
+Replacing home_boot_gate.$procdff$995 ($adff): ARST=\reset_n, D=$0\spec_written[0:0], Q=\spec_written
+
+5. Executing DFFUNMAP pass (unmap clock enable and synchronous reset from FFs).
+
+6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \home_boot_gate..
+Removed 20 unused cells and 20 unused wires.
+<suppressed ~21 debug messages>
+
+7. Executing SMT2 backend.
+
+7.1. Executing BMUXMAP pass.
+
+7.2. Executing DEMUXMAP pass.
+Creating SMT-LIBv2 representation of module home_boot_gate.

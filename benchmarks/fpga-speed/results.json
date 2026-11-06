@@ -1,11 +1,14 @@
 {
-  "complete_rows": 8,
+  "schema": "fpga-common-speed-results-v1",
   "protocol": "one-token-128-host-v2",
+  "timestamp_boundary": "generation_loop_validated_reply",
+  "complete_rows": 8,
+  "total_rows": 8,
   "rows": [
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-baseline",
+      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC**",
+      "package_status": "Runnable release",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -34,29 +37,30 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC**",
-      "missing": null,
-      "package_status": "Runnable release",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 25.294664333,
         "cached_tokens_per_second": 10.041643433418713,
         "command_only_diagnostic_tokens_per_second": 10.053202978986162,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.085237208,
           0.085324375
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 12.649614709,
-          "cached_host_seconds": 12.664356833000001,
-          "cached_outputs": 127,
           "capture_sha256": "922c19ff323eb70128da97568974f639fa85c6de0ea2e0444d1309b4c0811acc",
-          "clear_before": true,
-          "first_step_seconds": 0.085237208,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.664356833000001,
+          "cached_command_seconds": 12.649614709,
+          "first_step_seconds": 0.085237208,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -85,21 +89,21 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 12.615964881,
-          "cached_host_seconds": 12.630307499999999,
-          "cached_outputs": 127,
           "capture_sha256": "475b42f806e3c7d3fa139d97e2aca50064e1e9f46e87b4dd959e04a827f0c9c6",
-          "clear_before": true,
-          "first_step_seconds": 0.085324375,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.630307499999999,
+          "cached_command_seconds": 12.615964881,
+          "first_step_seconds": 0.085324375,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -128,18 +132,17 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-kv-protected",
+      "label": "Same model, **F-AWIC with K/V protection**",
+      "package_status": "Runnable release",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -168,29 +171,30 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "Same model, **F-AWIC with K/V protection**",
-      "missing": null,
-      "package_status": "Runnable release",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 36.140183707000006,
         "cached_tokens_per_second": 7.028187849272129,
         "command_only_diagnostic_tokens_per_second": 7.033278184561002,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.101918959,
           0.102195292
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 18.025437961,
-          "cached_host_seconds": 18.036201666,
-          "cached_outputs": 127,
           "capture_sha256": "875662916438ea136d7b9e1319cd8917ec8252feb7dba0e95ae65b859c51d4d2",
-          "clear_before": true,
-          "first_step_seconds": 0.101918959,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 18.036201666,
+          "cached_command_seconds": 18.025437961,
+          "first_step_seconds": 0.101918959,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -219,21 +223,21 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 18.088589287,
-          "cached_host_seconds": 18.103982041000002,
-          "cached_outputs": 127,
           "capture_sha256": "2923ed8d27536ad03ffa3f99ca2a4ce8fb020c34a0de1d569217a31762dab2c3",
-          "clear_before": true,
-          "first_step_seconds": 0.102195292,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 18.103982041000002,
+          "cached_command_seconds": 18.088589287,
+          "first_step_seconds": 0.102195292,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -262,18 +266,17 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-encrypted",
+      "label": "Same model, **F-AWIC with K/V protection + encrypted memory**",
+      "package_status": "Runnable release; public demonstration keys",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -302,29 +305,30 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "Same model, **F-AWIC with K/V protection + encrypted memory**",
-      "missing": null,
-      "package_status": "Runnable release; public demonstration keys",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 42.072727,
         "cached_tokens_per_second": 6.037165121243508,
         "command_only_diagnostic_tokens_per_second": 6.040046735366696,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.118967125,
           0.118865833
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 21.017759372,
-          "cached_host_seconds": 21.027909959,
-          "cached_outputs": 127,
           "capture_sha256": "c22e576b455bf99c7cfa7bfb514bb0c3f99898cd46b8a3c0e9a6b8fc27914793",
-          "clear_before": true,
-          "first_step_seconds": 0.118967125,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 21.027909959,
+          "cached_command_seconds": 21.017759372,
+          "first_step_seconds": 0.118967125,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -353,21 +357,21 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 21.034895372,
-          "cached_host_seconds": 21.044817041,
-          "cached_outputs": 127,
           "capture_sha256": "e2e7371ff51b536c7e199567f37c05915dcb8eaaaae659be0fad1995213cf267",
-          "clear_before": true,
-          "first_step_seconds": 0.118865833,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 21.044817041,
+          "cached_command_seconds": 21.034895372,
+          "first_step_seconds": 0.118865833,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -396,276 +400,275 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-seeded-sampling",
+      "label": "Same model, **F-AWIC with seeded sampling at temperature 1**, without K/V integrity",
+      "package_status": "Runnable release",
       "identity": {
         "core_clock_mhz": 25,
         "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
       },
-      "label": "Same model, **F-AWIC with seeded sampling at temperature 1**, without K/V integrity",
-      "missing": null,
-      "package_status": "Runnable release",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 25.583678042021347,
         "cached_tokens_per_second": 9.928204990025415,
         "command_only_diagnostic_tokens_per_second": 9.942238076431886,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.08490541600622237,
           0.08474962500622496
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 12.782095956092235,
-          "cached_host_seconds": 12.80031154199969,
-          "cached_outputs": 127,
           "capture_sha256": "97b6e5b160688153d37b749a6ee44976676cf731f88089487065c025607acfca",
-          "clear_before": true,
-          "decoding": "seeded-sampling",
-          "first_step_seconds": 0.08490541600622237,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": false,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.80031154199969,
+          "cached_command_seconds": 12.782095956092235,
+          "first_step_seconds": 0.08490541600622237,
           "identity": {
             "core_clock_mhz": 25,
             "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
           },
-          "prompt_tokens": [
-            378
-          ],
-          "seed": "0x99aabbccddeeff001122334455667788",
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": false,
+          "clear_before": true,
           "stop_at_eos": false,
+          "decoding": "seeded-sampling",
           "temperature": 1,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "seed": "0x99aabbccddeeff001122334455667788"
         },
         {
-          "cached_command_seconds": 12.765471708989935,
-          "cached_host_seconds": 12.783366500021657,
-          "cached_outputs": 127,
           "capture_sha256": "5a9e3375af68d4436566e895855be579c4c99fcfcd9d38e388159c45ebe1b018",
-          "clear_before": true,
-          "decoding": "seeded-sampling",
-          "first_step_seconds": 0.08474962500622496,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": false,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.783366500021657,
+          "cached_command_seconds": 12.765471708989935,
+          "first_step_seconds": 0.08474962500622496,
           "identity": {
             "core_clock_mhz": 25,
             "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
           },
-          "prompt_tokens": [
-            378
-          ],
-          "seed": "0x99aabbccddeeff001122334455667788",
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": false,
+          "clear_before": true,
           "stop_at_eos": false,
+          "decoding": "seeded-sampling",
           "temperature": 1,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "seed": "0x99aabbccddeeff001122334455667788"
         }
       ]
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-signed-update",
+      "label": "Same model, **S-AWIC**, without K/V integrity",
+      "package_status": "Runnable release; public demonstration keys",
       "identity": {
         "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
         "baud_rate": 115200,
-        "board_result_sha256": "c2a6f2d19cccf62c0b1ca40bbf6b85bbd09fda13464f8a6d801ec12bff26c610",
+        "board_result_sha256": "2546a893646f1435c4337a7271a64b366f51e144d37511f6acdf634567506ad9",
         "clock": "time.monotonic_ns",
         "clock_hz": 25000000,
         "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
-        "fpga_image_sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2",
+        "fpga_image_sha256": "8472e592c68a4b2425be4ecb8f57bde855d3be5df140f96bbe417226d1dca370",
         "host_platform": "macOS-27.0.1-arm64-arm-64bit",
         "model": "SimpleStories-V2-5M",
         "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
         "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
-        "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+        "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
         "signed_manifest_version": 1,
         "timestamp_boundary": "generation_loop_validated_reply",
         "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
         "variant": "S-AWIC"
       },
-      "label": "Same model, **S-AWIC**, without K/V integrity",
-      "missing": null,
-      "package_status": "Runnable release; public demonstration keys",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
-        "cached_host_seconds": 25.124574250000002,
-        "cached_tokens_per_second": 10.109624046664193,
-        "command_only_diagnostic_tokens_per_second": 10.110694000365624,
         "counted_cached_outputs": 254,
+        "cached_host_seconds": 25.141651874,
+        "cached_tokens_per_second": 10.102757021414002,
+        "command_only_diagnostic_tokens_per_second": 10.103711396920017,
         "first_step_seconds": [
-          0.084981083,
-          0.085004875
+          0.084973875,
+          0.084978625
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 12.577923757,
-          "cached_host_seconds": 12.579277084,
-          "cached_outputs": 127,
-          "capture_sha256": "d114b4aa722df27b845c1dc97c8173e7051e4a99f406d54ed28d06ac08f6f302",
-          "clear_before": true,
-          "first_step_seconds": 0.084981083,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
-            "baud_rate": 115200,
-            "board_result_sha256": "c2a6f2d19cccf62c0b1ca40bbf6b85bbd09fda13464f8a6d801ec12bff26c610",
-            "clock": "time.monotonic_ns",
-            "clock_hz": 25000000,
-            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
-            "fpga_image_sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2",
-            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
-            "model": "SimpleStories-V2-5M",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
-            "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
-            "signed_manifest_version": 1,
-            "timestamp_boundary": "generation_loop_validated_reply",
-            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
-            "variant": "S-AWIC"
-          },
+          "capture_sha256": "3a5859694f8fa13a315e006a2eba94f4d11cb9faef9dff930aa06a9f372cc44f",
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.579301666000001,
+          "cached_command_seconds": 12.578119296,
+          "first_step_seconds": 0.084973875,
+          "identity": {
+            "model": "SimpleStories-V2-5M",
+            "variant": "S-AWIC",
+            "clock_hz": 25000000,
+            "fpga_image_sha256": "8472e592c68a4b2425be4ecb8f57bde855d3be5df140f96bbe417226d1dca370",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
+            "signed_manifest_version": 1,
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
+            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
+            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
+            "board_result_sha256": "2546a893646f1435c4337a7271a64b366f51e144d37511f6acdf634567506ad9",
+            "baud_rate": 115200,
+            "clock": "time.monotonic_ns",
+            "timestamp_boundary": "generation_loop_validated_reply"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 12.543991711,
-          "cached_host_seconds": 12.545297166000001,
-          "cached_outputs": 127,
-          "capture_sha256": "590ef7d91cdbd3d9e794f5b488721cda5787e3258b7415fb26c2024a16b1db8a",
-          "clear_before": true,
-          "first_step_seconds": 0.085004875,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
-            "baud_rate": 115200,
-            "board_result_sha256": "c2a6f2d19cccf62c0b1ca40bbf6b85bbd09fda13464f8a6d801ec12bff26c610",
-            "clock": "time.monotonic_ns",
-            "clock_hz": 25000000,
-            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
-            "fpga_image_sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2",
-            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
-            "model": "SimpleStories-V2-5M",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
-            "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
-            "signed_manifest_version": 1,
-            "timestamp_boundary": "generation_loop_validated_reply",
-            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
-            "variant": "S-AWIC"
-          },
+          "capture_sha256": "4c4a8d7f07f944b4f70b95b989c41e243a20768c19d037ac8d681fc180eed14d",
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.562350208,
+          "cached_command_seconds": 12.56115775,
+          "first_step_seconds": 0.084978625,
+          "identity": {
+            "model": "SimpleStories-V2-5M",
+            "variant": "S-AWIC",
+            "clock_hz": 25000000,
+            "fpga_image_sha256": "8472e592c68a4b2425be4ecb8f57bde855d3be5df140f96bbe417226d1dca370",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
+            "signed_manifest_version": 1,
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
+            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
+            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
+            "board_result_sha256": "2546a893646f1435c4337a7271a64b366f51e144d37511f6acdf634567506ad9",
+            "baud_rate": 115200,
+            "clock": "time.monotonic_ns",
+            "timestamp_boundary": "generation_loop_validated_reply"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-home-authorization",
+      "label": "Same model, **S-AWIC with periodic reauthorization**, without K/V integrity",
+      "package_status": "Runnable token-ID demonstration; public demonstration keys",
       "identity": {
         "clock": "time.monotonic_ns",
         "clock_hz": 25000000,
         "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
-        "fpga_image_sha256": "cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e",
+        "fpga_image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
         "model": "SimpleStories-V2-5M",
         "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
         "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
-        "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
+        "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
         "timestamp_boundary": "generation_loop_validated_reply",
         "variant": "S-AWIC with renewable home authorization"
       },
-      "label": "Same model, **S-AWIC with periodic reauthorization**, without K/V integrity",
-      "missing": null,
-      "package_status": "Runnable token-ID demonstration; public demonstration keys",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
-        "cached_host_seconds": 34.406163082999996,
-        "cached_tokens_per_second": 7.382398304259064,
-        "command_only_diagnostic_tokens_per_second": 10.08160665019189,
         "counted_cached_outputs": 254,
+        "cached_host_seconds": 33.250101332999996,
+        "cached_tokens_per_second": 7.639074463448645,
+        "command_only_diagnostic_tokens_per_second": 10.105826168589543,
         "first_step_seconds": [
-          0.085018417,
-          0.084956583
+          0.0850015,
+          0.085008417
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 12.599171048,
-          "cached_host_seconds": 16.540049125,
-          "cached_outputs": 127,
-          "capture_sha256": "e10575a0a5343c95656a45281e850b69440abbe7c8002ad74a298f8a00cc2dcb",
-          "clear_before": true,
-          "first_step_seconds": 0.085018417,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "clock": "time.monotonic_ns",
-            "clock_hz": 25000000,
-            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
-            "fpga_image_sha256": "cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e",
-            "model": "SimpleStories-V2-5M",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
-            "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
-            "timestamp_boundary": "generation_loop_validated_reply",
-            "variant": "S-AWIC with renewable home authorization"
-          },
+          "capture_sha256": "03f7186d3ce027188f1cb77ed2bbb5bc77517544b85271b6935381c4d9109593",
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 16.642126875,
+          "cached_command_seconds": 12.554044252,
+          "first_step_seconds": 0.0850015,
+          "identity": {
+            "model": "SimpleStories-V2-5M",
+            "variant": "S-AWIC with renewable home authorization",
+            "clock_hz": 25000000,
+            "fpga_image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
+            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
+            "clock": "time.monotonic_ns",
+            "timestamp_boundary": "generation_loop_validated_reply"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 12.595225918,
-          "cached_host_seconds": 17.866113958,
-          "cached_outputs": 127,
-          "capture_sha256": "49f24af8c71fa2f3febb4b3bc032432b51fadc61cf948405785845827275230c",
-          "clear_before": true,
-          "first_step_seconds": 0.084956583,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "clock": "time.monotonic_ns",
-            "clock_hz": 25000000,
-            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
-            "fpga_image_sha256": "cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e",
-            "model": "SimpleStories-V2-5M",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
-            "reference_sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18",
-            "timestamp_boundary": "generation_loop_validated_reply",
-            "variant": "S-AWIC with renewable home authorization"
-          },
+          "capture_sha256": "1c674f0cfcfa44eedfb1194b1121ba110ed4a290315aa5b99ae9bb4d398edd71",
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 16.607974457999997,
+          "cached_command_seconds": 12.579972083,
+          "first_step_seconds": 0.085008417,
+          "identity": {
+            "model": "SimpleStories-V2-5M",
+            "variant": "S-AWIC with renewable home authorization",
+            "clock_hz": 25000000,
+            "fpga_image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
+            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
+            "clock": "time.monotonic_ns",
+            "timestamp_boundary": "generation_loop_validated_reply"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "qwen3-1.7b",
+      "label": "**Qwen3-1.7B \u2014 AWS F2**, **F-AWIC**",
+      "package_status": "Runnable release; public AWS FPGA image",
       "identity": {
         "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
         "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -692,29 +695,30 @@
         "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
         "runtime_clock_probe_supported": false
       },
-      "label": "**Qwen3-1.7B \u2014 AWS F2**, **F-AWIC**",
-      "missing": null,
-      "package_status": "Runnable release; public AWS FPGA image",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 28.191061175999998,
         "cached_tokens_per_second": 9.009948168117871,
         "command_only_diagnostic_tokens_per_second": 9.010895087085421,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.108920611,
           0.108772231
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 14.094837916,
-          "cached_host_seconds": 14.096516237,
-          "cached_outputs": 127,
           "capture_sha256": "5b3cda2ed08eb8ff2e469f3c949d2ab58835136bbb919f6ecb4feaeaaffc4ad5",
-          "clear_before": true,
-          "first_step_seconds": 0.108920611,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 14.096516237,
+          "cached_command_seconds": 14.094837916,
+          "first_step_seconds": 0.108920611,
           "identity": {
             "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -741,21 +745,21 @@
             "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
             "runtime_clock_probe_supported": false
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 14.093260774,
-          "cached_host_seconds": 14.094544939,
-          "cached_outputs": 127,
           "capture_sha256": "77bf0cf3ec008c0adf62b366a45340a2157949a694a84566a242592b5cf54211",
-          "clear_before": true,
-          "first_step_seconds": 0.108772231,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 14.094544939,
+          "cached_command_seconds": 14.093260774,
+          "first_step_seconds": 0.108772231,
           "identity": {
             "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -782,18 +786,17 @@
             "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
             "runtime_clock_probe_supported": false
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "qwen3-8b",
+      "label": "**Qwen3-8B \u2014 AWS F2**, **F-AWIC**",
+      "package_status": "Runnable prototype; speed optimization in progress; public AWS FPGA image",
       "identity": {
         "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
         "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -820,29 +823,30 @@
         "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
         "runtime_clock_probe_supported": false
       },
-      "label": "**Qwen3-8B \u2014 AWS F2**, **F-AWIC**",
-      "missing": null,
-      "package_status": "Runnable prototype; speed optimization in progress; public AWS FPGA image",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 226.426331573,
         "cached_tokens_per_second": 1.1217776582584003,
         "command_only_diagnostic_tokens_per_second": 1.1218040674095815,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.885920814,
           0.885697971
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 113.218455156,
-          "cached_host_seconds": 113.221083501,
-          "cached_outputs": 127,
           "capture_sha256": "f60df41712e946521af2ea7e553dc81618b8c01d7dafdc3b9acc8aa9cec533b1",
-          "clear_before": true,
-          "first_step_seconds": 0.885920814,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 113.221083501,
+          "cached_command_seconds": 113.218455156,
+          "first_step_seconds": 0.885920814,
           "identity": {
             "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -869,21 +873,21 @@
             "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
             "runtime_clock_probe_supported": false
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 113.202545961,
-          "cached_host_seconds": 113.205248072,
-          "cached_outputs": 127,
           "capture_sha256": "c654b27574c54b4ba106ad0ca2938081b81f787e3893db65cad7220e655006dd",
-          "clear_before": true,
-          "first_step_seconds": 0.885697971,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 113.205248072,
+          "cached_command_seconds": 113.202545961,
+          "first_step_seconds": 0.885697971,
           "identity": {
             "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -910,17 +914,14 @@
             "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
             "runtime_clock_probe_supported": false
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     }
   ],
-  "schema": "fpga-common-speed-results-v1",
-  "scope": "Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay.",
   "source_sha256": {
     "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/capture.json": {
       "bytes": 69517,
@@ -994,6 +995,18 @@
       "bytes": 2267,
       "sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18"
     },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/repair-board-2026-11-05/COMMON-SPEED.json": {
+      "bytes": 30826,
+      "sha256": "d4ff280ef00a68f7e095df62248b08a40c78fe3a285af37fb085de57c9c57a47"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/repair-board-2026-11-05/EVIDENCE-AUDIT.json": {
+      "bytes": 3140,
+      "sha256": "5accb696b36c654f8d37a9c4c04a0ff85b0c0c27af95a68fff258b4f0f8d18a8"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/evidence/repair-board-2026-11-05/common-reference.json": {
+      "bytes": 2273,
+      "sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9"
+    },
     "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/FINISHED.json": {
       "bytes": 30948,
       "sha256": "c3bfe64c344fd4fa60c475e1cc15902de1b6b9fec38d340dc62ef11d48105edc"
@@ -1005,8 +1018,19 @@
     "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/common-speed-20261103/reference.json": {
       "bytes": 2267,
       "sha256": "ffb2b78f4b1b1c19a2500dfc834ed9bef9e5959928c16a196f1fd06559968a18"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/FINISHED.json": {
+      "bytes": 30907,
+      "sha256": "c363930c7791c05058a769311de3641eefe6583d5981878bd1ee0820e7235db9"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/RAW-REVIEW.json": {
+      "bytes": 593,
+      "sha256": "a6523e4bed902d2460ab1190c166df78b526ffd46a625fcd112d659afe9031ee"
+    },
+    "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/reference.json": {
+      "bytes": 2273,
+      "sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9"
     }
   },
-  "timestamp_boundary": "generation_loop_validated_reply",
-  "total_rows": 8
+  "scope": "Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay."
 }

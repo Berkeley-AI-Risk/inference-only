@@ -2,7 +2,7 @@
 `default_nettype none
 // Ordered DDR readback, not flash-side hashing. The expected digest comes
 // only from the sealed, signed boot payload. No runtime restart of this block.
-module su_image_check (
+module su_image_check #(parameter bit USE_SHARED_COMPRESSOR=1'b0) (
     input wire clk,reset_n,start_i,
     input wire [255:0] expected_sha_i,
     input wire readback_valid_i,
@@ -10,7 +10,12 @@ module su_image_check (
     input wire [7:0] readback_byte_i,
     input wire readback_last_i,
     output wire verified_o,
-    output wire fault_o
+    output wire fault_o,
+    output wire shared_request_o,
+    output wire [511:0] shared_block_o,
+    output wire [255:0] shared_state_o,
+    input wire shared_accept_i,shared_done_i,
+    input wire [255:0] shared_digest_i
 );
     localparam integer IMAGE_BYTES=7265984;
     logic started_q,received_last_q,verified_q,fault_q;
@@ -34,11 +39,13 @@ module su_image_check (
     assign readback_ready_o=started_q && !received_last_q && !fault_o && sha_ready;
     assign verified_o=verified_q && !fault_o;
     assign fault_o=fault_q || sha_fault;
-    su_sha256 #(.MAX_BYTES(IMAGE_BYTES)) u_sha(
+    su_sha256 #(.MAX_BYTES(IMAGE_BYTES),.USE_SHARED_COMPRESSOR(USE_SHARED_COMPRESSOR)) u_sha(
         .clk(clk),.reset_n(reset_n),.start_i(start_i && !started_q),.length_i(32'(IMAGE_BYTES)),
         .byte_valid_i(readback_valid_i && started_q && !received_last_q && !fault_q),
         .byte_ready_o(sha_ready),.byte_i(readback_byte_i),.byte_offset_o(sha_offset),
-        .busy_o(sha_busy),.done_o(sha_done),.fault_o(sha_fault),.digest_o(sha_digest));
+        .busy_o(sha_busy),.done_o(sha_done),.fault_o(sha_fault),.digest_o(sha_digest),
+        .shared_request_o(shared_request_o),.shared_block_o(shared_block_o),.shared_state_o(shared_state_o),
+        .shared_accept_i(shared_accept_i),.shared_done_i(shared_done_i),.shared_digest_i(shared_digest_i));
     always_ff @(posedge clk or negedge reset_n) begin
         if(!reset_n) begin
             started_q<=0;received_last_q<=0;verified_q<=0;fault_q<=0;count_q<=0;expected_q<=0;

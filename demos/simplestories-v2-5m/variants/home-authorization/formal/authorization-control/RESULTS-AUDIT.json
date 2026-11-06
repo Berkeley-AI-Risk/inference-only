@@ -1,0 +1,72 @@
+{
+  "result": "PASS",
+  "formal_jobs": [
+    {
+      "job": "controller",
+      "run": "controller-v10",
+      "result": "PASS",
+      "induction_length": 3,
+      "result_sha256": "3d5ebeb47f1159eed2f682e8adbb52f17b5487cf1b6285b7ebb63f82886ef54b",
+      "design_sha256": "894b5297c6447ae6f72438a4a9ca6150e3d8dd025ed3e725f2d4024fea8284c6",
+      "proof_log_sha256": "e29e838f77823fa30bad898d4705b069e3c45f4ac98c197485a84d1ee5284c07"
+    },
+    {
+      "job": "core",
+      "run": "core-v3",
+      "result": "PASS",
+      "induction_length": 1,
+      "result_sha256": "a8bd579518b3e7569e7a5c82a756d4678a98cf4aebc2a5bbdd5964f41fcce7ce",
+      "design_sha256": "edc9e907bc174cd484e1e831dcec07a8a13ed8b4043e65e50b5dec1c6ad91f19",
+      "proof_log_sha256": "ad4399209d099f4faa806578e0f8c5e5882f72e3d795308654f525bebc6a745e"
+    },
+    {
+      "job": "publication",
+      "run": "publication-v1",
+      "result": "PASS",
+      "induction_length": 2,
+      "result_sha256": "93812f99041acbc70f09386f23fc3291b2ffcd4f799d5d11fbbf18375a4bfab9",
+      "design_sha256": "c4c14a6556b650fc49f96d2a2253de3185a5ad6ec830eff54c70873ce06dfdd2",
+      "proof_log_sha256": "2906bd506a3dd572d96e9b5a9477701749cb06567e0a5360b2f4cdceab74eb8e"
+    },
+    {
+      "job": "verifier",
+      "run": "verifier-v2",
+      "result": "PASS",
+      "induction_length": 1,
+      "result_sha256": "06c5c9d70b0efcdf12c5d282e10481750037aed884c6c3446e0771a433bd224c",
+      "design_sha256": "ad26d0b133eb8096154d40ed040522b18fc50579ee4e4ebb7e402bcda4646670",
+      "proof_log_sha256": "a39a42e7f5b9f5655b4814535f7584732e2da2d12f05971b308a7c437e0ac1bb"
+    },
+    {
+      "job": "signature-memory",
+      "run": "memory-v2",
+      "result": "PASS",
+      "result_sha256": "03844426695bd61298abf0bfba8506017e812248fd02cc1dc15265ac64efb285"
+    }
+  ],
+  "negative_controls": [
+    {
+      "run": "negative-header-v1",
+      "detected": true,
+      "kind": "induction-rejected; reachable simulation control checked separately",
+      "result_sha256": "329df8fbf7b4019ce1dc657454cbd071a24c45988e05f03c217bc159d4cf9f07"
+    },
+    {
+      "run": "negative-binding-v1",
+      "detected": true,
+      "kind": "induction-rejected; reachable simulation control checked separately",
+      "result_sha256": "ff0364ff75701076702c11e48afa876d253958fdbfb43d05746ae73a6db2c684"
+    },
+    {
+      "run": "negative-permit-v1",
+      "detected": true,
+      "kind": "base-counterexample",
+      "result_sha256": "6ac243c958895659f6d4905d57401338027baaea87aab68edd9607be120f2f2b"
+    }
+  ],
+  "witness_result_sha256": "68ca3abdb2157405b2855ee04a51d0a4e56f561d697928288f7dbaf8ce2d50db",
+  "wiring_audit_sha256": "abe87bdef402aae3b79de6ac8fbaece437b7d149b751cc9d55ebe3efce13b278",
+  "connections_checked": 75,
+  "source_pins_sha256": "4c055983af1a8c535764e81913a7af6ab648f26f0f57f0fb05d923f6f12ff97b",
+  "scope": "Five compositional authorization-control lemmas plus source-pinned static correspondence, three formal mutation controls, and reachable simulation controls. Not an unconditional whole-chip theorem."
+}

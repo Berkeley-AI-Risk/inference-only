@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "cases": [
+    {
+      "case": "actual",
+      "expected_behavior_observed": true,
+      "exit_code": 0,
+      "design_sha256": "6bd9a844eba7c270f5b4df53f2254095d54f1ca518fd9f42a350d7d6e8a3a873",
+      "witness_sha256": "c6137958b9e2ef10a8c41d7b42c7e3c8c866e7585b29b2dc775091e488fa1575",
+      "simulation_log_sha256": "03c18139762faf43d25c3a9a6be864164533ba28dd835533022eae75d939cf67",
+      "compile_log_sha256": "9ecb9c15b6f93b928379c10df13971967973c0c02dc59a627671e3c94e19e272"
+    },
+    {
+      "case": "reset-bypass",
+      "expected_behavior_observed": true,
+      "exit_code": 1,
+      "design_sha256": "002e48b7d104514d020d8884086b52b4e1d7bdb7eadebdd6a49c68891d73a9ce",
+      "witness_sha256": "c6137958b9e2ef10a8c41d7b42c7e3c8c866e7585b29b2dc775091e488fa1575",
+      "simulation_log_sha256": "a38a1f086bd7b57c3bb5afbd1a762e92a12a112d7e58ef2100ddc3713b75620b",
+      "compile_log_sha256": "78bdac501f1e1db942863ce0620815abc9e03300a2ee9c8d5973f3e8c9c20d99"
+    }
+  ],
+  "model_prefix_sha256": "6391fa5c453d5b70bb7d9dd1165104b89cb2874f9022532ff45560a1da1e32a6",
+  "grant_sha256": "8581154152c2607790e425bc732ed80e970a8a42118de0358eec84f0b6a43e04",
+  "scope": "Reachable full admission-to-home simulation using real published signed-prefix/grant fixtures, real admission/home/shared-LMS controllers and memories, but abstract SHA digests chosen for each fixed key. Not a cryptographic or board test. Reset-bypass control must retain the old boot verdict and be detected."
+}

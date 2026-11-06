@@ -1,0 +1,234 @@
+{
+  "result": "PASS",
+  "jobs": {
+    "model-lock": {
+      "result": "PASS",
+      "run": "model-lock-origin-v4",
+      "result_sha256": "ede854d5ff7f298932c072669cf9c932c758f4250b3211dd2cf52fdfd2ac881f",
+      "kind": "combinational-all-inputs"
+    },
+    "owner-factor": {
+      "result": "PASS",
+      "run": "owner-factor-v1",
+      "result_sha256": "88fd1a13e93ed3d76e81c8ab4a0c81faf3f7b1cc190d9fc5ce4edce21616c0d5",
+      "kind": "combinational-all-inputs"
+    },
+    "boot-handoff": {
+      "result": "PASS",
+      "run": "boot-handoff-v4",
+      "result_sha256": "af2d6c582a194a7059ef61b2bca4ee01035ec1abd0527837fb409c57de75ff1f",
+      "kind": "temporal-induction"
+    }
+  },
+  "additional_connections": [
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "allow_model_o",
+      "connection": "source_ready"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "model_commitment_o",
+      "connection": "model_commitment"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_memory",
+      "port": "private_signed_admitted_i",
+      "connection": "source_ready"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_memory",
+      "port": "private_model_locked_o",
+      "connection": "model_locked"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "admitted_root_valid_i",
+      "connection": "model_locked"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_home",
+      "port": "admitted_root_i",
+      "connection": "model_commitment"
+    },
+    {
+      "file": "swic/swic_boot_ingress.sv",
+      "instance": "u_admission",
+      "port": "sealed_o",
+      "connection": "admitted"
+    },
+    {
+      "file": "booted_memory.sv",
+      "instance": "u_boot",
+      "port": "admitted_i",
+      "connection": "private_signed_admitted_i"
+    },
+    {
+      "file": "booted_memory.sv",
+      "instance": "u_boot",
+      "port": "boot_locked_o",
+      "connection": "boot_locked"
+    },
+    {
+      "file": "booted_memory.sv",
+      "instance": "u_handoff",
+      "port": "boot_locked_i",
+      "connection": "boot_locked"
+    },
+    {
+      "file": "booted_memory.sv",
+      "instance": "u_handoff",
+      "port": "runtime_locked_o",
+      "connection": "handoff_locked"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "digest_read_i",
+      "connection": "swic_boot_digest_read||swic_digest_read"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "digest_address_i",
+      "connection": "swic_boot_digest_read?swic_boot_digest_address:swic_digest_address"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_signed_boot",
+      "port": "digest_data_o",
+      "connection": "swic_digest_data"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_memory",
+      "port": "private_boot_digest_read_o",
+      "connection": "swic_boot_digest_read"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_memory",
+      "port": "private_boot_digest_address_o",
+      "connection": "swic_boot_digest_address"
+    },
+    {
+      "file": "top.sv",
+      "instance": "u_memory",
+      "port": "private_boot_digest_data_i",
+      "connection": "swic_digest_data"
+    },
+    {
+      "file": "booted_memory.sv",
+      "instance": "u_boot",
+      "port": "digest_read_o",
+      "connection": "private_boot_digest_read_o"
+    },
+    {
+      "file": "booted_memory.sv",
+      "instance": "u_boot",
+      "port": "digest_address_o",
+      "connection": "private_boot_digest_address_o"
+    },
+    {
+      "file": "booted_memory.sv",
+      "instance": "u_boot",
+      "port": "digest_data_i",
+      "connection": "private_boot_digest_data_i"
+    },
+    {
+      "file": "swic/swic_ddr_boot.sv",
+      "instance": "u_pages",
+      "port": "digest_read_o",
+      "connection": "digest_read_o"
+    },
+    {
+      "file": "swic/swic_ddr_boot.sv",
+      "instance": "u_pages",
+      "port": "digest_address_o",
+      "connection": "digest_address_o"
+    },
+    {
+      "file": "swic/swic_ddr_boot.sv",
+      "instance": "u_pages",
+      "port": "digest_data_i",
+      "connection": "digest_data_i"
+    },
+    {
+      "file": "swic/swic_ddr_boot.sv",
+      "instance": "u_pages",
+      "port": "verified_o",
+      "connection": "page_verified"
+    },
+    {
+      "file": "swic/swic_ddr_boot.sv",
+      "instance": "u_pages",
+      "port": "readback_valid_i",
+      "connection": "byte_valid&&image_ready&&(!in_lut||lut_ready)"
+    },
+    {
+      "file": "swic/swic_ddr_boot.sv",
+      "instance": "u_pages",
+      "port": "readback_byte_i",
+      "connection": "readback_byte"
+    },
+    {
+      "file": "swic/swic_ddr_boot.sv",
+      "instance": "u_pages",
+      "port": "readback_last_i",
+      "connection": "last_byte"
+    },
+    {
+      "file": "swic/swic_ddr_boot.sv",
+      "instance": "u_image",
+      "port": "readback_valid_i",
+      "connection": "byte_valid&&page_ready&&(!in_lut||lut_ready)"
+    },
+    {
+      "file": "swic/swic_ddr_boot.sv",
+      "instance": "u_image",
+      "port": "readback_byte_i",
+      "connection": "readback_byte"
+    },
+    {
+      "file": "swic/swic_ddr_boot.sv",
+      "instance": "u_image",
+      "port": "readback_last_i",
+      "connection": "last_byte"
+    },
+    {
+      "file": "swic/swic_ddr_boot.sv",
+      "instance": "u_fixed_luts",
+      "port": "byte_valid_i",
+      "connection": "byte_valid&&in_lut&&image_ready&&page_ready"
+    },
+    {
+      "file": "swic/swic_ddr_boot.sv",
+      "instance": "u_fixed_luts",
+      "port": "byte_i",
+      "connection": "readback_byte"
+    }
+  ],
+  "auxiliary_boolean_factorization_checked": true,
+  "controls": [
+    {
+      "run": "negative-model-lock-v1",
+      "detected": true,
+      "kind": "combinational counterexample"
+    },
+    {
+      "run": "negative-boot-reset-v1",
+      "detected": true,
+      "kind": "induction rejection; reachable simulation also detects reset bypass"
+    }
+  ],
+  "witness_result_sha256": "2049c249cd454c6e5d762c26cde443a854cdb79b1c33235d08426aa14436460c",
+  "boot_owner_handoff_assumed": false,
+  "cryptographic_algorithm_correctness_proved": false,
+  "complete_boot_payload_correctness_proved": false
+}
