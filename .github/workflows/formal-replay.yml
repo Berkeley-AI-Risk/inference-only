@@ -38,6 +38,12 @@ jobs:
           --fresh --repository-root .
           --tool-receipt "$RUNNER_TEMP/formal-tools/TOOLS.json"
           --output "$RUNNER_TEMP/public-control-fresh"
+      - name: Prove native selector WINNER and replay its wrong-tie control
+        run: >-
+          python3.12 -I -S -B demos/simplestories-v2-5m/formal/selector-winner/run.py
+          --repository-root .
+          --tool-receipt "$RUNNER_TEMP/formal-tools/TOOLS.json"
+          --output "$RUNNER_TEMP/selector-winner"
       - name: Preserve proof, decoder and tool receipts
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -54,5 +60,6 @@ jobs:
             ${{ runner.temp }}/public-control-fresh/fresh
             ${{ runner.temp }}/public-control-fresh/fresh-models
             ${{ runner.temp }}/public-control-fresh/queries
+            ${{ runner.temp }}/selector-winner
           if-no-files-found: error
           retention-days: 7

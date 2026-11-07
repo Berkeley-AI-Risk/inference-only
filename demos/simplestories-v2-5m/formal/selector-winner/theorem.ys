@@ -1,0 +1,7 @@
+read_verilog -formal -sv -D SYNTHESIS -D INVOCATION_CHECK -D FOLD_CHECK -D NUMERICAL_JOIN -D WATCH_ROWS selector.sv compare.sv
+prep -top board1_fixed_head_argmax -flatten
+async2sync
+dffunmap
+opt_clean
+write_json native.json
+sat -tempinduct -seq 1 -maxsteps 6 -tempinduct-def -set-init-def -set-def-inputs -prove-asserts -show-ports -dump_json counterexample.json -set-def join_watch_id -show join_watch_id

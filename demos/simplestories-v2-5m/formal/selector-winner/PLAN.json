@@ -1,0 +1,41 @@
+{
+  "RSS_limit_bytes": 4294967296,
+  "bundle_inputs": {
+    "SOURCE.json": {
+      "bytes": 1372,
+      "sha256": "833355e09196fd8d3021caeef0ba6ec0e0408e46f3aa95c2fe0b068f606d8a93"
+    },
+    "fold_monitor.sv.inc": {
+      "bytes": 2385,
+      "sha256": "9816b564f4c598eb22723d6e5a8c6cf5c2523c028cd74aae66aeb3fa86d0b4bf"
+    },
+    "invocation.sv.inc": {
+      "bytes": 5536,
+      "sha256": "3e120393be865acfcbd1768ff450bb4fea1230d4612fcc6ecfcf3e0b9c636425"
+    },
+    "numerical.sv.inc": {
+      "bytes": 5626,
+      "sha256": "f266233f08b4df91dc6cfd18a08e6b2090bdf7047aa35952d155edd89e033b16"
+    },
+    "theorem.ys": {
+      "bytes": 406,
+      "sha256": "36c09ff1d938dc20e94d669b6a02076bf8fc747b2da90ff07f7360bb62d8e915"
+    },
+    "wrong-tie.ys": {
+      "bytes": 1200,
+      "sha256": "ca4070f3f44c41656856084dbc6861e8c524eec33f542a11d8eec3e16539b18e"
+    }
+  },
+  "expected_markers": {
+    "theorem": "Induction step proven: SUCCESS!",
+    "wrong-tie": "SAT proof finished - model found: FAIL!"
+  },
+  "observers": [
+    "invocation.sv.inc",
+    "fold_monitor.sv.inc",
+    "numerical.sv.inc"
+  ],
+  "public_commit": "159528e36d46fc803326758b160aa5e84aebd72b",
+  "seconds_per_job": 90,
+  "workers": 1
+}

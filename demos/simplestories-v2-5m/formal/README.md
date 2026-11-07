@@ -65,3 +65,11 @@ certificates to the complete Q result. Its [theorem and diagram](rms-q-segment/T
 state the stage-entry input boundary, constructive admission histories and
 remaining whole-graph/implementation limits. The qualified source-bound package
 has 554 new selected checks and clean portable reproduction.
+
+The [baseline selector WINNER proof](selector-winner/README.md) starts at an
+actual accepted selector START and proves that a healthy WINNER is the least-ID
+maximum of its 4,019 admitted rows, with exact row membership and output hold.
+Row 0 seeds the incumbent, followed by 4,018 comparisons. Its one repository-root
+command freshly recompiles the native theorem and a reached wrong-tie control.
+The model-logit producer and parent STEP/start/WINNER/reply join remain open in
+this replay.
