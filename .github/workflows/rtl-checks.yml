@@ -39,6 +39,14 @@ jobs:
             --env "HARDWARE_CI_CONTAINER=$RTL_CI_IMAGE" \
             --entrypoint python3 "$RTL_CI_IMAGE" -I -S -B \
             /repo/tools/hardware_ci/runner.py --repository /repo --output /out/fresh-rtl
+      - name: Elaborate both Qwen 1.7B targets and check protected K/V operands
+        run: |
+          RTL_CI_IMAGE=$(python3 -I -S -B -c 'import json; print(json.load(open("tools/hardware_ci/toolchain.json"))["container"])')
+          docker run --rm --network none --cpus 1 --memory 4g \
+            --mount "type=bind,src=$GITHUB_WORKSPACE,dst=/repo,readonly" \
+            --mount "type=bind,src=$RUNNER_TEMP,dst=/out" \
+            --entrypoint python3 "$RTL_CI_IMAGE" -I -S -B \
+            /repo/demos/qwen3-1.7b/variants/protected-kv-simulation/run.py --output /out/qwen17-protected-kv
       - name: Retain actual commands, compiler output and terminal receipts
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -50,3 +58,5 @@ jobs:
             ${{ runner.temp }}/rtl-image.json
             ${{ runner.temp }}/fresh-rtl/**/*.json
             ${{ runner.temp }}/fresh-rtl/**/*.log
+            ${{ runner.temp }}/qwen17-protected-kv/**/*.json
+            ${{ runner.temp }}/qwen17-protected-kv/**/*.log

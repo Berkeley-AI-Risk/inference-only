@@ -1,0 +1,79 @@
+{
+  "configuration": {
+    "K_V_publications_per_three_tokens": 84,
+    "all_captured_tensors_compared": true,
+    "core_clock_MHz": 100,
+    "matched_operation_tensor_publication_fault_CLEAR_counts": true,
+    "memory_clock_MHz": 125,
+    "model": "Qwen3-1.7B fixed numerical core",
+    "model_prefetch_pages": 32
+  },
+  "kind": "Recorded matched whole-model simulation cost, not the portable component regression",
+  "limits": [
+    "Behavioral external memory and finite recorded simulation",
+    "Different harness from the self-contained short operand regression",
+    "Complete three-token/full-model driver and oracle fixture release not supplied here",
+    "No FPGA throughput, implementation timing, area or power claim"
+  ],
+  "pairs": [
+    {
+      "additional_core_clocks": 8127176,
+      "behavioral_memory_mode": "unstalled",
+      "case": "clean3-c4",
+      "complete_tokens": 3,
+      "plain_core_clocks": 31306538,
+      "protected_core_clocks": 39433714,
+      "relative_overhead_rounded_percent": 26
+    },
+    {
+      "additional_core_clocks": 8168969,
+      "behavioral_memory_mode": "randomized stalls",
+      "case": "clean3-c8r",
+      "complete_tokens": 3,
+      "plain_core_clocks": 44191574,
+      "protected_core_clocks": 52360543,
+      "relative_overhead_rounded_percent": 18
+    }
+  ],
+  "protected_module_source_pins": {
+    "kvi_root_owner.sv": {
+      "bytes": 10890,
+      "sha256": "7be20c073015c6ef0343a98445894feb3b9ae90e32a8b60c5820489b51ed9908"
+    },
+    "qwen_kv_hash_frame.sv": {
+      "bytes": 2806,
+      "sha256": "9c19639c5f409d3b16978812d201d94fc1bd5c7911ec702ad7743a0647de2d76"
+    },
+    "qwen_kvp_address.sv": {
+      "bytes": 979,
+      "sha256": "079a1dd4016372b9ba9fcbd65fd5dc5015da3ab7567fcbe1ff0651c23f313c03"
+    },
+    "qwen_kvp_leaf_auth.sv": {
+      "bytes": 15442,
+      "sha256": "941afe278c70e499c2c003fd15c58c4465ffd636268002bb0c7b5ae23ab53769"
+    },
+    "qwen_kvp_page_hash.sv": {
+      "bytes": 6880,
+      "sha256": "d91ea87ba017ed6564965b87cf7e1c334336cf13f58c10c4d182f67c8198e4f0"
+    },
+    "qwen_kvp_reader.sv": {
+      "bytes": 18936,
+      "sha256": "3aa2d9a138e5b6df1902696a9e35d43968195d57abd2287e61cd81f195484d19"
+    },
+    "qwen_kvp_store.sv": {
+      "bytes": 10121,
+      "sha256": "514a13721ad8af3a08f20c081f17e7fbd1e65765dbf0e19a6f509780fb9a75eb"
+    },
+    "qwen_kvp_writer.sv": {
+      "bytes": 14245,
+      "sha256": "cf2e9a6d3c18dd9f2576810926dc03c57fc31a13d1299a961421aac29c54d3aa"
+    }
+  },
+  "recorded_campaign": "connected-20261106T034920Z",
+  "schema": 1,
+  "source_report": "claude-qwen17b-kv-integration-2026-11-05/REPORT.md section2.3",
+  "source_report_identity": {
+    "bytes": 18958,
+    "sha256": "d380362fa73664cadd2d45d1b8b373a7b3b2916ffe97734303a2e703b811d3ce"
+  }
+}

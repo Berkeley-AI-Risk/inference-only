@@ -13,8 +13,8 @@
       "sha256": "350172247b29a92d29fe3fc7106083fde968a91fda37ccffa6de8372c17a679f"
     },
     ".github/workflows/rtl-checks.yml": {
-      "bytes": 2151,
-      "sha256": "d3e1b566283dee57d984a634d4bf30bd7371b35b3a12585a694f60d545397863"
+      "bytes": 2868,
+      "sha256": "5a63727933989d1bde0c32f932c1aa135140f6db24eebc99aea3613e1024fb2c"
     },
     ".gitignore": {
       "bytes": 502,
@@ -57,8 +57,8 @@
       "sha256": "58a1fc0e3f86ff8d12a02ff8b78b5e5294d8ef43ce5b77604ac96922f8e454fd"
     },
     "README.md": {
-      "bytes": 20480,
-      "sha256": "2c7219dc443d055c4f667bd4c379b1147b16d649648ba739e18ce063b167562a"
+      "bytes": 20784,
+      "sha256": "d02d6ce0c7b10c6d0824257dfea7107f4bbf7f0b08c066cda4b6464777baf782"
     },
     "REFERENCES.md": {
       "bytes": 613,
@@ -101,8 +101,8 @@
       "sha256": "53627fe82c55b2d4ee00570e72dd7c979f4136d0f7034c5590838afd640d568b"
     },
     "demos/qwen3-1.7b/README.md": {
-      "bytes": 13222,
-      "sha256": "8d02a314fd47512c824cd51e7c4054954c3a1dd9778d28fa43988a079a637720"
+      "bytes": 13472,
+      "sha256": "c02e05afe43fc922cb01408c62253fe07edb2e6ec3bbf292658f1f6b52900575"
     },
     "demos/qwen3-1.7b/REPRODUCE.md": {
       "bytes": 5527,
@@ -927,6 +927,82 @@
     "demos/qwen3-1.7b/tools/test_package_checks.py": {
       "bytes": 6962,
       "sha256": "97920c76eca943e24b29fdaafb401662681c53efe81219e463a637bd59a00bfc"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/NOTICES.md": {
+      "bytes": 1389,
+      "sha256": "6e17a1325a834b7063d3b6ad7647cfb926a4781a8afbc7b1d0f56f0e6dfa99fd"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/README.md": {
+      "bytes": 7118,
+      "sha256": "797c7e444d2155d73b3451411d6a3457ab42664e1f481abd63ced5abb6e2b399"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/SOURCE-INPUTS.json": {
+      "bytes": 16674,
+      "sha256": "d85594219034d338c0212f6d4de3d97af0db53b72d84e88ac57cd7a2608981cf"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/references/long18.json": {
+      "bytes": 21586,
+      "sha256": "523ab2c96479d451225bf4dc78d4de24aa8a3c5fb9124263639a98757f140b4b"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/references/three-token-cost.json": {
+      "bytes": 2770,
+      "sha256": "7eee3080dafb3c2f03a1a9ec8aae15f9339ed34e0fa6f5af86d0e7b41fa49b09"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/rtl/kvi_root_owner.sv": {
+      "bytes": 10890,
+      "sha256": "7be20c073015c6ef0343a98445894feb3b9ae90e32a8b60c5820489b51ed9908"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/rtl/qwen_kv_hash_frame.sv": {
+      "bytes": 2806,
+      "sha256": "9c19639c5f409d3b16978812d201d94fc1bd5c7911ec702ad7743a0647de2d76"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/rtl/qwen_kvp_address.sv": {
+      "bytes": 979,
+      "sha256": "079a1dd4016372b9ba9fcbd65fd5dc5015da3ab7567fcbe1ff0651c23f313c03"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/rtl/qwen_kvp_leaf_auth.sv": {
+      "bytes": 15442,
+      "sha256": "941afe278c70e499c2c003fd15c58c4465ffd636268002bb0c7b5ae23ab53769"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/rtl/qwen_kvp_page_hash.sv": {
+      "bytes": 6880,
+      "sha256": "d91ea87ba017ed6564965b87cf7e1c334336cf13f58c10c4d182f67c8198e4f0"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/rtl/qwen_kvp_reader.sv": {
+      "bytes": 18936,
+      "sha256": "3aa2d9a138e5b6df1902696a9e35d43968195d57abd2287e61cd81f195484d19"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/rtl/qwen_kvp_store.sv": {
+      "bytes": 10121,
+      "sha256": "514a13721ad8af3a08f20c081f17e7fbd1e65765dbf0e19a6f509780fb9a75eb"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/rtl/qwen_kvp_writer.sv": {
+      "bytes": 14245,
+      "sha256": "cf2e9a6d3c18dd9f2576810926dc03c57fc31a13d1299a961421aac29c54d3aa"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/rtl/qwen_protected_machine.sv": {
+      "bytes": 6899,
+      "sha256": "d25f046b6970525cbd6560e83a995f3c0ae4cec28fe15abc27752b494561dbbf"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/run.py": {
+      "bytes": 13623,
+      "sha256": "a5b55d121e1bc8f4bed587e901fcd1ab4a26dabafd2572799e300eb65e568fc1"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/tests/reference.hpp": {
+      "bytes": 1060,
+      "sha256": "616dc9aff0196bdd4cfc81eff543143f058836eb52b8669f7b4fc662cd3a9e8e"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/tests/sha256_reference.h": {
+      "bytes": 2373,
+      "sha256": "feacd05518e26c083f1a79ff97376be3a40950e7e4758bfa55d950b8aba38000"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/tests/test.cpp": {
+      "bytes": 17996,
+      "sha256": "8c61c01871d44026f9317f67fd27ae1284cc0477f89d870d6a8c7e87359eae41"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/tests/top.sv": {
+      "bytes": 5328,
+      "sha256": "a4fddad65eab60882ceab368daa2f9f6aa418099ad7fcd5d45517c54c44a9a7e"
     },
     "demos/qwen3-8b/.gitignore": {
       "bytes": 49,

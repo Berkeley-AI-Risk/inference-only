@@ -200,6 +200,11 @@ and rental; the 1.7B browser app can run on your Mac and connect to the F2 host
 over SSH. Hardware sources, build instructions and numerical-reference tools
 are also included.
 
+Qwen3-1.7B also has a separate [protected K/V simulation target](demos/qwen3-1.7b/variants/protected-kv-simulation/README.md)
+with authenticated retained K/V and directed operand checks. Its simulation
+records have their own scope; the public FPGA image and speed table use the
+plain K/V configuration.
+
 ## Experimental HWIC research
 
 The [SimpleStories-V2-5M HWIC checkpoint](research/hwic/simplestories-2026-10-27/README.md)

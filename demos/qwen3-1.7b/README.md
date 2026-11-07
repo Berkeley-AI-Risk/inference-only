@@ -46,8 +46,11 @@ The fixed model-image SHA-256 is:
 ```
 
 There is no secret authentication key or manufacturer model-update command.
-The current circuit **does not authenticate K/V or encrypt weights**.
-Those are possible later variants, not features credited to these results.
+The published FPGA circuit **does not authenticate K/V or encrypt weights**.
+A separate [protected K/V simulation target](variants/protected-kv-simulation/README.md)
+adds authenticated retained K/V and self-contained operand/fault controls. Its
+recorded model cost and simulation limits are documented with that target; the
+published board build and the measurements here use plain K/V storage.
 With physical access to external memory, modification of K/V and observation
 of later writes remain unresolved under the physical-possession assessment;
 the restricted application interface does not close that path.
