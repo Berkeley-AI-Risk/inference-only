@@ -1,5 +1,9 @@
 # Protected-K/V CLEAR epoch proof
 
+For a fresh Linux proof in CI or locally, use [the Linux replay](LINUX-REPLAY.md).
+It recompiles the actual RTL and rechecks the theorem on the generated native
+semantics. Recorded validation and strict artifact replay are described below.
+
 The actual plaintext K/V-protected SimpleStories guard has a source-bound,
 unbounded proof of its 64-bit CLEAR epoch protocol. Read the
 [theorem and diagram](THEOREM.md), [scalar SMT definitions](THEOREM.smt2),

@@ -188,7 +188,8 @@ instead of deleting local work.
 | What to reproduce | Entry point | What the result establishes |
 | --- | --- | --- |
 | Recorded proof and board evidence | [SimpleStories reproduction](../demos/simplestories-v2-5m/REPRODUCE.md) and [CI](../.github/workflows/offline-checks.yml) | Integrity, recorded outcomes and the stated helper/fixture checks; a recorded-only command does not rerun a solver or FPGA |
-| Fresh scoped proof | [Protected K/V CLEAR epoch replay example](../demos/simplestories-v2-5m/formal/kv-clear-epoch/REPLAY-EXAMPLE.md) | A small supporting invariant, native recompilation and fresh solver queries under the pinned toolchain; whole-device composition remains open |
+| Fresh scoped proof | [Linux CLEAR epoch proof](../demos/simplestories-v2-5m/formal/kv-clear-epoch/LINUX-REPLAY.md) and [strict replay example](../demos/simplestories-v2-5m/formal/kv-clear-epoch/REPLAY-EXAMPLE.md) | Fresh native compilation and solver queries for the supporting CLEAR epoch invariant; whole-device composition remains open |
+| Fresh RTL components | [Tang loader and Qwen command checks](RTL-CI.md) | Digital lint, elaboration and behavior of two production interfaces across eight configurations; full-chip and physical timing qualification remain separate |
 | Numerical and hardware reproduction | [SimpleStories](../demos/simplestories-v2-5m/REPRODUCE.md), [Qwen 1.7B](../demos/qwen3-1.7b/REPRODUCE.md), [Qwen 8B](../demos/qwen3-8b/REPRODUCE.md) | Named reference, simulation or board checks; asset/tool and hardware prerequisites differ |
 | HWIC full-model RTL | [Checkpoint replay](../research/hwic/simplestories-2026-10-27/README.md#reproduce) | Finite tensor/token comparisons against the independent reference, with a separate changed-weight rejection check |
 

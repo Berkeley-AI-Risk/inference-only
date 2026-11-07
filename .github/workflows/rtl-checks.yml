@@ -1,0 +1,52 @@
+name: Fresh selected RTL components
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rtl-checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  components:
+    name: Fresh component lint, elaboration and behavior (not full-chip signoff)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Test driver coverage and warning refusal rules
+        run: python3 -I -S -B -m unittest discover -s tools/hardware_ci -p 'test_runner.py' -v
+      - name: Pull the immutable official Verilator image
+        run: |
+          RTL_CI_IMAGE=$(python3 -I -S -B -c 'import json; print(json.load(open("tools/hardware_ci/toolchain.json"))["container"])')
+          docker pull "$RTL_CI_IMAGE"
+          docker image inspect "$RTL_CI_IMAGE" > "$RUNNER_TEMP/rtl-image.json"
+      - name: Compile and simulate all eight selected component cases
+        run: |
+          RTL_CI_IMAGE=$(python3 -I -S -B -c 'import json; print(json.load(open("tools/hardware_ci/toolchain.json"))["container"])')
+          docker run --rm --network none --cpus 1 --memory 2g \
+            --mount "type=bind,src=$GITHUB_WORKSPACE,dst=/repo,readonly" \
+            --mount "type=bind,src=$RUNNER_TEMP,dst=/out" \
+            --env "HARDWARE_CI_CONTAINER=$RTL_CI_IMAGE" \
+            --entrypoint python3 "$RTL_CI_IMAGE" -I -S -B \
+            /repo/tools/hardware_ci/runner.py --repository /repo --output /out/fresh-rtl
+      - name: Retain actual commands, compiler output and terminal receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: fresh-rtl-component-receipts
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            ${{ runner.temp }}/rtl-image.json
+            ${{ runner.temp }}/fresh-rtl/**/*.json
+            ${{ runner.temp }}/fresh-rtl/**/*.log

@@ -1,0 +1,38 @@
+name: Fresh CLEAR epoch proof
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  clear-epoch:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12.12'
+      - name: Install digest-pinned proof tools
+        run: >-
+          python3.12 -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/install_linux.py
+          --out "$RUNNER_TEMP/formal-tools"
+      - name: Recompile production RTL and reprove all selected obligations
+        run: >-
+          python3.12 -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/recompute.py
+          --model demos/simplestories-v2-5m --out "$RUNNER_TEMP/clear-epoch-linux"
+          --workers 2 --memory-mb 4096 --timeout 120 --total-timeout 900
+      - name: Preserve proof and tool receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: clear-epoch-linux-proof
+          path: |
+            ${{ runner.temp }}/clear-epoch-linux
+            ${{ runner.temp }}/formal-tools/TOOLS.json
+          if-no-files-found: error
+          retention-days: 7

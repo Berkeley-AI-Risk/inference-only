@@ -1,5 +1,9 @@
 # Run a source-bound proof yourself
 
+On Linux, start with [the pinned Linux replay](LINUX-REPLAY.md). It checks the
+same theorem on freshly generated native semantics. The command below is the
+strict mode, which requires the saved toolchain's logical model artifacts.
+
 This example freshly recompiles the published plaintext K/V-protected
 SimpleStories guard and checks its 64-bit CLEAR epoch invariant. It uses the
 existing [proof package](README.md), [statement](THEOREM.smt2),

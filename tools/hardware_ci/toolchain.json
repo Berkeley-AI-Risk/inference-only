@@ -1,0 +1,13 @@
+{
+  "verilator_version": "5.050",
+  "container": "verilator/verilator@sha256:c531ae1e5da8e7293a2bd6793060c2bf484dac358746e69bcc3e689ec265b299",
+  "tag_for_humans_only": "verilator/verilator:v5.050",
+  "provenance": "https://hub.docker.com/v2/namespaces/verilator/repositories/verilator/tags/v5.050",
+  "platform_manifests": {
+    "linux/amd64": "sha256:152b4f77b760c787dc84f5a434fba676e82ba1435caf37669bf3857d4ea64f62",
+    "linux/arm64": "sha256:6d8207220a9aa51fa8bed1449641cc5b113ca0ef912aa1a76afccd728a6391c5"
+  },
+  "publisher": "verilator / veripoolbot",
+  "upstream_tag_last_pushed": "2026-07-02T01:20:45.123562Z",
+  "installation_policy": "CI uses the immutable image, not the mutable tag. The runner does not download or install tools. Native runs require the same Verilator version and record actual tool identities; they are not the pinned Linux image."
+}

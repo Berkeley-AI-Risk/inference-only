@@ -125,9 +125,17 @@
       "bytes": 241,
       "sha256": "797c5975a20a3b09d5101f84f7e3343261916da1a7f0a70baf92922591895055"
     },
+    ".github/workflows/formal-replay.yml": {
+      "bytes": 1408,
+      "sha256": "943e68db3a325c04ec3c7662d8e153786e0a0f1d315c652253fa2abd95ac4799"
+    },
     ".github/workflows/offline-checks.yml": {
       "bytes": 11225,
       "sha256": "69b54d5ea97820679a8688c423305c176a383ba4ab8dd2b1709cf7cbc5cf7ec7"
+    },
+    ".github/workflows/rtl-checks.yml": {
+      "bytes": 2151,
+      "sha256": "d3e1b566283dee57d984a634d4bf30bd7371b35b3a12585a694f60d545397863"
     },
     ".gitignore": {
       "bytes": 502,
@@ -2058,8 +2066,8 @@
       "sha256": "c9529fde3992d828be9fce98d8a196f46c0daf7b2d9d7d23a1f9566a17dfb653"
     },
     "demos/simplestories-v2-5m/MANIFEST.json": {
-      "bytes": 3957008,
-      "sha256": "0fb18341327ae03c79fb1e84ca30dfe1e150c95846ac250b9f58b6c9c72079b4"
+      "bytes": 3957639,
+      "sha256": "638c8695ecc2e1444850c4bdfc47c3d1196eb7305f3b9e0910737403dfca67a7"
     },
     "demos/simplestories-v2-5m/PROGRAMMING.md": {
       "bytes": 15596,
@@ -62829,9 +62837,17 @@
       "bytes": 2036,
       "sha256": "4a80873521428d4a4315aa6713f5a8b279281774cdf74e16efd04f9797f5dbfa"
     },
+    "demos/simplestories-v2-5m/formal/kv-clear-epoch/LINUX-REPLAY.md": {
+      "bytes": 3433,
+      "sha256": "8019a92df8791b9d39358652f76919b2b9fb546f10020bad5e29c67af8a8b436"
+    },
+    "demos/simplestories-v2-5m/formal/kv-clear-epoch/LINUX-TOOLS.json": {
+      "bytes": 1186,
+      "sha256": "92b7f85b7ef15782eeb32cdbe7ddcdae60b57c70c51e5542db30640503b9f4db"
+    },
     "demos/simplestories-v2-5m/formal/kv-clear-epoch/PACKAGE.json": {
-      "bytes": 1622,
-      "sha256": "26ece3b3eb06067607563eb271949101b17fd67ef93d6fe277be0028227b2867"
+      "bytes": 2165,
+      "sha256": "19ad557b35b9ad80debed83ee2d737bc23677b8b1814ce9d1cde059582d02cb3"
     },
     "demos/simplestories-v2-5m/formal/kv-clear-epoch/PROOF-GRAPH.json": {
       "bytes": 11650,
@@ -62842,12 +62858,12 @@
       "sha256": "3150a78c4924db03a7cf44fb11a8c321ffa5f09370c2d25fdd1e9345f3dfbac5"
     },
     "demos/simplestories-v2-5m/formal/kv-clear-epoch/README.md": {
-      "bytes": 3679,
-      "sha256": "9ed22dc785de14c6ef7061899869969838f58e3d1aaea0cf0675d89e60f116a8"
+      "bytes": 3920,
+      "sha256": "d82417f181936f55fa8f448efae0c3e23b17e2efad4e2d14c182f8a4e608e41f"
     },
     "demos/simplestories-v2-5m/formal/kv-clear-epoch/REPLAY-EXAMPLE.md": {
-      "bytes": 4593,
-      "sha256": "b538bf2df621696a9942b20988bea0a15314f2b7a9580a8fe4006f8ba86812e9"
+      "bytes": 4825,
+      "sha256": "20213b20a51ef4298d9872ff33f5de572cbbaa8310124e5b845be960626db06a"
     },
     "demos/simplestories-v2-5m/formal/kv-clear-epoch/SOURCE.json": {
       "bytes": 2653,
@@ -62865,9 +62881,17 @@
       "bytes": 556,
       "sha256": "6393d1c975384a3df23e7ca7a26ebdec4e7f3c758626e0288f540fb07f0d59d1"
     },
+    "demos/simplestories-v2-5m/formal/kv-clear-epoch/install_linux.py": {
+      "bytes": 3386,
+      "sha256": "bb2d61d3b0b5cd6c7688fbc918bd590ee9e8ff339f47bc782cb68c57758c2e1e"
+    },
     "demos/simplestories-v2-5m/formal/kv-clear-epoch/project.tar.gz": {
       "bytes": 2450606,
       "sha256": "6b927736a2294ba803c033314ad4524a913f30e60fa16c97efbeaff99bf5b5d1"
+    },
+    "demos/simplestories-v2-5m/formal/kv-clear-epoch/recompute.py": {
+      "bytes": 7143,
+      "sha256": "1340c81c673e33347c3785c80ec1b024fc818f7535f9d4b17fcee06213c84b58"
     },
     "demos/simplestories-v2-5m/formal/kv-clear-epoch/run.py": {
       "bytes": 7637,
@@ -67358,8 +67382,8 @@
       "sha256": "0f43d1387cc51bfc32243ed60252a8a53a7051dbd3e6e64693ff99ef4c9fa935"
     },
     "demos/simplestories-v2-5m/tools/check_current_three_greedy_v15_v4.py": {
-      "bytes": 6136924,
-      "sha256": "10698ed661450b2df1098a9c004e400f2d8c1dc91b7f8f5aeb403ae723f5fc55"
+      "bytes": 6137786,
+      "sha256": "aa4fcf23adcdde0c11a1e19e9af029a76a304a5e0ea4909d6015de2077b2aed8"
     },
     "demos/simplestories-v2-5m/tools/check_encrypted_flash.py": {
       "bytes": 1848,
@@ -74138,8 +74162,8 @@
       "sha256": "3b9d26291ff5babbbc213244a67746337165f023c48f9969746ccb9aa8652351"
     },
     "docs/ARCHITECTURE.md": {
-      "bytes": 17979,
-      "sha256": "74e43bf96cbfe7d2d3b6ba2c4fabd64643b046292a78fb8de0aae2942b22f710"
+      "bytes": 18275,
+      "sha256": "4dcb8e24dd5a23f195983ffd711a77242e430d52227ffcea855fd03eab4579c4"
     },
     "docs/FORMAL-ARGUMENT.md": {
       "bytes": 12170,
@@ -74148,6 +74172,10 @@
     "docs/REFERENCES.md": {
       "bytes": 9088,
       "sha256": "44330de77731657c67fcb727fcfe40739bbe9bdad227a2505ebb2e6e8250bfe3"
+    },
+    "docs/RTL-CI.md": {
+      "bytes": 4805,
+      "sha256": "f9f8d29215159b63385c1ba7aecd7e75599d85af47823fdb4011857dedda5ffd"
     },
     "docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md": {
       "bytes": 20401,
@@ -74813,6 +74841,30 @@
       "bytes": 19542,
       "sha256": "5200014240f015bd37731a89644a76ad20e17f0dc5e3b582f387e9a7a288e268"
     },
+    "tools/hardware_ci/clock.h": {
+      "bytes": 504,
+      "sha256": "9d988b917a9f211d4dbd9ee092a1e1920dd766a2b187432b1f4162cd349a075d"
+    },
+    "tools/hardware_ci/qwen_command.cpp": {
+      "bytes": 8060,
+      "sha256": "a2f785bdfe0b49920c60267e70c4e201ab4aff21588245e62b18f4fa9300cbc8"
+    },
+    "tools/hardware_ci/runner.py": {
+      "bytes": 21479,
+      "sha256": "3d3bd3f3dc92528d74eea90fd3be7d3a292f40cadf81a1d509527e58c32de01b"
+    },
+    "tools/hardware_ci/tang_fifo.cpp": {
+      "bytes": 5114,
+      "sha256": "885ca10d056dd9bf5d631f486f8eaf23b6b5b7037b7778f1957fad3572feed57"
+    },
+    "tools/hardware_ci/test_runner.py": {
+      "bytes": 8785,
+      "sha256": "537e1e66cc79c7ffcca182fa7e9ade14549ab4a1e553dfc5c06a63bd3bce33a8"
+    },
+    "tools/hardware_ci/toolchain.json": {
+      "bytes": 866,
+      "sha256": "7e69785bbd1e6e838d058a9f0ca321ebd70900c66812bbb15a941102ea1805e7"
+    },
     "tools/qwen_common_speed_evidence.py": {
       "bytes": 8722,
       "sha256": "6902cc22957fac5b64ec6c20b94cc0844b094ced07e3b6ebfaae681628252b85"
@@ -74822,8 +74874,8 @@
       "sha256": "1dd88cb09483da8cd53c9d3959ae90b7b276aa2127d9282a34712dbb96d82640"
     },
     "tools/release-contract.json": {
-      "bytes": 4531833,
-      "sha256": "c0e64180fe28a42b2837ed908c1ed88ca921d249a8fa210f2e0f98a9cacf1a8a"
+      "bytes": 4533918,
+      "sha256": "bc87449bad588bbd226d995d4d24585401b76280e6df33c30bbcd6f898c825ec"
     },
     "tools/test_architecture_work_counts.py": {
       "bytes": 18992,
@@ -74871,7 +74923,7 @@
     },
     "tools/verify_release.py": {
       "bytes": 10128,
-      "sha256": "5f43ebbacc09a3e8f8637a3cba449594bca1582b58ee521dd3dd126375c3e876"
+      "sha256": "28e98ac34ed40467217814de4116b96686bfe03fb20277b32836e689270144f3"
     }
   },
   "full_context_evidence_scope": "Each selected greedy image passed 2,047/2,048-token CLI and browser contexts, boundary refusals, CLEAR races, pending-STEP Stop and resumed generation. The seeded image has a separate 16-case context matrix and browser record. Exact workload timestamps remain distinct from cached generation rates.",
