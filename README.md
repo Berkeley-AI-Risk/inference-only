@@ -1,17 +1,17 @@
 # Inference-only hardware demonstrations and research
 
-The paper *The Feasibility of a Hardwired Pause of Frontier AI Training*
-([hardwired-pause.ai](https://hardwired-pause.ai)) introduces inference-only
-chips in both an idealized sense and a practical, operational sense.
-**This project builds physical FPGA demonstrations of that idea:** fixed
-language models behind a restricted hardware interface, rather than a
-general-purpose accelerator whose restrictions depend on its host software.
+These FPGAs run fixed language models behind a restricted token interface.
+SimpleStories-V2-5M runs on a Sipeed Tang Mega 138K board. Qwen3-1.7B and
+Qwen3-8B run on Amazon EC2 F2 FPGA instances. The host
+supplies tokens and requests the next one. The circuit schedules the model,
+chooses the tensor addresses and checks weights fetched from external memory.
 
-**[Architecture and evidence map](docs/ARCHITECTURE.md):** compare the configurations,
-follow the hardware trust boundaries and proof obligations, and find the exact
-source and reproduction route for each result.
+The [FPGA measurements](#the-demonstrated-designs-and-measurements) give
+host-observed generation rates. The [architecture and evidence map](docs/ARCHITECTURE.md)
+connects each implementation to its source, tests and proof obligations.
 
-The paper distinguishes two approaches in Section 4.3:
+Section 4.3 of
+[*The Feasibility of a Hardwired Pause of Frontier AI Training*](https://hardwired-pause.ai) distinguishes two approaches to inference-only hardware.
 
 - **Authenticated-Weight Inference-Only Chips (AWICs)** fix the model architecture and inference circuitry in hardware and authenticate weights loaded from memory under a hardware-enforced approval policy.
 - **Hardwired-Weight Inference-Only Chips (HWICs)** encode both the model architecture and its weights directly in the circuit.
@@ -24,11 +24,7 @@ signing authorities.
 <a href="docs/figures/ic-taxonomy.svg?v=9288be431402#gh-light-mode-only"><img src="docs/figures/ic-taxonomy.svg?v=9288be431402#gh-light-mode-only" alt="Inference-only chip (IC) branches to AWIC, HWIC, and other possible types; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
 <a href="docs/figures/ic-taxonomy-dark.svg?v=a01acd3b4838#gh-dark-mode-only"><img src="docs/figures/ic-taxonomy-dark.svg?v=a01acd3b4838#gh-dark-mode-only" alt="Inference-only chip (IC) branches to AWIC, HWIC, and other possible types; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
 
-The benchmark table below includes F-AWIC and S-AWIC designs. Each design
-has its own implementation and validation evidence.
-
-**The demonstrated hardware designs are AWICs implemented on FPGAs. This
-repository also includes preliminary HWIC source research.**
+The FPGA demonstrations are **AWICs**. The [preliminary HWIC research](#experimental-hwic-research) implements a SimpleStories design with fixed weights in RTL.
 
 <a href="docs/figures/inference-only-chips.svg?v=da9a5c6081d3#gh-light-mode-only"><img src="docs/figures/inference-only-chips.svg?v=da9a5c6081d3#gh-light-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs illustrated with a k-of-n signature policy, and HWICs with weights fixed in silicon." width="800"></a>
 <a href="docs/figures/inference-only-chips-dark.svg?v=be1398ecbcc0#gh-dark-mode-only"><img src="docs/figures/inference-only-chips-dark.svg?v=be1398ecbcc0#gh-dark-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs illustrated with a k-of-n signature policy, and HWICs with weights fixed in silicon." width="800"></a>
@@ -38,31 +34,6 @@ at least k of n authorities to authorize a model commitment at boot. The
 SimpleStories demonstration uses 2 of 3. Weight checks enforce the approved
 commitment; private signing keys stay off-chip. The layer boxes are
 schematic; arithmetic may be shared across layers.*
-
-### Optional periodic reauthorization
-
-An S-AWIC can require **periodic reauthorization**: model-specific approval
-from a remote authority at startup and periodically during operation.
-Authorities can withdraw approval for old weights and authorize a signed
-replacement, supporting patches and fine-tunes within the fixed architecture.
-
-The deployment host installs the replacement. The chip verifies its signatures
-and weights, then obtains permission for that exact model. Withholding renewal
-stops inference with the old weights by the current approval deadline.
-
-<a href="docs/figures/s-awic-home-authorization.svg#gh-light-mode-only"><img src="docs/figures/s-awic-home-authorization.svg#gh-light-mode-only" alt="Optional S-AWIC feature: home base authorizes the exact model and fresh chip nonce; the deployment host relays messages, and current permission enables fixed inference circuitry." width="800"></a>
-<a href="docs/figures/s-awic-home-authorization-dark.svg#gh-dark-mode-only"><img src="docs/figures/s-awic-home-authorization-dark.svg#gh-dark-mode-only" alt="Optional S-AWIC feature: home base authorizes the exact model and fresh chip nonce; the deployment host relays messages, and current permission enables fixed inference circuitry." width="800"></a>
-
-The [SimpleStories periodic-reauthorization demonstration](demos/simplestories-v2-5m/variants/home-authorization/README.md)
-implements these separate admission and permission checks. Replacement starts a
-fresh session through the documented host installation workflow; the chip does
-not install remote updates itself.
-
-The [physical replacement record](demos/simplestories-v2-5m/variants/home-authorization/VALIDATION.md#physical-model-replacement)
-checks revocation, a signed synthetic replacement and withdrawn-model rejection
-for its identified image. The complete replacement test for the selected
-repaired controller remains open; its completed approval, renewal and
-revocation tests are recorded separately.
 
 ## Token interface
 
@@ -182,6 +153,31 @@ make their assumptions explicit; their Tang Mega numerical factors are not
 Qwen measurements. **None of these demonstrations has a certified, nation-state-resistant
 residual training fraction.** Small model size or modest speed is not what
 makes the architectural restriction inference-only.
+
+### Optional periodic reauthorization
+
+An S-AWIC can require **periodic reauthorization**: model-specific approval
+from a remote authority at startup and periodically during operation.
+Authorities can withdraw approval for old weights and authorize a signed
+replacement, supporting patches and fine-tunes within the fixed architecture.
+
+The deployment host installs the replacement. The chip verifies its signatures
+and weights, then obtains permission for that exact model. Withholding renewal
+stops inference with the old weights by the current approval deadline.
+
+<a href="docs/figures/s-awic-home-authorization.svg#gh-light-mode-only"><img src="docs/figures/s-awic-home-authorization.svg#gh-light-mode-only" alt="Optional S-AWIC feature: home base authorizes the exact model and fresh chip nonce; the deployment host relays messages, and current permission enables fixed inference circuitry." width="800"></a>
+<a href="docs/figures/s-awic-home-authorization-dark.svg#gh-dark-mode-only"><img src="docs/figures/s-awic-home-authorization-dark.svg#gh-dark-mode-only" alt="Optional S-AWIC feature: home base authorizes the exact model and fresh chip nonce; the deployment host relays messages, and current permission enables fixed inference circuitry." width="800"></a>
+
+The [SimpleStories periodic-reauthorization demonstration](demos/simplestories-v2-5m/variants/home-authorization/README.md)
+implements these separate admission and permission checks. Replacement starts a
+fresh session through the documented host installation workflow; the chip does
+not install remote updates itself.
+
+The [physical replacement record](demos/simplestories-v2-5m/variants/home-authorization/VALIDATION.md#physical-model-replacement)
+checks revocation, a signed synthetic replacement and withdrawn-model rejection
+for its identified image. The complete replacement test for the selected
+repaired controller remains open; its completed approval, renewal and
+revocation tests are recorded separately.
 
 ## Run a demonstration
 
