@@ -127,7 +127,7 @@ overlay and separate protected-K/V candidate are different configurations.
 | Source identity | [SOURCE-INPUTS.json](SOURCE-INPUTS.json), joined to [hardware/IMPLEMENTATION-INPUTS.json](hardware/IMPLEMENTATION-INPUTS.json) by the source-bundle manifest hash |
 | CL top and ordered inputs | `cl_qwen`; [qwen_sources.tcl](hardware/build/scripts/qwen_sources.tcl) selects 65 SystemVerilog and 12 Verilog files |
 | RTL compilation | [synth_cl_qwen.tcl](hardware/build/scripts/synth_cl_qwen.tcl) reads those lists, selects out-of-context `${CL}`, defines `XSDB_SLV_DIS`, and retains hierarchy |
-| Staging and build entry | [prepare_hardware.py](tools/prepare_hardware.py), then the pinned AWS builder and [build_all.tcl](hardware/build/scripts/build_all.tcl); `ENCRYPT=0`, `CL=cl_qwen`, small shell |
+| Staging and build entry | [prepare_hardware.py](tools/prepare_hardware.py), then the [checked synthesis client](../../tools/qwen_build.py) and frozen [build_all.tcl](hardware/build/scripts/build_all.tcl); `ENCRYPT=0`, `CL=cl_qwen`, small shell |
 | Explicit top parameter | `MODEL_PREFETCH_PAGES=32`; follow instantiated parameters rather than module defaults |
 | Model and numerical contract | Fixed 28-layer geometry, signed int8 projection weights and the specified integer/FP32/BF16 operations; [reference contract](reference/README.md) and [model installation](INSTALL.md#prepare-the-fixed-model) |
 | Application and management interfaces | APPEND, STEP and CLEAR; restricted startup model loader, status and [management display](README.md#management-display) |
@@ -200,18 +200,33 @@ from `demos/qwen3-1.7b`:
 python3.12 tools/prepare_hardware.py --hdk /path/to/aws-fpga \
   --output /data/qwen-build
 export QWEN_BUILD=/data/qwen-build
+python3.12 ../../tools/qwen_build.py synth \
+  --profile qwen3-1.7b --build-dir "$QWEN_BUILD" \
+  --hdk /path/to/aws-fpga --output "$QWEN_BUILD/synthesis-control"
 export CL_DIR="$QWEN_BUILD/cl_qwen"
 cd "$CL_DIR/build/scripts"
-python3 aws_build_dcp_from_cl.py --cl cl_qwen --mode small_shell \
-  --flow SynthCL --aws_clk_gen --clock_recipe_a A0 --clock_recipe_b B0 \
-  --clock_recipe_c C2 --clock_recipe_hbm H1 --no-encrypt \
-  --tag private_supported_c2_100
 ```
 
 The historical build tag is retained because the frozen implementation scripts
 check it; it is not an AWS account or a private image identifier. The preparer
 requires a fresh directory and does not modify the released source tree.
 It verifies the HDK, IP and shell identity before copying sources.
+
+The checked client invokes the frozen Tcl directly. It checks the staged inputs,
+SDK revisions, shell and Vivado version, propagates a failing tool exit, and
+requires a fresh synthesis checkpoint with valid ZIP CRCs before writing
+`synthesis-control/FINISHED.json`. The historical AWS Python wrapper remains
+frozen for provenance but is not this build entry: it can discard Vivado's
+failure status. Tool completion and container integrity do not establish timing
+closure.
+
+Build and package clients take a nonblocking OS lock on the canonical staged
+CL before preflight and hold it through artifact checks and receipt creation.
+A concurrent client using that same stage exits 75, even with another receipt
+directory or path alias; independent stages can run separately. Leave the
+persistent `.qwen-build.lock` file in place: the OS lock, not file presence,
+tracks ownership. This coordinates these clients, not manually launched vendor
+commands; do not run such commands concurrently in the same stage.
 
 Next run the exact placement and routing scripts:
 
@@ -244,10 +259,24 @@ CDC/reset/exception reports as well. A successful process exit alone is not
 evidence of timing closure. Rebuilt placement may differ, and the supplied
 measurements apply to the identified prebuilt image, not any new rebuild.
 
-For a rebuild that passes review, place its routed checkpoint in the CL build's
-`checkpoints` directory under a new timestamp tag and use the pinned AWS
-builder's `--package-only` operation with all four clock recipes explicitly
-specified. Then follow the
+For a rebuild that passes review, package the exact routed checkpoint and its
+SHA-256 from the Qwen directory:
+
+```sh
+export QWEN_ROUTED_DCP="$QWEN_BUILD/route/supported-c2-100.post_route.dcp"
+export QWEN_PACKAGE_TAG="$(date -u +%Y_%m_%d-%H%M%S)"
+python3.12 ../../tools/qwen_build.py package \
+  --profile qwen3-1.7b --build-dir "$QWEN_BUILD" --hdk /path/to/aws-fpga \
+  --checkpoint "$QWEN_ROUTED_DCP" \
+  --checkpoint-sha256 "$(sha256sum "$QWEN_ROUTED_DCP" | cut -d ' ' -f 1)" \
+  --tag "$QWEN_PACKAGE_TAG" --output "$QWEN_BUILD/package-$QWEN_PACKAGE_TAG"
+```
+
+The `package` subcommand creates a developer tarball with manifest format 2,
+A0/B0/C2/H1 recipes, tool/HDK/shell versions, fixed PCI IDs and the checked DCP
+hash. It refuses `.VIOLATED` checkpoints and existing output directories, then
+reopens and verifies every tar member. This packages an already reviewed result;
+it neither runs a build nor creates an AWS image. Then follow the
 [AWS AFI creation instructions](https://awsdocs-fpga-f2.readthedocs-hosted.com/latest/hdk/docs/Amazon-FPGA-Images-Afis-Guide.html).
 Image creation performs AWS platform validation; it does not replace numerical
 tests. Load the new image only into a slot you control, then repeat the

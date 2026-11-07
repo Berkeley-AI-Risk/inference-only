@@ -77,7 +77,7 @@ experiment.
 | Source and vendor identity | [SOURCE-INPUTS.json](SOURCE-INPUTS.json) pins the frozen hardware files, model-image hash, vendor revisions, shell and recipes |
 | CL top and ordered inputs | `cl_qwen`; [qwen_sources.tcl](hardware/build/scripts/qwen_sources.tcl) selects 66 SystemVerilog and 12 Verilog files, including the 8B `qwen_fixed_root_rom.sv` |
 | RTL compilation | [synth_cl_qwen.tcl](hardware/build/scripts/synth_cl_qwen.tcl) reads those lists, selects out-of-context `${CL}`, defines `XSDB_SLV_DIS`, and retains hierarchy |
-| Staging and build entry | [prepare_hardware.py](tools/prepare_hardware.py), [build_all.tcl](hardware/build/scripts/build_all.tcl), and the placement/route scripts below; `ENCRYPT=0`, `CL=cl_qwen`, small shell |
+| Staging and build entry | [prepare_hardware.py](tools/prepare_hardware.py), the [checked synthesis client](../../tools/qwen_build.py), frozen [build_all.tcl](hardware/build/scripts/build_all.tcl), and the placement/route scripts below; `ENCRYPT=0`, `CL=cl_qwen`, small shell |
 | Explicit top parameter | `MODEL_PREFETCH_PAGES=32`; follow instantiated parameters rather than module defaults |
 | Model and numerical contract | Fixed 36-layer geometry and [model-specific numerical reference](reference/run_reference.py); int8 projection weights with the stated integer/FP32/BF16 conversions and rounding |
 | Fixed roots | The selected shared authenticator and root ROM use 134,705 pages with 18-bit page indices; the unselected older single-worker default is not the 8B root geometry |
@@ -142,17 +142,32 @@ Start in Bash with Vivado 2025.2 installed:
 source /path/to/Vivado/2025.2/settings64.sh
 cd /path/to/aws-fpga
 source hdk_setup.sh -s
+export QWEN_BUILD=/path/to/fresh-qwen8b-build
+cd /path/to/inference-only/demos/qwen3-8b
+python3.12 ../../tools/qwen_build.py synth \
+  --profile qwen3-8b --build-dir "$QWEN_BUILD" \
+  --hdk /path/to/aws-fpga --output "$QWEN_BUILD/synthesis-control"
 export CL=cl_qwen
-export CL_DIR=/path/to/fresh-qwen8b-build/cl_qwen
+export CL_DIR="$QWEN_BUILD/cl_qwen"
 export SHELL_MODE=small_shell
 export BUILD_TAG=private_qwen8b_100
 export ENCRYPT=0
-export BUILD_FLOW=SynthCL
 cd "$CL_DIR/build/scripts"
-vivado -mode batch -source build_all.tcl \
-  -log synthesis.log -journal synthesis.jou \
-  -tclargs SSI_SpreadLogic_high AggressiveExplore AggressiveExplore A0 B0 C2 H1
 ```
+
+The checked client invokes the same frozen synthesis Tcl with A0/B0/C2/H1.
+It checks source/vendor/tool identities, propagates a failing Vivado exit, and
+requires a fresh checkpoint with valid ZIP CRCs before writing
+`synthesis-control/FINISHED.json`. That receipt records tool completion, not
+timing closure.
+
+Build and package clients take a nonblocking OS lock on the canonical staged
+CL before preflight and hold it through artifact checks and receipt creation.
+A concurrent client using that same stage exits 75, even with another receipt
+directory or path alias; independent stages can run separately. Leave the
+persistent `.qwen-build.lock` file in place: the OS lock, not file presence,
+tracks ownership. This coordinates these clients, not manually launched vendor
+commands; do not run such commands concurrently in the same stage.
 
 `BUILD_TAG` is a checked build identifier, not an AWS sharing setting. The
 scripts limit the vendor tool to eight threads. The resulting synthesis
@@ -203,8 +218,27 @@ failures. Per-finding disposition and whole-path reset/CDC qualification
 remain open; positive setup/hold slack does not discharge them.
 <!-- END GENERATED QWEN CDC DISCLOSURE -->
 
-Creating an AWS image from a rebuild requires the vendor packaging and image
-acceptance workflow and a new hardware correctness test. The public image in
+After reviewing the rebuilt route, timing, CDC and reset reports, package its
+exact checkpoint from `demos/qwen3-8b`:
+
+```sh
+export QWEN_ROUTED_DCP="$QWEN_BUILD/output/route/supported-c2-100.post_route.dcp"
+export QWEN_PACKAGE_TAG="$(date -u +%Y_%m_%d-%H%M%S)"
+python3.12 ../../tools/qwen_build.py package \
+  --profile qwen3-8b --build-dir "$QWEN_BUILD" --hdk /path/to/aws-fpga \
+  --checkpoint "$QWEN_ROUTED_DCP" \
+  --checkpoint-sha256 "$(sha256sum "$QWEN_ROUTED_DCP" | cut -d ' ' -f 1)" \
+  --tag "$QWEN_PACKAGE_TAG" --output "$QWEN_BUILD/package-$QWEN_PACKAGE_TAG"
+```
+
+The `package` subcommand creates a developer tarball with manifest format 2,
+A0/B0/C2/H1 recipes, tool/HDK/shell versions, fixed PCI IDs and the checked DCP
+hash. It refuses `.VIOLATED` checkpoints and existing output directories, then
+reopens and verifies every tar member. Packaging is not timing qualification
+or AWS image creation.
+
+Creating an AWS image from a rebuild still requires the vendor image acceptance
+workflow and a new hardware correctness test. The public image in
 [INSTALL.md](INSTALL.md) is the already tested deployment. This source-build
 guide does not make a newly compiled image interchangeable with it.
 
