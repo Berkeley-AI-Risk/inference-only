@@ -160,6 +160,10 @@ the compilation order, includes, defines and top. The
 have distinct source and qualification records. Their finite source checks
 are documented for [1.7B](../demos/qwen3-1.7b/REPRODUCE.md#source-selection-check)
 and [8B](../demos/qwen3-8b/REPRODUCE.md#source-selection-check).
+The [model-size reuse example](MODEL-SIZE-REUSE.md) uses one private
+address-decoder generator with the two pinned Qwen profiles. It compares the
+8B source bytes and checks the 1.7B module outputs against the released decoder.
+
 For the HWIC checkpoint, use its
 [configuration and evidence map](../research/hwic/simplestories-2026-10-27/README.md#configuration-and-evidence),
 which distinguishes the public ROM baseline from the later spatial, split K/V

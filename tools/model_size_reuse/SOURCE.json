@@ -1,0 +1,45 @@
+{
+  "fixed_positions": 32768,
+  "generator_identity": {
+    "bytes": 7624,
+    "sha256": "0a52d14cc5974197ffd61e8c1d2490cae6fb7b13daef0d82528541d5c07c3a1b"
+  },
+  "generator_source": "demos/qwen3-8b/tools/generate_model_address.py",
+  "geometry_identity": {
+    "bytes": 11024,
+    "sha256": "f1cc1bf46ded7a51ec628f232bc4f09a88b8eba056136bd8925ca79d02784b46"
+  },
+  "geometry_source": "demos/qwen3-8b/tools/model_geometry.py",
+  "models": {
+    "qwen3-1.7b": {
+      "check": "initial-reset-induction",
+      "config": "configs/qwen3-1.7b.json",
+      "config_identity": {
+        "bytes": 726,
+        "sha256": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197"
+      },
+      "released_identity": {
+        "bytes": 6610,
+        "sha256": "16a89ff5faa71514e74ee74f35277a07729db3408d8ea70931b847a3dd21ba9a"
+      },
+      "released_source": "demos/qwen3-1.7b/hardware/design/qwen_model_address.sv"
+    },
+    "qwen3-8b": {
+      "check": "byte-identity",
+      "config": "configs/qwen3-8b.json",
+      "config_identity": {
+        "bytes": 728,
+        "sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+      },
+      "released_identity": {
+        "bytes": 4720,
+        "sha256": "34b8971aa579bef1e5b198ceeda46807f512693c875716aa5685c7d782289683"
+      },
+      "released_source": "demos/qwen3-8b/hardware/design/qwen_model_address.sv"
+    }
+  },
+  "release_base": "951fe497014cc0edf141eca1ad714db18db1a7ad",
+  "schema": "pinned-private-model-address-reuse-v1",
+  "scope": "Source-generation reuse and one private decoder module comparison; complete FPGA build/qualification remains separate.",
+  "two_config_scope": true
+}

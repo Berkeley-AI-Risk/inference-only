@@ -1888,6 +1888,10 @@
       "bytes": 7707,
       "sha256": "bb378b3e4c95f39df4618c995ea3bb2917f07d2ffd0172b1719075a3242f8fc1"
     },
+    "demos/qwen3-8b/tools/generate_model_address.py": {
+      "bytes": 7624,
+      "sha256": "0a52d14cc5974197ffd61e8c1d2490cae6fb7b13daef0d82528541d5c07c3a1b"
+    },
     "demos/qwen3-8b/tools/model_geometry.py": {
       "bytes": 11024,
       "sha256": "f1cc1bf46ded7a51ec628f232bc4f09a88b8eba056136bd8925ca79d02784b46"
@@ -74041,12 +74045,16 @@
       "sha256": "3b9d26291ff5babbbc213244a67746337165f023c48f9969746ccb9aa8652351"
     },
     "docs/ARCHITECTURE.md": {
-      "bytes": 18275,
-      "sha256": "4dcb8e24dd5a23f195983ffd711a77242e430d52227ffcea855fd03eab4579c4"
+      "bytes": 18503,
+      "sha256": "553a3f0bc13a19d911f24f955486060de407374fd63db5d7a3ff86987bceb861"
     },
     "docs/FORMAL-ARGUMENT.md": {
       "bytes": 12170,
       "sha256": "7d9b37001ddbe15edadded439eb3c34443bf5b43f755c3cc5454350891097f21"
+    },
+    "docs/MODEL-SIZE-REUSE.md": {
+      "bytes": 3219,
+      "sha256": "b4c1b9c695239f9192cbeb9678a42234f9ffe76bc3bc0b2c4cc05d8123f9839f"
     },
     "docs/REFERENCES.md": {
       "bytes": 9088,
@@ -74743,6 +74751,22 @@
     "tools/hardware_ci/toolchain.json": {
       "bytes": 866,
       "sha256": "7e69785bbd1e6e838d058a9f0ca321ebd70900c66812bbb15a941102ea1805e7"
+    },
+    "tools/model_size_reuse/SOURCE.json": {
+      "bytes": 1672,
+      "sha256": "ee57fbeb05f2a63109ae15c8145b91189f49001b83d721b7ee974e6a73d2a6f2"
+    },
+    "tools/model_size_reuse/configs/qwen3-1.7b.json": {
+      "bytes": 726,
+      "sha256": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197"
+    },
+    "tools/model_size_reuse/configs/qwen3-8b.json": {
+      "bytes": 728,
+      "sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    "tools/model_size_reuse/run.py": {
+      "bytes": 9887,
+      "sha256": "9e9e347bb2afefb3421c86ee0f1d7cbbf24e56b0cb371ad7b99eeb0f78c5b55a"
     },
     "tools/qwen_common_speed_evidence.py": {
       "bytes": 8722,
