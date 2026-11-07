@@ -14,7 +14,7 @@ training strategy using the device is impractical.
 | The actual SHA engines implement SHA-256 compression and preserve the required chaining state | Separate one-round, two-round and encrypted owner-held engines are checked against a FIPS-based reference. At least one solver completes unbounded induction for each engine; the other solver's incomplete phases remain recorded. Native DSP arithmetic is checked against the pinned vendor functional model. Hash resistance is an assumption, not an arithmetic theorem. |
 | Model data used by the private service comes from the checked RAM copy | Actual fixed digest/metadata ROM selection, complete page fill/hash/seal, native RAM ownership and queued consumer routing are composed. Baseline/seeded/protected bank scopes retain the full RAM and SHA; the encrypted scope retains all four RAMs and the native two-engine SHA pool. No unchecked refetch substitutes for the sealed copy. Private decryption outputs remain arbitrary in the encrypted bank theorem. |
 | Named stage admissions, selected operand muxes and address/control bounds are checked | The actual six-layer sequence (22 assertions), semantic datapath access logic (53), group/metadata reader (23), and semantic lookup (9) pass both solvers' bases, unbounded induction and covers. Whole numerical-child replies remain arbitrary in the datapath proof; all reachable reader children are retained in the address proofs. |
-| Protected K/V verification reaches the copy captured and used by attention | Both protected configurations have complete 221-assertion native history proofs and 357-assertion current guard/cache proofs, with both solvers. Actual typed hash framing and chaining (43 assertions per configuration) are joined to the proved SHA engines. Separate 34-assertion attention scopes prove owned capture and operand use. Actual clock/reset/CLEAR, fault, identity and data connections are checked. |
+| The K/V guard checks the cached row; separate proofs track attention operands | Both protected configurations have complete 221-assertion native history proofs and 357-assertion current guard/cache proofs, with both solvers. Actual typed hash framing and chaining (43 assertions per configuration) are joined to the proved SHA engines. Separate 34-assertion attention proofs track K to the score lanes and V to the aligner request and from its reply. Connecting a particular authorized write to the matching attention invocation, including the V alignment, remains open. |
 
 Counts overlap and must not be added. Component proofs quantify over their
 declared arbitrary private inputs; source-bound connection checks join them.
@@ -32,7 +32,7 @@ flowchart LR
     EXTERNAL["Arbitrary external K/V replies"] --> GUARD["Typed epoch/role check"]
     GUARD --> STAGE["Same verified staging RAM"]
     STAGE --> CACHE["Owned current cache response"]
-    CACHE --> CAPTURE["Attention capture and use"]
+    CACHE -. "Writer-to-consumer proof open" .-> CAPTURE["Attention capture and use"]
     CAPTURE --> ROUTE
     ROUTE --> COMPUTE["Fixed private inference computation"]
     COMPUTE --> CTRL
@@ -56,8 +56,10 @@ Protected K/V checks additionally constrain external substitutions at their
 verified-copy boundaries; one whole-device tamper non-interference theorem is
 not claimed by these scoped facts.
 
-For protected K/V, the formal facts are exact hashing, trusted tag publication
-and comparison, identity/epoch ownership, and use of the same verified copy.
+For protected K/V, the guard proofs cover hashing, trusted tag publication
+and comparison, and cache identity and epoch. The attention proofs begin at
+their own input boundary. The [proof dependency table](../../FORMAL-STATUS.md)
+identifies the remaining writer, consumer and alignment obligations.
 Concluding that an attacker cannot substitute different bytes additionally uses
 SHA-256 collision/second-preimage resistance and trusted on-chip state. The
 solvers do not prove cryptographic hardness. Likewise, these facts do not bound
