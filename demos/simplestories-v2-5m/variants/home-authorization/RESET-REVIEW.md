@@ -2,11 +2,11 @@
 
 The selected image uses a falling-edge qualification stage followed by three rising-edge core-reset release stages. Resets assert asynchronously. The flash loader retains separate three-stage release chains for core and trusted domains, with a distinct mapped core-clear buffer path.
 
-The [source/mapping review](evidence/repair-native-2026-11-05/REVIEW.json) checks the actual selected structure. The [timing review](evidence/repair-native-2026-11-05/TIMING-REVIEW.json) records zero setup/hold violating endpoints in five named real-clock summaries. The same [raw report](evidence/repair-native-2026-11-05/home_product.tr) contains interclock negative paths, so those summaries do not establish complete functional timing. No reset-synchronizer entry exception or minimum-delay substitution is used.
+The mapped design uses no reset-synchronizer entry exception or minimum-delay substitution. The selected core runs at **25 MHz**. Gowin reports a maximum of **25.002 MHz** for that clock. [Source and mapping review](evidence/repair-native-2026-11-05/REVIEW.json) · [Timing review](evidence/repair-native-2026-11-05/TIMING-REVIEW.json)
 
-The clock is **25 MHz**, with a reported maximum of **25.002 MHz** and very little reported setup margin.
+The whole-design timing summary reports **121 setup and 55 hold violating endpoints**. For each of 27 clocks, the total-negative-slack table lists zero endpoints for both setup and hold. Each detailed path table is limited to 256 paths with `-max_common_paths 1`. Resolving this discrepancy requires targeted reports that identify the matched registers, launch and capture edges, and delay model. [Routed timing report, sections 2 and 3](evidence/repair-native-2026-11-05/home_product.tr)
 
-The entropy-hierarchy hold negatives include clocked enable-shift and debias-control registers as well as an oscillator-latch path. The register paths are functional logic, not intentional oscillator loops; the report uses enable-chain nets as launch clocks. The archived review's broad entropy classification does not resolve their timing. Targeted analysis must establish the correct launch/capture clock relationships, edges, corners and path coverage before deciding whether these negatives reflect clock modeling, physical violations or both. Zero per-clock summaries and successful tokens do not settle that question. Vendor-DDR timing and its functional interface boundaries also remain unresolved.
+Hold path 1 shows why the clock relationship matters. The tool reports **−1.115 ns** for a shift register in entropy cell 2. It uses the preceding enable-chain signal as the launch clock and `inference_clk25` as the capture clock. The register is clocked control logic within the entropy source. Its timing and the timing of the vendor DDR interface remain open.
 
 Analog metastability/MTBF, process/voltage/temperature coverage, entropy and physical tamper resistance need separate assessment.
 
