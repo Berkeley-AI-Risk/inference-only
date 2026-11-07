@@ -1,5 +1,5 @@
 """Install digest-pinned Linux proof tools outside the repository."""
-import argparse, hashlib, json, os, platform, subprocess, tarfile, time, urllib.request, zipfile
+import argparse, hashlib, json, os, platform, shutil, subprocess, tarfile, time, urllib.request, zipfile
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
 def digest(path):
@@ -43,13 +43,16 @@ def main():
     cvc5 = list(out.glob('cvc5-Linux-*-static/bin/cvc5')); assert len(cvc5) == 1
     paths = [str(cvc5[0].parent), str(out / 'oss-cad-suite/bin')]
     env = dict(os.environ); env['PATH'] = os.pathsep.join(paths + [env.get('PATH', '')])
-    versions = {}
+    versions = {}; executables = {}
     for name, flag in [('yosys', '-V'), ('z3', '--version'), ('cvc5', '--version')]:
+        binary = Path(shutil.which(name, path=env['PATH'])).resolve()
+        assert binary.is_relative_to(out), ('Tool outside installation', name)
         r = subprocess.run([name, flag], capture_output=True, text=True, timeout=10, check=True, env=env)
         versions[name] = r.stdout.strip()
-    result = {'passed': True, 'architecture': arch, 'path_entries': paths, 'archives': records, 'versions': versions}
+        executables[name] = {'path': str(binary), 'sha256': digest(binary)}
+    result = {'passed': True, 'architecture': arch, 'path_entries': paths, 'archives': records, 'versions': versions, 'executables': executables}
     (out / 'TOOLS.json').write_text(json.dumps(result, indent=2, sort_keys=True) + '\n')
-    if 'GITHUB_PATH' in os.environ:
-        with Path(os.environ['GITHUB_PATH']).open('a') as f: f.write('\n'.join(paths) + '\n')
+    # The proof process selects these tools explicitly from this receipt.
+    # Do not depend on workflow PATH line-prepending order.
     print(json.dumps(result, indent=2))
 if __name__ == '__main__': main()

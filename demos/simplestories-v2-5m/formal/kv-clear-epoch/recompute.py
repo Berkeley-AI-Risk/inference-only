@@ -1,5 +1,5 @@
 """Recompile and reprove CLEAR using fresh native semantics, without model identity."""
-import argparse, concurrent.futures, copy, importlib.util, json, subprocess, sys, time
+import argparse, concurrent.futures, copy, importlib.util, json, os, shutil, subprocess, sys, time
 from pathlib import Path
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
@@ -8,6 +8,25 @@ def module(name, path):
     result = importlib.util.module_from_spec(spec); spec.loader.exec_module(result); return result
 runner = module('epoch_recorded_runner', HERE / 'run.py')
 ROLES = ['original', 'omit-increment', 'suppress-exhaustion-fault']
+
+def select_tools(receipt_path, out):
+    receipt_path = receipt_path.resolve(); raw = receipt_path.read_bytes(); receipt = json.loads(raw)
+    assert receipt['passed'] is True
+    entries = [str(Path(p).resolve()) for p in receipt['path_entries']]
+    assert entries and all(Path(p).is_dir() and Path(p).is_relative_to(receipt_path.parent) for p in entries)
+    ambient = {name: shutil.which(name) for name in ['yosys', 'z3', 'cvc5']}
+    os.environ['PATH'] = os.pathsep.join(entries + [os.environ.get('PATH', '')])
+    selected = {}
+    for name, flag in [('yosys', '-V'), ('z3', '--version'), ('cvc5', '--version')]:
+        expected = receipt['executables'][name]; binary = Path(shutil.which(name)).resolve()
+        assert binary == Path(expected['path']).resolve() and binary.is_relative_to(receipt_path.parent), ('Wrong tool selected', name)
+        assert runner.sha(binary.read_bytes()) == expected['sha256'], ('Tool binary changed', name)
+        version = subprocess.run([str(binary), flag], capture_output=True, text=True, timeout=10, check=True).stdout.strip()
+        assert version == receipt['versions'][name], ('Tool version differs from install receipt', name)
+        selected[name] = {'path': str(binary), 'sha256': expected['sha256'], 'version': version}
+    result = {'passed': True, 'install_receipt_sha256': runner.sha(raw), 'ambient_executables': ambient, 'selected_executables': selected}
+    runner.save(out / 'TOOL-SELECTION.json', result)
+    return selected
 
 def check_native(raw, source):
     modules = json.loads(raw)['modules']; top = modules[source['top']]
@@ -51,6 +70,7 @@ def compile_models(project, out, source, core, deadline):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True); parser.add_argument('--model', type=Path, required=True)
+    parser.add_argument('--tool-receipt', type=Path, required=True, help='TOOLS.json from the pinned installer; selected tools and versions must match')
     parser.add_argument('--timeout', type=int, default=120); parser.add_argument('--total-timeout', type=int, default=900)
     parser.add_argument('--workers', type=int, default=2); parser.add_argument('--memory-mb', type=int, default=4096)
     args = parser.parse_args()
@@ -58,6 +78,7 @@ def main():
     out = args.out.resolve(); assert not out.exists(), 'Use a new output directory'; out.mkdir(parents=True)
     started = time.monotonic()
     try:
+        selected = select_tools(args.tool_receipt, out)
         project, package = runner.unpack(out)
         core = module('epoch_graph_check', project / 'check.py')
         source = json.loads((HERE / 'SOURCE.json').read_text())
@@ -92,6 +113,7 @@ def main():
                       package_archive_sha256=runner.sha((HERE / 'project.tar.gz').read_bytes()),
                       fresh_native_compilations=3, fresh_solver_queries=26,
                       all_fresh_expected_results_matched=True, recorded_model_identity_required=False,
+                      installed_tool_receipt_validated=True,
                       fresh_graph_sha256=runner.sha((out / 'FRESH-GRAPH.json').read_bytes()),
                       fresh_binding_sha256=runner.sha((out / 'FRESH-BINDINGS.json').read_bytes()),
                       seconds=time.monotonic() - started)

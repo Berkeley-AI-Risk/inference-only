@@ -25,6 +25,7 @@ jobs:
         run: >-
           python3.12 -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/recompute.py
           --model demos/simplestories-v2-5m --out "$RUNNER_TEMP/clear-epoch-linux"
+          --tool-receipt "$RUNNER_TEMP/formal-tools/TOOLS.json"
           --workers 2 --memory-mb 4096 --timeout 120 --total-timeout 900
       - name: Preserve proof and tool receipts
         if: always()

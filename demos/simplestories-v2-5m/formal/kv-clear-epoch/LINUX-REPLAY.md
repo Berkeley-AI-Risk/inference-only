@@ -20,9 +20,9 @@ From the repository root:
 proof_scratch="$(mktemp -d)"
 python3.12 -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/install_linux.py \
   --out "$proof_scratch/tools"
-export PATH="$proof_scratch/tools/cvc5-Linux-arm64-static/bin:$proof_scratch/tools/oss-cad-suite/bin:$PATH"
 python3.12 -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/recompute.py \
   --model demos/simplestories-v2-5m --out "$proof_scratch/proof" \
+  --tool-receipt "$proof_scratch/tools/TOOLS.json" \
   --workers 2 --memory-mb 4096 --timeout 120 --total-timeout 900
 ```
 
@@ -30,13 +30,15 @@ python3.12 -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/recompute.py
 size and SHA-256. The installer checks them before extraction and records the
 actual tool versions. CI uses `ubuntu-24.04-arm`, Python 3.12.12, OSS CAD Suite
 2026-11-05 and cvc5 1.3.1. Linux x86-64 tool pins are also supplied; that install
-uses `cvc5-Linux-x86_64-static/bin` in PATH. The fresh qualification recorded
+uses the matching recorded executable paths. The fresh qualification recorded
 for this contribution was on native Linux ARM64, not an x86 emulation.
 
 The command allows two workers, 4 GiB sampled RSS per solver, 120 seconds per
 query and 900 seconds total; each compilation has a 60-second timeout. It requires
 local child-process monitoring with `ps`. A timeout, unknown, failed compilation
 or unexpected answer fails the job. The runner does not skip missing tools.
+It selects executables from the installation receipt, verifies their hashes and
+versions before compiling, and ignores competing versions on the ambient PATH.
 
 ## What differs from strict artifact replay
 
