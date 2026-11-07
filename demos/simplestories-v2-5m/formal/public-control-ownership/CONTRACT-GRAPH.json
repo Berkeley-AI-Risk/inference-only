@@ -1,0 +1,63 @@
+{
+  "history-trace-invariant": {
+    "meaning": "Complete PC-I, same predecessor and all12successors; no desired PC successor premise",
+    "preservation_any_of": [
+      [
+        "history-joint-three-step"
+      ]
+    ],
+    "requires": [
+      "native-trace-invariant",
+      "history-reset-base",
+      "history-base-through-release",
+      "phase-trace-invariant"
+    ]
+  },
+  "native-trace-invariant": {
+    "meaning": "All rebuilt native source assertions on the common sampled-reset trace; independent of PC history",
+    "requires": [
+      "native-reset-base",
+      "native-base-through-release",
+      "native-joint-three-step"
+    ]
+  },
+  "phase-trace-invariant": {
+    "environment_assumption": false,
+    "history_invariant_premise": false,
+    "meaning": "From pc-zero, live ghost STEP implies actual WAIT_RESULT on the same exact native/pc-next trace",
+    "requires": [
+      "native-trace-invariant",
+      "phase-reset-base",
+      "phase-one-step"
+    ]
+  },
+  "public-control-endpoints": {
+    "requires": [
+      "native-trace-invariant",
+      "history-trace-invariant",
+      "actual-successful-commit",
+      "actual-STEP-snapshot",
+      "actual-token-message-bytes",
+      "actual-publication-once"
+    ]
+  },
+  "qualification": {
+    "no_partial_success": true,
+    "requires": [
+      "public-control-endpoints",
+      "source-defect-control",
+      "reset-rooted-Icarus-witness"
+    ]
+  },
+  "source-defect-control": {
+    "mutant_role": "stale-capture",
+    "original_role": "original",
+    "reachable_trace_credit": false,
+    "requires": [
+      "original-capture-context",
+      "original-capture-consumer",
+      "stale-capture-consumer"
+    ],
+    "successor_invariants_imported_into_mutant": false
+  }
+}

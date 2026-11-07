@@ -1,0 +1,238 @@
+{
+  "actual_execution": {
+    "UNSAT": 14,
+    "expected_SAT": 4,
+    "native_model_compiles": 2,
+    "operating_and_guard_simulation_compiles": 2,
+    "operating_and_guard_simulations": 2,
+    "seconds": 23.844492125092074,
+    "solver_answers": 18,
+    "successful_process_receipts": 24
+  },
+  "compiler_byte_identity_assumed": false,
+  "four_state_guard": {
+    "actual_trace": [
+      "GUARDPASS known=4096 X=49152 Z=49152",
+      "guard-validation.sv:20: $finish called at 102400 (1s)"
+    ],
+    "passed": true,
+    "raw_log_sha256": "f02cd3911b8a7177770ddb347a383a836ba98b843f6533b773886acb9c989dab"
+  },
+  "fresh_Linux_qualification_executed": false,
+  "hosted_CI_executes_this_fresh_packet": false,
+  "mode": "fresh-native-recompute",
+  "native_models": {
+    "original": {
+      "native.json": {
+        "bytes": 4273491,
+        "sha256": "cdfbbdc6b45a02d983dfb79c0acec70c512c6ac53fdf0bd39355adfdad37f4ea"
+      },
+      "native.smt2": {
+        "bytes": 1557739,
+        "sha256": "92cead010d79006540b578c103289e680709491c257f709208a557e61375262a"
+      }
+    },
+    "stale-capture": {
+      "native.json": {
+        "bytes": 4272474,
+        "sha256": "3056a0f32665b9336bf439fabce43f2c622b5e2108b95853ffa020e685828afa"
+      },
+      "native.smt2": {
+        "bytes": 1557113,
+        "sha256": "bbaf0fa6f09730c66e09d3297d1078c1ca0cdfd0f14d3439d37d92f01e11e9fa"
+      }
+    }
+  },
+  "operating_witness": {
+    "actual_trace": [
+      "STEP ticket=1 count=1 cycle=32378",
+      "COMMIT candidate=23 ticket=1",
+      "CLEAR old_held=23 captures=0",
+      "DRAIN",
+      "STEP ticket=2 count=1 cycle=215817",
+      "COMMIT candidate=17 ticket=2",
+      "CAPTURE ticket=2 value=17",
+      "TOKEN_FRAME value=17 late_fault=1",
+      "RESET_OBSERVED low_edges=5 releases=1",
+      "CASEPASS public steps=2 clear=1 commits=2 captures=1 old=23 new=17 late_fault=1",
+      "tb.sv:326: $finish called at 3561750000 (1ps)"
+    ],
+    "passed": true,
+    "raw_log_sha256": "d5ac1f1fa9bcb32c1325e5c68ddf6f4172b6e54fb2f4b9fedae3b410dcc27abb"
+  },
+  "passed": true,
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "queries": {
+    "CLEAR-CRC-result-race-context": {
+      "actual": "sat",
+      "expected": "sat",
+      "query_sha256": "fb8b6760746dac33bc45922e3f59531f98bf46ceb0516e9b2d13e520a1d89916",
+      "raw_answer_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e"
+    },
+    "CLEAR-CRC-result-race-priority": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "47175bc3c702cbbd771fc81d0e41a032474ca70337b0de0e7215d63a9e607704",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "actual-STEP-snapshot": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "acf69841c4cb5fbeb40c07ce5eed36a0acd0595d7f98ac654498b9c5a1569660",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "actual-publication-once": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "2eeed3cb68e5dd7f07f02dafebaab4e7c8635bd6bbe6b3fbf11db54408f6f5ee",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "actual-successful-commit": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "6e93922902b3346eeff5a57c161d5e6df2193c7d213ddea6dfcf57599c794730",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "actual-token-message-bytes": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "f6421b1f91269dd97e180a36ff131b8662733c0098418fba1dd508241b284c5c",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "history-base-through-release": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "b31697e075a154f896df9d080bcf0e9af2bc104c7aa12aad52e269741b029a2d",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "history-joint-three-step": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "87863e7d1329b3cfc3a8eeeb44c82571cadf05a346b0b20d1ad6a2f0eac2f7bf",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "history-reset-base": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "3194fda96d41f7c19ff6c36af235663347a680954dc1b1782cdd77431d653656",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "native-base-through-release": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "18b309f1e846081a401cb337e12349c32ae1159f387497606d296ee7710f2328",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "native-joint-three-step": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "e1cfdf7221259afc1b2e6a550fb9b73e8b60e41b88cc75b258ed9e960a21795a",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "native-reset-base": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "ae4f60cc7c0a20b0c224ece7bd2b40b7c28abb639ec9795f5d0c8a9585b0a2f2",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "original-capture-consumer": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "49c14718d25fea80cb79e1486fe70f1bc8c87b4634a10ce3c2625662ee70e070",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "original-capture-context": {
+      "actual": "sat",
+      "expected": "sat",
+      "query_sha256": "95188ba4d635fee67f19182ee89a3c50fdb719bb96d29ba70e4e582517f4469b",
+      "raw_answer_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e"
+    },
+    "phase-one-step": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "8b0261cb833c196d13f35ee9206967896298fe9031b3edf5ea64c1b1f8dad0ae",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "phase-reset-base": {
+      "actual": "unsat",
+      "expected": "unsat",
+      "query_sha256": "c98ef7cc5438d83ce5d72045b0ac3616c57827124b6bbfea55b6df45d0a0c517",
+      "raw_answer_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+    },
+    "reset-release-context": {
+      "actual": "sat",
+      "expected": "sat",
+      "query_sha256": "60b54409f13d98a4f72ae3217b7f0ccf05c8dadb18594ca4ecfdd37672ffa34f",
+      "raw_answer_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e"
+    },
+    "stale-capture-consumer": {
+      "actual": "sat",
+      "expected": "sat",
+      "query_sha256": "6108b822c8685ca99394a88a8d76d949d6b3071605de89bd46d9f92db5814c05",
+      "raw_answer_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e"
+    }
+  },
+  "raw_result_sha256": "15a0dc7e349a38df4232f38302fe63e394503c818bc8fa959430109e4648d412",
+  "resource_limits": {
+    "compile_or_simulation_seconds": 60,
+    "observed_peak_owned_process_tree_RSS_bytes": 139558912,
+    "query_seconds": 120,
+    "sampled_owned_process_tree_RSS_bytes": 4294967296,
+    "sequential_workers": 1
+  },
+  "schema": "source-bound-native-control-qualification-v1",
+  "scope": "Baseline common-clock sampled-reset command/candidate/frame ownership. Numerical candidate is arbitrary; current-STEP head-row/logit meaning, whole-device theorem, UART-pin delivery and guaranteed completion remain open.",
+  "source_binding": "SOURCE.json pins thirteen actual production sources and the archived proof source/cut map.",
+  "tested_frozen_inputs": {
+    "CONTRACT-GRAPH.json": {
+      "bytes": 1743,
+      "sha256": "90118beba4a639867fb530dcc640df17d100afa24fa00c5c1da177c5201fad96"
+    },
+    "PHASE-SUPPORT.smt2": {
+      "bytes": 387,
+      "sha256": "5a9b28ba355a995195b1a54eddc6eccba25410dc5761409fc4b5eb25f4920390"
+    },
+    "SOURCE.json": {
+      "bytes": 4772,
+      "sha256": "7a36424b707c694504c3550873ae7e19edf863aa33fef1a988b8b9042df8924c"
+    },
+    "STATEMENT.smt2": {
+      "bytes": 14363,
+      "sha256": "d9cd23be2d937f35cf430a35c5bbad98747b3e0b81b509b65ec9896c7f161079"
+    },
+    "project.tar.gz": {
+      "bytes": 909770,
+      "sha256": "c04d636919b49d2869c5d2ad60a90d9bb803649712b623e1b9c80eae26aada12"
+    },
+    "run.py": {
+      "bytes": 13995,
+      "sha256": "57cc32409a9b1284a48f291fbeeb6c3a92cf87685cd65ec813baa471dcaf8331"
+    }
+  },
+  "tools": {
+    "iverilog": {
+      "binary_sha256": "5df81b269e1ff2c965dd00ad5a8071ca17717f416003b3661a18b2dde430e73c",
+      "full_version_probe_sha256": "d946c84299a479c10b1b1fb55c136f622a1c34dbc8fe475dceafc8d12c7c0e69",
+      "path": "/opt/homebrew/bin/iverilog",
+      "version": "Icarus Verilog version 13.0 (stable) (v13_0)"
+    },
+    "vvp": {
+      "binary_sha256": "1a9bdf1f40102f64f015514f5069f99a5dd9f9f38de343743ef4c169fb358392",
+      "full_version_probe_sha256": "62720cbdf1726cadbf196ddf9fafbdfe3d67504e6939fdd8f80410d618742525",
+      "path": "/opt/homebrew/bin/vvp",
+      "version": "Icarus Verilog runtime version 13.0 (stable) (v13_0)"
+    },
+    "yosys": {
+      "binary_sha256": "f59e100c4df830cf7898bc69da624225f15c25e09b1c5747c9b510a15a7a69f5",
+      "full_version_probe_sha256": "5e5c64c47f137784f1be2823c00289e978bcc58a4e5d8d8f52665a8b69840312",
+      "path": "/opt/homebrew/bin/yosys",
+      "version": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)"
+    },
+    "z3": {
+      "binary_sha256": "ea69d1d234e0060fd480bf9b21a51f62244ed642ed2469d4373306e6e8ab6102",
+      "full_version_probe_sha256": "a76e5f6e12852cd5bac11ebde2357bb9d4038d76122fb4e7275e497e08c79d8b",
+      "path": "/opt/homebrew/bin/z3",
+      "version": "Z3 version 4.14.1 - 64 bit"
+    }
+  }
+}

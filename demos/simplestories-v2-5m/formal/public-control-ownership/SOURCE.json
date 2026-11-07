@@ -1,0 +1,89 @@
+{
+  "archive_bytes": 909770,
+  "archive_sha256": "c04d636919b49d2869c5d2ad60a90d9bb803649712b623e1b9c80eae26aada12",
+  "base_commit": "33d59adc41501acdeed35b0aa938fca698770a28",
+  "inventory_sha256": "2fca00632fe7c30ed38178d8310b71c230d5b8eca982384646e52ac0d2f35eb4",
+  "members": 115,
+  "production_sources": [
+    {
+      "file": "production/core/core.sv",
+      "instrumented": "sources/core/core.sv",
+      "repository_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv",
+      "sha256": "0e4a38023c711abae1bdf1173444601723dc90a25b1f414c5618bf908432d4da"
+    },
+    {
+      "file": "production/core/shell.sv",
+      "instrumented": "sources/core/shell.sv",
+      "repository_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv",
+      "sha256": "55d56d5a4add9afa81b5622303ff0c81c27734fe23ac7ffa5b849d3944d8fe62"
+    },
+    {
+      "file": "production/core/sequence.sv",
+      "instrumented": "sources/core/sequence.sv",
+      "repository_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv",
+      "sha256": "f7ebce15ce1d3ee97d968014d17051ddd942d3dd2d582368e4aa81b6e0e52205"
+    },
+    {
+      "file": "production/core/layer.sv",
+      "instrumented": "sources/core/layer.sv",
+      "repository_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv",
+      "sha256": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6"
+    },
+    {
+      "file": "production/core/datapath.sv",
+      "instrumented": "sources/core/datapath.sv",
+      "repository_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv",
+      "sha256": "fd7b6ade26e99db09999709954630b6d358b2d6cd7fae1f7f18c878fefec0dc3"
+    },
+    {
+      "file": "production/core/fifo.sv",
+      "instrumented": "sources/core/fifo.sv",
+      "repository_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv",
+      "sha256": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f"
+    },
+    {
+      "file": "production/core/arbiter.sv",
+      "instrumented": "sources/core/arbiter.sv",
+      "repository_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv",
+      "sha256": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9"
+    },
+    {
+      "file": "production/front/bridge.sv",
+      "instrumented": "sources/front/bridge.sv",
+      "repository_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv",
+      "sha256": "13551d6d3cdffe60dbfa4ed094bad5fb92b7648604dca8f6a98f1f0d8f27f84b"
+    },
+    {
+      "file": "production/front/adapter.sv",
+      "instrumented": "sources/front/adapter.sv",
+      "repository_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv",
+      "sha256": "3373d3a7dd46ab2ff632f24b56e93c0556d5963ff2871bcde57c98168f939914"
+    },
+    {
+      "file": "production/front/rx.sv",
+      "instrumented": "sources/front/rx.sv",
+      "repository_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv",
+      "sha256": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f"
+    },
+    {
+      "file": "production/front/tx.sv",
+      "instrumented": "sources/front/tx.sv",
+      "repository_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv",
+      "sha256": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e"
+    },
+    {
+      "file": "production/uart_core.sv",
+      "instrumented": null,
+      "repository_path": "demos/simplestories-v2-5m/hardware/project/uart_core.sv",
+      "sha256": "315f5d20fa93a5f974eeef1b26220952c6f9ab4264cd6309a1de7cb35ea1832a"
+    },
+    {
+      "file": "production/shared_token_probe.sv",
+      "instrumented": null,
+      "repository_path": "demos/simplestories-v2-5m/hardware/project/shared_token_probe.sv",
+      "sha256": "c855d6621f4475b04fe662aa628e3d733d32fa2b15bf982ea8e7f269133da33e"
+    }
+  ],
+  "source_claim": "Named baseline source/control abstraction with explicit twenty-instance numerical/storage cut",
+  "whole_device_theorem": false
+}
