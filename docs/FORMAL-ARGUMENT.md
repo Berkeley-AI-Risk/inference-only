@@ -1,25 +1,32 @@
 # The inference-only argument and its proof dependencies
 
-The intended result is that the configured circuit implements its prescribed
-inference service and confines usable computation and access to that service.
-**The complete whole-device theorem is open.** This page connects the existing
-[SimpleStories objective](../demos/simplestories-v2-5m/FORMAL-STATUS.md#verification-objective)
-and [Qwen3-1.7B objective](../demos/qwen3-1.7b/FORMAL-STATUS.md#verification-objective)
-to their established results and remaining connections. Results apply only to
-their named configurations.
+**The whole-device theorem is open.** The target is that each published token
+matches the prescribed model for its accepted request, and that the circuit's
+arithmetic and private accesses stay within the specified inference service.
+The [SimpleStories objective](../demos/simplestories-v2-5m/FORMAL-STATUS.md#verification-objective)
+and the [Qwen3-1.7B objective](../demos/qwen3-1.7b/FORMAL-STATUS.md#verification-objective)
+state these obligations for their respective designs.
 
-```mermaid
-flowchart LR
-    M["Admitted model"] -.-> O["Checked operands"]
-    O -.-> C["Prescribed computation"]
-    C -.-> S["Owned state"]
-    S -.-> T["Authorized token publication"]
-```
+Two proofs on the baseline SimpleStories circuit show where the argument stands.
+Inside a layer, the numerical proof starts at RMSNorm stage admission with a
+hidden vector. Under its stated contracts, it proves successful unrotated query
+results through projection, writes to query RAM and tagged reads before overwrite.
+At the output, the control proof starts with an accepted STEP and takes the
+numerical core's candidate token as an arbitrary input. It proves that a
+successful commit and reply capture belong to that STEP, and that accepted
+reply bytes match the captured frame.
+[Numerical theorem](../demos/simplestories-v2-5m/formal/rms-q-segment/THEOREM.md) ·
+[Control theorem](../demos/simplestories-v2-5m/formal/public-control-ownership/THEOREM.md)
 
-The dashed arrows mark connections that remain to be proved for the complete
-device. Existing proofs connect parts of this chain: for example, checked model
-reads and the baseline RMSNorm/Q computation through actual query RAM. The
-dependency table below identifies each result's boundary.
+A recorded RTL simulation makes the output boundary concrete. One STEP commits
+candidate 23. CLEAR is accepted before reply capture, so that candidate is not
+published. A fresh STEP commits candidate 17; the bridge captures it and its
+reply frame stays fixed through a later fault. The simulation supplies these
+candidates at the numerical boundary, and the control proof covers arbitrary
+candidate values. To establish the model's answer, a proof must also trace the
+accepted tape through the model layers to the output scores and show that the
+selector supplied the resulting token for that same STEP.
+[Recorded simulation and reproduction](../demos/simplestories-v2-5m/formal/public-control-ownership/README.md)
 
 ## The target and its interfaces
 
