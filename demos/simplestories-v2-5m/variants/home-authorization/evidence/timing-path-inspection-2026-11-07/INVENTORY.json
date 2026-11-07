@@ -1,0 +1,159 @@
+{
+  "ddr_setup_path1": {
+    "DLL": {
+      "instance": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/u_dll",
+      "pins": {
+        "CLKIN": "u_core/u_raw_controller/memory_clk_400mhz",
+        "LOCK": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/dll_lock",
+        "STEP": "{\\u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/dll_step[7:0]}"
+      },
+      "type": "DDRDLL"
+    },
+    "application_clock": {
+      "divide_by": 4,
+      "instance": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/fclkdiv",
+      "pins": {
+        "CLKOUT": "u_core/app_clk_100mhz",
+        "HCLKIN": "u_core/u_raw_controller/memory_clk_400mhz"
+      },
+      "type": "CLKDIV"
+    },
+    "capture_enable": {
+      "equation": "dll_lock && ddr_init_st_rr && !ddr_init_st_rrr",
+      "input_pins": {
+        "I0": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/ddr_init_st_rrr",
+        "I1": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/ddr_init_st_rr",
+        "I2": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/dll_lock"
+      },
+      "instance": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/n2474_s0",
+      "output_net": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/n2474_3",
+      "scope": "Combinational pin/truth-table inspection only; no enabled-edge stability or pulse-width theorem.",
+      "truth_table_hex": "40",
+      "type": "LUT3"
+    },
+    "capture_ff": {
+      "instance": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/dll_step_base_0_s0",
+      "pins": {
+        "CE": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/n2474_3",
+        "CLK": "u_core/app_clk_100mhz",
+        "D": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/dll_step[0]",
+        "Q": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/dll_step_base[0]"
+      },
+      "type": "DFFCE"
+    },
+    "next_consumer": {
+      "instance": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/u_init_rmove_mod/dllstep_r_0_s0",
+      "pins": {
+        "CE": "VCC",
+        "CLK": "u_core/app_clk_100mhz",
+        "D": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/dll_step_base[0]"
+      },
+      "type": "DFFCE"
+    },
+    "open": "A valid, stable and coherent STEP[7:0] at every enabled application-clock sample, including reset/relock and update-control transitions.",
+    "prefix": "u_core/u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/",
+    "reported_check": {
+      "arrival_ns": "15.634",
+      "capture_clock": "app_clk100 rising",
+      "capture_edge_ns": "10.000",
+      "launch_clock": "memory_clk400 rising",
+      "launch_edge_ns": "7.500",
+      "required_ns": "13.373",
+      "setup_relationship_ns": "2.500",
+      "slack_ns": "-2.261"
+    }
+  },
+  "hold_path1": {
+    "capture_ff": {
+      "instance": "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg_4_s0",
+      "pins": {
+        "CE": "VCC",
+        "CLK": "core_clk",
+        "D": "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[3]",
+        "Q": "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[4]"
+      },
+      "type": "DFFCE"
+    },
+    "core_clock": {
+      "constraint": "inference_clk25",
+      "driver": "u_core/u_raw_controller/u_core_clkdiv/CLKOUT",
+      "net": "core_clk",
+      "period_ns": "40.000"
+    },
+    "open": "Resolved vendor clock propagation and a complete same-core-clock FF3-to-FF4 timing check.",
+    "other_Q_load": {
+      "instance": "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/latch_3_s0",
+      "net": "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[3]",
+      "pin": "G",
+      "type": "DLCE"
+    },
+    "prefix": "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/",
+    "reported_capture_clock": "inference_clk25 rising",
+    "reported_launch_root": {
+      "clock": "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[3]",
+      "object": "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg_3_s0/Q",
+      "period_ns": "10.000",
+      "type": "Base"
+    },
+    "slack_ns": "-1.115",
+    "source_ff": {
+      "instance": "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg_3_s0",
+      "pins": {
+        "CE": "VCC",
+        "CLK": "core_clk",
+        "D": "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[2]",
+        "Q": "u_entropy/source/entropy_cell_gen[2].neoTRNG_cell_inst/sreg[3]"
+      },
+      "type": "DFFCE"
+    }
+  },
+  "image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
+  "mapped_input": {
+    "availability": "The original vendor-derived mapped netlist is not distributed. Only these factual connections are included; the hash identifies the inspected artifact, not a public netlist replay.",
+    "file": "home_product.vo",
+    "sha256": "8d46a54d2060b8d2286cb09b4cab34a29adc086e9ed145354c85ba806497c310"
+  },
+  "new_STA_or_qualification": false,
+  "original_upstream": {
+    "commit": "06e7d8b118d345915ab6f257b7c22226f81575cd",
+    "comparison": "The matching example SDC separates clk400, clk100 and sysclk with exclusive clock groups, excluding this clock-pair check. It supplies no path-specific STEP validity window; no exception is imported here.",
+    "constraint_git_blob": "736f8fe642d9ce8d3cdd0256c26631ba37028fba",
+    "constraint_sha256": "39eba69deae4761e8a749780c27df43052813fe2dc220ba535ac93c78c03ec89",
+    "constraint_url": "https://github.com/sipeed/TangMega-138K-example/blob/06e7d8b118d345915ab6f257b7c22226f81575cd/ddr_memory/ddr_memory_test_uart/src/ddr3_1v4_hs.sdc",
+    "repository": "sipeed/TangMega-138K-example",
+    "source_identity_guide": "demos/simplestories-v2-5m/VENDOR-DEPENDENCIES.json",
+    "vendor_IP_source_git_blob": "128520da4a8b780dea685f833e8055154b3ff901",
+    "vendor_IP_source_sha256": "d7cae5a16467ca35ee3f95411537344ae3702e1dba86a06571530e3dd0180c57"
+  },
+  "public_source_commit": "bf084d52c5c94cd13db99b69585bae3b0d9ab7aa",
+  "public_sources": {
+    "demos/simplestories-v2-5m/variants/home-authorization/hardware/project/constraints/product.sdc": {
+      "bytes": 2728,
+      "sha256": "b845ec9b216ccdc50450eaa5be32606684a1b7e674c0b0623e8236f4d9778d2c"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/hardware/project/home/entropy_source.vhd": {
+      "bytes": 641,
+      "sha256": "2b421be1ed464ba272d673ace1fcc6da044924fbeefa8c1aefbeca50fb5659ce"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/hardware/project/home/home_product_top.sv": {
+      "bytes": 2947,
+      "sha256": "8bd380bbc12a256252086cecad83e77a5d751f7bb1acb73b102f5b0321b8bad4"
+    },
+    "demos/simplestories-v2-5m/variants/home-authorization/hardware/project/home/neoTRNG.vhd": {
+      "bytes": 15528,
+      "sha256": "8ceed16aa1665b54df556042b417b4b386fbdff63e2b2daa290f7192129bebbb"
+    }
+  },
+  "report": {
+    "bytes": 4781171,
+    "repository_path": "demos/simplestories-v2-5m/variants/home-authorization/evidence/repair-native-2026-11-05/home_product.tr",
+    "sections": {
+      "clock_table": "2.2",
+      "hold_path1": "3.3.2 Path1",
+      "setup_path1": "3.3.1 Path1"
+    },
+    "sha256": "2c8156365d8d857e496fe7c5e8b509ce17333967486e8cac93f59494ac73295b"
+  },
+  "schema": "periodic-reauthorization-two-timing-paths-v1",
+  "scope": "Compact factual pin/clock inventory from the identified frozen route. This is a source inspection, not new STA, equivalence, or timing qualification."
+}
