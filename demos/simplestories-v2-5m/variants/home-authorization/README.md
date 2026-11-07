@@ -4,6 +4,8 @@ This Tang Mega design requires model-specific approval from home base at startup
 
 **Authorities can de-whitelist one set of weights and distribute a signed replacement.** The deployment host installs the replacement package using the signed-update workflow. The chip checks its update signatures and weights, then obtains fresh home permission for that exact model commitment. Withholding renewal stops inference with the old model no later than the current approval deadline. Model-update signatures and current permission to run are separate requirements.
 
+Fresh authorization depends on a fresh challenge. The [nonce freshness boundary](HARDWARE.md#nonce-freshness) explains why the immediate-repeat check does not retain nonce history across reset or an intervening nonce. With forced repeated accepted samples, an identical request can admit an old valid grant. Physical entropy qualification remains open.
+
 The [physical replacement campaign](VALIDATION.md#physical-model-replacement) tests this sequence with the base model and a signed synthetic replacement that changes the final normalization weights. Both produce their reference outputs; the withdrawn base model remains blocked after it is reinstalled and the FPGA is reconfigured.
 
 The update starts a fresh session. The prototype has no automatic remote-update agent, deliberate update delay, update cap or rollback prevention independent of home policy. Deauthorization does not erase external weight memory. Compatible fine-tunes can be admitted under the same fixed architecture.

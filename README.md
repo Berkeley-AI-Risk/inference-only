@@ -165,6 +165,10 @@ The deployment host installs the replacement. The chip verifies its signatures
 and weights, then obtains permission for that exact model. Withholding renewal
 stops inference with the old weights by the current approval deadline.
 
+Remote revocation requires a fresh challenge for each authorization. The
+demonstration's [nonce freshness boundary](demos/simplestories-v2-5m/variants/home-authorization/HARDWARE.md#nonce-freshness)
+explains its volatile repeat check and the outstanding physical entropy assumption.
+
 <a href="docs/figures/s-awic-home-authorization.svg#gh-light-mode-only"><img src="docs/figures/s-awic-home-authorization.svg#gh-light-mode-only" alt="Optional S-AWIC feature: home base authorizes the exact model and fresh chip nonce; the deployment host relays messages, and current permission enables fixed inference circuitry." width="800"></a>
 <a href="docs/figures/s-awic-home-authorization-dark.svg#gh-dark-mode-only"><img src="docs/figures/s-awic-home-authorization-dark.svg#gh-dark-mode-only" alt="Optional S-AWIC feature: home base authorizes the exact model and fresh chip nonce; the deployment host relays messages, and current permission enables fixed inference circuitry." width="800"></a>
 

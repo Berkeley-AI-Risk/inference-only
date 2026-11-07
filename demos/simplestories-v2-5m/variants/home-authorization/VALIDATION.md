@@ -21,6 +21,20 @@ The [raw benchmark](evidence/repair-board-2026-11-05/COMMON-SPEED.json), referen
 
 RTL simulations use actual admission, numerical, UART and LMS/SHA logic with fast flash, modeled DDR, deterministic raw entropy and accelerated timers. They establish functional observations under those models. Current source/proof scopes are in [FORMAL-STATUS.md](FORMAL-STATUS.md).
 
+## Forced-sample repetition
+
+A finite digital unit simulation joins the selected hardware frontend and gate to real LMS/SHA computation, with fixed device/model/geometry and forced balanced 512-byte samples A and B. It preserves their actual core-reset semantics and response/lease/renew cycle counts. The private hash-service scheduling and admitted-root inputs are fixture boundaries; this is separate from the physical campaigns above.
+
+| Forced input and grant | Gate result |
+| --- | --- |
+| A followed immediately by A, without reset | Refuses before a second challenge; disables inference |
+| Hard reset followed by A again; identical old A grant | Identical challenge; real signature verification accepts and starts a new lease |
+| B challenge; old A grant | Refuses the mismatching request prefix |
+| A, B, then A in one reset epoch; old A grant on the third request | Identical A challenge; real signature verification accepts and renews the lease |
+| Matching A challenge; one signature byte flipped | Real verifier rejects; no new lease or inference permission |
+
+These observations establish the scope of the immediate-repeat check, not physical entropy behavior or a real-board bypass. The [freshness boundary](HARDWARE.md#nonce-freshness) explains the volatile memory and the assumption of fresh nonces. The physical replay observations above use distinct challenges; they do not test acceptance under repeated private entropy samples.
+
 ## Physical model replacement
 
 The [replacement campaign](evidence/model-replacement-v2/RESULT.json) uses its recorded 25 MHz image, SHA-256 `cb0f7d60bbedca7ec504973d26f5093445049a4dbac3435df591231c2ae1922e`. Model A is the base model; model B is a signed synthetic replacement with 320 changed final-normalization bytes. Both have valid signatures from two distinct update authorities and retain the fixed architecture and arithmetic tables.

@@ -10,4 +10,14 @@ Weight memory and model-authentication logic are distinct. Authentication admits
 
 The inference clock is 25 MHz; board, DDR, application and trusted-reset logic use separate clock domains. The physical nonce candidate uses three neoTRNG inverter/latch rings, a 512-byte sample buffer, simple repeat/bias screens and SHA256 conditioning. Host bytes do not seed it. These checks do not establish a cryptographic entropy bound, robust freshness under physical attack, a trusted wall clock or a clone-resistant device identity.
 
+## Nonce freshness
+
+The [gate](hardware/project/home/home_boot_gate.sv) rejects a zero nonce and an immediate repeat within one hard-reset epoch. It remembers only the preceding nonce: a different nonce replaces that value, and the common core reset clears both `seen_nonce_q` and `previous_nonce_q`.
+
+Forcing the same accepted 512-byte entropy sample through the [conditioner](hardware/project/home/nonce_frontend.sv) produces the same nonce. With the same device, admitted model and geometry, the complete request then repeats. An old valid signature can be accepted for that identical request after reset, or after a different nonce intervenes. The [digital unit comparison](VALIDATION.md#forced-sample-repetition) checks these cases with real LMS/SHA verification and a corrupted-signature control. It does not demonstrate physical sample repetition or a board bypass.
+
+The repeat check and sample health screens do not supply persistent freshness state. Fresh unpredictable nonces remain an assumption needed for remote revocation; physical entropy qualification is outstanding.
+
+## Timing qualification
+
 The routed design reports a maximum of 25.002 MHz for the 25 MHz inference clock. Its whole-design summary reports 121 setup and 55 hold violating endpoints. The reset review traces one hold path through the entropy control logic and explains the remaining clock and DDR timing questions. Metastability MTBF, entropy qualification and physical tamper resistance remain open. [Startup reset and timing review](RESET-REVIEW.md)
