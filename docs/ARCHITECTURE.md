@@ -161,9 +161,17 @@ the compilation order, includes, defines and top. The
 have distinct source and qualification records. Their finite source checks
 are documented for [1.7B](../demos/qwen3-1.7b/REPRODUCE.md#source-selection-check)
 and [8B](../demos/qwen3-8b/REPRODUCE.md#source-selection-check).
-The [model-size reuse example](MODEL-SIZE-REUSE.md) uses one private
-address-decoder generator with the two pinned Qwen profiles. It compares the
-8B source bytes and checks the 1.7B module outputs against the released decoder.
+The [model-size reuse example](MODEL-SIZE-REUSE.md) shows what can be shared.
+One generator derives the model address decoder from the tensor layout. It
+reproduces the released 8B RTL byte for byte. For 1.7B, an induction proof
+shows that every decoder output matches the release on every cycle after reset.
+
+For a larger Qwen model, put layer count, dimensions and weight layout in the
+build profile. Choose memory banking, pipeline depth and the execution schedule
+from the required weight bandwidth, K/V traffic and cycles per token at the
+target clock. A weight reader can serve several schedules if its interface
+specifies when verified bytes become available and when a buffer can be reused
+after CLEAR.
 
 For the HWIC checkpoint, use its
 [configuration and evidence map](../research/hwic/simplestories-2026-10-27/README.md#configuration-and-evidence),
@@ -193,7 +201,8 @@ instead of deleting local work.
 | What to reproduce | Entry point | What the result establishes |
 | --- | --- | --- |
 | Recorded proof and board evidence | [SimpleStories reproduction](../demos/simplestories-v2-5m/REPRODUCE.md) and [CI](../.github/workflows/offline-checks.yml) | Integrity, recorded outcomes and the stated helper/fixture checks; a recorded-only command does not rerun a solver or FPGA |
-| Fresh scoped proof | [Linux CLEAR epoch proof](../demos/simplestories-v2-5m/formal/kv-clear-epoch/LINUX-REPLAY.md) and [strict replay example](../demos/simplestories-v2-5m/formal/kv-clear-epoch/REPLAY-EXAMPLE.md) | Fresh native compilation and solver queries for the supporting CLEAR epoch invariant; whole-device composition remains open |
+| Tang command and memory proofs | [STEP, commit and reply ownership](../demos/simplestories-v2-5m/formal/public-control-ownership/README.md) and [K/V CLEAR epoch](../demos/simplestories-v2-5m/formal/kv-clear-epoch/LINUX-REPLAY.md) ([strict replay example](../demos/simplestories-v2-5m/formal/kv-clear-epoch/REPLAY-EXAMPLE.md)) | Fresh RTL compilation and solver checks for baseline token publication and the protected K/V epoch invariant, each on its own configuration |
+| Qwen model-size reuse | [Run the address decoder comparison](MODEL-SIZE-REUSE.md#run-the-example) | Reproduce the 8B decoder source and prove that the generated 1.7B decoder matches every released module output after reset |
 | Fresh RTL components | [Tang loader and Qwen command checks](RTL-CI.md) | Digital lint, elaboration and behavior of two production interfaces across eight configurations; full-chip and physical timing qualification remain separate |
 | Numerical and hardware reproduction | [SimpleStories](../demos/simplestories-v2-5m/REPRODUCE.md), [Qwen 1.7B](../demos/qwen3-1.7b/REPRODUCE.md), [Qwen 8B](../demos/qwen3-8b/REPRODUCE.md) | Named reference, simulation or board checks; asset/tool and hardware prerequisites differ |
 | HWIC full-model RTL | [Checkpoint replay](../research/hwic/simplestories-2026-10-27/README.md#reproduce) | Finite tensor/token comparisons against the independent reference, with a separate changed-weight rejection check |
