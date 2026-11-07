@@ -1,0 +1,745 @@
+{
+  "builds": {
+    "tb_combined": {
+      "binary_sha256": "2ef98a34981a6eaee703bd57aa0bd18655080b09e87a9eaa6a788781b4b97993",
+      "compiler_warnings": {
+        "all_warning_identities_and_counts_within_reviewed_source_bound_policy": true,
+        "by_code": {
+          "DEFOVERRIDE": 3,
+          "PINMISSING": 22,
+          "WIDTHEXPAND": 9,
+          "WIDTHTRUNC": 13
+        },
+        "total": 47
+      },
+      "source_seal_sha256": "0251b2d83cf15a0851421c3de85efe5b4c8e0251b29f3ee04dfcb6ddcea49750"
+    },
+    "tb_combined_clear": {
+      "binary_sha256": "3ed14fe53a1e57b7258ace0612278b5bdf5d6fd0c128dd1cc49e2166a5ce14aa",
+      "compiler_warnings": {
+        "all_warning_identities_and_counts_within_reviewed_source_bound_policy": true,
+        "by_code": {
+          "DEFOVERRIDE": 3,
+          "PINMISSING": 22,
+          "WIDTHEXPAND": 9,
+          "WIDTHTRUNC": 13
+        },
+        "total": 47
+      },
+      "source_seal_sha256": "ca304a23b6ad9f98a6b356e549cd2ce1a478d227c53c9ea83b99bab312111954"
+    },
+    "tb_combined_extended": {
+      "binary_sha256": "13f7a272d22fe9e3f5f38fb865b373587bff73c00782c9f0b240d0a420ff7a2d",
+      "compiler_warnings": {
+        "all_warning_identities_and_counts_within_reviewed_source_bound_policy": true,
+        "by_code": {
+          "DEFOVERRIDE": 3,
+          "PINMISSING": 22,
+          "WIDTHEXPAND": 9,
+          "WIDTHTRUNC": 13
+        },
+        "total": 47
+      },
+      "source_seal_sha256": "24cd97ea1b9dd4591dd5b8e1f878af3ec1a5985f873250843c9f5210493e3156"
+    }
+  },
+  "case_order": [
+    0,
+    1,
+    3,
+    5,
+    6,
+    2,
+    4,
+    7,
+    8,
+    9,
+    10
+  ],
+  "cases": {
+    "0": {
+      "actual_child_exit": 0,
+      "binary_sha256": "2ef98a34981a6eaee703bd57aa0bd18655080b09e87a9eaa6a788781b4b97993",
+      "checked_result_sha256": "7e96e882427effb96ca8721d7934722914175803bc3909e630d942d41cf9f11c",
+      "contexts": [
+        "e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c",
+        "e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c"
+      ],
+      "entrypoint_interval": {
+        "finished_utc": "2026-11-07T23:33:03.810169+00:00",
+        "started_utc": "2026-11-07T23:25:47.711275+00:00",
+        "wall_seconds": 436.0973433449981
+      },
+      "expected_tokens": [
+        108,
+        32
+      ],
+      "markers": [
+        "PASS_COMBINED_A_RENEWAL tokens=108,32 native_six_layers=1 real_signed_boot=1 encrypted_weight_reads=1 encrypted_authenticated_KV=1 cipher_writes=240 leases=2 context_reset=0"
+      ],
+      "native_process_observation": {
+        "argv": [
+          "/out/replay/driver/build-tb_combined/source/obj/Vtb_combined",
+          "+FIXTURES=/out/replay/driver/fixtures-v1",
+          "+SCENARIO=0"
+        ],
+        "clock_ticks_per_second": 100,
+        "native_pid": 34,
+        "observed_utc": "2026-11-07T23:25:48.716225+00:00",
+        "scenario": 0,
+        "start_clock_ticks": 7980474
+      },
+      "observed_tokens": [
+        108,
+        32
+      ],
+      "passed": true,
+      "refused_contexts": [],
+      "scenario": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "ab0116fe266fc9155e653b8d928289bf791adaf4935e56ea7bb78716bcae5b7d",
+      "supervision": "Shared aggregate eight-CPU/16GiB container and private supervisor"
+    },
+    "1": {
+      "actual_child_exit": 0,
+      "binary_sha256": "2ef98a34981a6eaee703bd57aa0bd18655080b09e87a9eaa6a788781b4b97993",
+      "checked_result_sha256": "99fd8fb93ba0be9468c6558433ec03815ddc04ce07ea036c06934ca2fb6be706",
+      "contexts": [
+        "e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c"
+      ],
+      "entrypoint_interval": {
+        "finished_utc": "2026-11-07T23:32:15.545731+00:00",
+        "started_utc": "2026-11-07T23:27:28.406444+00:00",
+        "wall_seconds": 287.13777125100023
+      },
+      "expected_tokens": [],
+      "markers": [
+        "PASS_COMBINED_A_EXPIRY active_steps=1 public_tokens=0 actual_expiry=1 late_returns=10 owned_drops=10 no_DUT_force=1 modeled_monotonic_time=1"
+      ],
+      "native_process_observation": {
+        "argv": [
+          "/out/replay/driver/build-tb_combined/source/obj/Vtb_combined",
+          "+FIXTURES=/out/replay/driver/fixtures-v1",
+          "+SCENARIO=1"
+        ],
+        "clock_ticks_per_second": 100,
+        "native_pid": 41,
+        "observed_utc": "2026-11-07T23:27:29.413940+00:00",
+        "scenario": 1,
+        "start_clock_ticks": 7990539
+      },
+      "observed_tokens": [],
+      "passed": true,
+      "refused_contexts": [],
+      "scenario": 1,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "b70cb8f130030a3f5727160ee7d809f6e830c71f35d02761bb5386e2e4363331",
+      "supervision": "Shared aggregate eight-CPU/16GiB container and private supervisor"
+    },
+    "10": {
+      "actual_child_exit": 0,
+      "binary_sha256": "3ed14fe53a1e57b7258ace0612278b5bdf5d6fd0c128dd1cc49e2166a5ce14aa",
+      "checked_result_sha256": "c6164bd92d7019c3ccf47207db565bc1dd5f0082212c657c2679d2882492d61d",
+      "contexts": [
+        "e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c"
+      ],
+      "entrypoint_interval": {
+        "finished_utc": "2026-11-07T23:27:28.403920+00:00",
+        "started_utc": "2026-11-07T23:21:08.033452+00:00",
+        "wall_seconds": 380.368523009005
+      },
+      "expected_tokens": [
+        108
+      ],
+      "markers": [
+        "PASS_COMBINED_CLEAR_WRITE_DRAIN offered_write_stable_until_accepted=1 old_work_drained=1 fresh_oracle_token=108 same_live_lease=1"
+      ],
+      "native_process_observation": {
+        "argv": [
+          "/out/replay/driver/build-tb_combined_clear/source/obj/Vtb_combined_clear",
+          "+FIXTURES=/out/replay/driver/fixtures-v1",
+          "+SCENARIO=10"
+        ],
+        "clock_ticks_per_second": 100,
+        "native_pid": 31,
+        "observed_utc": "2026-11-07T23:21:09.062909+00:00",
+        "scenario": 10,
+        "start_clock_ticks": 7952543
+      },
+      "observed_tokens": [
+        108
+      ],
+      "passed": true,
+      "refused_contexts": [],
+      "scenario": 10,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "3861d5b058bc261bcd1991b5c9f686987c1ce8699c8d10bbe54511750f17face",
+      "supervision": "Shared aggregate eight-CPU/16GiB container and private supervisor"
+    },
+    "2": {
+      "actual_child_exit": 0,
+      "binary_sha256": "13f7a272d22fe9e3f5f38fb865b373587bff73c00782c9f0b240d0a420ff7a2d",
+      "checked_result_sha256": "1390d65e4a0d3421a080ab28e8a77233c179b767d12dc51ac17536e25d923591",
+      "contexts": [
+        "e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c"
+      ],
+      "entrypoint_interval": {
+        "finished_utc": "2026-11-07T23:30:32.911828+00:00",
+        "started_utc": "2026-11-07T23:21:08.044370+00:00",
+        "wall_seconds": 564.8660838959913
+      },
+      "expected_tokens": [],
+      "markers": [
+        "PASS_COMBINED_RESET_OLD_GRANT model_same=A device_same=1 nonce_same=1 epoch=1_to_2 actual_reset=1 public_tokens=0"
+      ],
+      "native_process_observation": {
+        "argv": [
+          "/out/replay/driver/build-tb_combined_extended/source/obj/Vtb_combined_extended",
+          "+FIXTURES=/out/replay/driver/fixtures-v1",
+          "+SCENARIO=2"
+        ],
+        "clock_ticks_per_second": 100,
+        "native_pid": 26,
+        "observed_utc": "2026-11-07T23:21:09.059977+00:00",
+        "scenario": 2,
+        "start_clock_ticks": 7952543
+      },
+      "observed_tokens": [],
+      "passed": true,
+      "refused_contexts": [
+        "276c2b21913a339bb167eb8fff2ce941ddf10ae7651e4e1d28fcfd4d43af3290"
+      ],
+      "scenario": 2,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "2f3361725f2ad20791057e010f86e5875460be6c9f99c08aa041b06df93e5ddd",
+      "supervision": "Shared aggregate eight-CPU/16GiB container and private supervisor"
+    },
+    "3": {
+      "actual_child_exit": 0,
+      "binary_sha256": "13f7a272d22fe9e3f5f38fb865b373587bff73c00782c9f0b240d0a420ff7a2d",
+      "checked_result_sha256": "df10916c07c5956b8d74d24fb05d9c29c87040b64ad4dd5651bcdf31746fd254",
+      "contexts": [
+        "276c2b21913a339bb167eb8fff2ce941ddf10ae7651e4e1d28fcfd4d43af3290"
+      ],
+      "entrypoint_interval": {
+        "finished_utc": "2026-11-07T23:26:44.084305+00:00",
+        "started_utc": "2026-11-07T23:21:08.027460+00:00",
+        "wall_seconds": 336.05609404800634
+      },
+      "expected_tokens": [
+        108
+      ],
+      "markers": [
+        "PASS_COMBINED_RESET_FRESH_GRANT model=A epoch=2 device_same=1 nonce_same=1 oracle_token=108 real_A2_cipher_role_captured=1"
+      ],
+      "native_process_observation": {
+        "argv": [
+          "/out/replay/driver/build-tb_combined_extended/source/obj/Vtb_combined_extended",
+          "+FIXTURES=/out/replay/driver/fixtures-v1",
+          "+SCENARIO=3",
+          "+ROLE_OUTPUT=/out/replay/driver/case-3/actual-A2-role.memh"
+        ],
+        "clock_ticks_per_second": 100,
+        "native_pid": 24,
+        "observed_utc": "2026-11-07T23:21:09.058230+00:00",
+        "scenario": 3,
+        "start_clock_ticks": 7952542
+      },
+      "observed_tokens": [
+        108
+      ],
+      "passed": true,
+      "refused_contexts": [],
+      "role_authentication": {
+        "SIV_MODEL_ID": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+        "actual_RTL_record_reencrypted_byte_exact": true,
+        "epoch": 2,
+        "independent_OpenSSL_native_SIV_and_composed_reference_agree": true,
+        "model": "A",
+        "native_capture_sha256": "34f94d1793d75674109538269a337f2b358dbdce7dee3a65791cc5197b30be70",
+        "openssl_version": "OpenSSL 3.0.13 30 Jan 2024",
+        "passed": true,
+        "plaintext_sha256": "0d63d9ac7fbec766c264f9f22240475ec7b2c377c0cc00385391354c8ae1d749",
+        "record_bytes": 160,
+        "refused_controls": [
+          "wrong-model-ID",
+          "wrong-model-key",
+          "wrong-session-epoch",
+          "changed-cipher-byte"
+        ]
+      },
+      "scenario": 3,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "482c02f0165a346dff555f88b1e2a8e96296bdc696a3c0bc74784d818892464a",
+      "supervision": "Shared aggregate eight-CPU/16GiB container and private supervisor"
+    },
+    "4": {
+      "actual_child_exit": 0,
+      "binary_sha256": "13f7a272d22fe9e3f5f38fb865b373587bff73c00782c9f0b240d0a420ff7a2d",
+      "checked_result_sha256": "c0ebc65568cd07ce7d8cef342fb34b57b5d1eec45d8e71b3e91b9a72c8d46a80",
+      "contexts": [],
+      "entrypoint_interval": {
+        "finished_utc": "2026-11-07T23:25:47.708163+00:00",
+        "started_utc": "2026-11-07T23:21:08.046944+00:00",
+        "wall_seconds": 279.659829990007
+      },
+      "expected_tokens": [],
+      "markers": [
+        "PASS_COMBINED_MODEL_OLD_GRANT epoch=1 device_same=1 nonce_same=1 old_A_signature_valid=1 B_context_only=1 public_tokens=0"
+      ],
+      "native_process_observation": {
+        "argv": [
+          "/out/replay/driver/build-tb_combined_extended/source/obj/Vtb_combined_extended",
+          "+FIXTURES=/out/replay/driver/fixtures-v1",
+          "+SCENARIO=4"
+        ],
+        "clock_ticks_per_second": 100,
+        "native_pid": 27,
+        "observed_utc": "2026-11-07T23:21:09.060575+00:00",
+        "scenario": 4,
+        "start_clock_ticks": 7952543
+      },
+      "observed_tokens": [],
+      "passed": true,
+      "refused_contexts": [
+        "63801b8698c459163c61838fb38f9e00ed09b758422b40a4bf006c6c588d90ef"
+      ],
+      "scenario": 4,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "2d6117c785fb3b7849ef3a6aa07426f30e54087820be8bde093c70cd3022da18",
+      "supervision": "Shared aggregate eight-CPU/16GiB container and private supervisor"
+    },
+    "5": {
+      "actual_child_exit": 0,
+      "binary_sha256": "13f7a272d22fe9e3f5f38fb865b373587bff73c00782c9f0b240d0a420ff7a2d",
+      "checked_result_sha256": "1e79d384c052707b90665f999411386c68fc192562f2a0e5ccd158d4cce5a092",
+      "contexts": [
+        "e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c",
+        "f005652fcabdf6d3e76f6b5e850777f352896e2a1516b9ed723bc1c6d818f3b6"
+      ],
+      "entrypoint_interval": {
+        "finished_utc": "2026-11-07T23:33:13.937716+00:00",
+        "started_utc": "2026-11-07T23:21:08.042025+00:00",
+        "wall_seconds": 725.8945483599964
+      },
+      "expected_tokens": [
+        108,
+        0,
+        0
+      ],
+      "markers": [
+        "PASS_COMBINED_MODEL_REPLACEMENT actual_A_to_B=1 A_token=108 B_tokens=0,0 fresh_signed_packages=2 distinct_model_keys=1 epoch=1_to_2 cipher_writes=360"
+      ],
+      "native_process_observation": {
+        "argv": [
+          "/out/replay/driver/build-tb_combined_extended/source/obj/Vtb_combined_extended",
+          "+FIXTURES=/out/replay/driver/fixtures-v1",
+          "+SCENARIO=5",
+          "+B2_ROLE_OUTPUT=/out/replay/driver/case-5/actual-B2-role.memh"
+        ],
+        "clock_ticks_per_second": 100,
+        "native_pid": 28,
+        "observed_utc": "2026-11-07T23:21:09.061063+00:00",
+        "scenario": 5,
+        "start_clock_ticks": 7952543
+      },
+      "observed_tokens": [
+        108,
+        0,
+        0
+      ],
+      "passed": true,
+      "refused_contexts": [],
+      "role_authentication": {
+        "SIV_MODEL_ID": "1ada1d7dfbbae137f8747945a7144a84428f2d1d6135afa13c071ab67e7f05ce",
+        "actual_RTL_record_reencrypted_byte_exact": true,
+        "epoch": 2,
+        "independent_OpenSSL_native_SIV_and_composed_reference_agree": true,
+        "model": "B",
+        "native_capture_sha256": "ea777db929c2ada098a3beb82bf3a67736a38b13c2f1552aa32498214f179f86",
+        "openssl_version": "OpenSSL 3.0.13 30 Jan 2024",
+        "passed": true,
+        "plaintext_sha256": "0d63d9ac7fbec766c264f9f22240475ec7b2c377c0cc00385391354c8ae1d749",
+        "record_bytes": 160,
+        "refused_controls": [
+          "wrong-model-ID",
+          "wrong-model-key",
+          "wrong-session-epoch",
+          "changed-cipher-byte"
+        ]
+      },
+      "scenario": 5,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "1c29d7617121927d5a1d20a2d11a9a10f679779c619e29c8f63a668e85073bd6",
+      "supervision": "Shared aggregate eight-CPU/16GiB container and private supervisor"
+    },
+    "6": {
+      "actual_child_exit": 0,
+      "binary_sha256": "13f7a272d22fe9e3f5f38fb865b373587bff73c00782c9f0b240d0a420ff7a2d",
+      "checked_result_sha256": "15949282191eddd24b76c7176bcaa2a6805ec0d448f69242fc69097e19d87515",
+      "contexts": [
+        "e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c",
+        "f005652fcabdf6d3e76f6b5e850777f352896e2a1516b9ed723bc1c6d818f3b6"
+      ],
+      "entrypoint_interval": {
+        "finished_utc": "2026-11-07T23:38:02.611244+00:00",
+        "started_utc": "2026-11-07T23:26:44.088042+00:00",
+        "wall_seconds": 678.5213031049934
+      },
+      "expected_tokens": [
+        108,
+        0
+      ],
+      "markers": [
+        "PASS_COMBINED_CROSS_MODEL_KV A2_cipher_authentic=1 B2_authorized_populated=1 same_epoch=2 actual_target_reads=5 real_SIV_fault=1 affected_plaintext_uses=0 new_public_tokens=0"
+      ],
+      "native_process_observation": {
+        "argv": [
+          "/out/replay/driver/build-tb_combined_extended/source/obj/Vtb_combined_extended",
+          "+FIXTURES=/out/replay/driver/fixtures-v1",
+          "+SCENARIO=6",
+          "+A2_ROLE=/out/replay/driver/case-3/actual-A2-role.memh"
+        ],
+        "clock_ticks_per_second": 100,
+        "native_pid": 38,
+        "observed_utc": "2026-11-07T23:26:45.096223+00:00",
+        "scenario": 6,
+        "start_clock_ticks": 7986109
+      },
+      "observed_tokens": [
+        108,
+        0
+      ],
+      "passed": true,
+      "refused_contexts": [],
+      "scenario": 6,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "39e53305922d57c682a75f5214d7eba1a4af67edd0fdbe2483d827b485b008ac",
+      "supervision": "Shared aggregate eight-CPU/16GiB container and private supervisor"
+    },
+    "7": {
+      "actual_child_exit": 0,
+      "binary_sha256": "13f7a272d22fe9e3f5f38fb865b373587bff73c00782c9f0b240d0a420ff7a2d",
+      "checked_result_sha256": "71d57efaee553c633f179e2697e5016b743930c4511387819669e04e2c6426e5",
+      "contexts": [
+        "e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c",
+        "f005652fcabdf6d3e76f6b5e850777f352896e2a1516b9ed723bc1c6d818f3b6"
+      ],
+      "entrypoint_interval": {
+        "finished_utc": "2026-11-07T23:32:13.535551+00:00",
+        "started_utc": "2026-11-07T23:21:08.049217+00:00",
+        "wall_seconds": 665.4843915810052
+      },
+      "expected_tokens": [
+        0,
+        0
+      ],
+      "markers": [
+        "PASS_COMBINED_AFTER_EXPIRY old_A_public_tokens=0 late_returns_drained=1 new_epoch=2 new_B_tokens=0,0 old_state_not_resurrected=1"
+      ],
+      "native_process_observation": {
+        "argv": [
+          "/out/replay/driver/build-tb_combined_extended/source/obj/Vtb_combined_extended",
+          "+FIXTURES=/out/replay/driver/fixtures-v1",
+          "+SCENARIO=7"
+        ],
+        "clock_ticks_per_second": 100,
+        "native_pid": 25,
+        "observed_utc": "2026-11-07T23:21:09.059319+00:00",
+        "scenario": 7,
+        "start_clock_ticks": 7952542
+      },
+      "observed_tokens": [
+        0,
+        0
+      ],
+      "passed": true,
+      "refused_contexts": [],
+      "scenario": 7,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "f69dead4b9bcfb19443bde8596e2dddf7baf91bcbca82ec97956f9c20a3f982f",
+      "supervision": "Shared aggregate eight-CPU/16GiB container and private supervisor"
+    },
+    "8": {
+      "actual_child_exit": 0,
+      "binary_sha256": "3ed14fe53a1e57b7258ace0612278b5bdf5d6fd0c128dd1cc49e2166a5ce14aa",
+      "checked_result_sha256": "7a35bb1f8d4b19a48dc73c9d41b4e4b5b0bc72f3e02a6fe37996f298eebfe1db",
+      "contexts": [
+        "e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c"
+      ],
+      "entrypoint_interval": {
+        "finished_utc": "2026-11-07T23:27:28.401299+00:00",
+        "started_utc": "2026-11-07T23:21:08.029291+00:00",
+        "wall_seconds": 380.37102303399297
+      },
+      "expected_tokens": [
+        108
+      ],
+      "markers": [
+        "PASS_COMBINED_CLEAR_ACTIVE old_STEP_canceled=1 old_reads_returned=10 fresh_oracle_token=108 same_live_lease=1 no_canceled_public_token=1"
+      ],
+      "native_process_observation": {
+        "argv": [
+          "/out/replay/driver/build-tb_combined_clear/source/obj/Vtb_combined_clear",
+          "+FIXTURES=/out/replay/driver/fixtures-v1",
+          "+SCENARIO=8"
+        ],
+        "clock_ticks_per_second": 100,
+        "native_pid": 30,
+        "observed_utc": "2026-11-07T23:21:09.062095+00:00",
+        "scenario": 8,
+        "start_clock_ticks": 7952543
+      },
+      "observed_tokens": [
+        108
+      ],
+      "passed": true,
+      "refused_contexts": [],
+      "scenario": 8,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "c3716f60b30210645f101cc361a4938fd7d694e7fc911d18dadeb222e3d6a9ab",
+      "supervision": "Shared aggregate eight-CPU/16GiB container and private supervisor"
+    },
+    "9": {
+      "actual_child_exit": 0,
+      "binary_sha256": "3ed14fe53a1e57b7258ace0612278b5bdf5d6fd0c128dd1cc49e2166a5ce14aa",
+      "checked_result_sha256": "56eeb11ac7be019759494086523cc65e6e39b876fb70ddb82b6d80cdd4f1c04b",
+      "contexts": [
+        "e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c"
+      ],
+      "entrypoint_interval": {
+        "finished_utc": "2026-11-07T23:28:19.760072+00:00",
+        "started_utc": "2026-11-07T23:21:08.031227+00:00",
+        "wall_seconds": 431.727874314005
+      },
+      "expected_tokens": [
+        108
+      ],
+      "markers": [
+        "PASS_COMBINED_CLEAR_HELD_TOKEN CLEAR_beats_token_APPEND_STEP=1 held_candidate_canceled=1 fresh_oracle_token=108 same_live_lease=1"
+      ],
+      "native_process_observation": {
+        "argv": [
+          "/out/replay/driver/build-tb_combined_clear/source/obj/Vtb_combined_clear",
+          "+FIXTURES=/out/replay/driver/fixtures-v1",
+          "+SCENARIO=9"
+        ],
+        "clock_ticks_per_second": 100,
+        "native_pid": 29,
+        "observed_utc": "2026-11-07T23:21:09.061470+00:00",
+        "scenario": 9,
+        "start_clock_ticks": 7952543
+      },
+      "observed_tokens": [
+        108
+      ],
+      "passed": true,
+      "refused_contexts": [],
+      "scenario": 9,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "a35ec246c992eb5dde6d6823c936dd48e9205a7128f42d55171f43be8a37a133",
+      "supervision": "Shared aggregate eight-CPU/16GiB container and private supervisor"
+    }
+  },
+  "container_image_id": "sha256:63958d37e526cc3875dd5de616a733c4ce64c678a52494739c0c466076dc4ff6",
+  "execution_inputs": {
+    "SOURCE-INPUTS.json": {
+      "bytes": 73220,
+      "sha256": "178919a0a5bc284d2b6a8da1f253e483e7da214d603be3d78844509ef48182dd"
+    },
+    "reference/kv_siv_reference.py": {
+      "bytes": 9323,
+      "sha256": "03dd85d5830f097785014ba19334404f37a6c1117338f88cad884ebb9cb338c5"
+    },
+    "reference/kv_siv_role_reference.py": {
+      "bytes": 2344,
+      "sha256": "3e79fddb9cce10b4f990c37f80727b95f7e9415e7b1400aa12d20bb3afd234ca"
+    },
+    "rtl/combined_aes_lookup_sim.sv": {
+      "bytes": 1669,
+      "sha256": "cd4fd74464dd2199d6f49e1e90b7738353762da9a823f3e572f79fbfa6b05d19"
+    },
+    "rtl/combined_boot_scan.sv": {
+      "bytes": 7757,
+      "sha256": "50bd617e3817f26ef4f63c6eeb7a744d29f16383905cefdc198239fa58972a31"
+    },
+    "rtl/combined_cipher_stream.sv": {
+      "bytes": 2711,
+      "sha256": "06a70e2fbb0ed8a1a3f78173af4132780b43aee4a56ab7e6d914122e2dfcfb6d"
+    },
+    "rtl/combined_identity_hash.sv": {
+      "bytes": 2018,
+      "sha256": "8820618fbbbb2db7be7ba45dd07975240c3074c7687af69c5eb35c2e33ff6ee6"
+    },
+    "rtl/combined_lease_guard.sv": {
+      "bytes": 5050,
+      "sha256": "ae043d4745d2051c47ef82ba9a737e0f55f1f9cb4c750ee93efd985391e39055"
+    },
+    "rtl/combined_top.sv": {
+      "bytes": 13096,
+      "sha256": "4a0e4a7ed0398c3b39b7c8bc0ca03b33e2c567f21ea9ecc2af6852125339c242"
+    },
+    "run.py": {
+      "bytes": 2606,
+      "sha256": "bed4f2bffc145a9da50601a9c0ac8ff013acda2b6467d4f988b8cca74421d61e"
+    },
+    "scripts/lookup_binding.py": {
+      "bytes": 3168,
+      "sha256": "44517dc66e39e0a40333d1082bf2f400fb35d7790619674e8fdc6fc146df127a"
+    },
+    "scripts/make_fixtures.py": {
+      "bytes": 5167,
+      "sha256": "b390e5503ff8576077361a6d4b5755c40510512e70e0f0c8b329ceb824421376"
+    },
+    "scripts/pin_sources.py": {
+      "bytes": 757,
+      "sha256": "455267155d9e717f5df322cae2e0e0fd65355142173c775953ba7e1de768740b"
+    },
+    "scripts/prepare.py": {
+      "bytes": 11600,
+      "sha256": "b8a3d6bc695dd1491db75f35516da72131e12506f29f184495c3fdcf514dad03"
+    },
+    "scripts/prepare_model_domains.py": {
+      "bytes": 3395,
+      "sha256": "29a88276dc8e45c0c236b3110f22bf6af18918c27e734f8d5c2c2e1480928e30"
+    },
+    "scripts/reference_check.py": {
+      "bytes": 3507,
+      "sha256": "17619afc08a55a62a1fec3484b06beaaea56c5a48259238e2a4877ede44006d3"
+    },
+    "scripts/replay.py": {
+      "bytes": 21021,
+      "sha256": "cad0848aa5b0829519f201da19ce39704bc3eedff902c23629a3f8e364cb130a"
+    },
+    "scripts/stage_build.py": {
+      "bytes": 2585,
+      "sha256": "788cb2ff347f67b819d8b62b835dbabdb057970a76068d3b0aea2163154c4c3c"
+    },
+    "scripts/warning_policy.py": {
+      "bytes": 13253,
+      "sha256": "2f812ab0284b80e79d3eec6582dec6d8403ae907ed63e9b3e7ea8199c4b615e8"
+    },
+    "tests/tb_combined.sv": {
+      "bytes": 11390,
+      "sha256": "c5f871ac6ce2aa97c290aebf0e6971fa7ba607caba00bb97563d56aaf20fe4e9"
+    },
+    "tests/tb_combined_clear.sv": {
+      "bytes": 14982,
+      "sha256": "0bb673ac290819797c7f96c8e5ce1e84bc01ca108b2c322876eef0ac2a5f087c"
+    },
+    "tests/tb_combined_extended.sv": {
+      "bytes": 16914,
+      "sha256": "9cf500f9efd1f61b3a395676d783c88b77e8d4759c026582756ef2bef9699e15"
+    },
+    "tests/tb_lookup_public.sv": {
+      "bytes": 1395,
+      "sha256": "30750f21d2b16445f8ae09683a689c68446fc1492f1914d18cf446278f77b895"
+    },
+    "toolchain/Dockerfile": {
+      "bytes": 1462,
+      "sha256": "8f0275ffb98eb9eb601c99f54edb20d470a5ab7fb4c924bc2435cfe68c908e62"
+    },
+    "toolchain/WHEELS.json": {
+      "bytes": 755,
+      "sha256": "62dacc42b066fe227f79bd84b260d827011fdbae9d72e135b6bacf222c4b3f2c"
+    }
+  },
+  "execution_packet_sha256": "525fe7408310d7b99689b7d1c22158e2bd3146182ae2f77c0a21ac664955c729",
+  "fixtures_manifest_sha256": "c4e0b2662eb491429f7b6ccf02affc1bb8436bc78c46088a32f0ecc4eef14891",
+  "kind": "Clean public-source Linux RTL replay, not a hardware benchmark or formal theorem",
+  "limits": [
+    "Explicit modeled private vault, persistent nonzero epoch, monotonic time and deterministic challenge services",
+    "No proprietary simulator or vendor RAM library in the public replay",
+    "No FPGA source selection, image or benchmark change",
+    "No whole-device formal, physical entropy/freshness, nonvolatile anti-rollback, timing or production provisioning qualification",
+    "Expiry advances the modeled trusted time; the inherited core-cycle timeout branch is not credited"
+  ],
+  "models": {
+    "A": {
+      "cipher_sha256": "88da38f3eb64bacc21aa472666b0cc8ea1e516cb04c80e0678f768425e6390eb",
+      "image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+      "key_domain": 1,
+      "model_commitment": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+      "prompt": [
+        1
+      ],
+      "tokens": [
+        108,
+        32
+      ]
+    },
+    "B": {
+      "cipher_sha256": "4ea08e245df474e3c08c7ea32cefd2e5b26681464fd6e7daaff7a925dd3f2287",
+      "image_sha256": "1ada1d7dfbbae137f8747945a7144a84428f2d1d6135afa13c071ab67e7f05ce",
+      "key_domain": 2,
+      "model_commitment": "761fdec33b08bfa8664b0c8091225fa06fb593b867882f5a31a631ce1faac635",
+      "prompt": [
+        1
+      ],
+      "tokens": [
+        0,
+        0
+      ]
+    }
+  },
+  "overall_result_sha256": "a3813ca105839c933049a53ed8060a7b353064522f150a6073fb4ebc4b43eca3",
+  "passed": true,
+  "portable_lookup": {
+    "binary_sha256": "5960a2c9693cbbad44e3e06935d61e7a14f7584d3cd450a25a75e598df1023ab",
+    "input_pins": {
+      "combined_aes_lookup_sim.sv": "cd4fd74464dd2199d6f49e1e90b7738353762da9a823f3e572f79fbfa6b05d19",
+      "expected.memh": "40f17fbbde65f832529d6096b0501bc603c838cc08a4cb5deeadfe28d74c092c",
+      "tb_lookup_public.sv": "30750f21d2b16445f8ae09683a689c68446fc1492f1914d18cf446278f77b895"
+    },
+    "marker": "PASS_LOOKUP_PUBLIC pairs=65536 pre_edge_stability_checks=65535 two_ports=1 latency_edges=1 expected_GF_truth=1",
+    "passed": true
+  },
+  "resource_observations": {
+    "aggregate_cpu_limit": 8,
+    "aggregate_memory_limit_GiB": 16,
+    "case6_started_after_real_authenticated_case3_capture": true,
+    "first_sample_utc": "2026-11-07T23:21:10.904543+00:00",
+    "global_stop_and_actual_host_pressure_checks_retained": true,
+    "last_sample_utc": "2026-11-07T23:38:01.918869+00:00",
+    "peak_native_process_overlap": 8,
+    "peak_sampled_cpu_percent": 812.58,
+    "peak_sampled_memory_bytes": 391118848,
+    "successful_container_samples": 252
+  },
+  "resource_scope": "Four-worker compilation; all eleven cases scheduled in an aggregate eight-CPU/16GiB container, with at most eight independent cases concurrent and case6 dependent on the authenticated case3 capture. Native process intervals and actual aggregate CPU/memory are recorded. The private supervisor retains host pressure/global stop checks; CLI RSS is not aggregate container RSS.",
+  "schema": "combined-security-native-validation-v1",
+  "shared_public_inputs": 288,
+  "source_inputs_sha256": "178919a0a5bc284d2b6a8da1f253e483e7da214d603be3d78844509ef48182dd",
+  "summary_controls": {
+    "genuine_complete_replay_positive_control": true,
+    "negative_controls": [
+      {
+        "control": "swapped-case-receipts",
+        "reason": "Case identity or acceptance differs: 0",
+        "refused": true
+      },
+      {
+        "control": "changed-native-log-byte",
+        "reason": "Native log digest differs: case 0 stdout_sha256",
+        "refused": true
+      }
+    ],
+    "original_evidence_unchanged": true,
+    "passed": true
+  },
+  "tools": {
+    "OpenSSL": {
+      "libcrypto_identifier": "libcrypto.so.3",
+      "version": "OpenSSL 3.0.13 30 Jan 2024"
+    },
+    "c++": "/usr/bin/c++",
+    "make": "/usr/bin/make",
+    "numpy": "1.26.4",
+    "openssl": "/usr/bin/openssl",
+    "openssl_version": "OpenSSL 3.0.13 30 Jan 2024 (Library: OpenSSL 3.0.13 30 Jan 2024)",
+    "platform": "Linux-6.8.0-100-generic-aarch64-with-glibc2.39",
+    "python": "3.12.3 (main, Mar 23 2026, 19:04:32) [GCC 13.3.0]",
+    "verilator": "/usr/local/bin/verilator",
+    "verilator_version": "Verilator 5.050 2026-07-01 rev v5.050"
+  }
+}

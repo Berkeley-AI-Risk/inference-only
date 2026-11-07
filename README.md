@@ -202,6 +202,8 @@ and rental; the 1.7B browser app can run on your Mac and connect to the F2 host
 over SSH. Hardware sources, build instructions and numerical-reference tools
 are also included.
 
+A separate [combined SimpleStories simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) joins signed model updates, periodic reauthorization and encrypted authenticated weights/K/V. It supplies model-replacement, replay and expiry checks with modeled private services; the board configurations and speed table have separate evidence.
+
 Qwen3-1.7B also has a separate [protected K/V simulation target](demos/qwen3-1.7b/variants/protected-kv-simulation/README.md)
 with authenticated retained K/V and directed operand checks. Its simulation
 records have their own scope; the public FPGA image and speed table use the

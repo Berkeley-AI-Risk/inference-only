@@ -60,3 +60,36 @@ jobs:
             ${{ runner.temp }}/fresh-rtl/**/*.log
             ${{ runner.temp }}/qwen17-protected-kv/**/*.json
             ${{ runner.temp }}/qwen17-protected-kv/**/*.log
+
+  combined-simplestories:
+    name: Combined SimpleStories model replacement, replay and expiry (simulation)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build the pinned Verilator and NumPy toolchain
+        run: |
+          docker build -t combined-simplestories-toolchain demos/simplestories-v2-5m/variants/combined-security-simulation/toolchain
+          docker image inspect combined-simplestories-toolchain > "$RUNNER_TEMP/combined-toolchain.json"
+      - name: Replay real model replacement, stale K/V, grant isolation and expiry
+        run: |
+          docker run --rm --init --network none --cpus 1 --memory 4g \
+            --mount "type=bind,src=$GITHUB_WORKSPACE,dst=/repo,readonly" \
+            --mount "type=bind,src=$RUNNER_TEMP,dst=/out" \
+            --entrypoint python3 combined-simplestories-toolchain -I -B \
+            /repo/demos/simplestories-v2-5m/variants/combined-security-simulation/run.py --output /out/combined-simplestories
+      - name: Retain source seals, real case logs and independent checks
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: combined-simplestories-simulation-receipts
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            ${{ runner.temp }}/combined-toolchain.json
+            ${{ runner.temp }}/combined-simplestories/**/*.json
+            ${{ runner.temp }}/combined-simplestories/**/*.log
+            ${{ runner.temp }}/combined-simplestories/**/actual-*.memh

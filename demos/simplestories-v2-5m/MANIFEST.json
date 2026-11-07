@@ -146,8 +146,8 @@
       "sha256": "357946afca80efdb71e4d5e7b480a15a9db6d3dd1c933f260a120af14871af85"
     },
     "README.md": {
-      "bytes": 7686,
-      "sha256": "2491c1e4afd17b44251b44cb326703d4fa4dd4260eeec612b8b2fcf4a5254db5"
+      "bytes": 8187,
+      "sha256": "c8b4b7b9e0e5e4f581cd4d8e6e3b51839c72b20cfe2b7b8153ebb74ce20eff8b"
     },
     "REPRODUCE.md": {
       "bytes": 13519,
@@ -65534,8 +65534,8 @@
       "sha256": "0f43d1387cc51bfc32243ed60252a8a53a7051dbd3e6e64693ff99ef4c9fa935"
     },
     "tools/check_current_three_greedy_v15_v4.py": {
-      "bytes": 6141790,
-      "sha256": "04cd5e49b6bdd6dbf959adf98ef1197fe82f7142df96a8aa76a2572abeb5c890"
+      "bytes": 6146829,
+      "sha256": "3efe18d5278ae66389c69ba91eedf1b0a152409b126afee1d0f184c993caeaef"
     },
     "tools/check_encrypted_flash.py": {
       "bytes": 1848,
@@ -65764,6 +65764,118 @@
     "tools/verify_package.py": {
       "bytes": 20014,
       "sha256": "bbce77586e610261c527d2c1d7a7f7e860decebe8c24815347f225fda1d52b6e"
+    },
+    "variants/combined-security-simulation/README.md": {
+      "bytes": 7433,
+      "sha256": "6a8259f6ade3e6b77357707e807aced74405a0e5c2c2ddf59d91b0ac916e187e"
+    },
+    "variants/combined-security-simulation/SOURCE-INPUTS.json": {
+      "bytes": 73220,
+      "sha256": "178919a0a5bc284d2b6a8da1f253e483e7da214d603be3d78844509ef48182dd"
+    },
+    "variants/combined-security-simulation/VALIDATION.json": {
+      "bytes": 29479,
+      "sha256": "dbda827f9a3e7e1a196e5cd1aa824cfc086ba26cb97ac857180aaeedb36e27ff"
+    },
+    "variants/combined-security-simulation/reference/kv_siv_reference.py": {
+      "bytes": 9323,
+      "sha256": "03dd85d5830f097785014ba19334404f37a6c1117338f88cad884ebb9cb338c5"
+    },
+    "variants/combined-security-simulation/reference/kv_siv_role_reference.py": {
+      "bytes": 2344,
+      "sha256": "3e79fddb9cce10b4f990c37f80727b95f7e9415e7b1400aa12d20bb3afd234ca"
+    },
+    "variants/combined-security-simulation/references/retained-lookup-comparison.json": {
+      "bytes": 3218,
+      "sha256": "1273f391ab06e00eeee62b054726295556c88ce23183c424724ffe6788050e7a"
+    },
+    "variants/combined-security-simulation/rtl/combined_aes_lookup_sim.sv": {
+      "bytes": 1669,
+      "sha256": "cd4fd74464dd2199d6f49e1e90b7738353762da9a823f3e572f79fbfa6b05d19"
+    },
+    "variants/combined-security-simulation/rtl/combined_boot_scan.sv": {
+      "bytes": 7757,
+      "sha256": "50bd617e3817f26ef4f63c6eeb7a744d29f16383905cefdc198239fa58972a31"
+    },
+    "variants/combined-security-simulation/rtl/combined_cipher_stream.sv": {
+      "bytes": 2711,
+      "sha256": "06a70e2fbb0ed8a1a3f78173af4132780b43aee4a56ab7e6d914122e2dfcfb6d"
+    },
+    "variants/combined-security-simulation/rtl/combined_identity_hash.sv": {
+      "bytes": 2018,
+      "sha256": "8820618fbbbb2db7be7ba45dd07975240c3074c7687af69c5eb35c2e33ff6ee6"
+    },
+    "variants/combined-security-simulation/rtl/combined_lease_guard.sv": {
+      "bytes": 5050,
+      "sha256": "ae043d4745d2051c47ef82ba9a737e0f55f1f9cb4c750ee93efd985391e39055"
+    },
+    "variants/combined-security-simulation/rtl/combined_top.sv": {
+      "bytes": 13096,
+      "sha256": "4a0e4a7ed0398c3b39b7c8bc0ca03b33e2c567f21ea9ecc2af6852125339c242"
+    },
+    "variants/combined-security-simulation/run.py": {
+      "bytes": 2606,
+      "sha256": "bed4f2bffc145a9da50601a9c0ac8ff013acda2b6467d4f988b8cca74421d61e"
+    },
+    "variants/combined-security-simulation/scripts/lookup_binding.py": {
+      "bytes": 3168,
+      "sha256": "44517dc66e39e0a40333d1082bf2f400fb35d7790619674e8fdc6fc146df127a"
+    },
+    "variants/combined-security-simulation/scripts/make_fixtures.py": {
+      "bytes": 5167,
+      "sha256": "b390e5503ff8576077361a6d4b5755c40510512e70e0f0c8b329ceb824421376"
+    },
+    "variants/combined-security-simulation/scripts/pin_sources.py": {
+      "bytes": 757,
+      "sha256": "455267155d9e717f5df322cae2e0e0fd65355142173c775953ba7e1de768740b"
+    },
+    "variants/combined-security-simulation/scripts/prepare.py": {
+      "bytes": 11600,
+      "sha256": "b8a3d6bc695dd1491db75f35516da72131e12506f29f184495c3fdcf514dad03"
+    },
+    "variants/combined-security-simulation/scripts/prepare_model_domains.py": {
+      "bytes": 3395,
+      "sha256": "29a88276dc8e45c0c236b3110f22bf6af18918c27e734f8d5c2c2e1480928e30"
+    },
+    "variants/combined-security-simulation/scripts/reference_check.py": {
+      "bytes": 3507,
+      "sha256": "17619afc08a55a62a1fec3484b06beaaea56c5a48259238e2a4877ede44006d3"
+    },
+    "variants/combined-security-simulation/scripts/replay.py": {
+      "bytes": 21021,
+      "sha256": "cad0848aa5b0829519f201da19ce39704bc3eedff902c23629a3f8e364cb130a"
+    },
+    "variants/combined-security-simulation/scripts/stage_build.py": {
+      "bytes": 2585,
+      "sha256": "788cb2ff347f67b819d8b62b835dbabdb057970a76068d3b0aea2163154c4c3c"
+    },
+    "variants/combined-security-simulation/scripts/warning_policy.py": {
+      "bytes": 13253,
+      "sha256": "2f812ab0284b80e79d3eec6582dec6d8403ae907ed63e9b3e7ea8199c4b615e8"
+    },
+    "variants/combined-security-simulation/tests/tb_combined.sv": {
+      "bytes": 11390,
+      "sha256": "c5f871ac6ce2aa97c290aebf0e6971fa7ba607caba00bb97563d56aaf20fe4e9"
+    },
+    "variants/combined-security-simulation/tests/tb_combined_clear.sv": {
+      "bytes": 14982,
+      "sha256": "0bb673ac290819797c7f96c8e5ce1e84bc01ca108b2c322876eef0ac2a5f087c"
+    },
+    "variants/combined-security-simulation/tests/tb_combined_extended.sv": {
+      "bytes": 16914,
+      "sha256": "9cf500f9efd1f61b3a395676d783c88b77e8d4759c026582756ef2bef9699e15"
+    },
+    "variants/combined-security-simulation/tests/tb_lookup_public.sv": {
+      "bytes": 1395,
+      "sha256": "30750f21d2b16445f8ae09683a689c68446fc1492f1914d18cf446278f77b895"
+    },
+    "variants/combined-security-simulation/toolchain/Dockerfile": {
+      "bytes": 1462,
+      "sha256": "8f0275ffb98eb9eb601c99f54edb20d470a5ab7fb4c924bc2435cfe68c908e62"
+    },
+    "variants/combined-security-simulation/toolchain/WHEELS.json": {
+      "bytes": 755,
+      "sha256": "62dacc42b066fe227f79bd84b260d827011fdbae9d72e135b6bacf222c4b3f2c"
     },
     "variants/encrypted-memory/PUBLIC-TEST-KEYS.json": {
       "bytes": 888,

@@ -1,0 +1,73 @@
+{
+  "actual_child_exit": 0,
+  "binary_sha256": "66d97b09950ecdd2e194088f65f43f000de277acbda55d02f66ea4664256eea5",
+  "distribution": "No vendor RAM model or licensed vendor source is included in this target.",
+  "kind": "Recorded native comparison with the privately retained vendor model",
+  "marker": "PASS_LOOKUP_PRIVATE_PUBLIC pairs=65536 pre_edge_stability_checks=65535 two_ports=1 weight_and_KV_private_tables=1 latency_edges=1 expected_GF_truth=1",
+  "native_testbench_sha256": "93a665d32bb98f1b63dadb76d9afd1a2e52c4f3a9f625f632a2a72351208ade4",
+  "passed": true,
+  "portable_model": "rtl/combined_aes_lookup_sim.sv",
+  "portable_model_sha256": "cd4fd74464dd2199d6f49e1e90b7738353762da9a823f3e572f79fbfa6b05d19",
+  "private_caller_wrappers_sha256": "f11db92e9b8faaf0f1a1dda255fe2ce323d14c65244357900f248536bd36d946",
+  "private_vendor_model_sha256": "d7e9bc5272afd463c3312501ebe50aca05febb3e05e08cd3285df5faed3d72d7",
+  "public_base": "6045f521d2f68eecf7caddd9e7df48522a718075",
+  "public_replay": "run.py also executes a self-contained 65,536-pair independent finite-field truth and read-latency check plus the full-model cases with this portable model.",
+  "schema": "combined-lookup-retained-comparison-v1",
+  "scope": "Exact always-enabled read-only synchronous lookup semantics for the two actual AES callers; no general vendor RAM claim",
+  "source_tables": {
+    "tang_private_aes256.sv": {
+      "all_256_entries_match_independent_GF_inverse_and_affine": true,
+      "caller_settings": [
+        ".READ_MODE0(1'b0)",
+        ".READ_MODE1(1'b0)",
+        ".BIT_WIDTH_0(8)",
+        ".BIT_WIDTH_1(8)",
+        ".BLK_SEL_0(3'd0)",
+        ".BLK_SEL_1(3'd0)",
+        ".WREA(1'b0)",
+        ".WREB(1'b0)",
+        ".CEA(1'b1)",
+        ".CEB(1'b1)",
+        ".OCEA(1'b1)",
+        ".OCEB(1'b1)",
+        ".RESETA(1'b0)",
+        ".RESETB(1'b0)",
+        ".CLKA(clk)",
+        ".CLKB(clk)",
+        ".ADA({3'd0,address_a_i,3'd0})",
+        ".ADB({3'd0,address_b_i,3'd0})"
+      ],
+      "module": "tang_private_aes_sbox_rom2",
+      "source_sha256": "6effc46b35e24639d959dbcd192d7108766f300b4b42ceaf14f6a1a27cd6c184",
+      "table_sha256": "c2d8e5eed6cbebd8625fc18f81486a7733c04f9b0129ffbe974c68b90308b4f2"
+    },
+    "tang_private_aes256_fixed2.sv": {
+      "all_256_entries_match_independent_GF_inverse_and_affine": true,
+      "caller_settings": [
+        ".READ_MODE0(1'b0)",
+        ".READ_MODE1(1'b0)",
+        ".BIT_WIDTH_0(8)",
+        ".BIT_WIDTH_1(8)",
+        ".BLK_SEL_0(3'd0)",
+        ".BLK_SEL_1(3'd0)",
+        ".WREA(1'b0)",
+        ".WREB(1'b0)",
+        ".CEA(1'b1)",
+        ".CEB(1'b1)",
+        ".OCEA(1'b1)",
+        ".OCEB(1'b1)",
+        ".RESETA(1'b0)",
+        ".RESETB(1'b0)",
+        ".CLKA(clk)",
+        ".CLKB(clk)",
+        ".ADA({3'd0,address_a_i,3'd0})",
+        ".ADB({3'd0,address_b_i,3'd0})"
+      ],
+      "module": "tang_private_kv_aes_sbox_rom2",
+      "source_sha256": "e45e4cd7c99f91ae0214ad3b5e5b28de37c5abbb047a20c59a058751b98e5f84",
+      "table_sha256": "c2d8e5eed6cbebd8625fc18f81486a7733c04f9b0129ffbe974c68b90308b4f2"
+    }
+  },
+  "stdout_sha256": "8901f7979452edb35661034ca8ead2e81359c6ebaf92c046dad005786fdcde1b",
+  "tool": "Verilator 5.050, one worker"
+}
