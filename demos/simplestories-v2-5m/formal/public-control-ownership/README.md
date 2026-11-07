@@ -34,6 +34,9 @@ stimuli at the explicit cuts establish no numerical or physical-memory result.
 The [native qualification receipt](NATIVE-QUALIFICATION.json) records a fresh
 replay of these frozen proof inputs, including tool identities, all eighteen
 answers and the operating witness. Its platform and execution scope are explicit.
+The [formal replay workflow](../../../../.github/workflows/formal-replay.yml)
+also recompiles and replays this packet with the managed Linux tools. Its
+artifact contains separate hosted tool identities, queries, logs and traces.
 
 ## Replay
 
