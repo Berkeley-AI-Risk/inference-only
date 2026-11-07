@@ -44,6 +44,10 @@ The receipt selects Yosys by its installed path, executable digest and version.
 Native runs record their actual tool identity. The installer downloads the
 pinned tools; the example itself runs offline.
 
+The [formal replay workflow](../.github/workflows/formal-replay.yml) runs this
+example with the installed tools. Its artifact retains `RESULT.json`, the
+induction log and the deliberate-defect counterexample.
+
 ## What the checks establish
 
 For 1.7B, a Yosys miter compares every module output. The base case samples

@@ -1,4 +1,4 @@
-name: Fresh CLEAR epoch proof
+name: Fresh scoped proofs and decoder checks
 on:
   pull_request:
   push:
@@ -27,13 +27,32 @@ jobs:
           --model demos/simplestories-v2-5m --out "$RUNNER_TEMP/clear-epoch-linux"
           --tool-receipt "$RUNNER_TEMP/formal-tools/TOOLS.json"
           --workers 2 --memory-mb 4096 --timeout 120 --total-timeout 900
-      - name: Preserve proof and tool receipts
+      - name: Reproduce the two Qwen model-address decoders
+        run: >-
+          python3.12 -I -S -B tools/model_size_reuse/run.py
+          --tool-receipt "$RUNNER_TEMP/formal-tools/TOOLS.json"
+          --output "$RUNNER_TEMP/qwen-decoder-reuse"
+      - name: Recompile and reprove baseline STEP/CLEAR reply ownership
+        run: >-
+          python3.12 -I -S -B demos/simplestories-v2-5m/formal/public-control-ownership/run.py
+          --fresh --repository-root .
+          --tool-receipt "$RUNNER_TEMP/formal-tools/TOOLS.json"
+          --output "$RUNNER_TEMP/public-control-fresh"
+      - name: Preserve proof, decoder and tool receipts
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: clear-epoch-linux-proof
+          name: scoped-proof-and-decoder-replay
           path: |
             ${{ runner.temp }}/clear-epoch-linux
             ${{ runner.temp }}/formal-tools/TOOLS.json
+            ${{ runner.temp }}/qwen-decoder-reuse
+            ${{ runner.temp }}/public-control-fresh/RESULT.json
+            ${{ runner.temp }}/public-control-fresh/FAILURE.json
+            ${{ runner.temp }}/public-control-fresh/RECORDED-RESULT.json
+            ${{ runner.temp }}/public-control-fresh/TOOLS.json
+            ${{ runner.temp }}/public-control-fresh/fresh
+            ${{ runner.temp }}/public-control-fresh/fresh-models
+            ${{ runner.temp }}/public-control-fresh/queries
           if-no-files-found: error
           retention-days: 7
