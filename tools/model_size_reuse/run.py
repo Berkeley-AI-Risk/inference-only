@@ -1,4 +1,7 @@
 """Generate two pinned private decoders and compare them with released RTL."""
+
+if not __debug__:
+    raise SystemExit("Verification requires Python assertions; do not use -O or -OO")
 import argparse
 import hashlib
 import importlib.util

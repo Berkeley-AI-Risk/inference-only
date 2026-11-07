@@ -16,6 +16,9 @@ read and inference-only theorems remain open.
 On Linux ARM64, use Python 3.12 and a new output directory outside the repository.
 From the repository root:
 
+Keep Python assertions enabled; `-O` and `-OO` are refused before input or output
+access by the installer and replay.
+
 ```sh
 proof_scratch="$(mktemp -d)"
 python3.12 -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/install_linux.py \

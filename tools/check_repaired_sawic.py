@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """Check selected S-AWIC source, timing, proof and physical evidence offline."""
+
+if not __debug__:
+    raise SystemExit("Verification requires Python assertions; do not use -O or -OO")
 import argparse
 import hashlib
 import importlib.util

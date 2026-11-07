@@ -1,4 +1,7 @@
 """Install digest-pinned Linux proof tools outside the repository."""
+
+if not __debug__:
+    raise SystemExit("Verification requires Python assertions; do not use -O or -OO")
 import argparse, hashlib, json, os, platform, shutil, subprocess, tarfile, time, urllib.request, zipfile
 from pathlib import Path
 HERE = Path(__file__).resolve().parent

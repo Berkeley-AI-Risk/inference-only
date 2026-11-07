@@ -31,6 +31,9 @@ fresh solver queries, omit `--recorded-only`:
 python3.12 -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/run.py --out /tmp/clear-epoch-fresh --model demos/simplestories-v2-5m
 ```
 
+Python assertions must remain enabled. The replay, corruption controls and
+Linux installer reject `-O` and `-OO` before reading inputs or creating outputs.
+
 Recorded-only mode uses Python's standard library and launches no compiler or
 solver. Fresh mode requires the tested [toolchain](TOOLCHAIN.json), uses at most
 two solver workers, and saves every fresh result under the requested output.

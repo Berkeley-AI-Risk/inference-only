@@ -1,4 +1,7 @@
 """Recompile and reprove CLEAR using fresh native semantics, without model identity."""
+
+if not __debug__:
+    raise SystemExit("Verification requires Python assertions; do not use -O or -OO")
 import argparse, concurrent.futures, copy, importlib.util, json, os, shutil, subprocess, sys, time
 from pathlib import Path
 sys.dont_write_bytecode = True

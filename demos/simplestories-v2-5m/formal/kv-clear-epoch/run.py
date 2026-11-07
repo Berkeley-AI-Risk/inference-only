@@ -1,4 +1,7 @@
 """Reproduce the source-bound CLEAR epoch proof; recorded-only launches no tools."""
+
+if not __debug__:
+    raise SystemExit("Verification requires Python assertions; do not use -O or -OO")
 import argparse,concurrent.futures,hashlib,importlib.util,json,os,subprocess,sys,tarfile,time
 from pathlib import Path
 sys.dont_write_bytecode=True

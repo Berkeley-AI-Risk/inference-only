@@ -1,4 +1,7 @@
 """Recorded-check corruption controls; no solver, compiler or hardware access."""
+
+if not __debug__:
+    raise SystemExit("Verification requires Python assertions; do not use -O or -OO")
 from pathlib import Path
 import argparse,copy,hashlib,importlib.util,json,shutil,sys
 sys.dont_write_bytecode=True

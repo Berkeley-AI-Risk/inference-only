@@ -54,6 +54,8 @@ jobs:
         run: |
           python -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/run.py --recorded-only --out "$RUNNER_TEMP/clear-epoch-recorded" --model demos/simplestories-v2-5m
           python -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/self_test.py --out "$RUNNER_TEMP/clear-epoch-checks" --model demos/simplestories-v2-5m
+      - name: Test assertion-mode refusal and failed-engine handling
+        run: python -I -S -B -m unittest discover -s tools -p 'test_formal_assertion_mode.py' -v
       - name: Check composed model-read proof packet (recorded only)
         run: python -I -S -B demos/simplestories-v2-5m/formal/upstream-model-values/run.py --recorded-only
       - name: Check baseline Q operand-provenance proof packet (recorded only)
