@@ -78,6 +78,8 @@ The table lists **Authenticated-Weight Inference-Only Chip (AWIC) designs**, all
 
 The clock column gives each image’s configured inference/core clock. Memory and interface blocks use other clock domains.
 
+The Qwen3-8B image returns a cached token in 0.89 seconds on average. Its fixed schedule streams 7.57 GB of 8-bit projection weights per token through a bank that accepts up to 256 bytes per core clock. Even with every needed weight ready on time, accepting those weights takes at least 0.30 seconds at the configured 100 MHz. The measured interval also covers fetching and checking weights, attention, other model operations, and returning the token. A matched timing comparison is needed to isolate the cost of weight authentication. [8B arithmetic inventory](demos/qwen3-8b/TRAINING-CAPACITY.md) · [Board timings](demos/qwen3-8b/README.md#additional-validation-workloads)
+
 The encrypted-memory version retains K/V integrity and replay protection and
 also encrypts both weights and K/V; its supplied keys are public demonstration
 keys. Seeded sampling uses the baseline's authenticated weights, without K/V
