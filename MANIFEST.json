@@ -2142,12 +2142,12 @@
       "sha256": "21df96a16bccedc9c6c284fa301c6dfa5e164afcb139e882d2978e4ef646e9ef"
     },
     "demos/simplestories-v2-5m/KV-PROTECTION.md": {
-      "bytes": 11878,
-      "sha256": "c9529fde3992d828be9fce98d8a196f46c0daf7b2d9d7d23a1f9566a17dfb653"
+      "bytes": 14572,
+      "sha256": "e0a79f593d0470b1a48f6801684870f82b42101f7511ebc465a5f8ed32efb5a8"
     },
     "demos/simplestories-v2-5m/MANIFEST.json": {
-      "bytes": 3966198,
-      "sha256": "fc203e54c44ebc1695e69e2897c6fc94a47655393d24149c82de87d2028d692a"
+      "bytes": 3968922,
+      "sha256": "e20fdd8a1605b8106440dd222251a0fc3447bf57eb219ef41b3911b1eb9263b0"
     },
     "demos/simplestories-v2-5m/PROGRAMMING.md": {
       "bytes": 15596,
@@ -67425,6 +67425,70 @@
       "bytes": 10379,
       "sha256": "08b27b3b2c5b58c67fed5f3a5adeb388b4964bc7ea9205306a1ae23f50800c68"
     },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/README.md": {
+      "bytes": 4660,
+      "sha256": "c136e31c6b04be2d7b56c9926049b268fbd6ad82ee9373f15cb0cddd88768d50"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/SOURCE-INPUTS.json": {
+      "bytes": 63132,
+      "sha256": "671f0d1dc3e6bbc8f4c8b7f1207eab1cb816426cfda003b31e45a52dd9e43b17"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/fixtures/plain/experiment.sv": {
+      "bytes": 2452,
+      "sha256": "8bef768b2febeaa6e40ccf201065d176e29713b41c6233c1013fc582467c1ef6"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/fixtures/protected/campaign.sv": {
+      "bytes": 1643,
+      "sha256": "fd3e731c642cf6d50aff609fbd85353473f2f04810d554052dd009281743a586"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/fixtures/protected/fixture.sv": {
+      "bytes": 4094,
+      "sha256": "6be96fc18bbf7365ba350f23318d7f0ea9ca1c9b055cbe132ca34eaadf08cf1f"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/reference/EXPECTED.json": {
+      "bytes": 9790,
+      "sha256": "18e6b1188db54940d7ffbcaa7320bb8c0bb32a9908b3d942853a65594c9c9d8d"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/reference/WARNING-POLICY.json": {
+      "bytes": 53754,
+      "sha256": "038006cc184228b3ef17cefe9644db2452e1415a2cd2de86af432cbcbca8e3dc"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/run.py": {
+      "bytes": 2483,
+      "sha256": "022e958020e8dd483fe041599cb1a9428455ef1e3bbee9b9703b9a5843c4ea26"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/scripts/compare_plain.py": {
+      "bytes": 6328,
+      "sha256": "8a75a33afd2b84fd6e8d434808362fbc694a794bf9be1b9046ec79bcf6be3327"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/scripts/compare_protected.py": {
+      "bytes": 6797,
+      "sha256": "44cb51e25f10032114170d052cb789a57472afa9677f65de51f7884888cc6042"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/scripts/prepare_plain.py": {
+      "bytes": 2971,
+      "sha256": "e37051715faf7668cc0a02242d179958f276e225345fbdff59006f6ea352dd5b"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/scripts/prepare_protected.py": {
+      "bytes": 2702,
+      "sha256": "f236c15f29136a99001f86e44927990907cfa006aeeae403abd2b09cb8aa6b9a"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/scripts/reference.py": {
+      "bytes": 3763,
+      "sha256": "68f53b52d5333ed3f1a8aa53b2853b27bde8f8bd220a4d27271596da68cb9c55"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/scripts/replay.py": {
+      "bytes": 21959,
+      "sha256": "e4fd63166403f6cfe46fe827d84e111f83d43f46b334048b50a856700ef50d74"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/toolchain/Dockerfile": {
+      "bytes": 1462,
+      "sha256": "8f0275ffb98eb9eb601c99f54edb20d470a5ab7fb4c924bc2435cfe68c908e62"
+    },
+    "demos/simplestories-v2-5m/simulation/kv-substitution/toolchain/WHEELS.json": {
+      "bytes": 755,
+      "sha256": "62dacc42b066fe227f79bd84b260d827011fdbae9d72e135b6bacf222c4b3f2c"
+    },
     "demos/simplestories-v2-5m/simulation/model/MANIFEST.json": {
       "bytes": 3234,
       "sha256": "3bc0396b7e1f2dc31b78dd0728e5be0ab0eb89e2c4d43710dbadd861eabc8fd6"
@@ -67542,8 +67606,8 @@
       "sha256": "0f43d1387cc51bfc32243ed60252a8a53a7051dbd3e6e64693ff99ef4c9fa935"
     },
     "demos/simplestories-v2-5m/tools/check_current_three_greedy_v15_v4.py": {
-      "bytes": 6146829,
-      "sha256": "3efe18d5278ae66389c69ba91eedf1b0a152409b126afee1d0f184c993caeaef"
+      "bytes": 6149505,
+      "sha256": "2c5c879791f1bddbaab3910aa440c556e4135e27365c05faf832aedc777f4b96"
     },
     "demos/simplestories-v2-5m/tools/check_encrypted_flash.py": {
       "bytes": 1848,
@@ -75174,8 +75238,8 @@
       "sha256": "1dd88cb09483da8cd53c9d3959ae90b7b276aa2127d9282a34712dbb96d82640"
     },
     "tools/release-contract.json": {
-      "bytes": 4548777,
-      "sha256": "0c4c0cfa0575904a3daab52646ef4db8613ffee9e6989c00cf6c13ce4bcee2d8"
+      "bytes": 4551917,
+      "sha256": "36732861228696077d98e6cbd9cf779d3403bfe422ab4a29e17d50416e0f6f62"
     },
     "tools/test_architecture_work_counts.py": {
       "bytes": 18992,
@@ -75231,7 +75295,7 @@
     },
     "tools/verify_release.py": {
       "bytes": 10128,
-      "sha256": "a71205a95aeca87d918d19ddced02f7131bbfd5da690bad795b63f935dad4b25"
+      "sha256": "31f725b47283d643eb59da2fc80907e3a0becc25e1919827ffa06dafe7d4a9f6"
     }
   },
   "full_context_evidence_scope": "Each selected greedy image passed 2,047/2,048-token CLI and browser contexts, boundary refusals, CLEAR races, pending-STEP Stop and resumed generation. The seeded image has a separate 16-case context matrix and browser record. Exact workload timestamps remain distinct from cached generation rates.",

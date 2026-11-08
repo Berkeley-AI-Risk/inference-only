@@ -142,6 +142,38 @@ erasure. Replaying identical bytes after they have legitimately been
 repopulated is indistinguishable from the correct data and does not change
 the computation.
 
+## Matched external-memory substitution example
+
+The opt-in [paired RTL replay](simulation/kv-substitution/README.md) runs
+APPEND `378`, STEP, STEP through both plaintext-memory configurations. Honest
+memory produces `[200, 15]`. Replacing the previously written layer-4,
+position-zero value mantissas by their signed negatives leaves the model,
+keys, query and exponent bytes unchanged. The plain-memory run produces
+`[200, 1138]`. The protected run publishes only `[200]`, then faults before
+altered values reach the affected attention input.
+
+The [memory addresses](https://github.com/Berkeley-AI-Risk/inference-only/blob/2eb589187e21e91e7ea4d57b08ec3bfb9801c194/demos/simplestories-v2-5m/hardware/project/mapper_portable.sv)
+count private 256-bit DDR words, not host-selectable pointers. The plain run
+fetches all eight changed words, `374537–374544`; metadata word `374545` stays
+unchanged. The protected layout puts the same logical values at
+`374532–374535` (head 0) and `374541–374544` (head 1). With both heads changed,
+only the first four altered words are fetched before the guard faults. A
+head-1-only control fetches the other four and faults after the honest head-0
+values for both positions have passed. During the affected second STEP, neither
+failing trial produces a final layer-4 attention beat, a position-one layer-5 K/V write, a vocabulary-head row,
+or a second token. The accepted [guard error response](https://github.com/Berkeley-AI-Risk/inference-only/blob/2eb589187e21e91e7ea4d57b08ec3bfb9801c194/demos/simplestories-v2-5m/variants/kv-protected/hardware/project/kv_integrity_guard.sv)
+carries zero data; command readiness and token-valid remain low over the sampled
+256-edge suffix.
+
+Outputs are accepted at the real ready/valid token handshake below the
+[UART bridge](https://github.com/Berkeley-AI-Risk/inference-only/blob/2eb589187e21e91e7ea4d57b08ec3bfb9801c194/demos/simplestories-v2-5m/hardware/project/uart_core.sv),
+not measured on a physical serial pin. The [RTL harness](https://github.com/Berkeley-AI-Risk/inference-only/blob/2eb589187e21e91e7ea4d57b08ec3bfb9801c194/demos/simplestories-v2-5m/simulation/model/README.md)
+uses behavioral external memory and the [registered DSP arithmetic model](https://github.com/Berkeley-AI-Risk/inference-only/blob/2eb589187e21e91e7ea4d57b08ec3bfb9801c194/demos/simplestories-v2-5m/hardware/project/cluster-tile.sv).
+The comparison assumes intact on-chip control/private tags, correct arithmetic
+and SHA-256 implementations, cryptographic second-preimage resistance and
+correspondence to the physical circuit. It demonstrates this substitution and
+pre-use refusal; it does not measure useful training throughput.
+
 ## Measured performance
 
 The baseline measured **10.04 tokens/s** and the K/V-protected design
