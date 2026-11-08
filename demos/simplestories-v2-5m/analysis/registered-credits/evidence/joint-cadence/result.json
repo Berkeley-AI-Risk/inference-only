@@ -1,0 +1,91 @@
+{
+  "source_commit": "159528e36d46fc803326758b160aa5e84aebd72b",
+  "image": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+  "yosys": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)",
+  "source_sha256": {
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": "fd7b6ade26e99db09999709954630b6d358b2d6cd7fae1f7f18c878fefec0dc3",
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv": "368596a5f8470cd28ccd429cd2ab479db5c77aef0b34eb9541c55aa44c0baf0c",
+    "fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv": "653a0eebffff3724312847baf64c5eb188afdaea50ca3b2acb6d4e6e1e888339",
+    "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359",
+    "cluster-adapter.sv": "0b8d09a0fded73d93f5fddb6bc790b552968f2d8c38cf0e90d20eb5d49b9744b",
+    "cluster-tile.sv": "308e12f6337d9d84bc786e4b2c18fac0806cc5fba5fa7745e1a833ace58493af",
+    "cluster-engine.sv": "97a3edaccef6dba1f095f82706c260cb0520fae49751ba34d76dda0ad314ec88",
+    "defines.v": "76cbe1576dbf6c7c6151072d6c1f8125eecc360140ba29784024d3f99b0f6f58",
+    "production_sources.f": "2efa4055e6c9c2085462462a44aeb007dd6c75f75283c23c963723717bd8c09d"
+  },
+  "tracked_registers": {
+    "parent": "engine_state_q",
+    "fault": "fault_q",
+    "started": "service_start_seen_q",
+    "done_seen": "service_done_seen_q",
+    "att": "u_attention.state_q",
+    "attfail": "u_attention.range_fault_o",
+    "job": "u_projection.state_q",
+    "jobfail": "u_projection.fail_q",
+    "stream_done_seen": "u_projection.stream_done_seen_q",
+    "engine_done_seen": "u_projection.engine_done_seen_q",
+    "stream": "u_projection.u_group_stream.state_q",
+    "streamfail": "u_projection.u_group_stream.fail_closed_q"
+  },
+  "control_cells": 2490,
+  "free_environment_bits": 6407,
+  "pdr_and_controls": {
+    "gates": "SAT: no model found for any simultaneous gate violation",
+    "joint": "======== ABC command line \"read_aiger model.aig; pdr -T 60\"\n  7 : 0 7 8 17 12 10 21 13                                               14    23      0.32 sec\n  7 : 0 7 9 22 25 22 32 20                                               23    23      0.46 sec\n 11 : 0 8 8 9 7 13 9 17 18 49 51 21                                      12    25      1.03 sec\n 12 : 0 8 8 9 7 13 9 17 18 33 67 60 7                                    36    25      1.38 sec\n 12 : 0 8 8 9 7 13 9 17 19 35 73 89 29                                   46    25      1.56 sec\n 12 : 0 8 8 9 7 13 9 21 27 54 81 89 31                                   23    25      1.67 sec\n 12 : 0 8 8 9 7 13 9 21 27 62 114 114 31                                 46    25      1.84 sec\n 12 : 0 8 8 9 7 13 9 21 27 62 118 138 64                                 45    25      1.96 sec\n 13 : 0 8 8 8 3 4 3 5 14 20 24 44 77 102                                 16    25      2.39 sec\n 16 : 0 8 8 8 3 4 4 7 8 7 13 22 35 43 22 23 35                           23    25      2.72 sec\n 16 : 0 8 8 8 3 4 4 7 8 7 13 23 47 70 51 23 35                           35    25      2.90 sec\n 16 : 0 8 8 8 3 4 4 7 8 7 13 23 47 72 75 68 35                           55    25      3.09 sec\n 16 : 0 8 8 8 3 4 4 7 8 7 13 23 47 72 77 84 71                           55    25      3.19 sec\nInvariant F[10] : 170 clauses with 0 flops (out of 26) (cex = 0, ave = 19.77)\nVerification of invariant with 170 clauses was successful.  Time =     0.01 sec\nProperty proved.  Time =     3.28 sec\n",
+    "wrong_all_attention_states": "======== ABC command line \"read_aiger model.aig; pdr -T 60\"\n  6 : 0 8 10 19 15 15 18                                                 15    22      0.23 sec\n  7 : 0 7 6 17 13 15 17 35                                               13    22      0.40 sec\nOutput 0 of miter \"model\" was asserted in frame 7.  Time =     0.44 sec\n",
+    "attention_reachable": "======== ABC command line \"read_aiger model.aig; pdr -T 60\"\nOutput 0 of miter \"model\" was asserted in frame 7.  Time =     0.07 sec\n",
+    "unscheduled_score_joint": "======== ABC command line \"read_aiger model.aig; pdr -T 60\"\nOutput 0 of miter \"model\" was asserted in frame 6.  Time =     0.09 sec\n",
+    "unscheduled_score_mutant_overlap": "======== ABC command line \"read_aiger model.aig; pdr -T 60\"\nOutput 0 of miter \"model\" was asserted in frame 7.  Time =     0.12 sec\n"
+  },
+  "projection_potential": {
+    "gross_budget_reproduced": true,
+    "native_topology_64_sites_rechecked": true,
+    "exact_two_stage_credit_propagation_rechecked": true,
+    "no_gain_without_fires": true,
+    "start_can_gain": true
+  },
+  "bound": {
+    "clock_hz": 25000000,
+    "reference": {
+      "H": 989000000000000,
+      "R": 2951332.874617403,
+      "F": 9.82410553054161
+    },
+    "projection_lane_sites": 64,
+    "attention_score_sites": 8,
+    "attention_value_sites": 8,
+    "admission_to_multiply_edges": 1,
+    "admission_to_accumulate_edges": 2,
+    "potential_max": 44330,
+    "asymptotic_gross_ops_per_second": 2921552878.179384,
+    "proxy": 0.8874474298386563,
+    "old_separate_sum": 0.9954505627955602,
+    "arbitrary_reachable_one_second_window_ops": 2921560448,
+    "one_second_from_reset_ops": 2921552768,
+    "demonstrated_useful_training_rate": null
+  },
+  "remaining_mapped_instances": {
+    "projection_scaling": [
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_shared_engine/u_engine/u_scale_low/product_o_47_s0",
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_shared_engine/u_engine/u_scale_high/product_o_47_s2"
+    ],
+    "rmsnorm": [
+      "u_uart_core/u_machine/u_machine_0/u_token_shell/u_final_rmsnorm/u_sealed_shared_multiply/behavioral_product_44_s1",
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_rmsnorm/u_sealed_shared_multiply/behavioral_product_44_s1"
+    ],
+    "feed_forward": [
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_elementwise_lane/u_fixed_elementwise_product_compact_lane/u_product_dsp/behavioral_product_44_s2"
+    ],
+    "metadata_support": [
+      "u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n151_s0",
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n218_s0",
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n151_s0"
+    ],
+    "embedding_support": [
+      "u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/mult_83_s1"
+    ],
+    "projection_stride_support": [
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n164_s0"
+    ]
+  }
+}

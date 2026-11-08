@@ -125,6 +125,13 @@ at the assumed rate. We have not established a feasible modification achieving
 these grants. These scenarios also omit other possible uses of logic outside
 the counted multiplier instances, so they are not whole-chip tamper bounds.
 
+An optional [registered-route worked example](analysis/registered-credits/README.md)
+uses the frozen 25 MHz source and mapped inventory to account for registered
+numerical and address sinks. The example bounds how many arithmetic operations
+these register updates can credit. A whole-device bound would also have to
+account for other ways to compute. The example supplies separate recorded
+and full regeneration commands and keeps its frozen source inputs explicit.
+
 ### Fixed-schedule allowances
 
 One 128-position decode has **801,272 credited dynamic operations** in the

@@ -1,0 +1,247 @@
+{
+  "source_commit": "159528e36d46fc803326758b160aa5e84aebd72b",
+  "image": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+  "yosys": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)",
+  "source_sha256": {
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": "fd7b6ade26e99db09999709954630b6d358b2d6cd7fae1f7f18c878fefec0dc3",
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv": "368596a5f8470cd28ccd429cd2ab479db5c77aef0b34eb9541c55aa44c0baf0c",
+    "fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv": "653a0eebffff3724312847baf64c5eb188afdaea50ca3b2acb6d4e6e1e888339",
+    "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359",
+    "cluster-adapter.sv": "0b8d09a0fded73d93f5fddb6bc790b552968f2d8c38cf0e90d20eb5d49b9744b",
+    "cluster-tile.sv": "308e12f6337d9d84bc786e4b2c18fac0806cc5fba5fa7745e1a833ace58493af",
+    "cluster-engine.sv": "97a3edaccef6dba1f095f82706c260cb0520fae49751ba34d76dda0ad314ec88",
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": "0e4a38023c711abae1bdf1173444601723dc90a25b1f414c5618bf908432d4da",
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": "55d56d5a4add9afa81b5622303ff0c81c27734fe23ac7ffa5b849d3944d8fe62",
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv": "ec0c0a1527d7b9d480000187e09edea32d3236e8d6b844db032ac303fbc6b8e6",
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv": "f7ebce15ce1d3ee97d968014d17051ddd942d3dd2d582368e4aa81b6e0e52205",
+    "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": "739c55b600f56592841f7ca02dd034347c42fdc6c21b0c745e516d67e15ba2ae",
+    "fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv": "9e033db09b614f43999a94692d0f19a7ec58845dc65963d2e37a0e9d134bf7af",
+    "fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv": "8d753b5e0e28b5f8bbbbdfdfe3b8894808e068068f44f57fa1b77cdec8a743eb",
+    "normalizer_pipeline.sv": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40",
+    "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a",
+    "fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv": "1c60a777659e7dea8ba1e13ed9d76ac0e6df544a9c70ccc7327d0e20c0fba5a9",
+    "defines.v": "76cbe1576dbf6c7c6151072d6c1f8125eecc360140ba29784024d3f99b0f6f58",
+    "production_sources.f": "2efa4055e6c9c2085462462a44aeb007dd6c75f75283c23c963723717bd8c09d"
+  },
+  "source_multiplier_widths": {
+    "each_postscale": {
+      "A": 27,
+      "B": 18,
+      "Y": 48
+    },
+    "each_rms": {
+      "A": 27,
+      "B": 18,
+      "Y": 45
+    },
+    "elementwise": {
+      "A": 27,
+      "B": 18,
+      "Y": 45
+    }
+  },
+  "local_step_checks_expected_prove_zero": {
+    "postscale": {
+      "induction_error": true,
+      "enable_error": true,
+      "overlap": true,
+      "budget_w": true,
+      "budget_m": true,
+      "cap": true,
+      "competing": true,
+      "duplicate_partial": true,
+      "duplicate_merge": true,
+      "cover_post": false,
+      "wrong_factor": false,
+      "bad_same_row": false
+    },
+    "each_rms": {
+      "mul_bad": true,
+      "ops_bad": true,
+      "too_tight": false,
+      "cover_square": false,
+      "operand_error": true,
+      "cover_nonzero_square": false
+    },
+    "elementwise": {
+      "mul_bad": true,
+      "ops_bad": true,
+      "forced_gap_wrong": false,
+      "cover_last": false,
+      "operand_error": true,
+      "cover_nonzero_product": false
+    },
+    "wrong_postscale_tag_mutant": {
+      "enable_error": false
+    }
+  },
+  "owner_models": {
+    "layer_rms": {
+      "tracked_registers": {
+        "parent": "u_six_layers.u_datapath.engine_state_q",
+        "fault": "u_six_layers.u_datapath.fault_q",
+        "started": "u_six_layers.u_datapath.service_start_seen_q",
+        "done_seen": "u_six_layers.u_datapath.service_done_seen_q",
+        "att": "u_six_layers.u_datapath.u_attention.state_q",
+        "attfail": "u_six_layers.u_datapath.u_attention.range_fault_o",
+        "job": "u_six_layers.u_datapath.u_projection.state_q",
+        "jobfail": "u_six_layers.u_datapath.u_projection.fail_q",
+        "stream_done_seen": "u_six_layers.u_datapath.u_projection.stream_done_seen_q",
+        "engine_done_seen": "u_six_layers.u_datapath.u_projection.engine_done_seen_q",
+        "stream": "u_six_layers.u_datapath.u_projection.u_group_stream.state_q",
+        "streamfail": "u_six_layers.u_datapath.u_projection.u_group_stream.fail_closed_q",
+        "shell": "u_token_shell.state_q",
+        "sequence": "u_six_layers.u_sequence.state_q",
+        "seqfault": "u_six_layers.u_sequence.fault_q",
+        "rms": "u_six_layers.u_datapath.u_rmsnorm.state_q",
+        "final_rms": "u_token_shell.u_final_rmsnorm.state_q",
+        "elem": "u_six_layers.u_datapath.u_elementwise_lane.u_fixed_elementwise_product_compact_lane.state_q",
+        "engine": "u_six_layers.u_datapath.u_projection.u_shared_engine.u_engine.state_q",
+        "scale_tags": "u_six_layers.u_datapath.u_projection.u_shared_engine.u_engine.scale_valid_q"
+      },
+      "free_bits": 8010,
+      "control_cells": 3576
+    },
+    "other_sites": {
+      "tracked_registers": {
+        "parent": "u_six_layers.u_datapath.engine_state_q",
+        "fault": "u_six_layers.u_datapath.fault_q",
+        "started": "u_six_layers.u_datapath.service_start_seen_q",
+        "done_seen": "u_six_layers.u_datapath.service_done_seen_q",
+        "att": "u_six_layers.u_datapath.u_attention.state_q",
+        "attfail": "u_six_layers.u_datapath.u_attention.range_fault_o",
+        "job": "u_six_layers.u_datapath.u_projection.state_q",
+        "jobfail": "u_six_layers.u_datapath.u_projection.fail_q",
+        "stream_done_seen": "u_six_layers.u_datapath.u_projection.stream_done_seen_q",
+        "engine_done_seen": "u_six_layers.u_datapath.u_projection.engine_done_seen_q",
+        "stream": "u_six_layers.u_datapath.u_projection.u_group_stream.state_q",
+        "streamfail": "u_six_layers.u_datapath.u_projection.u_group_stream.fail_closed_q",
+        "shell": "u_token_shell.state_q",
+        "sequence": "u_six_layers.u_sequence.state_q",
+        "shell_fails": "u_token_shell.fail_q",
+        "head_seen": "u_token_shell.head_done_seen_q",
+        "winner_seen": "u_token_shell.winner_seen_q",
+        "elem_phase": "u_six_layers.u_datapath.elem_phase_q",
+        "rope_phase": "u_six_layers.u_datapath.rope_phase_q",
+        "norm_phase": "u_six_layers.u_datapath.u_normalizer.state_q",
+        "norm_done": "u_six_layers.u_datapath.norm_done_seen_q",
+        "output_done": "u_six_layers.u_datapath.output_done_q",
+        "seqfault": "u_six_layers.u_sequence.fault_q",
+        "rms": "u_six_layers.u_datapath.u_rmsnorm.state_q",
+        "final_rms": "u_token_shell.u_final_rmsnorm.state_q",
+        "elem": "u_six_layers.u_datapath.u_elementwise_lane.u_fixed_elementwise_product_compact_lane.state_q",
+        "engine": "u_six_layers.u_datapath.u_projection.u_shared_engine.u_engine.state_q",
+        "scale_tags": "u_six_layers.u_datapath.u_projection.u_shared_engine.u_engine.scale_valid_q"
+      },
+      "free_bits": 8275,
+      "control_cells": 3953
+    }
+  },
+  "owner_proofs_and_covers": {
+    "rms": "======== ABC command line \"read_aiger site.aig; pdr -T 135\"\n  6 : 0 11 16 13 10 15 22                                                11    42      0.49 sec\n  6 : 0 13 19 24 18 22 32                                                12    46      0.74 sec\n 11 : 0 6 4 6 12 17 17 8 10 27 24 20                                     25    48      1.54 sec\n 11 : 0 6 4 6 19 27 37 26 14 27 24 20                                    43    48      1.87 sec\n 11 : 0 6 4 6 19 27 38 29 36 44 37 20                                    36    48      2.20 sec\n 11 : 0 6 4 6 19 27 38 29 39 54 59 40                                    35    48      2.60 sec\n 11 : 0 6 4 6 19 27 38 29 39 62 91 64                                    37    48      3.05 sec\n 11 : 0 6 4 6 19 27 39 39 50 72 99 77                                    33    48      3.37 sec\n 11 : 0 6 4 6 19 27 39 45 64 86 118 86                                   26    48      3.71 sec\n 15 : 0 6 3 5 5 11 13 24 28 35 45 24 25 21 54 60                         26    48      4.84 sec\n 15 : 0 6 3 5 5 11 13 24 28 35 45 24 32 33 76 77                         23    48      5.16 sec\n 17 : 0 6 3 5 5 11 13 24 27 25 36 13 12 18 67 67 39 49                   13    48      5.99 sec\n 17 : 0 6 3 5 5 11 13 24 27 25 36 13 12 18 67 79 63 70                   16    48      6.36 sec\n 17 : 0 6 3 5 5 11 13 24 27 25 36 13 12 18 76 95 82 83                   18    48      6.74 sec\n 17 : 0 6 3 5 5 11 13 24 27 25 36 13 12 18 78 111 119 86                 41    48      7.15 sec\n 17 : 0 6 3 5 5 11 13 24 27 25 36 13 12 18 78 117 140 114                51    48      7.55 sec\n 17 : 0 6 3 5 5 11 13 24 27 25 36 13 13 18 85 128 147 134                16    48      7.90 sec\n 17 : 0 6 3 5 5 11 13 24 27 25 36 16 25 31 101 145 154 134               28    48      8.39 sec\n 17 : 0 6 3 5 5 11 13 24 27 25 36 16 25 31 101 164 193 139               46    48      8.91 sec\n 17 : 0 6 3 5 5 11 13 24 27 25 36 16 25 31 101 164 224 173               56    48      9.40 sec\n 17 : 0 6 3 5 5 11 13 24 27 25 36 16 25 31 101 170 244 209               45    48     10.00 sec\n 17 : 0 6 3 5 5 11 13 24 30 30 41 22 39 41 104 174 244 209               24    48     10.41 sec\n 17 : 0 6 3 5 5 11 13 24 30 30 41 22 45 51 132 192 245 209               35    48     10.97 sec\n 17 : 0 6 3 5 5 11 13 24 30 30 41 23 45 51 153 219 251 209               57    48     11.53 sec\n 17 : 0 6 3 5 5 11 13 24 30 30 41 26 59 66 168 236 251 209               69    48     12.03 sec\n 17 : 0 6 3 5 5 11 13 24 30 30 41 26 59 66 181 273 263 209              104    48     12.63 sec\n 17 : 0 6 3 5 5 11 13 24 30 30 41 26 59 66 181 277 290 210              106    48     12.92 sec\n 17 : 0 6 3 5 5 11 13 24 30 30 41 26 59 66 181 277 319 249               52    48     13.49 sec\n 17 : 0 6 3 5 5 11 13 24 30 30 47 32 68 74 183 277 323 270               37    48     13.87 sec\n 17 : 0 6 3 5 5 11 13 24 30 30 47 32 72 79 195 295 338 272               26    49     14.33 sec\n 17 : 0 6 6 10 9 16 18 29 36 32 49 34 74 80 195 295 338 272              45    49     14.59 sec\n 17 : 0 6 6 10 9 16 18 29 37 39 54 39 78 86 201 302 346 278              38    49     14.85 sec\n 17 : 0 6 6 10 9 16 18 29 37 39 54 39 78 87 211 320 360 295              24    49     15.21 sec\nInvariant F[21] : 137 clauses with 0 flops (out of 56) (cex = 0, ave = 38.93)\nVerification of invariant with 137 clauses was successful.  Time =     0.01 sec\nProperty proved.  Time =    17.42 sec\n",
+    "cover_rms": "======== ABC command line \"read_aiger site.aig; pdr -T 135\"\n  4 : 0 15 28 16 4                                                       23    32      0.25 sec\n  7 : 0 8 10 20 25 25 11 12                                              29    41      0.64 sec\n  7 : 0 8 10 24 28 38 30 27                                              33    42      0.95 sec\n 10 : 0 10 12 13 11 12 17 37 23 10 16                                    27    42      1.57 sec\n 10 : 0 11 14 20 25 21 23 43 23 10 16                                    34    43      1.80 sec\n 10 : 0 12 17 25 30 26 26 48 37 16 18                                    38    43      2.00 sec\nOutput 0 of miter \"site\" was asserted in frame 12.  Time =     2.19 sec\n",
+    "elem": "======== ABC command line \"read_aiger site.aig; pdr -T 135\"\n  4 : 0 13 31 22 5                                                       27    36      0.27 sec\n  8 : 0 10 18 18 18 25 31 20 38                                          23    49      1.23 sec\n  8 : 0 10 18 18 18 27 63 47 40                                          52    49      1.69 sec\n  8 : 0 10 18 18 19 30 75 85 43                                          68    49      2.07 sec\n  8 : 0 10 18 18 19 32 85 104 63                                         75    49      2.39 sec\n  8 : 0 10 18 18 19 36 110 139 63                                        87    49      2.93 sec\n  8 : 0 10 18 18 19 36 116 168 94                                        89    49      3.50 sec\n  8 : 0 10 18 18 19 36 120 195 133                                       84    49      4.04 sec\n 11 : 0 10 18 18 19 29 73 118 109 71 33 39                               63    49      5.67 sec\n 11 : 0 10 18 18 19 29 73 119 112 95 72 39                               57    49      6.33 sec\n 11 : 0 10 18 18 19 29 73 119 116 105 88 51                              68    49      6.64 sec\n 11 : 0 10 18 18 19 29 74 128 145 134 102 74                             33    59      7.48 sec\n 11 : 0 10 18 18 19 29 77 152 172 144 102 74                             69    61      8.13 sec\n 11 : 0 10 18 18 19 29 79 167 213 146 102 74                            108    62      8.79 sec\n 11 : 0 10 18 18 19 29 79 176 250 162 102 74                            143    62      9.74 sec\n 11 : 0 10 18 18 19 29 80 182 270 200 103 74                            153    62     10.53 sec\n 11 : 0 10 18 18 19 29 80 183 287 242 103 74                            156    62     11.10 sec\n 11 : 0 10 18 18 19 29 80 186 314 274 103 74                            169    62     11.87 sec\n 11 : 0 10 18 18 19 29 80 186 316 308 130 74                            198    62     12.62 sec\n 11 : 0 10 18 18 19 29 80 187 324 336 161 74                            222    62     13.62 sec\n 11 : 0 10 18 18 19 29 80 192 333 359 190 74                            246    62     14.56 sec\n 11 : 0 10 18 18 19 29 80 194 342 388 216 74                            270    62     15.48 sec\n 11 : 0 10 18 18 19 29 80 194 342 404 265 74                            271    62     16.28 sec\n 11 : 0 10 18 18 19 29 80 194 342 413 316 74                            272    62     17.06 sec\n 11 : 0 10 18 18 21 34 88 213 350 414 331 74                            257    62     17.74 sec\n 11 : 0 10 18 18 21 34 91 228 381 424 331 74                            275    62     18.65 sec\n 11 : 0 10 18 18 21 34 91 232 403 453 335 74                            287    62     19.55 sec\n 11 : 0 10 18 18 21 36 93 244 419 469 344 74                            316    62     20.50 sec\n 11 : 0 10 18 18 21 36 93 253 443 496 351 74                            337    62     21.54 sec\n 11 : 0 10 18 18 21 36 93 261 463 524 367 76                            359    62     22.63 sec\n 11 : 0 10 18 18 21 36 93 261 466 537 409 77                            367    62     23.55 sec\n 11 : 0 10 18 18 21 36 93 266 472 552 438 77                            358    62     24.34 sec\n 11 : 0 10 18 18 21 36 93 270 489 574 457 77                            367    62     25.25 sec\n 11 : 0 10 18 18 28 51 115 287 489 574 457 77                           390    62     25.67 sec\n 11 : 0 10 18 18 28 51 115 288 497 583 468 91                           385    62     25.93 sec\n 11 : 0 10 18 18 28 51 115 288 497 583 468 94                             0    62     25.94 sec\n 11 : 0 10 18 18 28 51 115 288 497 583 468 94                             0    62     25.94 sec\n 11 : 0 10 18 18 28 51 115 288 497 583 468 94                             0    62     25.94 sec\n 17 : 0 10 18 18 24 39 87 111 11 11 37 13 37 21 14 19 19 81              18    62     28.10 sec\nInvariant F[16] : 101 clauses with 0 flops (out of 72) (cex = 0, ave = 43.94)\nVerification of invariant with 101 clauses was successful.  Time =     0.01 sec\nProperty proved.  Time =    28.48 sec\n",
+    "final": "======== ABC command line \"read_aiger site.aig; pdr -t -T 135\"\n  5 : 0 10 17 27 18 8                                                    20    40   8      0.33 sec\n  7 : 0 6 12 13 20 56 56 27                                              27    35   0      1.05 sec\n  7 : 0 7 15 21 24 68 70 34                                              22    35   0      1.31 sec\n  9 : 0 6 8 12 10 20 31 43 41 29                                         14    35   0      1.89 sec\n  9 : 0 6 8 12 10 26 53 77 70 61                                         33    35   0      2.63 sec\n  9 : 0 6 8 12 10 26 59 88 89 71                                         43    35   0      2.89 sec\n 11 : 0 6 8 12 10 14 22 37 29 39 53 36                                    9    35   0      3.61 sec\n 11 : 0 6 8 12 10 14 22 37 39 67 76 37                                   32    35   0      4.12 sec\n 11 : 0 9 13 19 11 15 22 39 45 90 96 46                                  49    55   1      4.62 sec\n 12 : 0 8 8 14 6 12 14 33 27 41 85 82 31                                 26    45   0      5.29 sec\n 14 : 0 8 8 13 6 12 14 25 24 39 39 69 79 68 49                           36    45   0      6.60 sec\n 18 : 0 8 8 13 6 12 14 22 24 33 15 18 21 22 29 18 29 22 110              18    45   0      8.11 sec\n 18 : 0 8 8 13 6 12 14 22 24 36 18 22 27 26 35 27 31 26 116              31    45   0      8.45 sec\n 18 : 0 8 8 13 6 12 14 22 25 39 23 28 33 31 41 33 41 31 117              38    45   0      8.82 sec\n 18 : 0 8 8 13 6 12 14 23 28 42 27 31 38 37 48 36 45 36 118              48    45   0      9.14 sec\n 18 : 0 9 8 13 6 12 17 37 35 49 28 32 38 39 50 38 48 38 118              68    45   0      9.41 sec\n 29 : ... 39 18 24 24 14 11 8 6 8 13 15 17 16 12 7 14 5 8 19 15 121      32    45   0     12.27 sec\n 29 : ... 23 27 31 21 13 12 11 12 13 15 17 16 12 7 14 5 8 19 15 121      57    45   0     12.62 sec\n 29 : ... 23 27 34 25 19 18 15 15 15 16 19 16 12 7 14 5 8 19 15 124      45    45   0     12.88 sec\n 29 : ... 23 27 34 28 22 21 18 20 21 28 29 21 12 7 14 5 8 19 15 124      41    45   0     13.22 sec\n 29 : ... 47 37 35 29 26 21 18 20 21 28 29 21 12 7 14 5 8 19 15 124      76    45   0     13.61 sec\n 29 : ... 64 61 37 29 26 21 18 20 21 28 29 22 12 7 14 5 8 19 15 125      91    45   0     13.96 sec\n 29 : ... 70 88 58 29 26 21 18 20 21 28 29 22 12 7 14 5 8 19 15 126     103    45   0     14.40 sec\n 29 : ... 77 96 80 35 26 21 18 20 21 28 29 22 12 7 14 5 8 19 15 127     110    45   0     14.72 sec\n 29 : ... 77 98 90 61 38 21 18 20 21 28 29 22 12 7 14 5 8 19 15 127      99    45   0     15.06 sec\n 29 : ... 78 102 94 69 66 35 18 20 21 28 29 24 12 7 14 5 8 19 15 127     85    45   0     15.50 sec\n 29 : ... 80 106 98 75 86 53 18 20 21 28 29 25 12 7 14 5 8 19 15 127    102    45   0     15.89 sec\n 29 : ... 80 106 98 77 100 77 28 21 21 28 29 27 12 7 14 5 8 19 15 127   105    45   0     16.32 sec\n 29 : ... 80 106 98 79 107 92 57 22 21 28 29 28 12 7 14 5 8 19 15 127    97    45   0     16.73 sec\n 29 : ... 80 106 98 79 107 96 73 66 21 28 29 28 12 7 14 5 8 19 15 127    99    45   0     17.24 sec\n 29 : ... 80 106 98 79 107 96 76 84 68 29 29 28 12 7 14 5 8 19 15 127   106    45   0     17.77 sec\n 29 : ... 80 106 98 79 107 96 78 92 87 58 29 28 12 7 14 5 8 19 15 127   107    45   0     18.29 sec\n 29 : ... 80 106 98 79 107 96 81 95 92 91 47 31 12 7 14 5 8 19 15 127   108    45   0     18.83 sec\n 29 : ... 106 98 79 107 96 81 99 99 105 84 35 12 7 14 5 8 19 15 127     113    45   0     19.36 sec\n 29 : ... 98 79 107 97 84 105 108 113 103 49 12 7 14 5 8 19 15 127      128    45   0     19.87 sec\n 29 : ... 98 79 107 97 84 105 108 114 115 104 12 7 14 5 8 20 15 127     131    45   0     20.45 sec\n 29 : ... 98 79 107 97 84 105 108 114 116 115 59 10 14 5 8 20 15 127    113    45   0     20.95 sec\n 29 : ... 98 79 107 97 84 105 108 114 116 116 95 32 15 5 8 20 15 128    111    45   0     21.43 sec\n 29 : ... 98 79 107 98 84 105 108 114 116 116 105 89 20 5 8 21 15 128   109    45   0     22.07 sec\n 29 : ... 98 79 109 99 88 109 111 121 125 126 117 95 22 5 8 21 15 128   116    45   0     22.56 sec\n 29 : ... 79 109 99 88 109 111 121 125 126 127 115 50 8 8 21 15 128     126    45   0     23.08 sec\n 29 : ... 79 109 99 88 109 111 121 125 126 132 133 84 10 8 21 16 128    136    45   0     23.60 sec\n 29 : ... 79 109 99 88 109 111 122 128 136 143 144 105 14 8 21 16 130   143    45   0     24.17 sec\n 29 : ... 109 99 88 109 111 122 128 138 147 152 126 29 11 21 16 130     149    45   0     24.63 sec\n 29 : ... 109 99 88 109 111 123 129 142 153 161 140 53 12 21 16 130     151    45   0     25.17 sec\n 29 : ... 109 99 88 109 111 123 129 142 153 161 149 100 15 22 16 130    140    45   0     25.69 sec\n 29 : ... 109 99 88 109 111 123 129 142 153 161 152 120 53 22 16 133    131    45   0     26.27 sec\n 29 : ... 109 99 88 109 111 123 129 142 153 161 152 137 101 22 16 133   144    45   0     26.87 sec\n 29 : ... 109 99 88 109 111 123 129 142 153 161 153 142 141 43 18 133   149    45   0     27.52 sec\n 29 : ... 109 99 88 109 111 123 129 142 153 161 153 147 158 84 19 134   154    45   0     28.14 sec\n 29 : ... 109 99 88 109 111 123 129 142 154 172 169 155 165 89 20 134   175    45   0     28.68 sec\n 29 : ... 109 99 88 109 111 123 129 144 157 175 187 166 170 93 20 134   180    45   0     29.19 sec\n 29 : ... 99 88 109 111 123 129 144 157 175 188 170 188 120 21 135      172    45   0     29.70 sec\n 29 : ... 99 88 109 111 125 131 147 160 177 190 173 193 145 21 135      168    45   0     30.15 sec\n 29 : ... 99 88 109 111 125 131 150 163 179 193 178 206 168 26 135      169    45   0     30.66 sec\n 29 : ... 99 88 109 111 125 131 150 163 179 193 179 208 192 66 135      177    45   0     31.30 sec\n 29 : ... 99 88 109 111 125 131 150 163 179 193 179 208 210 115 135     194    45   0     31.94 sec\n 29 : ... 99 88 109 111 125 131 150 163 179 193 179 208 213 169 138     187    45   0     32.49 sec\n 29 : ... 99 88 109 111 125 131 150 163 179 193 180 209 213 189 180     160    45   0     33.05 sec\n 29 : ... 99 88 109 111 125 131 150 163 179 193 180 209 213 198 235     132    45   0     33.57 sec\n 29 : ... 99 88 109 111 125 131 150 163 179 193 180 209 213 204 280      77    45   0     33.96 sec\n 34 : ... 58 42 58 66 28 24 56 56 52 70 61 47 68 62 60 64 78 73 423      37    45   0     39.66 sec\n 34 : ... 58 42 58 66 28 24 56 56 52 70 61 47 68 62 60 68 93 87 438      16    45   0     40.10 sec\n 34 : ... 59 44 58 71 31 27 57 56 52 70 61 47 68 62 60 68 93 87 440      58    45   0     40.52 sec\n 34 : ... 59 46 58 71 31 27 57 56 52 70 61 47 68 62 60 68 93 87 442      59    45   0     40.73 sec\n 34 : ... 65 50 60 73 31 27 57 56 52 70 61 47 68 62 60 68 93 87 442      57    45   0     41.12 sec\n 34 : ... 68 53 64 74 31 29 57 56 52 70 62 47 68 65 63 73 104 95 455     58    52   1     41.90 sec\nInvariant F[44] : 337 clauses with 0 flops (out of 72) (cex = 10, ave = 34.23)\nVerification of invariant with 337 clauses was successful.  Time =     0.02 sec\nProperty proved.  Time =    53.44 sec\n",
+    "cover_elem": "======== ABC command line \"read_aiger site.aig; pdr -T 135\"\n  4 : 0 16 26 19 3                                                       22    34      0.20 sec\n  4 : 0 28 51 34 5                                                       43    43      0.43 sec\n 10 : 0 11 10 12 24 23 21 15 9 9 2                                       40    50      0.99 sec\nOutput 0 of miter \"site\" was asserted in frame 14.  Time =     1.09 sec\n",
+    "cover_final": "======== ABC command line \"read_aiger site.aig; pdr -T 135\"\n  4 : 0 17 27 11 5                                                       27    45      0.23 sec\nOutput 0 of miter \"site\" was asserted in frame 5.  Time =     0.37 sec\n",
+    "cover_post": "======== ABC command line \"read_aiger site.aig; pdr -T 135\"\n  3 : 0 20 30 11                                                         23    34      0.18 sec\n  9 : 0 11 8 14 16 22 21 30 30 16                                        23    39      1.04 sec\n  9 : 0 11 9 15 16 25 26 37 44 39                                        21    39      1.36 sec\n  9 : 0 11 9 15 16 29 41 51 58 49                                        19    43      1.72 sec\n  9 : 0 11 9 15 16 29 41 57 90 69                                        25    47      2.12 sec\n  9 : 0 11 9 15 16 29 41 57 121 100                                      25    52      2.67 sec\n  9 : 0 11 9 15 16 29 41 61 152 126                                      21    52      3.16 sec\n  9 : 0 11 9 15 16 29 48 70 169 148                                      16    52      3.53 sec\n  9 : 0 11 9 15 16 29 48 73 196 181                                      17    52      3.97 sec\n 11 : 0 11 9 14 18 26 44 50 71 97 78 47                                  18    52      4.88 sec\n 11 : 0 11 9 14 18 26 45 52 85 123 93 51                                 34    52      5.30 sec\n 11 : 0 11 9 15 22 31 47 57 93 131 103 55                                41    53      5.62 sec\n 11 : 0 13 10 20 33 41 56 65 97 135 103 55                               48    57      5.92 sec\nOutput 0 of miter \"site\" was asserted in frame 32.  Time =     6.05 sec\n",
+    "cover_weight": "======== ABC command line \"read_aiger site.aig; pdr -T 135\"\n  5 : 0 12 24 28 27 12                                                   18    39      0.52 sec\n  7 : 0 5 12 16 10 23 42 39                                              18    40      1.09 sec\n  8 : 0 5 12 16 10 27 66 69 31                                           15    41      1.80 sec\n  8 : 0 5 13 17 13 31 83 91 37                                           23    42      2.13 sec\n  8 : 0 6 14 20 20 41 89 103 47                                          35    42      2.39 sec\n  8 : 0 6 14 20 22 44 100 121 61                                         35    46      2.64 sec\n  8 : 0 6 14 20 25 49 114 136 77                                         12    48      2.91 sec\n  8 : 0 9 15 24 31 54 117 142 85                                         18    53      3.12 sec\n 13 : 0 7 3 4 5 5 13 22 17 19 26 18 41 35                                21    55      4.05 sec\n 13 : 0 7 3 4 5 5 13 22 18 21 34 28 53 52                                15    55      4.35 sec\n 13 : 0 7 3 4 5 5 13 22 18 21 37 42 77 73                                12    59      4.69 sec\n 14 : 0 7 3 4 8 11 20 41 33 26 18 29 27 13 65                            23    59      5.22 sec\n 14 : 0 7 3 4 8 11 20 41 36 36 42 46 28 13 68                            27    59      5.59 sec\n 14 : 0 7 3 4 8 11 20 41 37 40 57 66 52 13 68                            46    59      6.04 sec\n 14 : 0 7 3 4 8 11 20 41 37 44 77 94 63 13 68                            67    60      6.42 sec\n 14 : 0 8 4 5 9 11 20 41 37 45 78 107 98 13 69                           87    60      6.78 sec\nOutput 0 of miter \"site\" was asserted in frame 16.  Time =     6.82 sec\n"
+  },
+  "ledger": {
+    "coverage": {
+      "projection": 64,
+      "attention_score": 8,
+      "attention_value": 8,
+      "postscale": 2,
+      "rms": 2,
+      "elementwise": 1,
+      "datapath_total": 85,
+      "support_separate": 5
+    },
+    "standalone_25M_edges_arbitrary_start": {
+      "postscale_row_issues": 4166720,
+      "postscale_partial_pairs": 4166722,
+      "postscale_merges": 4166723,
+      "postscale_physical_product_and_add_ops": 12500167,
+      "postscale_semantic_row_multiplications": 4166723,
+      "each_rms_products": 12500001,
+      "each_rms_product_and_square_add_ops": 25000001,
+      "elementwise_products": 20000000,
+      "elementwise_product_and_rope_add_ops": 30000001
+    },
+    "standalone_25M_edges_reset": {
+      "postscale_row_issues": 4166666,
+      "postscale_partial_pairs": 4166666,
+      "postscale_merges": 4166666,
+      "postscale_physical_product_and_add_ops": 12499998,
+      "postscale_semantic_row_multiplications": 4166666,
+      "each_rms_products": 12500000,
+      "each_rms_product_and_square_add_ops": 25000000,
+      "elementwise_products": 20000000,
+      "elementwise_product_and_rope_add_ops": 30000000
+    },
+    "standalone_sustained_ops_per_second": {
+      "postscale_partial_products": 8333333.333333333,
+      "postscale_merge_adds": 4166666.6666666665,
+      "postscale_row_scales": 4166666.6666666665,
+      "each_rms_products": 12500000.0,
+      "each_rms_including_square_add": 25000000,
+      "elementwise_products": 20000000.0,
+      "elementwise_including_rope_adds": 30000000.0
+    },
+    "joint_semantic_scale": {
+      "arbitrary": {
+        "secondary_ops_per_union_edge": 24,
+        "max_25M_edge_window": 2921560448
+      },
+      "reset": {
+        "secondary_ops_per_union_edge": 24,
+        "max_25M_edge_window": 2921552768
+      }
+    },
+    "joint_physical_scale": {
+      "arbitrary": {
+        "secondary_ops_per_union_edge": 26,
+        "max_25M_edge_window": 2921560448
+      },
+      "reset": {
+        "secondary_ops_per_union_edge": 26,
+        "max_25M_edge_window": 2921552768
+      }
+    },
+    "measured_reference": {
+      "H": 989000000000000,
+      "R": 2951332.874617403,
+      "F": 9.82410553054161
+    },
+    "clock_hz": 25000000,
+    "joint_sustained_scalar_ops_per_second": 2921552878.179384,
+    "joint_scoped_proxy": 0.8874474298386563,
+    "demonstrated_generic_training_rate": null,
+    "whole_device_factor": null
+  },
+  "additional_and_support_mapped_instances": {
+    "projection_scaling": [
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_shared_engine/u_engine/u_scale_low/product_o_47_s0",
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_shared_engine/u_engine/u_scale_high/product_o_47_s2"
+    ],
+    "rmsnorm": [
+      "u_uart_core/u_machine/u_machine_0/u_token_shell/u_final_rmsnorm/u_sealed_shared_multiply/behavioral_product_44_s1",
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_rmsnorm/u_sealed_shared_multiply/behavioral_product_44_s1"
+    ],
+    "feed_forward": [
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_elementwise_lane/u_fixed_elementwise_product_compact_lane/u_product_dsp/behavioral_product_44_s2"
+    ],
+    "metadata_support": [
+      "u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n151_s0",
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n218_s0",
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n151_s0"
+    ],
+    "embedding_support": [
+      "u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/mult_83_s1"
+    ],
+    "projection_stride_support": [
+      "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n164_s0"
+    ]
+  }
+}

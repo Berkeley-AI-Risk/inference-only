@@ -1,0 +1,43 @@
+{
+  "image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+  "source_sha256": {
+    "defines.v": "76cbe1576dbf6c7c6151072d6c1f8125eecc360140ba29784024d3f99b0f6f58",
+    "production_sources.f": "2efa4055e6c9c2085462462a44aeb007dd6c75f75283c23c963723717bd8c09d",
+    "cluster-engine.sv": "97a3edaccef6dba1f095f82706c260cb0520fae49751ba34d76dda0ad314ec88",
+    "cluster-tile.sv": "308e12f6337d9d84bc786e4b2c18fac0806cc5fba5fa7745e1a833ace58493af",
+    "cluster-adapter.sv": "0b8d09a0fded73d93f5fddb6bc790b552968f2d8c38cf0e90d20eb5d49b9744b"
+  },
+  "native_inventory_sha256": "4f4cbc54676e9d976af7358386c19d8befdab34d819de30e4fb3e42beb3362fd",
+  "yosys": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)",
+  "source_and_mapped_sites_checked": 64,
+  "native_SAT_checks": [
+    "shape_failure",
+    "identity_failure",
+    "cap_failure",
+    "budget_failure",
+    "tight_edge",
+    "bootstrap_edge",
+    "one_credit_less_fails",
+    "spurious_product",
+    "spurious_accum",
+    "allow_advance"
+  ],
+  "skip_metadata_defect_rejected": true,
+  "head_and_projection_lane_sites": 64,
+  "multiplier_input_bits": [
+    10,
+    16
+  ],
+  "operations_per_product": 2,
+  "clock_hz": 25000000,
+  "max_nonnegative_potential": 44330,
+  "max_accepted_weight_beats_per_edge_sustained": "682/747",
+  "one_second_window_product_upper": 1460780224,
+  "simple_sites_only_op_credit_per_second": 3200000000,
+  "sustained_operation_credit_per_second_upper": 2921552878.179384,
+  "scoped_measured_proxy_upper": 0.8874474298386563,
+  "H": 989000000000000,
+  "F": 9.82410553054161,
+  "R": 2951332.874617403,
+  "whole_system_upper": null
+}

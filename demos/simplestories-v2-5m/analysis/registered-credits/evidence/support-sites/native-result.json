@@ -1,0 +1,142 @@
+{
+  "image": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+  "pinned_sources_sha256": {
+    "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359",
+    "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc",
+    "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211",
+    "service.sv": "f9c0dc77430a1d08d85e2f2ebd8dfb38f13e09e4659bdc053976a3f321048cd6",
+    "shared_token_probe.sv": "c855d6621f4475b04fe662aa628e3d733d32fa2b15bf982ea8e7f269133da33e",
+    "uart_core.sv": "315f5d20fa93a5f974eeef1b26220952c6f9ab4264cd6309a1de7cb35ea1832a",
+    "metadata192.memh": "1535aa2d84de71c736b71e40694940f1b291dfd1db6c9f02d10b8605552ccdb9",
+    "digests32.memh": "2c4bb7908d6e957b8a20e99b230c6e8a3d7fafddeb391581dfcbcb1cce7bf672",
+    "production_sources.f": "2efa4055e6c9c2085462462a44aeb007dd6c75f75283c23c963723717bd8c09d"
+  },
+  "mapped": {
+    "independently_enumerated": 90,
+    "vo_sha256": "627b0ac326f5507a641e444ee6e89d58b3b98bc4e60ef447e1e65e9b9608d224",
+    "sites": [
+      {
+        "instance": "u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/mult_83_s1",
+        "group": "embedding_support",
+        "native_line": 483023,
+        "literals": {},
+        "primitive": "MULTALU27X18",
+        "cell_sha256": "81fc1902462d257b188348928a2df7e6d0d2259c1cbd25aa912177ecdfb9e879",
+        "output_binding": "{\\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/DOUT [47:26], \\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/selected_product [25:0]}"
+      },
+      {
+        "instance": "u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n151_s0",
+        "group": "metadata_support",
+        "native_line": 505012,
+        "literals": {
+          "A": 7,
+          "B": 304
+        },
+        "primitive": "MULT12X12",
+        "cell_sha256": "6feeec526132a3c4ff7af016b2e6008fbe490da736919151e6e33064c1b91ae4",
+        "output_binding": "{\\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/DOUT [23:12], \\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n151_3 , \\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n152_1 , \\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n153_1 , \\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n154_1 , \\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n155_1 , \\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n156_1 , \\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n157_1 , \\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n158_1 , \\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n159_1 , \\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n160_1 , \\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n161_1 , \\u_uart_core/u_machine/u_machine_0/u_token_shell/u_fixed_embedding/u_tied_group_reader/u_metadata_reader/n162_1 }"
+      },
+      {
+        "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n164_s0",
+        "group": "projection_stride_support",
+        "native_line": 672330,
+        "literals": {
+          "B": 11432
+        },
+        "primitive": "MULTALU27X18",
+        "cell_sha256": "97906163830e47db3ab6325359a63be5fcf67269f022337b432b72003106d8db",
+        "output_binding": "{\\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/DOUT [47:17], \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n164_3 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n165_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n166_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n167_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n168_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n169_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n170_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n171_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n172_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n173_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n174_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n175_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n176_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n177_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n178_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n179_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n180_1 }"
+      },
+      {
+        "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n218_s0",
+        "group": "metadata_support",
+        "native_line": 672429,
+        "literals": {},
+        "primitive": "MULT12X12",
+        "cell_sha256": "587424a0a1e6a23f1a255b4356097df5f3293452e7e62b8c9549085fb5de4c0e",
+        "output_binding": "{\\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/DOUT_0 [23:16], \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n218_3 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n219_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n220_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n221_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n222_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n223_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n224_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n225_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n226_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n227_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n228_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n229_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n230_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n231_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n232_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/n233_1 }"
+      },
+      {
+        "instance": "u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n151_s0",
+        "group": "metadata_support",
+        "native_line": 679360,
+        "literals": {
+          "B": 304
+        },
+        "primitive": "MULT12X12",
+        "cell_sha256": "4424efc6f4aa8b2a751e8b2df26fdb25ff5b94d291b48f9623500971be6a1a99",
+        "output_binding": "{\\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/DOUT [23:12], \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n151_3 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n152_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n153_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n154_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n155_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n156_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n157_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n158_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n159_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n160_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n161_1 , \\u_uart_core/u_machine/u_machine_0/u_six_layers/u_datapath/u_projection/u_group_stream/u_metadata_reader/n162_1 }"
+      }
+    ],
+    "mapped_group_stride_B_for_jobs_0_to_15": [
+      256,
+      256,
+      256,
+      256,
+      256,
+      256,
+      682,
+      256,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "mapped_group_stride_A_nearby_register_bits": {
+      "5": [
+        "group_q_0 [5]"
+      ],
+      "4": [
+        "group_q_0 [4]"
+      ],
+      "3": [
+        "group_q_0 [3]"
+      ],
+      "2": [
+        "group_q_0 [2]"
+      ],
+      "1": [
+        "group_q_0 [0]",
+        "group_q_0 [1]"
+      ],
+      "0": [
+        "group_q_0 [0]"
+      ]
+    }
+  },
+  "checks": {
+    "weight_descriptor": {
+      "table_error": true,
+      "head_influence": true,
+      "stride_can_change": false,
+      "group_offset_can_change": false
+    },
+    "metadata_descriptor": {
+      "table_error": true,
+      "head_influence": true,
+      "stride_can_change": false
+    },
+    "embedding": {
+      "only_immediate_product_sink": [
+        [
+          "u_embedding_normalizer",
+          "input_raw_i"
+        ]
+      ],
+      "sat": {
+        "immediate_readout": true,
+        "changed_accepted_input": false
+      }
+    },
+    "compiled_metadata": {
+      "wrong_decode": true,
+      "external_priority": true,
+      "local_positive": false,
+      "concurrent_prefetch_is_possible": false
+    }
+  }
+}

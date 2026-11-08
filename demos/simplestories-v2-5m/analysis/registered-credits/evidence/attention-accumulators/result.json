@@ -1,0 +1,32 @@
+{
+  "source_commit": "159528e36d46fc803326758b160aa5e84aebd72b",
+  "image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+  "source_sha256": "368596a5f8470cd28ccd429cd2ab479db5c77aef0b34eb9541c55aa44c0baf0c",
+  "native_inventory_sha256": "4f4cbc54676e9d976af7358386c19d8befdab34d819de30e4fb3e42beb3362fd",
+  "yosys": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)",
+  "sat_results": [
+    "score_only_in_state_33",
+    "value_only_in_state_24",
+    "score_sensitive_witness",
+    "value_sensitive_witness"
+  ],
+  "combinational_cells_in_cone": 371,
+  "arbitrary_shared_cut_bits": 2728,
+  "FPGA_step_seconds": [
+    0.101706167,
+    0.101874708
+  ],
+  "F_fixed128": 9.82410553054161,
+  "R_fixed128": 2951332.874617403,
+  "R_batch": 32768,
+  "R_greedy_disagreements": 61,
+  "accounting_normalizer_H": 989000000000000,
+  "clock_hz": 25000000,
+  "max_product_contributions_per_edge": 8,
+  "operations_per_product": 2,
+  "channel_op_credit_per_second_upper": 400000000,
+  "channel_measured_proxy_upper": 0.12150352457651692,
+  "separately_counted_banks_ungated_ceiling": 0.24300704915303384,
+  "training_access_measured": false,
+  "whole_system_upper": null
+}

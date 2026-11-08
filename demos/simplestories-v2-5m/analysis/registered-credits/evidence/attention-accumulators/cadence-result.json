@@ -1,0 +1,21 @@
+{
+  "source_sha256": "368596a5f8470cd28ccd429cd2ab479db5c77aef0b34eb9541c55aa44c0baf0c",
+  "image_sha256": "01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57",
+  "control_registers": [
+    "state_q",
+    "coordinate_q",
+    "workspace_read_return_q",
+    "output_read_return_q",
+    "shift_client_q"
+  ],
+  "control_cells": 724,
+  "arbitrary_environment_bits": 4328,
+  "max_charged_edges_in_nine": 8,
+  "one_second_25_million_edge_credit_upper": 355555568,
+  "asymptotic_operation_credit_per_second_upper": 355555555.5555556,
+  "asymptotic_channel_proxy_upper": 0.10800313295690392,
+  "inductive_check": {
+    "9": "======== ABC command line \"read_aiger model.aig; pdr -T 60\"\n 10 : 0 3 4 8 14 17 14 12 13 6 19                                        17    29      0.49 sec\nInvariant F[10] : 48 clauses with 0 flops (out of 35) (cex = 0, ave = 13.64)\nVerification of invariant with 48 clauses was successful.  Time =     0.01 sec\nProperty proved.  Time =     0.69 sec",
+    "8": "======== ABC command line \"read_aiger model.aig; pdr -T 60\"\n  9 : 0 2 11 8 9 6 4 7 4 14                                              15    25      0.27 sec\n  9 : 0 4 19 17 19 15 11 14 9 17                                         25    26      0.49 sec\n  9 : 0 7 28 30 33 27 20 15 9 17                                         42    32      0.66 sec\n 13 : 0 2 6 3 3 1 3 3 3 2 3 18 13 9                                      40    33      0.98 sec\n 13 : 0 2 6 3 6 4 5 6 8 8 11 24 16 9                                     21    33      1.09 sec\n 30 : ... 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 3 4 2 20 16 14 11 9 7 6 21     28    33      1.73 sec\n 30 : ... 1 1 1 1 1 1 1 1 1 1 1 1 2 2 3 4 7 5 5 24 25 21 13 9 7 6 21     26    33      1.86 sec\nOutput 0 of miter \"model\" was asserted in frame 76.  Time =     1.91 sec"
+  }
+}
