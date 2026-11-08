@@ -26,6 +26,8 @@ In the signed-update design, a threshold of model authorities approves the model
 
 The receiver derives the expected sender, operation and chunk from its own inference schedule. It accepts an authenticated partial sum once, in the matching run and generation. Correctness still depends on the sending endpoint producing its prescribed result and on device identities and keys surviving the physical threat model.
 
-## What would test the proposal?
+## What has been tested?
 
-First run the same small model on one die and on two. Compare the intermediate vectors and generated tokens, observe zero inference peer traffic in the standalone run, and inject a valid frame from an old run to verify rejection before arithmetic. Then compare 16 and 32 dies on the same model, prompt, output length and numerical quality. The 32-die example is a reference for that comparison. A complete 405B execution, the achievable rate of authenticated communication, package power and matched accelerator performance remain open.
+A hybrid simulation ran the released SimpleStories-V2-5M model on one simulated rank and on two instances of the same RTL rank. From input 378, both generated **200 → 15 → 103**, matching the FPGA capture. Splitting the matrix columns preserved all 55,041 checked row sums and every vocabulary score. The standalone rank sent and received zero peer frames. After a two-rank restart, the receiver rejected an old partial sum at the same row and sequence number before it could reach the adder. Matrix products, peer handshakes and addition ran in RTL. The software harness supplied nonlinear operations, K/V storage, session authentication and scheduling. [Reproduce the SimpleStories comparison](../research/reusable-die/simplestories-tp1-tp2/README.md)
+
+The next system comparison is 16 versus 32 dies on the same model, prompt, output length and numerical quality. The 32-die example is a reference for that comparison. A complete 405B execution, authenticated link throughput, package power and matched accelerator performance remain open.
