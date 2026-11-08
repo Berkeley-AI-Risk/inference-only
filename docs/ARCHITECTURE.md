@@ -94,6 +94,8 @@ and trusted on-chip state form part of the root of trust.
 
 The [combined SimpleStories target](../demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) supplies full-datapath RTL simulation evidence, with an [eleven-case validation record](../demos/simplestories-v2-5m/variants/combined-security-simulation/VALIDATION.json).
 
+The [Qwen3-8B board measurements](../demos/qwen3-8b/measurements.json) provide a measured baseline for the [proposed reusable-die architecture](PROPOSED-REUSABLE-AWIC.md), whose Llama 8B and 405B deployments are proposals.
+
 The runnable HWIC ROM checkpoint and the later spatial regression are different
 RTL selections. Matching test-corpus counts do not transfer qualification
 between them.
