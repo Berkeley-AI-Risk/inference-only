@@ -92,6 +92,8 @@ and trusted on-chip state form part of the root of trust.
 | Qwen3-8B | Fixed weight commitment; private checked HBM page copies | External HBM K/V without integrity protection | [Hardware and source identity](../demos/qwen3-8b/HARDWARE.md), [validation](../demos/qwen3-8b/VALIDATION.md), [formal scope](../demos/qwen3-8b/FORMAL-STATUS.md) |
 | SimpleStories HWIC research | Fixed ROM baseline and separately identified spatial implementations | Private dynamic K/V requiring a physical memory implementation | [Runnable RTL checkpoint](../research/hwic/simplestories-2026-10-27/README.md), [integrated regression](../research/hwic/PROGRESS-2026-11-04.md), [memory and performance assessment](../research/hwic/PROGRESS-2026-11-05-FEASIBILITY.md) |
 
+The [combined SimpleStories target](../demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) supplies full-datapath RTL simulation evidence, with an [eleven-case validation record](../demos/simplestories-v2-5m/variants/combined-security-simulation/VALIDATION.json).
+
 The runnable HWIC ROM checkpoint and the later spatial regression are different
 RTL selections. Matching test-corpus counts do not transfer qualification
 between them.
