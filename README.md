@@ -61,19 +61,27 @@ in [CURRENT-QUALIFICATION.md](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md
 
 ## The demonstrated designs and measurements
 
-The table lists **Authenticated-Weight Inference-Only Chip (AWIC) designs**, all implemented on FPGAs.
+Three models run on FPGA implementations of the **Authenticated-Weight Inference-Only Chip (AWIC)**. The table shows cached generation on the baseline F-AWIC for each model. Expand the SimpleStories comparison to see how its rate changes with the security and sampling options.
 
 <!-- COMMON-FPGA-SPEED:START -->
-| Model and platform | Inference clock (MHz) | Common cached generation | Package status |
-| --- | --- | --- | --- |
-| **SimpleStories-V2-5M — Tang Mega**, **F-AWIC** | 25 | ~**10.0 tokens/s** | Runnable release |
-| Same model, **F-AWIC with K/V protection** | 25 | ~**7.0 tokens/s** | Runnable release |
-| Same model, **F-AWIC with K/V protection + encrypted memory** | 25 | ~**6.0 tokens/s** | Runnable release; public demonstration keys |
-| Same model, **F-AWIC with seeded sampling at temperature 1**, without K/V integrity | 25 | ~**9.9 tokens/s** | Runnable release |
-| Same model, **S-AWIC**, without K/V integrity | 25 | ~**10.1 tokens/s** | Runnable release; public demonstration keys |
-| Same model, **S-AWIC with periodic reauthorization**, without K/V integrity | 25 | ~**7.6 tokens/s** | Runnable token-ID demonstration; public demonstration keys |
-| **Qwen3-1.7B — AWS F2**, **F-AWIC** | 100 | ~**9.0 tokens/s** | Runnable release; public AWS FPGA image |
-| **Qwen3-8B — AWS F2**, **F-AWIC** | 100 | ~**1.1 tokens/s** | Runnable prototype; speed optimization in progress; public AWS FPGA image |
+| Model and FPGA | Core clock (MHz) | Cached tokens/s | Release |
+| --- | ---: | ---: | --- |
+| **SimpleStories-V2-5M — Tang Mega**, **F-AWIC** | 25 | 10.0 | Runnable release |
+| **Qwen3-1.7B — AWS F2**, **F-AWIC** | 100 | 9.0 | Runnable release · public AWS FPGA image |
+| **Qwen3-8B — AWS F2**, **F-AWIC** | 100 | 1.1 | Runnable prototype · speed optimization in progress · public AWS FPGA image |
+
+<details>
+<summary>Additional SimpleStories configurations on Tang Mega</summary>
+
+| SimpleStories configuration | Core clock (MHz) | Cached tokens/s | Release |
+| --- | ---: | ---: | --- |
+| **F-AWIC with K/V protection** | 25 | 7.0 | Runnable release |
+| **F-AWIC with K/V protection + encrypted memory** | 25 | 6.0 | Runnable release · public demonstration keys |
+| **F-AWIC with seeded sampling at temperature 1**, without K/V integrity | 25 | 9.9 | Runnable release |
+| **S-AWIC**, without K/V integrity | 25 | 10.1 | Runnable release · public demonstration keys |
+| **S-AWIC with periodic reauthorization**, without K/V integrity | 25 | 7.6 | Runnable token-ID demonstration · public demonstration keys |
+
+</details>
 <!-- COMMON-FPGA-SPEED:END -->
 
 The clock column gives each image’s configured inference/core clock. Memory and interface blocks use other clock domains.

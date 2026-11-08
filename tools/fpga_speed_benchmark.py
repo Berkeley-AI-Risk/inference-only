@@ -292,12 +292,24 @@ def inference_clock_mhz(row):
 
 
 def table(result):
-    lines = ['| Model and platform | Inference clock (MHz) | Common cached generation | Package status |', '| --- | --- | --- | --- |']
+    columns = ' | Core clock (MHz) | Cached tokens/s | Release |'
+    divider = '| --- | ---: | ---: | --- |'
+    overview = ['| Model and FPGA' + columns, divider]
+    variants = ['| SimpleStories configuration' + columns, divider]
     for row in result['rows']:
-        speed = f"~**{row['rate']['cached_tokens_per_second']:.1f} tokens/s**" if row['complete'] else '—'
+        speed = f"{row['rate']['cached_tokens_per_second']:.1f}" if row['complete'] else '—'
         clock = f"{inference_clock_mhz(row):g}"
-        lines.append(f"| {row['label']} | {clock} | {speed} | {row['package_status']} |")
-    return '\n'.join(lines)
+        label = row['label']
+        group = overview
+        if row['id'].startswith('simplestories-') and row['id'] != 'simplestories-baseline':
+            label = label.removeprefix('Same model, ')
+            group = variants
+        status = row['package_status'].replace('; ', ' · ')
+        group.append(f'| {label} | {clock} | {speed} | {status} |')
+    return '\n'.join([
+        *overview, '', '<details>', '<summary>Additional SimpleStories configurations on Tang Mega</summary>',
+        '', *variants, '', '</details>',
+    ])
 
 
 def main():
