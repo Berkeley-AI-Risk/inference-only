@@ -1,0 +1,92 @@
+{
+  "binary": {
+    "bytes": 2349888,
+    "sha256": "74895f6cc7bca923d0dc559c1a998fce6a04057dad8d0db7413346d3260b3a4a"
+  },
+  "case": "plain",
+  "compile": {
+    "actual_child_exit": 0,
+    "command": [
+      "/usr/local/bin/verilator",
+      "--cc",
+      "--exe",
+      "--build",
+      "--assert",
+      "-Wno-fatal",
+      "-j",
+      "1",
+      "--threads",
+      "1",
+      "--output-split",
+      "12000",
+      "--top-module",
+      "operand_test",
+      "-I/package/source",
+      "-y",
+      "/package/source",
+      "+libext+.sv+.v",
+      "-Mdir",
+      "/results/plain/build",
+      "-o",
+      "component-test",
+      "-CFLAGS",
+      "-std=c++17 -O2 -ffp-contract=off -I/package/source -DPROTECTED_BUILD=0",
+      "+define+PROTECTED_PROFILE=0",
+      "/package/source/HardFloat_primitives.v",
+      "/package/source/HardFloat_rawFN.v",
+      "/package/source/HardFloat_specialize.v",
+      "/package/source/addRecFN.v",
+      "/package/source/divSqrtRecFN_small.v",
+      "/package/source/fNToRecFN.v",
+      "/package/source/iNToRecFN.v",
+      "/package/source/isSigNaNRecFN.v",
+      "/package/source/mulRecFN.v",
+      "/package/source/recFNToFN.v",
+      "/package/source/recFNToIN.v",
+      "/package/source/recFNToRecFN.v",
+      "/package/source/top.sv",
+      "/package/source/test.cpp"
+    ],
+    "compiler_cache_disabled": true,
+    "cwd": "/package",
+    "elapsed_seconds": 60.622852866014,
+    "finished_utc": "2026-11-10T07:34:09.673267+00:00",
+    "started_utc": "2026-11-10T07:33:09.050439+00:00",
+    "stderr": {
+      "bytes": 23909,
+      "sha256": "c32317bca12035fc3ec634445b9c0eed677b93d739531cef66e4e2461a03dcea"
+    },
+    "stdout": {
+      "bytes": 5822,
+      "sha256": "40f368f287f6e1f91eb72f31f5a65d075ae8f48c226a78b803e937a94e221d36"
+    },
+    "stop_reason": null
+  },
+  "manifest": {
+    "bytes": 16489,
+    "sha256": "350066c747a3befd7665c18a281a97458f57521d9c4d5a9a3f5df195813c476b"
+  },
+  "native": {
+    "actual_child_exit": 0,
+    "command": [
+      "/results/plain/build/component-test"
+    ],
+    "compiler_cache_disabled": true,
+    "cwd": "/results/plain",
+    "elapsed_seconds": 5.356311765033752,
+    "finished_utc": "2026-11-10T07:34:15.066274+00:00",
+    "started_utc": "2026-11-10T07:34:09.709981+00:00",
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout": {
+      "bytes": 601021,
+      "sha256": "4263bb19fe1eadcd7fddf7665c50186faa772d8ec87d4ecfc4f27f9b5753e541"
+    },
+    "stop_reason": null
+  },
+  "numerical_review_pending": true,
+  "physical_qualification": false,
+  "tool_completed": true
+}

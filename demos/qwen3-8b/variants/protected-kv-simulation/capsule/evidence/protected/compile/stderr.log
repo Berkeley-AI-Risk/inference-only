@@ -1,0 +1,220 @@
+%Warning-WIDTHTRUNC: /package/source/HardFloat_primitives.v:102:54: Operator ASSIGNW expects 25 bits on the Assign RHS, but Assign RHS's SHIFTR generates 513 bits.
+                                                                  : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.interpolate.round_product.roundAnyRawFNToRecFN.genblk2.genblk1.lowMask_roundMask'
+  102 |     wire [(bottomBound - topBound - 1):0] reverseOut =
+      |                                                      ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.050
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: /package/source/HardFloat_primitives.v:102:54: Operator ASSIGNW expects 9 bits on the Assign RHS, but Assign RHS's SHIFTR generates 513 bits.
+                                                                  : ... note: In instance 'operand_test.consumer.heads[1].qk.arithmetic.score_narrow.genblk1.roundRawInToOut.genblk2.genblk1.lowMask_roundMask'
+  102 |     wire [(bottomBound - topBound - 1):0] reverseOut =
+      |                                                      ^
+%Warning-WIDTHTRUNC: /package/source/HardFloat_primitives.v:75:54: Operator ASSIGNW expects 7 bits on the Assign RHS, but Assign RHS's SHIFTR generates 9 bits.
+                                                                 : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw.lowMask_far_roundExtraMask'
+   75 |     wire [(topBound - bottomBound - 1):0] reverseOut =
+      |                                                      ^
+%Warning-WIDTHEXPAND: /package/source/HardFloat_rawFN.v:185:58: Operator SHIFTL expects 9 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+                                                              : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.interpolate.round_product.roundAnyRawFNToRecFN'
+  185 |                             | (propagateNaNPayload ? 1'b1<<outExpWidth : 1'b0),
+      |                                                          ^~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.050
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /package/source/HardFloat_rawFN.v:185:52: Operator COND expects 9 bits on the Conditional False, but Conditional False's CONST '1'h0' generates 1 bits.
+                                                              : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.interpolate.round_product.roundAnyRawFNToRecFN'
+  185 |                             | (propagateNaNPayload ? 1'b1<<outExpWidth : 1'b0),
+      |                                                    ^
+%Warning-WIDTHEXPAND: /package/source/HardFloat_rawFN.v:188:52: Operator OR expects 25 bits on the RHS, but RHS's VARREF 'doShiftSigDown1' generates 1 bits.
+                                                              : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.interpolate.round_product.roundAnyRawFNToRecFN'
+  188 |                 assign roundMask = {roundMask_main | doShiftSigDown1, 2'b11};
+      |                                                    ^
+%Warning-WIDTHTRUNC: /package/source/HardFloat_rawFN.v:210:51: Operator ASSIGNW expects 26 bits on the Assign RHS, but Assign RHS's COND generates 32 or 27 bits.
+                                                             : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.interpolate.round_product.roundAnyRawFNToRecFN'
+  210 |             wire [(outSigWidth + 1):0] roundedSig =
+      |                                                   ^
+%Warning-WIDTHEXPAND: /package/source/HardFloat_rawFN.v:219:62: Operator ASSIGNW expects 11 bits on the Assign RHS, but Assign RHS's VARREF 'sAdjustedExp' generates 10 bits.
+                                                              : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.interpolate.round_product.roundAnyRawFNToRecFN'
+  219 |             wire signed [adjustedExpWidth:0] sExtAdjustedExp = sAdjustedExp;
+      |                                                              ^
+%Warning-WIDTHEXPAND: /package/source/HardFloat_rawFN.v:221:33: Operator ADD expects 26 bits on the LHS, but LHS's VARREF 'sExtAdjustedExp' generates 11 bits.
+                                                              : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.interpolate.round_product.roundAnyRawFNToRecFN'
+  221 |                 sExtAdjustedExp + (roundedSig>>outSigWidth);
+      |                                 ^
+%Warning-WIDTHTRUNC: /package/source/HardFloat_rawFN.v:220:58: Operator ASSIGNW expects 11 bits on the Assign RHS, but Assign RHS's ADD generates 26 bits.
+                                                             : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.interpolate.round_product.roundAnyRawFNToRecFN'
+  220 |             wire signed [adjustedExpWidth:0] sRoundedExp =
+      |                                                          ^
+%Warning-WIDTHTRUNC: /package/source/HardFloat_rawFN.v:224:34: Operator ASSIGNW expects 9 bits on the Assign RHS, but Assign RHS's VARREF 'sRoundedExp' generates 11 bits.
+                                                             : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.interpolate.round_product.roundAnyRawFNToRecFN'
+  224 |             assign common_expOut = sRoundedExp;
+      |                                  ^
+%Warning-WIDTHTRUNC: /package/source/HardFloat_rawFN.v:225:36: Operator ASSIGNW expects 23 bits on the Assign RHS, but Assign RHS's COND generates 26 bits.
+                                                             : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.interpolate.round_product.roundAnyRawFNToRecFN'
+  225 |             assign common_fractOut =
+      |                                    ^
+%Warning-WIDTHEXPAND: /package/source/HardFloat_rawFN.v:65:17: Operator ASSIGNW expects 10 bits on the Assign RHS, but Assign RHS's VARREF 'exp' generates 9 bits.
+                                                             : ... note: In instance 'operand_test.consumer.heads[1].qk.arithmetic.score_encode.recFNToRawFN'
+   65 |     assign sExp = exp;
+      |                 ^
+%Warning-WIDTHEXPAND: /package/source/HardFloat_rawFN.v:188:52: Operator OR expects 9 bits on the RHS, but RHS's VARREF 'doShiftSigDown1' generates 1 bits.
+                                                              : ... note: In instance 'operand_test.consumer.heads[1].qk.arithmetic.score_narrow.genblk1.roundRawInToOut'
+  188 |                 assign roundMask = {roundMask_main | doShiftSigDown1, 2'b11};
+      |                                                    ^
+%Warning-WIDTHTRUNC: /package/source/HardFloat_rawFN.v:210:51: Operator ASSIGNW expects 10 bits on the Assign RHS, but Assign RHS's COND generates 32 or 11 bits.
+                                                             : ... note: In instance 'operand_test.consumer.heads[1].qk.arithmetic.score_narrow.genblk1.roundRawInToOut'
+  210 |             wire [(outSigWidth + 1):0] roundedSig =
+      |                                                   ^
+%Warning-WIDTHEXPAND: /package/source/HardFloat_rawFN.v:221:46: Operator SHIFTR expects 11 bits on the LHS, but LHS's VARREF 'roundedSig' generates 10 bits.
+                                                              : ... note: In instance 'operand_test.consumer.heads[1].qk.arithmetic.score_narrow.genblk1.roundRawInToOut'
+  221 |                 sExtAdjustedExp + (roundedSig>>outSigWidth);
+      |                                              ^~
+%Warning-WIDTHTRUNC: /package/source/HardFloat_rawFN.v:225:36: Operator ASSIGNW expects 7 bits on the Assign RHS, but Assign RHS's COND generates 10 bits.
+                                                             : ... note: In instance 'operand_test.consumer.heads[1].qk.arithmetic.score_narrow.genblk1.roundRawInToOut'
+  225 |             assign common_fractOut =
+      |                                    ^
+%Warning-WIDTHTRUNC: /package/source/addRecFN.v:85:51: Operator ASSIGNW expects 5 bits on the Assign RHS, but Assign RHS's COND generates 10 bits.
+                                                     : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+   85 |     wire [(alignDistWidth - 1):0] modNatAlignDist =
+      |                                                   ^
+%Warning-WIDTHEXPAND: /package/source/addRecFN.v:97:52: Operator SHIFTL expects 32 or 27 bits on the LHS, but LHS's VARREF 'sigA' generates 25 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+   97 |           ((0 <= sDiffExps) &&  sDiffExps[0] ? sigA<<2 : 0)
+      |                                                    ^~
+%Warning-WIDTHEXPAND: /package/source/addRecFN.v:98:52: Operator SHIFTL expects 32 or 27 bits on the LHS, but LHS's VARREF 'sigA' generates 25 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+   98 |         | ((0 <= sDiffExps) && !sDiffExps[0] ? sigA<<1 : 0)
+      |                                                    ^~
+%Warning-WIDTHEXPAND: /package/source/addRecFN.v:99:46: Operator COND expects 32 or 27 bits on the Conditional True, but Conditional True's VARREF 'sigA' generates 25 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+   99 |         | ((sDiffExps < 0)                   ? sigA    : 0);
+      |                                              ^
+%Warning-WIDTHEXPAND: /package/source/addRecFN.v:101:34: Operator SHIFTL expects 27 bits on the LHS, but LHS's VARREF 'sigB' generates 25 bits.
+                                                       : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+  101 |         close_alignedSigA - (sigB<<1);
+      |                                  ^~
+%Warning-WIDTHTRUNC: /package/source/addRecFN.v:102:42: Operator ASSIGNW expects 26 bits on the Assign RHS, but Assign RHS's COND generates 27 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+  102 |     wire [(sigWidth + 1):0] close_sigSum =
+      |                                          ^
+%Warning-WIDTHEXPAND: /package/source/addRecFN.v:115:22: Operator SHIFTL expects 27 bits on the LHS, but LHS's VARREF 'close_sigSum' generates 26 bits.
+                                                       : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+  115 |         (close_sigSum<<close_nearNormDist)<<1;
+      |                      ^~
+%Warning-WIDTHTRUNC: /package/source/addRecFN.v:122:44: Operator ASSIGNW expects 24 bits on the Assign RHS, but Assign RHS's COND generates 25 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+  122 |     wire [(sigWidth - 1):0] far_sigLarger  = (sDiffExps < 0) ? sigB : sigA;
+      |                                            ^
+%Warning-WIDTHTRUNC: /package/source/addRecFN.v:123:44: Operator ASSIGNW expects 24 bits on the Assign RHS, but Assign RHS's COND generates 25 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+  123 |     wire [(sigWidth - 1):0] far_sigSmaller = (sDiffExps < 0) ? sigA : sigB;
+      |                                            ^
+%Warning-WIDTHTRUNC: /package/source/addRecFN.v:134:51: Operator ASSIGNW expects 27 bits on the Assign RHS, but Assign RHS's REPLICATE generates 30 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+  134 |     wire [(sigWidth + 2):0] far_alignedSigSmaller =
+      |                                                   ^
+%Warning-WIDTHEXPAND: /package/source/addRecFN.v:143:23: Operator SHIFTL expects 28 bits on the LHS, but LHS's VARREF 'far_sigLarger' generates 24 bits.
+                                                       : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+  143 |         (far_sigLarger<<3) + far_negAlignedSigSmaller + far_subMags;
+      |                       ^~
+%Warning-WIDTHEXPAND: /package/source/addRecFN.v:145:50: Operator OR expects 28 bits on the RHS, but RHS's SEL generates 1 bits.
+                                                       : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+  145 |         far_subMags ? far_sigSum : far_sigSum>>1 | far_sigSum[0];
+      |                                                  ^
+%Warning-WIDTHTRUNC: /package/source/addRecFN.v:144:40: Operator ASSIGNW expects 27 bits on the Assign RHS, but Assign RHS's COND generates 28 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+  144 |     wire [(sigWidth + 2):0] far_sigOut =
+      |                                        ^
+%Warning-WIDTHEXPAND: /package/source/addRecFN.v:165:29: Operator COND expects 10 bits on the Conditional True, but Conditional True's VARREF 'close_nearNormDist' generates 5 bits.
+                                                       : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+  165 |             - (closeSubMags ? close_nearNormDist : far_subMags);
+      |                             ^
+%Warning-WIDTHEXPAND: /package/source/addRecFN.v:165:29: Operator COND expects 10 bits on the Conditional False, but Conditional False's VARREF 'far_subMags' generates 1 bits.
+                                                       : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.correct.add_raw'
+  165 |             - (closeSubMags ? close_nearNormDist : far_subMags);
+      |                             ^
+%Warning-WIDTHEXPAND: /package/source/divSqrtRecFN_small.v:215:42: Operator SHIFTL expects 32 or 27 bits on the LHS, but LHS's VARREF 'sigA_S' generates 25 bits.
+                                                                 : ... note: In instance 'operand_test.consumer.heads[1].softmax.divide.divSqrtRecFNToRaw'
+  215 |           (inReady && !oddSqrt_S ? sigA_S<<1 : 0)
+      |                                          ^~
+%Warning-WIDTHEXPAND: /package/source/divSqrtRecFN_small.v:218:28: Operator SHIFTL expects 32 or 27 bits on the LHS, but LHS's VARREF 'rem_Z' generates 26 bits.
+                                                                 : ... note: In instance 'operand_test.consumer.heads[1].softmax.divide.divSqrtRecFNToRaw'
+  218 |         | (!inReady ? rem_Z<<1 : 0);
+      |                            ^~
+%Warning-WIDTHTRUNC: /package/source/divSqrtRecFN_small.v:219:31: Operator ASSIGNW expects 25 bits on the Assign RHS, but Assign RHS's SHIFTR generates 27 bits.
+                                                                : ... note: In instance 'operand_test.consumer.heads[1].softmax.divide.divSqrtRecFNToRaw'
+  219 |     wire [sigWidth:0] bitMask = ({{(sigWidth + 2){1'b0}}, 1'b1}<<cycleNum)>>2;
+      |                               ^
+%Warning-WIDTHEXPAND: /package/source/divSqrtRecFN_small.v:221:43: Operator SHIFTL expects 32 or 26 bits on the LHS, but LHS's VARREF 'sigB_S' generates 25 bits.
+                                                                 : ... note: In instance 'operand_test.consumer.heads[1].softmax.divide.divSqrtRecFNToRaw'
+  221 |           ( inReady && !sqrtOp    ? sigB_S<<1           : 0)
+      |                                           ^~
+%Warning-WIDTHEXPAND: /package/source/divSqrtRecFN_small.v:224:53: Operator SHIFTL expects 32 or 26 bits on the LHS, but LHS's REPLICATE generates 24 bits.
+                                                                 : ... note: In instance 'operand_test.consumer.heads[1].softmax.divide.divSqrtRecFNToRaw'
+  224 |         | (!inReady && !sqrtOp_Z  ? {1'b1, fractB_Z}<<1 : 0)
+      |                                                     ^~
+%Warning-WIDTHEXPAND: /package/source/divSqrtRecFN_small.v:225:47: Operator OR expects 32 or 26 bits on the RHS, but RHS's VARREF 'bitMask' generates 25 bits.
+                                                                 : ... note: In instance 'operand_test.consumer.heads[1].softmax.divide.divSqrtRecFNToRaw'
+  225 |         | (!inReady &&  sqrtOp_Z  ? sigX_Z<<1 | bitMask : 0);
+      |                                               ^
+%Warning-WIDTHEXPAND: /package/source/divSqrtRecFN_small.v:226:51: Operator SUB expects 28 bits on the RHS, but RHS's VARREF 'trialTerm' generates 26 bits.
+                                                                 : ... note: In instance 'operand_test.consumer.heads[1].softmax.divide.divSqrtRecFNToRaw'
+  226 |     wire signed [(sigWidth + 3):0] trialRem = rem - trialTerm;
+      |                                                   ^
+%Warning-WIDTHEXPAND: /package/source/divSqrtRecFN_small.v:230:29: Operator COND expects 28 bits on the Conditional False, but Conditional False's VARREF 'rem' generates 27 bits.
+                                                                 : ... note: In instance 'operand_test.consumer.heads[1].softmax.divide.divSqrtRecFNToRaw'
+  230 |             rem_Z <= newBit ? trialRem : rem;
+      |                             ^
+%Warning-WIDTHTRUNC: /package/source/divSqrtRecFN_small.v:230:19: Operator ASSIGNDLY expects 26 bits on the Assign RHS, but Assign RHS's COND generates 28 bits.
+                                                                : ... note: In instance 'operand_test.consumer.heads[1].softmax.divide.divSqrtRecFNToRaw'
+  230 |             rem_Z <= newBit ? trialRem : rem;
+      |                   ^~
+%Warning-WIDTHEXPAND: /package/source/divSqrtRecFN_small.v:250:50: Operator SHIFTL expects 32 or 26 bits on the LHS, but LHS's VARREF 'newBit' generates 1 bits.
+                                                                 : ... note: In instance 'operand_test.consumer.heads[1].softmax.divide.divSqrtRecFNToRaw'
+  250 |                   ( inReady && !sqrtOp   ? newBit<<(sigWidth + 1) : 0)
+      |                                                  ^~
+%Warning-WIDTHEXPAND: /package/source/divSqrtRecFN_small.v:252:50: Operator SHIFTL expects 32 or 26 bits on the LHS, but LHS's VARREF 'newBit' generates 1 bits.
+                                                                 : ... note: In instance 'operand_test.consumer.heads[1].softmax.divide.divSqrtRecFNToRaw'
+  252 |                 | ( inReady && oddSqrt_S ? newBit<<(sigWidth - 1) : 0)
+      |                                                  ^~
+%Warning-WIDTHEXPAND: /package/source/divSqrtRecFN_small.v:253:51: Operator OR expects 32 or 26 bits on the RHS, but RHS's VARREF 'bitMask' generates 25 bits.
+                                                                 : ... note: In instance 'operand_test.consumer.heads[1].softmax.divide.divSqrtRecFNToRaw'
+  253 |                 | (!inReady              ? sigX_Z | bitMask       : 0);
+      |                                                   ^
+%Warning-WIDTHEXPAND: /package/source/recFNToFN.v:58:30: Operator LT expects 10 bits on the RHS, but RHS's VARREF 'minNormExp' generates 9 bits.
+                                                       : ... note: In instance 'operand_test.consumer.heads[1].qk.arithmetic.score_encode'
+   58 |     wire isSubnormal = (sExp < minNormExp);
+      |                              ^
+%Warning-WIDTHTRUNC: /package/source/recFNToFN.v:61:50: Operator ASSIGNW expects 3 bits on the Assign RHS, but Assign RHS's SUB generates 32 or 10 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].qk.arithmetic.score_encode'
+   61 |     wire [(normDistWidth - 1):0] denormShiftDist = minNormExp - 1 - sExp;
+      |                                                  ^
+%Warning-WIDTHEXPAND: /package/source/recFNToFN.v:64:31: Operator COND expects 32 or 10 bits on the Conditional True, but Conditional True's REPLICATE generates 8 bits.
+                                                       : ... note: In instance 'operand_test.consumer.heads[1].qk.arithmetic.score_encode'
+   64 |             | (isNaN || isInf ? {expWidth{1'b1}} : 0);
+      |                               ^
+%Warning-WIDTHTRUNC: /package/source/recFNToFN.v:62:36: Operator ASSIGNW expects 8 bits on the Assign RHS, but Assign RHS's OR generates 32 or 10 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].qk.arithmetic.score_encode'
+   62 |     wire [(expWidth - 1):0] expOut =
+      |                                    ^
+%Warning-WIDTHTRUNC: /package/source/recFNToFN.v:65:38: Operator ASSIGNW expects 7 bits on the Assign RHS, but Assign RHS's COND generates 32 or 9 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].qk.arithmetic.score_encode'
+   65 |     wire [(sigWidth - 2):0] fractOut =
+      |                                      ^
+%Warning-WIDTHTRUNC: /package/source/recFNToFN.v:61:50: Operator ASSIGNW expects 5 bits on the Assign RHS, but Assign RHS's SUB generates 32 or 10 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.encode_correction'
+   61 |     wire [(normDistWidth - 1):0] denormShiftDist = minNormExp - 1 - sExp;
+      |                                                  ^
+%Warning-WIDTHTRUNC: /package/source/recFNToFN.v:65:38: Operator ASSIGNW expects 23 bits on the Assign RHS, but Assign RHS's COND generates 32 or 25 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.encode_correction'
+   65 |     wire [(sigWidth - 2):0] fractOut =
+      |                                      ^
+%Warning-WIDTHEXPAND: /package/source/fNToRecFN.v:65:33: Operator XOR expects 32 or 9 bits on the LHS, but LHS's VARREF 'normDist' generates 5 bits.
+                                                       : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.decode_r'
+   65 |         (isZeroExpIn ? normDist ^ ((1<<(expWidth + 1)) - 1) : expIn)
+      |                                 ^
+%Warning-WIDTHEXPAND: /package/source/fNToRecFN.v:65:22: Operator COND expects 32 or 9 bits on the Conditional False, but Conditional False's VARREF 'expIn' generates 8 bits.
+                                                       : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.decode_r'
+   65 |         (isZeroExpIn ? normDist ^ ((1<<(expWidth + 1)) - 1) : expIn)
+      |                      ^
+%Warning-WIDTHTRUNC: /package/source/fNToRecFN.v:75:34: Operator ASSIGNW expects 6 bits on the Assign RHS, but Assign RHS's VARREF 'adjustedExp' generates 9 bits.
+                                                      : ... note: In instance 'operand_test.consumer.heads[1].softmax.exponential.decode_r'
+   75 |     assign exp[(expWidth - 3):0] = adjustedExp;
+      |                                  ^

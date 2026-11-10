@@ -1,0 +1,15 @@
+{
+  "attempt": "linux-replay-r1/plain",
+  "outer_guard_actual_child_exit": 1,
+  "compiler_actual_child_exit": 2,
+  "simulator_launched": false,
+  "guard_stop_or_error": null,
+  "actual_error": "ccache failed to create a temporary file under /root/.cache/ccache because the container root was read-only",
+  "compile_stderr_sha256": "3dbfb501f4d346126f247d2160e8ca63f6b3a861c28e632fd9cfb1c3fa2e5360",
+  "original_package_manifest_sha256": "c84fc174f29ca9a89e61aa79eda7ab70f0858091a95bfb876d3042f9bdd8864e",
+  "focused_new_attempt_change": "Only set CCACHE_DISABLE=1 and CCACHE_DIR=/tmp/ccache in the disposable container; use new linux-replay-r2 outputs",
+  "RTL_fixtures_or_assertions_changed": false,
+  "timing_RTL_or_numerical_failure_inferred": false,
+  "original_receipts_preserved": true,
+  "automatic_retry": false
+}

@@ -130,6 +130,12 @@ jobs:
           python -I -S -B demos/qwen3-8b/tests/rtl/test_runner.py
           python -I -S -B demos/qwen3-8b/tests/rtl/test_norm_runner.py
           python -I -S -B demos/qwen3-8b/reference/run_campaign.py --check-record demos/qwen3-8b/evidence/software-campaign-2026-11-05/result.json
+      - name: Test digest-checked source staging (no native execution)
+        run: python -I -S -B -m unittest discover -s tools -p 'test_source_map.py' -v
+      - name: Reconstruct and check recorded Qwen3-8B protected K/V component
+        run: |
+          python -I -S -B tools/stage_source_map.py --map demos/qwen3-8b/variants/protected-kv-simulation/SOURCE-MAP.json --output "$RUNNER_TEMP/qwen8b-protected-kv"
+          python -S -B "$RUNNER_TEMP/qwen8b-protected-kv/check_recorded.py"
       - name: Check recorded HWIC feasibility arithmetic
         run: python -I -S -B research/hwic/evidence/memory-profile-2026-11-05/check_feasibility.py --check
       - name: Check recorded HWIC attention profile arithmetic

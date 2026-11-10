@@ -97,6 +97,12 @@ The separate [Qwen3-1.7B protected K/V simulation](../demos/qwen3-1.7b/variants/
 compares the plain and authenticated stores at the attention input and checks how
 each handles a corrupted K or V value. The measured F2 image uses the plain store.
 
+The separate [Qwen3-8B protected K/V component](../demos/qwen3-8b/variants/protected-kv-simulation/README.md)
+checks the first attention grouped-query pair at position zero across all 36
+layer identities, with separate K/V corruption controls and transport bounds.
+It has recorded same-clock simulation evidence; the measured 8B F2 image uses
+plain K/V. Full-model and physical implementation qualification remain open.
+
 The [combined SimpleStories target](../demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) supplies full-datapath RTL simulation evidence, with an [eleven-case validation record](../demos/simplestories-v2-5m/variants/combined-security-simulation/VALIDATION.json).
 
 The [Qwen3-8B board measurements](../demos/qwen3-8b/measurements.json) provide a measured baseline for the [proposed reusable-die architecture](PROPOSED-REUSABLE-AWIC.md), whose Llama 8B and 405B deployments are proposals.

@@ -38,6 +38,26 @@ attest the FPGA currently loaded in another machine. The
 [REPRODUCE.md](REPRODUCE.md) separates offline record checks, fresh numerical
 reference execution, hardware tests and source rebuilding.
 
+## Protected K/V component simulation
+
+The separate [opt-in component package](variants/protected-kv-simulation/README.md)
+supplies recorded Linux plain/protected/bounds runs, exact source inputs and an
+independent scalar/SHA checker. Its honest case covers 36 ordered layer
+commits and 9,216 consumed BF16 values at position zero through the first
+attention grouped-query pair. Separate layer-35 K and V changes are refused
+before affected use; plain controls consume the changed operands. The
+transport case checks the final legal digest beat and nine typed refusals.
+
+First-position protected writes total 2,377,728 bytes versus 147,456 plain
+bytes (16.125 times). This is whole-page publication traffic for that fixture,
+not whole-model overhead or a hardware throughput measurement.
+
+The [recorded evidence](variants/protected-kv-simulation/capsule/EVIDENCE.md) is finite
+component simulation, not a formal proof or a protected F2 image. All-head and
+complete-model integration, later positions and partial-page updates,
+CDC/reset, vendor HBM and physical implementation remain outside this result.
+The deployed F2 image uses plain K/V.
+
 ## Local software and component checks
 
 The [recorded CPU campaign](evidence/software-campaign-2026-11-05/README.md) matches

@@ -1,0 +1,93 @@
+{
+  "binary": {
+    "bytes": 2682448,
+    "sha256": "96dfb1090cee65e9db1ec73eb51ec2ce0cddc056be58ed56795df8d6a964d41c"
+  },
+  "case": "protected",
+  "compile": {
+    "actual_child_exit": 0,
+    "command": [
+      "/usr/local/bin/verilator",
+      "--cc",
+      "--exe",
+      "--build",
+      "--assert",
+      "-Wno-fatal",
+      "-j",
+      "1",
+      "--threads",
+      "1",
+      "--output-split",
+      "12000",
+      "--top-module",
+      "operand_test",
+      "-I/package/source",
+      "-y",
+      "/package/source",
+      "+libext+.sv+.v",
+      "-Mdir",
+      "/results/protected/build",
+      "-o",
+      "component-test",
+      "-CFLAGS",
+      "-std=c++17 -O2 -ffp-contract=off -I/package/source -DPROTECTED_BUILD=1",
+      "+define+PROTECTED_PROFILE=1",
+      "+define+KV_PROTECTED",
+      "/package/source/HardFloat_primitives.v",
+      "/package/source/HardFloat_rawFN.v",
+      "/package/source/HardFloat_specialize.v",
+      "/package/source/addRecFN.v",
+      "/package/source/divSqrtRecFN_small.v",
+      "/package/source/fNToRecFN.v",
+      "/package/source/iNToRecFN.v",
+      "/package/source/isSigNaNRecFN.v",
+      "/package/source/mulRecFN.v",
+      "/package/source/recFNToFN.v",
+      "/package/source/recFNToIN.v",
+      "/package/source/recFNToRecFN.v",
+      "/package/source/top.sv",
+      "/package/source/test.cpp"
+    ],
+    "compiler_cache_disabled": true,
+    "cwd": "/package",
+    "elapsed_seconds": 86.92517207295168,
+    "finished_utc": "2026-11-10T07:36:12.852065+00:00",
+    "started_utc": "2026-11-10T07:34:45.926914+00:00",
+    "stderr": {
+      "bytes": 23909,
+      "sha256": "c32317bca12035fc3ec634445b9c0eed677b93d739531cef66e4e2461a03dcea"
+    },
+    "stdout": {
+      "bytes": 5831,
+      "sha256": "5781c02a82bf7d98e78e0d2a8bd097ef13fcfad5def240b2657ba94f7e93f812"
+    },
+    "stop_reason": null
+  },
+  "manifest": {
+    "bytes": 16489,
+    "sha256": "350066c747a3befd7665c18a281a97458f57521d9c4d5a9a3f5df195813c476b"
+  },
+  "native": {
+    "actual_child_exit": 0,
+    "command": [
+      "/results/protected/build/component-test"
+    ],
+    "compiler_cache_disabled": true,
+    "cwd": "/results/protected",
+    "elapsed_seconds": 38.687709308986086,
+    "finished_utc": "2026-11-10T07:36:51.569664+00:00",
+    "started_utc": "2026-11-10T07:36:12.881973+00:00",
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout": {
+      "bytes": 342934,
+      "sha256": "94492c870cbc2d4ab2097e931c0d245792b0c16ccaf1a433b77bc30221939f52"
+    },
+    "stop_reason": null
+  },
+  "numerical_review_pending": true,
+  "physical_qualification": false,
+  "tool_completed": true
+}

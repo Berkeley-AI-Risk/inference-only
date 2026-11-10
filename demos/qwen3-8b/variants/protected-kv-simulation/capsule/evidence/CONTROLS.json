@@ -1,0 +1,60 @@
+{
+  "checker": {
+    "bytes": 4684,
+    "sha256": "da9b0832948e24335d6b9b0cb4fac45211e6b679b92482f10904252b6b3ddba9"
+  },
+  "controller": {
+    "bytes": 561,
+    "sha256": "a6af2f83b114e61be9fe02ef534477a9f7e824650659e67c3d1ba6c305459429"
+  },
+  "count": 10,
+  "manifest": {
+    "bytes": 16489,
+    "sha256": "350066c747a3befd7665c18a281a97458f57521d9c4d5a9a3f5df195813c476b"
+  },
+  "negative_controls": {
+    "changed_consumed_operand": {
+      "reason": "Independent consumed BF16 mismatch",
+      "rejected": true
+    },
+    "changed_layer32_root": {
+      "reason": "Independent full root differs",
+      "rejected": true
+    },
+    "changed_source": {
+      "reason": "Changed source source/qwen_kvp_store.sv",
+      "rejected": true
+    },
+    "missing_layer32_publication": {
+      "reason": "Publication order differs",
+      "rejected": true
+    },
+    "missing_plain_corruption_consumption": {
+      "reason": "Affected protected operand was used or honest use absent",
+      "rejected": true
+    },
+    "missing_typed_refusal": {
+      "reason": "All nine typed refusals",
+      "rejected": true
+    },
+    "removed_key_auth_fault": {
+      "reason": "Actual authentication fault absent",
+      "rejected": true
+    },
+    "wrong_actual_write_traffic": {
+      "reason": "Actual traffic counters differ",
+      "rejected": true
+    },
+    "wrong_final_digest_byte": {
+      "reason": "Last digest actually written/read",
+      "rejected": true
+    },
+    "wrong_first_out_of_range": {
+      "reason": "All nine typed refusals",
+      "rejected": true
+    }
+  },
+  "no_compiler_simulator_or_hardware_invoked": true,
+  "positive_original_logs_passed": true,
+  "seconds": 0.5958497498650104
+}

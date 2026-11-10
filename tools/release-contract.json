@@ -9,8 +9,8 @@
       "sha256": "130a5aaa8efa2c8dbed770cd7b9448473c59f17a516c618336b9a53dc4d493b8"
     },
     ".github/workflows/offline-checks.yml": {
-      "bytes": 11844,
-      "sha256": "3ff3077d07dc67aedf8a3227231899c1209ff2adead3935d64ce1f96f1c2a79f"
+      "bytes": 12336,
+      "sha256": "5391e14c112430f4cd9c72b0ba832f2f598977e4701d88f7a73a742bb1adac21"
     },
     ".github/workflows/rtl-checks.yml": {
       "bytes": 4620,
@@ -65,8 +65,8 @@
       "sha256": "4ed54218ea6d91289b60fad138e048df25e7d3e7420aad7d244d263a946532a3"
     },
     "THIRD-PARTY-NOTICES.md": {
-      "bytes": 8059,
-      "sha256": "357efb63efa53dd677f756ac66d43cd72b2ee072512f37a95d10f727401e7176"
+      "bytes": 8318,
+      "sha256": "3ad3410c5913d456f50d63c9e9e77213613faed2b8e8ceb3940e2bfb142c5267"
     },
     "TRAINING-CAPACITY.md": {
       "bytes": 4514,
@@ -1009,8 +1009,8 @@
       "sha256": "105dfc151b6667424b3de7cde77198533835e29de5cfd6efa7cf37a92bb55ead"
     },
     "demos/qwen3-8b/FORMAL-STATUS.md": {
-      "bytes": 1969,
-      "sha256": "bee346f282658bed58ed9e4e5742a588e7e704fada540c801af8f7bf620ad17a"
+      "bytes": 2290,
+      "sha256": "77bf3ccb83711894feb4783f002392357372237bec671f2fa43eac08648829e4"
     },
     "demos/qwen3-8b/HARDWARE.md": {
       "bytes": 13682,
@@ -1025,12 +1025,12 @@
       "sha256": "deda2e5beaf287e0880c1951b40ae4e9ba9926d9d87c858430864b3d6ff43597"
     },
     "demos/qwen3-8b/README.md": {
-      "bytes": 9077,
-      "sha256": "dc75df283ecc47fde02b5e3133a8988af46050f78031509f1dabff68e7186da7"
+      "bytes": 9959,
+      "sha256": "6443e8ad96ef5f8057147386075c7362474bb606b5b4d49031632f28461ce6cf"
     },
     "demos/qwen3-8b/REPRODUCE.md": {
-      "bytes": 5912,
-      "sha256": "d78a415103a6012949a857e656e9567d446198d83b843e84d8d106c34c1ef4f0"
+      "bytes": 7464,
+      "sha256": "1aae9f6a6915e11caef5ffb9ece604d293cdac449ab45e164979cd64e7ef08e9"
     },
     "demos/qwen3-8b/SOURCE-INPUTS.json": {
       "bytes": 26865,
@@ -1041,8 +1041,8 @@
       "sha256": "01eb6b3f9f1a0c14baa8794d4a33af871fd8600becad010730d141736cf8383c"
     },
     "demos/qwen3-8b/VALIDATION.md": {
-      "bytes": 3413,
-      "sha256": "5bae3707f7f1377e7637946abbc0e11b65e707755f1f2f8e93821440c9785257"
+      "bytes": 4556,
+      "sha256": "9687cf59bc4e9d17a2c14e7a0e161012e1d5aa6aaf6299f7e15af3db8159e9f0"
     },
     "demos/qwen3-8b/deployment.json": {
       "bytes": 970,
@@ -1987,6 +1987,262 @@
     "demos/qwen3-8b/tools/test_reference_campaign.py": {
       "bytes": 12367,
       "sha256": "fa59b8df4516596b6a8d2d3024638f2b8ac17998b0d1c8f2c6068e0065f595b7"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/README.md": {
+      "bytes": 3419,
+      "sha256": "58aa948b0f4c6db43b93bcd80e5ae541fd1c5e9dfa8d928c6b277bc48aadfdf5"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/SOURCE-MAP.json": {
+      "bytes": 37531,
+      "sha256": "dd61c8413dc07ba8c8116f5b0fe333ae3ee30b5f2978fe2f5646f9ce1990134f"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/COMPLETION.json": {
+      "bytes": 21888,
+      "sha256": "2fc9efb85bdcc09bbb9451c762000f127efcfd8a1e38445658863ece4bf0f68a"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/EVIDENCE.md": {
+      "bytes": 1153,
+      "sha256": "d700216b27fb592a7455ab43eb6ad64bb2461a2a9c2bbc97275e238de1518505"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/EXPECTED.json": {
+      "bytes": 11547,
+      "sha256": "9fe3e2aba470cd48f4f9fc1048046dc884e2cb697184e9b64cce0c44b2ff08cf"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/MANIFEST.json": {
+      "bytes": 16489,
+      "sha256": "350066c747a3befd7665c18a281a97458f57521d9c4d5a9a3f5df195813c476b"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/NOTICES.md": {
+      "bytes": 1294,
+      "sha256": "92cef8b109b238599f5c2ffa3a06dea59783fa749840d755d5da21eb7203f24f"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/PROVENANCE.json": {
+      "bytes": 27933,
+      "sha256": "cc18e671dc682827eaf5e4137cff725c765012bd0284520b5b80bfac8103e3f0"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/README.md": {
+      "bytes": 3893,
+      "sha256": "553b555c0463b86595c27ec72026298cead28daea5d53f7f8758cdd80027a2a1"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/cases/bounds.cpp": {
+      "bytes": 5531,
+      "sha256": "177dbee4149f83b1af5683f53cc15a4c58d2c387e884c898971301020c6e7cc6"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/check.py": {
+      "bytes": 4684,
+      "sha256": "da9b0832948e24335d6b9b0cb4fac45211e6b679b92482f10904252b6b3ddba9"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/check_recorded.py": {
+      "bytes": 1648,
+      "sha256": "5d5b4a5b2fcac191d7e0e86fcc8f6c1419c52c4fe0fe283ca3fd6f217efc2852"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/common.py": {
+      "bytes": 946,
+      "sha256": "c3a4be65eb2e62bff84473fc9b280dc34d08117fd92f7464d580fc05a6b14637"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/CONTROLS.json": {
+      "bytes": 1701,
+      "sha256": "1a0efad907f7f37fd8721d8f5d44a8b4171c3e4c3f80aa22386e5be4483123bf"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/EARLIER-CACHE-FAILURE.json": {
+      "bytes": 822,
+      "sha256": "1d9693f554c712bedcf1948b90d5e576ed4c6ea7e91f312f1abc66a0766e425b"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/EARLIER-INCLUDE-FAILURE.json": {
+      "bytes": 513,
+      "sha256": "1f6daa171f983f205ef6cbe2e5fef9182d069f8bc2051ae93486e4ce84601201"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/RECORDED.json": {
+      "bytes": 7230,
+      "sha256": "3a1933dc4ac93caf35f56e6fcf0accf884db580ae01ca77de253be52967fa19d"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/RELOCATED-VERIFIED.json": {
+      "bytes": 2206,
+      "sha256": "fee961261bb5af0a527a40ef696fa6577cb876d85e74c2710f1c6e6f30b28eb4"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/bounds/FINISHED.json": {
+      "bytes": 2664,
+      "sha256": "f4c0821b7beb4c2c1a997a0099f22a4fea402aedb8dd856d9f9381519db0d670"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/bounds/STARTED.json": {
+      "bytes": 1561,
+      "sha256": "fd715a13f9199a9b35e8186fc7147fef26ac70a9d3ba3ef3f436724c523304ca"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/bounds/compile/EXIT.json": {
+      "bytes": 1559,
+      "sha256": "429599023b44bc41fe044a4d64bf2fae7bf3589509fcad83c3376fab645bd57c"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/bounds/compile/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/bounds/compile/stdout.log": {
+      "bytes": 8646,
+      "sha256": "424fd523c90600e8666ecd6f9e4c1a60c500eab2af7e3204dda4dccb8735b7c6"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/bounds/native/EXIT.json": {
+      "bytes": 563,
+      "sha256": "063c9f4f14f359afa8e0e4e6a5246db106ce559648ff7da45851609c30459d22"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/bounds/native/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/bounds/native/stdout.log": {
+      "bytes": 954,
+      "sha256": "9c3447569ae79ce7711fa68ac56457f62ef4c4fe7335b0963a8bba497142f73c"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/plain/FINISHED.json": {
+      "bytes": 2644,
+      "sha256": "7fd8a923158d487c4f3be4704b57821d8ff84355627e08cdcd37739adeb69002"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/plain/STARTED.json": {
+      "bytes": 1541,
+      "sha256": "a4bdd03d7964682e22d962aa733c3fe49bac60c0d0f01e312f6398e4172b01d2"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/plain/compile/EXIT.json": {
+      "bytes": 1542,
+      "sha256": "c7092209f46c21cc1b8fc10664173721ac862c0b2f1fcce8ebcee4586e41b55f"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/plain/compile/stderr.log": {
+      "bytes": 23909,
+      "sha256": "c32317bca12035fc3ec634445b9c0eed677b93d739531cef66e4e2461a03dcea"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/plain/compile/stdout.log": {
+      "bytes": 5822,
+      "sha256": "40f368f287f6e1f91eb72f31f5a65d075ae8f48c226a78b803e937a94e221d36"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/plain/native/EXIT.json": {
+      "bytes": 560,
+      "sha256": "7ca1496ebcac5662a72eca6ce40094a5f1510938e3a9ab8c15606af2b0c39e5f"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/plain/native/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/plain/native/stdout.log": {
+      "bytes": 601021,
+      "sha256": "4263bb19fe1eadcd7fddf7665c50186faa772d8ec87d4ecfc4f27f9b5753e541"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/protected/FINISHED.json": {
+      "bytes": 2693,
+      "sha256": "132467efd7f27aec562d4f5e13433c09ec82cbcd3ac03f9cf7407485f775ff55"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/protected/STARTED.json": {
+      "bytes": 1581,
+      "sha256": "ad7a83c5affa513e1ffa9691f2c69640e7bdfa15a82d83c76c0c00af96f246a9"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/protected/compile/EXIT.json": {
+      "bytes": 1576,
+      "sha256": "db556b06d60c4b65d11244dd175d8bfecb3ec0c76f03a80dd10df58c26fc1f55"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/protected/compile/stderr.log": {
+      "bytes": 23909,
+      "sha256": "c32317bca12035fc3ec634445b9c0eed677b93d739531cef66e4e2461a03dcea"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/protected/compile/stdout.log": {
+      "bytes": 5831,
+      "sha256": "5781c02a82bf7d98e78e0d2a8bd097ef13fcfad5def240b2657ba94f7e93f812"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/protected/native/EXIT.json": {
+      "bytes": 569,
+      "sha256": "cc0ef443ff1beca74cacc611b480dedab1dee36596dc43889d92239a12ba49bd"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/protected/native/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/evidence/protected/native/stdout.log": {
+      "bytes": 342934,
+      "sha256": "94492c870cbc2d4ab2097e931c0d245792b0c16ccaf1a433b77bc30221939f52"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/licenses/AWS-LICENSE.txt": {
+      "bytes": 11355,
+      "sha256": "724738f99fe72a2976cd9632375cc2fdebb9d6717c5ace738047c806164477ac"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/licenses/Amazon-Software-License.txt": {
+      "bytes": 4239,
+      "sha256": "3183944d23c43a5ffde1d8f0e1ef2c325e4b9463155ae49dbdcc9ca38dc77b1f"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/licenses/HardFloat-COPYING.txt": {
+      "bytes": 1737,
+      "sha256": "c791a6bdcef33feddaa0cb7ab99c233fb63d93bb385f06d58f9f1b9a8182b418"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/licenses/Project-Apache-2.0.txt": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/licenses/QWEN-LICENSE.txt": {
+      "bytes": 11343,
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/oracle.py": {
+      "bytes": 4427,
+      "sha256": "ee99bd3a33c3c19396a21d09624edd773bbc6eb8a1f5e90a3b9a38f46697ae98"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/rom/softmax-exp2.hex": {
+      "bytes": 17408,
+      "sha256": "62ee2c08919cf96f1fcfe13522ec7f6761b18910a8c674050360ecdb0c70a414"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/run.py": {
+      "bytes": 3992,
+      "sha256": "77f51b1d57872685ec7ec993acead6c416f710d41e7a3de7058ca52bf989f64f"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/axi.inc.cpp": {
+      "bytes": 5289,
+      "sha256": "b16c281d795ec7742a376a05e1b7c1d82771186b1f6208bb79dd750679cf6e37"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/qwen_hbm_read_transport.sv": {
+      "bytes": 9712,
+      "sha256": "d7ded97b6ffcfa93a0899dc8468ca736dd958a26065f02a295601a6bbf082fa8"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/qwen_hbm_write_transport.sv": {
+      "bytes": 10003,
+      "sha256": "13ac3804d772fcf88c05360e4250953355a931725a3e7268ddefdeab2f76d485"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/qwen_kv_hash_frame.sv": {
+      "bytes": 2905,
+      "sha256": "ee1ca440f346b71c5ceb726d4bb79b7756852e9ea0f9318cc958423867e14183"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/qwen_kv_hbm_transport.sv": {
+      "bytes": 10578,
+      "sha256": "6509d2f653a0dbefb24c375ed209655f16bd0d1bda89fe2507e91da8bca24ecf"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/qwen_kvp_address.sv": {
+      "bytes": 1033,
+      "sha256": "e3181c994e9da9c682b288f6476852a6729b202c7b18e7249ec6bee030aa8ce1"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/qwen_kvp_leaf_auth.sv": {
+      "bytes": 15659,
+      "sha256": "3e41f04ced8682ed46f31ae68f10f19ca46c0f97651c3af6a5ecc3074e088b2d"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/qwen_kvp_page_hash.sv": {
+      "bytes": 7046,
+      "sha256": "61515e2c7408c51007bbc1d99dcf96443504be639768d051025d19aab31c0590"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/qwen_kvp_reader.sv": {
+      "bytes": 19576,
+      "sha256": "a64bb0fb1a1fbe9bae59dbef079b71a8b2169b3f35acc8b4ba7a07face70db9f"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/qwen_kvp_store.sv": {
+      "bytes": 11207,
+      "sha256": "8ec9759a752a2f3d9f5190329251e545a11b39c1a24b7be0402a2db65ecc7620"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/qwen_kvp_writer.sv": {
+      "bytes": 14742,
+      "sha256": "28c935704434cdee08bc514abb165748c89981736725850dc68e03f0706f305a"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/reference8.hpp": {
+      "bytes": 1060,
+      "sha256": "a0c72b02e3107a7970ccf5b5158de9b0acca92f2a699c7b616e55d0e1bab0f8f"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/test.cpp": {
+      "bytes": 17219,
+      "sha256": "9ed778dd497680a1b6215be9425cd58bb7cdd45a5dc89d69b3ac07f1bcaf8320"
+    },
+    "demos/qwen3-8b/variants/protected-kv-simulation/capsule/source/top.sv": {
+      "bytes": 8591,
+      "sha256": "c5143a265e04f860148e74cfb10d55268367d109ec1b13486058c8cfed4a2740"
     },
     "demos/simplestories-v2-5m/.gitignore": {
       "bytes": 502,
@@ -74665,8 +74921,8 @@
       "sha256": "3b9d26291ff5babbbc213244a67746337165f023c48f9969746ccb9aa8652351"
     },
     "docs/ARCHITECTURE.md": {
-      "bytes": 21092,
-      "sha256": "1643eca4256357f953de854225fd68ba92d57a4f005d4c906837f6acba0ba6df"
+      "bytes": 21513,
+      "sha256": "b0db6110a3c0f8f3f56bfbfc4ba81274ca2d9cf8d26162171feddf616e5028d3"
     },
     "docs/FORMAL-ARGUMENT.md": {
       "bytes": 13757,
@@ -75448,6 +75704,10 @@
       "bytes": 16665,
       "sha256": "1dd88cb09483da8cd53c9d3959ae90b7b276aa2127d9282a34712dbb96d82640"
     },
+    "tools/stage_source_map.py": {
+      "bytes": 5194,
+      "sha256": "21387f3187d724fbbf68f6398870a8a54a2410fbda082c70985390c7bec85271"
+    },
     "tools/test_architecture_work_counts.py": {
       "bytes": 18992,
       "sha256": "daef515f82313222717d37b346cb319ea174446ed063c5b4752a002fd6d278fa"
@@ -75499,6 +75759,10 @@
     "tools/test_sawic_selection_metadata.py": {
       "bytes": 3162,
       "sha256": "4e38b6f70747ee1a168c86307effe7099652d825975b5a2496c81c6431437ac8"
+    },
+    "tools/test_source_map.py": {
+      "bytes": 5092,
+      "sha256": "b3d70570a82306efadaaa2d5ed94f8359771c545b5e1bc62a6c2cc94890a072b"
     },
     "tools/test_tlm26_assertion_mode.py": {
       "bytes": 1350,

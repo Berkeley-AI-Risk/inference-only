@@ -1,0 +1,11 @@
+{"event":"last_digest","request":13697613312,"last_logical_beat":13697613568,"last_byte":13697613823,"axi_write_words":16,"axi_read_words":16}
+{"event":"typed_reject","case":"first_out_of_range","address":13697613824,"bytes":512}
+{"event":"typed_reject","case":"crosses_digest_end","address":13697613568,"bytes":512}
+{"event":"typed_reject","case":"model_read","address":8828022784,"bytes":4096}
+{"event":"typed_reject","case":"payload_wrong_unit","address":8828026880,"bytes":512}
+{"event":"typed_reject","case":"digest_wrong_unit","address":13659865088,"bytes":4096}
+{"event":"typed_reject","case":"payload_short_update","address":8828026880,"bytes":256}
+{"event":"typed_reject","case":"update_digest_read","address":13659865088,"bytes":512}
+{"event":"typed_reject","case":"layer36_payload_alias","address":13659865088,"bytes":65536}
+{"event":"typed_reject","case":"immutable_model_write","address":0,"bytes":65536}
+PASS protected_transport_boundaries

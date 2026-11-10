@@ -1,0 +1,228 @@
+{
+  "Linux_architecture": "aarch64",
+  "Python": "3.12.3",
+  "actual_durations": {
+    "bounds": {
+      "compile_seconds": 13.090726313996129,
+      "guard_seconds": 14.254760125,
+      "native_seconds": 0.0046722699771635234
+    },
+    "plain": {
+      "compile_seconds": 60.622852866014,
+      "guard_seconds": 67.17408025,
+      "native_seconds": 5.356311765033752
+    },
+    "protected": {
+      "compile_seconds": 86.92517207295168,
+      "guard_seconds": 126.283660167,
+      "native_seconds": 38.687709308986086
+    }
+  },
+  "actual_simulation_result_traffic_and_cycles": {
+    "plain": [
+      {
+        "actual_writes": 36,
+        "axi_read_bursts": 576,
+        "axi_read_words": 9216,
+        "axi_write_bursts": 4608,
+        "axi_write_words": 4608,
+        "cycles": 89245,
+        "event": "result",
+        "independent_roots": 0,
+        "protected_build": false,
+        "scenario": 0
+      },
+      {
+        "actual_writes": 36,
+        "axi_read_bursts": 16,
+        "axi_read_words": 256,
+        "axi_write_bursts": 4608,
+        "axi_write_words": 4608,
+        "cycles": 82400,
+        "event": "result",
+        "independent_roots": 0,
+        "protected_build": false,
+        "scenario": 1
+      },
+      {
+        "actual_writes": 36,
+        "axi_read_bursts": 16,
+        "axi_read_words": 256,
+        "axi_write_bursts": 4608,
+        "axi_write_words": 4608,
+        "cycles": 82400,
+        "event": "result",
+        "independent_roots": 0,
+        "protected_build": false,
+        "scenario": 2
+      }
+    ],
+    "protected": [
+      {
+        "actual_writes": 36,
+        "axi_read_bursts": 1152,
+        "axi_read_words": 10368,
+        "axi_write_bursts": 4896,
+        "axi_write_words": 74304,
+        "cycles": 730454,
+        "event": "result",
+        "independent_roots": 36,
+        "protected_build": true,
+        "scenario": 0
+      },
+      {
+        "actual_writes": 36,
+        "axi_read_bursts": 16,
+        "axi_read_words": 144,
+        "axi_write_bursts": 4896,
+        "axi_write_words": 74304,
+        "cycles": 342916,
+        "event": "result",
+        "independent_roots": 36,
+        "protected_build": true,
+        "scenario": 1
+      },
+      {
+        "actual_writes": 36,
+        "axi_read_bursts": 32,
+        "axi_read_words": 288,
+        "axi_write_bursts": 4896,
+        "axi_write_words": 74304,
+        "cycles": 348396,
+        "event": "result",
+        "independent_roots": 36,
+        "protected_build": true,
+        "scenario": 2
+      }
+    ]
+  },
+  "compiler": "Verilator5.050, C++17/g++13.3",
+  "compiler_workers": 1,
+  "container_memory_limit_bytes": 4294967296,
+  "files": {
+    "CONTROLS.json": {
+      "bytes": 1701,
+      "sha256": "1a0efad907f7f37fd8721d8f5d44a8b4171c3e4c3f80aa22386e5be4483123bf"
+    },
+    "EARLIER-CACHE-FAILURE.json": {
+      "bytes": 822,
+      "sha256": "1d9693f554c712bedcf1948b90d5e576ed4c6ea7e91f312f1abc66a0766e425b"
+    },
+    "EARLIER-INCLUDE-FAILURE.json": {
+      "bytes": 513,
+      "sha256": "1f6daa171f983f205ef6cbe2e5fef9182d069f8bc2051ae93486e4ce84601201"
+    },
+    "RELOCATED-VERIFIED.json": {
+      "bytes": 2206,
+      "sha256": "fee961261bb5af0a527a40ef696fa6577cb876d85e74c2710f1c6e6f30b28eb4"
+    },
+    "bounds/FINISHED.json": {
+      "bytes": 2664,
+      "sha256": "f4c0821b7beb4c2c1a997a0099f22a4fea402aedb8dd856d9f9381519db0d670"
+    },
+    "bounds/STARTED.json": {
+      "bytes": 1561,
+      "sha256": "fd715a13f9199a9b35e8186fc7147fef26ac70a9d3ba3ef3f436724c523304ca"
+    },
+    "bounds/compile/EXIT.json": {
+      "bytes": 1559,
+      "sha256": "429599023b44bc41fe044a4d64bf2fae7bf3589509fcad83c3376fab645bd57c"
+    },
+    "bounds/compile/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "bounds/compile/stdout.log": {
+      "bytes": 8646,
+      "sha256": "424fd523c90600e8666ecd6f9e4c1a60c500eab2af7e3204dda4dccb8735b7c6"
+    },
+    "bounds/native/EXIT.json": {
+      "bytes": 563,
+      "sha256": "063c9f4f14f359afa8e0e4e6a5246db106ce559648ff7da45851609c30459d22"
+    },
+    "bounds/native/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "bounds/native/stdout.log": {
+      "bytes": 954,
+      "sha256": "9c3447569ae79ce7711fa68ac56457f62ef4c4fe7335b0963a8bba497142f73c"
+    },
+    "plain/FINISHED.json": {
+      "bytes": 2644,
+      "sha256": "7fd8a923158d487c4f3be4704b57821d8ff84355627e08cdcd37739adeb69002"
+    },
+    "plain/STARTED.json": {
+      "bytes": 1541,
+      "sha256": "a4bdd03d7964682e22d962aa733c3fe49bac60c0d0f01e312f6398e4172b01d2"
+    },
+    "plain/compile/EXIT.json": {
+      "bytes": 1542,
+      "sha256": "c7092209f46c21cc1b8fc10664173721ac862c0b2f1fcce8ebcee4586e41b55f"
+    },
+    "plain/compile/stderr.log": {
+      "bytes": 23909,
+      "sha256": "c32317bca12035fc3ec634445b9c0eed677b93d739531cef66e4e2461a03dcea"
+    },
+    "plain/compile/stdout.log": {
+      "bytes": 5822,
+      "sha256": "40f368f287f6e1f91eb72f31f5a65d075ae8f48c226a78b803e937a94e221d36"
+    },
+    "plain/native/EXIT.json": {
+      "bytes": 560,
+      "sha256": "7ca1496ebcac5662a72eca6ce40094a5f1510938e3a9ab8c15606af2b0c39e5f"
+    },
+    "plain/native/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "plain/native/stdout.log": {
+      "bytes": 601021,
+      "sha256": "4263bb19fe1eadcd7fddf7665c50186faa772d8ec87d4ecfc4f27f9b5753e541"
+    },
+    "protected/FINISHED.json": {
+      "bytes": 2693,
+      "sha256": "132467efd7f27aec562d4f5e13433c09ec82cbcd3ac03f9cf7407485f775ff55"
+    },
+    "protected/STARTED.json": {
+      "bytes": 1581,
+      "sha256": "ad7a83c5affa513e1ffa9691f2c69640e7bdfa15a82d83c76c0c00af96f246a9"
+    },
+    "protected/compile/EXIT.json": {
+      "bytes": 1576,
+      "sha256": "db556b06d60c4b65d11244dd175d8bfecb3ec0c76f03a80dd10df58c26fc1f55"
+    },
+    "protected/compile/stderr.log": {
+      "bytes": 23909,
+      "sha256": "c32317bca12035fc3ec634445b9c0eed677b93d739531cef66e4e2461a03dcea"
+    },
+    "protected/compile/stdout.log": {
+      "bytes": 5831,
+      "sha256": "5781c02a82bf7d98e78e0d2a8bd097ef13fcfad5def240b2657ba94f7e93f812"
+    },
+    "protected/native/EXIT.json": {
+      "bytes": 569,
+      "sha256": "cc0ef443ff1beca74cacc611b480dedab1dee36596dc43889d92239a12ba49bd"
+    },
+    "protected/native/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "protected/native/stdout.log": {
+      "bytes": 342934,
+      "sha256": "94492c870cbc2d4ab2097e931c0d245792b0c16ccaf1a433b77bc30221939f52"
+    }
+  },
+  "final_case_child_exits": 0,
+  "full_model_or_physical_qualification": false,
+  "local_container_image": "sha256:63958d37e526cc3875dd5de616a733c4ce64c678a52494739c0c466076dc4ff6",
+  "network_disabled": true,
+  "no_model_credentials_or_binaries_supplied": true,
+  "original_and_portable_result_records_identical": true,
+  "recorded_integrity_not_fresh_execution": true,
+  "simulator_threads": 1,
+  "source_manifest": {
+    "bytes": 16489,
+    "sha256": "350066c747a3befd7665c18a281a97458f57521d9c4d5a9a3f5df195813c476b"
+  }
+}

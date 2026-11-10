@@ -110,6 +110,10 @@ upstream model license, BSD-style arithmetic license, Amazon Software License
 files and separately installed vendor dependencies. In particular, the project's
 Apache-2.0 grant does not override Amazon-platform-use restrictions in AWS files.
 
+The separate [8B protected K/V component notice](demos/qwen3-8b/variants/protected-kv-simulation/capsule/NOTICES.md)
+identifies its retained source snapshot and complete dependency licenses.
+Its AWS-marked files retain their Amazon-platform-use restriction.
+
 ## TLM26 MoE / Tang Mega
 
 The [TLM26 dependency notices](demos/tlm26-moe/NOTICES.md) preserve the upstream

@@ -180,6 +180,21 @@ installation bindings without AWS or a model download, run:
 ```sh
 python3.12 tools/check_package.py
 ```
+## Protected K/V component simulation
+
+The opt-in [protected K/V component](variants/protected-kv-simulation/README.md)
+contains source-bound Linux simulation records and a portable replay harness.
+At position zero, it checks the first attention grouped-query pair in each of
+36 layers, including separate K and V corruption cases, plain consumption
+controls and transport-boundary refusals. An independent Python checker
+reconstructs the roots and checks the consumed BF16 values.
+
+This is a separate, frozen component source selection. The deployed F2 image
+uses plain K/V; its image, model and speed measurements are unchanged. The
+component does not run a complete model or establish physical HBM, CDC/reset,
+timing or board qualification. See [validation](VALIDATION.md#protected-kv-component-simulation)
+and [recorded replay](REPRODUCE.md#protected-kv-component-simulation).
+
 ## Analysis
 
 The [shared residual-training assessment](../../TRAINING-CAPACITY.md#model-assessments)

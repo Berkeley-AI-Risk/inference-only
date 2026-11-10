@@ -30,6 +30,11 @@ frozen configuration or eventual fixed ASIC. The reprogrammable AWS management
 platform and physical attacks require separate assessment. K/V integrity and
 weight encryption are not features of this released image.
 
+The separate [protected K/V component simulation](variants/protected-kv-simulation/README.md)
+adds finite source-bound checks of publication, consumed operands and typed
+transport bounds. It supplies no solver proof and does not discharge the
+whole-machine obligations above. The deployed F2 image still uses plain K/V.
+
 ## Relation to SimpleStories
 
 The [SimpleStories formal package](../simplestories-v2-5m/FORMAL-STATUS.md)

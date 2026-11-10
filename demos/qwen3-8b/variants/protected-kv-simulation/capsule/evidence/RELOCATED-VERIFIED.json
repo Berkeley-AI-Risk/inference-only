@@ -1,0 +1,76 @@
+{
+  "actual": {
+    "bounds": {
+      "compile_seconds": 13.090726313996129,
+      "native_seconds": 0.0046722699771635234,
+      "stdout": {
+        "bytes": 954,
+        "sha256": "9c3447569ae79ce7711fa68ac56457f62ef4c4fe7335b0963a8bba497142f73c"
+      },
+      "system": "Linux",
+      "terminal": {
+        "bytes": 2664,
+        "sha256": "f4c0821b7beb4c2c1a997a0099f22a4fea402aedb8dd856d9f9381519db0d670"
+      }
+    },
+    "plain": {
+      "compile_seconds": 60.622852866014,
+      "native_seconds": 5.356311765033752,
+      "stdout": {
+        "bytes": 601021,
+        "sha256": "4263bb19fe1eadcd7fddf7665c50186faa772d8ec87d4ecfc4f27f9b5753e541"
+      },
+      "system": "Linux",
+      "terminal": {
+        "bytes": 2644,
+        "sha256": "7fd8a923158d487c4f3be4704b57821d8ff84355627e08cdcd37739adeb69002"
+      }
+    },
+    "protected": {
+      "compile_seconds": 86.92517207295168,
+      "native_seconds": 38.687709308986086,
+      "stdout": {
+        "bytes": 342934,
+        "sha256": "94492c870cbc2d4ab2097e931c0d245792b0c16ccaf1a433b77bc30221939f52"
+      },
+      "system": "Linux",
+      "terminal": {
+        "bytes": 2693,
+        "sha256": "132467efd7f27aec562d4f5e13433c09ec82cbcd3ac03f9cf7407485f775ff55"
+      }
+    }
+  },
+  "cases": {
+    "bounds": {
+      "last_digest_beat": true,
+      "passed": true,
+      "typed_refusals": 9
+    },
+    "plain": {
+      "cases": 3,
+      "ordered_layer_publications_per_case": 36,
+      "passed": true,
+      "protected": false
+    },
+    "protected": {
+      "cases": 3,
+      "ordered_layer_publications_per_case": 36,
+      "passed": true,
+      "protected": true
+    }
+  },
+  "checker": {
+    "bytes": 4684,
+    "sha256": "da9b0832948e24335d6b9b0cb4fac45211e6b679b92482f10904252b6b3ddba9"
+  },
+  "first_position_write_amplification": 16.125,
+  "manifest": {
+    "bytes": 16489,
+    "sha256": "350066c747a3befd7665c18a281a97458f57521d9c4d5a9a3f5df195813c476b"
+  },
+  "passed": true,
+  "plain_first_position_write_bytes": 147456,
+  "protected_first_position_write_bytes": 2377728,
+  "scope": "Single position deterministic component across36layers, not full-model/physical qualification",
+  "whole_model_overhead_or_speed_claimed": false
+}

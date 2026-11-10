@@ -9,6 +9,7 @@ All Python commands below use Python 3.12.
 | Task | Start here | Requirements and result |
 | --- | --- | --- |
 | Check the delivered release | [Offline checks](#check-the-recorded-release-offline) and [source selection](#source-selection-check) | Python standard library; checks supplied files and recorded measurements. |
+| Check or replay the protected K/V component | [Component reproduction](#protected-kv-component-simulation) | Recorded check: Python standard library. Fresh opt-in replay: Verilator/C++17 and make; no model or FPGA. |
 | Compute expected tokens | [Fresh reference](#reconstruct-the-model-and-run-a-fresh-reference) | Accepted model assets and the reference's Python dependencies; a new software computation. |
 | Run or measure the FPGA | [Hardware checks](#repeat-hardware-checks-and-measurements) | Matching image/model and exclusive FPGA access; a new board capture. |
 | Compile a new implementation | [Hardware rebuild](#rebuild-the-hardware) | Linux, Vivado 2025.2 and pinned HDK/IP/shell inputs; a new build needing its own validation. |
@@ -111,3 +112,29 @@ reports, create its independently identified image through the AWS workflow,
 and repeat numerical hardware tests. The released image's measurements do not
 qualify another build.
 
+## Protected K/V component simulation
+
+
+From the repository root, reconstruct the exact tested package into a fresh
+directory, then check its supplied source/log/oracle bindings:
+
+```sh
+python3.12 -I -S -B tools/stage_source_map.py \
+  --map demos/qwen3-8b/variants/protected-kv-simulation/SOURCE-MAP.json \
+  --output /absolute/fresh-component
+python3.12 -S -B /absolute/fresh-component/check_recorded.py
+```
+
+The source map reuses digest-pinned repository files and retains the distinct
+component sources and historical evidence. All 143 tested members reconstruct
+byte-for-byte; changed or missing inputs fail before output creation. Use a new
+directory outside the checkout. These commands invoke no compiler, simulator,
+model or hardware. The recorded checker imports local package modules, so
+omit Python's `-I` option for its invocation.
+
+The [component guide](variants/protected-kv-simulation/README.md) explains the
+layout and optional fresh native replay from the reconstructed directory.
+That replay requires Verilator, a C++17 compiler and make; coordinate local
+compute resources first. The [validation scope](VALIDATION.md#protected-kv-component-simulation)
+is a same-clock test at position zero through the first attention grouped-query
+pair in 36 layers. The deployed F2 image uses plain K/V; its speed is unchanged.
