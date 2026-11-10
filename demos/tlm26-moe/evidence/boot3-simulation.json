@@ -1,0 +1,43 @@
+{
+  "scope": "wire UART simulation through actual volatile boot loader + full decoder + authenticating cache; ordered DDR model; divisor eight",
+  "files": {
+    "rtl/volatile_model_loader.sv": "f08642de69093569c59a813104e38b875fe28c5c323200ceab588c45495dccef",
+    "rtl/tlm_token_uart.sv": "cc1f64ac61afeff426addb389b616251a49b77631911bdc6e764032a649866c3",
+    "rtl/tlm_product.sv": "c4aabd9d7a880542ea974f0103b6e19b1ffe2ed451fd9852ab9662ed40578dc7",
+    "rtl/tlm_first_return.sv": "b8f1728e3854a03d458417de82ccbd0fb7a8ab05de8896ec44d570fc1da28392",
+    "rtl/authenticated_weight_page.sv": "d1bcf48b9f8366db2b3274c61d92b929c962222041813fcaa5ceebd8ff5d0596",
+    "rtl/tlm_decoder.sv": "9e1a4a60ee96b5ba67252bac4de110edd90262fc68223e18c63d3dcd8316fc50",
+    "rtl/moe_sha256_core.sv": "b7070c0af3958009df57e1070a0d61eb198a1864b0832b3e7a0b1022637f2ce1",
+    "tests/boot_product.sv": "90b667ab401d4b42ca8c89a3918bbb32cd252c993696631a4a441228ea9d25ab",
+    "tests/product_sim.cpp": "a2adadfc731379e9155c94b952bb41c7d8054df5ee42ebf89f3317347faf5801"
+  },
+  "honest": {
+    "trace": "receipts/boot3-honest-simulation.log",
+    "sha256": "0b9510ed84463b58f78c35aa6b1fd1f68295653022bd2d5c67a265bd228eba6e",
+    "rows": 41,
+    "final": "1 0 129 403 6935613 1118977"
+  },
+  "corrupt": {
+    "trace": "receipts/boot3-corrupt-simulation.log",
+    "sha256": "38adaa82a45f0290c24fe671aad86e8e9327e740e536e04501acce04189ee060",
+    "rows": 8,
+    "final": "1 0 193 0 1008059 159104"
+  },
+  "constant_corruption": {
+    "byte": 94208,
+    "mask": 1,
+    "layer": 0,
+    "expert": 0,
+    "tensor": "w1",
+    "healthy_prior_prompt_ids": [
+      1,
+      403,
+      407,
+      261,
+      378
+    ],
+    "affected_next_healthy_id": 432
+  },
+  "image_sha256": "87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42",
+  "board_exercised": false
+}

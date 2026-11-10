@@ -1,0 +1,37 @@
+{
+  "upstream_handoff_zip_sha256": "1361fa1b7e5fb990f26e16532df6e12e83d0e9bc9ea3109faad26dd68a439342",
+  "script_changes": {
+    "scripts/checkpoint_reference.py": {
+      "original_sha256": "831b75f15bc5eaa6add2600ee03ddb6ffc4dc421b8ddd6e73c4d6ff5416f01c9",
+      "release_sha256": "d6b65f63db6f37ca18c61edef0bc441a8f9be3a98aeab54053adef801a88a450",
+      "change": "Refuse -O/-OO before imports or verification; all original AST statements unchanged"
+    },
+    "scripts/generate_decoder.py": {
+      "original_sha256": "ef861f77f9c1c1e7a22b03e38db942cf91566b188c912704fc7b9ef217895459",
+      "release_sha256": "862e69ace6fa3120482e9cd096757e935820cb06a2df17ecc04b3036b9164f1b",
+      "change": "Refuse -O/-OO before imports or verification; all original AST statements unchanged"
+    },
+    "scripts/integer_reference.py": {
+      "original_sha256": "449277690aeede5cbf96fd82abb1ae893a8b90089880bf2d2491feaab9e1db85",
+      "release_sha256": "e150e8f1b046af066dfb6593636e4b17e28dcf645739afb34e3a1b8534f7f737",
+      "change": "Refuse -O/-OO before imports or verification; all original AST statements unchanged"
+    },
+    "scripts/layout.py": {
+      "original_sha256": "2c9452f79a164e988d4552603e03fd9cf511aa2c88fa12fcbc2b8772a204a830",
+      "release_sha256": "ce520e23338f7cdc739bb5de9e1f03415b9670b3ba48c2a1fa214ec4bd672824",
+      "change": "Refuse -O/-OO before imports or verification; all original AST statements unchanged"
+    },
+    "scripts/reproduce.py": {
+      "original_sha256": "4f929c01616e112b4564d6868203c894d007a938b3381b88dc5b406b60de9eb6",
+      "release_sha256": "e8b47a19199cd9f5bb18d3a5a0b459675d8aa3d43ee7efd7c82f9d4360aca14b",
+      "change": "Refuse -O/-OO before imports or verification; all original AST statements unchanged"
+    },
+    "scripts/verify_board_receipt.py": {
+      "original_sha256": "f851ee7072f68b1449fb761f6527dce3c995cc17062bbb705c116d0e2feb58ee",
+      "release_sha256": "6afcf0d5182dd6ff77e775fad57d85a48558ad959de30431ac1786b05514bd42",
+      "change": "Refuse -O/-OO before imports or verification; all original AST statements unchanged"
+    }
+  },
+  "RTL_board_constraints_and_archived_receipts_changed": false,
+  "archived_clean_replay_scope": "The source hashes in evidence/clean-replay.json describe the original handoff scripts. These release additions only reject optimized execution; the remaining script AST is unchanged."
+}

@@ -1,0 +1,116 @@
+{
+  "part": "GW5AST-LV138PG484AC1/I0",
+  "synthesis_and_route": "Gowin V1.9.12.04-1",
+  "resources_used_available": {
+    "Logic": [
+      15127,
+      138240
+    ],
+    "Register": [
+      10760,
+      139095
+    ],
+    "CLS": [
+      12334,
+      69120
+    ],
+    "BSRAM": [
+      248,
+      340
+    ],
+    "DSP": [
+      5,
+      298
+    ]
+  },
+  "whole_image_violated_endpoint_counts": {
+    "Setup Violated Endpoints": "127",
+    "Hold Violated Endpoints": "34"
+  },
+  "clocks_measured_mhz": {
+    "board_clk50": 283.402,
+    "memory_clk400": 2240.143,
+    "app_clk100": 206.574,
+    "trusted_clk12p5": 43.789
+  },
+  "requested_clock_mhz": {
+    "board": 50,
+    "memory": 400,
+    "DDR_app": 100,
+    "semantic": 12.5
+  },
+  "path_table_scope": "up to 256 paths per category",
+  "paths": {
+    "Setup": {
+      "reported_rows": 256,
+      "negative_rows": 12,
+      "worst": {
+        "slack_ns": -3.778,
+        "from": "u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/u_dll/CLKIN",
+        "to": "u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/dll_step_base_5_s0/D",
+        "from_clk": "memory_clk400:[R]",
+        "to_clk": "app_clk100:[R]"
+      },
+      "negative_clock_pairs": {
+        "memory_clk400:[R] -> app_clk100:[R]": 8,
+        "app_clk100:[R] -> memory_clk400:[F]": 4
+      },
+      "negative_outside_vendor_ip_pairs": []
+    },
+    "Hold": {
+      "reported_rows": 256,
+      "negative_rows": 34,
+      "worst": {
+        "slack_ns": -1.004,
+        "from": "u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/u_init_rmove_mod/sys_reset_ch_3_s0/Q",
+        "to": "u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/ddr_sync/recalib_s_0_s0/D",
+        "from_clk": "app_clk100:[R]",
+        "to_clk": "board_clk50:[R]"
+      },
+      "negative_clock_pairs": {
+        "app_clk100:[R] -> board_clk50:[R]": 2,
+        "app_clk100:[R] -> memory_clk400:[R]": 32
+      },
+      "negative_outside_vendor_ip_pairs": []
+    },
+    "Recovery": {
+      "reported_rows": 256,
+      "negative_rows": 224,
+      "worst": {
+        "slack_ns": -2.723,
+        "from": "u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/ddr_rsti_reg_2_s0/Q",
+        "to": "u_raw_controller/u_ddr3/gw3_top/u_ddr_phy_top/u_ddr_phy_wds/data_lane_gen[2].u_ddr_phy_data_lane/u_ddr_phy_data_io/u_dqs/RESET",
+        "from_clk": "board_clk50:[R]",
+        "to_clk": "memory_clk400:[F]"
+      },
+      "negative_clock_pairs": {
+        "board_clk50:[R] -> memory_clk400:[F]": 69,
+        "board_clk50:[R] -> memory_clk400:[R]": 141,
+        "board_clk50:[R] -> app_clk100:[F]": 8,
+        "board_clk50:[R] -> app_clk100:[R]": 6
+      },
+      "negative_outside_vendor_ip_pairs": []
+    },
+    "Removal": {
+      "reported_rows": 256,
+      "negative_rows": 0,
+      "worst": {
+        "slack_ns": 0.365,
+        "from": "u_raw_controller/u_board_ddr_pll/u_pll_init/enable_r_1_s0/Q",
+        "to": "u_raw_controller/u_board_ddr_pll/u_pll_init/laststep_s0/CLEAR",
+        "from_clk": "board_clk50:[R]",
+        "to_clk": "board_clk50:[R]"
+      },
+      "negative_clock_pairs": {},
+      "negative_outside_vendor_ip_pairs": []
+    }
+  },
+  "routed_physical_package": true,
+  "board_exercised": false,
+  "programming_files": {
+    "tlm26.fs": "87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42",
+    "tlm26.rpt.txt": "1b21883116073f327e2e9e058242252df130471f3afa00f3e842bbf929052987",
+    "tlm26.tr": "a48901ff0ee4cbc286cdb3495cd6dc83233e6c88cc091e61fade39769ea17dc5",
+    "tlm26.log": "68104322198e8be3530dae180d33f3f127ca1b1f1e753fd275c09e4929d62d13"
+  }
+}

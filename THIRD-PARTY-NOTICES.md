@@ -110,10 +110,22 @@ upstream model license, BSD-style arithmetic license, Amazon Software License
 files and separately installed vendor dependencies. In particular, the project's
 Apache-2.0 grant does not override Amazon-platform-use restrictions in AWS files.
 
+## TLM26 MoE / Tang Mega
+
+The [TLM26 dependency notices](demos/tlm26-moe/NOTICES.md) preserve the upstream
+MIT source license and identify the model card's MIT declaration, pinned
+checkpoint and tokenizer. The model inputs are fetched during reproduction.
+Fable supplied the SHA-256 compressor; the fixed decoder, page integration,
+UART/boot controller and board port are project-owned implementation work.
+The adjacent `demos/tlm26-moe/board/product.cst.NOTICE` retains the Sipeed and
+GOWIN board-constraint notices without modifying the tested constraint bytes.
+Vendor DDR/clock IP and tools are obtained separately under their terms.
+
 ## AI and media attribution
 
-The README credits GPT 5.6 Sol and GPT 6 Astra for the custom implementation,
-with review feedback from Fable 5.1 and Opus 5.5. Those credits do not cover
+The README credits GPT 5.6 Sol, GPT 6 Astra and GPT 6.1 Sol for the custom
+implementation, Fable for the TLM26 SHA-256 compressor, and Fable 5.1 and
+Opus 5.5 for incorporated review feedback. Those credits do not cover
 the pretrained model, FPGA silicon, Sipeed board, vendor IP or tools.
 The owner-supplied board photograph and demonstration videos are included in
 the project's Apache-2.0 grant; removal of personal metadata is not an

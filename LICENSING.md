@@ -12,6 +12,13 @@ The encrypted model copy retains the same model provenance; encrypting
 it does not create a new license grant.
 The declaration and MIT terms are preserved in `LICENSES/`.
 
+The TLM26 model card declares MIT; its upstream source license and exact
+checkpoint/tokenizer identities are retained in the [TLM26 notices](demos/tlm26-moe/NOTICES.md).
+This demonstration supplies source and compact board receipts; model inputs
+are fetched and verified during reproduction. Its separately installed
+GOWIN Standard toolchain and vendor IP retain their own terms. No compiled
+TLM26 FPGA configuration is distributed here.
+
 The encrypted-memory AES S-box adapts BearSSL's MIT-licensed Boolean circuit.
 Its copyright and permission notice are retained in both affected RTL files
 and [LICENSES/BearSSL-MIT.txt](LICENSES/BearSSL-MIT.txt); our Apache-2.0 grant

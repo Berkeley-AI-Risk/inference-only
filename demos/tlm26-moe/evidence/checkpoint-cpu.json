@@ -1,0 +1,743 @@
+{
+  "scope": "CPU FP32, author implementation, greedy, BOS once",
+  "checkpoint_revision": "804c2137003ede3820fc57608221deb620c2d6d7",
+  "source_revision": "967a9270ff81220421e062393ae56babe6152888",
+  "sha256": {
+    "eval_moe.py": "6c7ce81fbe898afe4938b94a53cbf055dab6a34ad45d60ffc8998dddb86e1fbf",
+    "export_moe.py": "0b12bcb058818d954cac9aad612db8c870936630216eed88b73c89c3f3044b3b",
+    "host_moe_test.c": "72817ed36fa73d52b22c3df161882304cfb82acd5d4ed3d54f2dbe4daedbd40a",
+    "llama2_moe_core.h": "cdce9dbb5a821536cd5b9e3df300bf26412d78613aa54340d48bc8512a87e7c6",
+    "model.pt": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+    "model.py": "791795c5b06d8b003a10a538dcbde94d1e6810d43e179b2cc96d5e78e4e25880",
+    "model_moe.py": "56484b5f72be2d21c3496bfc4399ee0711ca41fbb5f20c25c14a9225bdf471c4",
+    "run_moe_scale.sh": "b1818251ec63485dc7081f7121e9bccd4675b70df3942a3bec87e1196b440e89",
+    "tinystories.py": "14e647a35347cb777ec51d4cd213f864b1b3885a75f3a801e4ec39ae9162e747",
+    "tok512.model": "d7f2c1b4c964f0b4a5e136557059e2e4071a3738441d1d104f70d0a36b999cf8",
+    "tokenizer.py": "585d1c34be6f387d3143297c7fbbce49ad362dc9cecd9f68037bbed8126bcf33",
+    "train_moe.py": "e1c4f9390e12573ebee1f5f4dc7458aad0fafe93f7ecf2b6000262404d74a0db"
+  },
+  "args": {
+    "dim": 64,
+    "n_layers": 5,
+    "n_heads": 8,
+    "n_kv_heads": 4,
+    "vocab_size": 512,
+    "multiple_of": 32,
+    "max_seq_len": 256,
+    "dropout": 0.0,
+    "qat_level": "",
+    "qat_group_size": 64,
+    "oe_size": 0,
+    "n_experts": 8,
+    "moe_top_k": 2,
+    "aux_coef": 0.01
+  },
+  "parameters": 1572032,
+  "training_step": 30000,
+  "torch": "2.10.0",
+  "sentencepiece": "0.2.1",
+  "prompts": [
+    {
+      "prompt": "Once upon a time",
+      "prompt_ids": [
+        1,
+        403,
+        407,
+        261,
+        378
+      ],
+      "generated_ids": [
+        432,
+        383,
+        286,
+        261,
+        376,
+        298,
+        315,
+        421,
+        395,
+        317,
+        426,
+        338
+      ],
+      "decoded": "Once upon a time, there was a little girl named Lily. She",
+      "trace": [
+        {
+          "accepted_id": 378,
+          "routes": [
+            [
+              3,
+              6
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              5
+            ]
+          ],
+          "next_id": 432,
+          "logit_margin": 3.4374895095825195
+        },
+        {
+          "accepted_id": 432,
+          "routes": [
+            [
+              7,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              7,
+              3
+            ]
+          ],
+          "next_id": 383,
+          "logit_margin": 2.4758663177490234
+        },
+        {
+          "accepted_id": 383,
+          "routes": [
+            [
+              0,
+              1
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              5,
+              2
+            ]
+          ],
+          "next_id": 286,
+          "logit_margin": 4.7136030197143555
+        },
+        {
+          "accepted_id": 286,
+          "routes": [
+            [
+              2,
+              5
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          "next_id": 261,
+          "logit_margin": 10.320027351379395
+        },
+        {
+          "accepted_id": 261,
+          "routes": [
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              6,
+              7
+            ]
+          ],
+          "next_id": 376,
+          "logit_margin": 1.9654645919799805
+        },
+        {
+          "accepted_id": 376,
+          "routes": [
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              7,
+              4
+            ]
+          ],
+          "next_id": 298,
+          "logit_margin": 0.9310379028320312
+        },
+        {
+          "accepted_id": 298,
+          "routes": [
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "next_id": 315,
+          "logit_margin": 6.475214004516602
+        },
+        {
+          "accepted_id": 315,
+          "routes": [
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "next_id": 421,
+          "logit_margin": 8.401555061340332
+        },
+        {
+          "accepted_id": 421,
+          "routes": [
+            [
+              3,
+              4
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              5,
+              1
+            ]
+          ],
+          "next_id": 395,
+          "logit_margin": 4.762063026428223
+        },
+        {
+          "accepted_id": 395,
+          "routes": [
+            [
+              7,
+              5
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              7,
+              5
+            ]
+          ],
+          "next_id": 317,
+          "logit_margin": 3.4243412017822266
+        },
+        {
+          "accepted_id": 317,
+          "routes": [
+            [
+              1,
+              6
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              5,
+              3
+            ]
+          ],
+          "next_id": 426,
+          "logit_margin": 2.6027936935424805
+        },
+        {
+          "accepted_id": 426,
+          "routes": [
+            [
+              7,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              7,
+              3
+            ]
+          ],
+          "next_id": 338,
+          "logit_margin": 2.5968809127807617
+        }
+      ]
+    },
+    {
+      "prompt": "The little cat",
+      "prompt_ids": [
+        1,
+        291,
+        376,
+        280,
+        294
+      ],
+      "generated_ids": [
+        286,
+        273,
+        421,
+        433,
+        299,
+        322,
+        265,
+        282,
+        295,
+        433,
+        426,
+        346
+      ],
+      "decoded": "The little cat was walking in the park. He",
+      "trace": [
+        {
+          "accepted_id": 294,
+          "routes": [
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "next_id": 286,
+          "logit_margin": 0.7020549774169922
+        },
+        {
+          "accepted_id": 286,
+          "routes": [
+            [
+              2,
+              5
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              5,
+              2
+            ]
+          ],
+          "next_id": 273,
+          "logit_margin": 0.05862236022949219
+        },
+        {
+          "accepted_id": 273,
+          "routes": [
+            [
+              5,
+              6
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "next_id": 421,
+          "logit_margin": 4.016136169433594
+        },
+        {
+          "accepted_id": 421,
+          "routes": [
+            [
+              3,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          "next_id": 433,
+          "logit_margin": 7.760562896728516
+        },
+        {
+          "accepted_id": 433,
+          "routes": [
+            [
+              3,
+              2
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "next_id": 299,
+          "logit_margin": 8.615944862365723
+        },
+        {
+          "accepted_id": 299,
+          "routes": [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              5,
+              1
+            ]
+          ],
+          "next_id": 322,
+          "logit_margin": 0.303741455078125
+        },
+        {
+          "accepted_id": 322,
+          "routes": [
+            [
+              7,
+              0
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "next_id": 265,
+          "logit_margin": 3.131040573120117
+        },
+        {
+          "accepted_id": 265,
+          "routes": [
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              7
+            ]
+          ],
+          "next_id": 282,
+          "logit_margin": 1.363576889038086
+        },
+        {
+          "accepted_id": 282,
+          "routes": [
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "next_id": 295,
+          "logit_margin": 6.86289119720459
+        },
+        {
+          "accepted_id": 295,
+          "routes": [
+            [
+              4,
+              7
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              6
+            ]
+          ],
+          "next_id": 433,
+          "logit_margin": 7.16841983795166
+        },
+        {
+          "accepted_id": 433,
+          "routes": [
+            [
+              3,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              5,
+              1
+            ]
+          ],
+          "next_id": 426,
+          "logit_margin": 1.4760046005249023
+        },
+        {
+          "accepted_id": 426,
+          "routes": [
+            [
+              7,
+              0
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              7,
+              3
+            ]
+          ],
+          "next_id": 346,
+          "logit_margin": 0.09509849548339844
+        }
+      ]
+    }
+  ]
+}

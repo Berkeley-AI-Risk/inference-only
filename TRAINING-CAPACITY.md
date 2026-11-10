@@ -16,6 +16,8 @@ measured rate of 9.8241 next-token evaluations/s at 128 occupied positions.
 It gives an upper bound for those paths. How much of that arithmetic someone
 with physical possession of the chip could use for training remains open.
 
+The [TLM26 MoE Tang demonstration](demos/tlm26-moe/README.md) has separate board evidence; no residual-training assessment is supplied for that circuit.
+
 ## Method and reference measurements
 
 The [shared methodology](docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md) defines the access assumptions, workload, operation counts, reference measurement and evidence needed for an assessment. The [architecture-dependent analysis](docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md) explains scheduled work, utilization and context effects, using SimpleStories measurements and a larger-model example.

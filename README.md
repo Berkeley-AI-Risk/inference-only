@@ -1,7 +1,8 @@
 # Inference-only hardware demonstrations and research
 
 These FPGAs run fixed language models behind a restricted token interface.
-SimpleStories-V2-5M runs on a Sipeed Tang Mega 138K board. Qwen3-1.7B and
+SimpleStories-V2-5M and the pretrained TLM26 mixture-of-experts model run on
+a Sipeed Tang Mega 138K board. Qwen3-1.7B and
 Qwen3-8B run on Amazon EC2 F2 FPGA instances. The host
 supplies tokens and requests the next one. The circuit schedules the model,
 chooses the tensor addresses and checks weights fetched from external memory.
@@ -67,7 +68,7 @@ in [CURRENT-QUALIFICATION.md](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md
 
 ## The demonstrated designs and measurements
 
-Three models run on FPGA implementations of the **Authenticated-Weight Inference-Only Chip (AWIC)**. The table shows cached generation on the baseline F-AWIC for each model. Expand the SimpleStories comparison to see how its rate changes with the security and sampling options.
+Four pretrained models have FPGA demonstrations of the **Authenticated-Weight Inference-Only Chip (AWIC)**. The table shows the common cached-generation benchmark for the three dense models, using their baseline F-AWICs. Expand the SimpleStories comparison to see how its rate changes with the security and sampling options.
 
 <!-- COMMON-FPGA-SPEED:START -->
 | Model and FPGA | Core clock (MHz) | Cached tokens/s | Release |
@@ -120,6 +121,8 @@ vendor-DDR timing or physical-security certification.
 - **[Qwen3-8B / AWS F2 guide](demos/qwen3-8b/README.md):** the eight-billion-parameter
   prototype, measured prompt/decode speeds, installation with a token-ID client,
   hardware sources and numerical reference. A browser app is not yet included.
+
+The separate **[TLM26 MoE / Tang Mega demonstration](demos/tlm26-moe/README.md)** is an F-AWIC running an eight-expert pretrained model, with two experts selected per layer. Its board trial matched all 24 generated tokens over two five-token prompts, refused a changed expert weight and passed an in-flight CLEAR test. Median STEP round trip was **577.636 ms**, including a deliberate 20 ms first-return delay. The [validation record](demos/tlm26-moe/VALIDATION.md) states this workload and the remaining full-image setup/hold violations. This source release supplies reconstruction scripts and recorded evidence. Its latency is reported separately from the common speed table.
 
 <img src="demos/simplestories-v2-5m/fpga.jpeg" alt="The Tang Mega 138K board used for the SimpleStories inference-only demonstration, connected by USB." width="720">
 
@@ -256,9 +259,12 @@ HWIC simulation results and the FPGA measurements above have separate scopes.
 ## AI design experiment and attribution
 
 A secondary goal is an experiment in AI capabilities in chip design.
-**GPT 5.6 Sol, GPT 6 Astra, and GPT 6.1 Sol wrote the custom RTL, implementation code,
-verification and host tools, and the documentation**, under the project owner's
-direction. Incorporated review feedback came from **Fable 5.1 and Opus 5.5**.
+**GPT 5.6 Sol, GPT 6 Astra, and GPT 6.1 Sol** developed the model datapaths,
+controllers, integration, verification and host tools, and documentation under
+the project owner's direction. The TLM26 fixed decoder, authenticated-page
+integration, UART/boot controller and board port were developed in this work;
+**Fable** supplied its SHA-256 compressor. Incorporated review feedback came
+from **Fable 5.1 and Opus 5.5**.
 
 Hardware is primarily SystemVerilog/Verilog; numerical references and tests
 use Python and C++; host software uses Python and C++; implementation flows
@@ -290,6 +296,7 @@ Start with the guide for [SimpleStories on Tang Mega](demos/simplestories-v2-5m/
 | SimpleStories-V2-5M / Tang Mega | [Guide](demos/simplestories-v2-5m/README.md), [installation](demos/simplestories-v2-5m/PROGRAMMING.md) | [Hardware](demos/simplestories-v2-5m/HARDWARE.md) | [Validation](demos/simplestories-v2-5m/VALIDATION.md), [formal scope](demos/simplestories-v2-5m/FORMAL-STATUS.md), [reproduction](demos/simplestories-v2-5m/REPRODUCE.md) |
 | Qwen3-1.7B / AWS F2 | [Guide](demos/qwen3-1.7b/README.md), [installation](demos/qwen3-1.7b/INSTALL.md) | [Hardware](demos/qwen3-1.7b/HARDWARE.md) | [Validation](demos/qwen3-1.7b/VALIDATION.md), [formal scope](demos/qwen3-1.7b/FORMAL-STATUS.md), [reproduction](demos/qwen3-1.7b/REPRODUCE.md) |
 | Qwen3-8B / AWS F2 | [Guide](demos/qwen3-8b/README.md), [installation](demos/qwen3-8b/INSTALL.md) | [Hardware](demos/qwen3-8b/HARDWARE.md) | [Validation](demos/qwen3-8b/VALIDATION.md), [formal scope](demos/qwen3-8b/FORMAL-STATUS.md), [reproduction](demos/qwen3-8b/REPRODUCE.md) |
+| TLM26 MoE / Tang Mega | [Guide](demos/tlm26-moe/README.md), [build and provisioning](demos/tlm26-moe/README.md#tang-build-and-provisioning) | [Hardware and timing](demos/tlm26-moe/README.md#tang-build-and-provisioning) | [Validation](demos/tlm26-moe/VALIDATION.md), [formal scope](demos/tlm26-moe/FORMAL-STATUS.md), [reproduction](demos/tlm26-moe/REPRODUCE.md) |
 
 Use each model's formal-status page for the supplied proofs, assumptions and
 open obligations, and its validation page for the circuit and workload behind
@@ -304,5 +311,5 @@ See [LICENSE](LICENSE), [NOTICE](NOTICE), [LICENSING.md](LICENSING.md) and
 its [dependency notices](demos/qwen3-1.7b/NOTICES.md) distinguish project-owned
 code from AWS, FPGA-vendor and other third-party components. The
 [8B dependency notices](demos/qwen3-8b/NOTICES.md) identify its corresponding
-sources. The project license
+sources. The [TLM26 notices](demos/tlm26-moe/NOTICES.md) identify its upstream MIT declaration, board dependencies and SHA-256 source. The project license
 does not replace those components' terms.

@@ -1,0 +1,98 @@
+{
+  "board_repo": "https://github.com/Berkeley-AI-Risk/inference-only",
+  "board_revision": "ca99e9f022a05e6116b7c5e55c525e48f9b862f5",
+  "board_inputs": {
+    "defines.v": {
+      "repo_path": "demos/simplestories-v2-5m/hardware/project/defines.v",
+      "sha256": "76cbe1576dbf6c7c6151072d6c1f8125eecc360140ba29784024d3f99b0f6f58"
+    },
+    "fifo.sv": {
+      "repo_path": "demos/simplestories-v2-5m/hardware/project/fifo.sv",
+      "sha256": "25b9578703f1c44b67867fea92f1a6749fd692c209fecf36b1de0652cd37df81"
+    },
+    "thin_transport.sv": {
+      "repo_path": "demos/simplestories-v2-5m/hardware/project/thin_transport.sv",
+      "sha256": "b85e08fa0dfe0aefdc37aa0343175f8ea614025392bce0e112d11f12172eb84e"
+    },
+    "reset.sv": {
+      "repo_path": "demos/simplestories-v2-5m/hardware/project/reset.sv",
+      "sha256": "8b7d02cbcc49fad8e017a71051afb61ec923aa6aaa37031866e00a44da3bc7a6"
+    },
+    "fixed_uart_rx.sv": {
+      "repo_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv",
+      "sha256": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f"
+    },
+    "fixed_uart_tx.sv": {
+      "repo_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv",
+      "sha256": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e"
+    },
+    "board1_gowin_ddr3_raw_controller_shell.sv": {
+      "repo_path": "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor1/rtl/board1_gowin_ddr3_raw_controller_shell.sv",
+      "sha256": "eda70d4807b7312af6acf8bdfca683fe2d97d2c74f4e4c9e400e05644b1b18c0"
+    }
+  },
+  "vendor_inputs": {
+    "ddr3_memory_interface.v": {
+      "bytes": 2238123,
+      "sha256": "d7cae5a16467ca35ee3f95411537344ae3702e1dba86a06571530e3dd0180c57",
+      "url": "https://raw.githubusercontent.com/sipeed/TangMega-138K-example/06e7d8b118d345915ab6f257b7c22226f81575cd/ddr_memory/ddr_memory_test_uart/src/ddr3_memory_interface/ddr3_memory_interface.v"
+    },
+    "gowin_pll.v": {
+      "bytes": 992,
+      "sha256": "982ca6387f42086e88b4c858490eb00954a80a3284e0f07d959311d0975d7536",
+      "url": "https://raw.githubusercontent.com/sipeed/TangMega-138K-example/06e7d8b118d345915ab6f257b7c22226f81575cd/ddr_memory/ddr_memory_test_uart/src/gowin_pll/gowin_pll.v"
+    },
+    "gowin_pll_mod.v": {
+      "bytes": 6081,
+      "sha256": "07398632b56749dbe52f6e5d739a526c7ca5e71c4060c7d062a64dada6e1a953",
+      "url": "https://raw.githubusercontent.com/sipeed/TangMega-138K-example/06e7d8b118d345915ab6f257b7c22226f81575cd/ddr_memory/ddr_memory_test_uart/src/gowin_pll/gowin_pll_mod.v"
+    },
+    "pll_init.v": {
+      "bytes": 6458,
+      "sha256": "502436115e507453e2c139a073f5b56484421311ef57088ce1a16140347957f5",
+      "url": "https://raw.githubusercontent.com/sipeed/TangMega-138K-example/06e7d8b118d345915ab6f257b7c22226f81575cd/ddr_memory/ddr_memory_test_uart/src/pll_init.v"
+    }
+  },
+  "all_native_input_hashes": {
+    "authenticated_weight_page.sv": "d1bcf48b9f8366db2b3274c61d92b929c962222041813fcaa5ceebd8ff5d0596",
+    "board1_gowin_ddr3_raw_controller_shell.sv": "eda70d4807b7312af6acf8bdfca683fe2d97d2c74f4e4c9e400e05644b1b18c0",
+    "build.tcl": "238bdcb0e8a87d0f2f3994a59052dd75b36578c362d3aabd83c4019ac08ef0d9",
+    "cos.hex": "1241145ece5f8fbcfbb8188a1ef70078cf9adef5ba14a93305fadd60173ae4a2",
+    "ddr3_memory_interface.v": "d7cae5a16467ca35ee3f95411537344ae3702e1dba86a06571530e3dd0180c57",
+    "defines.v": "76cbe1576dbf6c7c6151072d6c1f8125eecc360140ba29784024d3f99b0f6f58",
+    "exp.hex": "72c6faed16b428793805e7aa11e689c22f8f5b13fe2a8623650b6e0bd67ba350",
+    "fifo.sv": "25b9578703f1c44b67867fea92f1a6749fd692c209fecf36b1de0652cd37df81",
+    "fixed_uart_rx.sv": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f",
+    "fixed_uart_tx.sv": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e",
+    "gowin_pll.v": "982ca6387f42086e88b4c858490eb00954a80a3284e0f07d959311d0975d7536",
+    "gowin_pll_mod.v": "07398632b56749dbe52f6e5d739a526c7ca5e71c4060c7d062a64dada6e1a953",
+    "moe_sha256_core.sv": "b7070c0af3958009df57e1070a0d61eb198a1864b0832b3e7a0b1022637f2ce1",
+    "page_digest.hex": "8435176609fccf03eaed8d83cc56d3eaacfd386dfee2fa7b1bb9174599509cb6",
+    "pll_init.v": "502436115e507453e2c139a073f5b56484421311ef57088ce1a16140347957f5",
+    "product.cst": "6468806f15afd0ceb230876eb2da311423c31427450e188fed4004c9897789ec",
+    "product.gprj": "3494301fa6116fa1d6883829e861082d46739266e73691f38ca415de10f6f984",
+    "product.sdc": "51b91130a0268252ef9c3f1e801a78aff4e4323c68334f80789537784ba84916",
+    "reset.sv": "8b7d02cbcc49fad8e017a71051afb61ec923aa6aaa37031866e00a44da3bc7a6",
+    "sin.hex": "ba230e4bad04e9de5b1be49555e6448d9695cc49cb8ef68a7173a99ebf2ade60",
+    "spi.sv": "9f97efb834fc2622a10d0a3dc1ded0e17bd8a4ca579a20ceda80f10150552686",
+    "thin_transport.sv": "b85e08fa0dfe0aefdc37aa0343175f8ea614025392bce0e112d11f12172eb84e",
+    "tlm_decoder.sv": "9e1a4a60ee96b5ba67252bac4de110edd90262fc68223e18c63d3dcd8316fc50",
+    "tlm_first_return.sv": "b8f1728e3854a03d458417de82ccbd0fb7a8ab05de8896ec44d570fc1da28392",
+    "tlm_product.sv": "c4aabd9d7a880542ea974f0103b6e19b1ffe2ed451fd9852ab9662ed40578dc7",
+    "tlm_token_uart.sv": "cc1f64ac61afeff426addb389b616251a49b77631911bdc6e764032a649866c3",
+    "top.sv": "9736c6c49306101bb320f6c2c96610a23841dda50c99e1b7105f7a77f8e0c0c3",
+    "volatile_model_loader.sv": "f08642de69093569c59a813104e38b875fe28c5c323200ceab588c45495dccef"
+  },
+  "checkpoint_revision": "804c2137003ede3820fc57608221deb620c2d6d7",
+  "author_source_revision": "967a9270ff81220421e062393ae56babe6152888",
+  "upstream_input_sha256": {
+    "model.pt": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+    "model.py": "791795c5b06d8b003a10a538dcbde94d1e6810d43e179b2cc96d5e78e4e25880",
+    "model_moe.py": "56484b5f72be2d21c3496bfc4399ee0711ca41fbb5f20c25c14a9225bdf471c4",
+    "tok512.model": "d7f2c1b4c964f0b4a5e136557059e2e4071a3738441d1d104f70d0a36b999cf8"
+  },
+  "upstream_model_card_license": "mit",
+  "author_tinylm_source_license": "MIT, copyright (c) 2023 Andrej",
+  "frozen_sha256_compression_source": "Claude token fixture run-2 block/rtl/moe_sha256_core.sv",
+  "SHA256_compressor_sha256": "b7070c0af3958009df57e1070a0d61eb198a1864b0832b3e7a0b1022637f2ce1"
+}

@@ -13,6 +13,9 @@ This grant applies to the project-owned portions. It does not replace the
 separate provenance or terms of:
 
 - The SimpleStories model image, tokenizer and model-derived numerical tables.
+- The TLM26 checkpoint, tokenizer, source and model-derived data, with their
+  upstream MIT declaration and preserved source license. See its
+  [dependency notices](demos/tlm26-moe/NOTICES.md).
 - The Qwen checkpoint, tokenizer and model-derived data, under the upstream
   Apache-2.0 license.
 - The Qwen demonstrations' Berkeley HardFloat arithmetic modules and

@@ -1,0 +1,689 @@
+{
+  "scope": "independently implemented NumPy integer incremental-KV reference vs authors FP32 checkpoint",
+  "weights_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+  "cpu_ref_sha256": "4060a716a9c77d4de435c10d590d85e0572266107ab236b2319fc8a974450fd8",
+  "integer_reference_source_sha256": "449277690aeede5cbf96fd82abb1ae893a8b90089880bf2d2491feaab9e1db85",
+  "position_limit": 256,
+  "results": [
+    {
+      "prompt_ids": [
+        1,
+        403,
+        407,
+        261,
+        378
+      ],
+      "generated_ids": [
+        432,
+        383,
+        286,
+        261,
+        376,
+        298,
+        315,
+        421,
+        395,
+        317,
+        426,
+        338
+      ],
+      "decoded": "Once upon a time, there was a little girl named Lily. She",
+      "first_greedy_difference": null,
+      "ordered_layer_routes_matching_fp32_out_of_60": 60,
+      "trace": [
+        {
+          "routes": [
+            [
+              3,
+              6
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              5
+            ]
+          ],
+          "next_id": 432,
+          "logits_i32le_sha256": "df14740d6346e9d282c24cf7acde4308f2cfb43f7076d4394bbe5104cf5f7078"
+        },
+        {
+          "routes": [
+            [
+              7,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              7,
+              3
+            ]
+          ],
+          "next_id": 383,
+          "logits_i32le_sha256": "ac6d119b35813aa1271a5afd80ec614f94f7f70ec5a24e1f836179ea30a0ca55"
+        },
+        {
+          "routes": [
+            [
+              0,
+              1
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              5,
+              2
+            ]
+          ],
+          "next_id": 286,
+          "logits_i32le_sha256": "03cb39a1164d11560aec730cc06a8f3d7e792031e49576ab9a21beddc9a48d75"
+        },
+        {
+          "routes": [
+            [
+              2,
+              5
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          "next_id": 261,
+          "logits_i32le_sha256": "a04ab5b9cf8a04fae21b35c0928655c43e2dc224e2d33a8e6232a3f3e52b0739"
+        },
+        {
+          "routes": [
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              6,
+              7
+            ]
+          ],
+          "next_id": 376,
+          "logits_i32le_sha256": "a1c563ec3bfdea1de7c57649d3d2c06d0fb95af26574d65807b805a24773e7a1"
+        },
+        {
+          "routes": [
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              7,
+              4
+            ]
+          ],
+          "next_id": 298,
+          "logits_i32le_sha256": "133098d1aea6eff7a2331626db8139eab4aff54cdd62cb509bab56c421f6ee5d"
+        },
+        {
+          "routes": [
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "next_id": 315,
+          "logits_i32le_sha256": "7c00e3bab8f92713d04caf78de8a673d1796d322853435cd9d770a86ac52703a"
+        },
+        {
+          "routes": [
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "next_id": 421,
+          "logits_i32le_sha256": "5bcc3079a6aaaffac1360164039f629e67b6a8f5958113c3b91f4ba95a33852c"
+        },
+        {
+          "routes": [
+            [
+              3,
+              4
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              5,
+              1
+            ]
+          ],
+          "next_id": 395,
+          "logits_i32le_sha256": "8701662a89c7820531e83278ff90ce84f21e54338ab3435fdc7d63467ea8a990"
+        },
+        {
+          "routes": [
+            [
+              7,
+              5
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              7,
+              5
+            ]
+          ],
+          "next_id": 317,
+          "logits_i32le_sha256": "d9cd10bccf53545373b7689551cb19d7af47d05a9d8aacfa632bd0f7fef12258"
+        },
+        {
+          "routes": [
+            [
+              1,
+              6
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              5,
+              3
+            ]
+          ],
+          "next_id": 426,
+          "logits_i32le_sha256": "e0a3afe7a3db811c9ac04681140c23745a1892873903562ac9412bbe6e960327"
+        },
+        {
+          "routes": [
+            [
+              7,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              7,
+              3
+            ]
+          ],
+          "next_id": 338,
+          "logits_i32le_sha256": "2b05c2f942c4d882dd6eeb561e2976dd0f589c7fe5c5c1656899a56a05c0c93a"
+        }
+      ]
+    },
+    {
+      "prompt_ids": [
+        1,
+        291,
+        376,
+        280,
+        294
+      ],
+      "generated_ids": [
+        286,
+        273,
+        421,
+        433,
+        299,
+        322,
+        265,
+        282,
+        295,
+        433,
+        426,
+        346
+      ],
+      "decoded": "The little cat was walking in the park. He",
+      "first_greedy_difference": null,
+      "ordered_layer_routes_matching_fp32_out_of_60": 60,
+      "trace": [
+        {
+          "routes": [
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "next_id": 286,
+          "logits_i32le_sha256": "f12660a324e48dd26f6437cb6981ca51755760b535ad5f7207335cc2ecffbfe2"
+        },
+        {
+          "routes": [
+            [
+              2,
+              5
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              5,
+              2
+            ]
+          ],
+          "next_id": 273,
+          "logits_i32le_sha256": "a677f66d2f5ac094c38b9fdceb049c8e854a3cd2bb1360c1d06f26583b6cd334"
+        },
+        {
+          "routes": [
+            [
+              5,
+              6
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "next_id": 421,
+          "logits_i32le_sha256": "eaeabef6da52fe91048630ebf2529b016000ccfc98b662f153c945cb8fb2ed0d"
+        },
+        {
+          "routes": [
+            [
+              3,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          "next_id": 433,
+          "logits_i32le_sha256": "f61c619299d8671e8d66ba291621ca45a1a8e619725bb6e9b5c52fb548b7865d"
+        },
+        {
+          "routes": [
+            [
+              3,
+              2
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "next_id": 299,
+          "logits_i32le_sha256": "d08335abaa6f43c60875289115836dfe4b4c2019a6bcf70d1e13ac07df0f66c2"
+        },
+        {
+          "routes": [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              5,
+              1
+            ]
+          ],
+          "next_id": 322,
+          "logits_i32le_sha256": "8f194d3be22a6b89b5558538338821cd79c5d023fc9d67044cc0411c475f80b9"
+        },
+        {
+          "routes": [
+            [
+              7,
+              0
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "next_id": 265,
+          "logits_i32le_sha256": "a22ae8b77bfdc2bb0abd7d514b8deb9e09d8f98823fbbb529c01ee1324ad27b7"
+        },
+        {
+          "routes": [
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              7
+            ]
+          ],
+          "next_id": 282,
+          "logits_i32le_sha256": "5d8be61279249b327d4904a24e70c7109c61fadbe7cbaa142236126900d3e6bd"
+        },
+        {
+          "routes": [
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "next_id": 295,
+          "logits_i32le_sha256": "b726df842678f4f64f4bdf6e5cc5819660e9efd3bdd6f0d46c625a664fd01a04"
+        },
+        {
+          "routes": [
+            [
+              4,
+              7
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              6
+            ]
+          ],
+          "next_id": 433,
+          "logits_i32le_sha256": "8fe9aadaadbe569dcbfebabc14eef6e66607fad96f99816a67a34b70afb22ac9"
+        },
+        {
+          "routes": [
+            [
+              3,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              5,
+              1
+            ]
+          ],
+          "next_id": 426,
+          "logits_i32le_sha256": "33a794c5fa2f70171a5c1b32d69fd62ac274f7095c7a44e746431a9ada6e8125"
+        },
+        {
+          "routes": [
+            [
+              7,
+              0
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              7,
+              3
+            ]
+          ],
+          "next_id": 346,
+          "logits_i32le_sha256": "c71a1e38360fcf7c14b1841f538580f46ed062fe7b04ddcc90275cf4f5aec3b7"
+        }
+      ]
+    }
+  ]
+}

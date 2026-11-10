@@ -1,0 +1,9 @@
+# TLM26 dependency notices
+
+The checkpoint is `h1matthew/tlm26`, revision `804c2137003ede3820fc57608221deb620c2d6d7`; its model card declares MIT. The matching tokenizer and upstream model source come from `ANRGUSC/tlm26`, revision `967a9270ff81220421e062393ae56babe6152888`. The upstream source's [MIT license](metadata/upstream-LICENSE.txt), including its copyright notice, is preserved. [Pinned source and asset identities](metadata/pins.json) distinguish these dependencies from the project's implementation. The checkpoint, tokenizer and model-derived numerical data retain their upstream provenance; fetching or quantizing them does not make them project-owned material.
+
+The project-owned decoder generator, fixed decoder, page authentication integration, boot/UART controller, board port, tests and documentation use the repository's [Apache-2.0 scope](../../LICENSE-SCOPE.md). Fable supplied the SHA-256 compression RTL in `rtl/moe_sha256_core.sv`; its frozen source identity is recorded in `metadata/pins.json`. It is separate from the upstream model authors' code.
+
+The board constraint file adapts the Sipeed/GOWIN Tang example. Its original GOWIN and Sipeed notices are retained in `board/product.cst.NOTICE`, alongside the tested constraint bytes. The repository's [third-party notices](../../THIRD-PARTY-NOTICES.md#tang-mega-board-constraints) and [Sipeed license](../../LICENSES/Sipeed-Apache-2.0.txt) preserve the upstream attribution and terms. The reused board transport sources are fetched from the exact public commit and checked against their recorded hashes.
+
+GOWIN DDR/clock IP and tools are obtained separately under their applicable terms. The `stage` action checks their identity and does not grant a new license. No vendor source distribution, tool executable or compiled FPGA configuration is included in this demo. Python, numerical and simulation packages are installed separately under their respective terms.
