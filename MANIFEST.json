@@ -130,8 +130,8 @@
       "sha256": "130a5aaa8efa2c8dbed770cd7b9448473c59f17a516c618336b9a53dc4d493b8"
     },
     ".github/workflows/offline-checks.yml": {
-      "bytes": 12336,
-      "sha256": "5391e14c112430f4cd9c72b0ba832f2f598977e4701d88f7a73a742bb1adac21"
+      "bytes": 12655,
+      "sha256": "a26997210193d7b58083c60e989bb46f8e93b6ec2b69d4684d93b838d7c4ef9e"
     },
     ".github/workflows/rtl-checks.yml": {
       "bytes": 4620,
@@ -1054,16 +1054,56 @@
       "sha256": "6e17a1325a834b7063d3b6ad7647cfb926a4781a8afbc7b1d0f56f0e6dfa99fd"
     },
     "demos/qwen3-1.7b/variants/protected-kv-simulation/README.md": {
-      "bytes": 7118,
-      "sha256": "797c7e444d2155d73b3451411d6a3457ab42664e1f481abd63ced5abb6e2b399"
+      "bytes": 6927,
+      "sha256": "4741fb1ef4903b22fb5d921259f72b9958800cfa1517702e2c7806abd64bab48"
     },
     "demos/qwen3-1.7b/variants/protected-kv-simulation/SOURCE-INPUTS.json": {
-      "bytes": 16674,
-      "sha256": "d85594219034d338c0212f6d4de3d97af0db53b72d84e88ac57cd7a2608981cf"
+      "bytes": 16736,
+      "sha256": "0106f1579df0ae339ede915dded274e5539700aba5b9051253c89e33afa3e512"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/INPUTS.json": {
+      "bytes": 21607,
+      "sha256": "8b6852ed7a639f1531610543357d8f79bc0bd4ea0d7fc5a1e008f427c4ad636e"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/README.md": {
+      "bytes": 5931,
+      "sha256": "60c229e65789e79e5da1b9f8a29b53545f0fd819f70c044e0d3724224435290d"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/TENSOR-TAPE.json": {
+      "bytes": 1706,
+      "sha256": "a90f8f04a6f081dca4c91d0901129ac2641e149698af2323afa37d98f37eb7e6"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/replay.py": {
+      "bytes": 24664,
+      "sha256": "b3a7f01f3b31a41fda632eadf657f47a9940acd7418738d856a7e077f61f5df4"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/test_replay.py": {
+      "bytes": 7109,
+      "sha256": "af0d3d2be1d19a20b0b162c448163334b23d043dd02e27676dabc6ec24b2c613"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/tests/kv_hbm_axi_fixture.h": {
+      "bytes": 8695,
+      "sha256": "64ab6c0c1c975ce2cd202f778e149199aae0db4176179c7682aebc04408af556"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/tests/kv_page_monitor.h": {
+      "bytes": 899,
+      "sha256": "a2b97ec474d36e8ffafd6ef839b955a501f393f804207553039fd8ed1a05555b"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/tests/kv_variant_core_axi_fixture.h": {
+      "bytes": 6456,
+      "sha256": "e2ada937762283d4d92973f4202b0306409d0f68ee1ca5bcd3eb35b7485490db"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/tests/long18.cpp": {
+      "bytes": 24918,
+      "sha256": "6801a7259b1c49d500d5268eac253f0034622634f21e48f2b7440d4eeaed0b71"
     },
     "demos/qwen3-1.7b/variants/protected-kv-simulation/references/long18.json": {
       "bytes": 21586,
       "sha256": "523ab2c96479d451225bf4dc78d4de24aa8a3c5fb9124263639a98757f140b4b"
+    },
+    "demos/qwen3-1.7b/variants/protected-kv-simulation/references/portable-long18-20261110.json": {
+      "bytes": 3003,
+      "sha256": "439122f903f5063e1f7d8c0d0e4ce07f595bd74e1b032427934c2c2b4491a660"
     },
     "demos/qwen3-1.7b/variants/protected-kv-simulation/references/three-token-cost.json": {
       "bytes": 2770,
@@ -75826,8 +75866,8 @@
       "sha256": "1dd88cb09483da8cd53c9d3959ae90b7b276aa2127d9282a34712dbb96d82640"
     },
     "tools/release-contract.json": {
-      "bytes": 4580274,
-      "sha256": "f0531e89235e1ccf4bfd916f22c844f05671d19083ec76ce669b36bd45a7d425"
+      "bytes": 4582302,
+      "sha256": "0b902371ac8c0a4729eb13c2f478bf47539f44e8ef538f3de99d80559297c803"
     },
     "tools/stage_source_map.py": {
       "bytes": 5194,
@@ -75899,7 +75939,7 @@
     },
     "tools/verify_release.py": {
       "bytes": 10148,
-      "sha256": "c9564f7f769641cb5e5eb7eb45f66deb427c57723c182179960b370509aa02b8"
+      "sha256": "26756abd880f37280fd487dceedcae859ad20de82301ab1c6640a4807bbf0f72"
     }
   },
   "full_context_evidence_scope": "Each selected greedy image passed 2,047/2,048-token CLI and browser contexts, boundary refusals, CLEAR races, pending-STEP Stop and resumed generation. The seeded image has a separate 16-case context matrix and browser record. Exact workload timestamps remain distinct from cached generation rates.",

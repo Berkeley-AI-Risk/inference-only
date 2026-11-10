@@ -1,0 +1,111 @@
+# Protected Qwen3 1.7B full machine replay
+
+This offline runner regenerates an independent eighteen-step tensor oracle and
+drives the protected RTL machine through CLEAR, APPEND, eighteen STEP commands
+and a final CLEAR. It checks every tensor boundary and the actual writer and
+reader traffic across K/V positions 15, 16 and 17. No model weights, generated
+tensors, AWS tools or private engineering paths are included.
+
+## Prepare the model and independent tensors
+
+First follow the existing [model preparation](../../../INSTALL.md#prepare-the-fixed-model)
+instructions with your separately obtained, pinned upstream model. The resulting
+`model-memory.bin` must be 2,354,380,800 bytes with SHA-256
+`90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1`.
+The runner verifies both before capture or replay. It does not download anything.
+
+From the repository root, use the Python environment created by that procedure:
+
+```sh
+PYTHON=demos/qwen3-1.7b/.venv-model/bin/python
+REPLAY=demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/replay.py
+MODEL=/path/to/model-memory.bin
+ORACLE=/tmp/qwen17-independent-long18
+RUN=/tmp/qwen17-protected-long18
+
+"$PYTHON" -B "$REPLAY" check-sources
+"$PYTHON" -B "$REPLAY" capture --model-image "$MODEL" --output "$ORACLE" --threads 8
+"$PYTHON" -B "$REPLAY" check-oracle --oracle "$ORACLE"
+"$PYTHON" -B "$REPLAY" prepare --model-image "$MODEL" --oracle "$ORACLE" --output "$RUN"
+"$PYTHON" -B "$REPLAY" build --output "$RUN"
+```
+
+Use new oracle and run directories. Capture uses the canonical public fixed
+numerical reference on CPU, with explicit arithmetic and reduction orders.
+`TENSOR-TAPE.json` contains eighteen compact commitments covering all 9,126
+ordered tensor identities and hashes, including the original three-step prefix.
+Every regenerated fixture must match those commitments before it can be used.
+The fixtures only monitor RTL results; they never drive numerical operands.
+
+`prepare` creates a sealed source stage from public RTL. Only that stage's
+wrapper instance selects `qwen_protected_machine` instead of the plain machine.
+The source tree, existing board inventory and published FPGA image stay plain.
+The stage uses the production prefetch setting and a simulated 100:125 MHz
+core/memory ratio. Neither staging nor compilation executes token inference.
+
+## Run the full simulation
+
+With Verilator and a C++17 compiler installed, allow several hours of local
+simulation time and sufficient memory. The [recorded portable replay](../references/portable-long18-20261110.json)
+took about three hours; duration depends on the host. The
+public CPU oracle recommends about 16 GB of available memory. For managed runs,
+use a host resource supervisor appropriate to your machine; the numerical
+simulation has one thread and compilation has one worker. There is no unused-RAM
+admission threshold in this runner.
+
+```sh
+"$PYTHON" -B "$REPLAY" run --model-image "$MODEL" --oracle "$ORACLE" \
+  --output "$RUN" --max-seconds 18000
+```
+
+This starts one simulator child, saves stdout, stderr, the actual exit and
+measured duration, and verifies the result. The child's terminal receipt binds
+both log hashes; a later verification rejects either log if it has changed.
+The finite wall-time limit stops
+only this child group if needed. No failure or interruption is retried. An
+interrupted run is not a numerical failure or a completed numerical pass.
+`VERIFIED.json` requires child zero without stop/error, empty stderr and all of:
+
+- Eighteen tokens matching `references/long18.json`.
+- 504 ordered layer checks, 9,126 tensor boundaries and 27,581,184 BF16 values.
+- 504 real K/V publications, including 28 each at positions 15, 16 and 17.
+- Two application CLEAR acknowledgments after actual modeled AXI drainage.
+- The accepted APPEND/STEP/CLEAR sequence, original terminal PASS, and unchanged
+  model, oracle, ROM, compiler-stage, binary and public source identities.
+
+After an interrupted review, retain all original receipts. If the simulator
+actually completed successfully but the Python review itself was interrupted,
+the offline review can be run separately, without launching another child:
+
+```sh
+"$PYTHON" -B "$REPLAY" verify --model-image "$MODEL" --oracle "$ORACLE" --output "$RUN"
+```
+
+The verifier does not overwrite an existing verification record. A new binary
+hash is expected after recompilation; matching a historical binary is not a
+prerequisite for reproducing its numerical result.
+
+## Local runner controls and qualification
+
+```sh
+python3.12 -I -S -B demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/test_replay.py
+```
+
+These finite controls need neither weights nor PyTorch. They test source
+selection (including refusal of unlisted compiler inputs), wrong-model rejection
+and transcript acceptance/refusal logic; they
+are not numerical simulation. The separate short [store-to-attention regression](../README.md)
+tests corrupt K/V operand handling. This full-machine runner does not inject
+stale or corrupt K/V and must not be cited as such a fault campaign.
+
+The [portable replay receipt](../references/portable-long18-20261110.json) records
+a regenerated CPU oracle and an actual eighteen-token RTL execution. Its binary
+was reused after checking every compiler-input identity. The public runner's
+source-admission checks were reviewed separately; those checks do not constitute
+another numerical execution. The [reference constants](../references/long18.json)
+retain the original numerical record. A new `VERIFIED.json` identifies the actual
+binary, source stage, independent oracle and child terminal. Simulation covers
+eighteen positions, not all contexts, and does not qualify physical CDC/reset,
+vendor HBM, FPGA routing/timing, speed or power. Dependency rights remain those
+in [NOTICES.md](../NOTICES.md); the behavioral monitor is project-authored test
+code, with unchanged independent SHA and AXI fixture helpers.

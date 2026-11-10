@@ -1,0 +1,102 @@
+{
+  "RTL_elapsed_seconds": 10862.03500575,
+  "compiler_reused_not_rerun": true,
+  "compiler_source_count": 95,
+  "compiler_source_map": {
+    "bytes": 11040,
+    "sha256": "8591ece0f1202fc80ba05840ddd3ebc86b15dd6946846ecfa72af20bb9f8e425"
+  },
+  "compiler_source_map_encoding": "UTF-8 JSON of staged basename to {bytes,sha256}, sorted keys, compact separators",
+  "counts": {
+    "bf16_values": 27581184,
+    "boundary15_commits": 28,
+    "boundary16_commits": 28,
+    "boundary17_commits": 28,
+    "clear_ack_checks": 2,
+    "core_half": 5,
+    "cycles": 237740770,
+    "kv_commits": 504,
+    "layers": 28,
+    "memory_half": 4,
+    "operations": 10152,
+    "phase": 0,
+    "random_transport": 0,
+    "raw_beats": 121374720,
+    "raw_pages": 474120,
+    "tensor_boundaries": 9126,
+    "tokens_generated": 18
+  },
+  "error": null,
+  "executed_binary": {
+    "bytes": 3295400,
+    "sha256": "2675d2a4f717a1a139bd6c5ffa787a602abc735d8f0647c0ed75763703e7bdc7"
+  },
+  "execution_receipts": {
+    "campaign_terminal": {
+      "bytes": 47913,
+      "sha256": "94b5b4f4270f2af8f58ba1942f9e965a9c58e6e49c5f9ff19436d3118e32721e"
+    },
+    "oracle_manifest": {
+      "bytes": 2233851,
+      "sha256": "03e30818f57fd53fcde79ddd9b15e455df27cdaa4e8a927140f7da85562ec85f"
+    },
+    "stdout": {
+      "bytes": 48819,
+      "sha256": "579de77fda2df319e82fdd5855cfccd8d9fa21d04b57b21407338fb8a3df2c70"
+    }
+  },
+  "finished_utc": "2026-11-10T20:24:47.659715+00:00",
+  "fresh_RTL_execution": true,
+  "fresh_independent_CPU_oracle": true,
+  "generated_tokens": [
+    25,
+    358,
+    1184,
+    311,
+    1855,
+    264,
+    13027,
+    5316,
+    429,
+    646,
+    1349,
+    264,
+    1034,
+    323,
+    2550,
+    279,
+    2213,
+    315
+  ],
+  "initial_token": 9707,
+  "limitations": [
+    "Eighteen positions, not the full context space.",
+    "Behavioral memory and clock stepping do not qualify physical CDC/reset, vendor HBM, routing or timing.",
+    "No FPGA speed, area or power result.",
+    "The full-machine run is honest-input numerical replay, not a K/V corruption campaign."
+  ],
+  "model_image": {
+    "bytes": 2354380800,
+    "sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1"
+  },
+  "native_child_exit": 0,
+  "oracle_libraries": {
+    "numpy": "1.26.4",
+    "torch": "2.10.0"
+  },
+  "ordered_layer_checks": 504,
+  "passed": true,
+  "reproduction": "../full-machine/README.md",
+  "review": {
+    "all_504_layer_checks_ordered": true,
+    "all_9126_tensor_hashes_and_geometry_checked": true,
+    "all_95_current_compiler_inputs_match_executed_binary_inputs": true,
+    "capture_arithmetic_AST_unchanged": true,
+    "complete_APPEND_STEP_CLEAR_sequence_checked": true,
+    "current_runner_not_reexecuted_for_this_receipt": true,
+    "public_runner_admission_controls_reviewed_separately": true
+  },
+  "schema": "qwen17-portable-protected-long18-result-v1",
+  "scope": "Finite full-machine numerical simulation with behavioral memory; no physical qualification",
+  "stop_reason": null
+}

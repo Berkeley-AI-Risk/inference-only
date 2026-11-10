@@ -63,31 +63,28 @@ memory ports are private physical-integration contracts, not host memory or hash
 services. Correct abort, visibility and quiescence acknowledgments remain duties
 of the physical adapter; merely elaborating the machine does not validate them.
 
-## Recorded 18 token numerical reference
+## Eighteen-token full-machine numerical replay
 
-`references/long18.json` binds the recorded protected RTL run, its independent
-oracle, source hashes, selected model/ROM identities and terminal review. It
-recorded eighteen expected tokens, 504 ordered layer checks, 9,126 tensor
+The [portable replay result](references/portable-long18-20261110.json) records
+eighteen feedback-dependent tokens, 504 ordered layer checks, 9,126 tensor
 boundaries, 27,581,184 BF16 comparisons and 504 K/V publications. Positions 15,
-16 and 17 each had 28 publications, crossing the sixteen-position page boundary.
-The actual child exited zero without a guard stop or error in 10,106.84231525
-seconds. This is a recorded local simulation, not a fresh run of this public
-package or a full-context correctness theorem.
+16 and 17 each have 28 publications, crossing the sixteen-position page boundary.
+The simulator exited zero without a guard stop or error after 10,862 seconds.
+The independent CPU oracle was regenerated from the fixed model. The simulation
+used a previously compiled binary with the exact public compiler-input map.
+The receipt distinguishes those execution inputs from later runner checks.
 
-To repeat that larger experiment, obtain and verify the fixed model image
-through the existing [model preparation](../../INSTALL.md#prepare-the-fixed-model)
-and [numerical reference](../../reference/README.md) procedures. Use the recorded
-initial token and eighteen-step feedback tape in `references/long18.json`;
-regenerate every expected tensor independently, not from RTL output. Bind the
-selected model image, ROMs, all jobs and tensor hashes before running the full
-machine. The required checks are the counts above, the exact token sequence,
-two application CLEAR acknowledgments and no numerical or guard error.
+The [portable full-machine replay](full-machine/README.md) gives clean-checkout
+capture, preparation, build and execution commands. Obtain the model separately
+through [model preparation](../../INSTALL.md#prepare-the-fixed-model), regenerate
+every expected tensor independently, and produce your own terminal and
+verification receipts. The [reference constants](references/long18.json) bind
+the model, ROMs, command tape and original numerical record; the independent
+fixtures monitor RTL results and never drive numerical operands.
 
-The original long-run driver and all 9,126 oracle tensor fixtures are not part of
-this minimal source addition. Its frozen references identify the prior result;
-they are not a clean-checkout replay command for it. A portable full-machine
-18-token driver/fixture release remains a separate packaging task. The short
-command above is fully local and self-contained.
+This is finite local simulation, not a full-context correctness theorem or a
+board measurement. The short command above needs neither a model nor the larger
+replay's compute budget.
 
 ## Recorded matched three-token cost
 
@@ -103,7 +100,8 @@ production prefetch setting and 100:125 MHz core/memory clock recipe:
 These are recorded whole-model simulated cycle counts. The short command above
 tests the store-to-attention boundary and does not rerun this workload. The
 record includes source pins, exact counts and scope; a portable full-model
-driver/fixture package remains separate. These counts are not an FPGA speed,
+driver is available above, but does not repeat these matched short cost cases.
+These counts are not an FPGA speed,
 area or power measurement.
 
 ## Cost and remaining qualification

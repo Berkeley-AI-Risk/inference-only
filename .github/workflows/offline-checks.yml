@@ -107,6 +107,10 @@ jobs:
           python -I -S -B tools/check_qwen_package.py
           python -I -S -B -m unittest discover -s demos/qwen3-1.7b/tools -p 'test_package_checks.py' -v
           python -I -S -B demos/qwen3-8b/tools/check_package.py
+      - name: Test portable protected 1.7B replay controls (no model or RTL execution)
+        run: |
+          python -I -S -B demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/replay.py check-sources
+          python -I -S -B demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/test_replay.py
       - name: Test retained independent helper boundaries
         # Explicit module list avoids importing old-release ZIP dispatchers.
         run: |
