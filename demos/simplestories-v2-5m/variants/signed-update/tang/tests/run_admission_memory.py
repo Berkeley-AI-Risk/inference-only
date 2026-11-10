@@ -52,6 +52,7 @@ def main():
     build=Path(tempfile.mkdtemp(prefix='swic-memory-'))
     sources=[ROOT/'hardware/project/sha.sv',ROOT/'hardware/project/bank.sv',ROOT/'hardware/project/swic/su_sha256.sv',
              ROOT/'hardware/project/swic/su_lms_verify.sv',ROOT/'hardware/project/swic/swic_boot_admission.sv',ROOT/'hardware/project/swic/su_image_check.sv',
+             ROOT/'hardware/project/swic/su_page_table_check.sv',
              ROOT/'hardware/project/swic/swic_verified_memory.sv',ROOT/'hardware/project/swic/su_policy.svh',out/'tb_memory.sv']
     for s in sources:shutil.copyfile(s,build/s.name)
     inputs=sorted(out.glob('frame-*.hex'))+[out/'image.hex',out/'metadata.hex']

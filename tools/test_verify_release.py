@@ -37,6 +37,12 @@ class InventoryTests(unittest.TestCase):
         self.manifest({'alias': self.row})
         with self.assertRaises(ValueError): subject.inventory(self.root)
 
+    def test_unlisted_directory_symlink(self):
+        with tempfile.TemporaryDirectory() as target:
+            (self.root / 'external').symlink_to(target, target_is_directory=True)
+            with self.assertRaisesRegex(ValueError, 'Unlisted'):
+                subject.inventory(self.root, strict=True)
+
     def test_unlisted_strict(self):
         (self.root / 'private.txt').write_text('do not publish')
         with self.assertRaises(ValueError): subject.inventory(self.root, True)

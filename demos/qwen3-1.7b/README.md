@@ -251,5 +251,7 @@ running the tested prebuilt image.
 
 Further optimization targets faster generation without weakening consumed-weight
 authentication or adding general arithmetic commands. **Ten tokens/s remains
-a target, not a measured result.** K/V integrity and weight encryption are
-also future work for this model, not features of the released image.
+a target, not a measured result.** The [protected K/V target](variants/protected-kv-simulation/README.md) exercises
+K/V integrity in RTL simulation. The measured F2 image uses plain K/V.
+Board validation of protected K/V and implementation of weight encryption
+remain future work for Qwen3-1.7B.

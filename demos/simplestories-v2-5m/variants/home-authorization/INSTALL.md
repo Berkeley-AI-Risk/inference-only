@@ -4,15 +4,23 @@ Use the Tang Mega 138K Basic / GW5AST-138C, the enclosing demo's [programming gu
 
 Use Python 3.10+ on the tested macOS host. Set `HOME_DEMO` to this directory's absolute path, `SIGNED_MODEL` to the verified base `.swic` package, and `RUN` to a fresh directory outside the repository. The model weights are the enclosing demo's existing base assets; the package CLI and flash planner are in the signed-update integration. No production key is required or included.
 
-First create a policy for the exact signed model and start the loopback authorization service:
+Set `HOME_SIGNER_STATE` to one durable state file for the fixed public demo authority, separate from changing `RUN` directories. If you have already issued grants, set it to the existing state file from that run and keep using it, including on later launches. Do not select a new filename or copy an older counter to obtain more leaves. If the authoritative state is missing or uncertain, stop rather than initialize another state for the same key.
+
+For the first run of this local demo service, a durable path can be set as follows:
+
+```sh
+HOME_SIGNER_STATE="$HOME/.local/state/inference-only/home-authority-17.json"
+```
+
+Create a policy for the exact signed model and start the loopback authorization service with that persistent path:
 
 ```sh
 python3 -I -B "$HOME_DEMO/tools/setup_policy.py" --package "$SIGNED_MODEL" --policy "$RUN/policy.json"
 python3 -I -B "$HOME_DEMO/reference/home_server.py" --policy "$RUN/policy.json" \
-  --signer-state "$RUN/home-signer-state.json" --port 8765
+  --signer-state "${HOME_SIGNER_STATE:?set the persistent path for this authority}" --port 8765
 ```
 
-Keep the service running. Its policy is read on every request. The deliberately public H5 home key has 32 signing leaves; preserve its signer-state file and never reset it as a way to extend a deployment. This finite public fixture is intended for short tests. A production service would require a suitable private-key scheme, capacity and durable state management.
+Keep the service running. Its policy is read on every request. A genuinely new state file starts at leaf zero; the command cannot determine whether that key was used with a different file. The deliberately public H5 home key has 32 signing leaves, and exhaustion is a refusal, not permission to reset the file. Preserve its identity and state across service restarts, new `RUN` directories and partial failures. This finite public key is a demonstration fixture and provides no deployment-key secrecy. Deployment requires separately provisioned private keys, matching trusted roots in the chip, sufficient signing capacity and durable state management.
 
 In a second terminal, open the UART relay **before** loading the image. `MODEL_ROOT` is the commitment printed by setup; `UART` is the serial device identified by the programming guide:
 

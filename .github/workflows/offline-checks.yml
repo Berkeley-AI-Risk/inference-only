@@ -50,6 +50,8 @@ jobs:
         run: python -I -S -B formal/authentication-access/check_recorded.py
       - name: Check selected S-AWIC repair sources, timing, proofs and board evidence (recorded only)
         run: python -I -S -B tools/check_repaired_sawic.py --output "$RUNNER_TEMP/sawic-repair"
+      - name: Test fresh Tang replay workspace (no compiler or hardware)
+        run: python -I -S -B -m unittest discover -s tools -p 'test_sawic_replay_workspace.py' -v
       - name: Check protected-K/V CLEAR epoch proof and corruption controls (recorded only)
         run: |
           python -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/run.py --recorded-only --out "$RUNNER_TEMP/clear-epoch-recorded" --model demos/simplestories-v2-5m

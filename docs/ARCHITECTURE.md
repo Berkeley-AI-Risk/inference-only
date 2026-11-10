@@ -92,6 +92,10 @@ and trusted on-chip state form part of the root of trust.
 | Qwen3-8B | Fixed weight commitment; private checked HBM page copies | External HBM K/V without integrity protection | [Hardware and source identity](../demos/qwen3-8b/HARDWARE.md), [validation](../demos/qwen3-8b/VALIDATION.md), [formal scope](../demos/qwen3-8b/FORMAL-STATUS.md) |
 | SimpleStories HWIC research | Fixed ROM baseline and separately identified spatial implementations | Private dynamic K/V requiring a physical memory implementation | [Runnable RTL checkpoint](../research/hwic/simplestories-2026-10-27/README.md), [integrated regression](../research/hwic/PROGRESS-2026-11-04.md), [memory and performance assessment](../research/hwic/PROGRESS-2026-11-05-FEASIBILITY.md) |
 
+The separate [Qwen3-1.7B protected K/V simulation](../demos/qwen3-1.7b/variants/protected-kv-simulation/README.md)
+compares the plain and authenticated stores at the attention input and checks how
+each handles a corrupted K or V value. The measured F2 image uses the plain store.
+
 The [combined SimpleStories target](../demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) supplies full-datapath RTL simulation evidence, with an [eleven-case validation record](../demos/simplestories-v2-5m/variants/combined-security-simulation/VALIDATION.json).
 
 The [Qwen3-8B board measurements](../demos/qwen3-8b/measurements.json) provide a measured baseline for the [proposed reusable-die architecture](PROPOSED-REUSABLE-AWIC.md), whose Llama 8B and 405B deployments are proposals.

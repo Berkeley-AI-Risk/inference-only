@@ -9,6 +9,12 @@ chooses the tensor addresses and checks weights fetched from external memory.
 The [FPGA measurements](#the-demonstrated-designs-and-measurements) give
 host-observed generation rates. The [architecture and evidence map](docs/ARCHITECTURE.md)
 connects each implementation to its source, tests and proof obligations.
+The [worked SimpleStories calculation](demos/simplestories-v2-5m/analysis/registered-credits/README.md)
+asks how much arithmetic a person with the chip could use for training. It bounds
+the operations on identified multiplier paths. An attacker's ability to use those
+operations for training remains open. The [scaling proposal](docs/PROPOSED-REUSABLE-AWIC.md)
+shows how identical dies could share a larger model and links to a one-rank and
+two-rank SimpleStories simulation.
 
 Section 4.3 of
 [*The Feasibility of a Hardwired Pause of Frontier AI Training*](https://hardwired-pause.ai) distinguishes two approaches to inference-only hardware.

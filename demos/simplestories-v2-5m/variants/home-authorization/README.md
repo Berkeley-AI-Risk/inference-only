@@ -6,7 +6,7 @@ This Tang Mega design requires model-specific approval from home base at startup
 
 Fresh authorization depends on a fresh challenge. The [nonce freshness boundary](HARDWARE.md#nonce-freshness) explains why the immediate-repeat check does not retain nonce history across reset or an intervening nonce. With forced repeated accepted samples, an identical request can admit an old valid grant. Physical entropy qualification remains open.
 
-The [physical replacement campaign](VALIDATION.md#physical-model-replacement) tests this sequence with the base model and a signed synthetic replacement that changes the final normalization weights. Both produce their reference outputs; the withdrawn base model remains blocked after it is reinstalled and the FPGA is reconfigured.
+The [recorded physical replacement campaign](VALIDATION.md#physical-model-replacement) uses image `cb0f7d60bbed…` with the base model and a signed synthetic replacement that changes the final normalization weights. Both produce their reference outputs; the withdrawn base model remains blocked after it is reinstalled and the FPGA is reconfigured. The selected benchmark image is `92b334d6f160…`; complete physical model replacement on that image remains open.
 
 The update starts a fresh session. The prototype has no automatic remote-update agent, deliberate update delay, update cap or rollback prevention independent of home policy. Deauthorization does not erase external weight memory. Compatible fine-tunes can be admitted under the same fixed architecture.
 

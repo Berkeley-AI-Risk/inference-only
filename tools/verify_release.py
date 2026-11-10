@@ -12,7 +12,7 @@ import stat
 
 MODEL_MANIFEST = 'demos/simplestories-v2-5m/MANIFEST.json'
 ROOT_CONTRACT = 'tools/release-contract.json'
-ROOT_CONTRACT_SHA = 'ccff96f82abfb1d6a55ee581f207586ffa0931494b44ac153b48199469605801'
+ROOT_CONTRACT_SHA = 'ef80ef7db8b4e45f923f1808a5b87eb1aa6347c0f4c7865e22a0c6dda8dc9563'
 
 ASSETS = {'prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs': (42070540,
                                                                  'd271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725'),
@@ -87,7 +87,7 @@ def inventory(package, strict=False):
             raise ValueError('Changed release file: ' + name)
     if strict:
         found = {p.relative_to(package).as_posix() for p in package.rglob('*')
-                 if not p.is_dir() and '.git' not in p.relative_to(package).parts}
+                 if '.git' not in p.relative_to(package).parts and (p.is_symlink() or not p.is_dir())}
         if found != set(manifest['files']) | {'MANIFEST.json'}:
             raise ValueError('Unlisted or missing files in clean release directory')
     return manifest
