@@ -97,6 +97,11 @@ the four separately fetched source files. Their original notices must be
 retained when obtaining them. The downloader checks identity, not permission.
 Python packages, numerical libraries and verification tools are likewise
 installed separately under their own terms.
+The [recorded output-head proof](demos/simplestories-v2-5m/formal/output-head-row12-recorded/README.md)
+separately includes historical Z3 4.14.1 executable bytes as nonexecutable,
+MIT-licensed reference data for hash checks. They are never run as a Linux solver
+or licensed as project code; its [tool notice](demos/simplestories-v2-5m/formal/output-head-row12-recorded/TOOL-NOTICE.md)
+preserves that role and the original MIT terms.
 The openFPGALoader utility used for restoring a complete factory backup is
 also installed separately; no copy of its executable or libraries is bundled.
 

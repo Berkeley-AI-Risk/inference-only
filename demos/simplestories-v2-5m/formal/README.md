@@ -66,6 +66,23 @@ state the stage-entry input boundary, constructive admission histories and
 remaining whole-graph/implementation limits. The qualified source-bound package
 has 554 new selected checks and clean portable reproduction.
 
+The [recorded output-head row-12 replay](output-head-row12-recorded/README.md)
+establishes that the 256 input words saved for output-head row 12 and the exponent
+used by that row come from the same final normalization on the same STEP.
+It assumes the machine follows the saved controller and connected hardware
+design, with the same clocks, resets and fixed settings; the package states all
+six assumptions. The exact frozen native profile is
+`c07076ec5f5f4f27ca8208e502a0274b047552e5c356dc9bddaf03cd5b648b54`.
+After provisioning its two pinned archives at `/proof` on Linux with CPython
+3.12.12, run:
+
+```sh
+python3.12 -I -S -B /proof/replay.py
+```
+
+It checks 16 recorded native results and reconstructs 513 deductions. This is
+recorded-result replay on that profile, not a proof of the public board image.
+
 The [baseline selector WINNER proof](selector-winner/README.md) starts at an
 actual accepted selector START and proves that a healthy WINNER is the least-ID
 maximum of its 4,019 admitted rows, with exact row membership and output hold.
