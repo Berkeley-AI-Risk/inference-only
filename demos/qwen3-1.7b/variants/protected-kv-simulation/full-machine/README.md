@@ -98,7 +98,9 @@ This starts one simulator child, saves stdout, stderr, the actual exit and
 measured duration, and verifies the result. The child's terminal receipt binds
 both log hashes; a later verification rejects either log if it has changed.
 The finite wall-time limit stops
-only this child group if needed. No failure or interruption is retried. An
+only this child group if needed. SIGTERM and SIGINT to the driver also stop the
+owned group and reap the direct child. The interrupted `EXIT.json` retains the
+actual child exit, stop reason and log hashes. No failure or interruption is retried. An
 interrupted run is not a numerical failure or a completed numerical pass.
 `VERIFIED.json` requires child zero without stop/error, empty stderr and all of:
 

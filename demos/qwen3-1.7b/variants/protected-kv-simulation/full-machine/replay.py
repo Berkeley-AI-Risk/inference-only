@@ -290,26 +290,64 @@ def child(argv, cwd, directory, seconds):
                 timeout_seconds=seconds,automatic_retry=False,actual_child_exit=None,stop_reason=None,error=None)
     save(directory/'STARTED.json',record)
     start=time.monotonic(); process=None
+    handlers={}
+
+    def cancel(signum, frame):
+        # Keep signals from throwing out of Popen or cleanup. The wait loop
+        # notices cancellation; repeated requests cannot skip child reaping.
+        name=signal.Signals(signum).name
+        record.setdefault('interrupted_signal',name)
+        record['stop_reason']=record['stop_reason'] or 'parent_signal_'+name
+
     try:
+        for signum in (signal.SIGTERM,signal.SIGINT):
+            handlers[signum]=signal.signal(signum,cancel)
         with (directory/'stdout.log').open('xb') as stdout,(directory/'stderr.log').open('xb') as stderr:
-            process=subprocess.Popen(argv,cwd=cwd,stdout=stdout,stderr=stderr,start_new_session=True,
-                                     env=dict(os.environ,CCACHE_DISABLE='1'))
-            try: record['actual_child_exit']=process.wait(timeout=seconds)
-            except subprocess.TimeoutExpired: record['stop_reason']='process_timeout'
+            if not record['stop_reason']:
+                process=subprocess.Popen(argv,cwd=cwd,stdout=stdout,stderr=stderr,start_new_session=True,
+                                         env=dict(os.environ,CCACHE_DISABLE='1'))
+                record['pid']=process.pid
+                deadline=time.monotonic()+seconds
+                while process.poll() is None and not record['stop_reason']:
+                    remaining=deadline-time.monotonic()
+                    if remaining<=0:
+                        record['stop_reason']='process_timeout'
+                        break
+                    try: process.wait(timeout=min(0.1,remaining))
+                    except subprocess.TimeoutExpired: pass
     except BaseException as error:
         record['error']=repr(error)
         raise
     finally:
-        if process is not None and process.poll() is None:
-            os.killpg(process.pid,signal.SIGTERM)
-            try: process.wait(timeout=10)
-            except subprocess.TimeoutExpired:
-                os.killpg(process.pid,signal.SIGKILL); process.wait()
-            record['actual_child_exit']=process.returncode
-        record.update(elapsed_seconds=time.monotonic()-start,ended_utc=datetime.now(timezone.utc).isoformat())
-        record['stdout']=pin(directory/'stdout.log') if (directory/'stdout.log').is_file() else None
-        record['stderr']=pin(directory/'stderr.log') if (directory/'stderr.log').is_file() else None
-        save(directory/'EXIT.json',record)
+        try:
+            try:
+                if process is not None and process.poll() is None:
+                    try:
+                        need(os.getpgid(process.pid)==process.pid,'Owned child group identity changed')
+                        os.killpg(process.pid,signal.SIGTERM)
+                    except ProcessLookupError: pass
+                    try: process.wait(timeout=10)
+                    except subprocess.TimeoutExpired:
+                        try:
+                            need(os.getpgid(process.pid)==process.pid,'Owned child group identity changed')
+                            os.killpg(process.pid,signal.SIGKILL)
+                        except ProcessLookupError: pass
+                        process.wait()
+            except BaseException as error:
+                record['cleanup_error']=repr(error)
+                record['error']=record['error'] or repr(error)
+                record['stop_reason']=record['stop_reason'] or 'owned_child_cleanup_failed'
+            if process is not None: record['actual_child_exit']=process.returncode
+            record.update(elapsed_seconds=time.monotonic()-start,ended_utc=datetime.now(timezone.utc).isoformat(),
+                          launched=process is not None,
+                          owned_child_reaped=process is not None and process.returncode is not None,
+                          passed=process is not None and process.returncode==0
+                                 and record['stop_reason'] is None and record['error'] is None)
+            record['stdout']=pin(directory/'stdout.log') if (directory/'stdout.log').is_file() else None
+            record['stderr']=pin(directory/'stderr.log') if (directory/'stderr.log').is_file() else None
+            save(directory/'EXIT.json',record)
+        finally:
+            for signum,previous in handlers.items(): signal.signal(signum,previous)
     need(record['actual_child_exit']==0 and record['stop_reason'] is None and record['error'] is None,
          'Child failed/interrupted; see '+str(directory))
     return record

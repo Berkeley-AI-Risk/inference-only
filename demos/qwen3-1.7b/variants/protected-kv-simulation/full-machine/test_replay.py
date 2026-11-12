@@ -1,8 +1,12 @@
 """Finite runner/parser controls, never a full-model numerical test."""
 import importlib.util
 import json
+import os
 from pathlib import Path
+import signal
 import tempfile
+import subprocess
+import time
 import unittest
 from unittest import mock
 import sys
@@ -24,6 +28,128 @@ def synthetic_transcript():
 
 
 class Controls(unittest.TestCase):
+    def test_child_preserves_receipt_fields_and_restores_handlers(self):
+        previous={sig:signal.getsignal(sig) for sig in (signal.SIGTERM,signal.SIGINT)}
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);out=root/'child'
+            argv=[sys.executable,'-I','-S','-B','-c','print("disposable helper")']
+            terminal=r.child(argv,root,out,5)
+            started=r.read(out/'STARTED.json')
+            self.assertEqual(set(started),{'argv','started_utc','timeout_seconds','automatic_retry',
+                                           'actual_child_exit','stop_reason','error'})
+            for key in ('argv','started_utc','timeout_seconds','automatic_retry'):
+                self.assertEqual(terminal[key],started[key])
+            self.assertIsNone(started['actual_child_exit'])
+            self.assertIsNone(started['stop_reason'])
+            self.assertIsNone(started['error'])
+            self.assertEqual(terminal,r.read(out/'EXIT.json'))
+            self.assertEqual(terminal['actual_child_exit'],0)
+            self.assertTrue(terminal['passed'])
+            self.assertTrue(terminal['owned_child_reaped'])
+            self.assertIn('elapsed_seconds',terminal)
+            self.assertIn('ended_utc',terminal)
+            r.check_child_logs(out,terminal)
+        self.assertEqual({sig:signal.getsignal(sig) for sig in previous},previous)
+
+    def test_parent_signals_and_timeout_reap_helper_and_preserve_interrupted_receipt(self):
+        helper='''from pathlib import Path
+import json, os, sys, time
+root=Path(sys.argv[1])
+(root/'ready.tmp').write_text(json.dumps({'pid':os.getpid(),'pgid':os.getpgrp()}))
+(root/'ready.tmp').replace(root/'ready.json')
+deadline=time.monotonic()+5
+while not (root/'release-helper').exists() and time.monotonic()<deadline:
+    time.sleep(0.01)
+if (root/'release-helper').exists():
+    (root/'late-work').write_text('work continued after driver exit')
+'''
+        driver='''import importlib.util, sys
+from pathlib import Path
+spec=importlib.util.spec_from_file_location('full_machine_helper_runner',sys.argv[1])
+r=importlib.util.module_from_spec(spec);spec.loader.exec_module(r)
+root=Path(sys.argv[2])
+r.child([sys.executable,'-I','-S','-B',str(root/'helper.py'),str(root)],
+        root,root/'case',float(sys.argv[3]))
+'''
+        for signum in (signal.SIGTERM,signal.SIGINT,None):
+            with self.subTest(signum=signum),tempfile.TemporaryDirectory() as d:
+                root=Path(d).resolve();(root/'helper.py').write_text(helper)
+                seconds=2 if signum is None else 30
+                process=subprocess.Popen([sys.executable,'-I','-S','-B','-c',driver,
+                                          str(HERE/'replay.py'),str(root),str(seconds)],
+                                         cwd=root,stdout=subprocess.PIPE,stderr=subprocess.PIPE,
+                                         text=True,start_new_session=True)
+                try:
+                    deadline=time.monotonic()+5
+                    while not (root/'ready.json').exists():
+                        if process.poll() is not None:
+                            stdout,stderr=process.communicate()
+                            self.fail('Driver exited before helper admission: '+stdout+stderr)
+                        self.assertLess(time.monotonic(),deadline,'Helper did not reach admission')
+                        time.sleep(0.01)
+                    admitted=r.read(root/'ready.json')
+                    self.assertEqual(admitted['pid'],admitted['pgid'])
+                    if signum is not None:process.send_signal(signum)
+                    stdout,stderr=process.communicate(timeout=6)
+                    self.assertNotEqual(process.returncode,0,stdout+stderr)
+                    self.assertNotEqual(process.returncode,-signal.SIGTERM,'Driver skipped Python cleanup')
+                    # If the old driver left its helper alive, releasing it now
+                    # produces a marker and lets this bounded helper exit itself.
+                    (root/'release-helper').write_text('driver exited')
+                    deadline=time.monotonic()+0.5
+                    while not (root/'late-work').exists() and time.monotonic()<deadline:
+                        time.sleep(0.01)
+                    self.assertFalse((root/'late-work').exists(),'Helper continued after driver exit')
+                    started=r.read(root/'case/STARTED.json');terminal=r.read(root/'case/EXIT.json')
+                    for key in ('argv','started_utc','timeout_seconds','automatic_retry'):
+                        self.assertEqual(terminal[key],started[key])
+                    self.assertIsNone(started['actual_child_exit'])
+                    self.assertIsNone(started['stop_reason'])
+                    self.assertIsNone(started['error'])
+                    self.assertEqual(terminal['pid'],admitted['pid'])
+                    self.assertEqual(terminal['actual_child_exit'],-signal.SIGTERM)
+                    self.assertTrue(terminal['owned_child_reaped'])
+                    self.assertFalse(terminal['passed'])
+                    self.assertFalse(terminal['automatic_retry'])
+                    reason='process_timeout' if signum is None else 'parent_signal_'+signal.Signals(signum).name
+                    self.assertEqual(terminal['stop_reason'],reason)
+                    if signum is not None:
+                        self.assertEqual(terminal['interrupted_signal'],signal.Signals(signum).name)
+                    r.check_child_logs(root/'case',terminal)
+                    self.assertIn('ended_utc',terminal)
+                    self.assertGreater(terminal['elapsed_seconds'],0)
+                    with self.assertRaises(ProcessLookupError):os.kill(admitted['pid'],0)
+                finally:
+                    (root/'release-helper').touch()
+                    if process.poll() is None:process.kill()  # Only this test's unreaped driver.
+                    process.communicate(timeout=6)
+
+    def test_control_only_rebind_preserves_original_build_and_inputs(self):
+        with tempfile.TemporaryDirectory() as d:
+            output=Path(d);(output/'source').mkdir()
+            source='variants/protected-kv-simulation/rtl/qwen_kvp_reader.sv'
+            control='variants/protected-kv-simulation/full-machine/replay.py'
+            data=b'unchanged compiler input\n';(output/'source/qwen_kvp_reader.sv').write_bytes(data)
+            binary=output/'long18-test';binary.write_bytes(b'fixed synthetic build\n')
+            jobs=output/'jobs.txt';jobs.write_bytes(b'unchanged jobs\n')
+            compiler={'qwen_kvp_reader.sv':r.pin(output/'source/qwen_kvp_reader.sv')}
+            previous={source:compiler['qwen_kvp_reader.sv'],control:dict(bytes=1,sha256='1'*64)}
+            current=dict(previous);current[control]=dict(bytes=2,sha256='2'*64)
+            prepared=dict(source_inputs=previous,source_files=compiler,runtime_files={},jobs=r.pin(jobs))
+            (output/'PREPARED.json').write_text(json.dumps(prepared))
+            built=dict(prepared=r.pin(output/'PREPARED.json'),binary=r.pin(binary),compiler_source_files=compiler)
+            (output/'BUILT.json').write_text(json.dumps(built))
+            original={name:(output/name).read_bytes() for name in ('PREPARED.json','BUILT.json','long18-test','jobs.txt')}
+            with mock.patch.object(r,'sources',return_value=current),\
+                 mock.patch.object(r,'staged_sources',return_value={'qwen_kvp_reader.sv':data}):
+                r.rebind_control(output)
+                r.prepared(output)
+            rebound=r.read(output/'CONTROL-REBIND.json')
+            self.assertTrue(rebound['compiler_input_map_unchanged'])
+            self.assertFalse(rebound['old_receipts_rewritten'])
+            self.assertEqual(rebound['changed_control_inputs'],[control])
+            for name,raw in original.items():self.assertEqual((output/name).read_bytes(),raw)
+
     def test_public_inputs(self):
         self.assertGreater(len(r.sources()),100)
     def test_staged_selection(self):
