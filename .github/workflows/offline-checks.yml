@@ -115,6 +115,8 @@ jobs:
         run: |
           python -I -S -B demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/replay.py check-sources
           python -I -S -B demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/test_replay.py
+          python -I -S -B demos/qwen3-1.7b/variants/protected-kv-simulation/prefetch/run.py check-sources
+          python -I -S -B demos/qwen3-1.7b/variants/protected-kv-simulation/prefetch/test_controls.py
       - name: Test retained independent helper boundaries
         # Explicit module list avoids importing old-release ZIP dispatchers.
         run: |

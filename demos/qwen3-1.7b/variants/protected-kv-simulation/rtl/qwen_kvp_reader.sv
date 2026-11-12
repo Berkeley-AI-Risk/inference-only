@@ -75,6 +75,10 @@ module qwen_kvp_reader #(
     reg [4:0] prefix_layer;
     reg [15:0] prefix_positions;
     reg prefetch_enabled;
+    reg follow_valid;
+    reg [4:0] follow_layer;
+    reg [2:0] follow_head;
+    reg [10:0] follow_group;
     reg [4:0] anchor_layer;
     reg [3:0] anchor_node;
     reg [10:0] anchor_group;
@@ -130,6 +134,33 @@ module qwen_kvp_reader #(
 
     wire [11:0] prefetch_group={1'b0,anchor_group}+12'(prefetch_offset);
     wire [15:0] prefetch_position={prefetch_group,4'b0};
+    // PRIVATE EXPERIMENT: same-head V look-ahead; distinct K/V cache bank.
+    // Only the fixed current K anchor and trusted committed-prefix metadata
+    // choose the descriptor. Verification, release and abort/drain stay intact.
+    wire [3:0] paired_node={1'b1,anchor_node[2:0]};
+    wire [CACHE_BITS-1:0] paired_slot=cache_slot(paired_node,anchor_group);
+    wire [19:0] paired_tag={anchor_layer,paired_node,anchor_group};
+    wire paired_eligible=prefetch_enabled && prefix_known
+        && prefix_layer==anchor_layer && !anchor_node[3]
+        && {1'b0,anchor_group,4'b0}<prefix_positions
+        && !cache_pending[paired_slot]
+        && !(cache_valid[paired_slot] && cache_tag[paired_slot]==paired_tag)
+        && !(demand && demand_hit && demand_slot==paired_slot && demand_tag!=paired_tag);
+    // PRIVATE EXPERIMENT: one bounded follow-up for an actually admitted
+    // later K prefetch, inside the original committed-prefix/look-ahead window.
+    // This stores scheduling metadata only; normal lookup/authentication is used.
+    wire [3:0] follow_node={1'b1,follow_head};
+    wire [CACHE_BITS-1:0] follow_slot=cache_slot(follow_node,follow_group);
+    wire [19:0] follow_tag={follow_layer,follow_node,follow_group};
+    wire follow_context=prefetch_enabled && prefix_known && !anchor_node[3]
+        && prefix_layer==follow_layer && anchor_layer==follow_layer
+        && anchor_node[2:0]==follow_head && memory_layer==follow_layer && memory_head==follow_head
+        && follow_group>=anchor_group && {1'b0,follow_group,4'b0}<prefix_positions;
+    wire follow_satisfied=cache_pending[follow_slot]
+        || (cache_valid[follow_slot] && cache_tag[follow_slot]==follow_tag);
+    wire follow_eligible=follow_valid && follow_context && !follow_satisfied
+        && !(demand && demand_hit && demand_slot==follow_slot && demand_tag!=follow_tag);
+    reg candidate_follow,candidate_k_prefetch;
     reg candidate_valid;
     reg [4:0] candidate_layer;
     reg [3:0] candidate_node;
@@ -137,17 +168,25 @@ module qwen_kvp_reader #(
     reg [CACHE_BITS-1:0] candidate_slot;
     reg [19:0] candidate_tag;
     always @* begin
+        candidate_follow=0;candidate_k_prefetch=0;
         candidate_valid=0;candidate_layer=0;candidate_node=0;candidate_group=0;candidate_slot=0;candidate_tag=0;
         if(demand && !demand_hit && !demand_pending && !bad_demand)begin
             candidate_layer=memory_layer;candidate_node=demand_node;candidate_group=demand_group;
             candidate_slot=demand_slot;candidate_tag=demand_tag;candidate_valid=!cache_pending[demand_slot];
-        end else if(prefetch_enabled && prefix_known && prefix_layer==anchor_layer
+        end else if(paired_eligible)begin
+            candidate_layer=anchor_layer;candidate_node=paired_node;candidate_group=anchor_group;
+            candidate_slot=paired_slot;candidate_tag=paired_tag;candidate_valid=1;
+        end else if(follow_eligible)begin
+            candidate_layer=follow_layer;candidate_node=follow_node;candidate_group=follow_group;
+            candidate_slot=follow_slot;candidate_tag=follow_tag;candidate_valid=1;candidate_follow=1;
+        end else if(!follow_valid && prefetch_enabled && prefix_known && prefix_layer==anchor_layer
                 && !prefetch_group[11] && prefetch_position<prefix_positions)begin
             candidate_layer=anchor_layer;candidate_node=anchor_node;candidate_group=prefetch_group[10:0];
             candidate_slot=cache_slot(anchor_node,prefetch_group[10:0]);candidate_tag={anchor_layer,anchor_node,prefetch_group[10:0]};
             candidate_valid=!cache_pending[candidate_slot]
                 && !(cache_valid[candidate_slot] && cache_tag[candidate_slot]==candidate_tag)
                 && !(demand && demand_hit && candidate_slot==demand_slot && candidate_tag!=demand_tag);
+            candidate_k_prefetch=candidate_valid && !anchor_node[3] && prefetch_group>{1'b0,anchor_group};
         end
     end
     wire auth_load_ready,auth_data_ready,auth_valid,auth_present,auth_last,auth_error,auth_busy;
@@ -257,9 +296,16 @@ module qwen_kvp_reader #(
             output_valid<=0;cache_valid<=0;cache_pending<=0;epoch_known<=0;prefix_known<=0;
             epoch<=0;prefix_layer<=0;prefix_positions<=0;prefetch_enabled<=0;
             anchor_layer<=0;anchor_node<=0;anchor_group<=0;prefetch_offset<=0;
+            follow_valid<=0;follow_layer<=0;follow_head<=0;follow_group<=0;
             fetch_state<=IDLE;fetch_layer<=0;fetch_node<=0;fetch_group<=0;fetch_count<=0;fetch_epoch<=0;
             raw_count<=0;fill_count<=0;fill_tag<=0;
         end else begin
+            if(follow_valid && (!follow_context || follow_satisfied))follow_valid<=0;
+            if(reserve && candidate_follow)follow_valid<=0;
+            if(reserve && candidate_k_prefetch)begin
+                follow_valid<=1;follow_layer<=candidate_layer;
+                follow_head<=candidate_node[2:0];follow_group<=candidate_group;
+            end
             if(output_take)output_valid<=0;
             if(demand)begin
                 prefetch_enabled<=1;anchor_layer<=memory_layer;anchor_node<=demand_node;anchor_group<=demand_group;

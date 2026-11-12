@@ -2,9 +2,35 @@
 
 This compile-time simulation variant replaces the plain K/V store with trusted
 on-chip roots and authenticated, retained K/V leaves. The published FPGA image,
-`qwen_verified_machine` default, source inventories and board build remain plain.
+`qwen_verified_machine` default and board build remain plain.
 The separate top is `rtl/qwen_protected_machine.sv`; it has no runtime protection
 switch and keeps the same command and private-memory interfaces.
+
+## Measured scheduling result
+
+The selected reader pairs a V follow-up with an admitted K prefetch and sends it
+through the same authentication and retained-data path. A matched eighteen-STEP
+full-model simulation used **9.2% fewer core cycles**, with all outputs and tensor
+values unchanged:
+
+| Timed interval | Baseline core cycles | Selected reader core cycles |
+| --- | ---: | ---: |
+| First STEP | 13,023,330 | 11,813,058 |
+| Remaining 17 STEPs | 224,717,440 | 204,142,816 |
+| All 18 STEPs | 237,740,770 | 215,955,874 |
+
+The [full-model receipt](references/matched-prefetch-long18-20261111.json) records
+18 matching outputs, 9,126 tensor boundaries, 27,581,184 BF16 comparisons, 504 K/V
+commits and two CLEAR acknowledgments. The timed interval excludes initialization,
+initial CLEAR/APPEND and final CLEAR. These are simulated cycles, not an FPGA
+speed measurement. [Full-machine details and reproduction](full-machine/README.md)
+
+The [component comparison](references/paired-prefetch-20261111.json) covers
+contexts 2, 16, 17 and 33 with two KV heads and two deterministic transport
+profiles. Its 23 simulator jobs include 18 numerical jobs, two five-case fault
+runs and three later-group fault/CLEAR runs. The [portable prefetch package](prefetch/README.md)
+reproduces the baseline, intermediate and selected schedules. These finite cases
+do not qualify arbitrary stalls, near-capacity occupancy or physical HBM timing.
 
 ## Run the short offline regression
 
@@ -48,12 +74,13 @@ external guard must separately require child zero with no stop or error.
 
 ## Source and interface scope
 
-Only the eight K/V modules and separate machine-selection top are added. All
+The protected store uses eight K/V modules and a separate machine-selection top. All
 arithmetic, HardFloat, model authentication, SHA-256 pipeline and transport
 implementations come from the existing public 1.7B design. `SOURCE-INPUTS.json`
 hashes the new files and exact shared public dependencies. The runner checks
 that the protected top differs functionally only in its module name and store
-selection. No existing source inventory or selected clock is replaced.
+selection. The FPGA build inventory and selected clock retain the plain-store
+configuration.
 
 The root owner enforces ordered publication and session epochs. The writer
 authenticates the old page before editing, waits for external write completion,
@@ -65,14 +92,13 @@ of the physical adapter; merely elaborating the machine does not validate them.
 
 ## Eighteen-token full-machine numerical replay
 
-The [portable replay result](references/portable-long18-20261110.json) records
-eighteen feedback-dependent tokens, 504 ordered layer checks, 9,126 tensor
-boundaries, 27,581,184 BF16 comparisons and 504 K/V publications. Positions 15,
-16 and 17 each have 28 publications, crossing the sixteen-position page boundary.
-The simulator exited zero without a guard stop or error after 10,862 seconds.
-The independent CPU oracle was regenerated from the fixed model. The simulation
-used a previously compiled binary with the exact public compiler-input map.
-The receipt distinguishes those execution inputs from later runner checks.
+The [matched replay result](references/matched-prefetch-long18-20261111.json)
+checks the selected reader against the [baseline execution](references/portable-long18-20261110.json).
+All 94 other compiler inputs, the model, numerical oracle, harness and simulated
+clock/transport settings agree. Positions 15, 16 and 17 each have all 28 K/V
+publications, crossing the sixteen-position page boundary. Both simulator
+executions exited zero without a guard stop or error. Their host runtimes are
+recorded separately from simulated STEP cycles.
 
 The [portable full-machine replay](full-machine/README.md) gives clean-checkout
 capture, preparation, build and execution commands. Obtain the model separately
@@ -89,7 +115,8 @@ replay's compute budget.
 ## Recorded matched three-token cost
 
 The [recorded connected-model comparison](references/three-token-cost.json)
-reports three complete tokens with every captured tensor compared, at the same
+is a separate baseline result with its own source pins. It reports three complete
+tokens with every captured tensor compared, at the same
 production prefetch setting and 100:125 MHz core/memory clock recipe:
 
 | Behavioral memory | Protected core clocks | Plain core clocks | Core-clock overhead |

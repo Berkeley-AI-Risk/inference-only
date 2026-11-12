@@ -1,5 +1,6 @@
 """Finite runner/parser controls, never a full-model numerical test."""
 import importlib.util
+import json
 from pathlib import Path
 import tempfile
 import unittest
@@ -53,6 +54,67 @@ class Controls(unittest.TestCase):
                 self.assertFalse(output.exists())
                 extra.unlink()
                 self.assertEqual(set(r.staged_sources()),{'qwen_hbm_cdc_verified_machine.sv','sha256_reference.h'})
+    def test_prefetch_fixtures_excluded_from_full_machine_stage(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);variant=root/'variants/protected-kv-simulation';here=variant/'full-machine'
+            for folder in (root/'hardware/design',variant/'rtl',here/'tests',variant/'tests',
+                           variant/'prefetch/numeric',variant/'prefetch/fault'):
+                folder.mkdir(parents=True,exist_ok=True)
+            wrapper=root/'hardware/design/qwen_hbm_cdc_verified_machine.sv'
+            wrapper.write_bytes(b'    qwen_verified_machine #(\n')
+            helper=variant/'tests/sha256_reference.h';helper.write_bytes(b'pinned helper\n')
+            locked={p.relative_to(root).as_posix():r.pin(p) for p in (wrapper,helper)}
+            # These intentionally unlisted fixtures must not join the full-model
+            # compiler stage merely because they exist under the same variant.
+            for folder in ('numeric','fault'):
+                (variant/'prefetch'/folder/'top.sv').write_bytes(b'module fixture_only; endmodule\n')
+                (variant/'prefetch'/folder/'test.cpp').write_bytes(b'fixture-only test\n')
+            with mock.patch.object(r,'MODEL',root),mock.patch.object(r,'VARIANT',variant),\
+                 mock.patch.object(r,'HERE',here),mock.patch.object(r,'sources',return_value=locked):
+                selected=r.staged_sources()
+            self.assertEqual(set(selected),{'qwen_hbm_cdc_verified_machine.sv','sha256_reference.h'})
+            self.assertNotIn('top.sv',selected)
+            self.assertNotIn('test.cpp',selected)
+    def test_portable_oracle_with_stale_sources_rejected_before_tensors(self):
+        with tempfile.TemporaryDirectory() as d:
+            oracle=Path(d)
+            source='variants/protected-kv-simulation/rtl/qwen_kvp_reader.sv'
+            previous={source:dict(bytes=10,sha256='1'*64)}
+            current={source:dict(bytes=20,sha256='2'*64)}
+            record=dict(schema='qwen-portable-long18-oracle-v1',run_completed=True,
+                        steps=[{} for _ in range(18)],source_inputs=previous,
+                        model_image=dict(bytes=r.IMAGE_BYTES,sha256=r.reference()['model_image_sha256']))
+            (oracle/'FINISHED.json').write_text(json.dumps(record))
+            # No tensor files exist. A stale full-source identity must be refused
+            # before any tensor or historical-receipt pin is consulted.
+            with mock.patch.object(r,'sources',return_value=current),\
+                 mock.patch.object(r,'pin',side_effect=AssertionError('tensor access before source rejection')):
+                with self.assertRaisesRegex(ValueError,'Oracle source identity changed'):
+                    r.verify_oracle(oracle)
+            self.assertEqual(json.loads((oracle/'FINISHED.json').read_text()),record)
+    def test_reader_change_cannot_rebind_an_existing_binary(self):
+        with tempfile.TemporaryDirectory() as d:
+            output=Path(d);(output/'source').mkdir()
+            source='variants/protected-kv-simulation/rtl/qwen_kvp_reader.sv'
+            old_reader=b'old reader compiler input\n'
+            new_reader=b'new reader compiler input\n'
+            path=output/'source/qwen_kvp_reader.sv';path.write_bytes(old_reader)
+            binary=output/'long18-test';binary.write_bytes(b'preserved old binary\n')
+            previous={source:r.pin(path)}
+            prepared=dict(source_inputs=previous,source_files={'qwen_kvp_reader.sv':r.pin(path)})
+            (output/'PREPARED.json').write_text(json.dumps(prepared))
+            built=dict(prepared=r.pin(output/'PREPARED.json'),binary=r.pin(binary),
+                       compiler_source_files=prepared['source_files'])
+            (output/'BUILT.json').write_text(json.dumps(built))
+            replacement=output/'candidate.sv';replacement.write_bytes(new_reader)
+            current={source:r.pin(replacement)}
+            with mock.patch.object(r,'sources',return_value=current),\
+                 mock.patch.object(r,'staged_sources',return_value={'qwen_kvp_reader.sv':new_reader}):
+                with self.assertRaisesRegex(ValueError,'Compiler inputs changed; a new build is required'):
+                    r.rebind_control(output)
+            self.assertFalse((output/'CONTROL-REBIND.json').exists())
+            self.assertEqual(path.read_bytes(),old_reader)
+            self.assertEqual(binary.read_bytes(),b'preserved old binary\n')
     def test_wrong_model_size(self):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d)/'not-a-model';p.write_bytes(b'wrong model')

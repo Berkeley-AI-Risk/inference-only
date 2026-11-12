@@ -1,10 +1,16 @@
 {
   "existing_FPGA_build_and_default_plain_selection_modified": false,
-  "new_RTL": "Eight unchanged protected-store modules plus the separately named protected machine selection",
+  "new_RTL": "Protected-store modules with paired K/V prefetch and a separately named protected machine selection",
   "portable_full_machine_inputs": "full-machine/INPUTS.json",
   "public_base": {
     "commit": "601c6a04c0f4ce1910f8945740f22d7b8d4e9fe1",
     "tree": "8e5bb29f3e6969fe02534ceea206f2d671b78516"
+  },
+  "reader_selection": {
+    "component_inputs": "prefetch/INPUTS.json",
+    "path": "rtl/qwen_kvp_reader.sv",
+    "qualification": "Finite component and 18-token full-machine simulation; no physical timing claim",
+    "sha256": "85eeefec5862ea7d09ed533eb312a09fac9e97900e20942a022b84f69f426847"
   },
   "rights": "Project-owned additions under repository Apache-2.0; reused HardFloat retains BSD notice; no new AWS/vendor/model distribution",
   "shared_public_files": {
@@ -355,12 +361,20 @@
       "sha256": "6e17a1325a834b7063d3b6ad7647cfb926a4781a8afbc7b1d0f56f0e6dfa99fd"
     },
     "README.md": {
-      "bytes": 6927,
-      "sha256": "4741fb1ef4903b22fb5d921259f72b9958800cfa1517702e2c7806abd64bab48"
+      "bytes": 8338,
+      "sha256": "8c9a8b25049a0a72c41e680aaf35f52853a16394eab7a627ecc5588ae7df014b"
     },
     "references/long18.json": {
       "bytes": 21586,
       "sha256": "523ab2c96479d451225bf4dc78d4de24aa8a3c5fb9124263639a98757f140b4b"
+    },
+    "references/matched-prefetch-long18-20261111.json": {
+      "bytes": 9761,
+      "sha256": "df11e8bd5fe6836e52d9f6283f2c557c145d5ea8808b2c895d46a56b5659b667"
+    },
+    "references/paired-prefetch-20261111.json": {
+      "bytes": 56692,
+      "sha256": "4f8e0c7a12b4e25113756ae02c6e535ca62602db452c55ae193bae98583ff200"
     },
     "references/three-token-cost.json": {
       "bytes": 2770,
@@ -387,8 +401,8 @@
       "sha256": "d91ea87ba017ed6564965b87cf7e1c334336cf13f58c10c4d182f67c8198e4f0"
     },
     "rtl/qwen_kvp_reader.sv": {
-      "bytes": 18936,
-      "sha256": "3aa2d9a138e5b6df1902696a9e35d43968195d57abd2287e61cd81f195484d19"
+      "bytes": 22020,
+      "sha256": "85eeefec5862ea7d09ed533eb312a09fac9e97900e20942a022b84f69f426847"
     },
     "rtl/qwen_kvp_store.sv": {
       "bytes": 10121,

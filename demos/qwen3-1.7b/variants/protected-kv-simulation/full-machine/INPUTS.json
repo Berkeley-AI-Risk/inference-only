@@ -429,16 +429,16 @@
       "sha256": "6e17a1325a834b7063d3b6ad7647cfb926a4781a8afbc7b1d0f56f0e6dfa99fd"
     },
     "variants/protected-kv-simulation/README.md": {
-      "bytes": 6927,
-      "sha256": "4741fb1ef4903b22fb5d921259f72b9958800cfa1517702e2c7806abd64bab48"
+      "bytes": 8338,
+      "sha256": "8c9a8b25049a0a72c41e680aaf35f52853a16394eab7a627ecc5588ae7df014b"
     },
     "variants/protected-kv-simulation/SOURCE-INPUTS.json": {
-      "bytes": 16736,
-      "sha256": "0106f1579df0ae339ede915dded274e5539700aba5b9051253c89e33afa3e512"
+      "bytes": 17373,
+      "sha256": "e12f9f3d6dcb1cfaaded9271181ac16db29a3675dd7998d4a5f7c8caacb04d15"
     },
     "variants/protected-kv-simulation/full-machine/README.md": {
-      "bytes": 5931,
-      "sha256": "60c229e65789e79e5da1b9f8a29b53545f0fd819f70c044e0d3724224435290d"
+      "bytes": 7503,
+      "sha256": "dcfff7d6662a3958857cfa90191664588e2900c4ab28253e4ca137c0f358e8a9"
     },
     "variants/protected-kv-simulation/full-machine/TENSOR-TAPE.json": {
       "bytes": 1706,
@@ -449,8 +449,8 @@
       "sha256": "b3a7f01f3b31a41fda632eadf657f47a9940acd7418738d856a7e077f61f5df4"
     },
     "variants/protected-kv-simulation/full-machine/test_replay.py": {
-      "bytes": 7109,
-      "sha256": "af0d3d2be1d19a20b0b162c448163334b23d043dd02e27676dabc6ec24b2c613"
+      "bytes": 11590,
+      "sha256": "03dbeb525dc12dd76bf9e4aa8467b1b0bec830f31401d2741780da9b8509a4a7"
     },
     "variants/protected-kv-simulation/full-machine/tests/kv_hbm_axi_fixture.h": {
       "bytes": 8695,
@@ -497,8 +497,8 @@
       "sha256": "d91ea87ba017ed6564965b87cf7e1c334336cf13f58c10c4d182f67c8198e4f0"
     },
     "variants/protected-kv-simulation/rtl/qwen_kvp_reader.sv": {
-      "bytes": 18936,
-      "sha256": "3aa2d9a138e5b6df1902696a9e35d43968195d57abd2287e61cd81f195484d19"
+      "bytes": 22020,
+      "sha256": "85eeefec5862ea7d09ed533eb312a09fac9e97900e20942a022b84f69f426847"
     },
     "variants/protected-kv-simulation/rtl/qwen_kvp_store.sv": {
       "bytes": 10121,
@@ -534,5 +534,6 @@
     }
   },
   "public_base_commit": "efb18d79a009228c286a46e4d2445c90ac7aa6bc",
-  "schema": "qwen-portable-long18-inputs-v1"
+  "schema": "qwen-portable-long18-inputs-v1",
+  "selected_reader_sha256": "85eeefec5862ea7d09ed533eb312a09fac9e97900e20942a022b84f69f426847"
 }

@@ -6,6 +6,37 @@ and a final CLEAR. It checks every tensor boundary and the actual writer and
 reader traffic across K/V positions 15, 16 and 17. No model weights, generated
 tensors, AWS tools or private engineering paths are included.
 
+## Measured reader comparison
+
+The [matched eighteen-STEP result](../references/matched-prefetch-long18-20261111.json)
+used **9.2% fewer simulated core cycles** with the selected paired-prefetch reader.
+Only `qwen_kvp_reader.sv` differs among the 95 compiler inputs; the model, oracle,
+harness, arithmetic, clock ratio and transport settings agree.
+
+| Timed interval | Baseline | Selected reader |
+| --- | ---: | ---: |
+| First STEP | 13,023,330 | 11,813,058 |
+| Remaining 17 STEPs | 224,717,440 | 204,142,816 |
+| All 18 STEPs | 237,740,770 | 215,955,874 |
+
+| Token position | Baseline STEP cycles | Selected STEP cycles | K/V commits |
+| --- | ---: | ---: | ---: |
+| 15 | 13,247,512 | 12,037,240 | 28 |
+| 16 | 13,074,280 | 11,864,008 | 28 |
+| 17 | 13,253,392 | 12,043,120 | 28 |
+
+All 18 outputs, 9,126 tensor boundaries, 27,581,184 BF16 values, 504 K/V commits
+and both CLEAR acknowledgments match. Every STEP saves 1,210,272 cycles. The
+cycle sum excludes initialization, initial CLEAR/APPEND and final CLEAR; the
+first STEP is included in the total and also reported separately. Initialization
+wall time was not independently timestamped for the baseline. Host process
+runtimes are recorded separately and do not establish hardware throughput.
+
+The [baseline receipt](../references/portable-long18-20261110.json) retains its
+original reader and execution identities. The selected reader's source-bound
+oracle must be prepared against the selected source set; an old source manifest
+cannot be silently reused. The numerical tensor commitments remain unchanged.
+
 ## Prepare the model and independent tensors
 
 First follow the existing [model preparation](../../../INSTALL.md#prepare-the-fixed-model)
@@ -46,8 +77,8 @@ core/memory ratio. Neither staging nor compilation executes token inference.
 ## Run the full simulation
 
 With Verilator and a C++17 compiler installed, allow several hours of local
-simulation time and sufficient memory. The [recorded portable replay](../references/portable-long18-20261110.json)
-took about three hours; duration depends on the host. The
+simulation time and sufficient memory. The [recorded matched replay](../references/matched-prefetch-long18-20261111.json)
+retains both host durations; duration depends on the host. The
 public CPU oracle recommends about 16 GB of available memory. For managed runs,
 use a host resource supervisor appropriate to your machine; the numerical
 simulation has one thread and compilation has one worker. There is no unused-RAM
@@ -98,12 +129,12 @@ are not numerical simulation. The separate short [store-to-attention regression]
 tests corrupt K/V operand handling. This full-machine runner does not inject
 stale or corrupt K/V and must not be cited as such a fault campaign.
 
-The [portable replay receipt](../references/portable-long18-20261110.json) records
-a regenerated CPU oracle and an actual eighteen-token RTL execution. Its binary
-was reused after checking every compiler-input identity. The public runner's
-source-admission checks were reviewed separately; those checks do not constitute
-another numerical execution. The [reference constants](../references/long18.json)
-retain the original numerical record. A new `VERIFIED.json` identifies the actual
+The [matched replay receipt](../references/matched-prefetch-long18-20261111.json)
+records the selected reader's actual eighteen-token execution against the same
+independent tensor oracle used by the [baseline](../references/portable-long18-20261110.json).
+Source-admission and portable runner checks are separate from those numerical
+executions. The [reference constants](../references/long18.json) retain the
+original numerical record. A new `VERIFIED.json` identifies the actual
 binary, source stage, independent oracle and child terminal. Simulation covers
 eighteen positions, not all contexts, and does not qualify physical CDC/reset,
 vendor HBM, FPGA routing/timing, speed or power. Dependency rights remain those

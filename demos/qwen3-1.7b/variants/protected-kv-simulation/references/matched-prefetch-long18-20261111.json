@@ -1,0 +1,324 @@
+{
+  "baseline_binary": {
+    "bytes": 3295400,
+    "sha256": "2675d2a4f717a1a139bd6c5ffa787a602abc735d8f0647c0ed75763703e7bdc7"
+  },
+  "baseline_counts": {
+    "bf16_values": 27581184,
+    "boundary15_commits": 28,
+    "boundary16_commits": 28,
+    "boundary17_commits": 28,
+    "clear_ack_checks": 2,
+    "core_half": 5,
+    "cycles": 237740770,
+    "kv_commits": 504,
+    "layers": 28,
+    "memory_half": 4,
+    "operations": 10152,
+    "phase": 0,
+    "random_transport": 0,
+    "raw_beats": 121374720,
+    "raw_pages": 474120,
+    "tensor_boundaries": 9126,
+    "tokens_generated": 18
+  },
+  "baseline_reader": {
+    "bytes": 18936,
+    "sha256": "3aa2d9a138e5b6df1902696a9e35d43968195d57abd2287e61cd81f195484d19"
+  },
+  "baseline_record": "portable-long18-20261110.json",
+  "candidate_binary": {
+    "bytes": 3294536,
+    "sha256": "421de0cb9c930c8635e5809edf63b16f68028598cd9e2ef9c88a56e2b8ccbfd6"
+  },
+  "candidate_counts": {
+    "bf16_values": 27581184,
+    "boundary15_commits": 28,
+    "boundary16_commits": 28,
+    "boundary17_commits": 28,
+    "clear_ack_checks": 2,
+    "core_half": 5,
+    "cycles": 215955874,
+    "kv_commits": 504,
+    "layers": 28,
+    "memory_half": 4,
+    "operations": 10152,
+    "phase": 0,
+    "random_transport": 0,
+    "raw_beats": 121374720,
+    "raw_pages": 474120,
+    "tensor_boundaries": 9126,
+    "tokens_generated": 18
+  },
+  "candidate_reader": {
+    "bytes": 22020,
+    "sha256": "85eeefec5862ea7d09ed533eb312a09fac9e97900e20942a022b84f69f426847"
+  },
+  "compiler_inputs": {
+    "candidate_source_map_sha256": "dc539f6361af79bc084ce0c55c88acc36b1f43952566d959da85f39bad8dca85",
+    "encoding": "UTF-8 JSON of staged basename to {bytes,sha256}, sorted keys, compact separators",
+    "identical_nonreader_inputs": 94,
+    "only_changed_source": "qwen_kvp_reader.sv",
+    "total": 95
+  },
+  "initial_token": 9707,
+  "measurement_scope": {
+    "dependent_steps": 17,
+    "first_STEP_reported_separately": true,
+    "page_boundary_positions": [
+      15,
+      16,
+      17
+    ],
+    "timed_core_interval": "Sum of 18 STEP intervals; excludes initialization, initial CLEAR/APPEND, final CLEAR",
+    "wall": "Actual guarded direct-simulator wall time, including initialization and final CLEAR; no CPU-oracle regeneration",
+    "warmup_wall_baseline_not_independently_timestamped": true
+  },
+  "native_result": {
+    "actual_child_exit": 0,
+    "error": null,
+    "passed": true,
+    "receipt": {
+      "bytes": 3152,
+      "sha256": "26ba03fd4dd2238c1dcbac2572c18370c4e28e8ea0638d3e0ce0ee9b0c98db04"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout": {
+      "bytes": 46664,
+      "sha256": "ae905ee17ba2169ec4e197d7ec062c7fbd4a3e06b6b7970ad4ada2a2f9d13c3d"
+    },
+    "stop_reason": null
+  },
+  "normalized_extract": true,
+  "original_build_receipt": {
+    "bytes": 4184,
+    "sha256": "b3f180a4edc1bb2b7fe60ea3086290d07f9ee8b2f8758bcd83d98fc8efa21601"
+  },
+  "original_equivalence": {
+    "bytes": 61786,
+    "sha256": "437813bb5afd997970b784a4bd1adb60e569fe106bdc3d3cce0b538e7ed70f9a"
+  },
+  "original_final_review": {
+    "bytes": 20985,
+    "sha256": "0e0318aec4ef4f687048432b952a6f30d63e613b525338362a55c8912483a778"
+  },
+  "original_result": {
+    "bytes": 8589,
+    "sha256": "ad39af8fa50d58dfbccace9928c6d7a1d82aa35d5d1c086574fdd16955ffa18b"
+  },
+  "passed": true,
+  "per_STEP_comparison": [
+    {
+      "baseline_core_cycles": 13023330,
+      "candidate_core_cycles": 11813058,
+      "cycle_reduction_percent": 9.293107062479413,
+      "cycles_saved": 1210272,
+      "output_token": 25,
+      "position": 0
+    },
+    {
+      "baseline_core_cycles": 13202984,
+      "candidate_core_cycles": 11992712,
+      "cycle_reduction_percent": 9.166655053130414,
+      "cycles_saved": 1210272,
+      "output_token": 358,
+      "position": 1
+    },
+    {
+      "baseline_core_cycles": 13207400,
+      "candidate_core_cycles": 11997128,
+      "cycle_reduction_percent": 9.163590108575496,
+      "cycles_saved": 1210272,
+      "output_token": 1184,
+      "position": 2
+    },
+    {
+      "baseline_core_cycles": 13209792,
+      "candidate_core_cycles": 11999520,
+      "cycle_reduction_percent": 9.16193078588974,
+      "cycles_saved": 1210272,
+      "output_token": 311,
+      "position": 3
+    },
+    {
+      "baseline_core_cycles": 13212992,
+      "candidate_core_cycles": 12002720,
+      "cycle_reduction_percent": 9.159711895685701,
+      "cycles_saved": 1210272,
+      "output_token": 1855,
+      "position": 4
+    },
+    {
+      "baseline_core_cycles": 13216808,
+      "candidate_core_cycles": 12006536,
+      "cycle_reduction_percent": 9.157067273732054,
+      "cycles_saved": 1210272,
+      "output_token": 264,
+      "position": 5
+    },
+    {
+      "baseline_core_cycles": 13219424,
+      "candidate_core_cycles": 12009152,
+      "cycle_reduction_percent": 9.155255176019772,
+      "cycles_saved": 1210272,
+      "output_token": 13027,
+      "position": 6
+    },
+    {
+      "baseline_core_cycles": 13223544,
+      "candidate_core_cycles": 12013272,
+      "cycle_reduction_percent": 9.152402714431169,
+      "cycles_saved": 1210272,
+      "output_token": 5316,
+      "position": 7
+    },
+    {
+      "baseline_core_cycles": 13225592,
+      "candidate_core_cycles": 12015320,
+      "cycle_reduction_percent": 9.15098545305193,
+      "cycles_saved": 1210272,
+      "output_token": 429,
+      "position": 8
+    },
+    {
+      "baseline_core_cycles": 13230224,
+      "candidate_core_cycles": 12019952,
+      "cycle_reduction_percent": 9.147781624861379,
+      "cycles_saved": 1210272,
+      "output_token": 646,
+      "position": 9
+    },
+    {
+      "baseline_core_cycles": 13230960,
+      "candidate_core_cycles": 12020688,
+      "cycle_reduction_percent": 9.147272760253225,
+      "cycles_saved": 1210272,
+      "output_token": 1349,
+      "position": 10
+    },
+    {
+      "baseline_core_cycles": 13236304,
+      "candidate_core_cycles": 12026032,
+      "cycle_reduction_percent": 9.14357965788637,
+      "cycles_saved": 1210272,
+      "output_token": 264,
+      "position": 11
+    },
+    {
+      "baseline_core_cycles": 13238856,
+      "candidate_core_cycles": 12028584,
+      "cycle_reduction_percent": 9.14181708751874,
+      "cycles_saved": 1210272,
+      "output_token": 1034,
+      "position": 12
+    },
+    {
+      "baseline_core_cycles": 13241904,
+      "candidate_core_cycles": 12031632,
+      "cycle_reduction_percent": 9.13971283887876,
+      "cycles_saved": 1210272,
+      "output_token": 323,
+      "position": 13
+    },
+    {
+      "baseline_core_cycles": 13245472,
+      "candidate_core_cycles": 12035200,
+      "cycle_reduction_percent": 9.137250828056562,
+      "cycles_saved": 1210272,
+      "output_token": 2550,
+      "position": 14
+    },
+    {
+      "baseline_core_cycles": 13247512,
+      "candidate_core_cycles": 12037240,
+      "cycle_reduction_percent": 9.135843772023003,
+      "cycles_saved": 1210272,
+      "output_token": 279,
+      "position": 15
+    },
+    {
+      "baseline_core_cycles": 13074280,
+      "candidate_core_cycles": 11864008,
+      "cycle_reduction_percent": 9.256892157732587,
+      "cycles_saved": 1210272,
+      "output_token": 2213,
+      "position": 16
+    },
+    {
+      "baseline_core_cycles": 13253392,
+      "candidate_core_cycles": 12043120,
+      "cycle_reduction_percent": 9.131790563502536,
+      "cycles_saved": 1210272,
+      "output_token": 315,
+      "position": 17
+    }
+  ],
+  "public_reproduction_status": {
+    "measured_native_execution": "Original sealed experiment identified by the included receipt and source hashes",
+    "portable_frontend_native_reexecuted_for_publication": false,
+    "public_frontend_qualification": "Separate offline source, fixture, and checker controls; no additional native execution"
+  },
+  "reproduction": "../full-machine/README.md",
+  "reviewed_utc": "2026-11-12T02:45:22.955929+00:00",
+  "schema": "qwen17-matched-prefetch-long18-recorded-result-v1",
+  "scope_limits": [
+    "One deterministic 18-output full-model comparison at the saved simulated core/memory clock ratio.",
+    "The independent tensor oracle, model, jobs, ROMs, harness, arithmetic, transport and compiler settings were unchanged.",
+    "The timed cycle sum excludes initialization, initial CLEAR/APPEND and final CLEAR; first STEP is also reported separately.",
+    "Original initialization wall time was not independently timestamped. Host runtime is not hardware throughput.",
+    "No FPGA timing, board speed, power, area, arbitrary-context or formal qualification."
+  ],
+  "tokens": [
+    25,
+    358,
+    1184,
+    311,
+    1855,
+    264,
+    13027,
+    5316,
+    429,
+    646,
+    1349,
+    264,
+    1034,
+    323,
+    2550,
+    279,
+    2213,
+    315
+  ],
+  "totals": {
+    "baseline": {
+      "all_18_core_cycles": 237740770,
+      "dependent_17_core_cycles": 224717440,
+      "dependent_17_mean_core_cycles": 13218672.94117647,
+      "first_STEP_core_cycles": 13023330,
+      "page_boundary_steps": {
+        "15": 13247512,
+        "16": 13074280,
+        "17": 13253392
+      }
+    },
+    "baseline_direct_simulator_wall_seconds": 10862.03500575,
+    "candidate": {
+      "all_18_core_cycles": 215955874,
+      "dependent_17_core_cycles": 204142816,
+      "dependent_17_mean_core_cycles": 12008400.94117647,
+      "first_STEP_core_cycles": 11813058,
+      "page_boundary_steps": {
+        "15": 12037240,
+        "16": 11864008,
+        "17": 12043120
+      }
+    },
+    "candidate_build_wall_seconds": 60.099160792,
+    "candidate_direct_simulator_wall_seconds": 9034.517057167,
+    "core_cycle_reduction_percent": 9.16329832699709,
+    "core_cycles_saved": 21784896,
+    "wall_is_host_runtime_not_hardware_throughput": true
+  }
+}

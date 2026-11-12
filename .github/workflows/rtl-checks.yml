@@ -61,6 +61,43 @@ jobs:
             ${{ runner.temp }}/qwen17-protected-kv/**/*.json
             ${{ runner.temp }}/qwen17-protected-kv/**/*.log
 
+  qwen17-prefetch:
+    name: Qwen 1.7B paired prefetch component comparison
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Pull the immutable official Verilator image
+        run: |
+          RTL_CI_IMAGE=$(python3 -I -S -B -c 'import json; print(json.load(open("tools/hardware_ci/toolchain.json"))["container"])')
+          docker pull "$RTL_CI_IMAGE"
+          docker image inspect "$RTL_CI_IMAGE" > "$RUNNER_TEMP/prefetch-image.json"
+      - name: Prepare, build and compare the 23 fixed component cases
+        run: |
+          RTL_CI_IMAGE=$(python3 -I -S -B -c 'import json; print(json.load(open("tools/hardware_ci/toolchain.json"))["container"])')
+          for phase in prepare build run; do
+            docker run --rm --network none --cpus 1 --memory 4g \
+              --mount "type=bind,src=$GITHUB_WORKSPACE,dst=/repo,readonly" \
+              --mount "type=bind,src=$RUNNER_TEMP,dst=/out" \
+              --entrypoint python3 "$RTL_CI_IMAGE" -I -S -B \
+              /repo/demos/qwen3-1.7b/variants/protected-kv-simulation/prefetch/run.py \
+              "$phase" --output /out/qwen17-prefetch --max-seconds 3600
+          done
+      - name: Retain paired prefetch commands, logs and receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: qwen17-prefetch-component-receipts
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            ${{ runner.temp }}/prefetch-image.json
+            ${{ runner.temp }}/qwen17-prefetch/**/*.json
+            ${{ runner.temp }}/qwen17-prefetch/**/*.log
+
   combined-simplestories:
     name: Combined SimpleStories model replacement, replay and expiry (simulation)
     runs-on: ubuntu-24.04

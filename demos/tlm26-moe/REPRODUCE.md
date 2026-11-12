@@ -35,19 +35,19 @@ The CPU step regenerates the quantized image, fixed lookup tables, page digests 
 
 ## Expert dispatch replay
 
-The [recorded expert-dispatch result](evidence/expert-dispatch/README.md) checks all 340 launch/first-weight pairs in order. Verify that saved trace without a model, compiler or device:
+The [recorded expert-dispatch result](evidence/expert-dispatch/README.md) checks all 340 launch/first-weight pairs in order. The following command checks that saved trace without a model, compiler or device.
 
 ```sh
 python -B scripts/check_dispatch.py --trace evidence/expert-dispatch/stdout.log --expected evidence/expert-dispatch/expected.json --physical evidence/physical.json
 ```
 
-The copied demo uses the two shared UART sources from the original release checkout. Point `--source-root` at that checkout and check the source pins without a model or compiler:
+The copied demo uses the two shared UART sources from the original release checkout. `--source-root` points to that checkout for the source-pin check.
 
 ```sh
 python -B scripts/reproduce.py dispatch-sources --source-root "$DEMO/../.."
 ```
 
-After the `fetch` and `cpu` steps have generated the copied demo's pinned `build/` model and lookup tables, replay the same two histories into a new output directory:
+After the `fetch` and `cpu` steps have generated the copied demo's pinned `build/` model and lookup tables, the replay writes its results into a new output directory.
 
 ```sh
 python -B scripts/reproduce.py dispatch /tmp/tlm26-expert-dispatch --source-root "$DEMO/../.."
