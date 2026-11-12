@@ -191,10 +191,12 @@ def review_logs(plain_log, protected_log):
                 consumed = [event for event in events if event['scenario'] == scenario and event['event'] == 'operand_handshake']
                 role = scenario - 1
                 if configuration == 'protected':
+                    need(row['target_valid_seen'] is False, 'Affected protected operand asserted valid')
                     need(len(fault) == 1 and fault[0]['auth_error'] and fault[0]['key_valid' if role == 0 else 'value_valid'] is False,
                          'Authentication fault did not block the affected valid signal')
                     need(not any(event['role'] == role for event in consumed), 'Affected protected operand was consumed')
                 else:
+                    need(row['target_valid_seen'] is True, 'Plain mutation control did not observe target valid')
                     need(not fault and any(event['role'] == role and event['changed'] for event in consumed),
                          'Plain mutation did not reach the real attention handshake')
             else:

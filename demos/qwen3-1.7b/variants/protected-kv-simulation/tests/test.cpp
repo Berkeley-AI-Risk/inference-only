@@ -34,7 +34,7 @@ struct Probe {
     uint64_t clear_cycle=0,old_return_cycle=0,reopen_cycle=0,blocked_clear_checks=0;
     bool mutated=false,late_flip_pending=false,delay_next=false,fault_logged=false,published=false;
     bool key_changed=false,value_changed=false,pair_taken=false,last_write_start=false,last_write_word=false,last_write_done=false;
-    bool target_blocked_on_fault=false;
+    bool target_blocked_on_fault=false,target_valid_seen=false;
     std::array<uint16_t,128> used_value{};
     explicit Probe(unsigned s):scenario(s) {
         dut.clk=0;dut.rst_n=0;dut.session_clear=0;dut.pair_clear=1;dut.pair_start=0;dut.pair_out_ready=0;
@@ -136,13 +136,16 @@ struct Probe {
         require(cycle<1000000,"Finite component observation bound");dut.clk=0;dut.eval();drive(update,true);drive(read,false);dut.eval();
         last_write_start=dut.write_start_valid&&dut.write_start_ready;last_write_word=dut.write_valid&&dut.write_ready;
         last_write_done=dut.write_done_valid&&dut.write_done_ready;
+        if((scenario==1&&dut.key_valid)||(scenario==2&&dut.value_valid))target_valid_seen=true;
         if(dut.key_ready&&!dut.key_valid)key_wait++;if(dut.value_ready&&!dut.value_valid)value_wait++;
         if(dut.key_valid&&dut.key_ready)operand(false);if(dut.value_valid&&dut.value_ready)operand(true);
         if((dut.reader_fault_event||dut.authentication_error||dut.store_error)&&!fault_logged) {
             fault_logged=true;fault_cycle=cycle;
+            // A prefetched leaf can fail before attention asks for that role.
+            // Refusal must keep valid low regardless of the consumer's ready.
             target_blocked_on_fault = scenario==1
-                ? (dut.authentication_error && dut.key_ready && !dut.key_valid)
-                : scenario==2 ? (dut.authentication_error && dut.value_ready && !dut.value_valid) : false;
+                ? (dut.authentication_error && !dut.key_valid)
+                : scenario==2 ? (dut.authentication_error && !dut.value_valid) : false;
             std::cout<<"{\"event\":\"fault_edge\",\"scenario\":"<<scenario<<",\"cycle\":"<<cycle
               <<",\"reader_fault\":"<<(dut.reader_fault_event?"true":"false")<<",\"auth_error\":"<<(dut.authentication_error?"true":"false")
               <<",\"store_error\":"<<(dut.store_error?"true":"false")<<",\"key_valid\":"<<(dut.key_valid?"true":"false")
@@ -213,7 +216,7 @@ struct Probe {
         uint64_t target_edges=target?value_edges:key_edges;
         if(scenario==1 || scenario==2) {
             if(protected_build) {
-                require(fault_logged && target_blocked_on_fault && !target_edges && !target_changed,
+                require(fault_logged && target_blocked_on_fault && !target_valid_seen && !target_edges && !target_changed,
                     "Protected mutation was not rejected before the affected operand handshake");
                 require(scenario==1 ? (key_edges==0 && value_edges==0) : (key_edges==1 && value_edges==0),
                     "Protected K/V fault control reached an unexpected consumer boundary");
@@ -226,6 +229,7 @@ struct Probe {
         std::cout<<"{\"event\":\"result\",\"scenario\":"<<scenario<<",\"protected_build\":"<<(protected_build?"true":"false")
           <<",\"outcome\":\""<<outcome<<"\",\"key_edges\":"<<key_edges<<",\"value_edges\":"<<value_edges
           <<",\"changed_key_used\":"<<(key_changed?"true":"false")<<",\"changed_value_used\":"<<(value_changed?"true":"false")
+          <<",\"target_valid_seen\":"<<(target_valid_seen?"true":"false")
           <<",\"key_ready_waits\":"<<key_wait<<",\"value_ready_waits\":"<<value_wait<<",\"fault_cycle\":"<<fault_cycle
           <<",\"actual_writes\":"<<writes<<",\"independent_roots\":"<<roots<<",\"read_headers\":"<<read_headers
           <<",\"read_beats\":"<<read_words<<",\"clear_cycle\":"<<clear_cycle<<",\"old_return_cycle\":"<<old_return_cycle

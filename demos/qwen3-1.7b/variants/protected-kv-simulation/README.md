@@ -67,6 +67,10 @@ case checks retention, not continuous integrity of external memory. CLEAR here
 is the store's internal session signal with a modeled raw adapter, not the
 application CLEAR acknowledgment or an actual CDC/HBM test.
 
+A prefetched leaf can fail authentication before attention raises its ready
+signal. The mutation controls require the affected valid signal to stay low
+throughout the case and record no affected operand handshake.
+
 For an external direct-child resource guard, first use `--build-only`, then run
 one configuration with `--exec plain` or `--exec protected` against that output.
 `--verify-logs PLAIN_LOG PROTECTED_LOG` reviews the guarded transcripts. The
