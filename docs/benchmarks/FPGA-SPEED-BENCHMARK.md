@@ -1,6 +1,6 @@
 # Common FPGA generation speed benchmark
 
-The headline speed comparison uses one input token, 128 generated outputs and two repetitions for every design. The seeded-sampling row uses temperature 1 with a fixed public seed; the other rows use greedy decoding. Its cached rate includes the host control loop and gaps between token replies. The [overview table](../../README.md#the-demonstrated-designs-and-measurements) contains a rate only when both complete trials satisfy this protocol.
+To enter the headline speed comparison, a design must use one input token, 128 generated outputs and two repetitions. The seeded-sampling row uses temperature 1 with a fixed public seed; the other measured rows use greedy decoding. Its cached rate includes the host control loop and gaps between token replies. The [overview table](../../README.md#the-demonstrated-designs-and-measurements) contains a rate only when both complete trials satisfy this protocol.
 
 ## Workload and execution
 
@@ -45,6 +45,14 @@ This excludes inter-command gaps and must be labeled separately. Browser streami
 ## Evidence and checking
 
 [Selection](../../benchmarks/fpga-speed/selection.json) pins the input records and selected image identities. [Computed results](../../benchmarks/fpga-speed/results.json) record trial counts, wall durations, primary rates and command-only diagnostics. A dash in the overview means that a complete paired record is unavailable; individual model guides can report other explicitly labeled validation workloads.
+
+The overview features the K/V-protected SimpleStories F-AWIC. Its expanded
+comparison includes the plain-cache baseline and the other SimpleStories
+configurations, all calculated from their selected archived captures.
+TLM26 appears with a pending common rate. Its [24-output board validation](../../demos/tlm26-moe/VALIDATION.md)
+uses two five-token prompts and a deliberate 20 ms first-return hold; its median
+STEP latency cannot substitute for this benchmark. The selection binds that
+record's image and configured clock without treating it as a complete trial.
 
 From the repository root, using Python's standard library:
 

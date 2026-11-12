@@ -40,7 +40,7 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC**",
+      "label": "Same model, **F-AWIC**, without K/V integrity",
       "prompt_tokens": [
         378
       ],
@@ -49,6 +49,7 @@
     },
     {
       "artifact": "demos/simplestories-v2-5m/prebuilt/kv-protected/project/impl/pnr/shared_product.fs",
+      "attention_cache": "Authenticated in external DDR",
       "cases": [
         "one-token-128-trial1",
         "one-token-128-trial2"
@@ -83,12 +84,28 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "Same model, **F-AWIC with K/V protection**",
+      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC**",
       "prompt_tokens": [
         378
       ],
       "source": "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/FINISHED.json",
       "status": "Runnable release"
+    },
+    {
+      "attention_cache": "Held in on-chip scratch RAM",
+      "cases": [],
+      "format": "pending",
+      "id": "tlm26-moe",
+      "identity": {
+        "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+        "core_clock_mhz": 12.5,
+        "fpga_image_sha256": "87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42"
+      },
+      "label": "**TLM26, top-2-of-8 MoE \u2014 Tang Mega**, **F-AWIC**",
+      "missing": "Two complete one-input-token, 128-output trials with validated-return timestamps and independent reference checks.",
+      "route_source": "demos/tlm26-moe/evidence/route-volatile3.json",
+      "source": "demos/tlm26-moe/evidence/physical.json",
+      "status": "Buildable source and board records"
     },
     {
       "artifact": "demos/simplestories-v2-5m/prebuilt/encrypted-memory/project/impl/pnr/shared_product.fs",
@@ -220,6 +237,7 @@
       "status": "Runnable token-ID demonstration; public demonstration keys"
     },
     {
+      "attention_cache": "External memory, without K/V integrity checks",
       "cases": [
         "trial-1",
         "trial-2"
@@ -261,6 +279,7 @@
       "status": "Runnable release; public AWS FPGA image"
     },
     {
+      "attention_cache": "External memory, without K/V integrity checks",
       "cases": [
         "trial-1",
         "trial-2"
@@ -411,6 +430,14 @@
     "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/reference.json": {
       "bytes": 2273,
       "sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9"
+    },
+    "demos/tlm26-moe/evidence/physical.json": {
+      "bytes": 7864,
+      "sha256": "8a5f5bb3dde06b7ea3b18a2dbff508faf19bb67ba5900dc92b170d986bf5453e"
+    },
+    "demos/tlm26-moe/evidence/route-volatile3.json": {
+      "bytes": 3537,
+      "sha256": "38b652442a35dfb3f2698c93fe5d30f38e35dea4f7ce98ff0ac2c4a3292208b8"
     }
   },
   "timestamp_boundary": "generation_loop_validated_reply"

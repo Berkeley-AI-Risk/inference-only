@@ -87,6 +87,15 @@ class CommonSpeedTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'two complete'):
             bench.pool([self.make_trial()])
 
+    def test_pending_moe_board_latency_cannot_supply_common_trials(self):
+        selection=json.loads((ROOT/bench.SELECTION).read_text())
+        row=copy.deepcopy(next(r for r in selection['rows'] if r['id']=='tlm26-moe'))
+        sources=bench.read_sources(ROOT,selection)
+        self.assertEqual(bench.selected_trials(row,sources,[]),[])
+        row['cases']=['24_generated_steps']
+        with self.assertRaisesRegex(ValueError,'Pending row'):
+            bench.selected_trials(row,sources,[])
+
     def test_longer_prompt_sampling_early_stop_and_teacher_forcing_rejected(self):
         for values in ({'prompt':[1,2]}, {'temperature':1}, {'decoding':'sample'},
                        {'clear_before':False}, {'stop_at_eos':True}, {'feedback_dependent':False}):

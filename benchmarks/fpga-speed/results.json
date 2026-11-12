@@ -3,11 +3,11 @@
   "protocol": "one-token-128-host-v2",
   "timestamp_boundary": "generation_loop_validated_reply",
   "complete_rows": 8,
-  "total_rows": 8,
+  "total_rows": 9,
   "rows": [
     {
       "id": "simplestories-baseline",
-      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC**",
+      "label": "Same model, **F-AWIC**, without K/V integrity",
       "package_status": "Runnable release",
       "identity": {
         "clock_hz": 25000000,
@@ -141,7 +141,7 @@
     },
     {
       "id": "simplestories-kv-protected",
-      "label": "Same model, **F-AWIC with K/V protection**",
+      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC**",
       "package_status": "Runnable release",
       "identity": {
         "clock_hz": 25000000,
@@ -271,7 +271,24 @@
           "clear_before": true,
           "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "Authenticated in external DDR"
+    },
+    {
+      "id": "tlm26-moe",
+      "label": "**TLM26, top-2-of-8 MoE \u2014 Tang Mega**, **F-AWIC**",
+      "package_status": "Buildable source and board records",
+      "identity": {
+        "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+        "core_clock_mhz": 12.5,
+        "fpga_image_sha256": "87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42"
+      },
+      "eligible_trials": 0,
+      "complete": false,
+      "rate": null,
+      "missing": "Two complete one-input-token, 128-output trials with validated-return timestamps and independent reference checks.",
+      "trials": [],
+      "attention_cache": "Held in on-chip scratch RAM"
     },
     {
       "id": "simplestories-encrypted",
@@ -791,7 +808,8 @@
           "clear_before": true,
           "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "External memory, without K/V integrity checks"
     },
     {
       "id": "qwen3-8b",
@@ -919,7 +937,8 @@
           "clear_before": true,
           "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "External memory, without K/V integrity checks"
     }
   ],
   "source_sha256": {
@@ -1030,6 +1049,14 @@
     "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/reference.json": {
       "bytes": 2273,
       "sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9"
+    },
+    "demos/tlm26-moe/evidence/physical.json": {
+      "bytes": 7864,
+      "sha256": "8a5f5bb3dde06b7ea3b18a2dbff508faf19bb67ba5900dc92b170d986bf5453e"
+    },
+    "demos/tlm26-moe/evidence/route-volatile3.json": {
+      "bytes": 3537,
+      "sha256": "38b652442a35dfb3f2698c93fe5d30f38e35dea4f7ce98ff0ac2c4a3292208b8"
     }
   },
   "scope": "Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay."

@@ -1,11 +1,25 @@
 # Inference-only hardware demonstrations and research
 
-These FPGAs run fixed language models behind a restricted token interface.
-SimpleStories-V2-5M and the pretrained TLM26 mixture-of-experts model run on
-a Sipeed Tang Mega 138K board. Qwen3-1.7B and
-Qwen3-8B run on Amazon EC2 F2 FPGA instances. The host
-supplies tokens and requests the next one. The circuit schedules the model,
-chooses the tensor addresses and checks weights fetched from external memory.
+Could a chip run approved language models while sharply limiting the computation
+that someone in physical possession of it could repurpose for training? We
+investigate two chip architectures proposed in [Section 4.3 of
+*The Feasibility of a Hardwired Pause of Frontier AI Training*](https://hardwired-pause.ai/paper).
+
+- **Authenticated-Weight Inference-Only Chips (AWICs)** fix the model architecture and inference circuitry in hardware and authenticate weights loaded from memory under a hardware-enforced approval policy.
+- **Hardwired-Weight Inference-Only Chips (HWICs)** encode both the model architecture and its weights directly in the circuit.
+
+Within the AWIC family, **Fixed-Commitment AWICs (F-AWICs)** accept weights
+matching a model commitment fixed in hardware. **Signed-Update AWICs (S-AWICs)**
+permit new model commitments authorized by signatures from designated
+signing authorities.
+
+The FPGA demonstrations implement AWICs and run four pretrained models.
+SimpleStories-V2-5M and the TLM26 mixture-of-experts model run on a Sipeed
+Tang Mega 138K board. Qwen3-1.7B and Qwen3-8B run on Amazon EC2 F2 FPGA
+instances. The host supplies tokens and requests the next one. The circuit
+chooses tensor addresses, schedules the arithmetic and checks weights fetched
+from external memory. The [preliminary HWIC research](#experimental-hwic-research)
+implements SimpleStories with fixed weights in RTL.
 
 The [FPGA measurements](#the-demonstrated-designs-and-measurements) give
 host-observed generation rates. The [architecture and evidence map](docs/ARCHITECTURE.md)
@@ -17,21 +31,8 @@ operations for training remains open. The [scaling proposal](docs/PROPOSED-REUSA
 shows how identical dies could share a larger model and links to a one-rank and
 two-rank SimpleStories simulation.
 
-Section 4.3 of
-[*The Feasibility of a Hardwired Pause of Frontier AI Training*](https://hardwired-pause.ai) distinguishes two approaches to inference-only hardware.
-
-- **Authenticated-Weight Inference-Only Chips (AWICs)** fix the model architecture and inference circuitry in hardware and authenticate weights loaded from memory under a hardware-enforced approval policy.
-- **Hardwired-Weight Inference-Only Chips (HWICs)** encode both the model architecture and its weights directly in the circuit.
-
-Within the AWIC family, **Fixed-Commitment AWICs (F-AWICs)** accept weights
-matching a model commitment fixed in hardware. **Signed-Update AWICs (S-AWICs)**
-permit new model commitments authorized by signatures from designated
-signing authorities.
-
 <a href="docs/figures/ic-taxonomy.svg?v=9288be431402#gh-light-mode-only"><img src="docs/figures/ic-taxonomy.svg?v=9288be431402#gh-light-mode-only" alt="Inference-only chip (IC) branches to AWIC, HWIC, and other possible types; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
 <a href="docs/figures/ic-taxonomy-dark.svg?v=a01acd3b4838#gh-dark-mode-only"><img src="docs/figures/ic-taxonomy-dark.svg?v=a01acd3b4838#gh-dark-mode-only" alt="Inference-only chip (IC) branches to AWIC, HWIC, and other possible types; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
-
-The FPGA demonstrations are **AWICs**. The [preliminary HWIC research](#experimental-hwic-research) implements a SimpleStories design with fixed weights in RTL.
 
 <a href="docs/figures/inference-only-chips.svg?v=da9a5c6081d3#gh-light-mode-only"><img src="docs/figures/inference-only-chips.svg?v=da9a5c6081d3#gh-light-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs illustrated with a k-of-n signature policy, and HWICs with weights fixed in silicon." width="800"></a>
 <a href="docs/figures/inference-only-chips-dark.svg?v=be1398ecbcc0#gh-dark-mode-only"><img src="docs/figures/inference-only-chips-dark.svg?v=be1398ecbcc0#gh-dark-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs illustrated with a k-of-n signature policy, and HWICs with weights fixed in silicon." width="800"></a>
@@ -68,21 +69,24 @@ in [CURRENT-QUALIFICATION.md](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md
 
 ## The demonstrated designs and measurements
 
-Four pretrained models have FPGA demonstrations of the **Authenticated-Weight Inference-Only Chip (AWIC)**. The table shows the common cached-generation benchmark for the three dense models, using their baseline F-AWICs. Expand the SimpleStories comparison to see how its rate changes with the security and sampling options.
+The four model rows are **F-AWICs**. The SimpleStories row features
+authenticated attention keys and values (K/V). Expand its comparison for the
+other F-AWIC and S-AWIC configurations.
 
 <!-- COMMON-FPGA-SPEED:START -->
-| Model and FPGA | Core clock (MHz) | Cached tokens/s | Release |
-| --- | ---: | ---: | --- |
-| **SimpleStories-V2-5M — Tang Mega**, **F-AWIC** | 25 | 10.0 | Runnable release |
-| **Qwen3-1.7B — AWS F2**, **F-AWIC** | 100 | 9.0 | Runnable release · public AWS FPGA image |
-| **Qwen3-8B — AWS F2**, **F-AWIC** | 100 | 1.1 | Runnable prototype · speed optimization in progress · public AWS FPGA image |
+| Model and FPGA | Core clock (MHz) | Attention keys and values on this image | Common cached tokens/s | Release |
+| --- | ---: | --- | ---: | --- |
+| **SimpleStories-V2-5M — Tang Mega**, **F-AWIC** | 25 | Authenticated in external DDR | 7.0 | Runnable release |
+| **TLM26, top-2-of-8 MoE — Tang Mega**, **F-AWIC** | 12.5 | Held in on-chip scratch RAM | — | Buildable source and board records |
+| **Qwen3-1.7B — AWS F2**, **F-AWIC** | 100 | External memory, without K/V integrity checks | 9.0 | Runnable release · public AWS FPGA image |
+| **Qwen3-8B — AWS F2**, **F-AWIC** | 100 | External memory, without K/V integrity checks | 1.1 | Runnable prototype · speed optimization in progress · public AWS FPGA image |
 
 <details>
 <summary>Additional SimpleStories configurations on Tang Mega</summary>
 
 | SimpleStories configuration | Core clock (MHz) | Cached tokens/s | Release |
 | --- | ---: | ---: | --- |
-| **F-AWIC with K/V protection** | 25 | 7.0 | Runnable release |
+| **F-AWIC**, without K/V integrity | 25 | 10.0 | Runnable release |
 | **F-AWIC with K/V protection + encrypted memory** | 25 | 6.0 | Runnable release · public demonstration keys |
 | **F-AWIC with seeded sampling at temperature 1**, without K/V integrity | 25 | 9.9 | Runnable release |
 | **S-AWIC**, without K/V integrity | 25 | 10.1 | Runnable release · public demonstration keys |
@@ -93,6 +97,21 @@ Four pretrained models have FPGA demonstrations of the **Authenticated-Weight In
 
 The clock column gives each image’s configured inference/core clock. Memory and interface blocks use other clock domains.
 
+TLM26 has a separate [board validation](demos/tlm26-moe/VALIDATION.md) for image
+`87af51485847…` at 12.5 MHz. Two five-token prompts generated twelve tokens
+each; all 24 outputs matched both CPU references. Median STEP round trip was
+**577.636 ms**, including a deliberate 20 ms hold of each token's first DDR
+response for the cancellation test. Its common paired 128-output benchmark
+is pending. The validation record also states the remaining full-image
+setup/hold violations.
+
+SimpleStories generates 10.0 cached tokens/s with a plain external cache and
+6.0 with cache integrity plus encrypted memory on the same common benchmark.
+Both Qwen board images use external K/V without integrity checks. The separate
+[1.7B full-model simulation](demos/qwen3-1.7b/variants/protected-kv-simulation/README.md)
+and [8B component simulation](demos/qwen3-8b/variants/protected-kv-simulation/README.md)
+exercise protected K/V; their results do not describe those board images.
+
 The Qwen3-8B image returns a cached token in 0.89 seconds on average. Its fixed schedule streams 7.57 GB of 8-bit projection weights per token through a bank that accepts up to 256 bytes per core clock. Even with every needed weight ready on time, accepting those weights takes at least 0.30 seconds at the configured 100 MHz. The measured interval also covers fetching and checking weights, attention, other model operations, and returning the token. A matched timing comparison is needed to isolate the cost of weight authentication. [8B arithmetic inventory](demos/qwen3-8b/TRAINING-CAPACITY.md) · [Board timings](demos/qwen3-8b/README.md#additional-validation-workloads)
 
 The encrypted-memory version retains K/V integrity and replay protection and
@@ -100,7 +119,7 @@ also encrypts both weights and K/V; its supplied keys are public demonstration
 keys. Seeded sampling uses the baseline's authenticated weights, without K/V
 integrity or encryption.
 
-The common benchmark uses **one input token, 128 outputs and two repetitions** for every design. The seeded-sampling row uses its stated temperature; the other rows use greedy decoding.
+The reported common rates use **one input token, 128 outputs and two repetitions**. The seeded-sampling row uses its stated temperature; the other measured rows use greedy decoding.
 
 The cached rate is **254 divided by the sum of the two first-to-last reply durations**, measured on the local control host after validated replies return to the generation loop. It includes gaps between replies and excludes the first output. First-STEP latency and command-only timing are separate measurements.
 
@@ -112,17 +131,24 @@ its timing, security and proof limits. Availability does not guarantee every
 workload or independently attest a loaded device. No Tang version has complete
 vendor-DDR timing or physical-security certification.
 
+The dense demonstrations supply ready-to-load FPGA images. TLM26 supplies
+buildable source, reconstruction scripts and board records, with no prebuilt
+FPGA configuration in this release.
+
+### Model guides
+
 - **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** six hardware
   configurations, board selection, browser and token-client workflows, measured
   prompt/decode speeds, source, proofs and reproduction instructions.
+- **[TLM26 MoE / Tang Mega guide](demos/tlm26-moe/README.md):** the pretrained
+  top-2-of-8 model, Tang build and provisioning, board validation, expert-routing
+  simulation and outstanding whole-image timing checks.
 - **[Qwen3-1.7B / AWS F2 guide](demos/qwen3-1.7b/README.md):** the billion-parameter
   hardware result, measured prompt/decode speeds, frozen-model boundary,
   installation, browser app, hardware sources and numerical reference.
 - **[Qwen3-8B / AWS F2 guide](demos/qwen3-8b/README.md):** the eight-billion-parameter
   prototype, measured prompt/decode speeds, installation with a token-ID client,
   hardware sources and numerical reference. A browser app is not yet included.
-
-The separate **[TLM26 MoE / Tang Mega demonstration](demos/tlm26-moe/README.md)** is an F-AWIC running an eight-expert pretrained model, with two experts selected per layer. Its board trial matched all 24 generated tokens over two five-token prompts, refused a changed expert weight and passed an in-flight CLEAR test. Median STEP round trip was **577.636 ms**, including a deliberate 20 ms first-return delay. The [validation record](demos/tlm26-moe/VALIDATION.md) states this workload and the remaining full-image setup/hold violations. This source release supplies reconstruction scripts and recorded evidence. Its latency is reported separately from the common speed table.
 
 <img src="demos/simplestories-v2-5m/fpga.jpeg" alt="The Tang Mega 138K board used for the SimpleStories inference-only demonstration, connected by USB." width="720">
 
@@ -278,7 +304,7 @@ those antecedents from directly reused components.
 
 ## Technical documentation and licenses
 
-Start with the guide for [SimpleStories on Tang Mega](demos/simplestories-v2-5m/README.md), [Qwen3-1.7B on AWS F2](demos/qwen3-1.7b/README.md), or [Qwen3-8B on AWS F2](demos/qwen3-8b/README.md). Each guide links to its implementation, installation and evidence.
+Start with the guide for [SimpleStories on Tang Mega](demos/simplestories-v2-5m/README.md), [TLM26 MoE on Tang Mega](demos/tlm26-moe/README.md), [Qwen3-1.7B on AWS F2](demos/qwen3-1.7b/README.md), or [Qwen3-8B on AWS F2](demos/qwen3-8b/README.md). Each guide links to its implementation, installation and evidence.
 
 ### Analysis
 

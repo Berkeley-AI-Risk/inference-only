@@ -268,6 +268,13 @@ def calculate(root):
         if row.get('artifact'):
             need(manifest['files'][row['artifact']]['sha256'] == row['identity']['fpga_image_sha256'],
                  'Benchmark does not describe the selected published FPGA image')
+        if row['id'] == 'tlm26-moe':
+            physical, route = sources[row['source']], sources[row['route_source']]
+            need(physical['bitstream_sha256'] == route['programming_files']['tlm26.fs']
+                 == row['identity']['fpga_image_sha256']
+                 and physical['source_checkpoint_sha256'] == row['identity']['checkpoint_sha256']
+                 and route['requested_clock_mhz']['semantic'] == row['identity']['core_clock_mhz'],
+                 'TLM26 board image or configured clock differs')
         trials = selected_trials(row, sources, reference['generated_tokens'])
         need(len(trials) <= 2, 'Unexpected repetition count')
         complete = len(trials) == 2
@@ -275,7 +282,8 @@ def calculate(root):
         rows.append({'id': row['id'], 'label': row['label'], 'package_status': row['status'],
                      'identity': row['identity'], 'eligible_trials': len(trials), 'complete': complete,
                      'rate': pool(trials) if complete else None, 'missing': None if complete else row['missing'],
-                     'trials': trials})
+                     'trials': trials,
+                     **({'attention_cache': row['attention_cache']} if 'attention_cache' in row else {})})
     return {'schema': 'fpga-common-speed-results-v1', 'protocol': selection['protocol'],
             'timestamp_boundary': BOUNDARY, 'complete_rows': sum(x['complete'] for x in rows),
             'total_rows': len(rows), 'rows': rows, 'source_sha256': selection['sources'],
@@ -294,18 +302,20 @@ def inference_clock_mhz(row):
 def table(result):
     columns = ' | Core clock (MHz) | Cached tokens/s | Release |'
     divider = '| --- | ---: | ---: | --- |'
-    overview = ['| Model and FPGA' + columns, divider]
+    overview = ['| Model and FPGA | Core clock (MHz) | Attention keys and values on this image | Common cached tokens/s | Release |',
+                '| --- | ---: | --- | ---: | --- |']
     variants = ['| SimpleStories configuration' + columns, divider]
     for row in result['rows']:
         speed = f"{row['rate']['cached_tokens_per_second']:.1f}" if row['complete'] else '—'
         clock = f"{inference_clock_mhz(row):g}"
         label = row['label']
         group = overview
-        if row['id'].startswith('simplestories-') and row['id'] != 'simplestories-baseline':
+        if row['id'].startswith('simplestories-') and row['id'] != 'simplestories-kv-protected':
             label = label.removeprefix('Same model, ')
             group = variants
         status = row['package_status'].replace('; ', ' · ')
-        group.append(f'| {label} | {clock} | {speed} | {status} |')
+        cache = ' | ' + row['attention_cache'] if group is overview else ''
+        group.append(f'| {label} | {clock}{cache} | {speed} | {status} |')
     return '\n'.join([
         *overview, '', '<details>', '<summary>Additional SimpleStories configurations on Tang Mega</summary>',
         '', *variants, '', '</details>',
