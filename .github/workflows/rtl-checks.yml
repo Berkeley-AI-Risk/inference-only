@@ -64,7 +64,8 @@ jobs:
   qwen17-prefetch:
     name: Qwen 1.7B paired prefetch component comparison
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    # The local builds and simulations took 45.6 minutes before hosted overhead.
+    timeout-minutes: 180
     steps:
       - name: Check out reviewed source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

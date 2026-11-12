@@ -6,9 +6,13 @@ if sys.version_info < (3, 9):
     raise RuntimeError('The prefetch controls require Python 3.9 or newer')
 import copy
 import importlib.util
+import json
+import os
 from pathlib import Path
+import signal
 import tempfile
 import subprocess
+import time
 import types
 import unittest
 from unittest import mock
@@ -20,6 +24,106 @@ spec.loader.exec_module(r)
 
 
 class Controls(unittest.TestCase):
+    def test_child_success_restores_signal_handlers(self):
+        previous = {sig: signal.getsignal(sig) for sig in (signal.SIGTERM, signal.SIGINT)}
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            result = r.child([sys.executable, '-I', '-S', '-B', '-c', 'print("disposable helper")'],
+                             root, root/'case', 5)
+            self.assertTrue(result['passed'])
+            self.assertEqual(result['actual_child_exit'], 0)
+            self.assertTrue(result['owned_child_reaped'])
+            self.assertEqual(result, r.read(root/'case/EXIT.json'))
+            self.assertEqual((root/'case/stdout.log').read_text(), 'disposable helper\n')
+        self.assertEqual({sig: signal.getsignal(sig) for sig in previous}, previous)
+
+    def test_parent_signals_and_timeout_stop_reap_and_record_owned_helper(self):
+        helper = '''from pathlib import Path
+import json, os, sys, time
+root = Path(sys.argv[1])
+(root/'ready.tmp').write_text(json.dumps({'pid': os.getpid(), 'pgid': os.getpgrp()}))
+(root/'ready.tmp').replace(root/'ready.json')
+deadline = time.monotonic() + 5
+while not (root/'release-helper').exists() and time.monotonic() < deadline:
+    time.sleep(0.01)
+if (root/'release-helper').exists():
+    (root/'late-work').write_text('work continued after driver exit')
+'''
+        driver = '''import importlib.util, sys
+from pathlib import Path
+spec = importlib.util.spec_from_file_location('cancellation_helper_runner', sys.argv[1])
+r = importlib.util.module_from_spec(spec); spec.loader.exec_module(r)
+root = Path(sys.argv[2])
+r.child([sys.executable, '-I', '-S', '-B', str(root/'helper.py'), str(root)],
+        root, root/'case', float(sys.argv[3]))
+'''
+        for signum in (signal.SIGTERM, signal.SIGINT, None):
+            with self.subTest(signum=signum), tempfile.TemporaryDirectory() as temp:
+                root = Path(temp).resolve()
+                (root/'helper.py').write_text(helper)
+                seconds = 2 if signum is None else 30
+                process = subprocess.Popen([sys.executable, '-I', '-S', '-B', '-c', driver,
+                                            str(HERE/'run.py'), str(root), str(seconds)],
+                                           cwd=root, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                           text=True, start_new_session=True)
+                try:
+                    deadline = time.monotonic() + 5
+                    while not (root/'ready.json').exists():
+                        if process.poll() is not None:
+                            stdout, stderr = process.communicate()
+                            self.fail('Driver exited before helper admission: '+stdout+stderr)
+                        self.assertLess(time.monotonic(), deadline, 'Helper did not reach admission')
+                        time.sleep(0.01)
+                    admitted = r.read(root/'ready.json')
+                    self.assertEqual(admitted['pid'], admitted['pgid'])
+                    if signum is not None:
+                        process.send_signal(signum)
+                    stdout, stderr = process.communicate(timeout=6)
+                    self.assertNotEqual(process.returncode, 0, stdout+stderr)
+                    self.assertNotEqual(process.returncode, -signal.SIGTERM, 'Driver skipped Python cleanup')
+                    # An orphan from the old behavior would now perform work and
+                    # exit by itself. This bounded helper never waits indefinitely.
+                    (root/'release-helper').write_text('driver has exited')
+                    deadline = time.monotonic() + 0.5
+                    while not (root/'late-work').exists() and time.monotonic() < deadline:
+                        time.sleep(0.01)
+                    self.assertFalse((root/'late-work').exists(), 'Owned helper continued after driver exit')
+                    result = r.read(root/'case/EXIT.json')
+                    self.assertEqual(result['pid'], admitted['pid'])
+                    self.assertEqual(result['actual_child_exit'], -signal.SIGTERM)
+                    self.assertTrue(result['owned_child_reaped'])
+                    self.assertFalse(result['passed'])
+                    self.assertFalse(result['automatic_retry'])
+                    reason = 'finite_wall_time_limit' if signum is None else 'parent_signal_'+signal.Signals(signum).name
+                    self.assertEqual(result['stop_reason'], reason)
+                    if signum is not None:
+                        self.assertEqual(result['interrupted_signal'], signal.Signals(signum).name)
+                    for leaf in ('stdout', 'stderr'):
+                        self.assertEqual(result[leaf], r.identity(root/'case'/(leaf+'.log')))
+                    with self.assertRaises(ProcessLookupError):
+                        os.kill(admitted['pid'], 0)
+                finally:
+                    (root/'release-helper').touch()
+                    if process.poll() is None:
+                        process.kill()  # Only this test's unreaped driver.
+                    process.communicate(timeout=6)
+
+    def test_external_exec_keeps_supervisor_signal_ownership(self):
+        with tempfile.TemporaryDirectory() as temp:
+            output = Path(temp).resolve()
+            case = r.JOBS[0]
+            argv = ['/portable/case-binary', '+STALLS=0', '+WORKLOAD=0']
+            with mock.patch.object(r.sys, 'argv', ['run.py', 'exec', '--output', str(output), '--case', case[0]]), \
+                 mock.patch.object(r, 'check_sources', return_value={}), \
+                 mock.patch.object(r, 'invocation', return_value=argv), \
+                 mock.patch.object(r.os, 'chdir') as chdir, \
+                 mock.patch.object(r.os, 'execv') as execute, \
+                 mock.patch.object(r.signal, 'signal', side_effect=AssertionError('external guard owns signals')):
+                r.main()
+            chdir.assert_called_once_with(output/case[1])
+            execute.assert_called_once_with(argv[0], argv)
+            self.assertEqual(list(output.iterdir()), [])
+
     def test_prepare_refuses_output_under_repository(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

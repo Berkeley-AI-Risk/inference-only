@@ -38,6 +38,8 @@ temporary directory; exact source copies and their identities remain in the
 caller-selected output. Each child gets a finite wall limit, an actual terminal
 receipt and separate stdout/stderr. A failed, stopped or interrupted attempt
 must be retained; there is no automatic retry or continuation after failure.
+SIGTERM or SIGINT to the Python driver stops its owned process group and reaps
+the direct child. `EXIT.json` records that child's actual exit and interruption.
 For managed machines, use the site's resource admission policy before building
 or running; the portable runner itself is not a host memory watchdog.
 

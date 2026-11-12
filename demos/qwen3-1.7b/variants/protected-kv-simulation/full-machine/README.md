@@ -33,7 +33,12 @@ wall time was not independently timestamped for the baseline. Host process
 runtimes are recorded separately and do not establish hardware throughput.
 
 The [baseline receipt](../references/portable-long18-20261110.json) retains its
-original reader and execution identities. The selected reader's source-bound
+original reader and execution identities. The [baseline replay instructions at
+commit 9b3078d](https://github.com/Berkeley-AI-Risk/inference-only/blob/9b3078dbb1dd75445f9b7a84344727cfce0cda15/demos/qwen3-1.7b/variants/protected-kv-simulation/full-machine/README.md)
+use that reader and its original source pins. Run those commands from a checkout
+of that commit with fresh oracle and run directories. The table above reports
+the saved matched executions; a new run produces its own receipts.
+The selected reader's source-bound
 oracle must be prepared against the selected source set; an old source manifest
 cannot be silently reused. The numerical tensor commitments remain unchanged.
 

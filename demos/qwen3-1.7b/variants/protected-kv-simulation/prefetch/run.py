@@ -142,31 +142,77 @@ def child(argv, cwd, folder, seconds):
                    started_utc=datetime.now(timezone.utc).isoformat(),
                    actual_child_exit=None, error=None, stop_reason=None)
     process = None
+    handlers = {}
+
+    def cancel(signum, frame):
+        # Record cancellation without throwing out of Popen or cleanup. Polling
+        # below notices the request, and repeated signals cannot skip reaping.
+        name = signal.Signals(signum).name
+        receipt.setdefault('interrupted_signal', name)
+        receipt['stop_reason'] = receipt['stop_reason'] or 'parent_signal_' + name
+
     try:
+        for signum in (signal.SIGTERM, signal.SIGINT):
+            handlers[signum] = signal.signal(signum, cancel)
         with (folder / 'stdout.log').open('xb') as stdout, (folder / 'stderr.log').open('xb') as stderr:
-            process = subprocess.Popen(argv, cwd=cwd, stdin=subprocess.DEVNULL,
-                                       stdout=stdout, stderr=stderr, start_new_session=True)
-            receipt['pid'] = process.pid
-            try:
-                receipt['actual_child_exit'] = process.wait(timeout=seconds)
-            except subprocess.TimeoutExpired:
-                receipt['stop_reason'] = 'finite_wall_time_limit'
+            if not receipt['stop_reason']:
+                process = subprocess.Popen(argv, cwd=cwd, stdin=subprocess.DEVNULL,
+                                           stdout=stdout, stderr=stderr, start_new_session=True)
+                receipt['pid'] = process.pid
+                deadline = time.monotonic() + seconds
+                while process.poll() is None and not receipt['stop_reason']:
+                    remaining = deadline - time.monotonic()
+                    if remaining <= 0:
+                        receipt['stop_reason'] = 'finite_wall_time_limit'
+                        break
+                    try:
+                        process.wait(timeout=min(0.1, remaining))
+                    except subprocess.TimeoutExpired:
+                        pass
     except BaseException as error:
         receipt['error'] = repr(error)
         raise
     finally:
-        if process is not None and process.poll() is None:
-            os.killpg(process.pid, signal.SIGTERM)
+        # Popen owns this unreaped child. Never select a process by name or
+        # signal a group that differs from its start_new_session identity.
+        # These handlers are local to child(); external exec keeps its guard's
+        # signal ownership.
+        try:
             try:
-                process.wait(timeout=3)
-            except subprocess.TimeoutExpired:
-                os.killpg(process.pid, signal.SIGKILL)
-                process.wait()
-        if process is not None:
-            receipt['actual_child_exit'] = process.returncode
-        receipt.update(elapsed_seconds=time.monotonic()-start,
-                       stdout=identity(folder / 'stdout.log'), stderr=identity(folder / 'stderr.log'))
-        save(folder / 'EXIT.json', receipt)
+                if process is not None and process.poll() is None:
+                    try:
+                        need(os.getpgid(process.pid) == process.pid, 'Owned child group identity changed')
+                        os.killpg(process.pid, signal.SIGTERM)
+                    except ProcessLookupError:
+                        pass  # It exited between observation and the signal.
+                    try:
+                        process.wait(timeout=3)
+                    except subprocess.TimeoutExpired:
+                        try:
+                            need(os.getpgid(process.pid) == process.pid, 'Owned child group identity changed')
+                            os.killpg(process.pid, signal.SIGKILL)
+                        except ProcessLookupError:
+                            pass
+                        process.wait()
+            except BaseException as error:
+                receipt['cleanup_error'] = repr(error)
+                receipt['error'] = receipt['error'] or repr(error)
+                receipt['stop_reason'] = receipt['stop_reason'] or 'owned_child_cleanup_failed'
+            if process is not None:
+                receipt['actual_child_exit'] = process.returncode
+            receipt.update(elapsed_seconds=time.monotonic()-start,
+                           launched=process is not None,
+                           owned_child_reaped=process is not None and process.returncode is not None,
+                           passed=process is not None and process.returncode == 0
+                                  and not receipt['error'] and not receipt['stop_reason'])
+            for leaf in ('stdout', 'stderr'):
+                path = folder / (leaf + '.log')
+                if path.is_file():
+                    receipt[leaf] = identity(path)
+            save(folder / 'EXIT.json', receipt)
+        finally:
+            for signum, previous in handlers.items():
+                signal.signal(signum, previous)
     need(receipt['actual_child_exit'] == 0 and not receipt['error'] and not receipt['stop_reason'],
          'Native child failed/stopped; preserve evidence and do not retry: ' + str(folder))
     return receipt
