@@ -1,7 +1,7 @@
 """Acquire only pinned small inputs and run each private or released replay stage."""
 if not __debug__:
     raise SystemExit('Assertion checks are required; run without -O or -OO. No verification performed.')
-import argparse,hashlib,json,os,shutil,subprocess,sys,tempfile,urllib.request
+import argparse,hashlib,importlib.util,json,os,shutil,subprocess,sys,tempfile,urllib.request
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 PINS=json.loads((ROOT/'metadata/pins.json').read_bytes())
@@ -53,9 +53,116 @@ def stage(directory):
     for n,h in PINS['all_native_input_hashes'].items():
         assert sha(directory/n)==h,n
     print('Exact build inputs verified in',directory)
+
+def dispatch_sources(source_root=None):
+    """Check the public sources for the recorded observer, without running tools."""
+    bindings=json.loads((ROOT/'evidence/expert-dispatch/source-bindings.json').read_bytes())
+    found={}
+    for name,expected in bindings['sources'].items():
+        relative=Path(name)
+        if relative.is_absolute() or '..' in relative.parts:
+            raise ValueError('unsafe dispatch source path '+name)
+        prefix='demos/tlm26-moe/'
+        candidates=([ROOT/name[len(prefix):]] if name.startswith(prefix) else
+                    ([source_root/name] if source_root is not None else [])+[parent/name for parent in ROOT.parents])
+        source=next((p for p in candidates if p.is_file()),None)
+        if source is None:
+            raise ValueError('dispatch source missing; use the complete release checkout: '+name)
+        if {'bytes':source.stat().st_size,'sha256':sha(source)}!=expected:
+            raise ValueError('dispatch source changed: '+name)
+        if source.name in found:
+            raise ValueError('duplicate staged dispatch source '+source.name)
+        found[source.name]=source
+    if len(found)!=12:
+        raise ValueError('expected twelve bound dispatch sources')
+    stimulus=bindings['stimulus']
+    command=ROOT/'tests/dispatch_commands.txt'
+    if {'bytes':command.stat().st_size,'sha256':sha(command)}!={k:stimulus[k] for k in ('bytes','sha256')}:
+        raise ValueError('dispatch commands changed')
+    expected=bindings['expected']
+    reference=ROOT/'evidence/expert-dispatch/expected.json'
+    if {'bytes':reference.stat().st_size,'sha256':sha(reference)}!={k:expected[k] for k in ('bytes','sha256')}:
+        raise ValueError('dispatch reference changed')
+    return bindings,found
+
+def dispatch(directory,prepare_only=False,source_root=None):
+    """Stage one observer replay in a fresh directory; never overwrite a result."""
+    directory=directory.resolve()
+    if directory.exists() or directory.is_relative_to(ROOT):
+        raise ValueError('dispatch requires a fresh output directory outside the demo')
+    for parent in ROOT.parents:
+        if (parent/'tools/verify_release.py').is_file() and directory.is_relative_to(parent):
+            raise ValueError('dispatch output must be outside the release checkout')
+    bindings,sources=dispatch_sources(source_root)
+    def check_runtime():
+        for name,expected in bindings['runtime_files'].items():
+            source=ROOT/'build'/name
+            if not source.is_file() or {'bytes':source.stat().st_size,'sha256':sha(source)}!=expected:
+                raise ValueError('missing or changed build/'+name+'; run the documented CPU preparation first')
+    check_runtime()
+    if not prepare_only:
+        spec=importlib.util.spec_from_file_location('dispatch_checker',ROOT/'scripts/check_dispatch.py')
+        checker=importlib.util.module_from_spec(spec);spec.loader.exec_module(checker)
+    compiler=shutil.which('verilator')
+    if compiler is None:
+        raise ValueError('verilator must be on PATH')
+    directory.mkdir(parents=True,exist_ok=False)
+    staged=directory/'source';staged.mkdir()
+    source_pins={Path(name).name:value for name,value in bindings['sources'].items()}
+    for name,source in sources.items():
+        shutil.copyfile(source,staged/name)
+        if {'bytes':(staged/name).stat().st_size,'sha256':sha(staged/name)}!=source_pins[name]:
+            raise ValueError('source changed during staging: '+name)
+    command=directory/'commands.txt';shutil.copyfile(ROOT/'tests/dispatch_commands.txt',command)
+    if {'bytes':command.stat().st_size,'sha256':sha(command)}!={k:bindings['stimulus'][k] for k in ('bytes','sha256')}:
+        raise ValueError('dispatch commands changed during staging')
+    argv=[compiler,'-Wno-fatal','--cc','--exe','--build','-j','2','-CFLAGS',
+          '-DBOOT_TEST -std=c++20 -O2','--top-module','boot_product',
+          *sorted(name for name in sources if name.endswith('.sv')),'product_sim.cpp']
+    plan={'schema':'tlm26-dispatch-replay-plan-v1','build_argv':argv,'build_cwd':str(staged),
+          'runtime_cwd':str(ROOT/'build'),'binary':str(staged/'obj_dir/Vboot_product'),
+          'stdin':str(command),'source_bindings_sha256':sha(ROOT/'evidence/expert-dispatch/source-bindings.json'),
+          'environment_remove':['BAD_BOOT_PAGE'],'source_sha256':{n:sha(staged/n) for n in sorted(sources)},
+          'runtime_files':bindings['runtime_files'],'prepare_only':prepare_only}
+    (directory/'PLAN.json').write_text(json.dumps(plan,indent=2,sort_keys=True)+'\n')
+    if prepare_only:
+        print(json.dumps({'prepared':True,'native_execution':False,'plan':str(directory/'PLAN.json')}))
+        return
+    def run_phase(label,args,cwd,stdin=None,env=None):
+        with (directory/(label+'.stdout.log')).open('xb') as stdout,(directory/(label+'.stderr.log')).open('xb') as stderr:
+            result=subprocess.run(args,cwd=cwd,stdin=stdin if stdin is not None else subprocess.DEVNULL,
+                                  stdout=stdout,stderr=stderr,env=env,check=False)
+        (directory/(label+'.exit.json')).write_text(json.dumps({'argv':[str(x) for x in args],
+            'cwd':str(cwd),'actual_exit':result.returncode},indent=2)+'\n')
+        if result.returncode:
+            raise RuntimeError(label+' failed; preserve this directory and inspect its logs')
+    run_phase('compile',argv,staged)
+    binary=staged/'obj_dir/Vboot_product'
+    env=os.environ.copy();env.pop('BAD_BOOT_PAGE',None)
+    check_runtime()
+    with command.open('rb') as stdin:run_phase('native',[binary],ROOT/'build',stdin,env)
+    if (directory/'native.stderr.log').read_bytes():
+        raise ValueError('unexpected native stderr; preserve the replay logs')
+    # Import only the release checker. No CPU oracle or original private runner.
+    result=checker.check((directory/'native.stdout.log').read_text(),
+        json.loads((ROOT/'evidence/expert-dispatch/expected.json').read_bytes()),
+        json.loads((ROOT/'evidence/physical.json').read_bytes()))
+    result.update(binary_sha256=sha(binary),stdout_sha256=sha(directory/'native.stdout.log'),
+                  source_bindings_sha256=plan['source_bindings_sha256'],actual_native_exit=0)
+    (directory/'RESULT.json').write_text(json.dumps(result,indent=2,sort_keys=True)+'\n')
+    print(json.dumps(result,indent=2,sort_keys=True))
+
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('action',choices=['fetch','cpu','rtl','stage']);p.add_argument('destination',nargs='?',type=Path);a=p.parse_args()
-    if a.action=='stage':
-        if not a.destination:p.error('stage requires an empty destination path')
-        stage(a.destination)
+    p=argparse.ArgumentParser();p.add_argument('action',choices=['fetch','cpu','rtl','stage','dispatch','dispatch-sources']);p.add_argument('destination',nargs='?',type=Path)
+    p.add_argument('--prepare-only',action='store_true',help='stage dispatch sources and plan without compiling or simulating')
+    p.add_argument('--source-root',type=Path,help='complete release checkout containing the shared UART sources')
+    a=p.parse_args()
+    if a.prepare_only and a.action!='dispatch':p.error('--prepare-only is for dispatch')
+    if a.source_root and a.action not in ('dispatch','dispatch-sources'):p.error('--source-root is for dispatch sources')
+    if a.action in ('stage','dispatch'):
+        if not a.destination:p.error(a.action+' requires an empty destination path')
+        if a.action=='stage':stage(a.destination)
+        else:dispatch(a.destination,a.prepare_only,a.source_root)
+    elif a.action=='dispatch-sources':
+        bindings,sources=dispatch_sources(a.source_root);print(json.dumps({'passed':True,'sources_checked':len(sources),'native_execution':False}))
     else:{'fetch':upstream,'cpu':cpu,'rtl':rtl}[a.action]()

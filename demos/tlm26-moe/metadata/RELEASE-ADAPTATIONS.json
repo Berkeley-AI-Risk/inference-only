@@ -23,8 +23,8 @@
     },
     "scripts/reproduce.py": {
       "original_sha256": "4f929c01616e112b4564d6868203c894d007a938b3381b88dc5b406b60de9eb6",
-      "release_sha256": "e8b47a19199cd9f5bb18d3a5a0b459675d8aa3d43ee7efd7c82f9d4360aca14b",
-      "change": "Refuse -O/-OO before imports or verification; all original AST statements unchanged"
+      "release_sha256": "29c3b339b3a81ea2531be875411fc40db8e746b9933677d2468a39fb7223fdce",
+      "change": "Refuse -O/-OO before imports or verification; add source-pinned observer dispatch staging and replay with explicit fresh outputs. Existing fetch, CPU, serial-boot and board-staging actions retain their implementations."
     },
     "scripts/verify_board_receipt.py": {
       "original_sha256": "f851ee7072f68b1449fb761f6527dce3c995cc17062bbb705c116d0e2feb58ee",
@@ -33,5 +33,5 @@
     }
   },
   "RTL_board_constraints_and_archived_receipts_changed": false,
-  "archived_clean_replay_scope": "The source hashes in evidence/clean-replay.json describe the original handoff scripts. These release additions only reject optimized execution; the remaining script AST is unchanged."
+  "archived_clean_replay_scope": "The source hashes in evidence/clean-replay.json identify the original replay. Published assertion guards and dispatch tooling are separate release adaptations; production RTL and archived receipts retain their recorded bytes."
 }

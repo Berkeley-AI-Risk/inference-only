@@ -1,0 +1,41 @@
+{
+  "actual_child_exit": 0,
+  "all_observed_kernel_pressure_levels": [
+    1
+  ],
+  "elapsed_ns": 44912085291,
+  "error": null,
+  "finished_utc": "2026-11-12T03:01:49.264510+00:00",
+  "kernel_enforced_allocation_cap": false,
+  "normalized_extract": true,
+  "original_receipt": {
+    "bytes": 2621,
+    "sha256": "077a404b346cfaa3207a497e422e7f0c0f48f3fa15aca73bb98745665d1ba4a9"
+  },
+  "passed": true,
+  "peak_sampled_RSS_bytes": 9977856,
+  "peak_sampled_footprint_bytes": 9404992,
+  "policy": {
+    "max_footprint_bytes": 34359738368,
+    "max_rss_bytes": 34359738368,
+    "min_host_free_bytes": 0,
+    "poll_seconds": 1.0,
+    "term_grace_seconds": 3.0
+  },
+  "recorded_binary": {
+    "bytes": 355088,
+    "sha256": "db28e416ad64bc389d329488fc56eab2f3038451a0a8e738093f612a5b12a059"
+  },
+  "schema": "tlm26-expert-dispatch-native-exit-v1",
+  "scope": "Single-case watchdog, not a host-wide or adversarial memory guarantee",
+  "started_utc": "2026-11-12T03:01:04.352229+00:00",
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 22866,
+    "sha256": "efa6a17683cd4185c4e750301aa52b41b4b650489d2b1943ca137e6a65914081"
+  },
+  "stop_reason": null
+}

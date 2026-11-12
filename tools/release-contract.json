@@ -9,8 +9,8 @@
       "sha256": "130a5aaa8efa2c8dbed770cd7b9448473c59f17a516c618336b9a53dc4d493b8"
     },
     ".github/workflows/offline-checks.yml": {
-      "bytes": 12655,
-      "sha256": "a26997210193d7b58083c60e989bb46f8e93b6ec2b69d4684d93b838d7c4ef9e"
+      "bytes": 12917,
+      "sha256": "a30ba12125e718dc50a254aaa4bb706909579025f32174540ef6dfe6f017d080"
     },
     ".github/workflows/rtl-checks.yml": {
       "bytes": 4620,
@@ -74785,12 +74785,12 @@
       "sha256": "03c840960dd5818631aa78ede7079da346a9af8ba3351d7e2d74a0949534722f"
     },
     "demos/tlm26-moe/REPRODUCE.md": {
-      "bytes": 2884,
-      "sha256": "52572a0f58536ee4d5572136fe111b784acc3ee9f8c9f7e3ef424354022120de"
+      "bytes": 4351,
+      "sha256": "2ed11abb03e83c0c75687bf138fa6f46163167c88acb9db68a2a94d785a534af"
     },
     "demos/tlm26-moe/VALIDATION.md": {
-      "bytes": 2200,
-      "sha256": "13de2549c103551db70cc264c9356100dae1c8e020afcca88ace89f2178b639b"
+      "bytes": 2642,
+      "sha256": "c0d37263c3cf1ea0973107988e3de7f79746c0f582f5fd7d1a883bd098c772fb"
     },
     "demos/tlm26-moe/board/build.tcl": {
       "bytes": 410,
@@ -74840,6 +74840,34 @@
       "bytes": 4955,
       "sha256": "bb96ee6f1d3618aaadd19f5f7ce066113bd9857f660fadd35a3b142a0cf9a10e"
     },
+    "demos/tlm26-moe/evidence/expert-dispatch/README.md": {
+      "bytes": 1587,
+      "sha256": "d167ad29e3dbb1f41bf2ac3afb02b2710cccf10e545e5fc65af75af39fbffcac"
+    },
+    "demos/tlm26-moe/evidence/expert-dispatch/RESULT.json": {
+      "bytes": 2588,
+      "sha256": "62569cb490edb10f6493d49d1668019e83d742184e63fb39a99f8859ae5c145a"
+    },
+    "demos/tlm26-moe/evidence/expert-dispatch/expected.json": {
+      "bytes": 30037,
+      "sha256": "2a02473397fa3fdf250c720d5bcfd50ba64d24b60f5f9fda295deb705fc33f7e"
+    },
+    "demos/tlm26-moe/evidence/expert-dispatch/independent-review.json": {
+      "bytes": 1156,
+      "sha256": "786f91410c028151cf19d4f59ae8a9c393f9218bb6ca4b3ed0284c3f35bc9d7e"
+    },
+    "demos/tlm26-moe/evidence/expert-dispatch/native-exit.json": {
+      "bytes": 1239,
+      "sha256": "f896c34caf6db807a7b26f0f48f9ba08ffe9af41a1bfcb3a8e5ffec8130b1bda"
+    },
+    "demos/tlm26-moe/evidence/expert-dispatch/source-bindings.json": {
+      "bytes": 4221,
+      "sha256": "81dd49e881b2d3461e4cd7296ebf35667c7b912ee075194db8bfaf3c59b00675"
+    },
+    "demos/tlm26-moe/evidence/expert-dispatch/stdout.log": {
+      "bytes": 22866,
+      "sha256": "efa6a17683cd4185c4e750301aa52b41b4b650489d2b1943ca137e6a65914081"
+    },
     "demos/tlm26-moe/evidence/integer-cpu.json": {
       "bytes": 13191,
       "sha256": "23bc8cca3a78294fadb4e262f0b4ff650060587b735919e4bcc89b0f751e455b"
@@ -74853,8 +74881,8 @@
       "sha256": "38b652442a35dfb3f2698c93fe5d30f38e35dea4f7ce98ff0ac2c4a3292208b8"
     },
     "demos/tlm26-moe/metadata/RELEASE-ADAPTATIONS.json": {
-      "bytes": 2391,
-      "sha256": "abb89971e7d852817917d4e8c3f2a1478917c734d20c0cc7c409de3dd130c10a"
+      "bytes": 2569,
+      "sha256": "f600749d80c283fbfbf21fdc167f368809e8a38e58a416ac815ed6851e145cef"
     },
     "demos/tlm26-moe/metadata/pins.json": {
       "bytes": 6371,
@@ -74896,6 +74924,10 @@
       "bytes": 1953,
       "sha256": "f08642de69093569c59a813104e38b875fe28c5c323200ceab588c45495dccef"
     },
+    "demos/tlm26-moe/scripts/check_dispatch.py": {
+      "bytes": 8114,
+      "sha256": "47b0eb4348cb4b0fd692f065ce1d789d6a312a27f3409f4e80e85ab465a76ae9"
+    },
     "demos/tlm26-moe/scripts/checkpoint_reference.py": {
       "bytes": 3302,
       "sha256": "d6b65f63db6f37ca18c61edef0bc441a8f9be3a98aeab54053adef801a88a450"
@@ -74913,8 +74945,8 @@
       "sha256": "ce520e23338f7cdc739bb5de9e1f03415b9670b3ba48c2a1fa214ec4bd672824"
     },
     "demos/tlm26-moe/scripts/reproduce.py": {
-      "bytes": 4199,
-      "sha256": "e8b47a19199cd9f5bb18d3a5a0b459675d8aa3d43ee7efd7c82f9d4360aca14b"
+      "bytes": 11377,
+      "sha256": "29c3b339b3a81ea2531be875411fc40db8e746b9933677d2468a39fb7223fdce"
     },
     "demos/tlm26-moe/scripts/uart_replay.py": {
       "bytes": 5174,
@@ -74927,6 +74959,14 @@
     "demos/tlm26-moe/tests/boot_product.sv": {
       "bytes": 711,
       "sha256": "90b667ab401d4b42ca8c89a3918bbb32cd252c993696631a4a441228ea9d25ab"
+    },
+    "demos/tlm26-moe/tests/dispatch_commands.txt": {
+      "bytes": 424,
+      "sha256": "a99c44c1f0c883d3c7bf714b66cda84a5a92700814e8af3da8845af5b7fd483f"
+    },
+    "demos/tlm26-moe/tests/dispatch_observer.sv": {
+      "bytes": 3857,
+      "sha256": "7e7175802093ed2d7ad94c39f71cf8487966dcac0d7a1dd8a0a6648885e86035"
     },
     "demos/tlm26-moe/tests/physical-corruption-commands.txt": {
       "bytes": 78,
@@ -75805,8 +75845,16 @@
       "sha256": "b3d70570a82306efadaaa2d5ed94f8359771c545b5e1bc62a6c2cc94890a072b"
     },
     "tools/test_tlm26_assertion_mode.py": {
-      "bytes": 1350,
-      "sha256": "f10230dbc3194f424d26d9017765d921bda6ef1691ce3774961e1742d4eee20a"
+      "bytes": 1371,
+      "sha256": "4c4c45e885da2a1be75fab0de1ad4a9ce485020a4cb51ec1520dc4ad4577cf0f"
+    },
+    "tools/test_tlm26_dispatch.py": {
+      "bytes": 7739,
+      "sha256": "792c0090c3d012001b38b85f2957f67f047a6281aac89000ff560c9d31f4e706"
+    },
+    "tools/test_tlm26_dispatch_prepare.py": {
+      "bytes": 5185,
+      "sha256": "c79f774b58c924ce401a5833d85fa3807f8d52e1e2761cafd63db0a3fe62b3f2"
     },
     "tools/test_verify_release.py": {
       "bytes": 4880,

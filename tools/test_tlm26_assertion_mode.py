@@ -7,7 +7,7 @@ import unittest
 
 DEMO = Path(__file__).resolve().parents[1] / 'demos/tlm26-moe'
 SCRIPTS = ('checkpoint_reference.py', 'generate_decoder.py', 'integer_reference.py',
-           'layout.py', 'reproduce.py', 'verify_board_receipt.py')
+           'layout.py', 'reproduce.py', 'verify_board_receipt.py', 'check_dispatch.py')
 
 
 class AssertionModeTests(unittest.TestCase):

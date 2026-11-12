@@ -1,0 +1,110 @@
+{
+  "CLEAR_markers": 2,
+  "UART_cycles_and_read_counts_recorded_not_independently_gold_compared": true,
+  "UART_golden_comparison_fields": [
+    "opcode",
+    "input_token",
+    "status",
+    "output_token"
+  ],
+  "UART_replies": 36,
+  "actual_native_exit": 0,
+  "all_eight_experts_observed_in_each_of_five_layers": true,
+  "all_numeric_UART_fields_preserved": true,
+  "board_routing_directly_observed": false,
+  "error": null,
+  "expected": {
+    "bytes": 30037,
+    "sha256": "2a02473397fa3fdf250c720d5bcfd50ba64d24b60f5f9fda295deb705fc33f7e"
+  },
+  "expected_ordered_dispatches_matched": 340,
+  "expert_selection_counts_by_layer": [
+    [
+      8,
+      11,
+      7,
+      8,
+      4,
+      10,
+      9,
+      11
+    ],
+    [
+      10,
+      8,
+      7,
+      9,
+      5,
+      11,
+      9,
+      9
+    ],
+    [
+      8,
+      10,
+      3,
+      9,
+      8,
+      9,
+      11,
+      10
+    ],
+    [
+      5,
+      12,
+      8,
+      13,
+      9,
+      6,
+      6,
+      9
+    ],
+    [
+      6,
+      8,
+      6,
+      8,
+      7,
+      15,
+      7,
+      11
+    ]
+  ],
+  "first_W1_weight_acceptances_matched": 340,
+  "generated_tokens": 24,
+  "histories": 2,
+  "host_elapsed_seconds": 44.912085291,
+  "independent_review": {
+    "bytes": 1156,
+    "sha256": "786f91410c028151cf19d4f59ae8a9c393f9218bb6ca4b3ed0284c3f35bc9d7e"
+  },
+  "native_compilations": 0,
+  "native_jobs_launched": 1,
+  "native_receipt": {
+    "bytes": 1239,
+    "sha256": "f896c34caf6db807a7b26f0f48f9ba08ffe9af41a1bfcb3a8e5ffec8130b1bda"
+  },
+  "normalized_extract": true,
+  "original_final_review_sha256": "4e3231c15d449c69e29fc5e2f7aaaee7d26e4a81b505f0fe0e802ce93b8697f6",
+  "original_result": {
+    "bytes": 2617,
+    "sha256": "f9c2152619ebda248f2809aabbf6fb435eb7a413587ed79907f4a2f7c930bb2c"
+  },
+  "passed": true,
+  "physical_speed_measurement": false,
+  "recorded_binary": {
+    "bytes": 355088,
+    "sha256": "db28e416ad64bc389d329488fc56eab2f3038451a0a8e738093f612a5b12a059"
+  },
+  "recorded_utc": "2026-11-12T03:02:28.568660+00:00",
+  "schema": "tlm26-expert-dispatch-result-v1",
+  "scope": "Local RTL/DDR-model routing evidence for the two specified histories. Its 24 generated tokens match the saved board/reference outputs. Per-expert routing was not directly observed on the board. This is not an all-input proof, full-weight-access audit, or physical speed measurement.",
+  "sources": "source-bindings.json",
+  "stdout": {
+    "bytes": 22866,
+    "sha256": "efa6a17683cd4185c4e750301aa52b41b4b650489d2b1943ca137e6a65914081"
+  },
+  "stop_reason": null,
+  "token_commands": 34,
+  "wrapper_exit": 0
+}

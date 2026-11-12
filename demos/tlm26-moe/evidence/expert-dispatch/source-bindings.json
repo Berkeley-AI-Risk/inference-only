@@ -1,0 +1,113 @@
+{
+  "environment_remove": [
+    "BAD_BOOT_PAGE"
+  ],
+  "expected": {
+    "bytes": 30037,
+    "path": "demos/tlm26-moe/evidence/expert-dispatch/expected.json",
+    "sha256": "2a02473397fa3fdf250c720d5bcfd50ba64d24b60f5f9fda295deb705fc33f7e"
+  },
+  "observer": {
+    "bytes": 3857,
+    "path": "demos/tlm26-moe/tests/dispatch_observer.sv",
+    "sha256": "7e7175802093ed2d7ad94c39f71cf8487966dcac0d7a1dd8a0a6648885e86035"
+  },
+  "provenance": {
+    "original_binding": {
+      "bytes": 7449,
+      "sha256": "f48570c478c49ac1b56b4b31c4eb532232be7ac5834ed49f6447eaa755da4d56"
+    },
+    "original_build_receipt": {
+      "bytes": 6185,
+      "sha256": "41b6288cf0f9f452727d28c6292e14bf063ec861fd4a4de5817265f7a0da1639"
+    },
+    "original_final_review_sha256": "4e3231c15d449c69e29fc5e2f7aaaee7d26e4a81b505f0fe0e802ce93b8697f6",
+    "original_native_compile_receipt": {
+      "bytes": 1751,
+      "sha256": "6285095a702d324730ee83a7380516ea057586d82ca5098c103bd435a14d7164"
+    },
+    "recorded_binary": {
+      "bytes": 355088,
+      "sha256": "db28e416ad64bc389d329488fc56eab2f3038451a0a8e738093f612a5b12a059"
+    }
+  },
+  "runtime_files": {
+    "cos.hex": {
+      "bytes": 9216,
+      "sha256": "1241145ece5f8fbcfbb8188a1ef70078cf9adef5ba14a93305fadd60173ae4a2"
+    },
+    "exp.hex": {
+      "bytes": 36873,
+      "sha256": "72c6faed16b428793805e7aa11e689c22f8f5b13fe2a8623650b6e0bd67ba350"
+    },
+    "model.bin": {
+      "bytes": 3145728,
+      "sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1"
+    },
+    "page_digest.hex": {
+      "bytes": 49920,
+      "sha256": "8435176609fccf03eaed8d83cc56d3eaacfd386dfee2fa7b1bb9174599509cb6"
+    },
+    "sin.hex": {
+      "bytes": 9216,
+      "sha256": "ba230e4bad04e9de5b1be49555e6448d9695cc49cb8ef68a7173a99ebf2ade60"
+    }
+  },
+  "schema": "tlm26-expert-dispatch-inputs-v1",
+  "source_adaptation": "Repository-relative paths replace original host paths; source, observer, stimulus and runtime hashes are unchanged.",
+  "sources": {
+    "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": {
+      "bytes": 3071,
+      "sha256": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f"
+    },
+    "demos/simplestories-v2-5m/hardware/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": {
+      "bytes": 1502,
+      "sha256": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e"
+    },
+    "demos/tlm26-moe/rtl/authenticated_weight_page.sv": {
+      "bytes": 3546,
+      "sha256": "d1bcf48b9f8366db2b3274c61d92b929c962222041813fcaa5ceebd8ff5d0596"
+    },
+    "demos/tlm26-moe/rtl/moe_sha256_core.sv": {
+      "bytes": 4680,
+      "sha256": "b7070c0af3958009df57e1070a0d61eb198a1864b0832b3e7a0b1022637f2ce1"
+    },
+    "demos/tlm26-moe/rtl/tlm_decoder.sv": {
+      "bytes": 26471,
+      "sha256": "9e1a4a60ee96b5ba67252bac4de110edd90262fc68223e18c63d3dcd8316fc50"
+    },
+    "demos/tlm26-moe/rtl/tlm_first_return.sv": {
+      "bytes": 1107,
+      "sha256": "b8f1728e3854a03d458417de82ccbd0fb7a8ab05de8896ec44d570fc1da28392"
+    },
+    "demos/tlm26-moe/rtl/tlm_product.sv": {
+      "bytes": 969,
+      "sha256": "c4aabd9d7a880542ea974f0103b6e19b1ffe2ed451fd9852ab9662ed40578dc7"
+    },
+    "demos/tlm26-moe/rtl/tlm_token_uart.sv": {
+      "bytes": 2525,
+      "sha256": "cc1f64ac61afeff426addb389b616251a49b77631911bdc6e764032a649866c3"
+    },
+    "demos/tlm26-moe/rtl/volatile_model_loader.sv": {
+      "bytes": 1953,
+      "sha256": "f08642de69093569c59a813104e38b875fe28c5c323200ceab588c45495dccef"
+    },
+    "demos/tlm26-moe/tests/boot_product.sv": {
+      "bytes": 711,
+      "sha256": "90b667ab401d4b42ca8c89a3918bbb32cd252c993696631a4a441228ea9d25ab"
+    },
+    "demos/tlm26-moe/tests/dispatch_observer.sv": {
+      "bytes": 3857,
+      "sha256": "7e7175802093ed2d7ad94c39f71cf8487966dcac0d7a1dd8a0a6648885e86035"
+    },
+    "demos/tlm26-moe/tests/product_sim.cpp": {
+      "bytes": 5015,
+      "sha256": "f36d9cef020232c7cca85abed4f254c8224b6ec9a55151d56af15a969523db54"
+    }
+  },
+  "stimulus": {
+    "bytes": 424,
+    "path": "demos/tlm26-moe/tests/dispatch_commands.txt",
+    "sha256": "a99c44c1f0c883d3c7bf714b66cda84a5a92700814e8af3da8845af5b7fd483f"
+  }
+}

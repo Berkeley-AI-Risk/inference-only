@@ -54,6 +54,10 @@ jobs:
         run: python -I -S -B -m unittest discover -s tools -p 'test_sawic_replay_workspace.py' -v
       - name: Test TLM26 assertion-mode refusal (no model or hardware)
         run: python -I -S -B -m unittest discover -s tools -p 'test_tlm26_assertion_mode.py' -v
+      - name: Check recorded TLM26 expert routing and portable replay controls
+        run: |
+          python -I -S -B demos/tlm26-moe/scripts/reproduce.py dispatch-sources
+          python -I -S -B -m unittest discover -s tools -p 'test_tlm26_dispatch*.py' -v
       - name: Check protected-K/V CLEAR epoch proof and corruption controls (recorded only)
         run: |
           python -I -S -B demos/simplestories-v2-5m/formal/kv-clear-epoch/run.py --recorded-only --out "$RUNNER_TEMP/clear-epoch-recorded" --model demos/simplestories-v2-5m
