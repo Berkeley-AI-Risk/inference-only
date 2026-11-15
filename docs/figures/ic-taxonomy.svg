@@ -1,27 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="680" height="300" viewBox="0 0 680 300" role="img" aria-labelledby="title desc">
-  <title id="title">Inference-only chip families</title>
-  <desc id="desc">Inference-only chip (IC) branches to AWIC, HWIC, and an ellipsis indicating other possible types. AWIC branches to F-AWIC and S-AWIC.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="316" viewBox="0 0 680 316" role="img" aria-labelledby="title desc">
+  <title id="title">AI chips and inference-only chip families</title>
+  <desc id="desc">AI chips branch to inference-only chips on the left and training-capable chips on the right. Inference-only chips include AWICs, HWICs, and other possible designs. AWICs branch to F-AWICs and S-AWICs.</desc>
   <g stroke="#57606a" stroke-width="2" fill="none">
-    <line x1="340" y1="62" x2="170" y2="130"/>
-    <line x1="340" y1="62" x2="340" y2="130"/>
-    <line x1="340" y1="62" x2="510" y2="130"/>
-    <line x1="170" y1="174" x2="90" y2="242"/>
-    <line x1="170" y1="174" x2="250" y2="242"/>
+    <line x1="385" y1="54" x2="250" y2="94"/>
+    <line x1="385" y1="54" x2="520" y2="94"/>
+    <line x1="250" y1="138" x2="125" y2="178"/>
+    <line x1="250" y1="138" x2="250" y2="178"/>
+    <line x1="250" y1="138" x2="375" y2="178"/>
+    <line x1="125" y1="222" x2="65" y2="262"/>
+    <line x1="125" y1="222" x2="185" y2="262"/>
   </g>
   <g fill="#f6f8fa" stroke="#57606a" stroke-width="1.5">
-    <rect x="190" y="18" width="300" height="44" rx="4"/>
-    <rect x="105" y="130" width="130" height="44" rx="4"/>
-    <rect x="275" y="130" width="130" height="44" rx="4"/>
-    <rect x="445" y="130" width="130" height="44" rx="4"/>
-    <rect x="15" y="242" width="150" height="44" rx="4"/>
-    <rect x="175" y="242" width="150" height="44" rx="4"/>
+    <rect x="309" y="10" width="152" height="44" rx="4"/>
+    <rect x="133" y="94" width="234" height="44" rx="4"/>
+    <rect x="400" y="94" width="240" height="44" rx="4"/>
+    <rect x="70" y="178" width="110" height="44" rx="4"/>
+    <rect x="195" y="178" width="110" height="44" rx="4"/>
+    <rect x="320" y="178" width="110" height="44" rx="4"/>
+    <rect x="11" y="262" width="108" height="44" rx="4"/>
+    <rect x="131" y="262" width="108" height="44" rx="4"/>
   </g>
   <g fill="#1f2328" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" text-anchor="middle">
-    <text x="340" y="47">inference-only chip (IC)</text>
-    <text x="170" y="159">AWIC</text>
-    <text x="340" y="159">HWIC</text>
-    <text x="510" y="159">...</text>
-    <text x="90" y="271">F-AWIC</text>
-    <text x="250" y="271">S-AWIC</text>
+    <text x="385" y="39">AI chips</text>
+    <text x="250" y="123">Inference-only chips</text>
+    <text x="520" y="123">Training-capable chips</text>
+    <text x="125" y="207">AWIC</text>
+    <text x="250" y="207">HWIC</text>
+    <text x="375" y="207">…</text>
+    <text x="65" y="291">F-AWIC</text>
+    <text x="185" y="291">S-AWIC</text>
   </g>
 </svg>

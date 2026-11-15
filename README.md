@@ -32,8 +32,12 @@ chip accepts weights of the user's choosing. The [scaling proposal](docs/PROPOSE
 shows how identical dies could share a larger model and links to a one-rank and
 two-rank SimpleStories simulation.
 
-<a href="docs/figures/ic-taxonomy.svg?v=9288be431402#gh-light-mode-only"><img src="docs/figures/ic-taxonomy.svg?v=9288be431402#gh-light-mode-only" alt="Inference-only chip (IC) branches to AWIC, HWIC, and other possible types; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
-<a href="docs/figures/ic-taxonomy-dark.svg?v=a01acd3b4838#gh-dark-mode-only"><img src="docs/figures/ic-taxonomy-dark.svg?v=a01acd3b4838#gh-dark-mode-only" alt="Inference-only chip (IC) branches to AWIC, HWIC, and other possible types; AWIC branches to F-AWIC and S-AWIC." width="680"></a>
+<a href="docs/figures/ic-taxonomy.svg?v=179d8d2b038c#gh-light-mode-only"><img src="docs/figures/ic-taxonomy.svg?v=179d8d2b038c#gh-light-mode-only" alt="AI chips branch to inference-only chips on the left and training-capable chips on the right. Inference-only chips include AWICs, HWICs, and other possible designs. AWICs branch to F-AWICs and S-AWICs." width="680"></a>
+<a href="docs/figures/ic-taxonomy-dark.svg?v=0177e969c59c#gh-dark-mode-only"><img src="docs/figures/ic-taxonomy-dark.svg?v=0177e969c59c#gh-dark-mode-only" alt="AI chips branch to inference-only chips on the left and training-capable chips on the right. Inference-only chips include AWICs, HWICs, and other possible designs. AWICs branch to F-AWICs and S-AWICs." width="680"></a>
+
+*The branches describe what the hardware is designed to support. How much
+computation an inference-only design can still contribute to training is a
+separate question measured by its [residual training factor](demos/simplestories-v2-5m/TRAINING-CAPACITY.md#access-assumptions-and-arithmetic).*
 
 <a href="docs/figures/inference-only-chips.svg?v=da9a5c6081d3#gh-light-mode-only"><img src="docs/figures/inference-only-chips.svg?v=da9a5c6081d3#gh-light-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs illustrated with a k-of-n signature policy, and HWICs with weights fixed in silicon." width="800"></a>
 <a href="docs/figures/inference-only-chips-dark.svg?v=be1398ecbcc0#gh-dark-mode-only"><img src="docs/figures/inference-only-chips-dark.svg?v=be1398ecbcc0#gh-dark-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs illustrated with a k-of-n signature policy, and HWICs with weights fixed in silicon." width="800"></a>
