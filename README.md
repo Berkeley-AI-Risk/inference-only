@@ -65,8 +65,11 @@ controllers own the inference schedule and memory addresses; the user supplies
 tokens, not tensor pointers. Startup loaders, status and transport handling
 are described separately in each model's guide.
 
-The [seeded-sampling configuration](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md) runs SimpleStories-V2-5M on Tang Mega with authenticated weights and without K/V integrity protection. Temperature and a public seed can be configured while its tape is empty and idle. Its current evidence and qualification limits are stated
-in [CURRENT-QUALIFICATION.md](demos/simplestories-v2-5m/CURRENT-QUALIFICATION.md). Each hardware configuration has its own validation record.
+The [seeded-sampling SimpleStories configuration](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md)
+adds two settings. While the tape is empty and the chip is idle, the user can
+choose a temperature (0, 0.5, 1, or 2) and set a public 128-bit seed.
+Temperature 0 selects greedy decoding. At a positive temperature, repeating
+the same prompt with the same temperature and seed reproduces the same tokens.
 
 ## The demonstrated designs and measurements
 
