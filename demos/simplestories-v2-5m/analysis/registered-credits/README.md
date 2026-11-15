@@ -2,6 +2,8 @@
 
 On the frozen 25 MHz SimpleStories greedy implementation, the ordinary registered uses of all 90 mapped multipliers admit at most **2.922 billion gross scalar operation credits per second** over a sustained execution. At the measured context-128 inference rating, the normalized ceiling on these routes is **0.88745**. Whether an operator can use those credits for generic training remains open. [Mapped inventory][census] · [Calculation and observed traces](evidence/support-sites/result.json)
 
+For estimates under different assumptions about access, including matrix I/O through tokens, see the [SimpleStories access scenarios](../../TRAINING-CAPACITY.md#access-assumptions-and-arithmetic).
+
 ## What earns a credit?
 
 The projection and vocabulary head share 64 lanes. An admitted beat can enable 64 product registers one clock later and 64 accumulator updates two clocks later. The longest group earns 682 weight beats after a group start and 64 metadata transfers. Shorter groups, stalls, CLEAR, aborted jobs and in-flight arithmetic are included. On the remaining routes the accepted sinks are the score/value accumulators (8 + 8 sites), the scaled row (2 partial products and their recombination), the layer and final RMSNorm updates (2 sites), the shared RoPE/SiLU result (1), the embedding normalizer input (1), and address descriptors (4). [Projection stages][engine] · [Ownership and induction checks](evidence/joint-cadence/check.py) · [Support-site checks](evidence/support-sites/check.py)

@@ -31,8 +31,8 @@ The tested constraint bytes are unchanged.
 
 ## FPGA configurations and vendor dependencies
 
-The release includes three inference configurations and a separate
-backup-reader configuration for the specified GOWIN device. These are
+The [SimpleStories programming guide](demos/simplestories-v2-5m/PROGRAMMING.md)
+identifies the Tang Mega images and the backup reader. These are
 device-targeted FPGA outputs, **not copies of the GOWIN compiler, programmer,
 vendor libraries or an encrypted source-IP distribution**. The project
 license covers our contributions, not a purported relicensing of every
@@ -40,8 +40,10 @@ third-party element embodied in those outputs.
 The GOWIN notices embedded in the bitstream headers are retained unchanged;
 our Apache-2.0 grant does not relicense GOWIN's contributions.
 
-All four configurations (including the backup reader) were generated with **GOWIN V1.9.11.03 Education
-(81398)**. We checked the release note bundled with that exact installer:
+The fixed-commitment SimpleStories images and the backup reader record
+**GOWIN V1.9.11.03 Education (81398)** in their bitstream headers. The
+signed-update and periodic-reauthorization images record **V1.9.12.04-1 (89079)**.
+For the Education edition, we checked the release note bundled with that installer:
 *RN100-1.9.11.03 EducationE*, July 10, 2025, section 1. It limits use of that
 tool edition to education, research and other noncommercial purposes. Our
 academic demonstration is a research use. This is a vendor-tool condition,

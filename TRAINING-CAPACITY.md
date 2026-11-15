@@ -6,15 +6,9 @@ Residual training analysis asks how much useful training arithmetic an adversary
 
 | Demonstration | Detailed assessment | Scope |
 | --- | --- | --- |
-| SimpleStories-V2-5M on Tang Mega | [Training capacity](demos/simplestories-v2-5m/TRAINING-CAPACITY.md) | Arithmetic and hypothetical access scenarios for the baseline without K/V integrity checks. |
+| SimpleStories-V2-5M on Tang Mega | [Five access scenarios](demos/simplestories-v2-5m/TRAINING-CAPACITY.md#access-assumptions-and-arithmetic) | Explicit matrix I/O through tokens and hypothetical internal access on the baseline with plain K/V. A separate [multiplier activity bound](demos/simplestories-v2-5m/analysis/registered-credits/README.md) counts operations on registered paths. |
 | Qwen3-1.7B on AWS F2 | [Training capacity](demos/qwen3-1.7b/TRAINING-CAPACITY.md) | Mapped arithmetic inventory, workload-dependent counts and measured H100 parent-model references. |
 | Qwen3-8B on AWS F2 | [Conditional arithmetic accounting](demos/qwen3-8b/TRAINING-CAPACITY.md) | Released arithmetic inventory and workload counts; the 8B H100 reference, useful access and certified residual factor remain unestablished. |
-
-The [worked SimpleStories example](demos/simplestories-v2-5m/analysis/registered-credits/README.md)
-counts updates on the registered paths of 90 mapped multipliers and uses the
-measured rate of 9.8241 next-token evaluations/s at 128 occupied positions.
-It gives an upper bound for those paths. How much of that arithmetic someone
-with physical possession of the chip could use for training remains open.
 
 The [TLM26 MoE Tang demonstration](demos/tlm26-moe/README.md) has separate board evidence; no residual-training assessment is supplied for that circuit.
 

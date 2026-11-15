@@ -24,10 +24,11 @@ implements SimpleStories with fixed weights in RTL.
 The [FPGA measurements](#the-demonstrated-designs-and-measurements) give
 host-observed generation rates. The [architecture and evidence map](docs/ARCHITECTURE.md)
 connects each implementation to its source, tests and proof obligations.
-The [worked SimpleStories calculation](demos/simplestories-v2-5m/analysis/registered-credits/README.md)
-asks how much arithmetic a person with the chip could use for training. It bounds
-the operations on identified multiplier paths. An attacker's ability to use those
-operations for training remains open. The [scaling proposal](docs/PROPOSED-REUSABLE-AWIC.md)
+The [SimpleStories residual training analysis](demos/simplestories-v2-5m/TRAINING-CAPACITY.md#access-assumptions-and-arithmetic)
+compares five access assumptions for the baseline with plain K/V. One considers
+sending matrices and receiving their products through
+the token interface. Others grant access to internal multipliers or assume the
+chip accepts weights of the user's choosing. The [scaling proposal](docs/PROPOSED-REUSABLE-AWIC.md)
 shows how identical dies could share a larger model and links to a one-rank and
 two-rank SimpleStories simulation.
 
@@ -192,12 +193,9 @@ results for its named configurations. [Qwen3-1.7B has separate component
 results](demos/qwen3-1.7b/FORMAL-STATUS.md), whose complete development solver
 bundle is not supplied; [Qwen3-8B has no supplied proof suite](demos/qwen3-8b/FORMAL-STATUS.md).
 Whole-machine refinement remains open for all designs.
-The [conditional training-capacity analysis](demos/simplestories-v2-5m/TRAINING-CAPACITY.md)
-and [architecture-dependent analysis](docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md)
-make their assumptions explicit; their Tang Mega numerical factors are not
-Qwen measurements. **None of these demonstrations has a certified, nation-state-resistant
-residual training fraction.** Small model size or modest speed is not what
-makes the architectural restriction inference-only.
+The [training-capacity assessments](TRAINING-CAPACITY.md) give separate results
+for SimpleStories and Qwen. How much useful training computation someone with
+physical possession of each chip could obtain remains open.
 
 ### Optional periodic reauthorization
 

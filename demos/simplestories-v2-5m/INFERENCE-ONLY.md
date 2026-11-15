@@ -232,20 +232,11 @@ the compiled digests and runtime page-verification path; arithmetic ownership
 depends on the fixed controllers. A complete physical-security assessment of
 those protections remains to be done.
 
-The [training-capacity analysis](TRAINING-CAPACITY.md) provides reproducible
-conditional estimates for five scenarios: matrix arithmetic through tokens;
-full use of the 19 scheduled runtime-operand units; full use of all 90 mapped multiplier instances;
-dynamic operations only when the model runs them; and replacing accepted
-weights while keeping the same schedule. Their residual training factor proxies use
-a [measured single-H100 SXM reference](../../docs/benchmarks/H100-BENCHMARK.md).
-That benchmark uses the original FP16 checkpoint, not the exact FPGA numerical
-model. The analysis also compares with the paper's illustrative 0.01, 0.001 and 0.0001
-factors and separates achieved GPU performance from idealized performance models.
-Those scenarios do not establish usable general arithmetic access, a failure
-of weight enforcement, or a certified execution-rate bound. The analysis
-reports sensitivity and remaining rating assumptions;
-it does not claim zero residual capacity or a certified nation-state-resistant
-factor.
+For the baseline with plain K/V, the [five access scenarios](TRAINING-CAPACITY.md#access-assumptions-and-arithmetic)
+give the residual training estimate under each assumption. They use a
+[measured H100 reference](../../docs/benchmarks/H100-BENCHMARK.md) running the
+original FP16 checkpoint. Which internal arithmetic someone with physical
+possession could use for training remains open.
 
 The [architecture-dependent analysis](../../docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md)
 separates the model's arithmetic mix, multiplier-cycle capacity and reference
