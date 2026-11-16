@@ -9,8 +9,8 @@
       "sha256": "130a5aaa8efa2c8dbed770cd7b9448473c59f17a516c618336b9a53dc4d493b8"
     },
     ".github/workflows/offline-checks.yml": {
-      "bytes": 13221,
-      "sha256": "4e28eb76a6369cad655a18e0300d1666742c8bd1b6c227190eccf4cbbbebffdc"
+      "bytes": 13305,
+      "sha256": "b20524325c8110c72399567f7c48866bac09cf6758b61c7651ac17f9dbc56bbd"
     },
     ".github/workflows/rtl-checks.yml": {
       "bytes": 6530,
@@ -57,8 +57,8 @@
       "sha256": "f3d2be475cea886b4dac5d8b7b118810b333f9499145bbfcdac8e3305b1ee6ec"
     },
     "README.md": {
-      "bytes": 25210,
-      "sha256": "c8b387b8b9c68adfef933dfdacbc00abaa76c67dc48cd10a052baf9342e7ed6e"
+      "bytes": 25870,
+      "sha256": "b3abd6bd1930817454020835dac3ad3b3be190f5629466227d8cbef6190b78fe"
     },
     "REFERENCES.md": {
       "bytes": 613,
@@ -73,12 +73,100 @@
       "sha256": "a52d095212108f990c6bc3a15a1be52d97b1e0923fbbe7180445062621eb84f7"
     },
     "benchmarks/fpga-speed/results.json": {
-      "bytes": 54564,
-      "sha256": "fe83b6121479afd30f410dc4ad2d6f660027d9f6b9037648ae8bc752d159c01d"
+      "bytes": 73111,
+      "sha256": "4430369fa3fb35b214a39ae4d473dff4361d0bcdfbf6ac66f22a443b745c7932"
     },
     "benchmarks/fpga-speed/selection.json": {
-      "bytes": 23066,
-      "sha256": "6a590e9ffc5413dce4bd45262810dafa4c2ec5044e32543ab4a972ed4632a33e"
+      "bytes": 31136,
+      "sha256": "e8ae76afccc59a79984cf53edf6ae3267e9fb7171c09ae6be831cd1a9414e3dc"
+    },
+    "benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json": {
+      "bytes": 32908,
+      "sha256": "d853e2fdf9616315460c3a3bf67e5ec257f2639d8db1a9310e17ce58b9ed1825"
+    },
+    "benchmarks/fpga-speed/tlm26-common-v1/RESTORATION.json": {
+      "bytes": 716,
+      "sha256": "24b9d5ddf8fc0b5707443611376a95c9c421152065db5eda0b5e8e6cc199909b"
+    },
+    "benchmarks/fpga-speed/tlm26-common-v1/REVIEW.json": {
+      "bytes": 2858,
+      "sha256": "6e9fd61b3646d2be517c3a6d0b6c4381f7d33f6e2171c12e34af56c76d3aa29d"
+    },
+    "benchmarks/fpga-speed/tlm26-common-v1/custody/baseline-after.json": {
+      "bytes": 921,
+      "sha256": "2f245808d06e9f958ba256ffb475ec7ae2bf86129de4fb74c7f7b41494a0c032"
+    },
+    "benchmarks/fpga-speed/tlm26-common-v1/custody/baseline-before.json": {
+      "bytes": 921,
+      "sha256": "c5ce0997c24bc241de422e46e7285e1482b56561d7018308e3836c76f29b4b7f"
+    },
+    "benchmarks/fpga-speed/tlm26-common-v1/custody/model-load.json": {
+      "bytes": 165,
+      "sha256": "47842f77d4f1bf56682e8a3a3c914069fa18d2913eb7e7d259e5cf5e456b71d9"
+    },
+    "benchmarks/fpga-speed/tlm26-common-v1/custody/programming.txt.gz": {
+      "bytes": 555,
+      "sha256": "8b7b32beb06eb07aa9b48c0414272a8cc4608b7141f5956b88f4f32df73ca7a7"
+    },
+    "benchmarks/fpga-speed/tlm26-common-v1/custody/restore-programming.txt.gz": {
+      "bytes": 555,
+      "sha256": "68b77328c8e5705f989ebbd319545a997a54a26094d8a99b3784e9933a006381"
+    },
+    "benchmarks/fpga-speed/tlm26-common-v1/golden.json": {
+      "bytes": 2893,
+      "sha256": "c462aa3b16c179b512c73e45bc98f3d7d8e93c6a763d460a677b93113b14dd71"
+    },
+    "benchmarks/fpga-speed/tlm26-common-v1/trial-1.json": {
+      "bytes": 31849,
+      "sha256": "1b32854c68771c15b6dcf46358eec4a1b0ac2ddd405e90983d2dab1fbf543ef7"
+    },
+    "benchmarks/fpga-speed/tlm26-common-v1/trial-2.json": {
+      "bytes": 31862,
+      "sha256": "48bba08036a0cdfa13808231ea6fe87b8c8ace68d57ca3e504a0d9edddf085f3"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/CAPTURE.json": {
+      "bytes": 32871,
+      "sha256": "9a9ba8eb659fae815014ce7f1769ce7e768ffc8c7bfcf92a9a9c05fd62b13cc6"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/RESTORATION.json": {
+      "bytes": 970,
+      "sha256": "6ba1a02345b98e63ee711b6322d4adfb8fb1ff38d747941ac8dcab1b73a3bb79"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/REVIEW.json": {
+      "bytes": 1795,
+      "sha256": "96850a0d66ad910584de7997978586abb66b1095f370e8ca344a2c1dec59e82f"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/custody/baseline-after.json": {
+      "bytes": 921,
+      "sha256": "faab804586e43d84214ce251dab84c91cd27475b4d070faff41be6eb7f6144ca"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/custody/baseline-before.json": {
+      "bytes": 921,
+      "sha256": "396155953b2d216fce0f1dde524644974787775800a039a0e55aeee5fe7c7d98"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/custody/model-load.json": {
+      "bytes": 166,
+      "sha256": "d8b0419f3f1afeeb9d86db5912877909c833979d2452f258900e7a875286cbae"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/custody/programming.txt.gz": {
+      "bytes": 556,
+      "sha256": "16c79c04f933453528b8e4d6b7fad50b8a114f56f299551ab412481c575f4ca1"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/custody/restore-programming.txt.gz": {
+      "bytes": 555,
+      "sha256": "a6c90f196a9a81f8f030e1d23226c322bdfd42610e0bd85965b69c43119a1e3b"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/golden.json": {
+      "bytes": 2893,
+      "sha256": "c462aa3b16c179b512c73e45bc98f3d7d8e93c6a763d460a677b93113b14dd71"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/trial-1.json": {
+      "bytes": 31849,
+      "sha256": "01ecddf22b3e1ed027d30a85b456379bf73698cc192d472af9c7cdff6af26e6a"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/trial-2.json": {
+      "bytes": 31827,
+      "sha256": "c02d72187189d6975faa7b64232d61e5cff9e24ab9bca88205600ffc27569e9a"
     },
     "demos/qwen3-1.7b/BROWSER.md": {
       "bytes": 5108,
@@ -74885,16 +74973,16 @@
       "sha256": "834cf5778bb38bd8e3d1dcf80f1859a169f7dd96515be43e34108ec3098a8660"
     },
     "demos/tlm26-moe/README.md": {
-      "bytes": 7754,
-      "sha256": "03c840960dd5818631aa78ede7079da346a9af8ba3351d7e2d74a0949534722f"
+      "bytes": 9442,
+      "sha256": "83b6c45bbedcae1d5815fbae0fcf858ce2cf5a8ebc07ff1ce126c43e8a5c5c5d"
     },
     "demos/tlm26-moe/REPRODUCE.md": {
       "bytes": 4345,
       "sha256": "7687cbc2a4131b74562344049181f9513faa2bfd017794558ff98983c3a59551"
     },
     "demos/tlm26-moe/VALIDATION.md": {
-      "bytes": 2625,
-      "sha256": "ab1eaeb167cf2f50c7587e1053e42218019bed54627405aa5dc3be1203bdba6e"
+      "bytes": 3793,
+      "sha256": "33a95faadef109b53cf09959f7fcfde484e2c747ac604bfc2a631f130b67f298"
     },
     "demos/tlm26-moe/board/build.tcl": {
       "bytes": 410,
@@ -75084,6 +75172,46 @@
       "bytes": 5015,
       "sha256": "f36d9cef020232c7cca85abed4f254c8224b6ec9a55151d56af15a969523db54"
     },
+    "demos/tlm26-moe/variants/overlap-r2/NOTICE.md": {
+      "bytes": 2428,
+      "sha256": "46d68cf0498768a159f1c75ff77025139f3c24f4ce8f4e9866cae36379f6503b"
+    },
+    "demos/tlm26-moe/variants/overlap-r2/PROVENANCE.json": {
+      "bytes": 1616,
+      "sha256": "8a6dc938250471044fe1ad68bfea16074d8ae81ee6939ed234f166a5633f08ea"
+    },
+    "demos/tlm26-moe/variants/overlap-r2/README.md": {
+      "bytes": 4082,
+      "sha256": "50cb00327372923ac5ec58662881ca0033209fd30283e949ae3812628fd1adf3"
+    },
+    "demos/tlm26-moe/variants/overlap-r2/SOURCE-IDENTITIES.json": {
+      "bytes": 6012,
+      "sha256": "6f2e41793b48ef583bb4fe5b8d1ef0e46092cadc85f61516a3f649843e606260"
+    },
+    "demos/tlm26-moe/variants/overlap-r2/additional-reports.sdc": {
+      "bytes": 13506,
+      "sha256": "92f4fe4b082c8e5d2c2d4894fc156a54b870d9152823a2dda3a3274fca6ca83a"
+    },
+    "demos/tlm26-moe/variants/overlap-r2/apply_to_staged.py": {
+      "bytes": 1486,
+      "sha256": "b05b73a0c3620610b7267de330fc0aabe9f3c5c0dfada55ad8ca6f6a8bad2b41"
+    },
+    "demos/tlm26-moe/variants/overlap-r2/decoder.patch": {
+      "bytes": 2555,
+      "sha256": "4ce4277ad2d76be784a8bcd1b2e1e78b511f65c44f70f59420f74a318237d75b"
+    },
+    "demos/tlm26-moe/variants/overlap-r2/evidence/route-12p5.json": {
+      "bytes": 1502,
+      "sha256": "28b81d2482d1884c54bdf952e45aae3da337ccbb4811b3bdeb1736a6b225da95"
+    },
+    "demos/tlm26-moe/variants/overlap-r2/rtl/tlm_decoder.sv": {
+      "bytes": 27027,
+      "sha256": "c29918a4f1638001978a745a5f2429a8e1a9a5a8865593627a37781c23ff46d2"
+    },
+    "demos/tlm26-moe/variants/overlap-r2/verify_measurement.py": {
+      "bytes": 6164,
+      "sha256": "921e8012be2708987d0413937885321affd47b021a158de09fed282553661115"
+    },
     "diagrams/README.md": {
       "bytes": 3658,
       "sha256": "c5b386e0e7e4da62dc57415a8610ad40b391befd429912225a37ded57cd85d22"
@@ -75137,8 +75265,8 @@
       "sha256": "79365e8930766b7ea2cc62da148973d1b3e421504ce9c80f3c5d3d7655879440"
     },
     "docs/benchmarks/FPGA-SPEED-BENCHMARK.md": {
-      "bytes": 8949,
-      "sha256": "fc638ca59901e31fd343280cffe7ee79cf88d359cc466df6f3328c02f606049b"
+      "bytes": 9796,
+      "sha256": "82427a9f1d5c5f59ad67fb48d2e9bead9c643a94eb24e9a8fc1a7e4b4c9582ca"
     },
     "docs/benchmarks/H100-BENCHMARK.md": {
       "bytes": 23689,
@@ -75901,8 +76029,8 @@
       "sha256": "ed69dbcb8bc87423846d1b6239779e01310431b0f9ccd4240d6c4297d09d9e06"
     },
     "tools/test_fpga_speed_benchmark.py": {
-      "bytes": 12898,
-      "sha256": "dccc30d76d59d4bc0abc31ba8a8bad3ce810bbf79b9f30e7772bffcae029f93e"
+      "bytes": 12944,
+      "sha256": "b5143dbcc37b72abde84a41fb695d3125621bf08423967cf9694d42a9f845d72"
     },
     "tools/test_home_authorization_evidence.py": {
       "bytes": 3605,

@@ -90,6 +90,7 @@ class CommonSpeedTests(unittest.TestCase):
     def test_pending_moe_board_latency_cannot_supply_common_trials(self):
         selection=json.loads((ROOT/bench.SELECTION).read_text())
         row=copy.deepcopy(next(r for r in selection['rows'] if r['id']=='tlm26-moe'))
+        row.update(format='pending',cases=[])
         sources=bench.read_sources(ROOT,selection)
         self.assertEqual(bench.selected_trials(row,sources,[]),[])
         row['cases']=['24_generated_steps']

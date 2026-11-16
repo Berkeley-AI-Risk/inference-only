@@ -1,0 +1,73 @@
+{
+  "accepted": true,
+  "all_256_IDs_opcodes_CRCs_checked": true,
+  "cached_intervals": 254,
+  "capture": {
+    "bytes": 32908,
+    "sha256": "d853e2fdf9616315460c3a3bf67e5ec257f2639d8db1a9310e17ce58b9ed1825"
+  },
+  "clock_hz": 12500000,
+  "diagnostic_hold_ms": 20,
+  "exact_timestamps_and_host_gaps_checked": true,
+  "feedback_only_STEP_payloads": true,
+  "findings": [],
+  "first_STEP_ns": [
+    577896750,
+    577987208
+  ],
+  "flash_changes": 0,
+  "host_gap_ns_in_cached_intervals": [
+    1414038,
+    1398120
+  ],
+  "pooled_cached_tokens_per_second": 1.612038176875166,
+  "portable_custody_encoding": {
+    "gzip_transcripts_preserve_original_bytes": {
+      "benchmarks/fpga-speed/tlm26-common-v1/custody/programming.txt": {
+        "bytes": 555,
+        "path": "benchmarks/fpga-speed/tlm26-common-v1/custody/programming.txt.gz",
+        "sha256": "8b7b32beb06eb07aa9b48c0414272a8cc4608b7141f5956b88f4f32df73ca7a7",
+        "uncompressed_bytes": 6348,
+        "uncompressed_sha256": "77f5076dd734346c89359ee46b6aca6a7cbdd55f460b24e804ad0b84fbeed976"
+      },
+      "benchmarks/fpga-speed/tlm26-common-v1/custody/restore-programming.txt": {
+        "bytes": 555,
+        "path": "benchmarks/fpga-speed/tlm26-common-v1/custody/restore-programming.txt.gz",
+        "sha256": "68b77328c8e5705f989ebbd319545a997a54a26094d8a99b3784e9933a006381",
+        "uncompressed_bytes": 6348,
+        "uncompressed_sha256": "f6458ade8ccb1324acd353ce391f11652e7efdc51b30645b9fffbca9a3999af5"
+      }
+    },
+    "raw_measurement_trials_byte_identical": true,
+    "source_portable_capture_sha256": "345ca76d524ce3ad5c1e80faebb07fa51698188c796e49a5ac13dfca1ce03bbd"
+  },
+  "prior_baseline_checked": true,
+  "private_original_audit_sha256": "716654a627a2ab320221549a7558cad6471c8497755e7fca99b6ab8bbc505eb8",
+  "public_canonical_reader_accepted": true,
+  "raw_trials": [
+    {
+      "bytes": 31849,
+      "sha256": "1b32854c68771c15b6dcf46358eec4a1b0ac2ddd405e90983d2dab1fbf543ef7"
+    },
+    {
+      "bytes": 31862,
+      "sha256": "48bba08036a0cdfa13808231ea6fe87b8c8ace68d57ca3e504a0d9edddf085f3"
+    }
+  ],
+  "recorded_utc": "2026-11-15T18:49:46.921463+00:00",
+  "restore_image_sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2",
+  "restored_and_baseline_checked": true,
+  "schema": "TLM26-common-benchmark-measured-wire-audit-r1",
+  "scope": "Original instrumented 12.5MHz image including20ms delay; host validated-return timings; whole-image timing closure remains open.",
+  "source_and_image_pins_unchanged": true,
+  "trial_first_to_last_ns": [
+    78773800667,
+    78790705958
+  ],
+  "two_fresh_trials": true,
+  "whole_image_timing_violations": {
+    "hold_violated_endpoints": 34,
+    "qualification": "Measured only on this original instrumented image at12.5MHz; not whole-image timing closure",
+    "setup_violated_endpoints": 127
+  }
+}

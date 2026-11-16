@@ -6,7 +6,7 @@ To enter the headline speed comparison, a design must use one input token, 128 g
 
 Run one sequence at a time on the FPGA's local control host, with no competing workload on that FPGA. Use the qualified image and model identified in the record. Record their hashes, clock, host client/source identity and collection conditions. A different image or clock requires its own measurements.
 
-Use input token `[378]` for SimpleStories and `[9707]` for Qwen. These are model-native token IDs; the common workload fixes token counts, not text across different tokenizers. Before each measured trial, issue CLEAR, verify success and append the single input token. Produce exactly 128 outputs with true feedback. Continue through end markers. Use the decoding mode declared by the selected row. The seeded-sampling row uses temperature 1 and public seed `0x99aabbccddeeff001122334455667788`; validate its outputs against the corresponding seeded numerical reference. Other rows use greedy decoding.
+Use input token `[378]` for SimpleStories, BOS `[1]` for TLM26, and `[9707]` for Qwen. These are model-native token IDs; the common workload fixes token counts, not text across different tokenizers. Before each measured trial, issue CLEAR, verify success and append the single input token. Produce exactly 128 outputs with true feedback. Continue through end markers. Use the decoding mode declared by the selected row. The seeded-sampling row uses temperature 1 and public seed `0x99aabbccddeeff001122334455667788`; validate its outputs against the corresponding seeded numerical reference. Other rows use greedy decoding.
 
 Run two complete repetitions with the same image, model, clock, host software, prompt and decoding mode. Repeated sampled trials also use the same declared seed. Check all 128 returned IDs against the applicable numerical reference and retain the raw capture. A short CLEAR/replay smoke test cannot replace a full repetition. Preserve failures; never replace a failed trial with a successful retry without a separate record.
 
@@ -49,14 +49,27 @@ This excludes inter-command gaps and must be labeled separately. Browser streami
 The overview features the K/V-protected SimpleStories F-AWIC. Its expanded
 comparison includes the plain-cache baseline and the other SimpleStories
 configurations, all calculated from their selected archived captures.
-TLM26 appears with a pending common rate. Its [24-output board validation](../../demos/tlm26-moe/VALIDATION.md)
-uses two five-token prompts and a deliberate 20 ms first-return hold; its median
-STEP latency cannot substitute for this benchmark. The selection binds that
-record's image and configured clock without treating it as a complete trial.
+TLM26 has separate paired records for the
+[original image](../../benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json)
+at 1.612038176875 tokens/s and the
+[overlapped schedule](../../benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/CAPTURE.json)
+at 3.097428714761 tokens/s. Each uses two one-BOS, 128-output trials at
+12.5 MHz, with the same model, authentication and included 20 ms hold.
+Do not pool trials across these different image identities. Their first-STEP
+latencies and [whole-image timing limits](../../demos/tlm26-moe/variants/overlap-r2/README.md#timing-qualification)
+remain separate from the cached rates. The original earlier 24-output latency
+test remains a separate validation workload.
+
+The variant's supplemental [saved-frame verifier](../../demos/tlm26-moe/variants/overlap-r2/verify_measurement.py)
+checks all four raw trials and both reference/image bindings. Run it alongside
+the unchanged full-repository benchmark calculation: the canonical format's
+generic checks apply to the added row, while the parser's legacy TLM26 special
+case names only the original `tlm26-moe` row.
 
 From the repository root, using Python's standard library:
 
 ```sh
+python3 -I -S -B demos/tlm26-moe/variants/overlap-r2/verify_measurement.py
 python3 -I -S -B tools/fpga_speed_benchmark.py --check
 python3 -I -S -B tools/fpga_speed_benchmark.py --table
 python3 -I -S -B -m unittest discover -s tools -p 'test_fpga_speed_benchmark.py' -v

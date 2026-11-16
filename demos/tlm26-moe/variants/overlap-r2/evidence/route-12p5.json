@@ -1,0 +1,61 @@
+{
+  "clocks_measured_mhz": {
+    "app_clk100": 206.382,
+    "board_clk50": 279.261,
+    "memory_clk400": 2240.143,
+    "trusted_clk12p5": 45.806
+  },
+  "part": "GW5AST-LV138PG484AC1/I0",
+  "programming_files": {
+    "tlm26.fs": "aeccf667a14cbc31cf88a223b643ec37e6dd82df87a4613c4191078972e82e64",
+    "tlm26.log": "88db6a509ee9d00270c65deb67196a3ef5895f01722cf9d17bc5436aca4cea02",
+    "tlm26.rpt.txt": "90f842e3ae19c821278f289eaafb5eda8327a4d1b631616bb8fc285d73fb69c7",
+    "tlm26.tr": "be3f4e2f3de47c717bfc7295f82eb684984dc365ff0f37f249526b8e486ba96e"
+  },
+  "requested_clock_mhz": {
+    "DDR_app": 100,
+    "board": 50,
+    "memory": 400,
+    "semantic": 12.5
+  },
+  "resources_used_available": {
+    "BSRAM": [
+      248,
+      340
+    ],
+    "CLS": [
+      12524,
+      69120
+    ],
+    "DSP": [
+      5,
+      298
+    ],
+    "Logic": [
+      15246,
+      138240
+    ],
+    "Register": [
+      10824,
+      139095
+    ]
+  },
+  "scope": "Actual measured image route. Report-only clock-pair queries added; no relaxed constraint or vendor timing waiver.",
+  "semantic_same_clock_slack_ns": {
+    "hold": 0.162,
+    "setup": 58.169
+  },
+  "synthesis_and_route": "V1.9.12.04-1",
+  "tightest_ordinary_app_setup_ns": 0.008,
+  "whole_image_timing_closed": false,
+  "whole_image_violated_endpoint_counts": {
+    "Hold Violated Endpoints": 34,
+    "Setup Violated Endpoints": 143
+  },
+  "worst_reported_slack_ns": {
+    "hold": -1.042,
+    "recovery": -2.918,
+    "removal": 0.349,
+    "setup": -4.052
+  }
+}

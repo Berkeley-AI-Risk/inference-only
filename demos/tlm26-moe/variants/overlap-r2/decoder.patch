@@ -1,0 +1,44 @@
+--- a/tlm_decoder.sv
++++ b/tlm_decoder.sv
+@@ -412,16 +412,32 @@
+     FAILED: begin rep_valid<=1;rep_kind<=3;rep_token<=0; state <= IDLE; end
+     MAT: begin r<=0; wi<=mbase; state <= MAT_ROW; end
+     MAT_ROW: begin j<=0;accum<=0; state <= MAT_MAC; end
+-    MAT_MAC: begin sadr <= src+j; state <= MAT_MAC_FETCH; end
++    // Warm the scratch read and private authenticated weight request together.
++    // Thereafter overlap only the next reads with the current multiply/add.
++    // The single multiplier, signed widths, sum order and rounding are unchanged.
++    MAT_MAC: begin sadr <= src+j; waddr <= wi; wreq <= 1; state <= MAT_MAC_FETCH; end
+     MAT_MAC_FETCH: begin  state <= MAT_MAC_GOT; end
+-    MAT_MAC_GOT: begin a <= $signed(srdata); state <= MAT_MAC_1; end
+-    MAT_MAC_1: begin waddr <= wi; wreq <= 1; state <= MAT_MAC_1_WAIT; end
+-    MAT_MAC_1_WAIT: begin if(wfail) begin wreq<=0; state <= FAILED; end else if(wvalid) begin wreq<=0; b <= $signed(wdata); state <= MAT_MAC_2; end end
+-    MAT_MAC_2: begin ma <= a; mb <= b; state <= MAT_MAC_2_M; end
+-    MAT_MAC_2_M: begin  state <= MAT_MAC_2_GOT; end
+-    MAT_MAC_2_GOT: begin accum <= accum+product; state <= MAT_MAC_3; end
+-    MAT_MAC_3: begin wi<=wi+1; state <= MAT_J; end
+-    MAT_J: begin if(j+1 >= cols) begin state <= MAT_WRITE; end else begin j<=j+1; state <= MAT_MAC; end end
++    MAT_MAC_GOT: begin
++      a <= $signed(srdata);
++      if(wfail) begin wreq<=0; state <= FAILED; end
++      else if(wvalid) begin wreq<=0; ma <= $signed(srdata); mb <= $signed(wdata); state <= MAT_MAC_2_M; end
++      else state <= MAT_MAC_1_WAIT;
++    end
++    MAT_MAC_1_WAIT: begin
++      if(wfail) begin wreq<=0; state <= FAILED; end
++      else if(wvalid) begin wreq<=0; ma <= a; mb <= $signed(wdata); state <= MAT_MAC_2_M; end
++    end
++    MAT_MAC_2_M: begin
++      wi <= wi+1;
++      if(j+1 >= cols) state <= MAT_MAC_2_GOT;
++      else begin
++        // wreq was low for the cycle in which the prior HIT returned to IDLE.
++        // This next request starts after that response has been consumed.
++        sadr <= src+j+1; waddr <= wi+1; wreq <= 1; j <= j+1; state <= MAT_MAC_3;
++      end
++    end
++    MAT_MAC_3: begin accum <= accum+product; state <= MAT_MAC_GOT; end
++    MAT_MAC_2_GOT: begin accum <= accum+product; state <= MAT_WRITE; end
+     MAT_WRITE: begin sadr <= dst+r; swdata <= (accum+16384)>>>15; swe <= 1; state <= MAT_R; end
+     MAT_R: begin if(r+1 >= rows) begin state <= MAT_RET; end else begin r<=r+1; state <= MAT_ROW; end end
+     MAT_RET: begin state <= back_MAT; end

@@ -6,6 +6,16 @@ This **F-AWIC** runs the released eight-expert TLM26 TinyStories checkpoint. Its
 
 The weights-only checkpoint has **1,572,032 unique parameters**, with tied input and output weights. Its 6,340,671-byte file has SHA-256 `c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0`. The matching SentencePiece model is `tinylm/data/tok512.model`, SHA-256 `d7f2c1b4c964f0b4a5e136557059e2e4071a3738441d1d104f70d0a36b999cf8`. Evaluation starts with one BOS token. The author's MoE evaluation selects the custom vocabulary dataset, and the data utility selects `tok512.model` for that vocabulary size. The model card declares MIT. The training and inference source carries the included upstream MIT notice. [Pinned evaluation code](https://github.com/ANRGUSC/tlm26/blob/967a9270ff81220421e062393ae56babe6152888/tinylm/eval_moe.py) · [Tokenizer selection](https://github.com/ANRGUSC/tlm26/blob/967a9270ff81220421e062393ae56babe6152888/tinylm/tinystories.py) · [Upstream license](https://github.com/ANRGUSC/tlm26/blob/967a9270ff81220421e062393ae56babe6152888/tinylm/LICENSE)
 
+## Faster measured schedule
+
+The [overlapped schedule variant](variants/overlap-r2/README.md) measured
+**3.09743 cached tokens/s** at 12.5 MHz using the same model, precision,
+authentication and included 20 ms diagnostic hold. Its two BOS/128-output
+trials matched all 256 reference IDs. The separate 1.61204 original-image
+benchmark below remains available with its exact captures. The variant guide
+provides the one-file source delta, file-only overlay and recorded image/timing
+identities. Both measurements retain whole-image timing limitations.
+
 ## Measured on the Tang
 
 The board produced the following continuations with one FPGA image, SHA-256 `87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42`. Both five-token prompts include BOS. Each continuation has twelve generated tokens. All 24 tokens matched both CPU references.
@@ -18,6 +28,25 @@ The board produced the following continuations with one FPGA image, SHA-256 `87a
 Median host-observed UART STEP round trip was **577.636 ms** over the 24 generated tokens, with a range of 577.561–577.731 ms. The circuit holds each job’s first actual DDR return for 250,000 semantic-clock cycles (20 ms) to make the outstanding-response test reproducible. The test sends adjacent STEP and CLEAR frames in one host write. The board acknowledged CLEAR after 33.752 ms, emitted no stale bytes during the following 80 ms, then generated token 403 after a fresh BOS. Median idle CLEAR round trip was 16.606 ms.
 
 On the same FPGA image, a second boot stream flipped bit zero of byte 94,208 in layer 0, expert 0’s first SwiGLU projection. The five prompt APPENDs completed with the changed byte already in on-board DDR. The affected STEP returned the canonical refusal frame `5ac1000086` in 84.756 ms. Its healthy control produced token 432. The product exposes token replies. Layer-by-layer routing comparisons in the numerical traces come from the CPU references. The original SRAM configuration passed its 108, 32 baseline token check after restoration. The campaign used no flash programming operations. [Measured UART frames and latency](evidence/physical.json)
+
+## Common paired speed benchmark
+
+The same instrumented image at 12.5 MHz produced all 256 expected IDs in two
+fresh one-BOS (`[1]`), 128-output greedy trials. Pooled cached generation was
+**1.612038176875 tokens/s**, displayed as **1.6** in the overview table:
+254 cached intervals over 157.564506625 seconds of validated host replies.
+The trial windows were 78.773800667 and 78.790705958 seconds; first-STEP
+latencies were 577.896750 and 577.987208 ms and are not included in the cached
+interval count. The rate includes the image's 20 ms diagnostic DDR hold.
+[Capture](../../benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json) ·
+[Raw trial 1](../../benchmarks/fpga-speed/tlm26-common-v1/trial-1.json) ·
+[Raw trial 2](../../benchmarks/fpga-speed/tlm26-common-v1/trial-2.json) ·
+[Evidence review](../../benchmarks/fpga-speed/tlm26-common-v1/REVIEW.json) ·
+[Timing qualifications](VALIDATION.md#timing-qualification)
+
+The prior signed-update SRAM configuration was restored and its `108,32`
+baseline passed, with no flash programming. This finite measurement does not
+provide a timing-closed image or a prebuilt FPGA configuration.
 
 ## Numerical and RTL replay
 

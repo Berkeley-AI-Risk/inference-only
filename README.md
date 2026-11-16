@@ -77,7 +77,7 @@ the same prompt with the same temperature and seed reproduces the same tokens.
 
 ## The demonstrated designs and measurements
 
-The four model rows are **F-AWICs**. The SimpleStories row features
+The measured configurations below are **F-AWICs**. The SimpleStories row features
 authenticated attention keys and values (K/V). Expand its comparison for the
 other F-AWIC and S-AWIC configurations.
 
@@ -85,7 +85,8 @@ other F-AWIC and S-AWIC configurations.
 | Model and FPGA | Core clock (MHz) | Attention keys and values on this image | Common cached tokens/s | Release |
 | --- | ---: | --- | ---: | --- |
 | **SimpleStories-V2-5M — Tang Mega**, **F-AWIC** | 25 | Authenticated in external DDR | 7.0 | Runnable release |
-| **TLM26, top-2-of-8 MoE — Tang Mega**, **F-AWIC** | 12.5 | Held in on-chip scratch RAM | — | Buildable source and board records |
+| **TLM26, top-2-of-8 MoE — Tang Mega**, **F-AWIC** | 12.5 | Held in on-chip scratch RAM | 1.6 | Buildable source and board records |
+| **TLM26, overlapped schedule — Tang Mega**, **F-AWIC** | 12.5 | Held in on-chip scratch RAM | 3.1 | Source delta and board records |
 | **Qwen3-1.7B — AWS F2**, **F-AWIC** | 100 | External memory, without K/V integrity checks | 9.0 | Runnable release · public AWS FPGA image |
 | **Qwen3-8B — AWS F2**, **F-AWIC** | 100 | External memory, without K/V integrity checks | 1.1 | Runnable prototype · speed optimization in progress · public AWS FPGA image |
 
@@ -105,13 +106,20 @@ other F-AWIC and S-AWIC configurations.
 
 The clock column gives each image’s configured inference/core clock. Memory and interface blocks use other clock domains.
 
-TLM26 has a separate [board validation](demos/tlm26-moe/VALIDATION.md) for image
-`87af51485847…` at 12.5 MHz. Two five-token prompts generated twelve tokens
-each; all 24 outputs matched both CPU references. Median STEP round trip was
-**577.636 ms**, including a deliberate 20 ms hold of each token's first DDR
-response for the cancellation test. Its common paired 128-output benchmark
-is pending. The validation record also states the remaining full-image
-setup/hold violations.
+TLM26's [overlapped schedule](demos/tlm26-moe/variants/overlap-r2/README.md)
+measured **3.09743 cached tokens/s** at 12.5 MHz. The original image's
+**1.61204** measurement remains a separate row and
+[capture](benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json).
+Each image has two one-BOS, 128-output trials; all 256 IDs per image match
+the unchanged references. Both rates include the same 20 ms diagnostic
+first-DDR-return hold. The optimized trials' first-STEP latencies were
+271.964625 and 271.942375 ms, recorded separately from cached generation.
+The [optimized capture and review](benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/REVIEW.json)
+bind image `aeccf667a14c…`; the original remains `87af51485847…`.
+The measured variant retains 143 setup/recovery-side and 34 hold/removal-side
+failing endpoints, versus 127 and 34 on the original. Its ordinary 100 MHz
+transport setup margin is only +0.008 ns. These finite board measurements
+do not establish whole-image timing closure.
 
 SimpleStories generates 10.0 cached tokens/s with a plain external cache and
 6.0 with cache integrity plus encrypted memory on the same common benchmark.
