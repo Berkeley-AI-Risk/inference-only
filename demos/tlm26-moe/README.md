@@ -8,17 +8,36 @@ The weights-only checkpoint has **1,572,032 unique parameters**, with tied input
 
 ## Faster measured schedule
 
-The [overlapped schedule variant](variants/overlap-r2/README.md) measured
-**3.09743 cached tokens/s** at 12.5 MHz using the same model, precision,
-authentication and included 20 ms diagnostic hold. Its two BOS/128-output
-trials matched all 256 reference IDs. The separate 1.61204 original-image
-benchmark below remains available with its exact captures. The variant guide
-provides the one-file source delta, file-only overlay and recorded image/timing
-identities. Both measurements retain whole-image timing limitations.
+The **50 MHz overlapped schedule measured 9.077744452657152 cached tokens/s**.
+It uses the same pretrained model, int16 precision, authentication and included
+20 ms diagnostic hold as the two 12.5 MHz images. Both one-BOS/128-output trials
+matched all 256 reference IDs. [50 MHz source and reproduction](variants/overlap-r2-50mhz/README.md) ·
+[Capture](../../benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/CAPTURE.json) ·
+[Evidence review](../../benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/REVIEW.json)
+
+| Recorded image | Inference core (MHz) | Cached tokens/s | Evidence |
+| --- | ---: | ---: | --- |
+| Original schedule | 12.5 | 1.612038176875166 | [Original capture](../../benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json) |
+| Overlapped schedule | 12.5 | 3.097428714761486 | [Same-clock comparison](variants/overlap-r2/README.md) |
+| Overlapped schedule | 50 | 9.077744452657152 | [50 MHz record](variants/overlap-r2-50mhz/README.md) |
+
+The same-clock comparison isolates the scheduling improvement. The 50 MHz
+image combines that identical decoder with faster clock delivery and scaled
+UART/hold parameters. All records remain separate. Its recorded implementation
+still has 158 setup/recovery-side and 34 hold/removal-side failing endpoints;
+these measurements establish neither whole-image timing closure nor a prebuilt
+FPGA release.
+
+The [K/V history-isolation review](variants/overlap-r2-50mhz/KV-LIFECYCLE.md)
+records eight finite clean-versus-reused/cancelled cases for each schedule,
+including STEP immediately after CLEAR. The eight runtime modules are identical
+in the 50 MHz image. These checks assume trusted on-chip SRAM; the linked note
+also describes the additional integrity and freshness requirements for a future
+external K/V cache.
 
 ## Measured on the Tang
 
-The board produced the following continuations with one FPGA image, SHA-256 `87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42`. Both five-token prompts include BOS. Each continuation has twelve generated tokens. All 24 tokens matched both CPU references.
+The original 12.5 MHz board run produced the following continuations with one FPGA image, SHA-256 `87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42`. Both five-token prompts include BOS. Each continuation has twelve generated tokens. All 24 tokens matched both CPU references.
 
 | Prompt | Generated continuation |
 | --- | --- |
@@ -33,8 +52,8 @@ On the same FPGA image, a second boot stream flipped bit zero of byte 94,208 in 
 
 The same instrumented image at 12.5 MHz produced all 256 expected IDs in two
 fresh one-BOS (`[1]`), 128-output greedy trials. Pooled cached generation was
-**1.612038176875 tokens/s**, displayed as **1.6** in the overview table:
-254 cached intervals over 157.564506625 seconds of validated host replies.
+**1.612038176875 tokens/s** over 254 cached intervals and 157.564506625
+seconds of validated host replies.
 The trial windows were 78.773800667 and 78.790705958 seconds; first-STEP
 latencies were 577.896750 and 577.987208 ms and are not included in the cached
 interval count. The rate includes the image's 20 ms diagnostic DDR hold.

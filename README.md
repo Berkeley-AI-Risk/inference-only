@@ -25,7 +25,8 @@ The [FPGA measurements](#the-demonstrated-designs-and-measurements) give
 host-observed generation rates. The [architecture and evidence map](docs/ARCHITECTURE.md)
 connects each implementation to its source, tests and proof obligations.
 The [SimpleStories residual training analysis](demos/simplestories-v2-5m/TRAINING-CAPACITY.md#access-assumptions-and-arithmetic)
-compares five access assumptions for the baseline with plain K/V. One considers
+compares five access assumptions for the baseline with a plain cache for
+attention keys and values (K/V). One considers
 sending matrices and receiving their products through
 the token interface. Others grant access to internal multipliers or assume the
 chip accepts weights of the user's choosing. The [scaling proposal](docs/PROPOSED-REUSABLE-AWIC.md)
@@ -77,81 +78,70 @@ the same prompt with the same temperature and seed reproduces the same tokens.
 
 ## The demonstrated designs and measurements
 
-The measured configurations below are **F-AWICs**. The SimpleStories row features
-authenticated attention keys and values (K/V). Expand its comparison for the
-other F-AWIC and S-AWIC configurations.
+Cached tokens/s measures single-stream generation between validated token replies
+on the local control host. “Inference core” is the configured decoder clock of
+the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) · [Full results](benchmarks/fpga-speed/results.json)
 
 <!-- COMMON-FPGA-SPEED:START -->
-| Model and FPGA | Core clock (MHz) | Attention keys and values on this image | Common cached tokens/s | Release |
-| --- | ---: | --- | ---: | --- |
-| **SimpleStories-V2-5M — Tang Mega**, **F-AWIC** | 25 | Authenticated in external DDR | 7.0 | Runnable release |
-| **TLM26, top-2-of-8 MoE — Tang Mega**, **F-AWIC** | 12.5 | Held in on-chip scratch RAM | 1.6 | Buildable source and board records |
-| **TLM26, overlapped schedule — Tang Mega**, **F-AWIC** | 12.5 | Held in on-chip scratch RAM | 3.1 | Source delta and board records |
-| **Qwen3-1.7B — AWS F2**, **F-AWIC** | 100 | External memory, without K/V integrity checks | 9.0 | Runnable release · public AWS FPGA image |
-| **Qwen3-8B — AWS F2**, **F-AWIC** | 100 | External memory, without K/V integrity checks | 1.1 | Runnable prototype · speed optimization in progress · public AWS FPGA image |
+### SimpleStories-V2-5M on Tang Mega 138K
 
-<details>
-<summary>Additional SimpleStories configurations on Tang Mega</summary>
-
-| SimpleStories configuration | Core clock (MHz) | Cached tokens/s | Release |
-| --- | ---: | ---: | --- |
-| **F-AWIC**, without K/V integrity | 25 | 10.0 | Runnable release |
-| **F-AWIC with K/V protection + encrypted memory** | 25 | 6.0 | Runnable release · public demonstration keys |
-| **F-AWIC with seeded sampling at temperature 1**, without K/V integrity | 25 | 9.9 | Runnable release |
-| **S-AWIC**, without K/V integrity | 25 | 10.1 | Runnable release · public demonstration keys |
-| **S-AWIC with periodic reauthorization**, without K/V integrity | 25 | 7.6 | Runnable token-ID demonstration · public demonstration keys |
-
-</details>
+| Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
+| --- | --- | ---: | ---: | --- |
+| F-AWIC, baseline | External DDR, without K/V integrity checks | 25 | 10.0 | Runnable release |
+| F-AWIC, K/V integrity | Authenticated in external DDR | 25 | 7.0 | Runnable release |
+| F-AWIC, encrypted memory | Authenticated and encrypted in external DDR | 25 | 6.0 | Runnable release · public demonstration keys |
+| F-AWIC, seeded sampling (temperature 1) | External DDR, without K/V integrity checks | 25 | 9.9 | Runnable release |
+| S-AWIC, signed updates | External DDR, without K/V integrity checks | 25 | 10.1 | Runnable release · public demonstration keys |
+| S-AWIC, periodic reauthorization | External DDR, without K/V integrity checks | 25 | 7.6 | Runnable token-ID demonstration · public demonstration keys |
 <!-- COMMON-FPGA-SPEED:END -->
 
-The clock column gives each image’s configured inference/core clock. Memory and interface blocks use other clock domains.
+A separate [11-case simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) combines S-AWIC signed reauthorization with protected K/V.
 
-TLM26's [overlapped schedule](demos/tlm26-moe/variants/overlap-r2/README.md)
-measured **3.09743 cached tokens/s** at 12.5 MHz. The original image's
-**1.61204** measurement remains a separate row and
-[capture](benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json).
-Each image has two one-BOS, 128-output trials; all 256 IDs per image match
-the unchanged references. Both rates include the same 20 ms diagnostic
-first-DDR-return hold. The optimized trials' first-STEP latencies were
-271.964625 and 271.942375 ms, recorded separately from cached generation.
-The [optimized capture and review](benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/REVIEW.json)
-bind image `aeccf667a14c…`; the original remains `87af51485847…`.
-The measured variant retains 143 setup/recovery-side and 34 hold/removal-side
-failing endpoints, versus 127 and 34 on the original. Its ordinary 100 MHz
-transport setup margin is only +0.008 ns. These finite board measurements
-do not establish whole-image timing closure.
+The encrypted image protects K/V against replay and encrypts both weights and
+K/V. The seeded image authenticates weights and uses a plain external K/V cache.
 
-SimpleStories generates 10.0 cached tokens/s with a plain external cache and
-6.0 with cache integrity plus encrypted memory on the same common benchmark.
-Both Qwen board images use external K/V without integrity checks. The separate
-[1.7B full-model simulation](demos/qwen3-1.7b/variants/protected-kv-simulation/README.md)
-and [8B component simulation](demos/qwen3-8b/variants/protected-kv-simulation/README.md)
-exercise protected K/V; their results do not describe those board images.
+<!-- COMMON-FPGA-SPEED:START -->
+### TLM26 (top-2-of-8 MoE) on Tang Mega 138K
 
-The Qwen3-8B image returns a cached token in 0.89 seconds on average. Its fixed schedule streams 7.57 GB of 8-bit projection weights per token through a bank that accepts up to 256 bytes per core clock. Even with every needed weight ready on time, accepting those weights takes at least 0.30 seconds at the configured 100 MHz. The measured interval also covers fetching and checking weights, attention, other model operations, and returning the token. A matched timing comparison is needed to isolate the cost of weight authentication. [8B arithmetic inventory](demos/qwen3-8b/TRAINING-CAPACITY.md) · [Board timings](demos/qwen3-8b/README.md#additional-validation-workloads)
+| Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
+| --- | --- | ---: | ---: | --- |
+| F-AWIC, overlapped schedule | Held in on-chip scratch RAM | 50 | 9.1 | Source delta and board records |
+<!-- COMMON-FPGA-SPEED:END -->
 
-The encrypted-memory version retains K/V integrity and replay protection and
-also encrypts both weights and K/V; its supplied keys are public demonstration
-keys. Seeded sampling uses the baseline's authenticated weights, without K/V
-integrity or encryption.
+The [50 MHz overlapped schedule](demos/tlm26-moe/variants/overlap-r2-50mhz/README.md) fetches the next operands while the current product accumulates. The [TLM26 guide](demos/tlm26-moe/README.md) covers the earlier same-clock comparison, reproduction and timing limits.
 
-The reported common rates use **one input token, 128 outputs and two repetitions**. The seeded-sampling row uses its stated temperature; the other measured rows use greedy decoding.
+<!-- COMMON-FPGA-SPEED:START -->
+### Qwen3-1.7B on AWS F2
 
-The cached rate is **254 divided by the sum of the two first-to-last reply durations**, measured on the local control host after validated replies return to the generation loop. It includes gaps between replies and excludes the first output. First-STEP latency and command-only timing are separate measurements.
+| Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
+| --- | --- | ---: | ---: | --- |
+| F-AWIC | External memory, without K/V integrity checks | 100 | 9.0 | Runnable release · public AWS FPGA image |
+<!-- COMMON-FPGA-SPEED:END -->
 
-A dash means that a complete paired record satisfying this protocol is unavailable. Model-specific validation measurements are linked from each guide. The [benchmark protocol and reproducible calculations](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) specify the observation boundary, source identities and eligibility checks. These are workload-specific host-observed rates, not peak ratings.
+A separate [full-model simulation](demos/qwen3-1.7b/variants/protected-kv-simulation/README.md)
+checks authenticated retained K/V and the operands used by the model.
 
-“Runnable release” means the image, model, app and installation instructions
-are available. Each model's guide states its completed functional checks and
-its timing, security and proof limits. Availability does not guarantee every
-workload or independently attest a loaded device. No Tang version has complete
-vendor-DDR timing or physical-security certification.
+<!-- COMMON-FPGA-SPEED:START -->
+### Qwen3-8B on AWS F2
 
-The dense demonstrations supply ready-to-load FPGA images. TLM26 supplies
-buildable source, reconstruction scripts and board records, with no prebuilt
-FPGA configuration in this release.
+| Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
+| --- | --- | ---: | ---: | --- |
+| F-AWIC | External memory, without K/V integrity checks | 100 | 1.1 | Runnable prototype · speed optimization in progress · public AWS FPGA image |
+<!-- COMMON-FPGA-SPEED:END -->
+
+The image returns a cached token in 0.89 seconds on average. Its fixed schedule streams 7.57 GB of 8-bit projection weights per token through a bank that accepts up to 256 bytes per core clock. Even with every needed weight ready on time, accepting those weights takes at least 0.30 seconds at the configured 100 MHz. The measured interval also covers fetching and checking weights, attention, other model operations, and returning the token. A matched timing comparison is needed to isolate the cost of weight authentication. [8B arithmetic inventory](demos/qwen3-8b/TRAINING-CAPACITY.md) · [Board timings](demos/qwen3-8b/README.md#additional-validation-workloads)
+
+A separate [component simulation](demos/qwen3-8b/variants/protected-kv-simulation/README.md)
+exercises protected K/V.
 
 ### Model guides
+
+“Runnable release” means the image, model, app and installation instructions
+are available. The dense demonstrations supply ready-to-load FPGA images.
+Each guide states the functional checks and timing, security and proof limits.
+Availability does not guarantee every workload or independently attest a
+loaded device. No Tang version has complete vendor-DDR timing or
+physical-security certification.
 
 - **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** six hardware
   configurations, board selection, browser and token-client workflows, measured
@@ -258,12 +248,7 @@ and rental; the 1.7B browser app can run on your Mac and connect to the F2 host
 over SSH. Hardware sources, build instructions and numerical-reference tools
 are also included.
 
-A separate [combined SimpleStories simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) joins signed model updates, periodic reauthorization and encrypted authenticated weights/K/V. It supplies model-replacement, replay and expiry checks with modeled private services; the board configurations and speed table have separate evidence.
-
-Qwen3-1.7B also has a separate [protected K/V simulation target](demos/qwen3-1.7b/variants/protected-kv-simulation/README.md)
-with authenticated retained K/V and directed operand checks. Its simulation
-records have their own scope; the public FPGA image and speed table use the
-plain K/V configuration.
+A separate [combined SimpleStories simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) joins signed model updates, periodic reauthorization and encrypted authenticated weights/K/V. It supplies model-replacement, replay and expiry checks with modeled private services; the board measurements have separate evidence.
 
 ## Experimental HWIC research
 

@@ -400,6 +400,55 @@
       ],
       "source": "demos/qwen3-8b/evidence/common-speed-2026-10-26/capture.json",
       "status": "Runnable prototype; speed optimization in progress; public AWS FPGA image"
+    },
+    {
+      "attention_cache": "Held in on-chip scratch RAM",
+      "cases": [
+        "one-token-128-trial1",
+        "one-token-128-trial2"
+      ],
+      "evidence_review": "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/REVIEW.json",
+      "format": "canonical",
+      "id": "tlm26-moe-overlap-r2-50mhz",
+      "identity": {
+        "bitstream_sha256": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b",
+        "board_label": "Tang Mega device C",
+        "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+        "collector_sha256": "87fa53ea49b8fd7c3ff88fcde0dc17cb808487d5f2f6993e833de61576460ee9",
+        "core_clock_mhz": 50,
+        "first_return_hold_cycles": 1000000,
+        "first_return_hold_ms": 20,
+        "fpga_image_sha256": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b",
+        "host": "macOS-27.0.1-arm64-arm-64bit",
+        "model_sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1",
+        "owner_current_load_receipt": {
+          "bytes": 166,
+          "path": "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/model-load.json",
+          "sha256": "e70b32d98d6a5b2b967f183978a5ad2930a348df4f9e45032a0bde5ee1d7194a"
+        },
+        "owner_current_program_log": {
+          "bytes": 555,
+          "path": "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/programming.txt.gz",
+          "sha256": "66faf55ab1b006dc1a70264588cd25b7c7372e9de718dda6fdfd20db1a43cbea",
+          "uncompressed_bytes": 6347,
+          "uncompressed_sha256": "64a5bd53037be89dbe80b435f0f9d3e7895344856a94f661f42f0725d110c80d"
+        },
+        "protocol": "one-token-128-host-v2",
+        "python": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+        "reference_sha256": "c462aa3b16c179b512c73e45bc98f3d7d8e93c6a763d460a677b93113b14dd71",
+        "semantic_clock_hz": 50000000,
+        "source_checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+        "timer": "time.monotonic_ns",
+        "timing_boundary": "generation_loop_validated_reply",
+        "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
+      },
+      "label": "**TLM26, overlapped schedule at 50 MHz \u2014 Tang Mega**, **F-AWIC**",
+      "prompt_tokens": [
+        1
+      ],
+      "route_source": "demos/tlm26-moe/variants/overlap-r2-50mhz/evidence/route-50mhz.json",
+      "source": "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/CAPTURE.json",
+      "status": "Source delta and board records"
     }
   ],
   "schema": "fpga-common-speed-selection-v1",
@@ -475,6 +524,42 @@
     "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/trial-2.json": {
       "bytes": 31827,
       "sha256": "c02d72187189d6975faa7b64232d61e5cff9e24ab9bca88205600ffc27569e9a"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/CAPTURE.json": {
+      "bytes": 32771,
+      "sha256": "4fd7ab27e0b328019b91b3e54073489da2a1d44a8cc63caa0cd4a6a4e4445f30"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/RESTORATION.json": {
+      "bytes": 991,
+      "sha256": "2c9777d810e126bb8f2a2d8d5ae2e5d3f203b478a69436514e14d26bae67b08c"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/REVIEW.json": {
+      "bytes": 1762,
+      "sha256": "2cb91f33d8f56b8b2d789ca79ca0d849020a43ac09b6363bb255f648d61dec2b"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/baseline-after.json": {
+      "bytes": 921,
+      "sha256": "d6b058720ab94bca2ab56ab945a6953a4b2ed56c37a977692aa7edd5659c8960"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/baseline-before.json": {
+      "bytes": 921,
+      "sha256": "dffcd6f33c517efa49ca2e44c7ea081545301dc4877a383ae1718a37f0ffe96b"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/model-load.json": {
+      "bytes": 166,
+      "sha256": "e70b32d98d6a5b2b967f183978a5ad2930a348df4f9e45032a0bde5ee1d7194a"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/golden.json": {
+      "bytes": 2893,
+      "sha256": "c462aa3b16c179b512c73e45bc98f3d7d8e93c6a763d460a677b93113b14dd71"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/trial-1.json": {
+      "bytes": 31788,
+      "sha256": "e20d17666d008bb3b592e9f00cd821c0b4c3115ede928b20cbfafa6a99167c3b"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/trial-2.json": {
+      "bytes": 31792,
+      "sha256": "6ad53d82563ef647c035cf13f64e53ea834b0e35260ff7c04dfed7e7d2dd7c9c"
     },
     "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/capture.json": {
       "bytes": 69517,
@@ -591,6 +676,22 @@
     "demos/tlm26-moe/evidence/route-volatile3.json": {
       "bytes": 3537,
       "sha256": "38b652442a35dfb3f2698c93fe5d30f38e35dea4f7ce98ff0ac2c4a3292208b8"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/PROVENANCE.json": {
+      "bytes": 2592,
+      "sha256": "6f313ad8977ec521063f221659a9928854aa2180e59eac576f36a0f9572a657c"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/SOURCE-IDENTITIES.json": {
+      "bytes": 6309,
+      "sha256": "29e54d4e4c78adde82f35e30913b43b769f6f6ce0e9e62e94856f26a9edd3da8"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/evidence/route-50mhz.json": {
+      "bytes": 1696,
+      "sha256": "67a27e3687dca6a2dd91ee3cc956617571c03303b21e3f96b37fa78e9afdd393"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/tests/KV-REVIEW.json": {
+      "bytes": 12901,
+      "sha256": "f034759dc6d8a22a4f6b3d3e35637a082e1052b0b2b667831beaf61b2518d8ae"
     },
     "demos/tlm26-moe/variants/overlap-r2/PROVENANCE.json": {
       "bytes": 1616,

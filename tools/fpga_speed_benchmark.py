@@ -299,27 +299,45 @@ def inference_clock_mhz(row):
     return identity['clocks_mhz']['core']
 
 
+def model_tables(result):
+    plain_ddr = 'External DDR, without K/V integrity checks'
+    # Older SimpleStories records describe K/V in their long display labels.
+    # Supply that column here for them. Other rows carry attention_cache.
+    groups = {
+        'SimpleStories-V2-5M on Tang Mega 138K': [
+            ('simplestories-baseline', 'F-AWIC, baseline', plain_ddr),
+            ('simplestories-kv-protected', 'F-AWIC, K/V integrity', None),
+            ('simplestories-encrypted', 'F-AWIC, encrypted memory', 'Authenticated and encrypted in external DDR'),
+            ('simplestories-seeded-sampling', 'F-AWIC, seeded sampling (temperature 1)', plain_ddr),
+            ('simplestories-signed-update', 'S-AWIC, signed updates', plain_ddr),
+            ('simplestories-home-authorization', 'S-AWIC, periodic reauthorization', plain_ddr),
+        ],
+        'TLM26 (top-2-of-8 MoE) on Tang Mega 138K': [
+            ('tlm26-moe-overlap-r2-50mhz', 'F-AWIC, overlapped schedule', None),
+        ],
+        'Qwen3-1.7B on AWS F2': [('qwen3-1.7b', 'F-AWIC', None)],
+        'Qwen3-8B on AWS F2': [('qwen3-8b', 'F-AWIC', None)],
+    }
+    rows = {row['id']: row for row in result['rows']}
+    tables = []
+    for heading, group in groups.items():
+        lines = [f'### {heading}', '',
+                 '| Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |',
+                 '| --- | --- | ---: | ---: | --- |']
+        for row_id, label, older_cache in group:
+            row = rows[row_id]
+            cache = row.get('attention_cache', older_cache)
+            need(cache, 'Missing K/V description for ' + row_id)
+            speed = f"{row['rate']['cached_tokens_per_second']:.1f}" if row['complete'] else '—'
+            clock = inference_clock_mhz(row)
+            status = row['package_status'].replace('; ', ' · ')
+            lines.append(f'| {label} | {cache} | {clock:g} | {speed} | {status} |')
+        tables.append('\n'.join(lines))
+    return tables
+
+
 def table(result):
-    columns = ' | Core clock (MHz) | Cached tokens/s | Release |'
-    divider = '| --- | ---: | ---: | --- |'
-    overview = ['| Model and FPGA | Core clock (MHz) | Attention keys and values on this image | Common cached tokens/s | Release |',
-                '| --- | ---: | --- | ---: | --- |']
-    variants = ['| SimpleStories configuration' + columns, divider]
-    for row in result['rows']:
-        speed = f"{row['rate']['cached_tokens_per_second']:.1f}" if row['complete'] else '—'
-        clock = f"{inference_clock_mhz(row):g}"
-        label = row['label']
-        group = overview
-        if row['id'].startswith('simplestories-') and row['id'] != 'simplestories-kv-protected':
-            label = label.removeprefix('Same model, ')
-            group = variants
-        status = row['package_status'].replace('; ', ' · ')
-        cache = ' | ' + row['attention_cache'] if group is overview else ''
-        group.append(f'| {label} | {clock}{cache} | {speed} | {status} |')
-    return '\n'.join([
-        *overview, '', '<details>', '<summary>Additional SimpleStories configurations on Tang Mega</summary>',
-        '', *variants, '', '</details>',
-    ])
+    return '\n\n'.join(model_tables(result))
 
 
 def main():
@@ -332,8 +350,10 @@ def main():
     if args.check:
         need(result == json.loads((args.package / RESULTS).read_text()), 'Saved benchmark calculations differ')
         readme = (args.package / 'README.md').read_text()
-        need(readme.count(START) == readme.count(END) == 1, 'Missing benchmark table markers')
-        need(readme.split(START, 1)[1].split(END, 1)[0].strip() == table(result), 'Overview common benchmark differs')
+        expected = model_tables(result)
+        need(readme.count(START) == readme.count(END) == len(expected), 'Missing benchmark table markers')
+        actual = [part.split(END, 1)[0].strip() for part in readme.split(START)[1:]]
+        need(actual == expected, 'Overview common benchmark differs')
         print(json.dumps({'passed': True, 'complete_rows': result['complete_rows'], 'total_rows': result['total_rows'],
                           'hardware_access': False, 'network_access': False}))
     elif args.table:

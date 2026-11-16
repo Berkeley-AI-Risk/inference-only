@@ -1,6 +1,6 @@
 # Common FPGA generation speed benchmark
 
-To enter the headline speed comparison, a design must use one input token, 128 generated outputs and two repetitions. The seeded-sampling row uses temperature 1 with a fixed public seed; the other measured rows use greedy decoding. Its cached rate includes the host control loop and gaps between token replies. The [overview table](../../README.md#the-demonstrated-designs-and-measurements) contains a rate only when both complete trials satisfy this protocol.
+To enter the headline speed comparison, a design must use one input token, 128 generated outputs and two repetitions. The seeded-sampling row uses temperature 1 with a fixed public seed; the other measured rows use greedy decoding. Its cached rate includes the host control loop and gaps between token replies. The [model tables](../../README.md#the-demonstrated-designs-and-measurements) report a rate only when both complete trials satisfy this protocol.
 
 ## Workload and execution
 
@@ -46,30 +46,31 @@ This excludes inter-command gaps and must be labeled separately. Browser streami
 
 [Selection](../../benchmarks/fpga-speed/selection.json) pins the input records and selected image identities. [Computed results](../../benchmarks/fpga-speed/results.json) record trial counts, wall durations, primary rates and command-only diagnostics. A dash in the overview means that a complete paired record is unavailable; individual model guides can report other explicitly labeled validation workloads.
 
-The overview features the K/V-protected SimpleStories F-AWIC. Its expanded
-comparison includes the plain-cache baseline and the other SimpleStories
-configurations, all calculated from their selected archived captures.
-TLM26 has separate paired records for the
+The overview shows all six SimpleStories configurations, the 50 MHz TLM26
+overlapped image at 9.077744452657 tokens/s, and the two Qwen board images.
+The full results retain separate TLM26 records for the
 [original image](../../benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json)
 at 1.612038176875 tokens/s and the
 [overlapped schedule](../../benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/CAPTURE.json)
 at 3.097428714761 tokens/s. Each uses two one-BOS, 128-output trials at
-12.5 MHz, with the same model, authentication and included 20 ms hold.
+12.5 MHz. The [50 MHz capture](../../benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/CAPTURE.json)
+also has two one-BOS, 128-output trials. All three use the same model,
+authentication and included 20 ms hold.
 Do not pool trials across these different image identities. Their first-STEP
 latencies and [whole-image timing limits](../../demos/tlm26-moe/variants/overlap-r2/README.md#timing-qualification)
 remain separate from the cached rates. The original earlier 24-output latency
 test remains a separate validation workload.
 
-The variant's supplemental [saved-frame verifier](../../demos/tlm26-moe/variants/overlap-r2/verify_measurement.py)
-checks all four raw trials and both reference/image bindings. Run it alongside
-the unchanged full-repository benchmark calculation: the canonical format's
+The supplemental [saved-frame verifier](../../demos/tlm26-moe/variants/overlap-r2-50mhz/verify_measurement.py)
+checks all six raw trials and all three reference/image bindings. Run it alongside
+the full-repository benchmark calculation: the canonical format's
 generic checks apply to the added row, while the parser's legacy TLM26 special
 case names only the original `tlm26-moe` row.
 
 From the repository root, using Python's standard library:
 
 ```sh
-python3 -I -S -B demos/tlm26-moe/variants/overlap-r2/verify_measurement.py
+python3 -I -S -B demos/tlm26-moe/variants/overlap-r2-50mhz/verify_measurement.py
 python3 -I -S -B tools/fpga_speed_benchmark.py --check
 python3 -I -S -B tools/fpga_speed_benchmark.py --table
 python3 -I -S -B -m unittest discover -s tools -p 'test_fpga_speed_benchmark.py' -v

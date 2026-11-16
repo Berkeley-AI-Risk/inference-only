@@ -228,9 +228,18 @@ class CommonSpeedTests(unittest.TestCase):
         result=bench.calculate(ROOT)
         self.assertEqual(result,json.loads((ROOT/bench.RESULTS).read_text()))
         text=(ROOT/'README.md').read_text()
-        self.assertEqual(text.count(bench.START),1)
-        self.assertEqual(text.count(bench.END),1)
-        self.assertEqual(text.split(bench.START,1)[1].split(bench.END,1)[0].strip(),bench.table(result))
+        tables = bench.model_tables(result)
+        self.assertEqual([t.splitlines()[0] for t in tables], [
+            '### SimpleStories-V2-5M on Tang Mega 138K',
+            '### TLM26 (top-2-of-8 MoE) on Tang Mega 138K',
+            '### Qwen3-1.7B on AWS F2',
+            '### Qwen3-8B on AWS F2',
+        ])
+        self.assertEqual([len(t.splitlines()[4:]) for t in tables], [6, 1, 1, 1])
+        self.assertEqual(text.count(bench.START), len(tables))
+        self.assertEqual(text.count(bench.END), len(tables))
+        actual = [part.split(bench.END, 1)[0].strip() for part in text.split(bench.START)[1:]]
+        self.assertEqual(actual, tables)
 
 
 if __name__=='__main__':unittest.main()

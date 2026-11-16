@@ -1,0 +1,99 @@
+--- a/board1_gowin_ddr3_raw_controller_shell.sv
++++ b/board1_gowin_ddr3_raw_controller_shell.sv
+@@ -20,0 +21 @@
++    output wire         core_clk_50mhz_o,
+@@ -172,0 +174,3 @@
++    // Direct, real PLL CLKOUT1 provides 50 MHz; no fabric clock mux or divider.
++    assign core_clk_50mhz_o = core_clk_25mhz_o; // Historical port; DIV_MODE=1 delivers 50 MHz.
++
+@@ -180 +184 @@
+-    defparam u_core_clkdiv.DIV_MODE = "2";
++    defparam u_core_clkdiv.DIV_MODE = "1";
+--- a/product.sdc
++++ b/product.sdc
+@@ -15,0 +16,2 @@
++create_generated_clock -name core_clk50 -source [get_pins {u_raw_controller/u_board_ddr_pll/u_pll/PLL_inst/CLKOUT1}] -master_clock [get_clocks {pll_clkout1_50}] -divide_by 1 [get_pins {u_raw_controller/u_core_clkdiv/CLKOUT}]
++
+@@ -30 +32 @@
+-// Additional reporting only: all clock pairs; no timing exception or changed clock.
++// Reporting-only clock-pair coverage.
+@@ -35,0 +38 @@
++report_timing -setup -from_clock [get_clocks {board_clk50}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -40,0 +44 @@
++report_timing -setup -from_clock [get_clocks {pll_clkout1_50}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -45,0 +50 @@
++report_timing -setup -from_clock [get_clocks {memory_clk400}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -50,0 +56 @@
++report_timing -setup -from_clock [get_clocks {app_clk100}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -55,0 +62,7 @@
++report_timing -setup -from_clock [get_clocks {trusted_clk12p5}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
++report_timing -setup -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {board_clk50}] -max_paths 1 -max_common_paths 1
++report_timing -setup -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {pll_clkout1_50}] -max_paths 1 -max_common_paths 1
++report_timing -setup -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {memory_clk400}] -max_paths 1 -max_common_paths 1
++report_timing -setup -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {app_clk100}] -max_paths 1 -max_common_paths 1
++report_timing -setup -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {trusted_clk12p5}] -max_paths 1 -max_common_paths 1
++report_timing -setup -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -60,0 +74 @@
++report_timing -hold -from_clock [get_clocks {board_clk50}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -65,0 +80 @@
++report_timing -hold -from_clock [get_clocks {pll_clkout1_50}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -70,0 +86 @@
++report_timing -hold -from_clock [get_clocks {memory_clk400}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -75,0 +92 @@
++report_timing -hold -from_clock [get_clocks {app_clk100}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -80,0 +98,7 @@
++report_timing -hold -from_clock [get_clocks {trusted_clk12p5}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
++report_timing -hold -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {board_clk50}] -max_paths 1 -max_common_paths 1
++report_timing -hold -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {pll_clkout1_50}] -max_paths 1 -max_common_paths 1
++report_timing -hold -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {memory_clk400}] -max_paths 1 -max_common_paths 1
++report_timing -hold -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {app_clk100}] -max_paths 1 -max_common_paths 1
++report_timing -hold -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {trusted_clk12p5}] -max_paths 1 -max_common_paths 1
++report_timing -hold -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -85,0 +110 @@
++report_timing -recovery -from_clock [get_clocks {board_clk50}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -90,0 +116 @@
++report_timing -recovery -from_clock [get_clocks {pll_clkout1_50}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -95,0 +122 @@
++report_timing -recovery -from_clock [get_clocks {memory_clk400}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -100,0 +128 @@
++report_timing -recovery -from_clock [get_clocks {app_clk100}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -105,0 +134,7 @@
++report_timing -recovery -from_clock [get_clocks {trusted_clk12p5}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
++report_timing -recovery -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {board_clk50}] -max_paths 1 -max_common_paths 1
++report_timing -recovery -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {pll_clkout1_50}] -max_paths 1 -max_common_paths 1
++report_timing -recovery -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {memory_clk400}] -max_paths 1 -max_common_paths 1
++report_timing -recovery -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {app_clk100}] -max_paths 1 -max_common_paths 1
++report_timing -recovery -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {trusted_clk12p5}] -max_paths 1 -max_common_paths 1
++report_timing -recovery -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -110,0 +146 @@
++report_timing -removal -from_clock [get_clocks {board_clk50}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -115,0 +152 @@
++report_timing -removal -from_clock [get_clocks {pll_clkout1_50}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -120,0 +158 @@
++report_timing -removal -from_clock [get_clocks {memory_clk400}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -125,0 +164 @@
++report_timing -removal -from_clock [get_clocks {app_clk100}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+@@ -130,0 +170,7 @@
++report_timing -removal -from_clock [get_clocks {trusted_clk12p5}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
++report_timing -removal -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {board_clk50}] -max_paths 1 -max_common_paths 1
++report_timing -removal -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {pll_clkout1_50}] -max_paths 1 -max_common_paths 1
++report_timing -removal -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {memory_clk400}] -max_paths 1 -max_common_paths 1
++report_timing -removal -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {app_clk100}] -max_paths 1 -max_common_paths 1
++report_timing -removal -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {trusted_clk12p5}] -max_paths 1 -max_common_paths 1
++report_timing -removal -from_clock [get_clocks {core_clk50}] -to_clock [get_clocks {core_clk50}] -max_paths 1 -max_common_paths 1
+--- a/top.sv
++++ b/top.sv
+@@ -19 +19 @@
+-    // All semantic state is now on core25. Physical app100 sees only u_transport.
++    // Semantic core is 50 MHz; DDR application remains 100 MHz.
+@@ -57,2 +57,2 @@
+-        .trusted_clk_25mhz_o(core_clk),.trusted_reset_n_o(trusted_reset_n),
+-        .core_clk_25mhz_o(),
++        .trusted_clk_25mhz_o(trusted_clk),.trusted_reset_n_o(trusted_reset_n),
++        .core_clk_25mhz_o(), .core_clk_50mhz_o(core_clk),
+@@ -77 +77 @@
+-    volatile_model_loader loader(.clk(core_clk),.rst_n(core_reset_n),.calibrated(transport_good),
++    volatile_model_loader #(.CLKS_PER_BIT(436)) loader(.clk(core_clk),.rst_n(core_reset_n),.calibrated(transport_good),
+@@ -80 +80 @@
+-    tlm_product #(.CLKS_PER_BIT(109)) product(.clk(core_clk),.rst_n(run && core_reset_n),
++    tlm_product #(.CLKS_PER_BIT(436), .HOLD_CYCLES(1000000)) product(.clk(core_clk),.rst_n(run && core_reset_n),

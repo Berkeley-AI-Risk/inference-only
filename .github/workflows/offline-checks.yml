@@ -108,7 +108,7 @@ jobs:
           python -I -S -B tools/check_qwen_measurements.py
           python -I -S -B tools/qwen_h100_results.py --check
           python -I -S -B tools/fpga_speed_benchmark.py --check
-          python -I -S -B demos/tlm26-moe/variants/overlap-r2/verify_measurement.py
+          python -I -S -B demos/tlm26-moe/variants/overlap-r2-50mhz/verify_measurement.py
           python -I -S -B tools/check_qwen_package.py
           python -I -S -B -m unittest discover -s demos/qwen3-1.7b/tools -p 'test_package_checks.py' -v
           python -I -S -B demos/qwen3-8b/tools/check_package.py

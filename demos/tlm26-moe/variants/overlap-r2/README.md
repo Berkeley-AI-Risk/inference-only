@@ -34,7 +34,7 @@ python3 demos/tlm26-moe/variants/overlap-r2/verify_measurement.py
 python3 tools/fpga_speed_benchmark.py --check
 ```
 
-The variant verifier checks both original and optimized captures against raw UART frames, CRCs, the unchanged references, custody digests, route/image identities and interval boundaries. It also calls the unchanged common benchmark parser. Neither command accesses hardware or re-runs model inference.
+The variant verifier checks both original and optimized captures against raw UART frames, CRCs, the unchanged references, custody digests, route/image identities and interval boundaries. It also calls the hash-pinned common benchmark parser. Neither command accesses hardware or re-runs model inference.
 
 ## Timing qualification
 

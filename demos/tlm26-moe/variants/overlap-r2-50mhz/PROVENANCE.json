@@ -1,0 +1,46 @@
+{
+  "KV_test_source": "Project-owned observation-only regression derived from the existing UART-product profiler; production RTL unchanged. Exact source and outcomes in tests/KV-REVIEW.json.",
+  "checkpoint": {
+    "license_declaration": "mit",
+    "repository": "h1matthew/tlm26",
+    "revision": "804c2137003ede3820fc57608221deb620c2d6d7",
+    "sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0"
+  },
+  "existing_sha_compressor_credit": "Fable, retained in the demo and root notices; compressor unchanged",
+  "model_token_ids": "Unchanged model-derived reference IDs with existing upstream provenance; no new model evaluation or ownership claim",
+  "modified_project_inputs": [
+    {
+      "baseline_sha256": "eda70d4807b7312af6acf8bdfca683fe2d97d2c74f4e4c9e400e05644b1b18c0",
+      "measured_sha256": "ceffbf483bddb0ecd325c4367581a81ad71bbbb44f06733b2464597153f0a739",
+      "native_input": "board1_gowin_ddr3_raw_controller_shell.sv",
+      "variant_path": "demos/tlm26-moe/variants/overlap-r2-50mhz/rtl/board1_gowin_ddr3_raw_controller_shell.sv"
+    },
+    {
+      "baseline_sha256": "4f83d57053dd6bce43fe6241c54b7c13201f900dd8b001f6ad40d70abfdd8564",
+      "measured_sha256": "3946da8b8522248fc907124d9fea00afedca3cc449b0d9189592e75eef93cfe5",
+      "native_input": "product.sdc",
+      "variant_path": "demos/tlm26-moe/variants/overlap-r2-50mhz/rtl/product.sdc"
+    },
+    {
+      "baseline_sha256": "9736c6c49306101bb320f6c2c96610a23841dda50c99e1b7105f7a77f8e0c0c3",
+      "measured_sha256": "abdc62c66e215b007bc7ccb44db18d481c0cb5a8d7dbdf6025c8d477d62e4681",
+      "native_input": "top.sv",
+      "variant_path": "demos/tlm26-moe/variants/overlap-r2-50mhz/rtl/top.sv"
+    }
+  ],
+  "physical_evidence": "Historical host-validated UART captures; privacy derivations and uncompressed custody hashes recorded; no current device attestation or programming permission",
+  "project_license": "Apache-2.0 for project-owned implementation, tools and documentation under existing root LICENSE-SCOPE.md",
+  "retained_project_notices": [
+    "LICENSE",
+    "LICENSE-SCOPE.md",
+    "NOTICE",
+    "demos/tlm26-moe/NOTICES.md"
+  ],
+  "upstream_source": {
+    "license_sha256": "e87b912002f04cdfa837eaf7f70548ab79b9cb62a285495edf575f3da875aec4",
+    "preserved_license": "demos/tlm26-moe/metadata/upstream-LICENSE.txt",
+    "repository": "ANRGUSC/tlm26",
+    "revision": "967a9270ff81220421e062393ae56babe6152888"
+  },
+  "vendor_material": "No vendor source, library, netlist, tool or FPGA configuration included; original vendor dependencies and notices remain separate"
+}

@@ -1,0 +1,65 @@
+{
+  "all_reported_negative_paths_in_vendor_DDR_scope": true,
+  "incoming_recovery_ns": 1.749,
+  "incoming_removal_ns": 0.96,
+  "ordinary_application_setup_ns": 1.078,
+  "part": "GW5AST-LV138PG484AC1/I0",
+  "programming_files": {
+    "tlm26.fs": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b",
+    "tlm26.log": "91b8d9c25324c546e1672b437db12dc48d2ae8a4bab1e6d8adca9b0c910ca749",
+    "tlm26.rpt.txt": "d4e0f84a436346e4bd8c5ce3042ba2717d846a6097b4a974d6aa30f59412f3ac",
+    "tlm26.tr": "3c905abb339893800dad65b29c86fb5df7b758df8d6e00edabdb99c1ad58a20f"
+  },
+  "reported_fmax_mhz": {
+    "app_clk100": 178.188,
+    "board_clk50": 280.85,
+    "core_clk50": 58.346,
+    "memory_clk400": 2240.14,
+    "trusted_clk12p5": 1224.365
+  },
+  "requested_clock_mhz": {
+    "DDR_app": 100,
+    "board": 50,
+    "memory": 400,
+    "semantic": 50
+  },
+  "resources_used_available": {
+    "BSRAM": [
+      248,
+      340
+    ],
+    "CLS": [
+      12727,
+      69120
+    ],
+    "DSP": [
+      5,
+      298
+    ],
+    "Logic": [
+      15425,
+      138240
+    ],
+    "Register": [
+      10834,
+      139095
+    ]
+  },
+  "scope": "Recorded native route of the physically measured image. Real CLKDIV pass-through and matching generated-clock constraint; no timing exceptions or vendor DDR waiver.",
+  "semantic_same_clock_slack_ns": {
+    "hold": 0.163,
+    "setup": 2.861
+  },
+  "synthesis_and_route": "V1.9.12.04-1",
+  "whole_image_timing_closed": false,
+  "whole_image_violated_endpoint_counts": {
+    "Hold Violated Endpoints": 34,
+    "Setup Violated Endpoints": 158
+  },
+  "worst_reported_slack_ns": {
+    "hold": -1.063,
+    "recovery": -2.232,
+    "removal": 0.256,
+    "setup": -4.601
+  }
+}

@@ -130,8 +130,8 @@
       "sha256": "130a5aaa8efa2c8dbed770cd7b9448473c59f17a516c618336b9a53dc4d493b8"
     },
     ".github/workflows/offline-checks.yml": {
-      "bytes": 13305,
-      "sha256": "b20524325c8110c72399567f7c48866bac09cf6758b61c7651ac17f9dbc56bbd"
+      "bytes": 13311,
+      "sha256": "3e0f8e6dc4bd5a2e85898c4e141057cc113800b55066368ed337ef105b858f2e"
     },
     ".github/workflows/rtl-checks.yml": {
       "bytes": 6530,
@@ -178,8 +178,8 @@
       "sha256": "f3d2be475cea886b4dac5d8b7b118810b333f9499145bbfcdac8e3305b1ee6ec"
     },
     "README.md": {
-      "bytes": 25870,
-      "sha256": "b3abd6bd1930817454020835dac3ad3b3be190f5629466227d8cbef6190b78fe"
+      "bytes": 23970,
+      "sha256": "ca6bf9f3bae12d945f255bed6eb2517479226e57fab2da5af5933ed294ef5379"
     },
     "REFERENCES.md": {
       "bytes": 613,
@@ -194,12 +194,12 @@
       "sha256": "a52d095212108f990c6bc3a15a1be52d97b1e0923fbbe7180445062621eb84f7"
     },
     "benchmarks/fpga-speed/results.json": {
-      "bytes": 73111,
-      "sha256": "4430369fa3fb35b214a39ae4d473dff4361d0bcdfbf6ac66f22a443b745c7932"
+      "bytes": 83345,
+      "sha256": "7c894b5dfcdceb9bda9c6be0b4cab87a8337ae6b43eadeb99815a02089d50ad7"
     },
     "benchmarks/fpga-speed/selection.json": {
-      "bytes": 31136,
-      "sha256": "e8ae76afccc59a79984cf53edf6ae3267e9fb7171c09ae6be831cd1a9414e3dc"
+      "bytes": 36151,
+      "sha256": "8321cc15422e5ad893ed761b64f01a7d2226837634cd1c02be0f3ad936a50cdd"
     },
     "benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json": {
       "bytes": 32908,
@@ -288,6 +288,50 @@
     "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/trial-2.json": {
       "bytes": 31827,
       "sha256": "c02d72187189d6975faa7b64232d61e5cff9e24ab9bca88205600ffc27569e9a"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/CAPTURE.json": {
+      "bytes": 32771,
+      "sha256": "4fd7ab27e0b328019b91b3e54073489da2a1d44a8cc63caa0cd4a6a4e4445f30"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/RESTORATION.json": {
+      "bytes": 991,
+      "sha256": "2c9777d810e126bb8f2a2d8d5ae2e5d3f203b478a69436514e14d26bae67b08c"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/REVIEW.json": {
+      "bytes": 1762,
+      "sha256": "2cb91f33d8f56b8b2d789ca79ca0d849020a43ac09b6363bb255f648d61dec2b"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/baseline-after.json": {
+      "bytes": 921,
+      "sha256": "d6b058720ab94bca2ab56ab945a6953a4b2ed56c37a977692aa7edd5659c8960"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/baseline-before.json": {
+      "bytes": 921,
+      "sha256": "dffcd6f33c517efa49ca2e44c7ea081545301dc4877a383ae1718a37f0ffe96b"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/model-load.json": {
+      "bytes": 166,
+      "sha256": "e70b32d98d6a5b2b967f183978a5ad2930a348df4f9e45032a0bde5ee1d7194a"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/programming.txt.gz": {
+      "bytes": 555,
+      "sha256": "66faf55ab1b006dc1a70264588cd25b7c7372e9de718dda6fdfd20db1a43cbea"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/restore-programming.txt.gz": {
+      "bytes": 554,
+      "sha256": "d18c11fd43212e6ae87f6f4affb0f136d535534421dc9d3281b6f6bfc3dae851"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/golden.json": {
+      "bytes": 2893,
+      "sha256": "c462aa3b16c179b512c73e45bc98f3d7d8e93c6a763d460a677b93113b14dd71"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/trial-1.json": {
+      "bytes": 31788,
+      "sha256": "e20d17666d008bb3b592e9f00cd821c0b4c3115ede928b20cbfafa6a99167c3b"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/trial-2.json": {
+      "bytes": 31792,
+      "sha256": "6ad53d82563ef647c035cf13f64e53ea834b0e35260ff7c04dfed7e7d2dd7c9c"
     },
     "demos/qwen3-1.7b/BROWSER.md": {
       "bytes": 5108,
@@ -75094,8 +75138,8 @@
       "sha256": "834cf5778bb38bd8e3d1dcf80f1859a169f7dd96515be43e34108ec3098a8660"
     },
     "demos/tlm26-moe/README.md": {
-      "bytes": 9442,
-      "sha256": "83b6c45bbedcae1d5815fbae0fcf858ce2cf5a8ebc07ff1ce126c43e8a5c5c5d"
+      "bytes": 10667,
+      "sha256": "dadfe0c42f654e07004f7ea49f3adb0cb4b887a07a62892f26c7b5ee5b620566"
     },
     "demos/tlm26-moe/REPRODUCE.md": {
       "bytes": 4345,
@@ -75293,6 +75337,62 @@
       "bytes": 5015,
       "sha256": "f36d9cef020232c7cca85abed4f254c8224b6ec9a55151d56af15a969523db54"
     },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/KV-LIFECYCLE.md": {
+      "bytes": 8048,
+      "sha256": "472ac321eaaef2938646e1392186e4d0535319a5526238881af16a540fa94247"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/NOTICE.md": {
+      "bytes": 1993,
+      "sha256": "b479a5a8ab618dfdef61a3afe7e8e63e2a6b8c33ede6e207315fd8e46eacc085"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/PROVENANCE.json": {
+      "bytes": 2592,
+      "sha256": "6f313ad8977ec521063f221659a9928854aa2180e59eac576f36a0f9572a657c"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/README.md": {
+      "bytes": 4019,
+      "sha256": "d99851bee37c843e4d836a9eef0c37b247f7a3470f4367dfc01baf6a8a7e7ffb"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/SOURCE-IDENTITIES.json": {
+      "bytes": 6309,
+      "sha256": "29e54d4e4c78adde82f35e30913b43b769f6f6ce0e9e62e94856f26a9edd3da8"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/apply_to_staged.py": {
+      "bytes": 1478,
+      "sha256": "6ea521505f7be0f0ec58989107e5a77ca36cd8cfcd1d4c63d8a8d550bf1b3dba"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/clock-delivery.patch": {
+      "bytes": 7958,
+      "sha256": "a516f660452ee5ecef0649a20c4ad60ef1c91574a6f8eedabd78c2ab249448c6"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/evidence/route-50mhz.json": {
+      "bytes": 1696,
+      "sha256": "67a27e3687dca6a2dd91ee3cc956617571c03303b21e3f96b37fa78e9afdd393"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/rtl/board1_gowin_ddr3_raw_controller_shell.sv": {
+      "bytes": 10099,
+      "sha256": "ceffbf483bddb0ecd325c4367581a81ad71bbbb44f06733b2464597153f0a739"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/rtl/product.sdc": {
+      "bytes": 21908,
+      "sha256": "3946da8b8522248fc907124d9fea00afedca3cc449b0d9189592e75eef93cfe5"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/rtl/top.sv": {
+      "bytes": 6385,
+      "sha256": "abdc62c66e215b007bc7ccb44db18d481c0cb5a8d7dbdf6025c8d477d62e4681"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/tests/KV-REVIEW.json": {
+      "bytes": 12901,
+      "sha256": "f034759dc6d8a22a4f6b3d3e35637a082e1052b0b2b667831beaf61b2518d8ae"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/tests/kv_isolation.cpp": {
+      "bytes": 11738,
+      "sha256": "ca87593f1d4989b867fc815b4a58b2a41469c44fabc456888b0a1138b7426ce9"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/verify_measurement.py": {
+      "bytes": 6318,
+      "sha256": "7c1f10881dd8a64621a84775e91c99d6f64cc4f87018d4dd556bfb0f9f0615df"
+    },
     "demos/tlm26-moe/variants/overlap-r2/NOTICE.md": {
       "bytes": 2428,
       "sha256": "46d68cf0498768a159f1c75ff77025139f3c24f4ce8f4e9866cae36379f6503b"
@@ -75302,8 +75402,8 @@
       "sha256": "8a6dc938250471044fe1ad68bfea16074d8ae81ee6939ed234f166a5633f08ea"
     },
     "demos/tlm26-moe/variants/overlap-r2/README.md": {
-      "bytes": 4082,
-      "sha256": "50cb00327372923ac5ec58662881ca0033209fd30283e949ae3812628fd1adf3"
+      "bytes": 4084,
+      "sha256": "3ce99b2534d113bd97d71a3894edcb52af86b3c661130c64de87da858e3699d1"
     },
     "demos/tlm26-moe/variants/overlap-r2/SOURCE-IDENTITIES.json": {
       "bytes": 6012,
@@ -75330,8 +75430,8 @@
       "sha256": "c29918a4f1638001978a745a5f2429a8e1a9a5a8865593627a37781c23ff46d2"
     },
     "demos/tlm26-moe/variants/overlap-r2/verify_measurement.py": {
-      "bytes": 6164,
-      "sha256": "921e8012be2708987d0413937885321affd47b021a158de09fed282553661115"
+      "bytes": 6154,
+      "sha256": "3edd7c42e148717c30dc0de3057d32ea98056b3efd2e5271d5acc2bca49f6129"
     },
     "diagrams/README.md": {
       "bytes": 3658,
@@ -75386,8 +75486,8 @@
       "sha256": "79365e8930766b7ea2cc62da148973d1b3e421504ce9c80f3c5d3d7655879440"
     },
     "docs/benchmarks/FPGA-SPEED-BENCHMARK.md": {
-      "bytes": 9796,
-      "sha256": "82427a9f1d5c5f59ad67fb48d2e9bead9c643a94eb24e9a8fc1a7e4b4c9582ca"
+      "bytes": 9872,
+      "sha256": "5b0b1d249fb3a66ab2ca74a287564f3538649b41f50fe5f65baeeabf67ef8c5d"
     },
     "docs/benchmarks/H100-BENCHMARK.md": {
       "bytes": 23689,
@@ -76082,8 +76182,8 @@
       "sha256": "22dc8a322fec4379f38b83c591b7aa47cd3619343f50fff41c467888ddf8ef59"
     },
     "tools/fpga_speed_benchmark.py": {
-      "bytes": 20903,
-      "sha256": "04ab2fd5851bb141dc19da4e0e9327e57b8a036683d9c6eb877594ff47febef1"
+      "bytes": 21869,
+      "sha256": "3e93c4db5182d0ce350f092687fbcae440a12ba1198288eaf125bf5e34175246"
     },
     "tools/hardware_ci/clock.h": {
       "bytes": 504,
@@ -76138,8 +76238,8 @@
       "sha256": "1dd88cb09483da8cd53c9d3959ae90b7b276aa2127d9282a34712dbb96d82640"
     },
     "tools/release-contract.json": {
-      "bytes": 4595307,
-      "sha256": "2cf5ef9b055408ec162503cdbc4ba1362d583ca77864405aa678afa0e49235af"
+      "bytes": 4599928,
+      "sha256": "2b3202b42abeaa28f48f52b96e9377549a0924c414d735fc0b3ed3c419c6e677"
     },
     "tools/stage_source_map.py": {
       "bytes": 5194,
@@ -76154,8 +76254,8 @@
       "sha256": "ed69dbcb8bc87423846d1b6239779e01310431b0f9ccd4240d6c4297d09d9e06"
     },
     "tools/test_fpga_speed_benchmark.py": {
-      "bytes": 12944,
-      "sha256": "b5143dbcc37b72abde84a41fb695d3125621bf08423967cf9694d42a9f845d72"
+      "bytes": 13393,
+      "sha256": "68d7bf9870f4351c8ad39fff33ab04b55af6e2953d4567bb0303cccb5368bc86"
     },
     "tools/test_home_authorization_evidence.py": {
       "bytes": 3605,
@@ -76219,7 +76319,7 @@
     },
     "tools/verify_release.py": {
       "bytes": 10148,
-      "sha256": "4f1f5d126f2c35d3a4dab50cad4a5389a82811180b10c809fc0b19329200a5a1"
+      "sha256": "5bbd9cf33a87b73fd2df8e87f93bf6a086d40a2fdb2f819e7b10e71e5b97997f"
     }
   },
   "full_context_evidence_scope": "Each selected greedy image passed 2,047/2,048-token CLI and browser contexts, boundary refusals, CLEAR races, pending-STEP Stop and resumed generation. The seeded image has a separate 16-case context matrix and browser record. Exact workload timestamps remain distinct from cached generation rates.",

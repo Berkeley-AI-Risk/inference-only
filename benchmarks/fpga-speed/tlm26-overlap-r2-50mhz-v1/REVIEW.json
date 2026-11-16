@@ -1,0 +1,57 @@
+{
+  "accepted": true,
+  "all_256_IDs_opcodes_CRCs_checked": true,
+  "cached_intervals": 254,
+  "capture": {
+    "bytes": 32771,
+    "sha256": "4fd7ab27e0b328019b91b3e54073489da2a1d44a8cc63caa0cd4a6a4e4445f30"
+  },
+  "clock_hz": 50000000,
+  "diagnostic_hold_ms": 20,
+  "exact_timestamps_and_host_gaps_checked": true,
+  "feedback_only_STEP_payloads": true,
+  "findings": [],
+  "first_STEP_ns": [
+    102083292,
+    101986541
+  ],
+  "flash_changes": 0,
+  "host_gap_ns_in_cached_intervals": [
+    1308960,
+    1418042
+  ],
+  "no_additional_device_access_by_this_auditor": true,
+  "per_trial_cached_tokens_per_second": [
+    9.077751279661364,
+    9.077737625663211
+  ],
+  "pooled_cached_tokens_per_second": 9.077744452657152,
+  "prior_baseline_checked": true,
+  "private_original_audit_sha256": "6a486e4e2c1b48c3e27fe9c9cc233961a1ba7ccef395417a49c73558e2f199af",
+  "public_canonical_reader_accepted": true,
+  "public_push": false,
+  "raw_trials": [
+    {
+      "bytes": 31788,
+      "sha256": "e20d17666d008bb3b592e9f00cd821c0b4c3115ede928b20cbfafa6a99167c3b"
+    },
+    {
+      "bytes": 31792,
+      "sha256": "6ad53d82563ef647c035cf13f64e53ea834b0e35260ff7c04dfed7e7d2dd7c9c"
+    }
+  ],
+  "restore_image_sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2",
+  "restored_and_baseline_checked": true,
+  "schema": "TLM26-common-benchmark-measured-wire-audit-r1",
+  "scope": "Physically measured 50 MHz overlap-r2 image, including the unchanged 20 ms hold. Whole-image timing remains open.",
+  "source_and_image_pins_unchanged": true,
+  "trial_first_to_last_ns": [
+    13990248916,
+    13990269959
+  ],
+  "two_fresh_trials": true,
+  "whole_image_timing_violations": {
+    "Hold Violated Endpoints": 34,
+    "Setup Violated Endpoints": 158
+  }
+}

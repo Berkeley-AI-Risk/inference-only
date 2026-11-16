@@ -1,11 +1,14 @@
 {
-  "complete_rows": 10,
+  "schema": "fpga-common-speed-results-v1",
   "protocol": "one-token-128-host-v2",
+  "timestamp_boundary": "generation_loop_validated_reply",
+  "complete_rows": 11,
+  "total_rows": 11,
   "rows": [
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-baseline",
+      "label": "Same model, **F-AWIC**, without K/V integrity",
+      "package_status": "Runnable release",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -34,29 +37,30 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "Same model, **F-AWIC**, without K/V integrity",
-      "missing": null,
-      "package_status": "Runnable release",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 25.294664333,
         "cached_tokens_per_second": 10.041643433418713,
         "command_only_diagnostic_tokens_per_second": 10.053202978986162,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.085237208,
           0.085324375
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 12.649614709,
-          "cached_host_seconds": 12.664356833000001,
-          "cached_outputs": 127,
           "capture_sha256": "922c19ff323eb70128da97568974f639fa85c6de0ea2e0444d1309b4c0811acc",
-          "clear_before": true,
-          "first_step_seconds": 0.085237208,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.664356833000001,
+          "cached_command_seconds": 12.649614709,
+          "first_step_seconds": 0.085237208,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -85,21 +89,21 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 12.615964881,
-          "cached_host_seconds": 12.630307499999999,
-          "cached_outputs": 127,
           "capture_sha256": "475b42f806e3c7d3fa139d97e2aca50064e1e9f46e87b4dd959e04a827f0c9c6",
-          "clear_before": true,
-          "first_step_seconds": 0.085324375,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.630307499999999,
+          "cached_command_seconds": 12.615964881,
+          "first_step_seconds": 0.085324375,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -128,19 +132,17 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "attention_cache": "Authenticated in external DDR",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-kv-protected",
+      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC**",
+      "package_status": "Runnable release",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -169,29 +171,30 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC**",
-      "missing": null,
-      "package_status": "Runnable release",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 36.140183707000006,
         "cached_tokens_per_second": 7.028187849272129,
         "command_only_diagnostic_tokens_per_second": 7.033278184561002,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.101918959,
           0.102195292
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 18.025437961,
-          "cached_host_seconds": 18.036201666,
-          "cached_outputs": 127,
           "capture_sha256": "875662916438ea136d7b9e1319cd8917ec8252feb7dba0e95ae65b859c51d4d2",
-          "clear_before": true,
-          "first_step_seconds": 0.101918959,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 18.036201666,
+          "cached_command_seconds": 18.025437961,
+          "first_step_seconds": 0.101918959,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -220,21 +223,21 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 18.088589287,
-          "cached_host_seconds": 18.103982041000002,
-          "cached_outputs": 127,
           "capture_sha256": "2923ed8d27536ad03ffa3f99ca2a4ce8fb020c34a0de1d569217a31762dab2c3",
-          "clear_before": true,
-          "first_step_seconds": 0.102195292,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 18.103982041000002,
+          "cached_command_seconds": 18.088589287,
+          "first_step_seconds": 0.102195292,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -263,19 +266,18 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "Authenticated in external DDR"
     },
     {
-      "attention_cache": "Held in on-chip scratch RAM",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "tlm26-moe",
+      "label": "**TLM26, top-2-of-8 MoE \u2014 Tang Mega**, **F-AWIC**",
+      "package_status": "Buildable source and board records",
       "identity": {
         "bitstream_sha256": "87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42",
         "board_label": "Tang Mega device C",
@@ -307,29 +309,30 @@
         "timing_boundary": "generation_loop_validated_reply",
         "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
       },
-      "label": "**TLM26, top-2-of-8 MoE \u2014 Tang Mega**, **F-AWIC**",
-      "missing": null,
-      "package_status": "Buildable source and board records",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 157.564506625,
         "cached_tokens_per_second": 1.612038176875166,
         "command_only_diagnostic_tokens_per_second": 1.6120669485005965,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.57789675,
           0.577987208
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 78.772386629,
-          "cached_host_seconds": 78.773800667,
-          "cached_outputs": 127,
           "capture_sha256": "1b32854c68771c15b6dcf46358eec4a1b0ac2ddd405e90983d2dab1fbf543ef7",
-          "clear_before": true,
-          "first_step_seconds": 0.57789675,
+          "prompt_tokens": [
+            1
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 78.773800667,
+          "cached_command_seconds": 78.772386629,
+          "first_step_seconds": 0.57789675,
           "identity": {
             "bitstream_sha256": "87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42",
             "board_label": "Tang Mega device C",
@@ -361,21 +364,21 @@
             "timing_boundary": "generation_loop_validated_reply",
             "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
           },
-          "prompt_tokens": [
-            1
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 78.789307838,
-          "cached_host_seconds": 78.790705958,
-          "cached_outputs": 127,
           "capture_sha256": "48bba08036a0cdfa13808231ea6fe87b8c8ace68d57ca3e504a0d9edddf085f3",
-          "clear_before": true,
-          "first_step_seconds": 0.577987208,
+          "prompt_tokens": [
+            1
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 78.790705958,
+          "cached_command_seconds": 78.789307838,
+          "first_step_seconds": 0.577987208,
           "identity": {
             "bitstream_sha256": "87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42",
             "board_label": "Tang Mega device C",
@@ -407,19 +410,18 @@
             "timing_boundary": "generation_loop_validated_reply",
             "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
           },
-          "prompt_tokens": [
-            1
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "Held in on-chip scratch RAM"
     },
     {
-      "attention_cache": "Held in on-chip scratch RAM",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "tlm26-moe-overlap-r2",
+      "label": "**TLM26, overlapped schedule \u2014 Tang Mega**, **F-AWIC**",
+      "package_status": "Source delta and board records",
       "identity": {
         "bitstream_sha256": "aeccf667a14cbc31cf88a223b643ec37e6dd82df87a4613c4191078972e82e64",
         "board_label": "Tang Mega device C",
@@ -452,29 +454,30 @@
         "timing_boundary": "generation_loop_validated_reply",
         "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
       },
-      "label": "**TLM26, overlapped schedule \u2014 Tang Mega**, **F-AWIC**",
-      "missing": null,
-      "package_status": "Source delta and board records",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 82.003501417,
         "cached_tokens_per_second": 3.0974287147614863,
         "command_only_diagnostic_tokens_per_second": 3.0975035381861287,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.271964625,
           0.271942375
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 41.000676998,
-          "cached_host_seconds": 41.001694625,
-          "cached_outputs": 127,
           "capture_sha256": "01ecddf22b3e1ed027d30a85b456379bf73698cc192d472af9c7cdff6af26e6a",
-          "clear_before": true,
-          "first_step_seconds": 0.271964625,
+          "prompt_tokens": [
+            1
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 41.001694625,
+          "cached_command_seconds": 41.000676998,
+          "first_step_seconds": 0.271964625,
           "identity": {
             "bitstream_sha256": "aeccf667a14cbc31cf88a223b643ec37e6dd82df87a4613c4191078972e82e64",
             "board_label": "Tang Mega device C",
@@ -507,21 +510,21 @@
             "timing_boundary": "generation_loop_validated_reply",
             "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
           },
-          "prompt_tokens": [
-            1
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 41.000843539,
-          "cached_host_seconds": 41.001806792000004,
-          "cached_outputs": 127,
           "capture_sha256": "c02d72187189d6975faa7b64232d61e5cff9e24ab9bca88205600ffc27569e9a",
-          "clear_before": true,
-          "first_step_seconds": 0.271942375,
+          "prompt_tokens": [
+            1
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 41.001806792000004,
+          "cached_command_seconds": 41.000843539,
+          "first_step_seconds": 0.271942375,
           "identity": {
             "bitstream_sha256": "aeccf667a14cbc31cf88a223b643ec37e6dd82df87a4613c4191078972e82e64",
             "board_label": "Tang Mega device C",
@@ -554,18 +557,18 @@
             "timing_boundary": "generation_loop_validated_reply",
             "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
           },
-          "prompt_tokens": [
-            1
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "Held in on-chip scratch RAM"
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-encrypted",
+      "label": "Same model, **F-AWIC with K/V protection + encrypted memory**",
+      "package_status": "Runnable release; public demonstration keys",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -594,29 +597,30 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "Same model, **F-AWIC with K/V protection + encrypted memory**",
-      "missing": null,
-      "package_status": "Runnable release; public demonstration keys",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 42.072727,
         "cached_tokens_per_second": 6.037165121243508,
         "command_only_diagnostic_tokens_per_second": 6.040046735366696,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.118967125,
           0.118865833
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 21.017759372,
-          "cached_host_seconds": 21.027909959,
-          "cached_outputs": 127,
           "capture_sha256": "c22e576b455bf99c7cfa7bfb514bb0c3f99898cd46b8a3c0e9a6b8fc27914793",
-          "clear_before": true,
-          "first_step_seconds": 0.118967125,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 21.027909959,
+          "cached_command_seconds": 21.017759372,
+          "first_step_seconds": 0.118967125,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -645,21 +649,21 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 21.034895372,
-          "cached_host_seconds": 21.044817041,
-          "cached_outputs": 127,
           "capture_sha256": "e2e7371ff51b536c7e199567f37c05915dcb8eaaaae659be0fad1995213cf267",
-          "clear_before": true,
-          "first_step_seconds": 0.118865833,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 21.044817041,
+          "cached_command_seconds": 21.034895372,
+          "first_step_seconds": 0.118865833,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -688,86 +692,85 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-seeded-sampling",
+      "label": "Same model, **F-AWIC with seeded sampling at temperature 1**, without K/V integrity",
+      "package_status": "Runnable release",
       "identity": {
         "core_clock_mhz": 25,
         "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
       },
-      "label": "Same model, **F-AWIC with seeded sampling at temperature 1**, without K/V integrity",
-      "missing": null,
-      "package_status": "Runnable release",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 25.583678042021347,
         "cached_tokens_per_second": 9.928204990025415,
         "command_only_diagnostic_tokens_per_second": 9.942238076431886,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.08490541600622237,
           0.08474962500622496
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 12.782095956092235,
-          "cached_host_seconds": 12.80031154199969,
-          "cached_outputs": 127,
           "capture_sha256": "97b6e5b160688153d37b749a6ee44976676cf731f88089487065c025607acfca",
-          "clear_before": true,
-          "decoding": "seeded-sampling",
-          "first_step_seconds": 0.08490541600622237,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": false,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.80031154199969,
+          "cached_command_seconds": 12.782095956092235,
+          "first_step_seconds": 0.08490541600622237,
           "identity": {
             "core_clock_mhz": 25,
             "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
           },
-          "prompt_tokens": [
-            378
-          ],
-          "seed": "0x99aabbccddeeff001122334455667788",
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": false,
+          "clear_before": true,
           "stop_at_eos": false,
+          "decoding": "seeded-sampling",
           "temperature": 1,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "seed": "0x99aabbccddeeff001122334455667788"
         },
         {
-          "cached_command_seconds": 12.765471708989935,
-          "cached_host_seconds": 12.783366500021657,
-          "cached_outputs": 127,
           "capture_sha256": "5a9e3375af68d4436566e895855be579c4c99fcfcd9d38e388159c45ebe1b018",
-          "clear_before": true,
-          "decoding": "seeded-sampling",
-          "first_step_seconds": 0.08474962500622496,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": false,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.783366500021657,
+          "cached_command_seconds": 12.765471708989935,
+          "first_step_seconds": 0.08474962500622496,
           "identity": {
             "core_clock_mhz": 25,
             "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
           },
-          "prompt_tokens": [
-            378
-          ],
-          "seed": "0x99aabbccddeeff001122334455667788",
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": false,
+          "clear_before": true,
           "stop_at_eos": false,
+          "decoding": "seeded-sampling",
           "temperature": 1,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "seed": "0x99aabbccddeeff001122334455667788"
         }
       ]
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-signed-update",
+      "label": "Same model, **S-AWIC**, without K/V integrity",
+      "package_status": "Runnable release; public demonstration keys",
       "identity": {
         "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
         "baud_rate": 115200,
@@ -786,92 +789,92 @@
         "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
         "variant": "S-AWIC"
       },
-      "label": "Same model, **S-AWIC**, without K/V integrity",
-      "missing": null,
-      "package_status": "Runnable release; public demonstration keys",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 25.141651874,
         "cached_tokens_per_second": 10.102757021414002,
         "command_only_diagnostic_tokens_per_second": 10.103711396920017,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.084973875,
           0.084978625
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 12.578119296,
-          "cached_host_seconds": 12.579301666000001,
-          "cached_outputs": 127,
           "capture_sha256": "3a5859694f8fa13a315e006a2eba94f4d11cb9faef9dff930aa06a9f372cc44f",
-          "clear_before": true,
-          "first_step_seconds": 0.084973875,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
-            "baud_rate": 115200,
-            "board_result_sha256": "2546a893646f1435c4337a7271a64b366f51e144d37511f6acdf634567506ad9",
-            "clock": "time.monotonic_ns",
-            "clock_hz": 25000000,
-            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
-            "fpga_image_sha256": "8472e592c68a4b2425be4ecb8f57bde855d3be5df140f96bbe417226d1dca370",
-            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
-            "model": "SimpleStories-V2-5M",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
-            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
-            "signed_manifest_version": 1,
-            "timestamp_boundary": "generation_loop_validated_reply",
-            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
-            "variant": "S-AWIC"
-          },
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.579301666000001,
+          "cached_command_seconds": 12.578119296,
+          "first_step_seconds": 0.084973875,
+          "identity": {
+            "model": "SimpleStories-V2-5M",
+            "variant": "S-AWIC",
+            "clock_hz": 25000000,
+            "fpga_image_sha256": "8472e592c68a4b2425be4ecb8f57bde855d3be5df140f96bbe417226d1dca370",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
+            "signed_manifest_version": 1,
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
+            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
+            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
+            "board_result_sha256": "2546a893646f1435c4337a7271a64b366f51e144d37511f6acdf634567506ad9",
+            "baud_rate": 115200,
+            "clock": "time.monotonic_ns",
+            "timestamp_boundary": "generation_loop_validated_reply"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 12.56115775,
-          "cached_host_seconds": 12.562350208,
-          "cached_outputs": 127,
           "capture_sha256": "4c4a8d7f07f944b4f70b95b989c41e243a20768c19d037ac8d681fc180eed14d",
-          "clear_before": true,
-          "first_step_seconds": 0.084978625,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
-            "baud_rate": 115200,
-            "board_result_sha256": "2546a893646f1435c4337a7271a64b366f51e144d37511f6acdf634567506ad9",
-            "clock": "time.monotonic_ns",
-            "clock_hz": 25000000,
-            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
-            "fpga_image_sha256": "8472e592c68a4b2425be4ecb8f57bde855d3be5df140f96bbe417226d1dca370",
-            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
-            "model": "SimpleStories-V2-5M",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
-            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
-            "signed_manifest_version": 1,
-            "timestamp_boundary": "generation_loop_validated_reply",
-            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
-            "variant": "S-AWIC"
-          },
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.562350208,
+          "cached_command_seconds": 12.56115775,
+          "first_step_seconds": 0.084978625,
+          "identity": {
+            "model": "SimpleStories-V2-5M",
+            "variant": "S-AWIC",
+            "clock_hz": 25000000,
+            "fpga_image_sha256": "8472e592c68a4b2425be4ecb8f57bde855d3be5df140f96bbe417226d1dca370",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
+            "signed_manifest_version": 1,
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
+            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
+            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
+            "board_result_sha256": "2546a893646f1435c4337a7271a64b366f51e144d37511f6acdf634567506ad9",
+            "baud_rate": 115200,
+            "clock": "time.monotonic_ns",
+            "timestamp_boundary": "generation_loop_validated_reply"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-home-authorization",
+      "label": "Same model, **S-AWIC with periodic reauthorization**, without K/V integrity",
+      "package_status": "Runnable token-ID demonstration; public demonstration keys",
       "identity": {
         "clock": "time.monotonic_ns",
         "clock_hz": 25000000,
@@ -884,81 +887,80 @@
         "timestamp_boundary": "generation_loop_validated_reply",
         "variant": "S-AWIC with renewable home authorization"
       },
-      "label": "Same model, **S-AWIC with periodic reauthorization**, without K/V integrity",
-      "missing": null,
-      "package_status": "Runnable token-ID demonstration; public demonstration keys",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 33.250101332999996,
         "cached_tokens_per_second": 7.639074463448645,
         "command_only_diagnostic_tokens_per_second": 10.105826168589543,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.0850015,
           0.085008417
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 12.554044252,
-          "cached_host_seconds": 16.642126875,
-          "cached_outputs": 127,
           "capture_sha256": "03f7186d3ce027188f1cb77ed2bbb5bc77517544b85271b6935381c4d9109593",
-          "clear_before": true,
-          "first_step_seconds": 0.0850015,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "clock": "time.monotonic_ns",
-            "clock_hz": 25000000,
-            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
-            "fpga_image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
-            "model": "SimpleStories-V2-5M",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
-            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
-            "timestamp_boundary": "generation_loop_validated_reply",
-            "variant": "S-AWIC with renewable home authorization"
-          },
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 16.642126875,
+          "cached_command_seconds": 12.554044252,
+          "first_step_seconds": 0.0850015,
+          "identity": {
+            "model": "SimpleStories-V2-5M",
+            "variant": "S-AWIC with renewable home authorization",
+            "clock_hz": 25000000,
+            "fpga_image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
+            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
+            "clock": "time.monotonic_ns",
+            "timestamp_boundary": "generation_loop_validated_reply"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 12.579972083,
-          "cached_host_seconds": 16.607974457999997,
-          "cached_outputs": 127,
           "capture_sha256": "1c674f0cfcfa44eedfb1194b1121ba110ed4a290315aa5b99ae9bb4d398edd71",
-          "clear_before": true,
-          "first_step_seconds": 0.085008417,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "clock": "time.monotonic_ns",
-            "clock_hz": 25000000,
-            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
-            "fpga_image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
-            "model": "SimpleStories-V2-5M",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
-            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
-            "timestamp_boundary": "generation_loop_validated_reply",
-            "variant": "S-AWIC with renewable home authorization"
-          },
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 16.607974457999997,
+          "cached_command_seconds": 12.579972083,
+          "first_step_seconds": 0.085008417,
+          "identity": {
+            "model": "SimpleStories-V2-5M",
+            "variant": "S-AWIC with renewable home authorization",
+            "clock_hz": 25000000,
+            "fpga_image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
+            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
+            "clock": "time.monotonic_ns",
+            "timestamp_boundary": "generation_loop_validated_reply"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "attention_cache": "External memory, without K/V integrity checks",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "qwen3-1.7b",
+      "label": "**Qwen3-1.7B \u2014 AWS F2**, **F-AWIC**",
+      "package_status": "Runnable release; public AWS FPGA image",
       "identity": {
         "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
         "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -985,29 +987,30 @@
         "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
         "runtime_clock_probe_supported": false
       },
-      "label": "**Qwen3-1.7B \u2014 AWS F2**, **F-AWIC**",
-      "missing": null,
-      "package_status": "Runnable release; public AWS FPGA image",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 28.191061175999998,
         "cached_tokens_per_second": 9.009948168117871,
         "command_only_diagnostic_tokens_per_second": 9.010895087085421,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.108920611,
           0.108772231
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 14.094837916,
-          "cached_host_seconds": 14.096516237,
-          "cached_outputs": 127,
           "capture_sha256": "5b3cda2ed08eb8ff2e469f3c949d2ab58835136bbb919f6ecb4feaeaaffc4ad5",
-          "clear_before": true,
-          "first_step_seconds": 0.108920611,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 14.096516237,
+          "cached_command_seconds": 14.094837916,
+          "first_step_seconds": 0.108920611,
           "identity": {
             "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -1034,21 +1037,21 @@
             "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
             "runtime_clock_probe_supported": false
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 14.093260774,
-          "cached_host_seconds": 14.094544939,
-          "cached_outputs": 127,
           "capture_sha256": "77bf0cf3ec008c0adf62b366a45340a2157949a694a84566a242592b5cf54211",
-          "clear_before": true,
-          "first_step_seconds": 0.108772231,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 14.094544939,
+          "cached_command_seconds": 14.093260774,
+          "first_step_seconds": 0.108772231,
           "identity": {
             "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -1075,19 +1078,18 @@
             "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
             "runtime_clock_probe_supported": false
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "External memory, without K/V integrity checks"
     },
     {
-      "attention_cache": "External memory, without K/V integrity checks",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "qwen3-8b",
+      "label": "**Qwen3-8B \u2014 AWS F2**, **F-AWIC**",
+      "package_status": "Runnable prototype; speed optimization in progress; public AWS FPGA image",
       "identity": {
         "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
         "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -1114,29 +1116,30 @@
         "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
         "runtime_clock_probe_supported": false
       },
-      "label": "**Qwen3-8B \u2014 AWS F2**, **F-AWIC**",
-      "missing": null,
-      "package_status": "Runnable prototype; speed optimization in progress; public AWS FPGA image",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 226.426331573,
         "cached_tokens_per_second": 1.1217776582584003,
         "command_only_diagnostic_tokens_per_second": 1.1218040674095815,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.885920814,
           0.885697971
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 113.218455156,
-          "cached_host_seconds": 113.221083501,
-          "cached_outputs": 127,
           "capture_sha256": "f60df41712e946521af2ea7e553dc81618b8c01d7dafdc3b9acc8aa9cec533b1",
-          "clear_before": true,
-          "first_step_seconds": 0.885920814,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 113.221083501,
+          "cached_command_seconds": 113.218455156,
+          "first_step_seconds": 0.885920814,
           "identity": {
             "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -1163,21 +1166,21 @@
             "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
             "runtime_clock_probe_supported": false
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 113.202545961,
-          "cached_host_seconds": 113.205248072,
-          "cached_outputs": 127,
           "capture_sha256": "c654b27574c54b4ba106ad0ca2938081b81f787e3893db65cad7220e655006dd",
-          "clear_before": true,
-          "first_step_seconds": 0.885697971,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 113.205248072,
+          "cached_command_seconds": 113.202545961,
+          "first_step_seconds": 0.885697971,
           "identity": {
             "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -1204,17 +1207,162 @@
             "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
             "runtime_clock_probe_supported": false
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "External memory, without K/V integrity checks"
+    },
+    {
+      "id": "tlm26-moe-overlap-r2-50mhz",
+      "label": "**TLM26, overlapped schedule at 50 MHz \u2014 Tang Mega**, **F-AWIC**",
+      "package_status": "Source delta and board records",
+      "identity": {
+        "bitstream_sha256": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b",
+        "board_label": "Tang Mega device C",
+        "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+        "collector_sha256": "87fa53ea49b8fd7c3ff88fcde0dc17cb808487d5f2f6993e833de61576460ee9",
+        "core_clock_mhz": 50,
+        "first_return_hold_cycles": 1000000,
+        "first_return_hold_ms": 20,
+        "fpga_image_sha256": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b",
+        "host": "macOS-27.0.1-arm64-arm-64bit",
+        "model_sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1",
+        "owner_current_load_receipt": {
+          "bytes": 166,
+          "path": "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/model-load.json",
+          "sha256": "e70b32d98d6a5b2b967f183978a5ad2930a348df4f9e45032a0bde5ee1d7194a"
+        },
+        "owner_current_program_log": {
+          "bytes": 555,
+          "path": "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/programming.txt.gz",
+          "sha256": "66faf55ab1b006dc1a70264588cd25b7c7372e9de718dda6fdfd20db1a43cbea",
+          "uncompressed_bytes": 6347,
+          "uncompressed_sha256": "64a5bd53037be89dbe80b435f0f9d3e7895344856a94f661f42f0725d110c80d"
+        },
+        "protocol": "one-token-128-host-v2",
+        "python": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+        "reference_sha256": "c462aa3b16c179b512c73e45bc98f3d7d8e93c6a763d460a677b93113b14dd71",
+        "semantic_clock_hz": 50000000,
+        "source_checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+        "timer": "time.monotonic_ns",
+        "timing_boundary": "generation_loop_validated_reply",
+        "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
+      },
+      "eligible_trials": 2,
+      "complete": true,
+      "rate": {
+        "counted_cached_outputs": 254,
+        "cached_host_seconds": 27.980518875,
+        "cached_tokens_per_second": 9.077744452657152,
+        "command_only_diagnostic_tokens_per_second": 9.078629262558886,
+        "first_step_seconds": [
+          0.102083292,
+          0.101986541
+        ]
+      },
+      "missing": null,
+      "trials": [
+        {
+          "capture_sha256": "e20d17666d008bb3b592e9f00cd821c0b4c3115ede928b20cbfafa6a99167c3b",
+          "prompt_tokens": [
+            1
+          ],
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 13.990248916,
+          "cached_command_seconds": 13.988939956,
+          "first_step_seconds": 0.102083292,
+          "identity": {
+            "bitstream_sha256": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b",
+            "board_label": "Tang Mega device C",
+            "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+            "collector_sha256": "87fa53ea49b8fd7c3ff88fcde0dc17cb808487d5f2f6993e833de61576460ee9",
+            "core_clock_mhz": 50,
+            "first_return_hold_cycles": 1000000,
+            "first_return_hold_ms": 20,
+            "fpga_image_sha256": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b",
+            "host": "macOS-27.0.1-arm64-arm-64bit",
+            "model_sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1",
+            "owner_current_load_receipt": {
+              "bytes": 166,
+              "path": "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/model-load.json",
+              "sha256": "e70b32d98d6a5b2b967f183978a5ad2930a348df4f9e45032a0bde5ee1d7194a"
+            },
+            "owner_current_program_log": {
+              "bytes": 555,
+              "path": "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/programming.txt.gz",
+              "sha256": "66faf55ab1b006dc1a70264588cd25b7c7372e9de718dda6fdfd20db1a43cbea",
+              "uncompressed_bytes": 6347,
+              "uncompressed_sha256": "64a5bd53037be89dbe80b435f0f9d3e7895344856a94f661f42f0725d110c80d"
+            },
+            "protocol": "one-token-128-host-v2",
+            "python": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+            "reference_sha256": "c462aa3b16c179b512c73e45bc98f3d7d8e93c6a763d460a677b93113b14dd71",
+            "semantic_clock_hz": 50000000,
+            "source_checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+            "timer": "time.monotonic_ns",
+            "timing_boundary": "generation_loop_validated_reply",
+            "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
+        },
+        {
+          "capture_sha256": "6ad53d82563ef647c035cf13f64e53ea834b0e35260ff7c04dfed7e7d2dd7c9c",
+          "prompt_tokens": [
+            1
+          ],
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 13.990269959,
+          "cached_command_seconds": 13.988851917,
+          "first_step_seconds": 0.101986541,
+          "identity": {
+            "bitstream_sha256": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b",
+            "board_label": "Tang Mega device C",
+            "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+            "collector_sha256": "87fa53ea49b8fd7c3ff88fcde0dc17cb808487d5f2f6993e833de61576460ee9",
+            "core_clock_mhz": 50,
+            "first_return_hold_cycles": 1000000,
+            "first_return_hold_ms": 20,
+            "fpga_image_sha256": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b",
+            "host": "macOS-27.0.1-arm64-arm-64bit",
+            "model_sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1",
+            "owner_current_load_receipt": {
+              "bytes": 166,
+              "path": "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/model-load.json",
+              "sha256": "e70b32d98d6a5b2b967f183978a5ad2930a348df4f9e45032a0bde5ee1d7194a"
+            },
+            "owner_current_program_log": {
+              "bytes": 555,
+              "path": "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/programming.txt.gz",
+              "sha256": "66faf55ab1b006dc1a70264588cd25b7c7372e9de718dda6fdfd20db1a43cbea",
+              "uncompressed_bytes": 6347,
+              "uncompressed_sha256": "64a5bd53037be89dbe80b435f0f9d3e7895344856a94f661f42f0725d110c80d"
+            },
+            "protocol": "one-token-128-host-v2",
+            "python": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
+            "reference_sha256": "c462aa3b16c179b512c73e45bc98f3d7d8e93c6a763d460a677b93113b14dd71",
+            "semantic_clock_hz": 50000000,
+            "source_checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+            "timer": "time.monotonic_ns",
+            "timing_boundary": "generation_loop_validated_reply",
+            "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
+        }
+      ],
+      "attention_cache": "Held in on-chip scratch RAM"
     }
   ],
-  "schema": "fpga-common-speed-results-v1",
-  "scope": "Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay.",
   "source_sha256": {
     "benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json": {
       "bytes": 32908,
@@ -1287,6 +1435,42 @@
     "benchmarks/fpga-speed/tlm26-overlap-r2-12p5-v1/trial-2.json": {
       "bytes": 31827,
       "sha256": "c02d72187189d6975faa7b64232d61e5cff9e24ab9bca88205600ffc27569e9a"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/CAPTURE.json": {
+      "bytes": 32771,
+      "sha256": "4fd7ab27e0b328019b91b3e54073489da2a1d44a8cc63caa0cd4a6a4e4445f30"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/RESTORATION.json": {
+      "bytes": 991,
+      "sha256": "2c9777d810e126bb8f2a2d8d5ae2e5d3f203b478a69436514e14d26bae67b08c"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/REVIEW.json": {
+      "bytes": 1762,
+      "sha256": "2cb91f33d8f56b8b2d789ca79ca0d849020a43ac09b6363bb255f648d61dec2b"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/baseline-after.json": {
+      "bytes": 921,
+      "sha256": "d6b058720ab94bca2ab56ab945a6953a4b2ed56c37a977692aa7edd5659c8960"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/baseline-before.json": {
+      "bytes": 921,
+      "sha256": "dffcd6f33c517efa49ca2e44c7ea081545301dc4877a383ae1718a37f0ffe96b"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/custody/model-load.json": {
+      "bytes": 166,
+      "sha256": "e70b32d98d6a5b2b967f183978a5ad2930a348df4f9e45032a0bde5ee1d7194a"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/golden.json": {
+      "bytes": 2893,
+      "sha256": "c462aa3b16c179b512c73e45bc98f3d7d8e93c6a763d460a677b93113b14dd71"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/trial-1.json": {
+      "bytes": 31788,
+      "sha256": "e20d17666d008bb3b592e9f00cd821c0b4c3115ede928b20cbfafa6a99167c3b"
+    },
+    "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/trial-2.json": {
+      "bytes": 31792,
+      "sha256": "6ad53d82563ef647c035cf13f64e53ea834b0e35260ff7c04dfed7e7d2dd7c9c"
     },
     "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/capture.json": {
       "bytes": 69517,
@@ -1404,6 +1588,22 @@
       "bytes": 3537,
       "sha256": "38b652442a35dfb3f2698c93fe5d30f38e35dea4f7ce98ff0ac2c4a3292208b8"
     },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/PROVENANCE.json": {
+      "bytes": 2592,
+      "sha256": "6f313ad8977ec521063f221659a9928854aa2180e59eac576f36a0f9572a657c"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/SOURCE-IDENTITIES.json": {
+      "bytes": 6309,
+      "sha256": "29e54d4e4c78adde82f35e30913b43b769f6f6ce0e9e62e94856f26a9edd3da8"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/evidence/route-50mhz.json": {
+      "bytes": 1696,
+      "sha256": "67a27e3687dca6a2dd91ee3cc956617571c03303b21e3f96b37fa78e9afdd393"
+    },
+    "demos/tlm26-moe/variants/overlap-r2-50mhz/tests/KV-REVIEW.json": {
+      "bytes": 12901,
+      "sha256": "f034759dc6d8a22a4f6b3d3e35637a082e1052b0b2b667831beaf61b2518d8ae"
+    },
     "demos/tlm26-moe/variants/overlap-r2/PROVENANCE.json": {
       "bytes": 1616,
       "sha256": "8a6dc938250471044fe1ad68bfea16074d8ae81ee6939ed234f166a5633f08ea"
@@ -1417,6 +1617,5 @@
       "sha256": "28b81d2482d1884c54bdf952e45aae3da337ccbb4811b3bdeb1736a6b225da95"
     }
   },
-  "timestamp_boundary": "generation_loop_validated_reply",
-  "total_rows": 10
+  "scope": "Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay."
 }
