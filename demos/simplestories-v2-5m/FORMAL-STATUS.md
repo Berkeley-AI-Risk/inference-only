@@ -319,6 +319,17 @@ semantic/model/K/V proofs restore all thirty native cache outputs and show that
 healthy active semantic idle owes or presents no model or typed K/V work. The
 four current images are source-bound to their applicable native classes.
 
+**Busy-CLEAR availability limit (baseline).** The
+[released K/V controller](hardware/project/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv)
+can latch fault when `CLEAR` coincides with a pending write completion:
+cancellation can be mistaken for a noncanceled failed completion. Component and
+decoded-command simulations with substitute arithmetic, plus matching source
+inspection, reproduce this condition. This is not a full-model or board result,
+nor evidence that the fault has an independently permitted platform/program
+cause. Accepted-request ownership does not imply unconditional return to
+readiness. A separate private correction is not included and does not inherit
+these certificates.
+
 These are component results with explicit initial tracking, numerical-service
 and RAM-history boundaries. **Full device session isolation through subsequent
 token publication is not yet established.** The common core/outer transport

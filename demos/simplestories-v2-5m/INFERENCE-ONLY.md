@@ -51,6 +51,15 @@ are transport behavior around the three operations, not extra arithmetic
 services. `CLEAR` logically erases the tape and invalidates cached state; it
 does not zero every physical memory cell.
 
+The released baseline has a busy-`CLEAR` availability limitation at the decoded
+command/controller boundary. If CLEAR coincides with completion of a pending
+K/V write, cancellation can be treated as a failed completion and latch
+fail-closed instead of returning to readiness. Component and decoded-command
+simulations with substitute arithmetic, joined to matching source inspection,
+reproduce this condition; it is not a board observation. A separate private
+correction is not included in these released bytes. See the
+[CLEAR qualification](FORMAL-STATUS.md#working-memory-ownership-and-clear).
+
 The [working-memory proofs](formal/session-isolation/README.md) check current
 writers before permitted RAM use and accepted-request ownership through CLEAR
 at their stated component boundaries. These support initialized inference
