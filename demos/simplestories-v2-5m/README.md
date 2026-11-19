@@ -67,6 +67,7 @@ reprogram the board or select a different model.
 
 - [Hardware architecture](HARDWARE.md), [K/V protection](KV-PROTECTION.md) and
   [encrypted memory](ENCRYPTED-MEMORY.md).
+- [Protected two-tape P16 simulation](simulation/protected-two-tape-p16/README.md) compares serial and paired decoding on independent histories and checks four targeted CLEAR cases.
 - [Greedy qualification](GREEDY-QUALIFICATION.md), [seeded qualification](CURRENT-QUALIFICATION.md)
   and [validation and limits](VALIDATION.md).
 - [Formal scope](FORMAL-STATUS.md): functional correctness and inference-only restrictions; [normal K/V return proof and replay](formal/kv-return/README.md).

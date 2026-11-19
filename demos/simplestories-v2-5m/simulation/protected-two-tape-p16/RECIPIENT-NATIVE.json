@@ -1,0 +1,704 @@
+{
+  "all_eight_recipient_runs_passed": true,
+  "arms": {
+    "control": {
+      "args": [
+        "+mode=1",
+        "+rope=0"
+      ],
+      "arm": "control",
+      "binary_sha256": "5beccbf09cca0589cdc5dcfb92e0db4529f1f838a418cec25cbd3980e825c50c",
+      "canceled_records_after_clear": {},
+      "checks": {
+        "bench_pass": true,
+        "by_tape_numerical": true,
+        "clear": true,
+        "lookup_controls": true,
+        "matched_offers": true,
+        "older_port_timeline": true,
+        "public_transfers": true,
+        "public_valid": true,
+        "totals": true,
+        "traffic_at_public": true,
+        "zero_late_canceled_records": true
+      },
+      "child_status": 0,
+      "clear": [],
+      "latencies_from_first_offer": [
+        4062447,
+        7386180
+      ],
+      "numerical": {
+        "0:1": {
+          "count": 75584,
+          "sha256": "5120200c62507714a95fe7da91f98828076b0f152ccf0108d5a53ec1fa5b8bad"
+        },
+        "1:0": {
+          "count": 75584,
+          "sha256": "89c12ef137c526ad35023a8957bae5a250e8342e14c6d2d83b9d5d0d0da96eaf"
+        }
+      },
+      "passed": true,
+      "public": [
+        {
+          "c": 110424233,
+          "g": 1,
+          "t": 0,
+          "token": 85
+        },
+        {
+          "c": 113747966,
+          "g": 0,
+          "t": 1,
+          "token": 490
+        }
+      ],
+      "raw_output_sha256": "7a0c86dd439652e2e35d4362dc06beaab388ea3e5671fb4c8f116cac3e054edf",
+      "source_manifest_sha256": "a41f93d77e79525e48bc95e60a8b2c33842a5684e31e286e099f8d160cc63e63",
+      "source_revision": "rope",
+      "terminal_sha256": "58ae6748e0e7584a0eb65b7bcced31aaf861f7217b4487c484f45eb8767abb83",
+      "traffic_at_public": [
+        {
+          "c": 110424233,
+          "external_model_bytes": 7045120,
+          "g": 1,
+          "model_interface_bytes": 7132352,
+          "physical_kv_read_bytes": 71680,
+          "physical_kv_write_bytes": 4032,
+          "projection_bytes": 6777600,
+          "t": 0
+        },
+        {
+          "c": 113747966,
+          "external_model_bytes": 13049856,
+          "g": 0,
+          "model_interface_bytes": 13230720,
+          "physical_kv_read_bytes": 122880,
+          "physical_kv_write_bytes": 6912,
+          "projection_bytes": 12640640,
+          "t": 1
+        }
+      ]
+    },
+    "held": {
+      "args": [
+        "+mode=2",
+        "+rope=4"
+      ],
+      "arm": "held",
+      "binary_sha256": "5beccbf09cca0589cdc5dcfb92e0db4529f1f838a418cec25cbd3980e825c50c",
+      "canceled_records_after_clear": {},
+      "checks": {
+        "bench_pass": true,
+        "by_tape_numerical": true,
+        "clear": true,
+        "lookup_controls": true,
+        "matched_offers": true,
+        "older_port_timeline": true,
+        "public_transfers": true,
+        "public_valid": true,
+        "totals": true,
+        "traffic_at_public": true,
+        "zero_late_canceled_records": true
+      },
+      "child_status": 0,
+      "clear": [
+        {
+          "c": 110524199,
+          "gen": 0,
+          "parked_job": 6,
+          "t": 1
+        }
+      ],
+      "latencies_from_first_offer": [
+        4062447,
+        7840249
+      ],
+      "numerical": {
+        "0:1": {
+          "count": 75584,
+          "sha256": "5120200c62507714a95fe7da91f98828076b0f152ccf0108d5a53ec1fa5b8bad"
+        },
+        "1:0": {
+          "count": 69158,
+          "sha256": "7a977cfaf33fe2d0742a6515d2bff33d88bcc3b63fe402adcc13bce317d78280"
+        },
+        "1:1": {
+          "count": 1183,
+          "sha256": "ea723caa942b964112c0ffd8a4960f9ef6f55b4c636c11301e16fe04bdaeeed1"
+        }
+      },
+      "passed": true,
+      "public": [
+        {
+          "c": 110424233,
+          "g": 1,
+          "t": 0,
+          "token": 85
+        },
+        {
+          "c": 114202035,
+          "g": 1,
+          "t": 1,
+          "token": 15
+        }
+      ],
+      "raw_output_sha256": "e2174e83e03a986041348b75403bc3045b2537587af270808669919808150853",
+      "source_manifest_sha256": "a41f93d77e79525e48bc95e60a8b2c33842a5684e31e286e099f8d160cc63e63",
+      "source_revision": "rope",
+      "terminal_sha256": "b97b1823d610ea2151e2b801eb25f22b9fc8703ba3e3f94e0e5720ef02fde6a9",
+      "traffic_at_public": [
+        {
+          "c": 110424233,
+          "external_model_bytes": 7045120,
+          "g": 1,
+          "model_interface_bytes": 7132352,
+          "physical_kv_read_bytes": 71680,
+          "physical_kv_write_bytes": 4032,
+          "projection_bytes": 6777600,
+          "t": 0
+        },
+        {
+          "c": 114202035,
+          "external_model_bytes": 14229504,
+          "g": 1,
+          "model_interface_bytes": 14375744,
+          "physical_kv_read_bytes": 71680,
+          "physical_kv_write_bytes": 7488,
+          "projection_bytes": 13719040,
+          "t": 1
+        }
+      ]
+    },
+    "miss": {
+      "args": [
+        "+mode=2",
+        "+rope=5"
+      ],
+      "arm": "miss",
+      "binary_sha256": "5beccbf09cca0589cdc5dcfb92e0db4529f1f838a418cec25cbd3980e825c50c",
+      "canceled_records_after_clear": {},
+      "checks": {
+        "bench_pass": true,
+        "by_tape_numerical": true,
+        "clear": true,
+        "lookup_controls": true,
+        "matched_offers": true,
+        "older_port_timeline": true,
+        "public_transfers": true,
+        "public_valid": true,
+        "totals": true,
+        "traffic_at_public": true,
+        "zero_late_canceled_records": true
+      },
+      "child_status": 0,
+      "clear": [
+        {
+          "c": 110524201,
+          "gen": 0,
+          "parked_job": 6,
+          "t": 1
+        }
+      ],
+      "latencies_from_first_offer": [
+        4062447,
+        7845184
+      ],
+      "numerical": {
+        "0:1": {
+          "count": 75584,
+          "sha256": "5120200c62507714a95fe7da91f98828076b0f152ccf0108d5a53ec1fa5b8bad"
+        },
+        "1:0": {
+          "count": 69158,
+          "sha256": "7a977cfaf33fe2d0742a6515d2bff33d88bcc3b63fe402adcc13bce317d78280"
+        },
+        "1:1": {
+          "count": 1183,
+          "sha256": "ea723caa942b964112c0ffd8a4960f9ef6f55b4c636c11301e16fe04bdaeeed1"
+        }
+      },
+      "passed": true,
+      "public": [
+        {
+          "c": 110424233,
+          "g": 1,
+          "t": 0,
+          "token": 85
+        },
+        {
+          "c": 114206970,
+          "g": 1,
+          "t": 1,
+          "token": 15
+        }
+      ],
+      "raw_output_sha256": "b9ae71479a5863678e179255712a5fcf714d96529b7ae0a1666819ed397ccfe8",
+      "source_manifest_sha256": "a41f93d77e79525e48bc95e60a8b2c33842a5684e31e286e099f8d160cc63e63",
+      "source_revision": "rope",
+      "terminal_sha256": "7015090e2107bca7a66038e4ae6ec21532e857cb796d05e5a889ddfedfd804f5",
+      "traffic_at_public": [
+        {
+          "c": 110424233,
+          "external_model_bytes": 7045120,
+          "g": 1,
+          "model_interface_bytes": 7132352,
+          "physical_kv_read_bytes": 71680,
+          "physical_kv_write_bytes": 4032,
+          "projection_bytes": 6777600,
+          "t": 0
+        },
+        {
+          "c": 114206970,
+          "external_model_bytes": 14229504,
+          "g": 1,
+          "model_interface_bytes": 14375776,
+          "physical_kv_read_bytes": 71680,
+          "physical_kv_write_bytes": 7488,
+          "projection_bytes": 13719040,
+          "t": 1
+        }
+      ]
+    },
+    "park-a": {
+      "args": [
+        "+mode=3",
+        "+rope=3"
+      ],
+      "arm": "park-a",
+      "binary_sha256": "5beccbf09cca0589cdc5dcfb92e0db4529f1f838a418cec25cbd3980e825c50c",
+      "canceled_records_after_clear": {},
+      "checks": {
+        "bench_pass": true,
+        "by_tape_numerical": true,
+        "clear": true,
+        "lookup_controls": true,
+        "matched_offers": true,
+        "older_port_timeline": true,
+        "public_transfers": true,
+        "public_valid": true,
+        "totals": true,
+        "traffic_at_public": true,
+        "zero_late_canceled_records": true
+      },
+      "child_status": 0,
+      "clear": [
+        {
+          "c": 106580644,
+          "gen": 1,
+          "parked_job": 3,
+          "t": 0
+        }
+      ],
+      "latencies_from_first_offer": [
+        3973435,
+        7649016
+      ],
+      "numerical": {
+        "0:1": {
+          "count": 69157,
+          "sha256": "3a3d8b8e745c17d3eaae556e3b5991b9736fefcd98a532a1b814fbc3e4f7c6b9"
+        },
+        "0:2": {
+          "count": 1183,
+          "sha256": "ea723caa942b964112c0ffd8a4960f9ef6f55b4c636c11301e16fe04bdaeeed1"
+        },
+        "1:0": {
+          "count": 75584,
+          "sha256": "89c12ef137c526ad35023a8957bae5a250e8342e14c6d2d83b9d5d0d0da96eaf"
+        }
+      },
+      "passed": true,
+      "public": [
+        {
+          "c": 110335221,
+          "g": 0,
+          "t": 1,
+          "token": 490
+        },
+        {
+          "c": 114010802,
+          "g": 2,
+          "t": 0,
+          "token": 15
+        }
+      ],
+      "raw_output_sha256": "c465b7b9dbaa6a2060919728410d02c71000911ab1f46403fe02e8d5ffe18f95",
+      "source_manifest_sha256": "a41f93d77e79525e48bc95e60a8b2c33842a5684e31e286e099f8d160cc63e63",
+      "source_revision": "rope",
+      "terminal_sha256": "5526962e26ed1bf00d49d274d34dc915737ed13b247e674ac8f6159fca3033ba",
+      "traffic_at_public": [
+        {
+          "c": 110335221,
+          "external_model_bytes": 7053312,
+          "g": 0,
+          "model_interface_bytes": 7110528,
+          "physical_kv_read_bytes": 71680,
+          "physical_kv_write_bytes": 4032,
+          "projection_bytes": 6777600,
+          "t": 1
+        },
+        {
+          "c": 114010802,
+          "external_model_bytes": 14053376,
+          "g": 2,
+          "model_interface_bytes": 14188032,
+          "physical_kv_read_bytes": 71680,
+          "physical_kv_write_bytes": 7488,
+          "projection_bytes": 13555200,
+          "t": 0
+        }
+      ]
+    },
+    "park-b": {
+      "args": [
+        "+mode=2",
+        "+rope=2"
+      ],
+      "arm": "park-b",
+      "binary_sha256": "5beccbf09cca0589cdc5dcfb92e0db4529f1f838a418cec25cbd3980e825c50c",
+      "canceled_records_after_clear": {},
+      "checks": {
+        "bench_pass": true,
+        "by_tape_numerical": true,
+        "clear": true,
+        "lookup_controls": true,
+        "matched_offers": true,
+        "older_port_timeline": true,
+        "public_transfers": true,
+        "public_valid": true,
+        "totals": true,
+        "traffic_at_public": true,
+        "zero_late_canceled_records": true
+      },
+      "child_status": 0,
+      "clear": [
+        {
+          "c": 106698297,
+          "gen": 0,
+          "parked_job": 4,
+          "t": 1
+        }
+      ],
+      "latencies_from_first_offer": [
+        3996724,
+        7672305
+      ],
+      "numerical": {
+        "0:1": {
+          "count": 75584,
+          "sha256": "5120200c62507714a95fe7da91f98828076b0f152ccf0108d5a53ec1fa5b8bad"
+        },
+        "1:0": {
+          "count": 69157,
+          "sha256": "ddb0ac39542cd61720ae91cb6b1c865fc6b1f27e0ddce9fc154b155ecd048183"
+        },
+        "1:1": {
+          "count": 1183,
+          "sha256": "ea723caa942b964112c0ffd8a4960f9ef6f55b4c636c11301e16fe04bdaeeed1"
+        }
+      },
+      "passed": true,
+      "public": [
+        {
+          "c": 110358510,
+          "g": 1,
+          "t": 0,
+          "token": 85
+        },
+        {
+          "c": 114034091,
+          "g": 1,
+          "t": 1,
+          "token": 15
+        }
+      ],
+      "raw_output_sha256": "3c9d7f3fdfc336add21922a880685472297ce51449c97394c50d5618469a4ced",
+      "source_manifest_sha256": "a41f93d77e79525e48bc95e60a8b2c33842a5684e31e286e099f8d160cc63e63",
+      "source_revision": "rope",
+      "terminal_sha256": "5b4083734b56eff46a148491eff034c71596c53cffdee96ef94e4557db011f34",
+      "traffic_at_public": [
+        {
+          "c": 110358510,
+          "external_model_bytes": 7045120,
+          "g": 1,
+          "model_interface_bytes": 7110528,
+          "physical_kv_read_bytes": 71680,
+          "physical_kv_write_bytes": 4032,
+          "projection_bytes": 6777600,
+          "t": 0
+        },
+        {
+          "c": 114034091,
+          "external_model_bytes": 14045184,
+          "g": 1,
+          "model_interface_bytes": 14188032,
+          "physical_kv_read_bytes": 71680,
+          "physical_kv_write_bytes": 7488,
+          "projection_bytes": 13555200,
+          "t": 1
+        }
+      ]
+    },
+    "serial": {
+      "args": [
+        "+mode=0"
+      ],
+      "arm": "serial",
+      "binary_sha256": "db0f3a87fa5f3c377f463b0b35035da903fa4932092b06901cb6f0fa2f1b1c0f",
+      "canceled_records_after_clear": {},
+      "checks": {
+        "bench_pass": true,
+        "by_tape_numerical": true,
+        "clear": true,
+        "matched_offers": true,
+        "public_transfers": true,
+        "public_valid": true,
+        "totals": true,
+        "traffic_at_public": true,
+        "zero_late_canceled_records": true
+      },
+      "child_status": 0,
+      "clear": [],
+      "latencies_from_first_offer": [
+        3878200,
+        7758818
+      ],
+      "numerical": {
+        "0:1": {
+          "count": 75584,
+          "sha256": "5120200c62507714a95fe7da91f98828076b0f152ccf0108d5a53ec1fa5b8bad"
+        },
+        "1:0": {
+          "count": 75584,
+          "sha256": "89c12ef137c526ad35023a8957bae5a250e8342e14c6d2d83b9d5d0d0da96eaf"
+        }
+      },
+      "passed": true,
+      "public": [
+        {
+          "c": 110239986,
+          "g": 1,
+          "t": 0,
+          "token": 85
+        },
+        {
+          "c": 114120604,
+          "g": 0,
+          "t": 1,
+          "token": 490
+        }
+      ],
+      "raw_output_sha256": "4ff3082f4f8e188e4d8db9f78a8f7b469da9783e0dfcdb41d74e61acf76a5c7c",
+      "source_manifest_sha256": "7f3f6a5d1108ea1330427df78e25b410225f4d939c4b7df7205fea7a155a25e4",
+      "source_revision": "strict",
+      "terminal_sha256": "aa8c30994399bd63c36c10f2c6806f224b04ca3218597995ce775710c7531da1",
+      "traffic_at_public": [
+        {
+          "c": 110239986,
+          "external_model_bytes": 6987776,
+          "g": 1,
+          "model_interface_bytes": 7077504,
+          "physical_kv_read_bytes": 61440,
+          "physical_kv_write_bytes": 3456,
+          "projection_bytes": 6777600,
+          "t": 0
+        },
+        {
+          "c": 114120604,
+          "external_model_bytes": 13983744,
+          "g": 0,
+          "model_interface_bytes": 14155008,
+          "physical_kv_read_bytes": 122880,
+          "physical_kv_write_bytes": 6912,
+          "projection_bytes": 13555200,
+          "t": 1
+        }
+      ]
+    },
+    "strict": {
+      "args": [
+        "+mode=1"
+      ],
+      "arm": "strict",
+      "binary_sha256": "db0f3a87fa5f3c377f463b0b35035da903fa4932092b06901cb6f0fa2f1b1c0f",
+      "canceled_records_after_clear": {},
+      "checks": {
+        "bench_pass": true,
+        "by_tape_numerical": true,
+        "clear": true,
+        "matched_offers": true,
+        "public_transfers": true,
+        "public_valid": true,
+        "totals": true,
+        "traffic_at_public": true,
+        "zero_late_canceled_records": true
+      },
+      "child_status": 0,
+      "clear": [],
+      "latencies_from_first_offer": [
+        4062447,
+        7386180
+      ],
+      "numerical": {
+        "0:1": {
+          "count": 75584,
+          "sha256": "5120200c62507714a95fe7da91f98828076b0f152ccf0108d5a53ec1fa5b8bad"
+        },
+        "1:0": {
+          "count": 75584,
+          "sha256": "89c12ef137c526ad35023a8957bae5a250e8342e14c6d2d83b9d5d0d0da96eaf"
+        }
+      },
+      "passed": true,
+      "public": [
+        {
+          "c": 110424233,
+          "g": 1,
+          "t": 0,
+          "token": 85
+        },
+        {
+          "c": 113747966,
+          "g": 0,
+          "t": 1,
+          "token": 490
+        }
+      ],
+      "raw_output_sha256": "a507a79d2638b7b3728b4137e6c995648de68b138bae3b6407b1d0d9fd25ab4d",
+      "source_manifest_sha256": "7f3f6a5d1108ea1330427df78e25b410225f4d939c4b7df7205fea7a155a25e4",
+      "source_revision": "strict",
+      "terminal_sha256": "f449c0576717a785ad07fcfb7118a3dcb39b0d0c27b4acfa5173335d6dd37632",
+      "traffic_at_public": [
+        {
+          "c": 110424233,
+          "external_model_bytes": 7045120,
+          "g": 1,
+          "model_interface_bytes": 7132352,
+          "physical_kv_read_bytes": 71680,
+          "physical_kv_write_bytes": 4032,
+          "projection_bytes": 6777600,
+          "t": 0
+        },
+        {
+          "c": 113747966,
+          "external_model_bytes": 13049856,
+          "g": 0,
+          "model_interface_bytes": 13230720,
+          "physical_kv_read_bytes": 122880,
+          "physical_kv_write_bytes": 6912,
+          "projection_bytes": 12640640,
+          "t": 1
+        }
+      ]
+    },
+    "treatment": {
+      "args": [
+        "+mode=1",
+        "+rope=1"
+      ],
+      "arm": "treatment",
+      "binary_sha256": "5beccbf09cca0589cdc5dcfb92e0db4529f1f838a418cec25cbd3980e825c50c",
+      "canceled_records_after_clear": {},
+      "checks": {
+        "bench_pass": true,
+        "by_tape_numerical": true,
+        "clear": true,
+        "lookup_controls": true,
+        "matched_offers": true,
+        "older_port_timeline": true,
+        "public_transfers": true,
+        "public_valid": true,
+        "totals": true,
+        "traffic_at_public": true,
+        "zero_late_canceled_records": true
+      },
+      "child_status": 0,
+      "clear": [],
+      "latencies_from_first_offer": [
+        4062447,
+        7289965
+      ],
+      "numerical": {
+        "0:1": {
+          "count": 75584,
+          "sha256": "5120200c62507714a95fe7da91f98828076b0f152ccf0108d5a53ec1fa5b8bad"
+        },
+        "1:0": {
+          "count": 75584,
+          "sha256": "89c12ef137c526ad35023a8957bae5a250e8342e14c6d2d83b9d5d0d0da96eaf"
+        }
+      },
+      "passed": true,
+      "public": [
+        {
+          "c": 110424233,
+          "g": 1,
+          "t": 0,
+          "token": 85
+        },
+        {
+          "c": 113651751,
+          "g": 0,
+          "t": 1,
+          "token": 490
+        }
+      ],
+      "raw_output_sha256": "fe7a5f42b5109db5ae25699e889ff3db2980b17f5d9708f9a0c159796842191e",
+      "source_manifest_sha256": "a41f93d77e79525e48bc95e60a8b2c33842a5684e31e286e099f8d160cc63e63",
+      "source_revision": "rope",
+      "terminal_sha256": "e3f6dc77796611974463df446757b9813e225af68d7cb9e40be0a0a34f4b7438",
+      "traffic_at_public": [
+        {
+          "c": 110424233,
+          "external_model_bytes": 7045120,
+          "g": 1,
+          "model_interface_bytes": 7132352,
+          "physical_kv_read_bytes": 71680,
+          "physical_kv_write_bytes": 4032,
+          "projection_bytes": 6777600,
+          "t": 0
+        },
+        {
+          "c": 113651751,
+          "external_model_bytes": 13000704,
+          "g": 0,
+          "model_interface_bytes": 13169280,
+          "physical_kv_read_bytes": 122880,
+          "physical_kv_write_bytes": 6912,
+          "projection_bytes": 12640640,
+          "t": 1
+        }
+      ]
+    }
+  },
+  "capsule_inventory_sha256": "8e1c7b191a61671522218c3418bb74d99871fd5b5f7df4b1e340faf8a6d0b60d",
+  "clean_preparation_sha256": "ac010623aa6958dc593e593ccc43b95ac1f21d66bb74eb6a0aa4156096bf2d32",
+  "fresh_builds": {
+    "rope": {
+      "child_exit": 0,
+      "fresh_executable_sha256": "5beccbf09cca0589cdc5dcfb92e0db4529f1f838a418cec25cbd3980e825c50c",
+      "manifest_sha256": "a41f93d77e79525e48bc95e60a8b2c33842a5684e31e286e099f8d160cc63e63",
+      "matches_original_executable": true,
+      "terminal_sha256": "ee2d6d5ba928e818149c86fb9ba8da0251265dc53b5e8c924d3fb1174d4fcb39"
+    },
+    "strict": {
+      "child_exit": 0,
+      "fresh_executable_sha256": "db0f3a87fa5f3c377f463b0b35035da903fa4932092b06901cb6f0fa2f1b1c0f",
+      "manifest_sha256": "7f3f6a5d1108ea1330427df78e25b410225f4d939c4b7df7205fea7a155a25e4",
+      "matches_original_executable": true,
+      "terminal_sha256": "df410f79f86475ebbb63015d37a3e5c6d5f657180cbaab52a4eb37dc203df584"
+    }
+  },
+  "interrupted_prior_attempts": [
+    {
+      "arm": "park-a",
+      "native_exit": null,
+      "outer_driver_exit": 143,
+      "record_sha256": "c150ce5906bc166115f15fc569c0f1e5cc88f364736f59fa1e3fea9b7f75d26d"
+    }
+  ],
+  "launch_path": "Unmodified capsule replay.py",
+  "resource_handback_sha256": "cd82554b914a655a5f0c507df4e71cda9aad7a3311f0e62cd2c4f43b11846638",
+  "verified_public_commit": "a1d2b7b1b4aa0c469ca429cf0405d2f30d702173"
+}
