@@ -89,7 +89,7 @@ the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENC
 | --- | --- | ---: | ---: | --- |
 | F-AWIC, baseline | External DDR, without K/V integrity checks | 25 | 10.0 | Runnable release |
 | F-AWIC, K/V integrity | Authenticated in external DDR | 25 | 7.0 | Runnable release |
-| F-AWIC, encrypted memory | Authenticated and encrypted in external DDR | 25 | 6.0 | Runnable release · public demonstration keys |
+| F-AWIC, encrypted weights and protected K/V | Encrypted in external DDR with integrity and replay checks | 25 | 6.0 | Runnable release · public demonstration keys |
 | F-AWIC, seeded sampling (temperature 1) | External DDR, without K/V integrity checks | 25 | 9.9 | Runnable release |
 | S-AWIC, signed updates | External DDR, without K/V integrity checks | 25 | 10.1 | Runnable release · public demonstration keys |
 | S-AWIC, periodic reauthorization | External DDR, without K/V integrity checks | 25 | 7.6 | Runnable token-ID demonstration · public demonstration keys |
@@ -97,8 +97,7 @@ the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENC
 
 A separate [11-case simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) combines S-AWIC signed reauthorization with protected K/V.
 
-The encrypted image protects K/V against replay and encrypts both weights and
-K/V. The seeded image authenticates weights and uses a plain external K/V cache.
+The seeded image authenticates weights and uses a plain external K/V cache.
 
 <!-- COMMON-FPGA-SPEED:START -->
 ### TLM26 (top-2-of-8 MoE) on Tang Mega 138K

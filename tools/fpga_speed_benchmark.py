@@ -307,7 +307,7 @@ def model_tables(result):
         'SimpleStories-V2-5M on Tang Mega 138K': [
             ('simplestories-baseline', 'F-AWIC, baseline', plain_ddr),
             ('simplestories-kv-protected', 'F-AWIC, K/V integrity', None),
-            ('simplestories-encrypted', 'F-AWIC, encrypted memory', 'Authenticated and encrypted in external DDR'),
+            ('simplestories-encrypted', 'F-AWIC, encrypted weights and protected K/V', 'Encrypted in external DDR with integrity and replay checks'),
             ('simplestories-seeded-sampling', 'F-AWIC, seeded sampling (temperature 1)', plain_ddr),
             ('simplestories-signed-update', 'S-AWIC, signed updates', plain_ddr),
             ('simplestories-home-authorization', 'S-AWIC, periodic reauthorization', plain_ddr),
