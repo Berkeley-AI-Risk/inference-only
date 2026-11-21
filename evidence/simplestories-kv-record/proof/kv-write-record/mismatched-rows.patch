@@ -1,0 +1,10 @@
+--- controller.sv
++++ controller.sv
+@@ -783,6 +783,7 @@
+                             if (write_word_q == 4'd8) begin
+                                 write_head_q <= 1'b1;
+                                 write_word_q <= 4'd0;
++                                pending_position_q <= pending_position_q + 12'd1;
+                             end else begin
+                                 write_word_q <= write_word_q + 1'b1;
+                             end

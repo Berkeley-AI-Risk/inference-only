@@ -1,0 +1,792 @@
+{
+  "archive_fingerprints_sha256": {
+    "record-readback-20261120T081144Z-56879/RESULT.json": "a8d8e420f7993d8789ca39a5e89f4ece810595d2e8844ddcaf117dc70e74a056",
+    "record-readback-20261120T081144Z-56879/SYSTEM-BOOKS.json": "ba17919707193f7edecd0f0c2e5cf85cecea3f846e8fba3ebe121236c5262929",
+    "reference/CERTIFIED-MISMATCHED-ROWS.txt": "e8ca24d21e792f481a7901f7e5a7b5db768b5c7ff12a1740aaeb81ddec889735",
+    "reference/CERTIFIED-STATEMENT.txt": "e0a33115a97cb00211fe667367271a1a8e7a9fe9010d0c5fb43bb3015fdcb416",
+    "reference/CERTIFIED.txt": "8864f930e3d2c471920d08ddbc528997cdc64bdb51ca21c3a1f8189bef2d66ea",
+    "reference/INPUTS.sha256": "cb3ba6dd4a0d4c0c82e2ff651b964a39086f66c8c23b2baccf91535fb475b996",
+    "reference/RESULT.json": "239a92416ff6e67f50fefc20c81ed73eb0baf5d3818c0859b028dee0191943de",
+    "reference/sat-calls.txt": "524fb5e8893635a6b0d161f66bb60374868cdfd2142da148dad7379311c3fbe6"
+  },
+  "author_certification": {
+    "build_exit": 0,
+    "certify_exit": 0,
+    "checked_stalled_completion": {
+      "completion_edge_cycle": 643,
+      "cycles": 644,
+      "cycles_with_a_write_refused": 114,
+      "kind": "a run of the slice with the forward pass and the endpoint scripted, not a run from the public interface",
+      "longest_stall_cycles": 40,
+      "record_start_cycle": 264,
+      "theorems_in_book": true,
+      "v_row_start_cycle": 449
+    },
+    "checked_wrong_position_control": {
+      "counterexample_verified_by_the_prover": true,
+      "each_row_alone_passes_the_row_conclusion": true,
+      "mutation": "mismatched-rows.patch: pending_position_q is incremented at the step from the K row to the V row",
+      "new_step_lemma_is_not_a_theorem_of_that_book": true,
+      "new_step_lemma_proof_fails": true,
+      "record_conclusion_fails": true,
+      "run_still_raises_pending_persisted_q": true
+    },
+    "imported_proofs": {
+      "checked_parent": {
+        "certified_summary_sha256": "91f84325036b5fd9e67d1e8ab61455945cf28dbad64323db68eb9a6df8f9e1f7",
+        "solver_answers": {
+          "calls": 11,
+          "largest_proof_steps": 335407,
+          "satisfiable": 10,
+          "unsatisfiable": 1,
+          "without_an_answer": 0
+        },
+        "unsat_proofs_checked_by_acl2": 1
+      },
+      "nine_write_payload": {
+        "certified_summary_sha256": "cc1047f4b6511f880d91e103d3ace5c1db2c9efbeec3a45325c22026a132700d",
+        "solver_answers": {
+          "calls": 256,
+          "largest_proof_steps": 3943531,
+          "satisfiable": 5,
+          "unsatisfiable": 251,
+          "without_an_answer": 0
+        },
+        "unsat_proofs_checked_by_acl2": 251
+      }
+    },
+    "inherited_assumptions": [
+      "kv-reset-held-at r: reset_n_i low in cycles r, r+1, r+2 (the control parent's)",
+      "kv-payload-storage-definite-at r+2: the payload storage holds definite bits two cycles after reset (the payload book's)",
+      "kv-environment-ok-from r+2 .. n: the control parent's six conditions on the environment in every cycle through n"
+    ],
+    "record": "certified-20261120T000204Z",
+    "result_utc": "2026-11-20T01:28:33Z",
+    "solver": {
+      "answers": {
+        "calls": 27,
+        "largest_proof_steps": 10576,
+        "satisfiable": 4,
+        "unsatisfiable": 23,
+        "without_an_answer": 0
+      },
+      "every_unsat_answer_checked": true,
+      "log": "sat-calls.txt",
+      "per_book": {
+        "kv-write-record": {
+          "sat_assignments_evaluated_by_acl2": 0,
+          "unsat_proofs_checked_by_acl2": 0
+        },
+        "kv-write-record-lift": {
+          "sat_assignments_evaluated_by_acl2": 0,
+          "unsat_proofs_checked_by_acl2": 0
+        },
+        "kv-write-record-mismatched-rows": {
+          "sat_assignments_evaluated_by_acl2": 3,
+          "unsat_proofs_checked_by_acl2": 11
+        },
+        "kv-write-record-step": {
+          "sat_assignments_evaluated_by_acl2": 1,
+          "unsat_proofs_checked_by_acl2": 12
+        }
+      },
+      "refused_by_acl2": 0,
+      "sat_assignments_evaluated_by_acl2": 4,
+      "unsat_proofs_checked_by_acl2": 23
+    },
+    "start_utc": "2026-11-20T00:02:04Z",
+    "tool_versions": {
+      "acl2": "8.7",
+      "cadical": "3.0.0",
+      "sbcl": "2.6.10"
+    },
+    "trusted_components": [
+      "ACL2 8.7 and SBCL, and the certified library's proof engine (FGL, the conversion to clauses) as compiled Lisp",
+      "the LRAT checker as executed; its soundness is a theorem of the library",
+      "the Verilog front end (VL) and the corrected SV translator: that the state machine is what the RTL means",
+      "the seventeen trust tags the library loads; they cover running a program and reading its output, not belief in the output",
+      "that the imported certificates were made by the certifications their records describe"
+    ]
+  },
+  "cases": {
+    "record": {
+      "normal_log_sha256": "50f37f7c444bb7ab222ad032118ee25d7c121d32ef07532fe7c1c50a58c27099",
+      "normalized_event_sha256_in_print_order": [
+        [
+          "DEFTHM KV-WRITE-RECORD",
+          "63aa97dbcf956bc6176f3783da66f381572a7807286bd88e9c653843950a8a66"
+        ],
+        [
+          "DEFINE KV-RECORD-REPORTED-COMPLETE-AT",
+          "f6d75fe3302f2021cb0928aac9228b4a976ecddcbda2ae7abcbdcfe1e01463b9"
+        ],
+        [
+          "DEFINE KV-RECORD-START",
+          "ecb41ec27fddf44c6ab7e1375c4a84087bbd24fe7f3369f4e468fdab25b8c530"
+        ],
+        [
+          "DEFINE KV-RECORD-STARTS-AT",
+          "24d4fdba6e6269e534c0ccfe1896c1866b3a8c967b429316c61cf39c2bb587ce"
+        ],
+        [
+          "DEFINE KV-RECORD-UNINTERRUPTED",
+          "d4c6c9a20d2809c509405484e9e021c363364ad9e141105f38cbfb099659c2d5"
+        ],
+        [
+          "DEFINE KV-RECORD-WORDS",
+          "008c015eb91fb64cc8b3281e10bfc1d2e25a2a9d7b62a92f6ec8dc9d74c03de7"
+        ],
+        [
+          "DEFINE KV-ENDPOINT-WRITES",
+          "cbd6bd4dadc0c6affbfd14ef3b9cf0e2251f82694f2aa9268bf962945834af17"
+        ],
+        [
+          "DEFINE KV-RESET-HELD-AT",
+          "ae50e5aa5672952911c6d277b274b9e38e7d35a8ffb7384ac5269264fc7499d1"
+        ],
+        [
+          "DEFINE KV-PAYLOAD-STORAGE-DEFINITE-AT",
+          "4f26463732d05576077469ac5669ca6972490a8bc3e9ee5e00fb68342abd81a9"
+        ],
+        [
+          "DEFINE KV-ENVIRONMENT-OK-FROM",
+          "82fa9c09b024f6c6c770ecf87c3f4ebd9684aec79302e191a963da3819dbe670"
+        ],
+        [
+          "DEFINE REC-COMPLETE-AT",
+          "e8ceef65ce3c445d81ee0f693a958be15a142ee01fe994fa1d9140a270a409d1"
+        ],
+        [
+          "DEFINE REC-PER-AT",
+          "3320cf540b02ed91afcc0dcd55f5a29629f87112f5c9820b5de0690b57c922d6"
+        ],
+        [
+          "DEFUN REC-START",
+          "e318b04384e5d923ef6e16be32938af98047a09ceb7f3f1f27828312deea182f"
+        ],
+        [
+          "DEFINE REC-START-P",
+          "53569bd24991ed43f43b515fab579c8da83b07e1ec144509ac549a857606a319"
+        ],
+        [
+          "DEFUN REC-UNINTERRUPTED",
+          "34eeed2b1bcb7d2c4e9cfa6b00a2848895c024862a72a6cec6b29e577604b860"
+        ],
+        [
+          "DEFINE REC-LIVE-P",
+          "0fffd704f7daf44074451549fb2471a169d9ab600e7d14495a539845a1eae346"
+        ],
+        [
+          "DEFINE REC-CLEAR-AT",
+          "7a3fb03c8671bff0ad5c475326d2ece6710f09eb316f478a53df0e6f530d6e79"
+        ],
+        [
+          "DEFINE REC-BEAT-AT",
+          "0a1425639db3f6e072ee5f3ddc167bf4d138a83c967c9a2c37218bef17dbc45a"
+        ],
+        [
+          "DEFINE REC-COORD-AT",
+          "8eed817faca5aa38faa81fb4234388b21280a0f4b0e3422c2a56cc29d609bc37"
+        ],
+        [
+          "DEFINE REC-WORDS-AT",
+          "42a8ddcf76e683db75d93df0fc5d9062bcd73c6e8eabf5363746f37b7cef69ab"
+        ],
+        [
+          "DEFINE REC-WORDS",
+          "240f2116e822129bfe4e7404833bde3c9b81c79cadf32bcb18b34aca5c247d9b"
+        ],
+        [
+          "DEFINE REC-WORD",
+          "25c42746ed287e560affd0db9565a7c7aa8e2a8ac32d19057d432b72b31e85b0"
+        ],
+        [
+          "DEFINE PAY-ADDR",
+          "5a374599c07c51c423e155c05ca694060d3e422441cea3c7769eaeb526fa84f8"
+        ],
+        [
+          "DEFINE PAY-DATA",
+          "3dc188c70dc0fd5f5f7af1cf00c0c6feaf2905768373425b432ac6ec5fbb2488"
+        ],
+        [
+          "DEFUN PAY-LOG",
+          "daab71f42c546d755d1b477231d83110f1762665583a670f9f34426d4156bbd1"
+        ],
+        [
+          "DEFINE PAY-EP-AT",
+          "46f6cd9c1fa50b71f6e4e91c0aae43954eed99130ad855ed200772c16128abc4"
+        ],
+        [
+          "DEFINE PAY-EPWRITE-AT",
+          "f8ca6f335d06a4463ead6f546aeab4c07e7b23516a218a510519bd299fab72b7"
+        ],
+        [
+          "DEFINE PAY-ST-AT",
+          "31c7df6ede81217ecc07b86b9546bf98f7830e7d6512aab83eba81a1e729e14b"
+        ],
+        [
+          "DEFINE PAY-H-AT",
+          "a3658bf426aa1199dc86f3f78a45791526ac577ea5989b480823bd88238fd1d5"
+        ],
+        [
+          "DEFINE PAY-W-AT",
+          "481dfbbdbc3a77721463e402b66e0acd6d6a08725cec7f7faaaa59ba1a6831a7"
+        ],
+        [
+          "DEFINE PAY-AB-AT",
+          "8ba88d959b097744dfb865b675a3ecde763f44bcc65d9970494865feafbcffdd"
+        ],
+        [
+          "DEFINE PAY-ACC-AT",
+          "8603f5ad8cc53565d5380e43bb7adecedc873fdb110b9fb68f8ec2de824740d2"
+        ],
+        [
+          "DEFINE PAY-ACCEPTED",
+          "80e4ea1c4fde0317a6a8c437d1ab955fa18723bef603d88c71260f3d98f01f8e"
+        ],
+        [
+          "DEFINE PAY-WRITING-P",
+          "f10cf0caba2cb7af5aeee86ccd65d41822d554b94039aee9b99d5bb5af66272a"
+        ],
+        [
+          "DEFTHM KV-WRITE-RECORD-PREFIX",
+          "5f3d6db16e9a7088db390706c155b22458c3e4ed4d8ce233eec96d7118cda86f"
+        ],
+        [
+          "DEFINE KV-RECORD-BEING-WRITTEN-AT",
+          "f2af9909aa2b5407e271c1bdd2ad49e7e1e7439c1a334f40b8f3846e8f059c85"
+        ],
+        [
+          "DEFINE KV-RECORD-PROGRESS-AT",
+          "fbcd1bc83f8493a68c6bc53103c9c70d3061affc24c4aac53b0925e4c8f363b3"
+        ],
+        [
+          "DEFINE REC-PROGRESS-AT",
+          "542b7a69d313b83a74817599c116ceb76c6bf409091ae5ccf3d84fb094b0b0f8"
+        ],
+        [
+          "DEFTHM KV-WRITE-RECORD-NOT-CREDITED-WHEN-INTERRUPTED",
+          "be1ebcad6aefa05feb703f95671f0775c80ea22789f795f92421463ee6062867"
+        ],
+        [
+          "DEFINE KV-CLEAR-AT",
+          "c35b51fceb75f8b9b949952ac9a5da8a57a4c0f2567c92c3d6bdb11b5d2f1635"
+        ],
+        [
+          "DEFINE REC-FACT-ENTRY",
+          "037276b06cd339c2fd50f09db51424bb8309021503f31da59a41994d4b175b4f"
+        ],
+        [
+          "DEFINE REC-FACT-START",
+          "1fa62949d965aa64e3fa942cf01e67507ca9109b142d5096f1cb438e8ee9fd74"
+        ],
+        [
+          "DEFINE REC-STEP-CONCL",
+          "b6469690a9e72ae43ec6f6439ffff242ba451deb5165ac50b9e5b3e375e15882"
+        ],
+        [
+          "DEFINE REC-STEP-ALL",
+          "241acb18c363033a1493dd5ebc29f0ce47c355939dbc6534eb1b60b95519144f"
+        ],
+        [
+          "DEFTHM REC-STEP-FSM-THM",
+          "9441a97d6ce07cc2e350854bfca0c60b12acbb18e145ef941d70a6e8a56a50cf"
+        ],
+        [
+          "DEFTHM KV-WRITE-PAYLOAD-GUARANTEE",
+          "7afad937dcf4580239573a2a2e3b4d6e8e0681661990615ed6222de7a5fc05c3"
+        ],
+        [
+          "DEFTHM KV-WRITE-PAYLOAD-ROW",
+          "94c2ed9d5ae1bbc3992caa4348be6df8429a55407bbc77f8e9c2b15140622d5a"
+        ],
+        [
+          "DEFTHM KV-JOINED-GUARANTEE",
+          "63921a988e385059ba9a10590b892c14fe424de4ff45387bc8bd5b7ff69a86fd"
+        ],
+        [
+          "DEFTHM KV-JOINED-SAT-PROOFS-ARE-CHECKED",
+          "0fed2fe22fb3df8eef3fb0a8d4ed03d53a2e8cb536c646fd83958c7cf6d981d9"
+        ],
+        [
+          "DEFTHM KV-JOINED-RTL-IS-THE-PINNED-RTL",
+          "2c9ceca2bcaada14732e7547901f83bede8f7e2014d89a14cd581ef2be43a542"
+        ],
+        [
+          "DEFTHM KV-JOINED-RTL-WAS-TRANSLATED-BY-THE-CORRECTED-TRANSLATOR",
+          "0a41d9846981dcf09d125e0ede4ef0846c21cbee9b7a62f3297eadada91c630c"
+        ],
+        [
+          "DEFTHM KV-WRITE-RECORD-RUN-COMPLETES",
+          "fdc683f08f86d8a85d6e31e8789841367d9ae4af43c4b5b6354479151f56422d"
+        ],
+        [
+          "DEFTHM KV-WRITE-RECORD-RUN-WAS-STALLED",
+          "95e06c15ee98bffbeee08f8856578bc612ccb792a31d6efd36ee6019f772ee79"
+        ],
+        [
+          "DEFTHM KV-WRITE-RECORD-RUN-IS-THE-RECORD",
+          "ea53f1527dd6cfa0566d578981ef192ec1aef16cd3d358635517817d38ea5a8f"
+        ],
+        [
+          "KVJ-RUN ended :COMPLETE",
+          "ef6a977ee78bd5b8ac666b99bedf45e3fb10eeca207e1c48111688a77cdcbab9"
+        ],
+        [
+          "KVJ-RUN refused 114",
+          "dba5d60d4fbfe89efeb1aa677f000349e9579180fa1d095d8c7237b4544864a1"
+        ],
+        [
+          "KVJ-RUN the writes",
+          "2844af2b4efcc7b0b76ed731afefe0632cc8d7e519827a2177cf258db602b884"
+        ],
+        [
+          "DEFTHM KV-WRITE-RECORD-SAT-PROOFS-ARE-CHECKED",
+          "802f4f6054ec57d4e78bdba578509a43ac9b35102ce5fab58df616ad25fab471"
+        ]
+      ],
+      "readback_exit": 0,
+      "typed_writes_in_acceptance_order": [
+        [
+          300800,
+          "012d012a012701240121011e011b011801150112010f010c0109010601030100"
+        ],
+        [
+          300801,
+          "015d015a015701540151014e014b014801450142013f013c0139013601330130"
+        ],
+        [
+          300802,
+          "018d018a018701840181017e017b017801750172016f016c0169016601630160"
+        ],
+        [
+          300803,
+          "01bd01ba01b701b401b101ae01ab01a801a501a2019f019c0199019601930190"
+        ],
+        [
+          300804,
+          "01ed01ea01e701e401e101de01db01d801d501d201cf01cc01c901c601c301c0"
+        ],
+        [
+          300805,
+          "021d021a021702140211020e020b02080205020201ff01fc01f901f601f301f0"
+        ],
+        [
+          300806,
+          "024d024a024702440241023e023b023802350232022f022c0229022602230220"
+        ],
+        [
+          300807,
+          "027d027a027702740271026e026b026802650262025f025c0259025602530250"
+        ],
+        [
+          300808,
+          "0000000000000000000000000000000000000000000000000000000000000505"
+        ],
+        [
+          300809,
+          "404b40464041403c40374032402d40284023401e40194014400f400a40054000"
+        ],
+        [
+          300810,
+          "409b40964091408c40874082407d40784073406e40694064405f405a40554050"
+        ],
+        [
+          300811,
+          "40eb40e640e140dc40d740d240cd40c840c340be40b940b440af40aa40a540a0"
+        ],
+        [
+          300812,
+          "413b41364131412c41274122411d41184113410e4109410440ff40fa40f540f0"
+        ],
+        [
+          300813,
+          "418b41864181417c41774172416d41684163415e41594154414f414a41454140"
+        ],
+        [
+          300814,
+          "41db41d641d141cc41c741c241bd41b841b341ae41a941a4419f419a41954190"
+        ],
+        [
+          300815,
+          "422b42264221421c42174212420d4208420341fe41f941f441ef41ea41e541e0"
+        ],
+        [
+          300816,
+          "427b42764271426c42674262425d42584253424e42494244423f423a42354230"
+        ],
+        [
+          300817,
+          "000000000000000000000000000000000000000000000000000000000000fafa"
+        ]
+      ]
+    },
+    "wrong_position": {
+      "normal_log_sha256": "d9a5827857d1753f4d7cfa62b441d4a92dfd850073dcecee2cb260a550d621eb",
+      "normalized_event_sha256_in_print_order": [
+        [
+          "DEFTHM KV-WRITE-RECORD-MISMATCHED-ROWS-RTL-IS-THE-PINNED-RTL",
+          "16a3bb72bbb2e37749a68055e739acfaeff3502241800ec7a6ec5f5f1bbf3ed1"
+        ],
+        [
+          "DEFTHM KV-WRITE-RECORD-MISMATCHED-ROWS-RTL-WAS-TRANSLATED-BY-THE-CORRECTED-TRANSLATOR",
+          "7c68642a7eee37d563ee5ff44a046e9d73a70e9de983e37345ad4bd215f33299"
+        ],
+        [
+          "DEFTHM KV-WRITE-RECORD-MISMATCHED-ROWS-RUN-COMPLETES",
+          "9df34544debbd031da6fcc3df15d64a7a9c75ea14edea5b3f6b79c0c83090de8"
+        ],
+        [
+          "DEFTHM KV-WRITE-RECORD-MISMATCHED-ROWS-EACH-ROW-ALONE-PASSES",
+          "bbbcf834bc44bf9481352d64699f5f084f0dd8754b656bb959c5ad7846536218"
+        ],
+        [
+          "DEFTHM KV-WRITE-RECORD-MISMATCHED-ROWS-RUN-IS-NOT-ONE-RECORD",
+          "aa6d66d61738f5f5ac471e18f5ba88db7b954c2ce2cb8b83353d385dce7addab"
+        ],
+        [
+          "KVJ-RUN ended :COMPLETE",
+          "ef6a977ee78bd5b8ac666b99bedf45e3fb10eeca207e1c48111688a77cdcbab9"
+        ],
+        [
+          "KVJ-RUN the writes",
+          "ee06c2d3770497c00ebec69e022dab93d2caad67191ef9393e1bd1074afe54b5"
+        ],
+        [
+          "DEFTHM KV-WRITE-RECORD-SAT-PROOFS-ARE-CHECKED",
+          "802f4f6054ec57d4e78bdba578509a43ac9b35102ce5fab58df616ad25fab471"
+        ]
+      ],
+      "readback_exit": 0,
+      "typed_writes_in_acceptance_order": [
+        [
+          300800,
+          "012d012a012701240121011e011b011801150112010f010c0109010601030100"
+        ],
+        [
+          300801,
+          "015d015a015701540151014e014b014801450142013f013c0139013601330130"
+        ],
+        [
+          300802,
+          "018d018a018701840181017e017b017801750172016f016c0169016601630160"
+        ],
+        [
+          300803,
+          "01bd01ba01b701b401b101ae01ab01a801a501a2019f019c0199019601930190"
+        ],
+        [
+          300804,
+          "01ed01ea01e701e401e101de01db01d801d501d201cf01cc01c901c601c301c0"
+        ],
+        [
+          300805,
+          "021d021a021702140211020e020b02080205020201ff01fc01f901f601f301f0"
+        ],
+        [
+          300806,
+          "024d024a024702440241023e023b023802350232022f022c0229022602230220"
+        ],
+        [
+          300807,
+          "027d027a027702740271026e026b026802650262025f025c0259025602530250"
+        ],
+        [
+          300808,
+          "0000000000000000000000000000000000000000000000000000000000000505"
+        ],
+        [
+          300827,
+          "404b40464041403c40374032402d40284023401e40194014400f400a40054000"
+        ],
+        [
+          300828,
+          "409b40964091408c40874082407d40784073406e40694064405f405a40554050"
+        ],
+        [
+          300829,
+          "40eb40e640e140dc40d740d240cd40c840c340be40b940b440af40aa40a540a0"
+        ],
+        [
+          300830,
+          "413b41364131412c41274122411d41184113410e4109410440ff40fa40f540f0"
+        ],
+        [
+          300831,
+          "418b41864181417c41774172416d41684163415e41594154414f414a41454140"
+        ],
+        [
+          300832,
+          "41db41d641d141cc41c741c241bd41b841b341ae41a941a4419f419a41954190"
+        ],
+        [
+          300833,
+          "422b42264221421c42174212420d4208420341fe41f941f441ef41ea41e541e0"
+        ],
+        [
+          300834,
+          "427b42764271426c42674262425d42584253424e42494244423f423a42354230"
+        ],
+        [
+          300835,
+          "000000000000000000000000000000000000000000000000000000000000fafa"
+        ]
+      ]
+    }
+  },
+  "printed_statements": {
+    "kv-write-record": {
+      "path": "evidence/kv-write-record.txt",
+      "sha256": "63aa97dbcf956bc6176f3783da66f381572a7807286bd88e9c653843950a8a66"
+    },
+    "kv-write-record-not-credited-when-interrupted": {
+      "path": "evidence/kv-write-record-not-credited-when-interrupted.txt",
+      "sha256": "be1ebcad6aefa05feb703f95671f0775c80ea22789f795f92421463ee6062867"
+    },
+    "kv-write-record-prefix": {
+      "path": "evidence/kv-write-record-prefix.txt",
+      "sha256": "5f3d6db16e9a7088db390706c155b22458c3e4ed4d8ce233eec96d7118cda86f"
+    }
+  },
+  "public_basis": {
+    "commit": "470b836cbe94ecebc117fe7cfa2b9008d14951f4",
+    "record_book_blob_presence": {
+      "kv-write-record": {
+        "git_blob": "acdf4524baf11eeac04a0b205269803a3edff557",
+        "public_paths": [],
+        "sha256": "9c8b00a1edfc27e981cabe8343fd310f092fbf71a8cc7f0d046c94fc8b7167ba"
+      },
+      "kv-write-record-lift": {
+        "git_blob": "6d1e20245583953bed43d1ca28b454db13cca643",
+        "public_paths": [],
+        "sha256": "b9c413c7725b18c8312fe9fbdc7a2520f22d28b178d8d3f0bb92352431c4e04c"
+      },
+      "kv-write-record-mismatched-rows": {
+        "git_blob": "942c3f7ba8ae69cff24fad01674492cae5b60350",
+        "public_paths": [],
+        "sha256": "4e07b753f70d97b2389bc369625085eff65df1cc64d55b87be952cb246361804"
+      },
+      "kv-write-record-step": {
+        "git_blob": "d9517304ba10b1df651c9a9e223b8665ce542e51",
+        "public_paths": [],
+        "sha256": "1f5d4a9cbbc6921a7ea0213979d9445845728614281c75f7a88dc07e491d158c"
+      }
+    },
+    "tree": "35a5bf972a45eef735e43b2fd2c9dfdfa64074f1"
+  },
+  "recipient_readback": {
+    "kind": "frozen certificate inclusion and printed theorem comparison",
+    "matching_author_input_manifest_entries": 125,
+    "matching_normalized_events": {
+      "record": 58,
+      "wrong_position": 8
+    },
+    "recorded_source_certificate_companions": {
+      "kv-joined-book-checked-sat/kv-joined": {
+        ".cert": {
+          "bytes": 1162641,
+          "sha256": "67cdbfee7fd3d4cb5150c8abec692b572870b09253629f08625a726d7efcf1fb"
+        },
+        ".fasl": {
+          "bytes": 430158,
+          "sha256": "11870aaf493452e402c89ad83866310f6f78813d012bfb276dea1f9c75416849"
+        },
+        ".lisp": {
+          "bytes": 127673,
+          "sha256": "4978ba2e2648d4aa931e112f5254775dff4e9e6ead5d71ed79b2a98ddea1c892"
+        },
+        ".port": {
+          "bytes": 688,
+          "sha256": "2f0cf6bdad0ae014af4d0aa0b980e740372c90be8b8ce850c82f05f186d70adc"
+        }
+      },
+      "kv-joined-book-checked-sat/kv-joined-lemmas": {
+        ".cert": {
+          "bytes": 12287298,
+          "sha256": "613b400edbbe43848f30a3a51a23df7cf9d025f0bac24d660ed1dc0df8615404"
+        },
+        ".fasl": {
+          "bytes": 816333,
+          "sha256": "91a82427facbebf390eff3d5c4f1c070bcf1455b33f52a41655c42e2568eb525"
+        },
+        ".lisp": {
+          "bytes": 120316,
+          "sha256": "62a51756dff8c36773e1394206995426f4dba5db780fb922c1d8119a46c96ac5"
+        },
+        ".port": {
+          "bytes": 688,
+          "sha256": "2f0cf6bdad0ae014af4d0aa0b980e740372c90be8b8ce850c82f05f186d70adc"
+        }
+      },
+      "kv-joined-book-checked-sat/kv-joined-pins": {
+        ".cert": {
+          "bytes": 287631,
+          "sha256": "da8a897e2ea425ae58f03fe9f759bb0b781b8ffb65d13bf00ea8ea6383464440"
+        },
+        ".fasl": {
+          "bytes": 51888,
+          "sha256": "7f7af6a3fe4ea23344599a379b0a82fa2db07e2007d9b924ff42441d623876b9"
+        },
+        ".lisp": {
+          "bytes": 9604,
+          "sha256": "4874c16c1d6cef4383ee820ad06d25f8534f82b20597572809fa6e4bc3fc7c13"
+        },
+        ".port": {
+          "bytes": 688,
+          "sha256": "2f0cf6bdad0ae014af4d0aa0b980e740372c90be8b8ce850c82f05f186d70adc"
+        }
+      },
+      "kv-joined-book-checked-sat/kv-joined-statements": {
+        ".cert": {
+          "bytes": 564565,
+          "sha256": "11dbb00a274c616a9b028dcd5458c8d24ffa3512a61c3ca62b2cbfeb2e95a321"
+        },
+        ".fasl": {
+          "bytes": 134826,
+          "sha256": "41d584b2cf3af513432aca10d11d809c67b995ec2e7e3b0dd1ac3d96f76fd53a"
+        },
+        ".lisp": {
+          "bytes": 50875,
+          "sha256": "4f7fe3fa04aa70e3fa4716ead76e3d95b786a435870f53ac1ad702a095130576"
+        },
+        ".port": {
+          "bytes": 688,
+          "sha256": "2f0cf6bdad0ae014af4d0aa0b980e740372c90be8b8ce850c82f05f186d70adc"
+        }
+      },
+      "kv-write-payload-checked-parent/kv-write-payload": {
+        ".cert": {
+          "bytes": 3258470,
+          "sha256": "4356e369af7916d9772f5a2bcb132fbdcf1aa016aceb31e56532118a36d1f876"
+        },
+        ".fasl": {
+          "bytes": 5899635,
+          "sha256": "a3b67c75839f83123b3122f44c3c871dcf69662b8418045d9e9483c381d0bd8f"
+        },
+        ".lisp": {
+          "bytes": 89989,
+          "sha256": "20e535b1628d256be778139cb552de5b418812fc53e1a8dd8fbd304e41e3aa26"
+        },
+        ".port": {
+          "bytes": 688,
+          "sha256": "2f0cf6bdad0ae014af4d0aa0b980e740372c90be8b8ce850c82f05f186d70adc"
+        }
+      },
+      "kv-write-payload-checked-parent/kv-write-payload-lemma": {
+        ".cert": {
+          "bytes": 11094766,
+          "sha256": "8c7107c59c494285518a47de3eab0f89e85f0d23e9704477f56c9232ff0f9576"
+        },
+        ".fasl": {
+          "bytes": 998076,
+          "sha256": "1eda7c2cfcde128299cefe5abd2d91a6ec6ce099076f1301afa385924338e9cd"
+        },
+        ".lisp": {
+          "bytes": 152153,
+          "sha256": "650ca23a499cdb0608297c0a01c0144b77d63538091b69ed97a3a7ba148defac"
+        },
+        ".port": {
+          "bytes": 688,
+          "sha256": "2f0cf6bdad0ae014af4d0aa0b980e740372c90be8b8ce850c82f05f186d70adc"
+        }
+      },
+      "kv-write-payload-checked-parent/kv-write-payload-lift": {
+        ".cert": {
+          "bytes": 1310351,
+          "sha256": "3e422e563a253b87d2068f31cafc1180ee264cc86d34838988bdbfd9c53e3550"
+        },
+        ".fasl": {
+          "bytes": 30402,
+          "sha256": "360614d40c053965247435106d9a4ed60c38b693c72cffb014ddfb64ab86cea0"
+        },
+        ".lisp": {
+          "bytes": 21564,
+          "sha256": "75c855ba90f816224b9d36c44edffaab473854c0baec22a7acbb1ea3611d176b"
+        },
+        ".port": {
+          "bytes": 688,
+          "sha256": "2f0cf6bdad0ae014af4d0aa0b980e740372c90be8b8ce850c82f05f186d70adc"
+        }
+      },
+      "kv-write-record/kv-write-record": {
+        ".cert": {
+          "bytes": 497360,
+          "sha256": "03fb0c088cc882e5c65db90578a0eac8c20e3a467546114ccd93e3c23f4617a3"
+        },
+        ".fasl": {
+          "bytes": 261710,
+          "sha256": "1366c8d4fce93ed50a993ce44d5652ba77d21e1286081aec91085306e05d0ee7"
+        },
+        ".lisp": {
+          "bytes": 71301,
+          "sha256": "9c8b00a1edfc27e981cabe8343fd310f092fbf71a8cc7f0d046c94fc8b7167ba"
+        },
+        ".port": {
+          "bytes": 688,
+          "sha256": "2f0cf6bdad0ae014af4d0aa0b980e740372c90be8b8ce850c82f05f186d70adc"
+        }
+      },
+      "kv-write-record/kv-write-record-lift": {
+        ".cert": {
+          "bytes": 1042796,
+          "sha256": "075eb474541782dff9284f7edab1f31491fbd609df757d293e80ca7127c09056"
+        },
+        ".fasl": {
+          "bytes": 13396,
+          "sha256": "04eb6ddb4cb86e57a1b8629e04a3c88e27a52fee6b7cb098c9e32f09e321e586"
+        },
+        ".lisp": {
+          "bytes": 15852,
+          "sha256": "b9c413c7725b18c8312fe9fbdc7a2520f22d28b178d8d3f0bb92352431c4e04c"
+        },
+        ".port": {
+          "bytes": 688,
+          "sha256": "2f0cf6bdad0ae014af4d0aa0b980e740372c90be8b8ce850c82f05f186d70adc"
+        }
+      },
+      "kv-write-record/kv-write-record-mismatched-rows": {
+        ".cert": {
+          "bytes": 10860906,
+          "sha256": "dbfe00c3c89afba32b633ef8102298f67e1fb68ef5e20b4f2fcd8e565641b306"
+        },
+        ".fasl": {
+          "bytes": 1123135,
+          "sha256": "c8fa19ffab1b66167ff005b0cd121803d20820cedbc2f341b41b31732db0a1cd"
+        },
+        ".lisp": {
+          "bytes": 195470,
+          "sha256": "4e07b753f70d97b2389bc369625085eff65df1cc64d55b87be952cb246361804"
+        },
+        ".port": {
+          "bytes": 688,
+          "sha256": "2f0cf6bdad0ae014af4d0aa0b980e740372c90be8b8ce850c82f05f186d70adc"
+        }
+      },
+      "kv-write-record/kv-write-record-step": {
+        ".cert": {
+          "bytes": 557635,
+          "sha256": "766088d18f62e9dc1ee0c98830c103dee3a072fc23d5a663915fdb9b06fad0ba"
+        },
+        ".fasl": {
+          "bytes": 18277,
+          "sha256": "4bb959a233e7f464418a49ff9fbc9554a8c1322d0289819979ebdccff76b755b"
+        },
+        ".lisp": {
+          "bytes": 20163,
+          "sha256": "1f5d4a9cbbc6921a7ea0213979d9445845728614281c75f7a88dc07e491d158c"
+        },
+        ".port": {
+          "bytes": 688,
+          "sha256": "2f0cf6bdad0ae014af4d0aa0b980e740372c90be8b8ce850c82f05f186d70adc"
+        }
+      }
+    },
+    "recorded_utc": "2026-11-20T08:13:05.755044+00:00",
+    "redefinition": false,
+    "skip_proofs": false,
+    "system_book_sources": 1130,
+    "trust_tags": 17,
+    "uncertified_books": 0
+  },
+  "recipient_review_seal_sha256": "5c98b1f5c34d0aaa1c8ba0ba7fe2bf344f539babb01f581663053a3b9a6d6cf4"
+}

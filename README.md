@@ -325,6 +325,10 @@ Use each model's formal-status page for the supplied proofs, assumptions and
 open obligations, and its validation page for the circuit and workload behind
 each measurement.
 
+The [SimpleStories K/V record proof](evidence/simplestories-kv-record/README.md) states the 18-write
+typed-endpoint theorem for the checked baseline and gives one command to
+reconstruct its RTL inputs and regenerate its proof sources.
+
 [Design references and prior work](docs/REFERENCES.md) credit the algorithms, arithmetic library and hardware antecedents.
 
 Project-owned code, documentation and the photograph are Apache-2.0; the

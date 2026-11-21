@@ -1,0 +1,13 @@
+--- centaur/sv/vl/svstmt-compile.lisp
++++ centaur/sv/vl/svstmt-compile.lisp
+@@ -1100,8 +1100,8 @@
+        (lhs-indices (if xcond
+                         (4veclist-quote (svexlist-xeval (svex-select->indices write.lhs)))
+                       (svexlist-maskfree-rewrite
+-                       (svexlist-compose-svstack (svex-select->indices write.lhs) svstack))))
+-       (rhs (svex-compose-svstack write.rhs svstack))
++                       (svexlist-compose-svstack (svex-select->indices write.lhs) st.blkst))))
++       (rhs (svex-compose-svstack write.rhs st.blkst))
+        (rhs (if (and (eq nb-delayp t)
+                      (not blockingp))
+                 (svex-add-delay rhs 1)

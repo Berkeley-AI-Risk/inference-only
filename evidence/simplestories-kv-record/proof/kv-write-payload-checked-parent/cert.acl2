@@ -1,0 +1,20 @@
+; Certification world for every book in this directory.
+;
+; Each library book the books here load is loaded first, before
+; certification begins.  The reason is practical.  If a book defines a
+; package while it is being certified, ACL2 afterwards walks every constant
+; the book generated, without sharing, looking for symbols of the new
+; packages; with the constants of a hardware model that walk does not end.
+; Loading the libraries here means no package is new.
+; These eight are exactly the books the pilot's proof loads at its top level;
+; none of the others the books here load defines a package.
+(include-book "centaur/sv/svtv/svtv-to-fsm-defs" :dir :system)
+(include-book "centaur/fgl/top" :dir :system)
+(include-book "centaur/sv/svtv/svtv-stobj-defsvtv" :dir :system)
+(include-book "centaur/vl/loader/top" :dir :system)
+(include-book "centaur/sv/vl/top" :dir :system)
+(include-book "oslib/ls" :dir :system)
+(include-book "centaur/sv/svtv/svtv-stobj-debug" :dir :system)
+(include-book "centaur/misc/memory-mgmt" :dir :system)
+
+; cert-flags: ? t :ttags :all
