@@ -1,0 +1,193 @@
+{
+  "acl2_sources": 57,
+  "acl2_version": "8.7",
+  "actual_trust_tags": [
+    "AIG-VARS",
+    "CW-UNFORMATTED",
+    "FAST-ALIST-POP",
+    "FAST-CAT",
+    "FAST-CONS-MEMO",
+    "MEMORY-MGMT",
+    "OPEN-OUTPUT-CHANNEL!",
+    "OSLIB",
+    "QUICKLISP",
+    "QUICKLISP.OSICAT",
+    "QUICKLISP.SHELLPOOL",
+    "SATLINK",
+    "SNEAKY-LOAD",
+    "SWAP-ELAB-MODS",
+    "TSHELL",
+    "VL-GC",
+    "VL-OPTIMIZE"
+  ],
+  "final_certificate_count": 56,
+  "hardware_access": false,
+  "named_rtl_sources": 77,
+  "public_basis": "b12eadcffd05a6052d648ec23869bc369c4cd16a",
+  "public_tree": "a231bf6c8bcac64d6bf0707d27f900fa35abe4b7",
+  "retained_stages": {
+    "corrected": {
+      "cumulative_certificates": 21,
+      "fresh_world_log": {
+        "bytes": 37609,
+        "sha256": "e2c6cc15136449452ef005c8f467ae38f490a5ee483eaa8012443b81e96499c2"
+      },
+      "native_duration": {
+        "elapsed_seconds": 26691.888516,
+        "exit_code": 0,
+        "finished_utc": "2026-11-23T06:16:59.352977+00:00",
+        "started_utc": "2026-11-22T22:52:07.464461+00:00"
+      },
+      "native_exit": 0,
+      "normal_certification_log": {
+        "bytes": 7736,
+        "sha256": "c81c2f742a869a5e529c967d1c7a6173f62cc750fcf29c66b4bd35721d2e17d0"
+      },
+      "observed_formulas": 2,
+      "stage_receipt": {
+        "bytes": 17386,
+        "sha256": "e83458621e4d0b524ce7fb64027a5ad730613d9a3228f5a8f768b2972b673d9a"
+      }
+    },
+    "finite": {
+      "cumulative_certificates": 56,
+      "fresh_world_log": {
+        "bytes": 87212,
+        "sha256": "576caabf4d2861a3f638378a442ad1c26f392c8aa069a818603ada47247eb259"
+      },
+      "native_duration": {
+        "elapsed_seconds": 8802.952128,
+        "exit_code": 0,
+        "finished_utc": "2026-11-23T09:09:03.587200+00:00",
+        "started_utc": "2026-11-23T06:42:20.635072+00:00"
+      },
+      "native_exit": 0,
+      "normal_certification_log": {
+        "bytes": 7529,
+        "sha256": "3889ad063e444481836133442f727cb77e33833e37fc3831b751ebcd3e53b770"
+      },
+      "observed_formulas": 11,
+      "stage_receipt": {
+        "bytes": 49954,
+        "sha256": "d64364573739dec932d037a505ae947dc7641a40d6b70146035d39ec6fbc413b"
+      }
+    },
+    "held": {
+      "cumulative_certificates": 33,
+      "fresh_world_log": {
+        "bytes": 45085,
+        "sha256": "4a787823a589282df9f497298f9a6b9fd5b46bd7eb21f3d5717cd9f2e695f2c2"
+      },
+      "native_duration": {
+        "elapsed_seconds": 1521.199574,
+        "exit_code": 0,
+        "finished_utc": "2026-11-23T06:42:20.591987+00:00",
+        "started_utc": "2026-11-23T06:16:59.392413+00:00"
+      },
+      "native_exit": 0,
+      "normal_certification_log": {
+        "bytes": 3818,
+        "sha256": "1ac3212648ea52458fb6a973b32dfe7ab7c8fbf04d9b30502e2bdee6a20d72f3"
+      },
+      "observed_formulas": 4,
+      "stage_receipt": {
+        "bytes": 27147,
+        "sha256": "dd9a75249ac60abe6fee3917c3d3dd3fd3022e025796ccceb8263575ae134b04"
+      }
+    }
+  },
+  "rtl_all_token_equation_open": true,
+  "sbcl_version": "2.6.10",
+  "schema": "first-v-clean-recipient-release-receipt-v1",
+  "staged_source_manifest": {
+    "bytes": 40418,
+    "sha256": "3971ab2bffdc60f0a7a026f93a9174519a7b73f7d4e652c069f758aae7745685"
+  },
+  "staged_source_members": 187,
+  "tool_identities": {
+    "acl2": {
+      "bytes": 388,
+      "sha256": "8525e0dbb75b5fd4a0e3adb7256582312af99fadafd0971abab33fde128a3f48"
+    },
+    "cert_pl": {
+      "bytes": 59399,
+      "sha256": "6873b3312c2306d3dcf1cb8cc5ff1effd54d6d804e0dc405ec6d93c3368d54b2"
+    },
+    "corrected_translator": {
+      "bytes": 145299,
+      "sha256": "99f4a19521edf7aa657744c3865bec70f05ffd4135696b7c04f0dc3a6c46486c"
+    }
+  },
+  "verified_archive_manifest_sha256": "d9419526cfdaf47c2fd596963209785a336ea7bb9cc5c4be778c7fdc7085f296",
+  "verified_archive_members": 91,
+  "witnesses": {
+    "1": {
+      "cycles": 68605,
+      "first_v_mantissa": -6191,
+      "printed_translated_formula": {
+        "acl2_printed_formula": "((LAMBDA (SV::ENVS)\n   ((LAMBDA (SV::INITST SV::ENVS)\n      ((LAMBDA (SV::OUTS SV::INITST SV::ENVS)\n         (SV::KVN-ORDINARY-STEP-STATEMENT\n              '1\n              '68596\n              SV::ENVS SV::INITST SV::OUTS (SSV-IMAGE)\n              (SV::KVN-ROM)))\n       (SV::FSM-EVAL SV::ENVS\n                     SV::INITST (SV::PROBE-FSM-HELD))\n       SV::INITST SV::ENVS))\n    (SV::KVN-ZERO-STATE)\n    SV::ENVS))\n (SV::KVN-ENVS (SV::KVN-TUPLES-TOKEN-1)\n               (SV::KVN-ROM)))",
+        "translated_formula_sha256": "9dc0ced3bf13f71d7e163e210d54e3b0ac25eaf806b3408386a39a1725b0bc0a"
+      },
+      "record_completed_cycle": 68596,
+      "source": "book-sources/first-value-numeric/kvn-token-1.lisp",
+      "source_identity": {
+        "bytes": 6345,
+        "sha256": "0ee96a818091b59631beadde92a82a01caae75e215aa140afc0c38fe84ca8d82"
+      },
+      "theorem": "SV::KVN-TOKEN-1-ORDINARY-STEP",
+      "token": 1,
+      "v_exponent": -16
+    },
+    "27": {
+      "cycles": 68605,
+      "first_v_mantissa": 4699,
+      "printed_translated_formula": {
+        "acl2_printed_formula": "((LAMBDA (SV::ENVS)\n   ((LAMBDA (SV::INITST SV::ENVS)\n      ((LAMBDA (SV::OUTS SV::INITST SV::ENVS)\n         (IF (SV::KVN-ORDINARY-STEP-STATEMENT\n                  '27\n                  '68596\n                  SV::ENVS SV::INITST SV::OUTS (SSV-IMAGE)\n                  (SV::KVN-ROM))\n             (SV::KVN-STAGE-STATEMENT '27\n                                      '68596\n                                      SV::ENVS SV::OUTS (SSV-IMAGE))\n           'NIL))\n       (SV::FSM-EVAL SV::ENVS\n                     SV::INITST (SV::PROBE-FSM-HELD))\n       SV::INITST SV::ENVS))\n    (SV::KVN-ZERO-STATE)\n    SV::ENVS))\n (SV::KVN-TOKEN-27-INPUTS))",
+        "translated_formula_sha256": "0ddf0e91b4b223adac989b9b13040fe98c94443fef361bae540de32d76440510"
+      },
+      "record_completed_cycle": 68596,
+      "source": "book-sources/first-value-numeric/more-tokens/kvn-token-27.lisp",
+      "source_identity": {
+        "bytes": 2641,
+        "sha256": "38d328c0eb911b6fefa0119e70e2c6be541d8238c89684c946c7e9ceab5d0962"
+      },
+      "theorem": "SV::KVN-TOKEN-27-ORDINARY-STEP",
+      "token": 27,
+      "v_exponent": -15
+    },
+    "32": {
+      "cycles": 68605,
+      "first_v_mantissa": 11821,
+      "printed_translated_formula": {
+        "acl2_printed_formula": "((LAMBDA (SV::ENVS)\n   ((LAMBDA (SV::INITST SV::ENVS)\n      ((LAMBDA (SV::OUTS SV::INITST SV::ENVS)\n         (IF (SV::KVN-ORDINARY-STEP-STATEMENT\n                  '32\n                  '68596\n                  SV::ENVS SV::INITST SV::OUTS (SSV-IMAGE)\n                  (SV::KVN-ROM))\n             (SV::KVN-STAGE-STATEMENT '32\n                                      '68596\n                                      SV::ENVS SV::OUTS (SSV-IMAGE))\n           'NIL))\n       (SV::FSM-EVAL SV::ENVS\n                     SV::INITST (SV::PROBE-FSM-HELD))\n       SV::INITST SV::ENVS))\n    (SV::KVN-ZERO-STATE)\n    SV::ENVS))\n (SV::KVN-TOKEN-32-INPUTS))",
+        "translated_formula_sha256": "fe572e160491e7151e6c55cccb9cbcd9ac537dc7ad5b66e6bca65d4d73b3ed8e"
+      },
+      "record_completed_cycle": 68596,
+      "source": "book-sources/first-value-numeric/more-tokens/kvn-token-32.lisp",
+      "source_identity": {
+        "bytes": 2641,
+        "sha256": "cdf17501ba2da3d60ea09c11d5c8adf9664388783f6451704438f7e3bc8f46b0"
+      },
+      "theorem": "SV::KVN-TOKEN-32-ORDINARY-STEP",
+      "token": 32,
+      "v_exponent": -17
+    },
+    "3258": {
+      "cycles": 68605,
+      "first_v_mantissa": -813,
+      "printed_translated_formula": {
+        "acl2_printed_formula": "((LAMBDA (SV::ENVS)\n   ((LAMBDA (SV::INITST SV::ENVS)\n      ((LAMBDA (SV::OUTS SV::INITST SV::ENVS)\n         (IF (SV::KVN-ORDINARY-STEP-STATEMENT\n                  '3258\n                  '68596\n                  SV::ENVS SV::INITST SV::OUTS (SSV-IMAGE)\n                  (SV::KVN-ROM))\n             (SV::KVN-STAGE-STATEMENT '3258\n                                      '68596\n                                      SV::ENVS SV::OUTS (SSV-IMAGE))\n           'NIL))\n       (SV::FSM-EVAL SV::ENVS\n                     SV::INITST (SV::PROBE-FSM-HELD))\n       SV::INITST SV::ENVS))\n    (SV::KVN-ZERO-STATE)\n    SV::ENVS))\n (SV::KVN-TOKEN-3258-INPUTS))",
+        "translated_formula_sha256": "4c4205e811f716b90a987a44b8e169063b10d484d68bf145c4e1c98874f66644"
+      },
+      "record_completed_cycle": 68596,
+      "source": "book-sources/first-value-numeric/more-tokens/kvn-token-3258.lisp",
+      "source_identity": {
+        "bytes": 2687,
+        "sha256": "a1ca9d1fa68b7f436ae37407ab20ea38fdf8214abf101b28a08e21f3f1f44ce3"
+      },
+      "theorem": "SV::KVN-TOKEN-3258-ORDINARY-STEP",
+      "token": 3258,
+      "v_exponent": -14
+    }
+  }
+}

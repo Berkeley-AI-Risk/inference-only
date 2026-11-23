@@ -1,0 +1,31 @@
+{
+  "admissions": {
+    "defaxioms_allowed": false,
+    "skip_proofs_allowed": false,
+    "trust_tags_allowed": []
+  },
+  "base_asset_commit": "b12eadcffd05a6052d648ec23869bc369c4cd16a",
+  "book_source_sha256": {
+    "all-vocabulary-profiles": "252580a23d4f115f0f89e1d1a551c35e4aebe7dc3acb41d7d2ab331ddc7e00ad",
+    "ssv-image": "dbe4e66b4405b2ea5664f0602243a60a79f8872f10ec6b3668a3ec1a7aaf9414",
+    "ssv-spec": "f2220a87849346b3a31a664c10335402b1e134efb532056d0916c6c86a19d818"
+  },
+  "checker": "ACL2 8.7",
+  "claim": "For every natural token < 4019, the pinned layer-0 position-zero numerical reference satisfies ssv-profile-ok.",
+  "fresh_project_certificates_on_input": 0,
+  "lisp": "SBCL 2.6.10",
+  "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+  "model_words_256_bit": 227062,
+  "process_exit": {
+    "all-vocabulary-profiles": 0,
+    "fresh_readback": 0,
+    "ssv-image": 0,
+    "ssv-spec": 0
+  },
+  "remaining_hardware_question": "Does the layer-0 RTL produce the reference V vector for every legal first-token execution?",
+  "theorem_printed_in_fresh_process": "EVERY-VOCABULARY-TOKEN-MEETS-FIRST-V-NUMERIC-PROFILE",
+  "token_ids_inclusive": [
+    0,
+    4018
+  ]
+}

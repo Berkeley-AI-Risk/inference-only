@@ -333,6 +333,8 @@ The [protected SimpleStories prompt-378 replay](evidence/simplestories-protected
 
 The [combined SimpleStories shared-cipher simulation](evidence/simplestories-combined-shared-kv/README.md) replays eight signed-command cases with one AES-SIV engine serving two model domains. The recorded results cover signed model replacement, cross-model K/V rejection and CLEAR recovery.
 
+The [SimpleStories first-value witnesses](evidence/simplestories-first-v-witnesses/README.md) check the first typed V record for four ordinary STEP executions of the held-input behavioral probe. The separate [numerical range theorem](evidence/simplestories-first-v-profile/README.md) covers the reference prerequisites for all 4,019 legal token IDs. The general RTL value equation remains open.
+
 [Design references and prior work](docs/REFERENCES.md) credit the algorithms, arithmetic library and hardware antecedents.
 
 Project-owned code, documentation and the photograph are Apache-2.0; the

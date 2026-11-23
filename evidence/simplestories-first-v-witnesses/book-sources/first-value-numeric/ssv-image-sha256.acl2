@@ -1,0 +1,4 @@
+; Certification world for ssv-image-sha256: the community books' SHA-256,
+; loaded first because it defines packages.
+(include-book "kestrel/crypto/sha-2/sha-256" :dir :system)
+; cert-flags: ? t
