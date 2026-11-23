@@ -1,0 +1,91 @@
+{
+  "fresh_native_replay": {
+    "cpu_result_sha256": "7837a140519c6794bd9ed585d8e3bf247dca7d5134441afef8b2b63743ffd0c5",
+    "dependencies": {
+      "input_manifest_sha256": "03fda45dc451cecc94c86c25dfb2812009b1856fee71913d2077a05d3e28dd44",
+      "input_origins": {
+        "packet": 9,
+        "public_blob": 88,
+        "public_compressed": 9
+      },
+      "make_dependency_entries": 101,
+      "project_compile_inputs": 97,
+      "runtime_only_inputs": 9,
+      "verilator_declared_inputs": 100,
+      "verilator_files": {
+        "obj/Vconfidential_system_tb__ver.d": "6ce804987d0493e34a0e8def33fba0fc0cf9aa1a37a5b1e473bfbd79bd6028d8",
+        "obj/Vconfidential_system_tb__verFiles.dat": "f00ef9721a29fc802279b6a248fde1f32b9fba6269011662291e748d47954dea"
+      }
+    },
+    "normalized_activation_pairs": 1536,
+    "phases": {
+      "build": {
+        "exit": 0,
+        "normal_log_sha256": "025292ce5aeff0df4d1c6e0105fc0d16ccb0e0cc4bf1cc246ea703e202287c25",
+        "terminal_sha256": "476845bf15a22e49530ac12ca4ba79baeba6d037ab6b92aa5ac1eb581e202e38",
+        "wall_seconds": 19.189266204833984
+      },
+      "run": {
+        "exit": 0,
+        "normal_log_sha256": "f451405296e770c519c84199dfcdf5af463e029b82aa5368c45f67d2ab4241fd",
+        "terminal_sha256": "7e6d889b90af2c8dd6fff70b4f737414aa04863e17790e2e70ee12d188b04bbf",
+        "wall_seconds": 902.2180700302124
+      }
+    },
+    "records_by_prefix": {
+      "BOOT_AUTHENTICATED": 1,
+      "HEAD_JOIN CLEAR": 1,
+      "HEAD_JOIN NF": 1536,
+      "HEAD_JOIN ROW": 24114,
+      "HEAD_JOIN STEP": 6,
+      "HEAD_JOIN WIN": 6,
+      "PASS_C070_UART": 1,
+      "UART_CLEAR_READY": 1,
+      "UART_CMD": 9,
+      "UART_PIN": 450,
+      "UART_TOKEN": 6
+    },
+    "reduced_event_lines": 26131,
+    "reduced_trace_sha256": "2da1586d6877cb2eac54002ebfba41eb88375dc3189a6c910896623955571aa4",
+    "score_pairs": 24114,
+    "step_replies": [
+      200,
+      15,
+      103,
+      157,
+      200,
+      15
+    ],
+    "tx_bit_samples": 450,
+    "uart_frames": 9
+  },
+  "fresh_native_replay_status": "independently_repeated",
+  "model": {
+    "attribution": "../../LICENSES/SimpleStories-MODEL-CARD.md",
+    "image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+    "license": "../../LICENSES/SimpleStories-MIT.txt"
+  },
+  "model_reference_git_root": "demos/simplestories-v2-5m",
+  "original_guarded_simulation": {
+    "filtered_lines": 26131,
+    "native_log_sha256": "e18553fb2e38dd0622e42f0a5a8d152d2bf5a9c945bb057a1646415aef9580fc",
+    "native_terminal_sha256": "fb60b0d01a1f3a59812b12ec17509be3ee5a6b842255dc97b2cb243e5519cd87",
+    "project_compile_inputs": 97,
+    "runtime_only_inputs": 9,
+    "verilator_declared_inputs": 100,
+    "verilator_files": {
+      "obj/Vconfidential_system_tb__ver.d": "6ce804987d0493e34a0e8def33fba0fc0cf9aa1a37a5b1e473bfbd79bd6028d8",
+      "obj/Vconfidential_system_tb__verFiles.dat": "d6178232c5c40732dea271e9fc004cae39b7a3c832ba6b7381fe630455548ffe"
+    }
+  },
+  "retained_cpu_replay": {
+    "input_members": {
+      "replay.py": "b8abec98e981259e61bf6871202101ab04d9e094381f3a2a1097cfa883659b34",
+      "trace.txt.gz": "e64fe3a36a085184ed5a595431cc6706181807430c37be033328ab53c86e8f9f"
+    },
+    "result_sha256": "7837a140519c6794bd9ed585d8e3bf247dca7d5134441afef8b2b63743ffd0c5",
+    "separate_directory_match": true
+  },
+  "source_commit": "b12eadcffd05a6052d648ec23869bc369c4cd16a",
+  "source_tree": "a231bf6c8bcac64d6bf0707d27f900fa35abe4b7"
+}

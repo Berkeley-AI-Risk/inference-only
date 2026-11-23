@@ -329,6 +329,8 @@ The [SimpleStories K/V record proof](evidence/simplestories-kv-record/README.md)
 typed-endpoint theorem for the checked baseline and gives one command to
 reconstruct its RTL inputs and regenerate its proof sources.
 
+The [protected SimpleStories prompt-378 replay](evidence/simplestories-protected-prompt378-uart/README.md) compares four generated positions and two repeated after CLEAR against an independent fixed-point reference. It includes the sampled digital UART replies from the four-bank simulation.
+
 [Design references and prior work](docs/REFERENCES.md) credit the algorithms, arithmetic library and hardware antecedents.
 
 Project-owned code, documentation and the photograph are Apache-2.0; the

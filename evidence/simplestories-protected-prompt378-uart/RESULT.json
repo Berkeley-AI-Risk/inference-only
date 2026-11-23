@@ -1,0 +1,114 @@
+{
+  "public_commit": "b12eadcffd05a6052d648ec23869bc369c4cd16a",
+  "public_files_sha256": {
+    "assets/board1-real-semantic-image2048.bin": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+    "tools/materialize_image.py": "ca1a2100591975364b1dc3b5b54d1b3b5b5af9b784d8e567150ba6b93ae16ea5",
+    "reference/evidence/q0-receipt.json": "8998b09cf59701686bcd34543599566f907a7d24bc2bf44b4f2ca7898429c10f",
+    "reference/quantization/__init__.py": "26c855dec8422b2d91a3bc74543bcec1ceb89caf859a0f9f96c6923d3c2ed44a",
+    "reference/quantization/artifacts.py": "028631df245a9dc0624a799ae2ba3bdea5c0a86c88eafb003fd2836b36b175ee",
+    "reference/quantization/oracle.py": "9b048a8e8b82faba3d21fd6b259aa1c23d91f04662fe2734fc109602777b4a74",
+    "reference/seeded-sampling/reconstruct_rom.py": "2764cf89911a5e640e6354d0431d0d5c4b4f95b3fa773c20d04c76161bdefad1",
+    "reference/seeded-sampling/rom-manifest.json": "b921e209e53c8d8c52fbabc20e464b85affc537fb705d5472261e0a29a8df0c1",
+    "reference/seeded-sampling/context2048.py": "c62f1deb5616fc04f17664cefdaab0285d427ab8709435d1cd0d930291f5ff43",
+    "reference/seeded-sampling/model.py": "29fb70c0df668309afc4d98d02061cc2033c7d82995c72c4189b2679a434cce5",
+    "variants/seeded-sampling/tools/sampler_oracle.py": "79102a2dfd67ba7f5287fd65595439c06504e4a3331009fe6c528bc8454ef97e"
+  },
+  "numpy_version": "1.26.4",
+  "model_reconstruction": {
+    "passed": true,
+    "rom_files": 8,
+    "all_canonical_rom_hashes_match": true,
+    "image_roundtrip_matches": true,
+    "image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+    "hardware_access": false
+  },
+  "reduced_trace_sha256": "2da1586d6877cb2eac54002ebfba41eb88375dc3189a6c910896623955571aa4",
+  "step_replies": 6,
+  "matched_score_pairs": 24114,
+  "matched_final_activations": 1536,
+  "uart_frames": [
+    "5a8000006b",
+    "5a81c80045",
+    "5a810f00c3",
+    "5a8167009e",
+    "5a819d0008",
+    "5a820000bd",
+    "5a8000006b",
+    "5a81c80045",
+    "5a810f00c3"
+  ],
+  "pin_samples": 450,
+  "steps": [
+    {
+      "command": 2,
+      "position": 0,
+      "input_token": 378,
+      "winner": 200,
+      "accepted_step_cycle": 30005152,
+      "winner_cycle": 32832117,
+      "vector_sha256": "6f74d78e4688f0048ffc150a33e7552bc0ccf75d82e50b8e194ad7e52c767a04",
+      "score_pairs_sha256": "7c282dbbf361c679018879d648c40d5b6fccece9ae3f146b38791be7fdf171ca",
+      "pin_frame": "5a81c80045"
+    },
+    {
+      "command": 3,
+      "position": 1,
+      "input_token": 200,
+      "winner": 15,
+      "accepted_step_cycle": 32854044,
+      "winner_cycle": 35713740,
+      "vector_sha256": "1a3e775e5a59debb6f5518b73c17cd6d2b13539abd9ac6b4fb93a86ab03a4b79",
+      "score_pairs_sha256": "42d4d16b088abe664eb35a68b86247eed1d3f700056dfbc9923a2d23d0f370a4",
+      "pin_frame": "5a810f00c3"
+    },
+    {
+      "command": 4,
+      "position": 2,
+      "input_token": 15,
+      "winner": 103,
+      "accepted_step_cycle": 35735667,
+      "winner_cycle": 38660254,
+      "vector_sha256": "3deabe546ba4f596b4e25244e4446adc4182eb46dcf2bb69c665eaf471f08019",
+      "score_pairs_sha256": "bcb0210029e84dbf77fadc547d2fb467dba8c03840c2e987adf25c6b808a1ada",
+      "pin_frame": "5a8167009e"
+    },
+    {
+      "command": 5,
+      "position": 3,
+      "input_token": 103,
+      "winner": 157,
+      "accepted_step_cycle": 38682181,
+      "winner_cycle": 41690042,
+      "vector_sha256": "8e63b47169820aebb53160a966ca8641a795794d959b6e0bd5722ca39420488a",
+      "score_pairs_sha256": "1691dfeafbfcbb0b7866901ec6beb05cb15c61698d7c54312424299ea03a9dc4",
+      "pin_frame": "5a819d0008"
+    },
+    {
+      "command": 8,
+      "position": 0,
+      "input_token": 378,
+      "winner": 200,
+      "accepted_step_cycle": 41755821,
+      "winner_cycle": 44582788,
+      "vector_sha256": "6f74d78e4688f0048ffc150a33e7552bc0ccf75d82e50b8e194ad7e52c767a04",
+      "score_pairs_sha256": "7c282dbbf361c679018879d648c40d5b6fccece9ae3f146b38791be7fdf171ca",
+      "pin_frame": "5a81c80045"
+    },
+    {
+      "command": 9,
+      "position": 1,
+      "input_token": 200,
+      "winner": 15,
+      "accepted_step_cycle": 44604715,
+      "winner_cycle": 47464411,
+      "vector_sha256": "1a3e775e5a59debb6f5518b73c17cd6d2b13539abd9ac6b4fb93a86ab03a4b79",
+      "score_pairs_sha256": "42d4d16b088abe664eb35a68b86247eed1d3f700056dfbc9923a2d23d0f370a4",
+      "pin_frame": "5a810f00c3"
+    }
+  ],
+  "negative_controls": [
+    "command 4 score row 77",
+    "command 5 normalized lane 91",
+    "UART CRC"
+  ]
+}
