@@ -4,6 +4,8 @@ One AES-SIV engine serves the two approved model domains in this simulation of t
 
 The eight commands exercise renewal, expiry during inference, expiry while AES is active, signed A-to-B replacement, cross-model K/V rejection, and CLEAR during computation, at a held token, and with a write pending. The checker verifies the ordered public tokens and lease contexts against the independent public fixture generator. It also authenticates both captured records with OpenSSL. The simulation supplies the demonstration keys, challenges, time, epoch and external memory behavior. [Expected observations](EXPECTED.json) · [Recorded process and input evidence](MEASUREMENT.json)
 
+A fresh replay from a clean checkout regenerated ten demonstration fixtures and passed all eight cases. All three builds checked their 112 inputs. The fresh A and B role records matched the recorded bytes and passed the independent authentication and re-encryption check. The stale A record used in the B run caused one SIV fault after five reads, with zero affected plaintext uses and zero further tokens. [Fresh native replay receipt](FRESH-NATIVE-REPLAY.json)
+
 ## Replay
 
 Run these commands from the repository root using the dependencies of the [combined-security simulation](../../demos/simplestories-v2-5m/variants/combined-security-simulation/README.md). Git must have the objects for commit `b12eadcffd05a6052d648ec23869bc369c4cd16a`. The two output directories must be fresh for initial preparation.

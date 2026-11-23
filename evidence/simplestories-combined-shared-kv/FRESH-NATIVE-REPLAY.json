@@ -1,0 +1,143 @@
+{
+  "physical_route": {
+    "native_exit": 1,
+    "packed_unrouted": 3045,
+    "physical_next_review_sha256": "bbb3fa02bd1819f24ffec39f4209c3d86ec9fed28491fe95816e2389fe30eaaa",
+    "route_completed": false,
+    "route_review_seal_sha256": "1c957eb8bfee4613fb5e6d2434650f01562990ccca6b72b1a75c40fbfe24a339",
+    "routed_setup_hold_available": false,
+    "shared_unrouted": 2017,
+    "six_placement_clocks_reported": true,
+    "target": "Gowin Tang Mega 138K"
+  },
+  "public_input_commit": "b12eadcffd05a6052d648ec23869bc369c4cd16a",
+  "python_numpy": "3.12.12 1.26.4",
+  "reader": "evidence/simplestories-combined-shared-kv/README.md",
+  "scope": "Finite signed-command acceptance from one documented digital replay",
+  "simulation": {
+    "authenticated_and_reencrypted_A_B_captures": {
+      "A": {
+        "plaintext_sha256": "0d63d9ac7fbec766c264f9f22240475ec7b2c377c0cc00385391354c8ae1d749",
+        "record_sha256": "9e058cf716eef8f7b1e1adf3218d92413d0615203a31d48c906210c826cdc4fc"
+      },
+      "B": {
+        "plaintext_sha256": "0d63d9ac7fbec766c264f9f22240475ec7b2c377c0cc00385391354c8ae1d749",
+        "record_sha256": "583ab515dbd5b5185f6de197d701766f9950d1e798a916e771753610e9133318"
+      }
+    },
+    "builds": {
+      "clear-r1": {
+        "compiler_project_inputs": 107,
+        "exit": 0,
+        "log_sha256": "32d6cdf33efad319767b4fbb9fcded0a46dfa40b04195395e4215539327c94cf",
+        "source_check_passed": true
+      },
+      "integration-r4": {
+        "compiler_project_inputs": 107,
+        "exit": 0,
+        "log_sha256": "f9458ab408ecc157fe18aaa6c6014d776350e899321390b43bee800ce8706a3a",
+        "source_check_passed": true
+      },
+      "replacement-r2": {
+        "compiler_project_inputs": 107,
+        "exit": 0,
+        "log_sha256": "62204780cc29514d604da73601690842263647f11d75eb669bb4403a4881440f",
+        "source_check_passed": true
+      }
+    },
+    "cases": [
+      {
+        "exit": 0,
+        "id": 0,
+        "log_sha256": "b2ee48bcc7cebdf4f9e8de3dc4a3eee8fdee79a4174373532e27b385ebbf6634",
+        "marker": "PASS_SERIAL_COMBINED_BOARD_A_RENEWAL tokens=108,32 native_six_layers=1 real_signed_boot=1 encrypted_weight_reads=1 encrypted_authenticated_KV=1 cipher_writes=240 leases=2 context_reset=0 full_DDR_load_and_readback_words=227062",
+        "matched": true,
+        "tokens": [
+          108,
+          32
+        ]
+      },
+      {
+        "exit": 0,
+        "id": 1,
+        "log_sha256": "b48c742aca81cab7b02c2c7a981da014a11e3406e8048d7941c53a703ea02253",
+        "marker": "PASS_COMBINED_A_EXPIRY active_steps=1 public_tokens=0 actual_expiry=1 late_returns=10 owned_drops=10 no_DUT_force=1 modeled_monotonic_time=1",
+        "matched": true,
+        "tokens": []
+      },
+      {
+        "exit": 0,
+        "id": 2,
+        "log_sha256": "3592044692440631a18d174942525720cb0674841c9c3a562db14e89f3716417",
+        "marker": "PASS_SERIAL_COMBINED_AES_EXPIRY actual_AES_busy_at_expiry=1 no_public_token=1 AES_reset=1 no_new_memory=1",
+        "matched": true,
+        "tokens": []
+      },
+      {
+        "exit": 0,
+        "id": 5,
+        "log_sha256": "92c238a0ca70ab79e00c87d2fde28b5b344e70a91bbfa69c8d92e218e2a01f0c",
+        "marker": "PASS_SERIAL_BOARD_MODEL_REPLACEMENT actual_A_to_B=1 A_token=108 B_tokens=0,0 fresh_signed_packages=2 distinct_model_keys=1 same_provisioned_epoch=1 cipher_writes=360",
+        "matched": true,
+        "tokens": [
+          108,
+          0,
+          0
+        ]
+      },
+      {
+        "exit": 0,
+        "id": 6,
+        "log_sha256": "925ea0a9abdbfd2cbc7018ebbbe1ae1ac1522211a41e0bbfd265b1480adbe594",
+        "marker": "PASS_SERIAL_BOARD_CROSS_MODEL_KV A1_cipher_authentic=1 B1_authorized_populated=1 same_epoch=1 actual_target_reads=5 real_SIV_fault=1 affected_plaintext_uses=0 new_public_tokens=0",
+        "matched": true,
+        "tokens": [
+          108,
+          0
+        ]
+      },
+      {
+        "exit": 0,
+        "id": 8,
+        "log_sha256": "ce010937a4d096084ed0a7e9955a94b959e74d2dd43a5a60e916d0156bc679e1",
+        "marker": "PASS_SERIAL_BOARD_CLEAR_ACTIVE old_STEP_canceled=1 old_reads_returned=10 fresh_oracle_token=108 same_live_lease=1 no_canceled_public_token=1",
+        "matched": true,
+        "tokens": [
+          108
+        ]
+      },
+      {
+        "exit": 0,
+        "id": 9,
+        "log_sha256": "621d9ded82a62607e423d45d47b57ca403769e15a395440d84f9b1aae45d259b",
+        "marker": "PASS_SERIAL_BOARD_CLEAR_HELD_TOKEN CLEAR_beats_token_APPEND_STEP=1 held_candidate_canceled=1 fresh_oracle_token=108 same_live_lease=1",
+        "matched": true,
+        "tokens": [
+          108
+        ]
+      },
+      {
+        "exit": 0,
+        "id": 10,
+        "log_sha256": "8858fdc07379c955ea9c60859d3644fb80f28200178e629471824e37d5376f57",
+        "marker": "PASS_SERIAL_BOARD_CLEAR_WRITE_DRAIN offered_write_stable_until_accepted=1 old_work_drained=1 fresh_oracle_token=108 same_live_lease=1",
+        "matched": true,
+        "tokens": [
+          108
+        ]
+      }
+    ],
+    "fresh_decks": {
+      "clear-r1": 112,
+      "integration-r4": 112,
+      "replacement-r2": 112
+    },
+    "native_reader_exit": 0,
+    "native_reader_normal_log_sha256": "d0c61bbbfa66b239048ae87caa073fdfe827442af8b9fd6b3890da24c682b3d7",
+    "passed": true,
+    "regenerated_distinct_fixtures": 10
+  },
+  "source_commit": "ef8accf6215bf2ca623d734f8d6d427872c71780",
+  "tree": "8135162374b820d8b4940c6a901df1879d0ee381",
+  "verilator": "Verilator 5.050 2026-07-01 rev vUNKNOWN-built20260701"
+}
