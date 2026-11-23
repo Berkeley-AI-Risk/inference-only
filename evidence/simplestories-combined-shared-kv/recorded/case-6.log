@@ -1,0 +1,34 @@
+PROGRESS cycles=0 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=10000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=20000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=30000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=40000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=50000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=60000000 boot=0 lease=0 steps=0 tokens=0
+BOOT_MODEL label=A model=5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc real_manifest=1 real_AES_CTR=1 full_image=1 all_signed_pages=1 fixed_LUTs=1 norms=1 cycles=67278562
+LEASE accepted=1 cycles=67863802 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c
+FRESH_GRANT name=A-e1-n1 epoch=1 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c
+PROGRESS cycles=70000000 boot=1 lease=1 steps=1 tokens=0
+PROGRESS cycles=80000000 boot=1 lease=1 steps=1 tokens=0
+PROGRESS cycles=90000000 boot=1 lease=1 steps=1 tokens=0
+NUMERICAL_TOKEN token=108 cycles=98275517
+MODEL_REPLACEMENT_RESET provisioned_epoch=1 owned_old_reads_drained=1 time=98275528
+PROGRESS cycles=100000000 boot=0 lease=1 steps=1 tokens=1
+PROGRESS cycles=110000000 boot=0 lease=1 steps=1 tokens=1
+PROGRESS cycles=120000000 boot=0 lease=1 steps=1 tokens=1
+PROGRESS cycles=130000000 boot=0 lease=1 steps=1 tokens=1
+PROGRESS cycles=140000000 boot=0 lease=1 steps=1 tokens=1
+PROGRESS cycles=150000000 boot=0 lease=1 steps=1 tokens=1
+PROGRESS cycles=160000000 boot=0 lease=1 steps=1 tokens=1
+BOOT_MODEL label=B model=761fdec33b08bfa8664b0c8091225fa06fb593b867882f5a31a631ce1faac635 real_manifest=1 real_AES_CTR=1 full_image=1 all_signed_pages=1 fixed_LUTs=1 norms=1 cycles=165520175
+LEASE accepted=2 cycles=166139330 context=63801b8698c459163c61838fb38f9e00ed09b758422b40a4bf006c6c588d90ef
+FRESH_GRANT name=B-e1-n1 epoch=1 context=63801b8698c459163c61838fb38f9e00ed09b758422b40a4bf006c6c588d90ef
+PROGRESS cycles=170000000 boot=1 lease=2 steps=2 tokens=1
+PROGRESS cycles=180000000 boot=1 lease=2 steps=2 tokens=1
+PROGRESS cycles=190000000 boot=1 lease=2 steps=2 tokens=1
+NUMERICAL_TOKEN token=0 cycles=196551045
+PASS_SERIAL_BOARD_CROSS_MODEL_KV A1_cipher_authentic=1 B1_authorized_populated=1 same_epoch=1 actual_target_reads=5 real_SIV_fault=1 affected_plaintext_uses=0 new_public_tokens=0
+- tb_serial_replacement.sv:279: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 2s; walltime 649.765 s; speed 3.039 ms/s
+- Verilator: cpu 648.583 s on 1 threads; allocated 18 MB

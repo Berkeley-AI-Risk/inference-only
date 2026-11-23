@@ -1,0 +1,11 @@
+--- a/tang_private_kv_siv_role.sv
++++ b/tang_private_kv_siv_role.sv
+@@ -54,7 +54,7 @@
+     assign fault_o=fault_q || !KEY_IS_PROVISIONED || upstream_fault_i ||
+         (lock_seen_q && !model_locked_i);
+     wire enabled=reset_n && !abort_i && !fault_o;
+-    wire protocol_error=(aes_done && !aes_wait_state) || (aes_wait_state && aes_wait_q==7'd63);
++    wire protocol_error=(aes_done && !aes_wait_state) || (aes_wait_state && aes_wait_q==7'd127);
+     // Suppress component transfers on the detection edge, before fault_q
+     // latches. Do not feed this signal back to AES abort combinationally.
+     wire io_enabled=enabled && !protocol_error;

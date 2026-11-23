@@ -1,0 +1,980 @@
+{
+  "common": {
+    "adapter.sv": {
+      "bytes": 9313,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/adapter.sv",
+      "sha256": "dd45423f8cc645a04bef821130faa5c0a7e4d9a81333c571db23c0139b8314e9"
+    },
+    "arbiter.sv": {
+      "bytes": 18850,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/arbiter.sv",
+      "sha256": "51f7e2d73f43ff02b934ae749fa790efa94c015b280cfa25ef7558c2c087605a"
+    },
+    "bank.sv": {
+      "bytes": 13325,
+      "origin": "generated",
+      "path": "prepared-model-domains-v2/source/bank.sv",
+      "sha256": "fc16c7eb00d1c8b0766a8620a2dbdcba2909b5da26bb2c9dabb362deda469b2b"
+    },
+    "booted_memory.sv": {
+      "bytes": 8802,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/booted_memory.sv",
+      "sha256": "e249a2fe7fe65b2cf27cb18d276977368a8f627e28007147addfa4ba388b697a"
+    },
+    "candidate.sv": {
+      "bytes": 3943,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/candidate.sv",
+      "sha256": "dd5a9d7a906e8645ea40a090c00ed3563ad252be692a2717b35cf3fe4e4d8374"
+    },
+    "cdc.sv": {
+      "bytes": 6807,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/cdc.sv",
+      "sha256": "aa564a0d1c65d6da82aac3242afea1ccc5e692a160aab0d9577b63ae31569b1e"
+    },
+    "cluster-adapter.sv": {
+      "bytes": 14904,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/cluster-adapter.sv",
+      "sha256": "0b8d09a0fded73d93f5fddb6bc790b552968f2d8c38cf0e90d20eb5d49b9744b"
+    },
+    "cluster-engine.sv": {
+      "bytes": 12705,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/cluster-engine.sv",
+      "sha256": "715ac8ac24a45bb4389f905ad58fad84735c7dde2a41780b7a95fc409dc3ae54"
+    },
+    "cluster-mul.sv": {
+      "bytes": 3395,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/cluster-mul.sv",
+      "sha256": "93e12f47a8651a1c131609d132f7b50810ac1124200e583164fad3b83e589417"
+    },
+    "cluster-tile.sv": {
+      "bytes": 7630,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/cluster-tile.sv",
+      "sha256": "4aa3e7e95da24d4def91b772acaf166f245aac6a4c8651b109424a25436221c5"
+    },
+    "combined_aes_lookup_sim.sv": {
+      "bytes": 1669,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/combined-security-simulation/rtl/combined_aes_lookup_sim.sv",
+      "sha256": "cd4fd74464dd2199d6f49e1e90b7738353762da9a823f3e572f79fbfa6b05d19"
+    },
+    "combined_board_core.sv": {
+      "bytes": 13890,
+      "origin": "bundle",
+      "path": "rtl/combined_board_core.sv",
+      "sha256": "ceaa95c9610601877565dcfbab391683d815a76f593fc2a45b4144ef6032e7c5"
+    },
+    "combined_board_memory.sv": {
+      "bytes": 4112,
+      "origin": "bundle",
+      "path": "rtl/combined_board_memory.sv",
+      "sha256": "af8121eaa144decf7aeb795de4bacd8b705f3b22b90a821fee3098af5b8c56f6"
+    },
+    "combined_boot_scan.sv": {
+      "bytes": 7757,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/combined-security-simulation/rtl/combined_boot_scan.sv",
+      "sha256": "50bd617e3817f26ef4f63c6eeb7a744d29f16383905cefdc198239fa58972a31"
+    },
+    "combined_cipher_stream.sv": {
+      "bytes": 2711,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/combined-security-simulation/rtl/combined_cipher_stream.sv",
+      "sha256": "06a70e2fbb0ed8a1a3f78173af4132780b43aee4a56ab7e6d914122e2dfcfb6d"
+    },
+    "combined_identity_hash.sv": {
+      "bytes": 2018,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/combined-security-simulation/rtl/combined_identity_hash.sv",
+      "sha256": "8820618fbbbb2db7be7ba45dd07975240c3074c7687af69c5eb35c2e33ff6ee6"
+    },
+    "combined_kv_cipher.sv": {
+      "bytes": 9310,
+      "origin": "generated",
+      "path": "prepared-model-domains-v2/source/combined_kv_cipher.sv",
+      "sha256": "c58daf86d339b30f2126c26115f32d7285773a9e447367c43aed2ef67cc49093"
+    },
+    "combined_kv_cipher_shared.sv": {
+      "bytes": 4923,
+      "origin": "bundle",
+      "path": "rtl/combined_kv_cipher_shared.sv",
+      "sha256": "cfd6fd602fe83004663ba874c8fa9f5842e861a0c073477cef3560645772e80c"
+    },
+    "combined_lease_guard.sv": {
+      "bytes": 5050,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/combined-security-simulation/rtl/combined_lease_guard.sv",
+      "sha256": "ae043d4745d2051c47ef82ba9a737e0f55f1f9cb4c750ee93efd985391e39055"
+    },
+    "combined_weight_aes.sv": {
+      "bytes": 1627,
+      "origin": "generated",
+      "path": "prepared-model-domains-v2/source/combined_weight_aes.sv",
+      "sha256": "290790962b143dd2719e65d4aba4de4b0392e4d3a8a67e787a138f71a5f25fa3"
+    },
+    "combined_weight_pool.sv": {
+      "bytes": 2204,
+      "origin": "generated",
+      "path": "prepared-model-domains-v2/source/combined_weight_pool.sv",
+      "sha256": "7b1d93b7ab88d898585ed778d49284d5a30339f391b78154819375f13060059c"
+    },
+    "digests32.memh": {
+      "bytes": 127728,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/digests32.memh",
+      "sha256": "2c4bb7908d6e957b8a20e99b230c6e8a3d7fafddeb391581dfcbcb1cce7bf672"
+    },
+    "fifo.sv": {
+      "bytes": 26886,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fifo.sv",
+      "sha256": "1879b79074421cddd57592d0320f4c68c42f4a86e0ba3b10a554bf97cb2d2fa9"
+    },
+    "first192.memh": {
+      "bytes": 100352,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/first192.memh",
+      "sha256": "9ef3e89ea2d1abe8131c1056af9d3cec64154b9f78064bdade805376b4619199"
+    },
+    "fixture_constants.svh": {
+      "bytes": 920,
+      "origin": "generated",
+      "path": "fixtures-v1/fixture_constants.svh",
+      "sha256": "67946173da30664035759c696c8cde3e82f2ef428c0ca7c31e721bb9e551efa4"
+    },
+    "fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv": {
+      "bytes": 3940,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_board0/rtl/physical/board0_exact_isqrt_u45_iterative.sv",
+      "sha256": "c5ebf144aa1ba50e0459dc069ec6a38d49829cc921c5752fd21466bc89ab678a"
+    },
+    "fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv": {
+      "bytes": 5911,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_board0/rtl/physical/board0_exact_rne_div_signed64_iterative.sv",
+      "sha256": "efe1992ec59e927ab1bb24008477c1f7f31eaf9ef613e3215bb6011513b15193"
+    },
+    "fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_private_issue_guard.sv": {
+      "bytes": 2637,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_private_issue_guard.sv",
+      "sha256": "95a555560d3b9f3c7e4d22bbabe1bdabc602364ce392e5a2da573e889f59499a"
+    },
+    "fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_unified_dsp64.sv": {
+      "bytes": 4517,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/asymmetric_unified_dsp2/rtl/board1_asymmetric_unified_dsp64.sv",
+      "sha256": "e99f1e5049af79b53e42f681a4082451158c9912a43eb35397fd76f9acb15560"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv": {
+      "bytes": 37656,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv",
+      "sha256": "a41a61dd6a1a585adc6aaa3f36643a05046c98ed9350187d96c8dce7a5f79af7"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv": {
+      "bytes": 151946,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention.sv",
+      "sha256": "b37dbad3835e2b3195cce5cc30afba20116431882a827d4e9d42d4446609e9dd"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv": {
+      "bytes": 13562,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_attention_memories.sv",
+      "sha256": "093927da7f5d322a3beafe45734f80c0f81e7c26b649d76a23bb8d0957c8cfeb"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": {
+      "bytes": 106583,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/home-authorization/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv",
+      "sha256": "acd5ce1b5e3ba5e868366f346f2b4850f246bd6966e9fdc20ba04565f8d801bc"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv": {
+      "bytes": 13990,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/home-authorization/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_layer.sv",
+      "sha256": "8ee00c6010f1dd05f0b0f7e190f30bc34574d78b65c767f7148683233b08392d"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_lookup.sv": {
+      "bytes": 13863,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_lookup.sv",
+      "sha256": "92d8043230d9df3ab917427c4c619a5b57f918c2669abec310fe805d440034ef"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv": {
+      "bytes": 13202,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_sequence.sv",
+      "sha256": "f7ebce15ce1d3ee97d968014d17051ddd942d3dd2d582368e4aa81b6e0e52205"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv": {
+      "bytes": 23674,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/home-authorization/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_machine_core.sv",
+      "sha256": "49ed919ae9c755d009d7edd7df4b87b52984b73be56757957c576603f44c97f1"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv": {
+      "bytes": 47757,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/home-authorization/hardware/project/fpga/token_only_model0_ddr_board1/context2048_token_machine2/rtl/board1_context2048_token_shell.sv",
+      "sha256": "4d3535168eb81bd10023b6cf7a4b8836a7821cb9c70ea2f3305c6273ad8ea5d9"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv": {
+      "bytes": 19108,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_app_boundary.sv",
+      "sha256": "e893c0ca812a438d6e758690b3b5de3e7b8a92811dc8f1d85827312a149117d3"
+    },
+    "fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv": {
+      "bytes": 24064,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/context2048_typed_ddr_boundary0/rtl/board1_context2048_typed_ddr_boundary.sv",
+      "sha256": "8afb20c1c58790209023826f21ba9b5fe57af3a359cf77508c66e730a7137b14"
+    },
+    "fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv": {
+      "bytes": 4148,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/ddr_phy_open0/rtl/board1_private_ddr256_to_w640.sv",
+      "sha256": "f2ba8bddfb40087af7c420b931631e7f83a12aae96510b232bb6ade853a9eedc"
+    },
+    "fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv": {
+      "bytes": 2573,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/ddr_preboard_closure0/rtl/board1_ddr_request_fifo2.sv",
+      "sha256": "084af34e394e9024f9a9b8d227f6c2385e0b161048c6091751e67ec6d8fd656f"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv": {
+      "bytes": 3691,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_exp_lut_sync.sv",
+      "sha256": "042df8b9da13bc2a66f945b2942a30374d52fa38766ba73916999901fa63622f"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv": {
+      "bytes": 6175,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention0/rtl/board1_fixed_attention_rne_div_signed64.sv",
+      "sha256": "30ed1ba9546f9d81974452d786932bd54063c23338503045b4b1ce9eb31e2a9b"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv": {
+      "bytes": 10465,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_attention_compact1/rtl/board1_fixed_attention_rne_shift_iterative.sv",
+      "sha256": "a5a62b158671b4500cac88bf1a7d66cfb7f44cf74cbe49d4e865aebf397abbca"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv": {
+      "bytes": 8052,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_elementwise0/rtl/board1_fixed_elementwise_dsp_lane.sv",
+      "sha256": "bd475b396f351e117a2c9740417a5dedeed7e4c7fc5d32d9d62bffd09417c19a"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv": {
+      "bytes": 25862,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_compact_lane.sv",
+      "sha256": "8d753b5e0e28b5f8bbbbdfdfe3b8894808e068068f44f57fa1b77cdec8a743eb"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv": {
+      "bytes": 2365,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_elementwise_product_compact1/rtl/board1_fixed_elementwise_product_dsp.sv",
+      "sha256": "1c60a777659e7dea8ba1e13ed9d76ac0e6df544a9c70ccc7327d0e20c0fba5a9"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv": {
+      "bytes": 30273,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_group_ddr_stream1/rtl/board1_fixed_group_ddr_stream.sv",
+      "sha256": "cb40225f531224076ef6b1f32e2c856a146aa017ec5d71fb9424bdbe7ee2c359"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv": {
+      "bytes": 22935,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_group_projection_scale_integration0/rtl/board1_fixed_group_projection_scale_job.sv",
+      "sha256": "653a0eebffff3724312847baf64c5eb188afdaea50ca3b2acb6d4e6e1e888339"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv": {
+      "bytes": 10507,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_argmax.sv",
+      "sha256": "4491df0baa6e4e6ab4995d30c1ad64bfd87b418acdc0bd2a39672266f6f46b68"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv": {
+      "bytes": 3760,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_head_argmax0/rtl/board1_fixed_head_logit_greater.sv",
+      "sha256": "9f1fd555ad0165d3617b3c0078c3ef5c9b9971824350aebb2f63a072a2a03a44"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv": {
+      "bytes": 16277,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_metadata_stream0/rtl/board1_fixed_projection_metadata_reader.sv",
+      "sha256": "7eeb100adaa0c9402ff51d3df19707f7248987e1ec2f16b2f925d7d43e5faedc"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_rope_raw_ram.sv": {
+      "bytes": 1026,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_rope_raw_ram.sv",
+      "sha256": "d8b9f6c8229af472f8d69858f9412cbcd58991f58b4f4fb2feb508fd5d0b0e21"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_scratch_ram.sv": {
+      "bytes": 1168,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_scratch_ram.sv",
+      "sha256": "dbf09b83baf263397db18970535e41c8c3ab487e9f8926ca8a8740b58f65f901"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector128_ram.sv": {
+      "bytes": 1028,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector128_ram.sv",
+      "sha256": "9282e788fc641f15f225986738a8a9d605c892b210e060763622026a5b05310a"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector256_ram.sv": {
+      "bytes": 1108,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_semantic_layer0/rtl/board1_fixed_semantic_vector256_ram.sv",
+      "sha256": "0767c4a1c69432f9537385223101d2e6d69a86259313ed9a27cff10cb9ccff57"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv": {
+      "bytes": 11169,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_token_machine0/rtl/board1_fixed_private_ddr_arbiter.sv",
+      "sha256": "e7cbb695697bd9d9c3cad5909927ad3bb512c03d99560b037693b86967affdd9"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv": {
+      "bytes": 2974,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_token_machine1/rtl/board1_fixed_elementwise_lane_core.sv",
+      "sha256": "9e033db09b614f43999a94692d0f19a7ec58845dc65963d2e37a0e9d134bf7af"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv": {
+      "bytes": 17671,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_token_shell0/rtl/board1_fixed_embedding_lookup.sv",
+      "sha256": "3fd4eea786b6ecde1f7d27199f3ef9d434d8692346ec12997cda688aa0766211"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_vector_normalize0/rtl/board1_fixed_vector_rne_shift_iterative.sv": {
+      "bytes": 5892,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_normalize0/rtl/board1_fixed_vector_rne_shift_iterative.sv",
+      "sha256": "22159952c558c41366eee3abc6f0932867e482a94bfde16d7f26f0a3228fd05b"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv": {
+      "bytes": 8056,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_arithmetic.sv",
+      "sha256": "d95bb60428664695eabaa51ecab6aa6462d2657156ac7351ce79867347fefbc5"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv": {
+      "bytes": 1353,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_rmsnorm_rom.sv",
+      "sha256": "46e85006cbe336e763414b117bad314078df448f897c707e83af0cee1dc92561"
+    },
+    "fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv": {
+      "bytes": 24485,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/home-authorization/hardware/project/fpga/token_only_model0_ddr_board1/fixed_vector_rmsnorm0/rtl/board1_fixed_vector_rmsnorm_service.sv",
+      "sha256": "bbb16e89c3950058fd24f3dac9d362dcb003fe2dbedf51ebce302084f974b9fe"
+    },
+    "fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_ddr_locked_auth_watchdog_cdc.sv": {
+      "bytes": 25958,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_ddr_locked_auth_watchdog_cdc.sv",
+      "sha256": "6d88adfc043926beedb41bba63f22f8d0b3793dc8bc87ea5a94b30169e6c4763"
+    },
+    "fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_private_ddr_lock_bridge.sv": {
+      "bytes": 22739,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_private_ddr_lock_bridge.sv",
+      "sha256": "71ecc05bad160b500ec2564dcbed62de196972d1b10673a1452af7049325b818"
+    },
+    "fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_qspi_image_stream.sv": {
+      "bytes": 14848,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_context2048_qspi_image_stream.sv",
+      "sha256": "30bef8cd673f583f07a7baf70a9279bf010ba148a4d3fe512040395e17282fed"
+    },
+    "fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_qspi_async_word_fifo4.sv": {
+      "bytes": 4613,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/product8_timing_successor2/rtl/board1_qspi_async_word_fifo4.sv",
+      "sha256": "262819f3ce8713e3a5c16d8a447228c25a34e27400ed7f07860935b4aaf3aeb1"
+    },
+    "fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv": {
+      "bytes": 3033,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_command_adapter.sv",
+      "sha256": "3373d3a7dd46ab2ff632f24b56e93c0556d5963ff2871bcde57c98168f939914"
+    },
+    "fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_endpoint_fault_cdc.sv": {
+      "bytes": 2045,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/product_top0/rtl/board1_fixed_endpoint_fault_cdc.sv",
+      "sha256": "84c61af4e4d836d295f1c43b92456576990733d0247102cd632433a92ef063b0"
+    },
+    "fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_ddr_preboard_locked_boundary.sv": {
+      "bytes": 11586,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_ddr_preboard_locked_boundary.sv",
+      "sha256": "58760e39d6d82070f595b2b9d93d7116bc8864d4b0abc572cb2e2fc5fceaa8e9"
+    },
+    "fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_qspi_read03_master.sv": {
+      "bytes": 8909,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_qspi_read03_master.sv",
+      "sha256": "409e8862d850ef398ff1dbf38c40be63ffbe94462b2ca3184fb421b4f4367607"
+    },
+    "fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_semantic_image_auth_compact.sv": {
+      "bytes": 7748,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/product_top4/rtl/board1_context2048_semantic_image_auth_compact.sv",
+      "sha256": "9777e7958f163f3f9ffd41dac778dc54d76b030f290370acf757837874e82d2a"
+    },
+    "fpga/token_only_model0_ddr_board1/shared_projection_scale0/rtl/board1_shared_projection_scale_engine.sv": {
+      "bytes": 26128,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/shared_projection_scale0/rtl/board1_shared_projection_scale_engine.sv",
+      "sha256": "443d16724abe6999af5af35c3685c8d5ef45b707cc1af6dd4514a5beefac209f"
+    },
+    "fpga/token_only_model0_ddr_board1/unified_dsp0/rtl/board1_unified_projection_head_mul_exact.sv": {
+      "bytes": 7148,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/unified_dsp0/rtl/board1_unified_projection_head_mul_exact.sv",
+      "sha256": "ccf15c1ad0f5bef293a44e89ae56fb9fd6bf8382205d7b12bac472ad2fa295d2"
+    },
+    "fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv": {
+      "bytes": 7882,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_ddr_board1/unified_dynamic_dsp1/rtl/board1_unified_projection_head_dynamic_mul_exact.sv",
+      "sha256": "21c3ebc878f36c7260bf203f78174584d0c3e0ce18546966707ead45a0631b83"
+    },
+    "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv": {
+      "bytes": 3071,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_rx.sv",
+      "sha256": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f"
+    },
+    "fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv": {
+      "bytes": 1502,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_mac_uart0/rtl/fixed_uart_tx.sv",
+      "sha256": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e"
+    },
+    "fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv": {
+      "bytes": 12541,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/fpga/token_only_model0_mac_uart0/rtl/token_only_model0_uart_bridge.sv",
+      "sha256": "13551d6d3cdffe60dbfa4ed094bad5fb92b7648604dca8f6a98f1f0d8f27f84b"
+    },
+    "handoff.sv": {
+      "bytes": 8824,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/handoff.sv",
+      "sha256": "d264a0cc8275aa426c6e5b268af94ef34cb17821b801b9a366e9c7faae3960c1"
+    },
+    "home_boot_gate.sv": {
+      "bytes": 11568,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/home-authorization/hardware/project/home/home_boot_gate.sv",
+      "sha256": "13e175169d55ed26c1c4ceba7f9dc5db638469b4abfeddf003e69b65d7e44405"
+    },
+    "kv_integrity_guard.sv": {
+      "bytes": 21006,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/kv_integrity_guard.sv",
+      "sha256": "dbda7c6c19af0cf566979b6ad2ca6184bff788d2163755314cf095c42ed36d43"
+    },
+    "kv_page_hash.sv": {
+      "bytes": 5257,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/kv_page_hash.sv",
+      "sha256": "0049e9501f377bde37274b3a63f9a1361a817f4dc0ff1953c3e1868ebecb4578"
+    },
+    "last192.memh": {
+      "bytes": 13720,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/last192.memh",
+      "sha256": "b3712a4fe7f0ffc57a8f66fd34abcb94c225332d1c36ab627d443b44dfbfa1d1"
+    },
+    "mapper_portable.sv": {
+      "bytes": 4485,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/mapper_portable.sv",
+      "sha256": "1e3000948b24f5d52dfd0f61697d713a9c8c4c9f2ecc90ccb91812a04fc3e0dc"
+    },
+    "metadata192.memh": {
+      "bytes": 114072,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/metadata192.memh",
+      "sha256": "1535aa2d84de71c736b71e40694940f1b291dfd1db6c9f02d10b8605552ccdb9"
+    },
+    "model_rtl_evidence/attention_sublayer/exp_neg_q30.memh": {
+      "bytes": 36873,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/model_rtl_evidence/attention_sublayer/exp_neg_q30.memh",
+      "sha256": "c3e491c6abcd545f73dce0fabb37f86d2eed31a0334268da1e035a75f4c62a3f"
+    },
+    "normalizer_pipeline.sv": {
+      "bytes": 57551,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/normalizer_pipeline.sv",
+      "sha256": "01918be4558244173ddac603e3e89c6114c44ef128e68e87c9ba0445e138fd40"
+    },
+    "public_lookup_bindings.sv": {
+      "bytes": 700,
+      "origin": "generated",
+      "path": "prepared-model-domains-v2/source/public_lookup_bindings.sv",
+      "sha256": "539f9a82edddb9d71ddd9ebe64cd4602eda872ee0fceffb1b9f981d377387f6b"
+    },
+    "reset.sv": {
+      "bytes": 930,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/reset.sv",
+      "sha256": "8b7d02cbcc49fad8e017a71051afb61ec923aa6aaa37031866e00a44da3bc7a6"
+    },
+    "service.sv": {
+      "bytes": 18365,
+      "origin": "generated",
+      "path": "prepared-model-domains-v2/source/service.sv",
+      "sha256": "5b56847fd3fa4d41fe923a5816bf0fab7dc46c6602001c3c10ddfd53ce18dcbb"
+    },
+    "sha.sv": {
+      "bytes": 50481,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/sha.sv",
+      "sha256": "a80629c713103fd5e63e8d42b8864785555173620102fe9f31d327cf6cca238b"
+    },
+    "shared_token_probe.sv": {
+      "bytes": 23385,
+      "input_sha256": "aa87b3b79b1c088a285eced45cef7a24a182690c825c230139e948ab482ea7bd",
+      "origin": "generated",
+      "patch": "changes/shared_token_probe.sv.patch",
+      "patch_sha256": "a67a62d05c602f70973501bf196980128691ea16a5688aeb4d34208d3af2cbb2",
+      "path": "prepared-model-domains-v2/source/shared_token_probe.sv",
+      "sha256": "7c9e74c6c29fb7bc3285bb9653c33239f6bd22614648739ac2b8c2d1fc498c11"
+    },
+    "swic/su_image_check.sv": {
+      "bytes": 3368,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/signed-update/rtl/su_image_check.sv",
+      "sha256": "fc47522ab8bdf234d8ec54bc157cb7b308307261499cccb66aa651e46ad5545f"
+    },
+    "swic/su_lms_verify.sv": {
+      "bytes": 11244,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/home-authorization/hardware/project/swic/su_lms_verify.sv",
+      "sha256": "7fdb4fdef8d59a0a57215fc4267d25f70893c420b0db65fe75d25014b04d2658"
+    },
+    "swic/su_page_table_check.sv": {
+      "bytes": 7224,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/signed-update/rtl/su_page_table_check.sv",
+      "sha256": "c1c4bcde577fceb53fc0a49497dd79ab00f5212d881e77710bdf3d00f99af338"
+    },
+    "swic/su_sha256.sv": {
+      "bytes": 4042,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/signed-update/rtl/su_sha256.sv",
+      "sha256": "d004ab01cf7faa75a48a7e2ff59e7fe8dd28a53cc7113ae8575774300a55b117"
+    },
+    "swic/swic_boot_admission.sv": {
+      "bytes": 23463,
+      "input_sha256": "8a6cf7f31ae8e98f4cdd7101acb14f2c44b6161039ebb05aaadab057b9de5d89",
+      "origin": "generated",
+      "patch": "changes/swic/swic_boot_admission.sv.patch",
+      "patch_sha256": "88cb949d7e48ae8799b983a3dcf662155a1d7329007c6aaa036552b5cad8acb1",
+      "path": "prepared-model-domains-v2/source/swic/swic_boot_admission.sv",
+      "sha256": "285c0a60d3f90cbaacdac88a689faf2a0055ba3828f5d9f66579b5b382a46d4f"
+    },
+    "swic/swic_boot_ingress.sv": {
+      "bytes": 6135,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/home-authorization/hardware/project/swic/swic_boot_ingress.sv",
+      "sha256": "d992ebffa6e04c0369f6b125808e7223efaa296bc953f35aec9ea32856759ef8"
+    },
+    "swic/swic_norm_store.sv": {
+      "bytes": 6139,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/home-authorization/hardware/project/swic/swic_norm_store.sv",
+      "sha256": "b8bd781d22b1904a2e20f46a8e0896d4abf39efa0b40f98f2816824d7493fadd"
+    },
+    "tang_private_aes256.sv": {
+      "bytes": 14261,
+      "origin": "bundle",
+      "path": "rtl/tang_private_aes256.sv",
+      "sha256": "a55399b338440f24ab76b39a74e5d6ffd8d269dd2bf8118fa827d1d722ed2843"
+    },
+    "tang_private_aes256_fixed2.sv": {
+      "bytes": 14581,
+      "origin": "bundle",
+      "path": "rtl/tang_private_aes256_fixed2.sv",
+      "sha256": "62f6f2892484293a8d8c92390ba36b158b47c3e80297e2bf5d291a0bf5c6e116"
+    },
+    "tang_private_aes256_fixed4.sv": {
+      "bytes": 15047,
+      "origin": "bundle",
+      "path": "rtl/tang_private_aes256_fixed4.sv",
+      "sha256": "d3945d926d10f15178a8cba4fdb1af8f6affe928b955f4a7f23578ce33d53cce"
+    },
+    "tang_private_aes256_pool2.sv": {
+      "bytes": 5121,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/tang_private_aes256_pool2.sv",
+      "sha256": "f9c4c7411da54040ba6aba496cf4c1d6ab41bc79d529ef191af8e8840e0bfd04"
+    },
+    "tang_private_kv_siv_bridge.sv": {
+      "bytes": 16330,
+      "origin": "generated",
+      "path": "prepared-model-domains-v2/source/tang_private_kv_siv_bridge.sv",
+      "sha256": "abfd4c8178091b0a8dab98d2593b637ce0e8d89c09a1f799cbb8bdd59b64a02c"
+    },
+    "tang_private_kv_siv_bridge_two_model.sv": {
+      "bytes": 15272,
+      "input_sha256": "53f6b4f1386d6c1a0a9cb47630d3decb03174546f6cb61f19c5da0e5d8102306",
+      "origin": "git",
+      "patch": "changes/tang_private_kv_siv_bridge_two_model.sv.patch",
+      "patch_sha256": "9dfac594baad5c2380e06797f6d865aaca0a8f78b5e53df19c2d54126ee3f238",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/tang_private_kv_siv_bridge.sv",
+      "sha256": "6eb502365a7249648d5f9cd00fb940ed39c4cf446e2478ad0cf48788f422d447"
+    },
+    "tang_private_kv_siv_role.sv": {
+      "bytes": 10864,
+      "input_sha256": "16f7531c942d4e23a050756fc9aa247a6cba4a125f48f9be061e8e3fde992339",
+      "origin": "generated",
+      "patch": "changes/tang_private_kv_siv_role.sv.patch",
+      "patch_sha256": "fb566d90216d61c0630f27559c0eb3d0a11d169e3a1ea0437ea2da798a356ca8",
+      "path": "prepared-model-domains-v2/source/tang_private_kv_siv_role.sv",
+      "sha256": "010f2bef50284bbc4a35ea34d8ca81d59ddc876744c3eb60b114f743098a55e2"
+    },
+    "tang_private_kv_siv_role_two_model.sv": {
+      "bytes": 10991,
+      "input_sha256": "16f7531c942d4e23a050756fc9aa247a6cba4a125f48f9be061e8e3fde992339",
+      "origin": "generated",
+      "patch": "changes/tang_private_kv_siv_role_two_model.sv.patch",
+      "patch_sha256": "2ce9d1876f675b5d6527ca671b0ec889b043e1d3f63e3ef1270921705b521ff9",
+      "path": "prepared-model-domains-v2/source/tang_private_kv_siv_role.sv",
+      "sha256": "141799a48acf511ffd4c53f87493a06829d61a4f724394f017106fc6e143ad9e"
+    },
+    "thin_transport.sv": {
+      "bytes": 8323,
+      "origin": "git",
+      "path": "demos/simplestories-v2-5m/variants/encrypted-memory/hardware/project/thin_transport.sv",
+      "sha256": "a97c68a24155428446e0f3ca48d3dbcd3ac8110bdcbf789259bfacb26f351f76"
+    }
+  },
+  "fixture_manifest_sha256": "c4e0b2662eb491429f7b6ccf02affc1bb8436bc78c46088a32f0ecc4eef14891",
+  "public_base": "b12eadcffd05a6052d648ec23869bc369c4cd16a",
+  "reference_inputs": {
+    "reference/kv_siv_reference.py": "03dd85d5830f097785014ba19334404f37a6c1117338f88cad884ebb9cb338c5",
+    "reference/kv_siv_role_reference.py": "3e79fddb9cce10b4f990c37f80727b95f7e9415e7b1400aa12d20bb3afd234ca",
+    "reference_check.py": "17619afc08a55a62a1fec3484b06beaaea56c5a48259238e2a4877ede44006d3"
+  },
+  "suite_order": [
+    "integration-r4",
+    "replacement-r2",
+    "clear-r1"
+  ],
+  "suites": {
+    "clear-r1": {
+      "binary": "obj/Vtb_serial_clear",
+      "build": [
+        "verilator",
+        "--binary",
+        "--timing",
+        "--assert",
+        "-DSYNTHESIS=1",
+        "-Wno-fatal",
+        "--build-jobs",
+        "1",
+        "--output-split",
+        "20000",
+        "--output-split-cfuncs",
+        "500",
+        "-CFLAGS",
+        "-O2",
+        "--top-module",
+        "tb_serial_clear",
+        "--Mdir",
+        "obj",
+        "-f",
+        "sources.f"
+      ],
+      "cases": [
+        {
+          "arguments": [
+            "+FIXTURES={deck}/fixtures",
+            "+SCENARIO=8"
+          ],
+          "number": 8
+        },
+        {
+          "arguments": [
+            "+FIXTURES={deck}/fixtures",
+            "+SCENARIO=9"
+          ],
+          "number": 9
+        },
+        {
+          "arguments": [
+            "+FIXTURES={deck}/fixtures",
+            "+SCENARIO=10"
+          ],
+          "number": 10
+        }
+      ],
+      "fixtures": {
+        "A-e1-n1.grant.hex": {
+          "bytes": 4260,
+          "sha256": "81a37544ef34c22266ad45b3a4e36769b75e2fcfb396e227cf3f5dd30d072eea"
+        },
+        "A-e1-n1.request.hex": {
+          "bytes": 384,
+          "sha256": "68a6e0ac6e28246406e4d6475a862b99d3ef71e048e9a9eb3489c0b0d0fadd2f"
+        },
+        "A.cipher.memh": {
+          "bytes": 14759030,
+          "sha256": "da22f008761775cf300b231b3acd42da7392edb0b72e38113cefd3504f5acc0d"
+        },
+        "A.frame.hex": {
+          "bytes": 346188,
+          "sha256": "16fef51bd4a9f41e0a9ba98bddfc543c43152d181198e0ea12c70433c899463d"
+        }
+      },
+      "inputs": {
+        "combined_board_harness.sv": {
+          "bytes": 7041,
+          "input_sha256": "b7f0b87aa03b8e336554ee7d415b67cd3455fcf997413e2aece6f23471a88b59",
+          "origin": "bundle",
+          "patch": "changes/replacement-r2/combined_board_harness.sv.patch",
+          "patch_sha256": "081a02b76a2cf365656394734529e1addf4c77b2d781b46633e8e31d3f7bf7de",
+          "path": "rtl/combined_board_harness.sv",
+          "sha256": "7f61e124510ab2fd00f750f007f1a954346c99b8d14bbc84827fe01829ea1769"
+        },
+        "sources.f": {
+          "bytes": 6361,
+          "input_sha256": "673d4aaa7a44e78952011c7851bf0a3dfa45f67466fd73af885d6b1ea6cfa21d",
+          "origin": "generated",
+          "patch": "changes/clear-r1/sources.f.patch",
+          "patch_sha256": "070b464c2d443c9238947a7d927f34014cd6c215ff6585aa4df43c783c527f06",
+          "path": "prepared-model-domains-v2/source/sources.f",
+          "sha256": "4ff311f70931d54c18f414c7642b51b0446c15bff217c5fc8928ef5475598617"
+        },
+        "tb_serial_clear.sv": {
+          "bytes": 16032,
+          "origin": "bundle",
+          "path": "testbench/tb_serial_clear.sv",
+          "sha256": "9c5304a663a3989286c91e72ead28be51198a2cc1614b46060d3fee303924745"
+        }
+      }
+    },
+    "integration-r4": {
+      "binary": "obj/Vtb_combined_board",
+      "build": [
+        "verilator",
+        "--binary",
+        "--timing",
+        "--assert",
+        "-DSYNTHESIS=1",
+        "-Wno-fatal",
+        "--build-jobs",
+        "1",
+        "--output-split",
+        "20000",
+        "--output-split-cfuncs",
+        "500",
+        "-CFLAGS",
+        "-O2",
+        "--top-module",
+        "tb_combined_board",
+        "--Mdir",
+        "obj",
+        "-f",
+        "sources.f"
+      ],
+      "cases": [
+        {
+          "arguments": [
+            "+FIXTURES={deck}/fixtures",
+            "+SCENARIO=0"
+          ],
+          "number": 0
+        },
+        {
+          "arguments": [
+            "+FIXTURES={deck}/fixtures",
+            "+SCENARIO=1"
+          ],
+          "number": 1
+        },
+        {
+          "arguments": [
+            "+FIXTURES={deck}/fixtures",
+            "+SCENARIO=2"
+          ],
+          "number": 2
+        }
+      ],
+      "fixtures": {
+        "A-e1-n1.grant.hex": {
+          "bytes": 4260,
+          "sha256": "81a37544ef34c22266ad45b3a4e36769b75e2fcfb396e227cf3f5dd30d072eea"
+        },
+        "A-e1-n1.request.hex": {
+          "bytes": 384,
+          "sha256": "68a6e0ac6e28246406e4d6475a862b99d3ef71e048e9a9eb3489c0b0d0fadd2f"
+        },
+        "A-e1-n2.grant.hex": {
+          "bytes": 4260,
+          "sha256": "3cd158441353bbdb11701fcb7d53f6efd02c0cebdc1a26c8688e16fc5244edad"
+        },
+        "A-e1-n2.request.hex": {
+          "bytes": 384,
+          "sha256": "32ceffd980e9e9203495de8711108de3dc1bca76d853d594a9e8539a21ee739d"
+        },
+        "A.cipher.memh": {
+          "bytes": 14759030,
+          "sha256": "da22f008761775cf300b231b3acd42da7392edb0b72e38113cefd3504f5acc0d"
+        },
+        "A.frame.hex": {
+          "bytes": 346188,
+          "sha256": "16fef51bd4a9f41e0a9ba98bddfc543c43152d181198e0ea12c70433c899463d"
+        }
+      },
+      "inputs": {
+        "combined_board_harness.sv": {
+          "bytes": 7041,
+          "origin": "bundle",
+          "path": "rtl/combined_board_harness.sv",
+          "sha256": "b7f0b87aa03b8e336554ee7d415b67cd3455fcf997413e2aece6f23471a88b59"
+        },
+        "sources.f": {
+          "bytes": 6363,
+          "input_sha256": "673d4aaa7a44e78952011c7851bf0a3dfa45f67466fd73af885d6b1ea6cfa21d",
+          "origin": "generated",
+          "patch": "changes/integration-r4/sources.f.patch",
+          "patch_sha256": "2fcd336582f0ab3fe3994959ace08be18727515ed4ab29a7a03a15b0e0e53c41",
+          "path": "prepared-model-domains-v2/source/sources.f",
+          "sha256": "d62346e2210e7a56edc3007497b0224cb03c70c8f84de775eea913bac485e13d"
+        },
+        "tb_combined_board.sv": {
+          "bytes": 13426,
+          "origin": "bundle",
+          "path": "testbench/tb_combined_board.sv",
+          "sha256": "8329c9e073530f585841a23e79f131f8307ae36a2f89a3ad78fbc224337d3cfe"
+        }
+      }
+    },
+    "replacement-r2": {
+      "binary": "obj/Vtb_serial_replacement",
+      "build": [
+        "verilator",
+        "--binary",
+        "--timing",
+        "--assert",
+        "-DSYNTHESIS=1",
+        "-Wno-fatal",
+        "--build-jobs",
+        "1",
+        "--output-split",
+        "20000",
+        "--output-split-cfuncs",
+        "500",
+        "-CFLAGS",
+        "-O2",
+        "--top-module",
+        "tb_serial_replacement",
+        "--Mdir",
+        "obj",
+        "-f",
+        "sources.f"
+      ],
+      "cases": [
+        {
+          "arguments": [
+            "+FIXTURES={deck}/fixtures",
+            "+SCENARIO=5",
+            "+A1_ROLE_OUTPUT={captures}/actual-A1-role.memh",
+            "+B1_ROLE_OUTPUT={captures}/actual-B1-role.memh"
+          ],
+          "number": 5
+        },
+        {
+          "arguments": [
+            "+FIXTURES={deck}/fixtures",
+            "+SCENARIO=6",
+            "+A1_ROLE={captures}/actual-A1-role.memh"
+          ],
+          "number": 6
+        }
+      ],
+      "fixtures": {
+        "A-e1-n1.grant.hex": {
+          "bytes": 4260,
+          "sha256": "81a37544ef34c22266ad45b3a4e36769b75e2fcfb396e227cf3f5dd30d072eea"
+        },
+        "A-e1-n1.request.hex": {
+          "bytes": 384,
+          "sha256": "68a6e0ac6e28246406e4d6475a862b99d3ef71e048e9a9eb3489c0b0d0fadd2f"
+        },
+        "A.cipher.memh": {
+          "bytes": 14759030,
+          "sha256": "da22f008761775cf300b231b3acd42da7392edb0b72e38113cefd3504f5acc0d"
+        },
+        "A.frame.hex": {
+          "bytes": 346188,
+          "sha256": "16fef51bd4a9f41e0a9ba98bddfc543c43152d181198e0ea12c70433c899463d"
+        },
+        "B-e1-n1.grant.hex": {
+          "bytes": 4260,
+          "sha256": "ec0e27664484125460d194e3bbf882ab0d29048e9a1be94f7d483d92dc922847"
+        },
+        "B-e1-n1.request.hex": {
+          "bytes": 384,
+          "sha256": "a1fafb40ae64e0319ea1492f03cea0aaee1800c8c9b9b34fca26785e55fd5ce4"
+        },
+        "B.cipher.memh": {
+          "bytes": 14759030,
+          "sha256": "3301f131e46350cef4402f326861acea7ad909778762bc1af404a5a02e24d79b"
+        },
+        "B.frame.hex": {
+          "bytes": 346188,
+          "sha256": "e5d4be304b4b1c4b89cd9f32445c732f75d441219e743b569d9f88a671a5c23a"
+        }
+      },
+      "inputs": {
+        "combined_board_harness.sv": {
+          "bytes": 7041,
+          "input_sha256": "b7f0b87aa03b8e336554ee7d415b67cd3455fcf997413e2aece6f23471a88b59",
+          "origin": "bundle",
+          "patch": "changes/replacement-r2/combined_board_harness.sv.patch",
+          "patch_sha256": "081a02b76a2cf365656394734529e1addf4c77b2d781b46633e8e31d3f7bf7de",
+          "path": "rtl/combined_board_harness.sv",
+          "sha256": "7f61e124510ab2fd00f750f007f1a954346c99b8d14bbc84827fe01829ea1769"
+        },
+        "sources.f": {
+          "bytes": 6367,
+          "input_sha256": "673d4aaa7a44e78952011c7851bf0a3dfa45f67466fd73af885d6b1ea6cfa21d",
+          "origin": "generated",
+          "patch": "changes/replacement-r2/sources.f.patch",
+          "patch_sha256": "257d3115d68cf2c710d9476263c507344d32c85826f9a2785527e1bdfbd02e64",
+          "path": "prepared-model-domains-v2/source/sources.f",
+          "sha256": "a885c5189cf75f727f2efb1bd6aa927f79154c2a6c1fc6bc1fddec275a5cb254"
+        },
+        "tb_serial_replacement.sv": {
+          "bytes": 18672,
+          "origin": "bundle",
+          "path": "testbench/tb_serial_replacement.sv",
+          "sha256": "77249b103f6c2e744155f6fec74fb2a2f86a2dde65885d2f47bcfb228e3352c9"
+        }
+      }
+    }
+  }
+}

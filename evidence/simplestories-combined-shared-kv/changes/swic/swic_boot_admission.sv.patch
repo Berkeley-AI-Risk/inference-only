@@ -1,0 +1,136 @@
+--- a/swic/swic_boot_admission.sv
++++ b/swic/swic_boot_admission.sv
+@@ -75,8 +75,6 @@
+     logic [11:0] metadata_word_q;
+     (* ram_style="distributed" *) logic [7:0] manifest_q [0:127];
+     (* ram_style="block" *) logic [7:0] signature_q [0:3887];
+-    (* ram_style="block" *) logic [31:0] digest_q [0:DIGEST_WORDS-1];
+-    (* ram_style="block" *) logic [191:0] metadata_q [0:METADATA_WORDS-1];
+     wire boot_fire=boot_valid_i && boot_ready_o;
+     wire [17:0] payload_offset=received_q-signature_end_q;
+     wire [17:0] table_offset=payload_offset-18'd32;
+@@ -94,6 +92,19 @@
+     wire metadata_memory_read=state_q==ROOT_WAIT || (sealed_o && metadata_read_i && 32'(metadata_address_i)<METADATA_WORDS);
+     wire [13:0] digest_memory_address=state_q==ROOT_WAIT ? root_digest_address : digest_address_i;
+     wire [11:0] metadata_memory_address=state_q==ROOT_WAIT ? root_metadata_address : metadata_address_i;
++    wire payload_load=boot_fire && state_q==LOAD && received_q>=signature_end_q && received_q>=132;
++    wire digest_memory_write=payload_load && payload_offset>=32 &&
++        32'(payload_offset)<32+DIGEST_BYTES && table_offset[1:0]==3;
++    wire metadata_memory_write=payload_load && 32'(payload_offset)>=32+DIGEST_BYTES && metadata_byte_q==23;
++    swic_admission_tables #(.DIGEST_WORDS(DIGEST_WORDS),.METADATA_WORDS(METADATA_WORDS)) u_admission_tables (
++        .clk(clk),
++        .digest_write_i(digest_memory_write),.digest_write_address_i(table_offset[15:2]),
++        .digest_write_data_i({load_word_q[23:0],boot_byte_i}),
++        .digest_read_i(digest_memory_read),.digest_read_address_i(digest_memory_address),.digest_read_data_o(digest_read_q),
++        .metadata_write_i(metadata_memory_write),.metadata_write_address_i(metadata_word_q),
++        .metadata_write_data_i({load_metadata_q[183:0],boot_byte_i}),
++        .metadata_read_i(metadata_memory_read),.metadata_read_address_i(metadata_memory_address),
++        .metadata_read_data_o(metadata_read_q));
+     integer a;
+     wire lms_reset_n=reset_n && (state_q==AUTH_START || state_q==AUTH_WAIT);
+     wire [10:0] lms_signature_address;
+@@ -151,15 +162,7 @@
+             if(received_q<128) manifest_q[received_q[6:0]]<=boot_byte_i;
+             else if(received_q>=132 && received_q<signature_end_q)
+                 signature_q[12'(received_q-132)]<=boot_byte_i;
+-            else if(received_q>=signature_end_q && received_q>=132) begin
+-                if(payload_offset>=32 && 32'(payload_offset)<32+DIGEST_BYTES && table_offset[1:0]==3)
+-                    digest_q[table_offset[15:2]]<={load_word_q[23:0],boot_byte_i};
+-                if(32'(payload_offset)>=32+DIGEST_BYTES && metadata_byte_q==23)
+-                    metadata_q[metadata_word_q]<={load_metadata_q[183:0],boot_byte_i};
+-            end
+         end
+-        if(digest_memory_read) digest_read_q<=digest_q[digest_memory_address];
+-        if(metadata_memory_read) metadata_read_q<=metadata_q[metadata_memory_address];
+         if(signature_memory_read) signature_read_q<=signature_q[signature_memory_address];
+     end
+     always_ff @(posedge clk or negedge reset_n) begin
+@@ -322,4 +325,88 @@
+         end
+     end
+ endmodule
++
++// Each table keeps its own read port. The bank selection is captured on the
++// same edge as the data, so a consecutive read may change banks and an idle
++// port retains its last value. Callers keep the original address checks and
++// boot-only write gating. No RAM or read-output state is reset.
++module swic_admission_tables #(
++    parameter integer DIGEST_WORDS=14192,
++    parameter integer METADATA_WORDS=2328
++) (
++    input wire clk,
++    input wire digest_write_i,
++    input wire [13:0] digest_write_address_i,
++    input wire [31:0] digest_write_data_i,
++    input wire digest_read_i,
++    input wire [13:0] digest_read_address_i,
++    output wire [31:0] digest_read_data_o,
++    input wire metadata_write_i,
++    input wire [11:0] metadata_write_address_i,
++    input wire [191:0] metadata_write_data_i,
++    input wire metadata_read_i,
++    input wire [11:0] metadata_read_address_i,
++    output wire [191:0] metadata_read_data_o
++);
++    wire [1:0] digest_read_bank=digest_read_address_i[13:12];
++    wire [1:0] digest_write_bank=digest_write_address_i[13:12];
++    wire metadata_read_bank=metadata_read_address_i[11];
++    wire metadata_write_bank=metadata_write_address_i[11];
++    logic [1:0] digest_read_bank_q;
++    logic metadata_read_bank_q;
++    wire [31:0] digest_first,digest_middle,digest_tail;
++    wire [191:0] metadata_first,metadata_tail;
++    always_ff @(posedge clk) begin
++        if(digest_read_i) digest_read_bank_q<=digest_read_bank;
++        if(metadata_read_i) metadata_read_bank_q<=metadata_read_bank;
++    end
++    assign digest_read_data_o=!digest_read_bank_q[1] ? digest_first :
++        (digest_read_bank_q[0] ? digest_tail : digest_middle);
++    assign metadata_read_data_o=metadata_read_bank_q ? metadata_tail : metadata_first;
++
++    swic_admission_table_ram #(.WIDTH(32),.ROWS(8192)) u_digest_first (
++        .clk(clk),.write_i(digest_write_i && !digest_write_bank[1]),
++        .write_address_i(digest_write_address_i[12:0]),.write_data_i(digest_write_data_i),
++        .read_i(digest_read_i && !digest_read_bank[1]),
++        .read_address_i(digest_read_address_i[12:0]),.read_data_o(digest_first));
++    swic_admission_table_ram #(.WIDTH(32),.ROWS(4096)) u_digest_middle (
++        .clk(clk),.write_i(digest_write_i && digest_write_bank==2),
++        .write_address_i(digest_write_address_i[11:0]),.write_data_i(digest_write_data_i),
++        .read_i(digest_read_i && digest_read_bank==2),
++        .read_address_i(digest_read_address_i[11:0]),.read_data_o(digest_middle));
++    swic_admission_table_ram #(.WIDTH(32),.ROWS(DIGEST_WORDS-12288)) u_digest_tail (
++        .clk(clk),.write_i(digest_write_i && digest_write_bank==3),
++        .write_address_i(digest_write_address_i[10:0]),.write_data_i(digest_write_data_i),
++        .read_i(digest_read_i && digest_read_bank==3),
++        .read_address_i(digest_read_address_i[10:0]),.read_data_o(digest_tail));
++    swic_admission_table_ram #(.WIDTH(192),.ROWS(2048)) u_metadata_first (
++        .clk(clk),.write_i(metadata_write_i && !metadata_write_bank),
++        .write_address_i(metadata_write_address_i[10:0]),.write_data_i(metadata_write_data_i),
++        .read_i(metadata_read_i && !metadata_read_bank),
++        .read_address_i(metadata_read_address_i[10:0]),.read_data_o(metadata_first));
++    swic_admission_table_ram #(.WIDTH(192),.ROWS(METADATA_WORDS-2048)) u_metadata_tail (
++        .clk(clk),.write_i(metadata_write_i && metadata_write_bank),
++        .write_address_i(metadata_write_address_i[8:0]),.write_data_i(metadata_write_data_i),
++        .read_i(metadata_read_i && metadata_read_bank),
++        .read_address_i(metadata_read_address_i[8:0]),.read_data_o(metadata_tail));
++endmodule
++
++module swic_admission_table_ram #(
++    parameter integer WIDTH=32,
++    parameter integer ROWS=512,
++    localparam integer ADDR_BITS=$clog2(ROWS)
++) (
++    input wire clk,write_i,
++    input wire [ADDR_BITS-1:0] write_address_i,
++    input wire [WIDTH-1:0] write_data_i,
++    input wire read_i,
++    input wire [ADDR_BITS-1:0] read_address_i,
++    output logic [WIDTH-1:0] read_data_o
++);
++    (* ram_style="block" *) logic [WIDTH-1:0] words [0:ROWS-1];
++    always_ff @(posedge clk) begin
++        if(write_i) words[write_address_i]<=write_data_i;
++        if(read_i) read_data_o<=words[read_address_i];
++    end
++endmodule
+ `default_nettype wire

@@ -1,0 +1,11 @@
+--- a/combined_board_harness.sv
++++ b/combined_board_harness.sv
+@@ -83,7 +83,7 @@
+         .phy_req_valid_o(memory_req_valid_o),.phy_req_write_o(memory_req_write_o),.phy_req_word_o(memory_req_word_o),.phy_req_data_o(memory_req_data_o),
+         .phy_req_ready_i(memory_req_ready_i),.phy_rsp_valid_i(memory_rsp_valid_i),.phy_rsp_error_i(memory_rsp_error_i),.phy_rsp_data_i(memory_rsp_data_i),
+         .fault_o(memory_fault),.readback_done_o());
+-    combined_board_core #(.HOME_RESPONSE_CYCLES(8000000),.HOME_LEASE_CYCLES(120000000),.HOME_RENEW_CYCLES(80000000)) u_board(
++    combined_board_core #(.HOME_RESPONSE_CYCLES(8000000),.HOME_LEASE_CYCLES(120000000),.HOME_RENEW_CYCLES(40000000)) u_board(
+         .clk(clk),
+         .power_reset_n(power_reset_n),
+         .session_reset_n(session_reset_n),

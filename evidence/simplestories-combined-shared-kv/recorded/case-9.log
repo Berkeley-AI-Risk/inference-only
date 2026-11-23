@@ -1,0 +1,23 @@
+PROGRESS cycles=0 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=10000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=20000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=30000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=40000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=50000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=60000000 boot=0 lease=0 steps=0 tokens=0
+BOOT_A real_manifest=1 real_AES_CTR=1 full_image=1 all_signed_pages=1 fixed_LUTs=1 norms=1 cycles=67278562
+HOME signed response supplied turn=1 cycles=67280375
+LEASE accepted=1 cycles=67863802 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c
+PROGRESS cycles=70000000 boot=1 lease=1 steps=1 tokens=0
+PROGRESS cycles=80000000 boot=1 lease=1 steps=1 tokens=0
+PROGRESS cycles=90000000 boot=1 lease=1 steps=1 tokens=0
+CLEAR_DRAIN_COMPLETE scenario=9 old_return_target=0 old_returns=0 physical_drained=1 consumer_busy=0 cycles=98275541
+PROGRESS cycles=100000000 boot=1 lease=1 steps=2 tokens=0
+PROGRESS cycles=110000000 boot=1 lease=1 steps=2 tokens=0
+PROGRESS cycles=120000000 boot=1 lease=1 steps=2 tokens=0
+NUMERICAL_TOKEN token=108 cycles=128687255
+PASS_SERIAL_BOARD_CLEAR_HELD_TOKEN CLEAR_beats_token_APPEND_STEP=1 held_candidate_canceled=1 fresh_oracle_token=108 same_live_lease=1
+- tb_serial_clear.sv:262: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 1s; walltime 598.301 s; speed 2.151 ms/s
+- Verilator: cpu 597.366 s on 1 threads; allocated 18 MB

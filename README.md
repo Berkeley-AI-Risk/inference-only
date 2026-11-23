@@ -331,6 +331,8 @@ reconstruct its RTL inputs and regenerate its proof sources.
 
 The [protected SimpleStories prompt-378 replay](evidence/simplestories-protected-prompt378-uart/README.md) compares four generated positions and two repeated after CLEAR against an independent fixed-point reference. It includes the sampled digital UART replies from the four-bank simulation.
 
+The [combined SimpleStories shared-cipher simulation](evidence/simplestories-combined-shared-kv/README.md) replays eight signed-command cases with one AES-SIV engine serving two model domains. The recorded results cover signed model replacement, cross-model K/V rejection and CLEAR recovery.
+
 [Design references and prior work](docs/REFERENCES.md) credit the algorithms, arithmetic library and hardware antecedents.
 
 Project-owned code, documentation and the photograph are Apache-2.0; the

@@ -1,0 +1,60 @@
+--- a/tang_private_kv_siv_role_two_model.sv
++++ b/tang_private_kv_siv_role_two_model.sv
+@@ -10,12 +10,12 @@
+ // Caller must retain current-epoch/prefix/plaintext-SHA freshness enforcement.
+ // Abort revokes this component's ownership; it does NOT drain external DDR.
+ // Keys are immutable elaboration values, public in all current fixtures.
+-module tang_private_kv_siv_role #(
++module tang_private_kv_siv_role_two_model #(
+     parameter bit KEY_IS_PROVISIONED=0,
+-    parameter [255:0] MAC_KEY=256'd0,
+-    parameter [255:0] CTR_KEY=256'd0,
+-    parameter [255:0] MODEL_ID=256'hcad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0
++    parameter [255:0] MAC_KEY0=256'd0,CTR_KEY0=256'd0,MODEL_ID0=256'd0,
++    parameter [255:0] MAC_KEY1=256'd0,CTR_KEY1=256'd0,MODEL_ID1=256'd0
+ ) (
++    input wire model_slot_i,
+     input wire clk,reset_n,abort_i,model_locked_i,upstream_fault_i,
+     input wire request_valid_i,
+     output wire request_ready_o,
+@@ -37,6 +37,7 @@
+         PRE_MODEL0=6,WAIT_MODEL0=7,PRE_MODEL1=8,WAIT_MODEL1=9,IDLE=10,LOAD=11,
+         DESCRIPTOR=12,WAIT_DESCRIPTOR=13,CTR=14,WAIT_CTR=15,MAC=16,WAIT_MAC=17,
+         HOLD=18,FAILED=19;
++    wire [255:0] model_id=model_slot_i ? MODEL_ID1 : MODEL_ID0;
+     logic [4:0] state_q;
+     logic fault_q,lock_seen_q,prefix_ready_q,open_q;
+     logic [127:0] subkey1_q,subkey2_q,prefix_q,descriptor_q,d_q,chain_q,tag_q;
+@@ -54,7 +55,7 @@
+     assign fault_o=fault_q || !KEY_IS_PROVISIONED || upstream_fault_i ||
+         (lock_seen_q && !model_locked_i);
+     wire enabled=reset_n && !abort_i && !fault_o;
+-    wire protocol_error=(aes_done && !aes_wait_state) || (aes_wait_state && aes_wait_q==7'd63);
++    wire protocol_error=(aes_done && !aes_wait_state) || (aes_wait_state && aes_wait_q==7'd127);
+     // Suppress component transfers on the detection edge, before fault_q
+     // latches. Do not feed this signal back to AES abort combinationally.
+     wire io_enabled=enabled && !protocol_error;
+@@ -86,8 +87,8 @@
+             PRE_L: aes_block=0;
+             PRE_D: aes_block=subkey1_q;
+             PRE_DOMAIN: aes_block=DOMAIN ^ subkey1_q;
+-            PRE_MODEL0: aes_block=MODEL_ID[255:128];
+-            PRE_MODEL1: aes_block=chain_q ^ MODEL_ID[127:0] ^ subkey1_q;
++            PRE_MODEL0: aes_block=model_id[255:128];
++            PRE_MODEL1: aes_block=chain_q ^ model_id[127:0] ^ subkey1_q;
+             DESCRIPTOR: aes_block=descriptor_q ^ subkey1_q;
+             MAC: aes_block=chain_q ^ mac_piece;
+             CTR: begin
+@@ -110,9 +111,10 @@
+             end
+         end
+     end
+-    tang_private_aes256_fixed2 #(.KEY_IS_PROVISIONED(KEY_IS_PROVISIONED),.KEY0(MAC_KEY),.KEY1(CTR_KEY)) u_aes (
++    tang_private_aes256_fixed4 #(.KEY_IS_PROVISIONED(KEY_IS_PROVISIONED),
++        .KEY0(MAC_KEY0),.KEY1(CTR_KEY0),.KEY2(MAC_KEY1),.KEY3(CTR_KEY1)) u_aes (
+         .clk(clk),.reset_n(reset_n),.abort_i(abort_i || fault_o),.start_i(aes_start),
+-        .key_slot_i(aes_slot),.block_i(aes_block),.ready_o(aes_ready),.busy_o(aes_busy),
++        .key_slot_i({model_slot_i,aes_slot}),.block_i(aes_block),.ready_o(aes_ready),.busy_o(aes_busy),
+         .done_o(aes_done),.block_o(aes_result));
+ 
+ `ifndef SYNTHESIS

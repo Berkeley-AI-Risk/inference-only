@@ -1,0 +1,26 @@
+PROGRESS cycles=0 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=10000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=20000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=30000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=40000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=50000000 boot=0 lease=0 steps=0 tokens=0
+PROGRESS cycles=60000000 boot=0 lease=0 steps=0 tokens=0
+BOOT_A real_manifest=1 real_AES_CTR=1 full_image=1 all_signed_pages=1 fixed_LUTs=1 norms=1 cycles=67278562
+HOME signed response supplied turn=1 cycles=67280375
+LEASE accepted=1 cycles=67863802 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c
+PROGRESS cycles=70000000 boot=1 lease=1 steps=1 tokens=0
+PROGRESS cycles=80000000 boot=1 lease=1 steps=1 tokens=0
+PROGRESS cycles=90000000 boot=1 lease=1 steps=1 tokens=0
+NUMERICAL_TOKEN token=108 cycles=98275523
+PROGRESS cycles=100000000 boot=1 lease=1 steps=1 tokens=1
+HOME signed response supplied turn=2 cycles=107280378
+LEASE accepted=2 cycles=107965550 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c
+PROGRESS cycles=110000000 boot=1 lease=2 steps=2 tokens=1
+PROGRESS cycles=120000000 boot=1 lease=2 steps=2 tokens=1
+PROGRESS cycles=130000000 boot=1 lease=2 steps=2 tokens=1
+NUMERICAL_TOKEN token=32 cycles=138468207
+PASS_SERIAL_COMBINED_BOARD_A_RENEWAL tokens=108,32 native_six_layers=1 real_signed_boot=1 encrypted_weight_reads=1 encrypted_authenticated_KV=1 cipher_writes=240 leases=2 context_reset=0 full_DDR_load_and_readback_words=227062
+- tb_combined_board.sv:185: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 1s; walltime 458.525 s; speed 3.020 ms/s
+- Verilator: cpu 457.979 s on 1 threads; allocated 18 MB

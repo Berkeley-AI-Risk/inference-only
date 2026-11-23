@@ -1,0 +1,11 @@
+--- a/shared_token_probe.sv
++++ b/shared_token_probe.sv
+@@ -306,7 +306,7 @@
+         .m_rd_rsp_data(guard_rd_data),.m_rd_rsp_fault(guard_rd_rsp_fault),.fault_o(guard_integrity_fault),.epoch_o(private_kv_epoch));
+ 
+     // Fixed public-example keys, not real secrecy provisioning.
+-    combined_kv_cipher u_kv_cipher (
++    combined_kv_cipher_shared u_kv_cipher (
+         .model_slot_i(private_model_slot_i),
+         .clk(core_clk_i),.reset_n(reset_n_i),.clear_i(clear_i),.epoch_i({private_session_epoch_i,private_kv_epoch[31:0]}),
+         .model_locked_i(model_lock_core_sync_q),

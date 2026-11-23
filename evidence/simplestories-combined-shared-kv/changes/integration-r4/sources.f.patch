@@ -1,0 +1,20 @@
+--- a/sources.f
++++ b/sources.f
+@@ -89,3 +89,17 @@
+ combined_weight_pool.sv
+ combined_kv_cipher.sv
+ public_lookup_bindings.sv
++combined_aes_lookup_sim.sv
++combined_boot_scan.sv
++combined_cipher_stream.sv
++combined_identity_hash.sv
++combined_lease_guard.sv
++combined_board_core.sv
++combined_board_memory.sv
++swic/swic_boot_ingress.sv
++combined_board_harness.sv
++tb_combined_board.sv
++combined_kv_cipher_shared.sv
++tang_private_kv_siv_bridge_two_model.sv
++tang_private_kv_siv_role_two_model.sv
++tang_private_aes256_fixed4.sv

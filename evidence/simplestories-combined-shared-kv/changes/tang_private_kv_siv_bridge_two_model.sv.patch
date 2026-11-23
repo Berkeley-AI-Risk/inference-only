@@ -1,0 +1,63 @@
+--- a/tang_private_kv_siv_bridge_two_model.sv
++++ b/tang_private_kv_siv_bridge_two_model.sv
+@@ -10,12 +10,13 @@
+ // Reads consume exactly one guard role scan (0..3,8 or 4..7,8). Codec HOLD
+ // supplies authenticated plaintext; its result is never exposed before SIV.
+ // CLEAR cancels unissued work but drains the one accepted DDR transaction.
+-module tang_private_kv_siv_bridge #(
++module tang_private_kv_siv_bridge_two_model #(
+     parameter bit KEY_IS_PROVISIONED=0,
+-    parameter [255:0] MAC_KEY=256'd0,
+-    parameter [255:0] CTR_KEY=256'd0,
++    parameter [255:0] MAC_KEY0=256'd0,CTR_KEY0=256'd0,MODEL_ID0=256'd0,
++    parameter [255:0] MAC_KEY1=256'd0,CTR_KEY1=256'd0,MODEL_ID1=256'd0,
+     parameter integer DDR_TIMEOUT_CYCLES=50000000
+ ) (
++    input wire model_slot_i,
+     input wire clk,reset_n,clear_i,model_locked_i,upstream_fault_i,
+     input wire [63:0] epoch_i,
+     input wire s_wr_valid,
+@@ -165,8 +166,10 @@
+         if(write_fire) word_q<=s_wr_data;
+         if(live && down_read_wait && m_rd_rsp_valid) word_q<=m_rd_rsp_data;
+     end
+-    tang_private_kv_siv_role #(.KEY_IS_PROVISIONED(KEY_IS_PROVISIONED),.MAC_KEY(MAC_KEY),.CTR_KEY(CTR_KEY)) u_codec (
+-        .clk(clk),.reset_n(reset_n),.abort_i(clear_i || aborted_q || fault_q),
++    tang_private_kv_siv_role_two_model #(.KEY_IS_PROVISIONED(KEY_IS_PROVISIONED),
++        .MAC_KEY0(MAC_KEY0),.CTR_KEY0(CTR_KEY0),.MODEL_ID0(MODEL_ID0),
++        .MAC_KEY1(MAC_KEY1),.CTR_KEY1(CTR_KEY1),.MODEL_ID1(MODEL_ID1)) u_codec (
++        .model_slot_i(model_slot_i),.clk(clk),.reset_n(reset_n),.abort_i(clear_i || aborted_q || fault_q),
+         .model_locked_i(model_locked_i),.upstream_fault_i(upstream_fault_i || fault_q),
+         .request_valid_i(live && state_q==CSTART),.request_ready_o(codec_request_ready),
+         .open_i(open_q),.epoch_i(epoch_q),.layer_i(layer_q),.position_i(position_q),
+@@ -291,30 +294,3 @@
+     wire _unused_codec_busy=codec_busy;
+ endmodule
+ `default_nettype wire
+-
+-`default_nettype none
+-// Alternative implementation of the same full-width combinational equality.
+-// Pairwise bitwise comparisons each have four input signals. Retained small
+-// reduction boundaries aim to avoid arithmetic carry mapping. Native mapping
+-// and physical delay must still be measured; no fault/check latency is added.
+-module tang_private_epoch_match64 (
+-    input wire [63:0] a_i,
+-    input wire [63:0] b_i,
+-    output wire equal_o
+-);
+-    (* keep = "true", syn_keep = 1 *) wire [31:0] pair_equal;
+-    (* keep = "true", syn_keep = 1 *) wire [7:0] group_equal;
+-    (* keep = "true", syn_keep = 1 *) wire [1:0] half_equal;
+-    generate for (genvar part=0; part<32; part=part+1) begin: g_pair
+-        assign pair_equal[part] = ~(a_i[part*2] ^ b_i[part*2]) &
+-                                  ~(a_i[part*2+1] ^ b_i[part*2+1]);
+-    end
+-    for (genvar group=0; group<8; group=group+1) begin: g_group
+-        assign group_equal[group] = &pair_equal[group*4 +: 4];
+-    end
+-    for (genvar half=0; half<2; half=half+1) begin: g_half
+-        assign half_equal[half] = &group_equal[half*4 +: 4];
+-    end endgenerate
+-    assign equal_o = &half_equal;
+-endmodule
+-`default_nettype wire

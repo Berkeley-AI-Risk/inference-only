@@ -1,0 +1,126 @@
+{
+  "configuration": "Two signed model domains share one AES-SIV implementation in the board-derived digital simulation.",
+  "public_base": "b12eadcffd05a6052d648ec23869bc369c4cd16a",
+  "suites": {
+    "clear-r1": {
+      "binary": {
+        "bytes": 888416,
+        "sha256": "5cb7322305b7319a0fc06d5bc7dbc15235f448eca316058b8c6c5f1b75c22dbc"
+      },
+      "build_exit": 0,
+      "cases": {
+        "10": {
+          "log_sha256": "799ae966eea4e18cdc7536efcff236e0bb88d7e988a114b4095bf6ed2032c23c",
+          "marker": "PASS_SERIAL_BOARD_CLEAR_WRITE_DRAIN offered_write_stable_until_accepted=1 old_work_drained=1 fresh_oracle_token=108 same_live_lease=1",
+          "native_exit": 0,
+          "observed_tokens": [
+            108
+          ],
+          "raw_wait_status": 0,
+          "seconds": 438.28187680244446
+        },
+        "8": {
+          "log_sha256": "4408c6e271410c1a278d32c8192eb7b6e477d13bd5455a67733f5e18a3551311",
+          "marker": "PASS_SERIAL_BOARD_CLEAR_ACTIVE old_STEP_canceled=1 old_reads_returned=10 fresh_oracle_token=108 same_live_lease=1 no_canceled_public_token=1",
+          "native_exit": 0,
+          "observed_tokens": [
+            108
+          ],
+          "raw_wait_status": 0,
+          "seconds": 434.8129999637604
+        },
+        "9": {
+          "log_sha256": "2f113e7c50a473e63feb1c9af165062366283f5fdb8920e2add7767823e235f5",
+          "marker": "PASS_SERIAL_BOARD_CLEAR_HELD_TOKEN CLEAR_beats_token_APPEND_STEP=1 held_candidate_canceled=1 fresh_oracle_token=108 same_live_lease=1",
+          "native_exit": 0,
+          "observed_tokens": [
+            108
+          ],
+          "raw_wait_status": 0,
+          "seconds": 598.3158221244812
+        }
+      },
+      "compiler_project_inputs": 107,
+      "fixture_inputs": 4,
+      "preprocessed_sha256": "900b7a57e632c2bebb343689ec78c9daad8dfe249f68bf5ab9c26a0f3c9083bf",
+      "source_inputs": 112
+    },
+    "integration-r4": {
+      "binary": {
+        "bytes": 890672,
+        "sha256": "045d719d6d03d5f6352bc56713169677d01c3ccc9a6263c09e358b5e18117d22"
+      },
+      "build_exit": 0,
+      "cases": {
+        "0": {
+          "log_sha256": "3330b978e3d18ac28e9eb913417ca5097ed7623aa9337623aa2e96421b5d00a3",
+          "marker": "PASS_SERIAL_COMBINED_BOARD_A_RENEWAL tokens=108,32 native_six_layers=1 real_signed_boot=1 encrypted_weight_reads=1 encrypted_authenticated_KV=1 cipher_writes=240 leases=2 context_reset=0 full_DDR_load_and_readback_words=227062",
+          "native_exit": 0,
+          "observed_tokens": [
+            108,
+            32
+          ],
+          "raw_wait_status": 0,
+          "seconds": 458.66910195350647
+        },
+        "1": {
+          "log_sha256": "23aa929252fdfe35cdbbca19fb76e48b5ee05b108813467f9e321f5535ba7c5a",
+          "marker": "PASS_COMBINED_A_EXPIRY active_steps=1 public_tokens=0 actual_expiry=1 late_returns=10 owned_drops=10 no_DUT_force=1 modeled_monotonic_time=1",
+          "native_exit": 0,
+          "observed_tokens": [],
+          "raw_wait_status": 0,
+          "seconds": 187.2086639404297
+        },
+        "2": {
+          "log_sha256": "1575f1d13a15bceba5c94765cda9fd6a4e40d819a7490da34b187b9a99933546",
+          "marker": "PASS_SERIAL_COMBINED_AES_EXPIRY actual_AES_busy_at_expiry=1 no_public_token=1 AES_reset=1 no_new_memory=1",
+          "native_exit": 0,
+          "observed_tokens": [],
+          "raw_wait_status": 0,
+          "seconds": 192.18933391571045
+        }
+      },
+      "compiler_project_inputs": 107,
+      "fixture_inputs": 6,
+      "preprocessed_sha256": "4ee574c90c6a4ff72d1bb9ae191d9fae8105d230420f8549157979ed6f8001dc",
+      "source_inputs": 112
+    },
+    "replacement-r2": {
+      "binary": {
+        "bytes": 982760,
+        "sha256": "6bac638c3680da6f425165b6237b60554ad004c609bfa6db3eec5deec9e0e7c1"
+      },
+      "build_exit": 0,
+      "cases": {
+        "5": {
+          "log_sha256": "bf6429f1ff64c74b6b9c1626693eca7d447d035cb04c2b42379c8ce44b405863",
+          "marker": "PASS_SERIAL_BOARD_MODEL_REPLACEMENT actual_A_to_B=1 A_token=108 B_tokens=0,0 fresh_signed_packages=2 distinct_model_keys=1 same_provisioned_epoch=1 cipher_writes=360",
+          "native_exit": 0,
+          "observed_tokens": [
+            108,
+            0,
+            0
+          ],
+          "raw_wait_status": 0,
+          "seconds": 752.1607208251953
+        },
+        "6": {
+          "log_sha256": "64d45863123ba80a5a2c4bd01bdc1d52ac39b74bbb59e455f8d65f46aa8d9fde",
+          "marker": "PASS_SERIAL_BOARD_CROSS_MODEL_KV A1_cipher_authentic=1 B1_authorized_populated=1 same_epoch=1 actual_target_reads=5 real_SIV_fault=1 affected_plaintext_uses=0 new_public_tokens=0",
+          "native_exit": 0,
+          "observed_tokens": [
+            108,
+            0
+          ],
+          "raw_wait_status": 0,
+          "seconds": 649.7815871238708
+        }
+      },
+      "compiler_project_inputs": 107,
+      "fixture_inputs": 8,
+      "preprocessed_sha256": "eb5a126ff9fbc5ea076c3ba7ec8731a16ede96602e392db57c34b3dc407f6209",
+      "source_inputs": 112
+    }
+  },
+  "verilator": "Verilator 5.050"
+}

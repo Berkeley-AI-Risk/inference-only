@@ -1,0 +1,129 @@
+{
+  "captures": {
+    "A": {
+      "SIV_MODEL_ID": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+      "actual_RTL_record_reencrypted_byte_exact": true,
+      "epoch": 1,
+      "independent_OpenSSL_native_SIV_and_composed_reference_agree": true,
+      "model": "A",
+      "native_capture_sha256": "9e058cf716eef8f7b1e1adf3218d92413d0615203a31d48c906210c826cdc4fc",
+      "passed": true,
+      "plaintext_sha256": "0d63d9ac7fbec766c264f9f22240475ec7b2c377c0cc00385391354c8ae1d749",
+      "record_bytes": 160,
+      "refused_controls": [
+        "wrong-model-ID",
+        "wrong-model-key",
+        "wrong-session-epoch",
+        "changed-cipher-byte"
+      ]
+    },
+    "B": {
+      "SIV_MODEL_ID": "1ada1d7dfbbae137f8747945a7144a84428f2d1d6135afa13c071ab67e7f05ce",
+      "actual_RTL_record_reencrypted_byte_exact": true,
+      "epoch": 1,
+      "independent_OpenSSL_native_SIV_and_composed_reference_agree": true,
+      "model": "B",
+      "native_capture_sha256": "583ab515dbd5b5185f6de197d701766f9950d1e798a916e771753610e9133318",
+      "passed": true,
+      "plaintext_sha256": "0d63d9ac7fbec766c264f9f22240475ec7b2c377c0cc00385391354c8ae1d749",
+      "record_bytes": 160,
+      "refused_controls": [
+        "wrong-model-ID",
+        "wrong-model-key",
+        "wrong-session-epoch",
+        "changed-cipher-byte"
+      ]
+    }
+  },
+  "cases": {
+    "0": {
+      "events": [
+        "LEASE accepted=1 cycles=67863802 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c",
+        "NUMERICAL_TOKEN token=108 cycles=98275523",
+        "LEASE accepted=2 cycles=107965550 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c",
+        "NUMERICAL_TOKEN token=32 cycles=138468207"
+      ],
+      "marker": "PASS_SERIAL_COMBINED_BOARD_A_RENEWAL tokens=108,32 native_six_layers=1 real_signed_boot=1 encrypted_weight_reads=1 encrypted_authenticated_KV=1 cipher_writes=240 leases=2 context_reset=0 full_DDR_load_and_readback_words=227062",
+      "tokens": [
+        108,
+        32
+      ]
+    },
+    "1": {
+      "events": [
+        "LEASE accepted=1 cycles=67863802 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c"
+      ],
+      "marker": "PASS_COMBINED_A_EXPIRY active_steps=1 public_tokens=0 actual_expiry=1 late_returns=10 owned_drops=10 no_DUT_force=1 modeled_monotonic_time=1",
+      "tokens": []
+    },
+    "10": {
+      "events": [
+        "LEASE accepted=1 cycles=67863802 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c",
+        "CLEAR_DRAIN_COMPLETE scenario=10 old_return_target=0 old_returns=0 physical_drained=1 consumer_busy=0 cycles=68786283",
+        "NUMERICAL_TOKEN token=108 cycles=99197997"
+      ],
+      "marker": "PASS_SERIAL_BOARD_CLEAR_WRITE_DRAIN offered_write_stable_until_accepted=1 old_work_drained=1 fresh_oracle_token=108 same_live_lease=1",
+      "tokens": [
+        108
+      ]
+    },
+    "2": {
+      "events": [
+        "LEASE accepted=1 cycles=67863802 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c"
+      ],
+      "marker": "PASS_SERIAL_COMBINED_AES_EXPIRY actual_AES_busy_at_expiry=1 no_public_token=1 AES_reset=1 no_new_memory=1",
+      "tokens": []
+    },
+    "5": {
+      "events": [
+        "LEASE accepted=1 cycles=67863802 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c",
+        "NUMERICAL_TOKEN token=108 cycles=98275517",
+        "ACTUAL_A1_ROLE_CAPTURED external_word_base=227072 words=5 epoch=1",
+        "LEASE accepted=2 cycles=166139330 context=63801b8698c459163c61838fb38f9e00ed09b758422b40a4bf006c6c588d90ef",
+        "NUMERICAL_TOKEN token=0 cycles=196551045",
+        "NUMERICAL_TOKEN token=0 cycles=227031914"
+      ],
+      "marker": "PASS_SERIAL_BOARD_MODEL_REPLACEMENT actual_A_to_B=1 A_token=108 B_tokens=0,0 fresh_signed_packages=2 distinct_model_keys=1 same_provisioned_epoch=1 cipher_writes=360",
+      "tokens": [
+        108,
+        0,
+        0
+      ]
+    },
+    "6": {
+      "events": [
+        "LEASE accepted=1 cycles=67863802 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c",
+        "NUMERICAL_TOKEN token=108 cycles=98275517",
+        "LEASE accepted=2 cycles=166139330 context=63801b8698c459163c61838fb38f9e00ed09b758422b40a4bf006c6c588d90ef",
+        "NUMERICAL_TOKEN token=0 cycles=196551045"
+      ],
+      "marker": "PASS_SERIAL_BOARD_CROSS_MODEL_KV A1_cipher_authentic=1 B1_authorized_populated=1 same_epoch=1 actual_target_reads=5 real_SIV_fault=1 affected_plaintext_uses=0 new_public_tokens=0",
+      "tokens": [
+        108,
+        0
+      ]
+    },
+    "8": {
+      "events": [
+        "LEASE accepted=1 cycles=67863802 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c",
+        "CLEAR_DRAIN_COMPLETE scenario=8 old_return_target=10 old_returns=10 physical_drained=1 consumer_busy=0 cycles=67897433",
+        "NUMERICAL_TOKEN token=108 cycles=98275527"
+      ],
+      "marker": "PASS_SERIAL_BOARD_CLEAR_ACTIVE old_STEP_canceled=1 old_reads_returned=10 fresh_oracle_token=108 same_live_lease=1 no_canceled_public_token=1",
+      "tokens": [
+        108
+      ]
+    },
+    "9": {
+      "events": [
+        "LEASE accepted=1 cycles=67863802 context=e1642daf73eb169d3e9c437eda82dd1f7657500adf39cc0374a22c12678ddb4c",
+        "CLEAR_DRAIN_COMPLETE scenario=9 old_return_target=0 old_returns=0 physical_drained=1 consumer_busy=0 cycles=98275541",
+        "NUMERICAL_TOKEN token=108 cycles=128687255"
+      ],
+      "marker": "PASS_SERIAL_BOARD_CLEAR_HELD_TOKEN CLEAR_beats_token_APPEND_STEP=1 held_candidate_canceled=1 fresh_oracle_token=108 same_live_lease=1",
+      "tokens": [
+        108
+      ]
+    }
+  }
+}
