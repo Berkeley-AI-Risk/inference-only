@@ -7,7 +7,17 @@ The [SimpleStories objective](../demos/simplestories-v2-5m/FORMAL-STATUS.md#veri
 and the [Qwen3-1.7B objective](../demos/qwen3-1.7b/FORMAL-STATUS.md#verification-objective)
 state these obligations for their respective designs.
 
-Two proofs on the baseline SimpleStories circuit show where the argument stands.
+We are building the joint SimpleStories theorem in ACL2 on one fixed greedy
+configuration. The public ACL2 books already cover K/V record writes and
+aspects of the first value vector. The [SimpleStories ACL2 results](../demos/simplestories-v2-5m/FORMAL-STATUS.md#acl2-results)
+identify which claims hold generally and which cover particular input tokens.
+
+The earlier RTL proofs provide lemmas for this effort. To use one in the
+joint theorem, we must establish its hypotheses on the same hardware execution,
+including its reset, clock and request identity. For obligations delegated to
+Z3 during ACL2 certification, we use the trusted [Smtlink interface](https://acl2.org/doc/index-seo.php?xkey=SMT____SMTLINK).
+
+Two published proofs illustrate the remaining connections on the baseline circuit.
 Inside a layer, the numerical proof starts at RMSNorm stage admission with a
 hidden vector. Under its stated contracts, it proves successful unrotated query
 results through projection, writes to query RAM and tagged reads before overwrite.
@@ -128,6 +138,6 @@ For a small fresh check, run the existing
 It freshly recompiles three native models and executes 26 Z3/cvc5 queries,
 including reset, induction, composition and defect controls. Recorded-only
 validation checks saved answers and identities without rerunning a solver.
-The proof statements/assertions are HDL/SMT; Python coordinates replay and
-checks bindings. This supporting invariant is a reproducible part of the
+For this CLEAR example, the assertions are written in HDL and SMT. Python
+runs the checks and verifies their source bindings. This supporting invariant is a reproducible part of the
 argument, not a substitute for the open whole-device joins above.

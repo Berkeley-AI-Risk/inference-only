@@ -1,7 +1,9 @@
 # What the RTL proofs establish
 
-This page covers the four current SimpleStories-V2-5M configurations. Qwen has
-separate implementation and test evidence; no Qwen theorem is claimed here.
+This page describes the SimpleStories-V2-5M results for the circuit named in
+each proof. The [ACL2 results](#acl2-results) cover K/V record writes and
+the first value vector. The signed variants have their own reports.
+[Signed updates](variants/signed-update/FORMAL-STATUS.md) · [Periodic reauthorization](variants/home-authorization/FORMAL-STATUS.md)
 
 ## Verification objective
 
@@ -63,6 +65,33 @@ model, under its reset conditions. cvc5 passes the transport's bounded base
 checks; its unbounded transport proof remains incomplete. This is a proved
 restriction on issued commands, not a proof of the contents or physical behavior
 of DRAM.
+
+## ACL2 results
+
+The project uses ACL2 8.7 to assemble the end-to-end theorem for one fixed
+greedy design. The RTL books use Centaur's SystemVerilog semantics. The
+following results can be inspected in this release.
+
+- **What a completed K/V store wrote.** Under the book's clock, reset and
+  interface assumptions, the reconstructed behavioral RTL accepts nine K writes
+  followed by nine V writes at its internal memory interface. Their addresses
+  and data come from the layer, position and staged values saved at the start
+  of that store. Persistence in external DDR and subsequent readback require
+  separate proofs. [18-write record theorem](../../evidence/simplestories-kv-record/README.md)
+- **What fits for every possible first token.** The fixed-point numerical
+  reference satisfies the required arithmetic ranges for all 4,019 possible
+  first tokens at layer 0, position 0. [All-token range theorem](../../evidence/simplestories-first-v-profile/README.md)
+- **Which RTL values have been checked.** On the repaired eight-bank behavioral
+  probe, four executions from reset produce the expected 128 V mantissas and
+  shared exponent for first tokens 1, 27, 32 and 3258. The RTL-to-reference
+  equality for an arbitrary first token remains open.
+  [Four first-value witnesses and certification recipe](../../evidence/simplestories-first-v-witnesses/README.md)
+
+The protected four-bank greedy design has a separate simulation connecting
+prompt 378 to the vocabulary scores and digital UART replies. It gives a
+four-bank test case for the end-to-end proof. Extending a result across the
+two designs requires checking the different RTL and memory interfaces.
+[Four-bank UART replay](../../evidence/simplestories-protected-prompt378-uart/README.md)
 
 ## Native numerical and model-word value results
 
