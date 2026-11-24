@@ -1,6 +1,92 @@
-# Conditional training-capacity assessment
+# Residual training capacity of SimpleStories-V2-5M
 
-This assessment applies to the SimpleStories-V2-5M baseline with authenticated
+Our primary case is the board-tested **K/V-protected F-AWIC**. The question
+is how much useful training computation someone with the chip can obtain per
+unit of inference service. The answer depends on what they can control and
+what results they can recover. The chip's physical-owner residual training
+factor remains open. The [plain-cache baseline](#plain-cache-baseline) is a
+separate worked comparison.
+
+## K/V-protected greedy design
+
+The 25 MHz Tang Mega image `90ac6815…` authenticates its weights and keeps
+trusted on-chip digests for the attention keys and values it writes to
+external memory. When a historical row is read back, the guard checks its
+contents and context before releasing the checked copy. Under the fixed-circuit,
+trusted-state and hash-resistance assumptions, changing the external bytes
+alone cannot supply an arbitrarily chosen row through that path. The cache
+is plaintext on this image. The component proofs and corruption tests state
+which paths have been checked. A full proof from the original writer to the
+matching attention operation remains open. [Board image](prebuilt/kv-protected/BUILD.json) ·
+[K/V protection](KV-PROTECTION.md) · [Guard replay](simulation/kv-protected/README.md) ·
+[Formal scope](formal/authentication-access/README.md)
+
+### The measured inference comparison
+
+At **128 occupied positions**, the last STEP in two protected-board trials
+took **0.169531958 s** and **0.169748334 s**. Both returned the expected token
+85. Pooling the two request/reply intervals gives **5.89483 evaluations/s**.
+The board's **7.03 cached tokens/s** headline averages generation across
+growing contexts and answers a different performance question.
+[Trial 1](benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/trial-1.json) ·
+[Trial 2](benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/trial-2.json) ·
+[Benchmark definitions](GREEDY-QUALIFICATION.md#common-speed-workload)
+
+The published H100 comparison is **2,951,332.87 evaluations/s** for the FP16
+parent model at context 128, in a batch of 32,768. The FPGA runs integer
+arithmetic on a single feedback-dependent tape. The GPU uses different
+histories and a different timing boundary. Its acceptance policy permits
+logit differences and recorded 61 greedy-token disagreements with eager
+FP16 in 32,768 comparisons. We use the rate ratio as an illustrative
+denominator. The licensed inference rating has yet to be established.
+[H100 benchmark](../../docs/benchmarks/H100-BENCHMARK.md) · [Reference data](../../evidence/qwen-h100-2026-10-25/computed-results.json)
+
+Under the published convention of 989 trillion dense operations/s per H100,
+the comparison implies the following budget for **φ below 0.001**. Here
+`T` means useful training operations per second obtainable from the device.
+
+```text
+F = 2 / (0.169531958 + 0.169748334) = 5.89483 evaluations/s
+R = 2,951,332.87 evaluations/s
+φ_proxy = T / (989e12 × F/R)
+φ_proxy < 0.001 requires T < 1,975,374.57 useful operations/s (rounded)
+```
+
+**1.98 million operations/s is the threshold to beat under this comparison.**
+The two measured inference rates set that threshold. How much useful training
+work a person with the chip can actually obtain remains unknown. Certifying a
+physical-owner bound requires an upper bound on that work across all access
+paths and a justified inference rating.
+[Rating methodology](../../docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md)
+
+### What changes with access?
+
+| Assumption | Consequence for the protected image |
+| --- | --- |
+| **Only ordinary tokens, with both dense input matrices and their product explicitly represented on one tape.** | The completed-command wire limit gives at most about **40,145 useful ops/s** for this method, or **0.0000204** as a rounded-up proxy ceiling. This grants correct products and omits inference time. Other computations expressed through prompts need their own analysis. |
+| **The operator can read or alter external K/V memory while the circuit remains fixed.** | An altered or stale record must pass the guard's integrity and freshness checks before use. The contents of authentic plaintext records can still be observed. The evidence gives no aggregate training rate for this access assumption. |
+| **Every counted dynamic operation in a normal context-128 decode is useful for training.** | Crediting 801,272 operations per decode at the protected board rate gives **4.72 million ops/s**, or **0.00239**. This assumes useful operands and results throughout and a restriction to this schedule. The observed decode rate does not establish those assumptions. |
+| **The operator can obtain one useful multiply–accumulate internally every 25 core clocks.** | Crediting two operations per MAC gives **2.00 million ops/s**, or **0.001012**. This illustrates how much sustained access would matter. The chip measurements have not demonstrated such access. |
+
+The token calculation grants one 16-bit entry per token. With 2,049 tape
+slots the explicit square-matrix method gets at most
+`(2/3) × sqrt(2049/3)` operations per entry. Each successful input or output
+command needs a reply on the same transmitter. At 25 MHz, 217 clocks per bit,
+ten serial bits per byte and five bytes per frame, at most 2,304.15 such
+replies fit in a second. The dynamic-operation case uses the published model
+work count. The rows describe alternative assumptions and must not be added.
+[Token interface and UART](HARDWARE.md) · [Protected UART source](variants/kv-protected/hardware/project/uart_core.sv) ·
+[Model work counts](../../docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md)
+
+The assessment assumes the FPGA configuration is frozen. A stock FPGA can
+be reprogrammed. Rating a fixed die requires evidence about its production
+interfaces and physical access. The **0.88745** registered-arithmetic result
+belongs to the plain-cache image and its mapped arithmetic paths. It bounds the credits assigned to register updates on those paths under
+the baseline comparison. Useful training throughput requires separate evidence. [Baseline registered-credit calculation](analysis/registered-credits/README.md)
+
+## Plain-cache baseline
+
+The following comparison applies to the SimpleStories-V2-5M baseline with authenticated
 weights and without K/V integrity protection, image
 `01b040cb830cd4c5343f0666568213d433442c6937e711751a79847d492b4a57`.
 Its [implementation](HARDWARE.md), [qualification](GREEDY-QUALIFICATION.md),
@@ -16,7 +102,7 @@ The [shared methodology](../../docs/analysis/RESIDUAL-TRAINING-METHODOLOGY.md)
 separates software token access, memory tampering, internal-circuit access,
 weight-enforcement compromise and changes to the hardware.
 
-## Selected implementation and workload
+### Baseline implementation and workload
 
 The selected mapped circuit contains **87 `MULTALU27X18` and three `MULT12X12`
 instances**, reported by the vendor as **88.5 DSP blocks**. These are different
@@ -55,7 +141,7 @@ states both campaigns' numerical acceptance and timing boundaries.
 
 ## Access assumptions and arithmetic
 
-For an assumed useful training operation rate `T`, reference inference rate
+For this plain-cache baseline, with an assumed useful training operation rate `T`, reference inference rate
 `R` and FPGA inference comparison rate `F`, the illustrative proxy is:
 
 ```text
@@ -81,7 +167,7 @@ The scenarios overlap and must not be added:
 <!-- capacity-scenarios:end -->
 
 Displayed proxies are rounded; the calculation record retains
-full precision. The comparison targets 0.01,0.001 and0.0001 are illustrative paper values,
+full precision. The comparison targets 0.01, 0.001 and 0.0001 are illustrative paper values,
 not certification thresholds. The source and all computed quantities are in
 [the calculation record](evidence/training-capacity-estimates.json).
 

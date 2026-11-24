@@ -24,12 +24,12 @@ implements SimpleStories with fixed weights in RTL.
 The [FPGA measurements](#the-demonstrated-designs-and-measurements) give
 host-observed generation rates. The [architecture and evidence map](docs/ARCHITECTURE.md)
 connects each implementation to its source, tests and proof obligations.
-The [SimpleStories residual training analysis](demos/simplestories-v2-5m/TRAINING-CAPACITY.md#access-assumptions-and-arithmetic)
-compares five access assumptions for the baseline with a plain cache for
-attention keys and values (K/V). One considers
-sending matrices and receiving their products through
-the token interface. Others grant access to internal multipliers or assume the
-chip accepts weights of the user's choosing. The [scaling proposal](docs/PROPOSED-REUSABLE-AWIC.md)
+The [SimpleStories residual training analysis](demos/simplestories-v2-5m/TRAINING-CAPACITY.md#kv-protected-greedy-design)
+focuses on the board-tested F-AWIC that authenticates its model weights and
+its external cache of attention keys and values (K/V). It asks what useful
+training computation someone could obtain through ordinary tokens, access to
+external memory, or access to internal arithmetic. The physical-owner bound
+remains open. The [scaling proposal](docs/PROPOSED-REUSABLE-AWIC.md)
 shows how identical dies could share a larger model and links to a one-rank and
 two-rank SimpleStories simulation.
 
@@ -38,7 +38,7 @@ two-rank SimpleStories simulation.
 
 *The branches describe what the hardware is designed to support. How much
 computation an inference-only design can still contribute to training is a
-separate question measured by its [residual training factor](demos/simplestories-v2-5m/TRAINING-CAPACITY.md#access-assumptions-and-arithmetic).*
+separate question measured by its [residual training factor](demos/simplestories-v2-5m/TRAINING-CAPACITY.md#kv-protected-greedy-design).*
 
 <a href="docs/figures/inference-only-chips.svg?v=da9a5c6081d3#gh-light-mode-only"><img src="docs/figures/inference-only-chips.svg?v=da9a5c6081d3#gh-light-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs illustrated with a k-of-n signature policy, and HWICs with weights fixed in silicon." width="800"></a>
 <a href="docs/figures/inference-only-chips-dark.svg?v=be1398ecbcc0#gh-dark-mode-only"><img src="docs/figures/inference-only-chips-dark.svg?v=be1398ecbcc0#gh-dark-mode-only" alt="Comparison of F-AWICs with a fixed model commitment, S-AWICs illustrated with a k-of-n signature policy, and HWICs with weights fixed in silicon." width="800"></a>

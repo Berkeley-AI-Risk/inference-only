@@ -155,7 +155,7 @@ DDR-bus access or control of internal multiplier connections. Physical memory
 tampering and faults that compromise internal enforcement require separate
 analysis. Conversely, an implementation flaw could be software-triggered;
 the absence of a general arithmetic command is not an exhaustive bug-freedom
-proof. The [capacity analysis](TRAINING-CAPACITY.md#access-assumptions-and-arithmetic)
+proof. The [protected-design capacity analysis](TRAINING-CAPACITY.md#kv-protected-greedy-design)
 states which access assumptions each estimate grants.
 
 “Directly” here means no software-accessible injection/extraction point. It
@@ -241,11 +241,12 @@ the compiled digests and runtime page-verification path; arithmetic ownership
 depends on the fixed controllers. A complete physical-security assessment of
 those protections remains to be done.
 
-For the baseline with plain K/V, the [five access scenarios](TRAINING-CAPACITY.md#access-assumptions-and-arithmetic)
-give the residual training estimate under each assumption. They use a
-[measured H100 reference](../../docs/benchmarks/H100-BENCHMARK.md) running the
-original FP16 checkpoint. Which internal arithmetic someone with physical
-possession could use for training remains open.
+The [primary capacity analysis](TRAINING-CAPACITY.md#kv-protected-greedy-design)
+uses the K/V-protected circuit's measured inference rate. It distinguishes
+explicit matrix I/O through tokens, access to authentic external K/V and
+hypothetical access to useful internal arithmetic. The rate attainable by
+a physical possessor remains open. The [plain-cache scenarios](TRAINING-CAPACITY.md#access-assumptions-and-arithmetic)
+retain their own measurements and assumptions.
 
 The [architecture-dependent analysis](../../docs/analysis/ARCHITECTURE-DEPENDENT-CAPACITY.md)
 separates the model's arithmetic mix, multiplier-cycle capacity and reference

@@ -6,7 +6,7 @@ Residual training analysis asks how much useful training arithmetic an adversary
 
 | Demonstration | Detailed assessment | Scope |
 | --- | --- | --- |
-| SimpleStories-V2-5M on Tang Mega | [Five access scenarios](demos/simplestories-v2-5m/TRAINING-CAPACITY.md#access-assumptions-and-arithmetic) | Explicit matrix I/O through tokens and hypothetical internal access on the baseline with plain K/V. A separate [multiplier activity bound](demos/simplestories-v2-5m/analysis/registered-credits/README.md) counts operations on registered paths. |
+| SimpleStories-V2-5M on Tang Mega | [K/V-protected F-AWIC](demos/simplestories-v2-5m/TRAINING-CAPACITY.md#kv-protected-greedy-design) | Protected-board measurements and conditional training rates under different access assumptions. The [plain-cache baseline](demos/simplestories-v2-5m/TRAINING-CAPACITY.md#access-assumptions-and-arithmetic) and its [registered multiplier calculation](demos/simplestories-v2-5m/analysis/registered-credits/README.md) provide a separate comparison. |
 | Qwen3-1.7B on AWS F2 | [Training capacity](demos/qwen3-1.7b/TRAINING-CAPACITY.md) | Mapped arithmetic inventory, workload-dependent counts and measured H100 parent-model references. |
 | Qwen3-8B on AWS F2 | [Conditional arithmetic accounting](demos/qwen3-8b/TRAINING-CAPACITY.md) | Released arithmetic inventory and workload counts; the 8B H100 reference, useful access and certified residual factor remain unestablished. |
 
@@ -20,7 +20,7 @@ The [H100 benchmark report](docs/benchmarks/H100-BENCHMARK.md) specifies the sof
 
 ## Conditional comparison
 
-These alternative access assumptions overlap and must not be added. They grant useful access that has not been demonstrated, and use identified single FPGA steps rather than licensed peak ratings.
+The comparison table below uses the **plain-cache SimpleStories baseline** and the released Qwen3-1.7B circuit. The protected SimpleStories calculation uses its own board measurements. These alternative access assumptions overlap and must not be added. They grant useful access that has not been demonstrated, and use identified single FPGA steps rather than licensed peak ratings.
 
 <!-- capacity-comparison-table:start -->
 | Hypothetical access and schedule | Qwen `phi_proxy` | SimpleStories `phi_proxy` |

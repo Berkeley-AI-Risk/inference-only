@@ -1,13 +1,24 @@
 # What the SimpleStories proofs establish
 
 The first whole-device proof targets one protected, four-bank SimpleStories-V2-5M
-circuit with greedy token selection. The goal is to connect what a host asks
-for, what the circuit computes and what the host receives. The evidence below
-comes from three sources. ACL2 books establish specific mathematical and RTL
-claims. Earlier RTL solver proofs establish properties of named hardware
-components. Simulations and board tests give examples of complete executions.
-The [project proof strategy](../../docs/FORMAL-ARGUMENT.md#how-the-component-proofs-fit-together)
-explains how these results can contribute to one theorem.
+circuit with greedy token selection. We want to connect what a host asks for,
+what the circuit computes and what the host receives.
+
+We wrote component proofs to settle questions about the hardware that token
+tests leave open. For example, boot writes pass through a queue. Could one
+emerge after the weights have been locked? To answer for every command
+ordering the circuit permits, we used its register-transfer-level (RTL)
+description to express how its fixed-width registers change on a clock edge.
+Two automated solvers, Z3 and cvc5, checked assertions about those updates. The [write-protection proof](#how-runtime-lock-protects-the-model-weights)
+shows why a model write cannot emerge after LOCK.
+
+The larger proof uses ACL2, a proof assistant, to connect such hardware
+properties with the model's numerical specification on the same execution.
+A component result supplies a usable lemma once the ACL2 book establishes
+its statement and the conditions under which the selected circuit uses it.
+Simulations and board tests give concrete executions against which to check
+the model and its assumptions.
+[Project proof strategy](../../docs/FORMAL-ARGUMENT.md#how-the-component-proofs-fit-together)
 
 ## Verification objective
 
@@ -27,7 +38,7 @@ two claims together.
 The end-to-end ACL2 theorem remains open. The [ACL2 results](#acl2-results)
 state what is already certified. The sections on the [attention query](#how-the-baseline-circuit-computes-the-attention-query)
 and the [protection of model weights](#how-runtime-lock-protects-the-model-weights)
-illustrate what the earlier solver work can supply. The [implementation results](#detailed-implementation-proof-results)
+show how the component proofs support the numerical and access claims. The [implementation results](#detailed-implementation-proof-results)
 give the precise scope by component. Signed model updates and renewable
 permission have additional policies and their own proof records.
 [Signed updates](variants/signed-update/FORMAL-STATUS.md) · [Reauthorization](variants/home-authorization/FORMAL-STATUS.md)
@@ -49,8 +60,8 @@ image and the chip's specified fixed-point arithmetic.
   the reference model's embedding, RMS normalization and layer-0 value
   projection at position zero satisfy the required fixed-point arithmetic
   ranges. [All-token range theorem](../../evidence/simplestories-first-v-profile/README.md)
-- **Which first-token values match the RTL.** On the repaired eight-bank
-  behavioral circuit, first tokens 1, 27, 32 and 3258 each produce the
+- **Which first-token values match the RTL.** On the eight-bank behavioral
+  circuit defined in the witness books, first tokens 1, 27, 32 and 3258 each produce the
   expected 128 V mantissas and shared exponent. The corresponding
   RTL-to-reference equation for an arbitrary first token remains open.
   [Four certified witnesses](../../evidence/simplestories-first-v-witnesses/README.md)
@@ -73,7 +84,7 @@ each value vector. The baseline RTL proofs below establish a numerical segment
 of that calculation. They begin with the hidden vector actually presented to
 RMS normalization and end with reads of the unrotated Q vector from query RAM.
 
-| Part of the calculation | What the earlier RTL proof establishes |
+| Part of the calculation | Property proved on the baseline RTL |
 | --- | --- |
 | Read the inputs | The custom memory transport and four-bank cache deliver the model word at the accepted address. The proof assumes the vendor's storage behavior, the model image at runtime entry and the corresponding metadata ROM. The RMS unit operates on one accepted vector, role and exponent. [Model-read theorem](formal/upstream-model-values/THEOREM.md) · [RMSNorm invocation](formal/native-component-values/README.md) |
 | Feed the Q multipliers | Fixed-model coefficients and the matching current activations reach all 64 Q multiply-accumulate lanes. Row metadata reaches the scaling inputs. The scope covers six layers, four groups and 256 columns. [Q operand theorem](formal/q-operand-provenance/THEOREM.md) |
@@ -99,8 +110,8 @@ flowchart LR
   C --> R[Q row metadata through tile RAM and postscale inputs]
 ```
 
-The original packages retain their executable obligations, assumptions and
-reproduction instructions. [Model reads](formal/upstream-model-values/README.md) ·
+Each Q and memory proof package lists the assumptions it uses and the solver
+checks a reader can rerun. [Model reads](formal/upstream-model-values/README.md) ·
 [Q operands](formal/q-operand-provenance/README.md) · [Operand statement](formal/q-operand-provenance/THEOREM.smt2) ·
 [Q arithmetic](formal/q-operator/README.md) · [Normalization and proof method](formal/q-operator/DOCUMENTATION.md) ·
 [RMSNorm-to-Q replay](formal/rms-q-segment/README.md) · [Segment statement](formal/rms-q-segment/STATEMENT.smt2)
@@ -165,7 +176,7 @@ flowchart TB
 ### Why queued boot writes cannot bypass LOCK
 
 1. Once the source issues a read, every subsequent write targets the K/V region.
-2. Runtime LOCK requires an earlier source read and its reply.
+2. Runtime LOCK requires that the source has issued a read and received its reply.
 3. The command FIFO preserves order. By the time that reply arrives, any
    model write queued before its read has left the custom FIFO. The common
    reset proof connects the source and transport histories across clock domains.
@@ -200,8 +211,8 @@ For the matching sources, the protected CLEAR-epoch theorem proves that a
 session identifier cannot silently wrap and regain authority. Connecting the guard to attention still requires the entire row and the
 identity of its writer.
 Pending on-chip rows need their own case because they bypass the external
-guard read. The historical `formal/kv-integrity` records use a different
-source snapshot. [Current CLEAR-epoch theorem and replay](formal/kv-clear-epoch/README.md)
+guard read. The `formal/kv-integrity` package identifies its own RTL by digest.
+The authentication and CLEAR-epoch links here identify the variant sources used for these claims. [CLEAR-epoch theorem and replay](formal/kv-clear-epoch/README.md)
 
 ## Working-memory ownership and CLEAR
 
