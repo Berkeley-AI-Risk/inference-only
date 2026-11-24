@@ -1,117 +1,91 @@
-# What the RTL proofs establish
+# What the SimpleStories proofs establish
 
-This page describes the SimpleStories-V2-5M results for the circuit named in
-each proof. The [ACL2 results](#acl2-results) cover K/V record writes and
-the first value vector. The signed variants have their own reports.
-[Signed updates](variants/signed-update/FORMAL-STATUS.md) · [Periodic reauthorization](variants/home-authorization/FORMAL-STATUS.md)
+The first whole-device proof targets one protected, four-bank SimpleStories-V2-5M
+circuit with greedy token selection. The goal is to connect what a host asks
+for, what the circuit computes and what the host receives. The evidence below
+comes from three sources. ACL2 books establish specific mathematical and RTL
+claims. Earlier RTL solver proofs establish properties of named hardware
+components. Simulations and board tests give examples of complete executions.
+The [project proof strategy](../../docs/FORMAL-ARGUMENT.md#how-the-component-proofs-fit-together)
+explains how these results can contribute to one theorem.
 
 ## Verification objective
 
-As in the [Qwen3-1.7B formal program](../qwen3-1.7b/FORMAL-STATUS.md),
-the intended whole-design result combines two claims:
+For every allowed history of host inputs on the fixed circuit, we want to prove
+two claims together.
 
-1. **Functional correctness:** permitted operations behave as specified.
-   `APPEND(token)` extends the logical tape; `STEP` computes, appends and returns
-   the fixed model's next token using the configuration's numerical and sampling
-   rules; `CLEAR` resets the logical context. Arithmetic, data preservation,
-   sequencing, backpressure, reset and clock crossings belong to this claim.
-2. **Inference-only restrictions:** arbitrary application command sequences
-   remain within the permitted interface. Inputs cannot replace the accepted
-   model, bypass authentication, choose another execution program or obtain a
-   general private tensor/operand port. Ownership and lifecycle rules must also
-   prevent discarded workspace from influencing later inference after CLEAR.
+1. **The host gets the model's answer.** An accepted `APPEND` adds a token to
+   the tape. A successful `STEP` computes the fixed model's next token for that
+   tape, appends it and returns it. A `CLEAR` revokes the previous context.
+   A reply has to belong to the same accepted request as the computation.
+2. **The host can use the circuit only in the permitted ways.** Every arithmetic
+   operation, operand and private memory access has to belong to the specified
+   inference or a permitted supporting operation. Cancellation, stalls,
+   malformed commands and faults are in scope, including when no token returns.
+   The specified fault conditions must justify a reported fault.
 
-The seeded design additionally permits bounded temperature and public-seed
-settings while its tape is empty and idle. Restricted boot/provisioning, status
-and diagnostic facilities have their own stated interfaces. Invalid or busy
-commands, cancellation and faults need specified behavior as well as legal
-inference. The circuit configuration and stated external-service contracts are
-assumed fixed.
-
-**The joint whole-design theorem is an objective, not an achieved result.**
-Universal whole-model numerical correctness and complete session isolation
-through subsequent token output remain open. A restricted interface alone does
-not establish correct token computation; correct examples alone do not establish
-the restrictions for arbitrary command sequences.
-
-| Proof layer | Functional-correctness role | Inference-only role |
-| --- | --- | --- |
-| Arithmetic, storage and transport | Establish the specified numerical functions and preserve requested data and ordering. | Supply trustworthy component contracts for restricted computation. |
-| Authentication and checked copies | Compute the checked digest and preserve the accepted bytes through use. | Bind computation to the permitted fixed model and protected current data. |
-| LOCK, controllers and private access paths | Establish operation/lifecycle and request/reply behavior. | Exclude model writes and unauthorized programs, operands or addresses at the checked boundaries. |
-| Working-memory ownership and CLEAR | Establish fresh/current data before consumption and specified cancellation. | Constrain mutable storage to authorized inference state; full post-CLEAR isolation still needs composition. |
-| Source-bound composition and implementation mapping | Join contracts at actual ports, parameters and state. | Connect restrictions to the actual circuit; vendor, physical and mapped-image boundaries remain explicit. |
-
-The following sections state the established scopes and the remaining boundaries.
-
-**The source proofs establish model-write exclusion, scoped authentication and
-checked-copy properties, and named controller/operand-route safety.** The
-[authentication/access package](formal/authentication-access/README.md) connects
-actual SHA engines and checked model RAM with stage sequencing, selected operand
-mux equalities, address/control bounds and protected K/V capture/use in its named
-scopes. Numerical child outputs remain arbitrary where stated. These component
-results do not exhaustively establish every arithmetic admission or tensor's
-fixed-graph meaning, or one adversarial-memory non-interference theorem.
-
-**After runtime LOCK, the custom RTL
-cannot issue a write to the model region through the vendor DDR application
-interface until the common hard reset. Writes must stay in the permitted runtime
-K/V region, including its protection metadata where present.** This includes
-model writes that were previously queued in the custom transport during boot.
-
-Z3 establishes this safety property by bounded base checks and unbounded
-induction: it holds for arbitrarily long executions of the checked digital
-model, under its reset conditions. cvc5 passes the transport's bounded base
-checks; its unbounded transport proof remains incomplete. This is a proved
-restriction on issued commands, not a proof of the contents or physical behavior
-of DRAM.
+The end-to-end ACL2 theorem remains open. The [ACL2 results](#acl2-results)
+state what is already certified. The sections on the [attention query](#how-the-baseline-circuit-computes-the-attention-query)
+and the [protection of model weights](#how-runtime-lock-protects-the-model-weights)
+illustrate what the earlier solver work can supply. The [implementation results](#detailed-implementation-proof-results)
+give the precise scope by component. Signed model updates and renewable
+permission have additional policies and their own proof records.
+[Signed updates](variants/signed-update/FORMAL-STATUS.md) · [Reauthorization](variants/home-authorization/FORMAL-STATUS.md)
 
 ## ACL2 results
 
-The project uses ACL2 8.7 to assemble the end-to-end theorem for one fixed
-greedy design. The RTL books use Centaur's SystemVerilog semantics. The
-following results can be inspected in this release.
+ACL2 8.7 checks the following published results. The RTL books use Centaur's
+SystemVerilog semantics. The numerical reference uses the SimpleStories model
+image and the chip's specified fixed-point arithmetic.
 
-- **What a completed K/V store wrote.** Under the book's clock, reset and
-  interface assumptions, the reconstructed behavioral RTL accepts nine K writes
-  followed by nine V writes at its internal memory interface. Their addresses
-  and data come from the layer, position and staged values saved at the start
-  of that store. Persistence in external DDR and subsequent readback require
-  separate proofs. [18-write record theorem](../../evidence/simplestories-kv-record/README.md)
-- **What fits for every possible first token.** The fixed-point numerical
-  reference satisfies the required arithmetic ranges for all 4,019 possible
-  first tokens at layer 0, position 0. [All-token range theorem](../../evidence/simplestories-first-v-profile/README.md)
-- **Which RTL values have been checked.** On the repaired eight-bank behavioral
-  probe, four executions from reset produce the expected 128 V mantissas and
-  shared exponent for first tokens 1, 27, 32 and 3258. The RTL-to-reference
-  equality for an arbitrary first token remains open.
-  [Four first-value witnesses and certification recipe](../../evidence/simplestories-first-v-witnesses/README.md)
+- **What a K/V store writes.** On the reconstructed behavioral RTL, a reported
+  completion entails nine accepted key writes followed by nine value writes
+  at the internal memory interface. Their addresses and data match the layer,
+  position and staged values of the same store. The book states its clock,
+  reset and interface assumptions. The numerical origin of the staged data,
+  external DDR persistence and the value that attention later consumes have
+  separate obligations. [18-write record theorem](../../evidence/simplestories-kv-record/README.md)
+- **What fits for every first token.** For all 4,019 possible first tokens,
+  the reference model's embedding, RMS normalization and layer-0 value
+  projection at position zero satisfy the required fixed-point arithmetic
+  ranges. [All-token range theorem](../../evidence/simplestories-first-v-profile/README.md)
+- **Which first-token values match the RTL.** On the repaired eight-bank
+  behavioral circuit, first tokens 1, 27, 32 and 3258 each produce the
+  expected 128 V mantissas and shared exponent. The corresponding
+  RTL-to-reference equation for an arbitrary first token remains open.
+  [Four certified witnesses](../../evidence/simplestories-first-v-witnesses/README.md)
 
-The protected four-bank greedy design has a separate simulation connecting
-prompt 378 to the vocabulary scores and digital UART replies. It gives a
-four-bank test case for the end-to-end proof. Extending a result across the
-two designs requires checking the different RTL and memory interfaces.
-[Four-bank UART replay](../../evidence/simplestories-protected-prompt378-uart/README.md)
+On the protected **four-bank target**, a separate simulation follows prompt
+378 through the vocabulary scores to the digital UART replies. It produced
+200, 15, 103 and 157, then repeated 200 and 15 after `CLEAR` and a fresh
+append. That is one command history against which to check the proposed
+general theorem. Reusing an eight-bank theorem on this target requires
+establishing the correspondence between the relevant circuit states and
+interfaces. [Four-bank replay](../../evidence/simplestories-protected-prompt378-uart/README.md)
 
-## Native numerical and model-word value results
+<a name="native-numerical-and-model-word-value-results"></a>
 
-The baseline now has a [composed model-read value proof](formal/upstream-model-values/README.md)
-through the actual custom DDR transport, runtime wrappers, shared model/K/V
-routing, model CDC and production four-bank cache. Under its explicit vendor
-storage, runtime-entry image-identity and metadata-ROM binding conditions,
-successful cache words are the fixed model words at their accepted request
-addresses. The cache's correct raw-reply premise is discharged through those
-custom RTL modules. Those external conditions remain assumptions: this baseline
-functional theorem does not establish resistance to malicious DDR substitution
-or successful boot authentication/loading.
+## How the baseline circuit computes the attention query
 
-| Result | What is established | Remaining boundary |
-| --- | --- | --- |
-| [RMSNorm invocation](formal/native-component-values/README.md) | Every successful result agrees with the native finite-width operator on the current accepted role, exponent and complete vector. Retained workspace, stalls and CLEAR cannot substitute another invocation's values. | Caller operand provenance and the full graph remain open; configured stateless DSP correspondence is a platform premise. |
-| [Model reads through the memory path and cache](formal/upstream-model-values/THEOREM.md) | Requested model word, ownership and order are preserved through the actual custom transport and wrappers, including held cache returns and replacement. The native preceding-write/read-snapshot proof accounts for queued boot commands. | Vendor DDR storage semantics, the trusted model image at runtime entry and its static metadata-ROM binding remain explicit. Other arithmetic consumers and the whole-device composition remain open. |
-| [Q projection operand provenance](formal/q-operand-provenance/THEOREM.md) | Fixed-model coefficients and matching current accepted activations reach all 64 actual Q MAC input pins; current row metadata reaches tile storage, synchronous reads and both postscale coefficient pins. All six layers, four groups and 256 columns are covered. | Inherits the vendor-storage, trusted runtime-entry model image and metadata-ROM contracts above. Caller RMSNorm, other consumers and the whole graph remain open. |
-| [Q projection and normalization](formal/q-operator/THEOREM.md) | Exact fixed-model Q dot products/scaling, ordered raw rows, the independent normalization algorithm, actual Q write admissions/exponent, full stage completion and current-invocation value ownership. Common-reset, bootstrap and regular trace composition are checked. | Inherits those same storage/image/metadata contracts. Named interruptions may truncate a correct prefix. Whole graph, timed fault authorization, other configurations and physical implementation equivalence remain open. |
-| [RMSNorm through Q and query RAM](formal/rms-q-segment/THEOREM.md) | Independent RMS integer arithmetic and whole-vector normalization, actual hidden/RMS RAM and Q capture, the complete Q operator, retained unrotated-Q payloads and pre-overwrite reads with the full producing-invocation certificate. | Inherits those same storage/image/metadata contracts; input begins at actual RMS stage admission. Earlier activation meaning, Q-RoPE/later consumers, remaining graph, other configurations and physical mapping remain open. |
+**Q is the query vector** for a token at a particular layer. Attention uses
+the position-adjusted query and the keys to calculate how much weight to give
+each value vector. The baseline RTL proofs below establish a numerical segment
+of that calculation. They begin with the hidden vector actually presented to
+RMS normalization and end with reads of the unrotated Q vector from query RAM.
+
+| Part of the calculation | What the earlier RTL proof establishes |
+| --- | --- |
+| Read the inputs | The custom memory transport and four-bank cache deliver the model word at the accepted address. The proof assumes the vendor's storage behavior, the model image at runtime entry and the corresponding metadata ROM. The RMS unit operates on one accepted vector, role and exponent. [Model-read theorem](formal/upstream-model-values/THEOREM.md) · [RMSNorm invocation](formal/native-component-values/README.md) |
+| Feed the Q multipliers | Fixed-model coefficients and the matching current activations reach all 64 Q multiply-accumulate lanes. Row metadata reaches the scaling inputs. The scope covers six layers, four groups and 256 columns. [Q operand theorem](formal/q-operand-provenance/THEOREM.md) |
+| Produce and store Q | The dot products, scaling, normalization, ordered writes of 256 coordinates and final exponent implement the specified Q operation. A completed operation belongs to the current invocation. [Q operator theorem](formal/q-operator/THEOREM.md) |
+| Read Q back | The joined proof carries the numerical meaning through hidden, RMS and query RAM and through a tagged read before overwrite. It accounts for cancellation and replacement. [RMSNorm-to-Q theorem](formal/rms-q-segment/THEOREM.md) |
+
+For the whole-device ACL2 theorem, we still need to establish that the starting
+hidden vector is the one prescribed by the accepted tape on the selected
+circuit. We must also carry Q through its position-dependent rotation and into
+the matching attention computation. The published Q proofs are source-bound
+RTL/SMT results. Their statements, register correspondences and numerical
+specifications can be reused when establishing these connections in ACL2.
 
 ```mermaid
 flowchart LR
@@ -125,106 +99,29 @@ flowchart LR
   C --> R[Q row metadata through tile RAM and postscale inputs]
 ```
 
-The [readable theorem and contract map](formal/upstream-model-values/THEOREM.md)
-explain each discharged interface and external boundary. The proof retains the
-native FIFO payloads, RAMs, ownership rings, watchdogs and independent physical
-clock crossing. It uses no correct-private-reply promise and makes no
-queue-empty assumption at LOCK. Its combined fresh reproduction recompiles
-eight native models and passes all 1,411 exact queries: 1,404 UNSAT proofs and
-seven expected SAT witnesses or countermodels. Native operating and actual-only
-defect controls supplement the unbounded proof.
+The original packages retain their executable obligations, assumptions and
+reproduction instructions. [Model reads](formal/upstream-model-values/README.md) ·
+[Q operands](formal/q-operand-provenance/README.md) · [Operand statement](formal/q-operand-provenance/THEOREM.smt2) ·
+[Q arithmetic](formal/q-operator/README.md) · [Normalization and proof method](formal/q-operator/DOCUMENTATION.md) ·
+[RMSNorm-to-Q replay](formal/rms-q-segment/README.md) · [Segment statement](formal/rms-q-segment/STATEMENT.smt2)
 
-The [Q operand-provenance package](formal/q-operand-provenance/README.md)
-connects those model words to the actual Q consumer. It retains the native
-projection subtree, queues, saved request owners, packer, tile operand registers
-and metadata memories. Every one of the 640 beat bits is covered by constant
-coefficient slices and a checked join. The main [SMT-LIB statement](formal/q-operand-provenance/THEOREM.smt2)
-names four constituent guarantees; the [readable theorem and diagram](formal/q-operand-provenance/THEOREM.md)
-state their meaning and assumptions. Its portable replay checks 449 exact
-obligations (438 UNSAT and eleven expected SAT contexts), source reconstruction,
-eight native operating/defect cases and logical refusal controls. The 19 other
-numerical leaves in its parent control model remain unrestricted. The proof
-establishes operand provenance, without claiming arithmetic-result correctness.
+<a name="how-this-supports-the-inference-only-claim"></a>
+<a name="scope-of-the-memory-write-theorem"></a>
 
-The [complete Q operator package](formal/q-operator/README.md) joins that operand
-layer to the numerical implementation and actual Q effects. Its
-[finalized normalization specification and published method review](formal/q-operator/DOCUMENTATION.md)
-explain the unchanged frozen algorithm and the explicitly trusted semantic rules. Its 326 UNSAT
-implications and three SAT controls have an executable common-trace composition.
-The portable qualification recompiles seven numerical models identically and
-reruns 17 selected solver queries; all 329 canonical/actual new engine inputs and
-the existing dependencies are reconstructed. [The readable theorem and diagram](formal/q-operator/THEOREM.md)
-explain the fixed-model dot/scale, normalization, write, exponent and completion
-chain. Finite cases cover all layers/lanes, large signed values, cancellation,
-zero/impulse inputs, stalls and seven source-only defects. This establishes
-interruptible value/prefix/completion behavior, without a termination or timed
-fault-authorization claim. The actual normalizer is bound in this composition;
-18 unrelated numerical leaves remain unrestricted.
+## How runtime LOCK protects the model weights
 
-The [RMSNorm-to-Q segment](formal/rms-q-segment/README.md) connects the actual
-RMS producer and workspace to that complete Q computation and retained query
-payloads. Its independent integer profile includes floor square root and signed
-nearest-even division; all 3,328 consumed RMS ROM words match the fixed model.
-Constructed admission and payload histories preserve the complete numerical
-certificate across storage, reads, CLEAR and overwrite. The [readable theorem
-and diagram](formal/rms-q-segment/THEOREM.md) and [SMT-LIB predicate](formal/rms-q-segment/STATEMENT.smt2)
-state the entry-vector boundary and exact read scope. Qualification reconstructs
-554 selected new engine checks (548 UNSAT, six SAT controls), the pinned Q and
-memory dependencies, four byte-identical new native recompilations and 52 fresh
-composition checks. Six native layer-0 operating cases and three actual-only
-numerical defects supplement the unbounded source argument. This closes these
-RMS/Q/storage interfaces; whole-device numerical and command composition remain
-open.
+**After runtime LOCK, the custom circuit can issue writes only to the permitted
+K/V region until the common hard reset.** Inference can therefore update
+session state while the fixed model is protected against writes through this
+path. A boot write already in a queue is covered too. The guarantee ends at
+the commands issued to the vendor DDR interface. Physical storage behavior
+and authentication of the model loaded at startup have their own assumptions
+and proofs. [Implementation-assurance theorem and source bindings](formal/implementation-assurance/README.md)
 
-These numerical/value results apply to the named baseline sources. They do not
-automatically qualify the other configurations. The main theorem still needs
-actual command-to-graph connections, remaining caller/consumer contracts,
-arithmetic correctness and attention/K/V value contracts.
-
-## How this supports the inference-only claim
-
-An inference-only machine serves a fixed permitted model while allowing the
-temporary state needed for inference to change. Training normally changes learned
-parameters; inference changes the token tape, activations and K/V cache. This
-result supports the **fixed-model requirement**: after LOCK, the checked RTL
-cannot issue writes that update stored model weights through this interface,
-while permitting the K/V state needed for inference to evolve. The source RTL
-proof establishes that restriction at the vendor application boundary.
-Under its stated physical-storage, runtime-image and metadata-ROM contracts,
-the model-read value proof establishes requested-model-word identity through the
-custom memory path. Within that contract, K/V contents or another read's word
-cannot substitute for the requested model word. An attacker that substitutes
-external memory is outside that theorem's storage contract;
-the separate authentication/checked-copy results do not yet form a joined
-whole-device tamper theorem.
-Under those same storage/image/metadata contracts, the Q operand proof connects
-those words to the actual Q MAC and postscale coefficient inputs, with matching current accepted activations.
-The Q operator proof establishes the specified numerical result and its
-current-invocation writes. The RMSNorm-to-Q composition carries independent
-normalization meaning from actual stage entry through Q capture and retained
-query payloads, closing those numerical producer and storage interfaces. Connecting the remaining consumers and the permitted
-command-to-graph schedule belongs to the whole-device proof.
-
-The authentication/access proofs supply further parts of that argument: they
-check actual SHA engines and accepted byte streams, preserve checked model
-copies in their named use paths, constrain stage/mux/address behavior, and
-establish separate protected K/V guard/cache and attention capture/pin
-properties. The joined legitimate-record-to-consumption theorem remains open.
-Complete command-to-graph authorization, all arithmetic operand provenance and a paired
-adversarial-memory theorem remain separate obligations.
-
-These facts do not establish that every token-only algorithm has negligible
-training utility. Cryptographic resistance and trusted on-chip state remain
-explicit assumptions, and physical enforcement needs separate evidence. See the
-[inference-only assessment](INFERENCE-ONLY.md) and
-[training-capacity assessment](TRAINING-CAPACITY.md) for those limits.
-
-## Scope of the memory-write theorem
-
-The diagram adapts the request paths in the actual top-level RTL. The green
-region marks the composed memory-write proof. The controller has a separate
-control proof; the amber boxes identify behavior that remains abstracted or
-only partly verified. The gray box is outside the proof.
+The green part of the diagram is the hardware covered by the write restriction.
+The proof permits arbitrary runtime requests and arbitrary outputs on four
+authenticator signals, so it gives a useful restriction even with those
+producers left unspecified.
 
 ```mermaid
 flowchart TB
@@ -265,289 +162,178 @@ flowchart TB
     style WRITE_PROOF fill:#f5fbf6,stroke:#2e7d32,color:#172b1a
 ```
 
-Arrows summarize connections and request/reply paths; they do not imply one
-numerical-correctness theorem across every box. The memory-write proof permits
-arbitrary runtime requests and arbitrary authenticator output flags. Its
-write restriction therefore does not depend on those producers behaving
-correctly. The actual top-level connections are checked separately.
+### Why queued boot writes cannot bypass LOCK
 
-The proof ends at the custom RTL's **issued command**. It includes the custom
-command and return FIFOs, but does not establish when the vendor controller
-finishes a write it has already accepted, or what it retains across reset.
-Runtime reads of model weights remain allowed, as inference requires them.
+1. Once the source issues a read, every subsequent write targets the K/V region.
+2. Runtime LOCK requires an earlier source read and its reply.
+3. The command FIFO preserves order. By the time that reply arrives, any
+   model write queued before its read has left the custom FIFO. The common
+   reset proof connects the source and transport histories across clock domains.
 
-## Why queued boot writes cannot bypass LOCK
+For an ACL2 application, the chosen circuit must establish that the same
+reset, lock event, queue ordering and address boundary govern its issued
+commands. Weight-read authentication adds another obligation. The arithmetic must
+consume the checked copy of the requested model word. [Model-read contracts](formal/upstream-model-values/THEOREM.md) ·
+[Authentication and checked copies](formal/authentication-access/README.md)
 
-The composed argument has three steps:
+<a name="authentication-and-access-through-the-actual-implementation"></a>
 
-1. **Boot model writes precede readback.** The actual source path proves that,
-   once a source READ has been emitted, every later WRITE targets the permitted
-   runtime K/V region.
-2. **Runtime LOCK requires an earlier READ and reply.** The source path proves
-   this even with the four authenticator outputs left unrestricted. It does not
-   prove that the digest was computed correctly.
-3. **The transport preserves order and reply ownership.** A returned reply
-   requires an earlier READ issued at the vendor interface. Model writes queued
-   before that READ have already left the custom command FIFO; later writes are
-   restricted by step 1.
+## Which operands the circuit can use
 
-The reset proof establishes that these histories describe the same reset epoch
-across the actual clock domains. All 52 imported FIFO invariants and both source
-contracts are independently proved before use; the argument has no circular
-dependencies or unproved client protocol promises. It does not simply assume
-that the command queue is empty when LOCK arrives.
+The RTL solver proofs check where the arithmetic gets its inputs. For
+immutable weights the relevant chain goes from authenticated model bytes
+through sealed RAM to a permitted consumer. For mutable K/V it goes from a
+particular forward-pass write through storage to the attention invocation
+permitted to use that row. The table identifies where the published proofs
+reach actual consumer signals and where that chain still needs a proof.
+[Authentication and access records](formal/authentication-access/README.md)
 
-## Authentication and access through the actual implementation
-
-| Checked boundary | Established result | Main limit |
+| Checked hardware | What the RTL proofs establish | What remains assumed or open |
 | --- | --- | --- |
-| Authentication to runtime LOCK | 45 assertions per image, both solvers; native ordered byte stream, padding and one BEGIN per hard reset | No formal full native-size successful-boot reachability witness. |
-| Native SHA and sealed model RAM through consumption | SHA compression/chaining, fixed digest/metadata selection, complete fill/hash/seal and current service/consumer ownership are source-bound and composed | SHA resistance is assumed. That package leaves private decryption replies unrestricted; the normal K/V return proof below has a separate scope. |
-| Fixed schedule and arithmetic/state access | Six-layer sequence: 22 assertions; actual datapath: 53; group/metadata addresses: 23; lookup: 9. Both solvers complete bases, induction and covers | Numerical-child outputs remain arbitrary in the datapath scope; no whole-transformer numerical theorem. |
-| Protected K/V guard/cache and separate attention boundaries | Current authentication/access records: 357-assertion guard/cache, 43-assertion actual hash framing/chaining and separate 34-assertion attention scopes; both solvers | K is tied to the captured row at score-lane inputs. V is tied to the aligner request and to its reply; reply-to-request identity and a joined legitimate-record-to-consumption theorem remain open. SHA resistance and trusted on-chip state are assumptions. |
-| [Protected K/V CLEAR epoch](formal/kv-clear-epoch/THEOREM.md) | Unbounded native 64-bit counter/reference preservation: fresh CLEAR advances once, held CLEAR does not count repeatedly, and fresh exhaustion causes immediate/sticky fault | Plaintext K/V-protected source only. Full tag/RAM/cache preservation, authenticated read-value identity and the joined consumer theorem remain open. |
+| Authentication and runtime LOCK | Both solvers check 45 assertions per image on the ordered image bytes, padding and single boot start per hard reset. | Full-size boot reaches LOCK in tests. A formal witness for the full boot remains open. |
+| SHA and sealed model RAM | The native SHA compression and chaining logic, fixed digest selection, complete page fill and sealing, and delivery of the checked copy to named consumers are covered. | The proof assumes hash resistance. Its private decryption replies are arbitrary. The encrypted K/V return path has a separate proof below. |
+| Operation schedule and operand routing | Both solvers check the six-layer sequence (22 assertions), datapath access (53), group and metadata addressing (23), and lookup addressing (9). | The datapath proof permits arbitrary replies from numerical units. Their arithmetic needs its own proof. |
+| Protected K/V guard and attention inputs | Both solvers check the guard/cache (357 assertions), actual hash framing and chaining (43), and separate attention-input scopes (34). K reaches the score lanes. V reaches the alignment request, and the alignment reply reaches its consumer. | Connecting the V reply to its request and the original authorized row to its use remains open. Hash resistance and trusted on-chip state are assumed. |
+| Session epoch on CLEAR | In the plaintext protected design, one fresh CLEAR advances the 64-bit epoch once. Holding CLEAR does not advance it again. Exhaustion causes a latched fault. [Epoch theorem](formal/kv-clear-epoch/THEOREM.md) | The counter alone leaves the tag, RAM contents, authenticated data and consumer to be connected. |
 
-For the current variant sources, use the authentication/access package below.
-The standalone `formal/kv-integrity` replay pins a separate source snapshot;
-its source checks reject the current variant tree where those hashes differ.
-Do not substitute current source hashes into that recorded proof. Its
-221/325/34 counts and the current 357-assertion scope are not interchangeable.
-
-The current parent and attention proofs leave their respective interface inputs
-free. Their source connections support separate scoped facts, while the written
-join from original guard tickets through complete rows to consumption remains
-open. Pending on-chip rows need their own provenance case because they do not
-perform guard reads. These limits also apply when reading broader wording in
-the component guides.
-
-The [current authentication/access evidence and reproduction guide](formal/authentication-access/README.md)
-states the actual source/image joins, proof boundaries, semantic fault controls
-and incomplete secondary results. It records the actual port, reset, CLEAR,
-fault, identity and data bindings; each proof retains its stated component
-scope. The baseline and seeded designs do not gain integrity against an external K/V-memory attacker.
-
-The [CLEAR epoch proof and reproduction](formal/kv-clear-epoch/README.md)
-establish that, between common hard resets, nonterminal execution cannot reuse an
-epoch through counter wrap. The actual 64-bit counter and fault latch are retained;
-held CLEAR and healthy held-at-max cases remain in scope. This closes a scalar
-freshness dependency of the K/V argument. It does not establish authenticated
-read-value identity or complete row/consumer provenance.
+For the matching sources, the protected CLEAR-epoch theorem proves that a
+session identifier cannot silently wrap and regain authority. Connecting the guard to attention still requires the entire row and the
+identity of its writer.
+Pending on-chip rows need their own case because they bypass the external
+guard read. The historical `formal/kv-integrity` records use a different
+source snapshot. [Current CLEAR-epoch theorem and replay](formal/kv-clear-epoch/README.md)
 
 ## Working-memory ownership and CLEAR
 
-The [working-memory evidence and reproduction guide](formal/session-isolation/README.md)
-adds completed current-writer histories and ownership checks for native RAMs,
-transient state and K/V staging. The baseline/seeded committed cache requires all
-nine current data/metadata returns before validity; its actual typed-write
-payloads have current stage-writer provenance. These facts constrain mutable
-storage to initialized inference workspace at the checked boundaries.
+The RTL session proofs track the last accepted writer of working RAM and
+staged K/V data. On the baseline and seeded configurations, the committed
+cache requires all nine current data/metadata returns before marking a row
+valid. The command proofs also track pending requests while a busy `CLEAR`
+drains. Logical cancellation revokes access to the previous session. The
+payload bits can remain in memory. The main theorem must show what a future
+attention invocation actually consumes, through to the next public token.
+[Session-isolation evidence and replay](formal/session-isolation/README.md)
 
-Connected protocol proofs also retain accepted requests through busy CLEAR.
-Both shell classes have a complete model-read core barrier. Separate connected
-semantic/model/K/V proofs restore all thirty native cache outputs and show that
-healthy active semantic idle owes or presents no model or typed K/V work. The
-four current images are source-bound to their applicable native classes.
+**A known availability issue affects the released baseline.** If `CLEAR`
+coincides with a pending write completion, its K/V controller can mistake
+cancellation for a failed completion and latch a fault. Decoded-command and
+component simulations with substitute arithmetic reproduce the issue.
+A theorem about ownership of an accepted request can still hold in that
+case. A theorem promising a return to readiness would have to address the
+fault. [Released controller](hardware/project/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv)
 
-**Busy-CLEAR availability limit (baseline).** The
-[released K/V controller](hardware/project/fpga/token_only_model0_ddr_board1/context2048_gowin_portability0/rtl/board1_context2048_atomic_kv_typed_clear_consistent.sv)
-can latch fault when `CLEAR` coincides with a pending write completion:
-cancellation can be mistaken for a noncanceled failed completion. Component and
-decoded-command simulations with substitute arithmetic, plus matching source
-inspection, reproduce this condition. This is not a full-model or board result,
-nor evidence that the fault has an independently permitted platform/program
-cause. Accepted-request ownership does not imply unconditional return to
-readiness. A separate private correction is not included and does not inherit
-these certificates.
+<a name="normal-returned-kv-data"></a>
 
-These are component results with explicit initial tracking, numerical-service
-and RAM-history boundaries. **Full device session isolation through subsequent
-token publication is not yet established.** The common core/outer transport
-epoch join, numerical/reply composition and complete mutable-state signoff
-remain open. Logical CLEAR revokes ownership; it does not erase raw payload bits.
-The packet retains 82 selected component records and thirteen real corruption
-controls, including premature drain release and a skipped K/V RAM writer.
-Counts overlap and are not a coverage score.
+### What a protected read returns on the encrypted design
 
-## Normal returned K/V data
+For a normal live read, the encrypted-memory design's integrity guard
+returns the complete 256-bit plaintext word that belongs to the actual
+accepted request and current committed write, under the stated memory and
+primitive contracts. The proof follows storage, capture, caching and output
+assembly. It stops at the guard's reply. The caller must establish which
+attention invocation receives the word. Confidentiality, physical DDR
+behavior and complete session isolation through token output each need
+additional evidence. [Normal K/V return theorem and replay](formal/kv-return/README.md)
 
-The encrypted-memory design has a separate [normal K/V return proof and portable
-replay](formal/kv-return/README.md). At the integrity guard's normal live read
-response, the complete 256-bit word equals the current committed plaintext word
-named by the **actual accepted request**, under the stated digital-memory and
-native-function/primitive contracts. The argument follows the actual
-seal/store/open producer, capture register, staging RAM, cache, synchronous read
-pipeline and output assembly. It does not assume a desired matching decrypted
-reply or stable upper input wires while busy.
+<a name="public-control-and-important-limits"></a>
 
-This is functional storage/data-path correctness. It also supports the
-inference-only argument by connecting consumed mutable data to current
-authorized writers. It is a component of session isolation; public CLEAR/drain
-entry, complete hash/tag/fault correspondence, token publication and physical
-DDR refinement remain separate obligations. It does not establish standard-AES
-conformance, confidentiality or a whole-model numerical theorem.
+## Which STEP owns the published token?
 
-Fresh standalone replay regenerates the exact source graph and checks all 27
-new point/lifting queries. Concrete native execution checks 72 writes and 72
-normal reads across two sessions, 56 cache hits and an in-flight read canceled
-by CLEAR. Two actual staging-read defects are detected, including a wrong
-normal response with `fault=0`. These finite examples qualify applicability;
-the universal component results come from their recorded source-bound proofs.
-Imported earlier proof records are supplied and checked for integrity, but
-their entire solver campaign is not rerun by this selected replay.
-
-## Public control and important limits
-
-The separate public-controller proofs check which commands are admitted and
-how they own state and replies: `APPEND(token)` records an accepted token,
-`STEP` owns a generated result that is stored and returned consistently, and
-`CLEAR` cancels the relevant ownership and invalidates the logical tape. The
-seeded configuration also checks settings and seed ownership at an empty, idle
-tape. These are control guarantees; private numerical services remain
-unrestricted at their declared proof boundaries. Logical CLEAR does not promise
-physical erasure of every memory cell.
-
-The following stronger claims **are not established by these formal proofs**:
-
-| Stronger claim | Current evidence boundary |
-| --- | --- |
-| Runtime LOCK is formally reachable after a full native-size boot | Board and simulation campaigns exercise completed boot. No formal native-size full-boot LOCK reachability witness is supplied; transport covers use the separately contracted LOCK input. |
-| Hash resistance and unconditional physical image equality | Actual SHA arithmetic, fixed-digest admission and checked-copy use are verified separately. Collision/second-preimage resistance, trusted on-chip state and vendor memory behavior remain assumptions; source proofs do not attest persistent physical DRAM bytes. |
-| Every STEP computes exactly the fixed model's numerical next-token function | Controller proofs leave private numerical outputs unrestricted. Numerical comparisons and board tests cover particular executions. |
-| The programmed FPGA and external memory satisfy the RTL theorem physically | Source and image hashes record provenance. RTL-to-mapped-image equivalence, vendor DDR behavior, physical CDC/reset timing and FPGA power-on behavior remain outside the proof. |
-| Every possible use of the machine is incapable of learning | These scoped proofs supply no certified residual training-capacity bound. See [INFERENCE-ONLY.md](INFERENCE-ONLY.md) and [TRAINING-CAPACITY.md](TRAINING-CAPACITY.md). |
-
-The current [implementation-assurance package](formal/implementation-assurance/README.md)
-provides the exact models, source bindings, proof receipts, known limitations,
-and commands for checking recorded evidence or running fresh solver phases.
-The detailed inventories below state which component claims are established
-by which solver; assertion counts overlap and are not a coverage score.
+The baseline controller proof starts with the candidate token supplied by
+the numerical core. An accepted `STEP` owns its successful commit and at
+most one reply capture. In a recorded example, a `CLEAR` after commit and
+before capture cancels candidate 23. A fresh request supplies candidate 17
+and the bridge holds the captured frame even through a later fault. The
+control theorem applies to arbitrary candidate values. The numerical proof
+must establish that the candidate equals the model's greedy winner for the
+same request. [Control theorem](formal/public-control-ownership/THEOREM.md) ·
+[Example and replay](formal/public-control-ownership/README.md)
 
 ## Detailed implementation proof results
 
-| Checked boundary | Current result | Main limit |
+The following are **RTL solver results** for the source configurations named
+in the implementation-assurance package. The boot and flash-reader rows describe the permitted startup traffic.
+The reset and FIFO proofs help carry the write restriction through to commands
+issued after LOCK. The UART/core/shell proof relates public commands to their
+replies while treating the numerical outputs as arbitrary. A whole-device
+ACL2 book needs both memory protection and reply ownership. For each fact used there, the book must
+establish the matching hardware and hypotheses. The counts below describe
+the original solver runs and overlap across rows.
+[Detailed statements, sources and replay](formal/implementation-assurance/README.md)
+
+| Checked hardware | Published solver result | Qualification |
 | --- | --- | --- |
-| Complete boot/memory source path | 113 overlapping assertions pass Z3 and cvc5 for each distinct path; all 227,062 native words remain | Four scalar authenticator outputs are unrestricted; no SHA arithmetic theorem. |
-| Native reset correspondence and wiring | 11 reset assertions pass both solvers; 63 top-level connections are checked per image | Digital reset/wiring only; vendor reset generation and physical CDC remain outside. |
-| QSPI model reader | 24 assertions pass both solvers; fixed READ03 command and range | Vendor I/O and physical flash protection are outside the theorem. |
-| Full-size command and return FIFOs | 28 assertions per channel pass Z3; four of six distinct configurations also pass cvc5 induction | Two encrypted secondary inductions remain unresolved. |
-| Source-to-vendor command write epoch | 105 transport assertions pass Z3 for each distinct transport; cvc5 base checks pass | Secondary induction/coverage remains incomplete, including two retained coverage tool errors. Vendor persistence/read ordering is not proved. |
-| Connected greedy UART/core/shell | 134 assertions pass Z3 per greedy design | 37 private semantic-layer outputs remain arbitrary; secondary induction is incomplete. Seeded control has its separate result below. |
+| Boot and memory source path | 113 overlapping assertions pass Z3 and cvc5 on each distinct path, with all 227,062 native words retained. | Four authenticator outputs are arbitrary. SHA arithmetic has a separate proof. |
+| Reset and top-level wiring | Eleven reset assertions pass both solvers. The wiring audit checks 63 top-level connections per image. | Vendor reset generation and the physical clock crossings require separate evidence. |
+| QSPI model reader | Both solvers check 24 assertions, including the fixed READ03 command and address range. | Physical flash protection and vendor I/O lie outside the model. |
+| Command and return FIFOs | Z3 checks 28 assertions per channel. cvc5 also completes induction for four of the six distinct configurations. | Two encrypted configurations have unresolved secondary inductions. |
+| Commands issued to vendor memory | Z3 checks 105 assertions per distinct transport. cvc5 passes the base checks. | Secondary induction and coverage are incomplete, including two retained coverage tool errors. Vendor persistence and read ordering remain assumptions. |
+| Greedy UART, core and command shell | Z3 checks 134 assertions per greedy design. | The proof permits arbitrary values on 37 private numerical and service outputs. Secondary induction is incomplete. |
 
-The 59 selected positive and mutation runs retain their original outcomes,
-queries, replies, semantic controls and source audits. Counts overlap and are not
-additive. A portable recorded check uses no vendor/compiler/solver tools;
-separate commands perform exact source/query reproduction or fresh solver work.
-Hardware images, model, host and benchmark records are unchanged. This command-
-trace result strengthens the inference-only argument without establishing
-whole-machine numerical, cryptographic, physical DDR or RTL-to-bitstream claims.
+The package retains 59 selected positive and mutation runs, with their
+queries, replies and source audits. Readers can check the saved results or
+follow the instructions for a fresh solver run. The incomplete secondary
+checks in the table retain their original outcomes.
 
-## Current seeded RTL replay
+<a name="greedy-design-scope"></a>
 
-The seeded-sampling image is
-`d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725`.
-Its [current replay](formal/current-seeded-sampling/README.md) and named
-[completion record](formal/current-seeded-sampling/CURRENT-REPLAY.json) identify
-the exact checked models, queries, tools and outcomes. The completion uses
-schema `current-seeded-rtl-formal-replay-completion-v2` and records the actual
-fresh RTL-only campaign; registering it does not execute a solver again.
+## Which greedy configurations do the results cover?
 
-| Checked model | Recorded result | Boundary |
+Each image has its own source, parameter and implementation record. The
+baseline assumes external K/V storage behaves as specified. The two protected
+designs add integrity and replay checks. The encrypted design also encrypts
+external memory. The numerical model is shared, so comparisons are possible,
+but a proof carries over only for matching circuit behavior and assumptions.
+[Greedy qualification guide](GREEDY-QUALIFICATION.md)
+
+| Design | Published scope | Remaining obligation |
 | --- | --- | --- |
-| Selector lifecycle | **35 assertions**, complete primary and secondary checks | Real fixed-dimension sampler and greedy child; settings admission, seed/PRNG commitment, result ownership, stalls, CLEAR rewind and sticky faults. Not numerical CDF equivalence. |
-| Selector buffer ownership | **57 assertions**, complete primary and secondary checks, including the selector's 35 | All three sampler memories retained; complete 4,019-row acceptance, selected-slot current logits/mass and captured-payload ownership. Read-only observers do not drive production. This component is separate from the connected model. |
-| UART/frontend | **63 assertions**, complete primary and secondary checks | Real RX/TX at 217 clocks per bit, bridge and adapter; independent admitted-byte/CRC history. Downstream readiness, model and settings replies remain arbitrary. |
-| Seeded token shell | **94 assertions**, complete primary and secondary checks | Original 48 controller/tape statements, 11 settings statements and 35 selector statements; actual shell/arithmetic/sampler and 20 memories. Private model/layer/head services remain arbitrary inputs. |
-| Connected UART/core/seeded shell | **196 assertions** pass primary Z3 base and induction. Secondary cvc5 passes the base and **194 of 196 conclusions**. | Same whole external boundary and **37 unrestricted private semantic-layer output cuts**. Actual queues, gates, shell, sampler and 20 memories remain. Request CRC conclusion **38** and reply CRC conclusion **73** remain `unknown` for cvc5. |
+| Baseline | 34 attention-controller assertions and 72 recorded query checks. | Child arithmetic and memory replies are arbitrary at the listed outputs. Their behavior must be connected to attention. |
+| Protected K/V | 357 guard/cache assertions, actual hash framing and separate 34-assertion attention-input checks. | Connect the verified row to its matching attention invocation, including value alignment. Hash resistance and trusted on-chip state are assumptions. |
+| Protected K/V and encrypted memory | The encrypted guard and cache have 357 assertions, with hash framing and separate 34-assertion attention checks. The normal-return proof covers plaintext data under its contracts. | Value alignment, the complete attention computation and confidentiality require separate arguments. The authentication proof abstracts decryption. |
 
-The connected primary result covers all 196 assertions. Its two unresolved
-secondary conclusions are not counterexamples and are not counted as proved by
-that solver. Each secondary conclusion uses the same joint prior invariants.
-These counts overlap and must not be added. The 57-assertion component is not
-inserted into the connected theorem. The connected model has no RTL assumption
-cells; reset initializes its base states and is not imposed during induction.
+<a name="current-seeded-rtl-replay"></a>
 
-The replay also records seven reset-reachable selector mutants, two buffer
-mutants, five serial mutants and 284 actual serial scenarios. These sensitivity
-and scenario checks have their stated finite scope; they are not additional
-whole-machine assertions.
+## What is proved for seeded sampling?
 
-### Sealed weight-page bank
+The seeded variant has additional commands and uses a sampler. The following
+RTL results cover settings, seed ownership, score storage, control and
+publication for image `d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725`.
+The first whole-device ACL2 target uses greedy selection. For a whole-device
+theorem about the seeded image, the sampler would also need a numerical
+correctness proof. [Seeded replay](formal/current-seeded-sampling/README.md) ·
+[Completion record](formal/current-seeded-sampling/CURRENT-REPLAY.json)
 
-The separate current seeded bank proof passes **42 assertions with both
-solvers**. It retains the real **32,768-bit RAM**, checks fill-before-read,
-sealed-copy admission after a completed matching digest comparison, owned
-replies, hash-input correspondence, prefetch sequencing and sticky faults.
-Ten directed scenarios and five faulty controls accompany that proof.
-
-The bank's **258-bit SHA replies remain arbitrary**. Production SHA is identified
-as source provenance but is not elaborated in the bank theorem. The result does
-not prove SHA compression arithmetic, the parent service's digest selection,
-private bank/SHA composition or cryptographic security by itself. The
-[authentication/access proofs](formal/authentication-access/README.md) separately
-retain the native SHA and full bank RAM, check parent digest selection and join
-the checked copy through the private service to its consumers. Counts remain
-nonadditive.
-
-### Source binding and retained support
-
-The current provider verifies **87 distributed native source files and the
-selected seeded image**. The full 91-input inventory additionally records four
-omitted vendor digests; those digests are provenance, not verified vendor bytes
-or elaborated vendor logic. Source audits check reversal of instrumentation,
-local elaboration, initialized ROM words, original ports/cuts and read-only
-observer cones. The separate finite model campaign checked 30 cases, 108 heads
-and 434,052 raw logit rows with the implemented SHA engine; it does not turn
-those executions into a universal arithmetic theorem.
-
-The source association retains seven unchanged modular scopes, separate
-154-assertion cache-stage evidence and exp-ROM source evidence. The source-binding
-action ran no solver and retains its false replay flag. Its recorded primary
-cache-stage evidence does not establish full cache equivalence, unconditional
-terminal-failure write drain or physical erasure. The named fresh
-completion above records the actual controller and bank replay separately.
-
-The replay audits its [98-member support-source inventory](reference/baseline-formal-354/REFERENCE-SOURCES.json), including the monitor support and boundary derivation inputs. Source regeneration checks 128 model/source members and their complete source/binding map byte for byte. These source checks run no solver and grant no additional proof scope.
-
-## Greedy design scope
-
-The baseline, K/V-protected and encrypted designs have their own exact
-source/model/native/mapped and physical qualification records in
-[GREEDY-QUALIFICATION.md](GREEDY-QUALIFICATION.md). A changed design does not
-inherit an older controller, cache, bank or SHA proof merely because it uses
-the same numerical model or public command names. Source associations state
-which byte-identical components retain evidence and which changed boundaries
-remain outside it. Physical timing and resource observations add no assertions.
-
-The selected greedy-source records retain these scoped results:
-
-| Design | Checked source scope | Boundary |
+| Checked hardware | Published solver result | What the scope includes |
 | --- | --- | --- |
-| Baseline | 34 attention-controller assertions; 72 recorded query checks | Child arithmetic and memory replies remain unrestricted at the listed outputs. No numerical-attention or concrete-memory composition theorem. |
-| K/V-protected | Current guard/cache: 357 assertions; actual hash/framing and separate 34-assertion attention capture/pin scopes | Cryptographic resistance and trusted on-chip state are assumptions. The V aligner identity and joined guard-to-consumer theorem remain open; no whole-machine numerical refinement. |
-| K/V protection and encrypted memory | Native encrypted guard/current cache: 357 assertions; actual hash/framing and separate 34-assertion attention capture/pin scopes | That authentication/access scope abstracts decryption. The separate normal-return proof checks K/V values under its contracts; V aligner identity, the joined consumer theorem, confidentiality and numerical attention remain separate. |
+| Selector lifecycle | Both solvers check 35 assertions. | Settings and seed commitment, result ownership, stalls, CLEAR rewind and sticky faults. Numerical correctness of the sampling distribution remains open. |
+| Selector buffer | Both solvers check 57 assertions, including the 35 above. | Three sampler memories, acceptance of all 4,019 rows and ownership of the selected logit and mass. The connected model has a separate proof. |
+| UART and frontend | Both solvers check 63 assertions. | Actual UART at 217 clocks per bit, bridge, adapter, admitted bytes and CRC history. Downstream readiness and service replies remain arbitrary. |
+| Seeded token shell | Both solvers check 94 assertions. | Controller, tape, settings, selector and 20 memories. Model, layer and output-head replies remain arbitrary inputs. |
+| Connected UART, core and seeded shell | Z3 checks all 196 assertions. cvc5 passes the base and 194 of the 196 induction conclusions. | The proof retains 37 unrestricted private outputs. The cvc5 results for request CRC (38) and reply CRC (73) are still unknown. |
 
-Counts are nonadditive. The [qualification guide](GREEDY-QUALIFICATION.md)
-identifies the exact source associations and recorded solver/audit results.
-These byte/query rechecks run no fresh solver and supply no physical attestation.
+The two unresolved cvc5 CRC conclusions are recorded as `unknown`. Z3
+establishes both in its connected proof. Reachable fault-injection controls
+and the recorded serial scenarios exercise the checks on particular traces.
 
-The encrypted design retains K/V integrity and replay checks, but encryption
-and the supplied public demonstration keys do not imply a cryptographic theorem.
+<a name="sealed-weight-page-bank"></a>
+<a name="source-binding-and-retained-support"></a>
+
+The seeded **weight-page bank** has a separate 42-assertion proof with both
+solvers. The real RAM is retained, while the 258-bit SHA replies remain
+arbitrary at that boundary. The authentication package checks native SHA and
+its connections separately. The source audit identifies the checked files
+and the omitted vendor digests. [SHA and checked-copy proof](formal/authentication-access/README.md) ·
+[Source inventory](reference/baseline-formal-354/REFERENCE-SOURCES.json)
 
 ## Limits
 
-The monitors prove command authorization, operand preservation, STEP/result
-ownership, live-tape correspondence and logical cancellation at their stated
-boundaries. Private numerical and memory services remain unrestricted at the
-listed cuts. They do not establish eventual completion when readiness stalls
-forever, the correctness of every generated token, physical RAM erasure,
-whole-machine numerical refinement, source-to-mapped-image equivalence,
-complete vendor-DDR timing or physical security. Actual SHA arithmetic and the
-named model/K/V checked-copy compositions have their separate verified scopes
-in the authentication/access package. A successful model or board test does not attest another loaded FPGA.
-
-The assessment assumes a frozen circuit and synchronous digital behavior.
-[INFERENCE-ONLY.md](INFERENCE-ONLY.md) and
-[TRAINING-CAPACITY.md](TRAINING-CAPACITY.md) state the separate architectural
-and conditional capacity assumptions; these proofs supply no certified residual
-training factor.
-
+A whole-device proof must still connect accepted token history, all model
+arithmetic and private accesses, and public observations on the same circuit
+execution. Completion also requires assumptions about the services on which
+the circuit waits. The source proofs assume a frozen circuit and digital
+clock/reset semantics. Hash resistance, physical access, vendor DDR behavior,
+timing and equivalence between source and the programmed FPGA have their own
+evidence or assumptions. The separate residual-training analysis states
+which additional assumptions about access to the chip enter its rating.
+[Inference-only assessment](INFERENCE-ONLY.md) · [Training-capacity assessment](TRAINING-CAPACITY.md)
