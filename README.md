@@ -104,7 +104,7 @@ The seeded image authenticates weights and uses a plain external K/V cache.
 
 | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
 | --- | --- | ---: | ---: | --- |
-| F-AWIC, overlapped schedule | Held in on-chip scratch RAM | 50 | 9.1 | Source delta and board records |
+| F-AWIC, overlapped schedule | Held in on-chip scratch RAM | 50 | 9.1 | [Runnable release](demos/tlm26-moe/prebuilt/overlap-r2-50mhz/README.md) |
 <!-- COMMON-FPGA-SPEED:END -->
 
 The [50 MHz overlapped schedule](demos/tlm26-moe/variants/overlap-r2-50mhz/README.md) fetches the next operands while the current product accumulates. The [TLM26 guide](demos/tlm26-moe/README.md) covers the earlier same-clock comparison, reproduction and timing limits.
@@ -319,7 +319,7 @@ Start with the guide for [SimpleStories on Tang Mega](demos/simplestories-v2-5m/
 | SimpleStories-V2-5M / Tang Mega | [Guide](demos/simplestories-v2-5m/README.md), [installation](demos/simplestories-v2-5m/PROGRAMMING.md) | [Hardware](demos/simplestories-v2-5m/HARDWARE.md) | [Validation](demos/simplestories-v2-5m/VALIDATION.md), [formal scope](demos/simplestories-v2-5m/FORMAL-STATUS.md), [reproduction](demos/simplestories-v2-5m/REPRODUCE.md) |
 | Qwen3-1.7B / AWS F2 | [Guide](demos/qwen3-1.7b/README.md), [installation](demos/qwen3-1.7b/INSTALL.md) | [Hardware](demos/qwen3-1.7b/HARDWARE.md) | [Validation](demos/qwen3-1.7b/VALIDATION.md), [formal scope](demos/qwen3-1.7b/FORMAL-STATUS.md), [reproduction](demos/qwen3-1.7b/REPRODUCE.md) |
 | Qwen3-8B / AWS F2 | [Guide](demos/qwen3-8b/README.md), [installation](demos/qwen3-8b/INSTALL.md) | [Hardware](demos/qwen3-8b/HARDWARE.md) | [Validation](demos/qwen3-8b/VALIDATION.md), [formal scope](demos/qwen3-8b/FORMAL-STATUS.md), [reproduction](demos/qwen3-8b/REPRODUCE.md) |
-| TLM26 MoE / Tang Mega | [Guide](demos/tlm26-moe/README.md), [build and provisioning](demos/tlm26-moe/README.md#tang-build-and-provisioning) | [Hardware and timing](demos/tlm26-moe/README.md#tang-build-and-provisioning) | [Validation](demos/tlm26-moe/VALIDATION.md), [formal scope](demos/tlm26-moe/FORMAL-STATUS.md), [reproduction](demos/tlm26-moe/REPRODUCE.md) |
+| TLM26 MoE / Tang Mega | [Guide](demos/tlm26-moe/README.md), [installation](demos/tlm26-moe/prebuilt/overlap-r2-50mhz/README.md) | [Hardware and timing](demos/tlm26-moe/README.md#tang-build-and-provisioning) | [Validation](demos/tlm26-moe/VALIDATION.md), [formal scope](demos/tlm26-moe/FORMAL-STATUS.md), [reproduction](demos/tlm26-moe/REPRODUCE.md) |
 
 Use each model's formal-status page for the supplied proofs, assumptions and
 open obligations, and its validation page for the circuit and workload behind

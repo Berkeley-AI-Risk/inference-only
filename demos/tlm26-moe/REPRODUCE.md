@@ -1,5 +1,7 @@
 # Reproduce the TLM26 MoE demonstration
 
+For a board run using the supplied files, follow the [50 MHz installation guide](prebuilt/overlap-r2-50mhz/README.md). This page covers reconstruction from source and replay of the saved evidence.
+
 Set `DEMO` to this demo's absolute path and `WORK` to a new directory outside the repository. Copy the source there before generating model files or receipts. The distributed `evidence/` records remain unchanged; new results go in `receipts/` and `build/` in the work copy.
 
 ```sh

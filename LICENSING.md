@@ -14,10 +14,9 @@ The declaration and MIT terms are preserved in `LICENSES/`.
 
 The TLM26 model card declares MIT; its upstream source license and exact
 checkpoint/tokenizer identities are retained in the [TLM26 notices](demos/tlm26-moe/NOTICES.md).
-This demonstration supplies source and compact board receipts; model inputs
-are fetched and verified during reproduction. Its separately installed
-GOWIN Standard toolchain and vendor IP retain their own terms. No compiled
-TLM26 FPGA configuration is distributed here.
+The [50 MHz runnable release](demos/tlm26-moe/prebuilt/overlap-r2-50mhz/README.md) supplies the measured device configuration,
+packed int16 model and tokenizer. Source reproduction fetches and verifies the upstream inputs.
+The separately obtained GOWIN tools and vendor IP retain their own terms.
 
 The encrypted-memory AES S-box adapts BearSSL's MIT-licensed Boolean circuit.
 Its copyright and permission notice are retained in both affected RTL files
@@ -32,7 +31,8 @@ The tested constraint bytes are unchanged.
 ## FPGA configurations and vendor dependencies
 
 The [SimpleStories programming guide](demos/simplestories-v2-5m/PROGRAMMING.md)
-identifies the Tang Mega images and the backup reader. These are
+identifies the Tang Mega images and the backup reader. The [TLM26 programming guide](demos/tlm26-moe/prebuilt/overlap-r2-50mhz/README.md)
+identifies its measured 50 MHz image. These are
 device-targeted FPGA outputs, **not copies of the GOWIN compiler, programmer,
 vendor libraries or an encrypted source-IP distribution**. The project
 license covers our contributions, not a purported relicensing of every
@@ -42,7 +42,7 @@ our Apache-2.0 grant does not relicense GOWIN's contributions.
 
 The fixed-commitment SimpleStories images and the backup reader record
 **GOWIN V1.9.11.03 Education (81398)** in their bitstream headers. The
-signed-update and periodic-reauthorization images record **V1.9.12.04-1 (89079)**.
+signed-update, periodic-reauthorization and 50 MHz TLM26 images record **V1.9.12.04-1 (89079)**.
 For the Education edition, we checked the release note bundled with that installer:
 *RN100-1.9.11.03 EducationE*, July 10, 2025, section 1. It limits use of that
 tool edition to education, research and other noncommercial purposes. Our

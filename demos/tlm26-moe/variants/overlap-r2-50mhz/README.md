@@ -12,7 +12,7 @@ Apply the prior overlap-r2 overlay to a verified original native stage first, th
 
 The core uses the existing PLL's 50 MHz output through a native CLKDIV in divide-by-one/pass-through mode. The actual core constraint also uses `-divide_by 1`. DDR memory stays 400 MHz and its application clock 100 MHz. Runtime and loader UART divisors scale from 109 to **436**, preserving the same actual hardware baud rate. The hold scales from 250,000 to **1,000,000 cycles**, preserving 20 ms. The decoder, on-chip K/V, weight authentication, SHA compressor, transport, model and PLL outputs are unchanged. The exact measured input retains historical source comments; active primitives and constraints define the recorded clock.
 
-Rebuilds may have different implementation/image hashes. The saved rate applies to the recorded image. Existing vendor-tool, model-staging, license and notice requirements remain those of the original demo. No model or vendor assets are included here.
+Rebuilds may have different implementation hashes. The saved rate applies to the exact recorded image in the [50 MHz runnable package](../../prebuilt/overlap-r2-50mhz/README.md). Its generated bitstream and packed model are ready for SRAM loading and UART provisioning. The documented source rebuild obtains vendor inputs separately.
 
 ## Timing and assurance scope
 

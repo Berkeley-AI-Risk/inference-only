@@ -2,7 +2,7 @@
 
 This **F-AWIC** runs the released eight-expert TLM26 TinyStories checkpoint. Its model architecture and weight-page digests are fixed in the FPGA configuration. Each of its five transformer layers has a 64-wide residual stream, eight attention heads, four KV heads and eight 192-wide SwiGLU experts. The trained router selects two experts per layer per token. Vocabulary size is 512 and the hardware supports 256 positions per history. The host tokenizes text and sends token IDs. Attention, expert selection, both experts, their mixture and greedy output selection run in the circuit. [Author model card](https://huggingface.co/h1matthew/tlm26/tree/804c2137003ede3820fc57608221deb620c2d6d7)
 
-[Validation](VALIDATION.md) · [Reproduction](REPRODUCE.md) · [Formal scope](FORMAL-STATUS.md) · [Dependency notices](NOTICES.md)
+[Run the measured image](prebuilt/overlap-r2-50mhz/README.md) · [Validation](VALIDATION.md) · [Reproduction](REPRODUCE.md) · [Formal scope](FORMAL-STATUS.md) · [Dependency notices](NOTICES.md)
 
 The weights-only checkpoint has **1,572,032 unique parameters**, with tied input and output weights. Its 6,340,671-byte file has SHA-256 `c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0`. The matching SentencePiece model is `tinylm/data/tok512.model`, SHA-256 `d7f2c1b4c964f0b4a5e136557059e2e4071a3738441d1d104f70d0a36b999cf8`. Evaluation starts with one BOS token. The author's MoE evaluation selects the custom vocabulary dataset, and the data utility selects `tok512.model` for that vocabulary size. The model card declares MIT. The training and inference source carries the included upstream MIT notice. [Pinned evaluation code](https://github.com/ANRGUSC/tlm26/blob/967a9270ff81220421e062393ae56babe6152888/tinylm/eval_moe.py) · [Tokenizer selection](https://github.com/ANRGUSC/tlm26/blob/967a9270ff81220421e062393ae56babe6152888/tinylm/tinystories.py) · [Upstream license](https://github.com/ANRGUSC/tlm26/blob/967a9270ff81220421e062393ae56babe6152888/tinylm/LICENSE)
 
@@ -25,8 +25,8 @@ The same-clock comparison isolates the scheduling improvement. The 50 MHz
 image combines that identical decoder with faster clock delivery and scaled
 UART/hold parameters. All records remain separate. Its recorded implementation
 still has 158 setup/recovery-side and 34 hold/removal-side failing endpoints;
-these measurements establish neither whole-image timing closure nor a prebuilt
-FPGA release.
+the prebuilt image retains these vendor-DDR timing limits.
+[Run the exact measured image](prebuilt/overlap-r2-50mhz/README.md).
 
 The [K/V history-isolation review](variants/overlap-r2-50mhz/KV-LIFECYCLE.md)
 records eight finite clean-versus-reused/cancelled cases for each schedule,
@@ -64,14 +64,13 @@ interval count. The rate includes the image's 20 ms diagnostic DDR hold.
 [Timing qualifications](VALIDATION.md#timing-qualification)
 
 The prior signed-update SRAM configuration was restored and its `108,32`
-baseline passed, with no flash programming. This finite measurement does not
-provide a timing-closed image or a prebuilt FPGA configuration.
+baseline passed, with no flash programming. The prebuilt release uses the separately measured 50 MHz configuration.
 
 ## Numerical and RTL replay
 
 The model uses signed 16-bit matrix and embedding weights with 15 fractional bits. RMSNorm weights have 12 fractional bits. Activations have 16 fractional bits and dot products use signed 64-bit accumulation. The integer reference uses incremental KV caching, integer square root and fixed nonlinear lookup tables. The packed model occupies exactly 3 MiB including padding, SHA-256 `221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1`. The authenticated cache uses Fable’s SHA-256 compressor from the frozen MoE RTL. The FPGA verifies each 4 KiB DDR weight page against its private on-chip SHA-256 digest before releasing weights to the datapath.
 
-The [reproduction guide](REPRODUCE.md) stages a fresh external copy, then fetches the pinned model, regenerates the CPU references and model image, compiles the serial-boot RTL replay, and verifies the recorded board frames. It also reconstructs the exact native inputs for a separately installed GOWIN compiler. This source release includes compact receipts; it does not include a prebuilt FPGA configuration.
+The [reproduction guide](REPRODUCE.md) stages a fresh external copy, then fetches the pinned model, regenerates the CPU references and model image, compiles the serial-boot RTL replay, and verifies the recorded board frames. It also reconstructs the exact native inputs for a separately installed GOWIN compiler. The [50 MHz installation guide](prebuilt/overlap-r2-50mhz/README.md) uses the supplied image and model directly.
 
 The float and integer references agree on all 24 generated IDs and all 120 ordered top-two decisions for the two 12-token continuations in this package. The RTL replay sends all 3,145,728 model bytes through an 8N1 serial receiver, verifies all 768 flow-control acknowledgments, and checks the replies at the serial output. The model of external DDR serves 256-bit reads. Two boot images exercise honest memory and one corrupted expert weight. [FP32 reference](evidence/checkpoint-cpu.json) · [Independent integer comparison](evidence/integer-cpu.json) · [RTL transcripts](evidence/boot3-simulation.json)
 

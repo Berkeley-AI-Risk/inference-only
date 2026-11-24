@@ -170,16 +170,16 @@
       "sha256": "1c4998143e95e0216247064ea81ea647bf7408f57ed9d257b4c6baad441bc744"
     },
     "LICENSING.md": {
-      "bytes": 5418,
-      "sha256": "95b7d2912b797f332c6f72920993444d00af636fe97f38b4d9f47221815ca1d6"
+      "bytes": 5582,
+      "sha256": "62ceeb62651715916059010196308431b4f4b21c3ec502e227abff81b2b9d30c"
     },
     "NOTICE": {
       "bytes": 1003,
       "sha256": "f3d2be475cea886b4dac5d8b7b118810b333f9499145bbfcdac8e3305b1ee6ec"
     },
     "README.md": {
-      "bytes": 25145,
-      "sha256": "29002843b5b4ec81cdba8e8a359bf2be95eee6fe4f55c86bfb82c43d40f12128"
+      "bytes": 25174,
+      "sha256": "8f557e55c7f40e065c4bcb4e328d7fece6c5f2c3fbb33d993b47d05a46365cab"
     },
     "REFERENCES.md": {
       "bytes": 613,
@@ -194,12 +194,12 @@
       "sha256": "56b48251f2553631290a620d376c1b007681b06b0238c3582b0aca9b897bb23f"
     },
     "benchmarks/fpga-speed/results.json": {
-      "bytes": 83345,
-      "sha256": "7c894b5dfcdceb9bda9c6be0b4cab87a8337ae6b43eadeb99815a02089d50ad7"
+      "bytes": 83386,
+      "sha256": "a3a79069eba415b1100b9e11dd0c0fbf0823805d97feb5d268bb8d93ce17a386"
     },
     "benchmarks/fpga-speed/selection.json": {
-      "bytes": 36151,
-      "sha256": "8321cc15422e5ad893ed761b64f01a7d2226837634cd1c02be0f3ad936a50cdd"
+      "bytes": 36192,
+      "sha256": "f30e7053f76ced6f50b06e09c59ffbebbebcfd50386ccf03b11d42bb8e9d3a48"
     },
     "benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json": {
       "bytes": 32908,
@@ -75146,16 +75146,16 @@
       "sha256": "eed8df5e75c5f772817a2a1a43538d5ec24cebc4c434a9254fe34955308d21dc"
     },
     "demos/tlm26-moe/NOTICES.md": {
-      "bytes": 1942,
-      "sha256": "834cf5778bb38bd8e3d1dcf80f1859a169f7dd96515be43e34108ec3098a8660"
+      "bytes": 2161,
+      "sha256": "3c79852b032997986451a33251bb0ceb8d0747e0fb755787ff3eae3579d78f2f"
     },
     "demos/tlm26-moe/README.md": {
-      "bytes": 10667,
-      "sha256": "dadfe0c42f654e07004f7ea49f3adb0cb4b887a07a62892f26c7b5ee5b620566"
+      "bytes": 10757,
+      "sha256": "59f030f8a35b1516b463142c2492aa8ab17cb69d88af679c5a208efcfbaf0e2d"
     },
     "demos/tlm26-moe/REPRODUCE.md": {
-      "bytes": 4345,
-      "sha256": "7687cbc2a4131b74562344049181f9513faa2bfd017794558ff98983c3a59551"
+      "bytes": 4543,
+      "sha256": "0a07a05dba7505dd93e0cd8945d579e1f2b10bf90bd666a20f8aa68c5c98058f"
     },
     "demos/tlm26-moe/VALIDATION.md": {
       "bytes": 3793,
@@ -75265,6 +75265,26 @@
       "bytes": 1063,
       "sha256": "e87b912002f04cdfa837eaf7f70548ab79b9cb62a285495edf575f3da875aec4"
     },
+    "demos/tlm26-moe/prebuilt/overlap-r2-50mhz/IMAGE.json": {
+      "bytes": 1713,
+      "sha256": "fadda95e5d10a17ca48ffa698de76e0cf491778dc769feef6badc500171e3727"
+    },
+    "demos/tlm26-moe/prebuilt/overlap-r2-50mhz/README.md": {
+      "bytes": 4112,
+      "sha256": "0f6c38f5448737ffa731e82db5036efc0bef3bb08ad837e5c145715251f48352"
+    },
+    "demos/tlm26-moe/prebuilt/overlap-r2-50mhz/model.bin": {
+      "bytes": 3145728,
+      "sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1"
+    },
+    "demos/tlm26-moe/prebuilt/overlap-r2-50mhz/tlm26.fs": {
+      "bytes": 41965398,
+      "sha256": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b"
+    },
+    "demos/tlm26-moe/prebuilt/overlap-r2-50mhz/tok512.model": {
+      "bytes": 7522,
+      "sha256": "d7f2c1b4c964f0b4a5e136557059e2e4071a3738441d1d104f70d0a36b999cf8"
+    },
     "demos/tlm26-moe/rtl/authenticated_weight_page.sv": {
       "bytes": 3546,
       "sha256": "d1bcf48b9f8366db2b3274c61d92b929c962222041813fcaa5ceebd8ff5d0596"
@@ -75317,6 +75337,10 @@
       "bytes": 11377,
       "sha256": "29c3b339b3a81ea2531be875411fc40db8e746b9933677d2468a39fb7223fdce"
     },
+    "demos/tlm26-moe/scripts/run_prebuilt.py": {
+      "bytes": 8070,
+      "sha256": "67031ac1dbdafb30691f7b9bc5cc75f4fb2407c1b6469760750fccc661957369"
+    },
     "demos/tlm26-moe/scripts/uart_replay.py": {
       "bytes": 5174,
       "sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
@@ -75362,8 +75386,8 @@
       "sha256": "6f313ad8977ec521063f221659a9928854aa2180e59eac576f36a0f9572a657c"
     },
     "demos/tlm26-moe/variants/overlap-r2-50mhz/README.md": {
-      "bytes": 4019,
-      "sha256": "d99851bee37c843e4d836a9eef0c37b247f7a3470f4367dfc01baf6a8a7e7ffb"
+      "bytes": 4101,
+      "sha256": "10d9a736e4b48411ac2dc0f4b104930e9bca00506cea8aa8c6d26cdf683507c7"
     },
     "demos/tlm26-moe/variants/overlap-r2-50mhz/SOURCE-IDENTITIES.json": {
       "bytes": 6309,
@@ -77078,8 +77102,8 @@
       "sha256": "1dd88cb09483da8cd53c9d3959ae90b7b276aa2127d9282a34712dbb96d82640"
     },
     "tools/release-contract.json": {
-      "bytes": 4642875,
-      "sha256": "31b9d0862c48a5de0fb2d728aee1805a2094a42d58c847b89b516f8c9cfc15ac"
+      "bytes": 4643905,
+      "sha256": "89d6dae1306d669475e9f9dc34d3ff607c63523902f7e98e34f260f96986f9f6"
     },
     "tools/stage_source_map.py": {
       "bytes": 5194,
@@ -77159,7 +77183,7 @@
     },
     "tools/verify_release.py": {
       "bytes": 10148,
-      "sha256": "6450cde27b8dae73fa3b792cff14b623c0a446b4a0c47fcc6b3c4836afa26bc9"
+      "sha256": "295d9a48d3b17caeac56686a4703ed34ab4030fc549d1a3e512320631fa5b6fb"
     }
   },
   "full_context_evidence_scope": "Each selected greedy image passed 2,047/2,048-token CLI and browser contexts, boundary refusals, CLEAR races, pending-STEP Stop and resumed generation. The seeded image has a separate 16-case context matrix and browser record. Exact workload timestamps remain distinct from cached generation rates.",
