@@ -12,7 +12,7 @@ import stat
 
 MODEL_MANIFEST = 'demos/simplestories-v2-5m/MANIFEST.json'
 ROOT_CONTRACT = 'tools/release-contract.json'
-ROOT_CONTRACT_SHA = 'dcef35cd578dae6589c181f3be5803b21edb3cdbd823f99cde20e61e5ae8629b'
+ROOT_CONTRACT_SHA = 'd0884bebc8a1f3237dec1f5ec2fafa1d1c7eb6f03a99b4042676a933e71cc543'
 
 ASSETS = {'prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs': (42070540,
                                                                  'd271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725'),

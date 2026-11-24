@@ -1,8 +1,18 @@
 # The inference-only argument and its proof dependencies
 
-**The whole-device theorem is open.** The target is that each published token
-matches the prescribed model for its accepted request, and that the circuit's
-arithmetic and private accesses stay within the specified inference service.
+We want to verify what a host can make an inference-only chip compute through
+its public interface. Suppose the host sends a prompt and asks for the next
+token. A successful reply should be the token prescribed by the approved
+model for that history and its generation settings. We also want to account
+for the work inside the chip. Every multiply and private memory access must
+serve the model's inference or a specified supporting operation, such as
+authenticating stored data. This restriction must hold even if the host
+cancels the request and no token comes back.
+
+A whole-device theorem would establish both guarantees for every sequence of
+host inputs on one fixed circuit, under explicit assumptions about the
+platform. Component proofs establish parts of this claim. Proving them
+together on the same hardware execution remains open.
 The [SimpleStories objective](../demos/simplestories-v2-5m/FORMAL-STATUS.md#verification-objective)
 and the [Qwen3-1.7B objective](../demos/qwen3-1.7b/FORMAL-STATUS.md#verification-objective)
 state these obligations for their respective designs.
