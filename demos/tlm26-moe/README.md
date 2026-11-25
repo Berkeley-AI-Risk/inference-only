@@ -35,6 +35,10 @@ in the 50 MHz image. These checks assume trusted on-chip SRAM; the linked note
 also describes the additional integrity and freshness requirements for a future
 external K/V cache.
 
+## Protected external K/V
+
+The [five-layer Tang board study](../../evidence/tlm26-tang-five-layer-kv-board/README.md) authenticated external K/V for all five layers at 50 MHz. Two 128-output UART trials measured about 8.9 cached tokens/s. The [two-layer control](../../evidence/tlm26-tang-protected-kv-board/README.md) used authenticated external K/V in layers 0 and 1 and kept the remaining three layers on chip. The application clocks met reported timing. Vendor DDR timing remained open.
+
 ## Measured on the Tang
 
 The original 12.5 MHz board run produced the following continuations with one FPGA image, SHA-256 `87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42`. Both five-token prompts include BOS. Each continuation has twelve generated tokens. All 24 tokens matched both CPU references.

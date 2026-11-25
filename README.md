@@ -78,6 +78,8 @@ the same prompt with the same temperature and seed reproduces the same tokens.
 
 ## The demonstrated designs and measurements
 
+Protected K/V means the chip verifies external cached keys and values before attention uses them.
+
 Cached tokens/s measures single-stream generation between validated token replies
 on the local control host. “Inference core” is the configured decoder clock of
 the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) · [Full results](benchmarks/fpga-speed/results.json)
@@ -87,35 +89,36 @@ the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENC
 
 | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
 | --- | --- | ---: | ---: | --- |
-| F-AWIC, baseline | External DDR, without K/V integrity checks | 25 | 10.0 | Runnable release |
-| F-AWIC, K/V integrity | Authenticated in external DDR | 25 | 7.0 | Runnable release |
-| F-AWIC, encrypted weights and protected K/V | Encrypted in external DDR with integrity and replay checks | 25 | 6.0 | Runnable release · public demonstration keys |
-| F-AWIC, seeded sampling (temperature 1) | External DDR, without K/V integrity checks | 25 | 9.9 | Runnable release |
-| F-AWIC, protected K/V and seeded sampling (temperature 1) | Authenticated in external DDR | 25 | 7.03152 | [Board-tested evidence](evidence/simplestories-tang-protected-seeded-board/README.md#128-output-benchmark) |
-| S-AWIC, signed updates | External DDR, without K/V integrity checks | 25 | 10.1 | Runnable release · public demonstration keys |
-| S-AWIC, periodic reauthorization | External DDR, without K/V integrity checks | 25 | 7.6 | Runnable token-ID demonstration · public demonstration keys |
+| F-AWIC, baseline | Unverified external DDR | 25 | 10.0 | Runnable release |
+| F-AWIC, protected K/V | Authenticated in external DDR | 25 | 7.0 | Runnable release |
+| F-AWIC, encrypted weights and protected K/V | Authenticated and encrypted in external DDR | 25 | 6.0 | Runnable release · public demonstration keys |
+| F-AWIC, seeded sampling (temperature 1) | Unverified external DDR | 25 | 9.9 | Runnable release |
+| F-AWIC, protected K/V and seeded sampling (temperature 1) | Authenticated in external DDR | 25 | 7.0 | [Runnable release](demos/simplestories-v2-5m/prebuilt/protected-seeded-sampling/README.md) |
+| S-AWIC, signed updates | Unverified external DDR | 25 | 10.1 | Runnable release · public demonstration keys |
+| S-AWIC, periodic reauthorization | Unverified external DDR | 25 | 7.6 | Runnable token-ID demonstration · public demonstration keys |
 <!-- COMMON-FPGA-SPEED:END -->
 
 A separate [11-case simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) combines S-AWIC signed reauthorization with protected K/V.
 
-The [protected seeded benchmark](evidence/simplestories-tang-protected-seeded-board/README.md#128-output-benchmark) uses image `490a5852`. Both 128-output trials matched the scalar reference. The plain-K/V seeded row uses image `d271626a` and its own paired benchmark.
+The [protected seeded benchmark](evidence/simplestories-tang-protected-seeded-board/README.md#128-output-benchmark) uses image `490a5852`. Both 128-output trials matched the scalar reference. The unverified external-K/V seeded row uses image `d271626a` and its own paired benchmark.
 
 <!-- COMMON-FPGA-SPEED:START -->
 ### TLM26 (top-2-of-8 MoE) on Tang Mega 138K
 
 | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
 | --- | --- | ---: | ---: | --- |
-| F-AWIC, overlapped schedule | Held in on-chip scratch RAM | 50 | 9.1 | [Runnable release](demos/tlm26-moe/prebuilt/overlap-r2-50mhz/README.md) |
+| F-AWIC, overlapped schedule | On-chip scratch RAM | 50 | 9.1 | [Runnable release](demos/tlm26-moe/prebuilt/overlap-r2-50mhz/README.md) |
 <!-- COMMON-FPGA-SPEED:END -->
 
 The [50 MHz overlapped schedule](demos/tlm26-moe/variants/overlap-r2-50mhz/README.md) fetches the next operands while the current product accumulates. The [TLM26 guide](demos/tlm26-moe/README.md) covers the earlier same-clock comparison, reproduction and timing limits.
 
-Two 128-output board trials per configuration measured the protected external-K/V variants at 50 MHz.
+Two 128-output board trials measured protected K/V in external DDR across all five TLM26 layers at 50 MHz.
 
 | TLM26 K/V cache | Recorded cached tokens/s | Evidence |
 | --- | ---: | --- |
-| Authenticated in external DDR for layers 0 and 1 | 9.0 | [Two-layer board trial](evidence/tlm26-tang-protected-kv-board/README.md) |
 | Authenticated in external DDR for all five layers | 8.9 | [Five-layer board trial](evidence/tlm26-tang-five-layer-kv-board/README.md) |
+
+The [two-layer control](evidence/tlm26-tang-protected-kv-board/README.md) authenticated external K/V in layers 0 and 1 and kept the remaining three layers on chip.
 
 The five-layer recorder timestamps complete UART frame receipt before validating each reply. The headline benchmark uses validated generation-loop timestamps. The five-layer image matched 255 full-context outputs and five after CLEAR. The reported application clocks met timing. Vendor DDR timing remained open.
 
@@ -124,7 +127,7 @@ The five-layer recorder timestamps complete UART frame receipt before validating
 
 | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
 | --- | --- | ---: | ---: | --- |
-| F-AWIC | External memory, without K/V integrity checks | 100 | 9.0 | Runnable release · public AWS FPGA image |
+| F-AWIC | Unverified external K/V | 100 | 9.0 | Runnable release · public AWS FPGA image |
 <!-- COMMON-FPGA-SPEED:END -->
 
 A separate [full-model simulation](demos/qwen3-1.7b/variants/protected-kv-simulation/README.md)
@@ -135,7 +138,7 @@ checks authenticated retained K/V and the operands used by the model.
 
 | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
 | --- | --- | ---: | ---: | --- |
-| F-AWIC | External memory, without K/V integrity checks | 100 | 1.1 | Runnable prototype · speed optimization in progress · public AWS FPGA image |
+| F-AWIC | Unverified external K/V | 100 | 1.1 | Runnable prototype · speed optimization in progress · public AWS FPGA image |
 <!-- COMMON-FPGA-SPEED:END -->
 
 The image returns a cached token in 0.89 seconds on average. Its fixed schedule streams 7.57 GB of 8-bit projection weights per token through a bank that accepts up to 256 bytes per core clock. Even with every needed weight ready on time, accepting those weights takes at least 0.30 seconds at the configured 100 MHz. The measured interval also covers fetching and checking weights, attention, other model operations, and returning the token. A matched timing comparison is needed to isolate the cost of weight authentication. [8B arithmetic inventory](demos/qwen3-8b/TRAINING-CAPACITY.md) · [Board timings](demos/qwen3-8b/README.md#additional-validation-workloads)

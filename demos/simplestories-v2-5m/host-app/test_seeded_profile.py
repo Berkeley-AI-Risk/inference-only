@@ -1,6 +1,7 @@
 """Offline extended qualification/profile checks; no physical UART."""
 import json
 from pathlib import Path
+from shutil import copyfile
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -90,6 +91,30 @@ class SeededProfileTests(unittest.TestCase):
                      if row['operation'] == 'settings' and row['operand'] == 2)
         self.assertEqual([row['operation'] for row in results[start:start + 11]],
             ['settings', 'append', 'step', 'step', 'step', 'clear', 'append', 'step', 'step', 'step', 'clear'])
+
+    def test_protected_prebuilt_identity_and_qualification(self):
+        self.receipt = (Path(__file__).resolve().parent.parent /
+                        'prebuilt/protected-seeded-sampling/RELEASE.json')
+        record = self.qualify()
+        self.assertEqual(profile.load_checked(), record)
+        self.assertEqual(profile.configured_variant_id(), 'protected-seeded-sampling')
+        self.assertIn('K/V integrity protection', profile.configured_variant())
+        self.assertEqual(record['known_answer']['exact_token_checks'], 19)
+        self.assertEqual(len(self.links[0].calls), 45)
+
+    def test_protected_prebuilt_rejects_plain_seeded_image_and_changed_receipt(self):
+        source = (Path(__file__).resolve().parent.parent /
+                  'prebuilt/protected-seeded-sampling/RELEASE.json')
+        data = source.read_bytes()
+        self.receipt.write_bytes(data + b' ')
+        with self.assertRaisesRegex(ValueError, 'released prebuilt image'):
+            profile.check_build(self.receipt)
+        self.receipt.write_bytes(data)
+        image = self.receipt.parent / 'project/impl/pnr/shared_product.fs'
+        image.unlink()
+        copyfile(source.parent.parent / 'seeded-sampling/project/impl/pnr/shared_product.fs', image)
+        with self.assertRaisesRegex(ValueError, 'board-tested prebuilt image changed'):
+            profile.check_build(self.receipt)
 
     def test_legacy_seven_commands_cannot_qualify_seeded_variant(self):
         record = self.qualify()

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Explicit local board check after programming; never loads a configuration.
 
-Requires a source-bound local build receipt and operator confirmation. The
+Requires a source-bound build or official prebuilt receipt and operator confirmation. The
 known-answer test is a practical deployment check, not cryptographic attestation.
 """
 from __future__ import annotations
@@ -37,7 +37,7 @@ def qualify(build_receipt: Path, device: str, *, confirm_loaded: bool,
             acknowledge_timing: bool, replace_profile: bool = False,
             profile_path: Path | None = None, link_factory=QualificationUART) -> dict:
     if not confirm_loaded:
-        raise ValueError('Confirm that you loaded this exact source build; this program cannot attest or load it.')
+        raise ValueError('Confirm that you loaded this exact image; this program cannot attest or load it.')
     if app_is_running(): raise RuntimeError('Stop the app on port 8507 before qualifying; no board command was sent.')
     deployment = profile.check_build(build_receipt)
     if not deployment['timing_qualified'] and not acknowledge_timing:
@@ -72,7 +72,7 @@ def qualify(build_receipt: Path, device: str, *, confirm_loaded: bool,
                     observe({'event': 'qualification_result', 'operation': op, 'operand': operand,
                         'token': token, 'seconds': time.monotonic() - started})
                     return token
-                if deployment['variant'] == 'seeded-sampling':
+                if profile.supports_sampling(deployment['variant']):
                     generated = []
                     for operation, operand, expected, seed in sampling_protocol.qualification_plan():
                         if operation == 'settings':
@@ -110,7 +110,7 @@ def qualify(build_receipt: Path, device: str, *, confirm_loaded: bool,
         operator_confirmed_loaded_build=True, operator_acknowledged_unqualified_timing=acknowledge_timing,
         hardware_configuration_not_independently_attested=True,
         qualification_log_path=str(log_path.absolute()), qualification_log_sha256=profile.sha(profile.read_regular(log_path)),
-        known_answer=(sampling_protocol.known_answer() if deployment['variant'] == 'seeded-sampling' else
+        known_answer=(sampling_protocol.known_answer() if profile.supports_sampling(deployment['variant']) else
             {'prompt_tokens': [378], 'generated_tokens': profile.EXPECTED_TOKENS,
              'initial_clear_acknowledged': True, 'final_clear_acknowledged': True}))
     archived = run / 'board-profile.json'
@@ -122,9 +122,9 @@ def qualify(build_receipt: Path, device: str, *, confirm_loaded: bool,
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--build-receipt', required=True, type=Path)
+    parser.add_argument('--build-receipt', '--image-receipt', required=True, type=Path)
     parser.add_argument('--device', required=True, help='Explicit serial path, for example /dev/cu.usbserial-...')
-    parser.add_argument('--confirm-loaded-source-build', action='store_true')
+    parser.add_argument('--confirm-loaded-source-build', '--confirm-loaded-image', action='store_true')
     parser.add_argument('--acknowledge-unqualified-timing', action='store_true')
     parser.add_argument('--replace-profile', action='store_true', help='Preserve and invalidate the old local profile before retesting.')
     args = parser.parse_args()

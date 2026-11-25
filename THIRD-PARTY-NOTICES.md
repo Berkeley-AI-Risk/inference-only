@@ -85,7 +85,7 @@ PRNG provides reproducibility; its seed is public and is not a key.
 ## Vendor outputs, source inputs and tools
 
 The included FPGA configurations are GOWIN-device-specific implementation
-outputs. The three original inference configurations and the seeded-sampling variant
+outputs. The original inference configurations and both seeded-sampling variants
 incorporate the selected DDR/clock functions;
 the separate reader contains no vendor DDR controller. GOWIN and Sipeed
 retain their respective third-party rights. See [LICENSING.md](LICENSING.md)

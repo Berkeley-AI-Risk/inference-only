@@ -255,6 +255,9 @@ class CommonSpeedTests(unittest.TestCase):
         self.assertEqual(text.count(bench.END), len(tables))
         actual = [part.split(bench.END, 1)[0].strip() for part in text.split(bench.START)[1:]]
         self.assertEqual(actual, tables)
+        self.assertIn('| F-AWIC, protected K/V | Authenticated in external DDR | 25 | 7.0 |', tables[0])
+        self.assertIn('| F-AWIC, protected K/V and seeded sampling (temperature 1) | '
+                      'Authenticated in external DDR | 25 | 7.0 |', tables[0])
 
 
 if __name__=='__main__':unittest.main()

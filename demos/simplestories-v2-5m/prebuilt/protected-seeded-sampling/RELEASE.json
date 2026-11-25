@@ -1,0 +1,18 @@
+{
+  "schema": "fixed-fpga-board-tested-prebuilt-v1",
+  "variant": "protected-seeded-sampling",
+  "board": "Tang Mega 138K Basic (non-Pro), GW5AST-LV138PG484AC1/I0",
+  "inference_clock_hz": 25000000,
+  "image_relative_path": "project/impl/pnr/shared_product.fs",
+  "image": {
+    "bytes": 42303596,
+    "sha256": "490a58526e6a9593a07e5744779ab6f55d25a8fd4c192df86b34be55c9aee23f"
+  },
+  "model_relative_path": "assets/board1-real-semantic-image2048.bin",
+  "model": {
+    "bytes": 7265984,
+    "sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0"
+  },
+  "timing_qualified": false,
+  "native_source_record_sha256": "b5f02c4e7fc030f54ddd85fc372b66928dfcad8518e3ff09167120bc7ad70fbd"
+}

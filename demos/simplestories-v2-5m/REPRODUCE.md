@@ -20,14 +20,18 @@ On a clean copy, run:
 
 ```sh
 python3.12 -I -S -B ../../tools/verify_release.py --strict
-python3.12 -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
-python3.12 -I -S -B tools/check_current_seeded_recorded_v1.py --require-complete
+python3.12 -I -B ../../tools/replay_simplestories_greedy.py
+python3.12 -I -S -B ../../tools/replay_simplestories_greedy.py --seeded
 python3.12 -I -S -B formal/current-seeded-sampling/check_recorded.py --require-complete
 python3.12 -I -S -B formal/session-isolation/check_recorded.py
 python3.12 -I -S -B ../../tools/fpga_speed_benchmark.py --check
 python3.12 -I -S -B tools/estimate_training_capacity.py --check
 python3.12 -I -S -B ../../tools/architecture_work_counts.py --check
 ```
+
+The greedy replay uses the exact earlier release files from the recorded
+host campaign. The protected seeded release has its own reader evidence.
+[Protected seeded release](prebuilt/protected-seeded-sampling/README.md)
 
 `--strict` rejects unlisted extras, including local environments and generated
 files. On a working copy omit that flag to check listed files while preserving

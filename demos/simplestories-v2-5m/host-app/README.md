@@ -1,7 +1,7 @@
 # Local FPGA story app
 
 This app tokenizes a prompt, sends `APPEND`, `STEP` and `CLEAR` to the FPGA,
-and displays text and timings. For the optional seeded-sampling image, it
+and displays text and timings. For either seeded-sampling image, it
 also sets a bounded temperature and seed at the start of each generation.
 Inference runs on the board. There is no
 software-model fallback, weight upload, memory/arithmetic command, programming
@@ -9,8 +9,9 @@ button or automatic retry. The restriction is in the frozen FPGA design,
 not in this editable application.
 
 The app uses a locally qualified profile for the supplied baseline,
-K/V-protected, encrypted-memory or seeded-sampling image. The selected image
-and matching source inventory are checked by the local registration guard;
+K/V-protected, encrypted-memory, plain seeded or protected seeded image. The
+registration guard checks the selected image against its source-build receipt
+or pinned prebuilt release receipt;
 matching replies do not independently attest the FPGA configuration.
 
 The three greedy designs each passed seven ordinary Chrome cases and 26 exact
@@ -24,10 +25,10 @@ it a fresh browser campaign.
 
 The encrypted-memory image retains K/V integrity/replay protection and encrypts
 both weights and K/V with public demonstration keys. It needs its matching
-ciphertext flash payload. The seeded image uses plaintext model flash and has
-no K/V cryptographic integrity or encryption.
+ciphertext flash payload. Both seeded images use plaintext model flash. The
+protected seeded image authenticates the external K/V cache.
 
-All four profiles support up to 2,048 prompt tokens, 128 new tokens and 2,049
+All five profiles support up to 2,048 prompt tokens, 128 new tokens and 2,049
 combined tokens, within 32,768 input characters. A long prompt can take many
 minutes before the first output. Stop lets an active hardware STEP finish,
 then drains its reply, clears the tape and releases USB; it cannot interrupt
@@ -101,6 +102,12 @@ profile is registered. A failed or incomplete check cannot enable generation.
 Add `--replace-profile` when replacing an existing profile. The command
 deliberately clears the tape; it does not load an image or change flash.
 
+For the **protected seeded-sampling** image, follow the
+[prebuilt release guide](../prebuilt/protected-seeded-sampling/README.md).
+The registration command uses
+`--image-receipt ../prebuilt/protected-seeded-sampling/RELEASE.json` and
+`--confirm-loaded-image`.
+
 The flag `--confirm-loaded-source-build` also applies to this
 included source-built image: you are confirming the exact file you just loaded,
 not claiming that you personally ran the compiler. A fresh local build can use
@@ -119,17 +126,17 @@ Profiles and logs are local deployment guards, not security roots.
 Requalify after power cycling, reprogramming, replacing the board or an
 unexplained fault. Never edit a profile to bypass a failed check.
 
-To switch between baseline, K/V-protected and seeded-sampling images, stop the app,
+To switch between the plaintext model configurations, stop the app,
 explicitly load the other image into SRAM using the programming guide,
 and rerun this check with its matching receipt and `--replace-profile`.
-These three use the same plaintext model in flash.
+These configurations use the same plaintext model in flash.
 
 Switching to or from `encrypted-memory` also requires the **matching flash
 contents**, not just an SRAM reload. Follow the
 [encrypted-memory installation/restoration instructions](../ENCRYPTED-MEMORY.md#install-or-restore),
 then requalify with the matching receipt and `--replace-profile`.
 Use `--build-receipt ../prebuilt/encrypted-memory/BUILD.json` for that
-configuration. The tokenizer is unchanged across all four versions. The browser cannot
+configuration. The tokenizer is unchanged across all five versions. The browser cannot
 switch variants or program the board.
 
 ## Start and use
@@ -157,7 +164,7 @@ One cached controller owns the board across browser tabs.
 A second tab cannot view another tab's prompt/output. Opening the page alone
 does not begin inference.
 
-With a **seeded-sampling** profile, the page also shows temperature and seed
+With either **seeded-sampling** profile, the page also shows temperature and seed
 controls. Temperature defaults to **0**, the original greedy rule. Positive
 temperatures are **0.5, 1 and 2**. Choose an automatic seed for a fresh
 continuation or supply a 128-bit seed to reproduce one. The last-run display

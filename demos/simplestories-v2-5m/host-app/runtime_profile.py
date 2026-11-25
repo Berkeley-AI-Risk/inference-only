@@ -43,6 +43,14 @@ VARIANTS = {
         'input_files': 93,
     },
 }
+PREBUILT_VARIANTS = {
+    'protected-seeded-sampling': {
+        'label': 'K/V integrity protection + seeded temperature sampling',
+        'receipt_sha256': '88c664709c8ac7c6c3b435c0368c773bee3838ed121df816be5659cb2eb85f51',
+        'image_sha256': '490a58526e6a9593a07e5744779ab6f55d25a8fd4c192df86b34be55c9aee23f',
+    },
+}
+PREBUILT_SCHEMA = 'fixed-fpga-board-tested-prebuilt-v1'
 PROFILE_SCHEMA = 'fixed-fpga-host-profile-v1'
 BUILD_SCHEMA = 'fixed-fpga-local-build-v1'
 EXPECTED_TOKENS = [200, 15, 103, 157]
@@ -68,6 +76,10 @@ def read_regular(path: Path, limit: int = 2 * 1024 * 1024) -> bytes:
         data = source.read(limit + 1)
         if len(data) > limit: raise ValueError('File grew past its limit: ' + str(path))
         return data
+
+
+def supports_sampling(variant: str | None) -> bool:
+    return variant in ('seeded-sampling', 'protected-seeded-sampling')
 
 
 def variant_settings(variant: str = 'baseline') -> dict:
@@ -111,10 +123,38 @@ def check_open_device(fd: int, expected: dict):
         raise OSError('The opened UART does not match the checked device.')
 
 
+def check_prebuilt(receipt_path: Path, data: bytes, record: dict) -> dict:
+    variant = record.get('variant')
+    selected = PREBUILT_VARIANTS.get(variant)
+    relative = 'project/impl/pnr/shared_product.fs'
+    digest = sha(data)
+    if (selected is None or digest != selected['receipt_sha256']
+            or record.get('image_relative_path') != relative):
+        raise ValueError('The supplied receipt does not identify the released prebuilt image.')
+    image_path = receipt_path.parent / relative
+    expected = {'bytes': record['image']['bytes'], 'sha256': selected['image_sha256']}
+    image = read_regular(image_path, MAX_BITSTREAM_BYTES)
+    if {'bytes': len(image), 'sha256': sha(image)} != expected:
+        raise ValueError('The board-tested prebuilt image changed.')
+    return {'build_receipt_path': str(receipt_path), 'build_receipt_sha256': digest,
+            'image_path': str(image_path), 'image_sha256': expected['sha256'],
+            'variant': variant, 'timing_qualified': False}
+
+
+def matches_profile_variant(record: dict, variant: str) -> bool:
+    if variant in PREBUILT_VARIANTS:
+        selected = PREBUILT_VARIANTS[variant]
+        return (record.get('build_receipt_sha256') == selected['receipt_sha256']
+                and record.get('image_sha256') == selected['image_sha256'])
+    return record.get('hardware_inputs_sha256') == variant_settings(variant)['inputs_sha256']
+
+
 def check_build(receipt_path: Path) -> dict:
     receipt_path = Path(receipt_path).absolute()
     data = read_regular(receipt_path)
     record = json.loads(data)
+    if record.get('schema') == PREBUILT_SCHEMA:
+        return check_prebuilt(receipt_path, data, record)
     # Original v1 receipts have no variant field and identify the baseline.
     variant = record.get('variant', 'baseline')
     selected = variant_settings(variant)
@@ -149,7 +189,7 @@ def configured_port() -> str | None:
 def configured_variant() -> str | None:
     """Idle UI label from the local profile, not a readback of FPGA state."""
     variant = configured_variant_id()
-    return VARIANTS[variant]['label'] if variant is not None else None
+    return (VARIANTS | PREBUILT_VARIANTS)[variant]['label'] if variant is not None else None
 
 
 def configured_variant_id() -> str | None:
@@ -157,9 +197,8 @@ def configured_variant_id() -> str | None:
     try:
         record = json.loads(read_regular(PROFILE))
         variant = record.get('variant', 'baseline')
-        selected = variant_settings(variant)
         if (record.get('schema') == PROFILE_SCHEMA and record.get('passed') is True
-                and record.get('hardware_inputs_sha256') == selected['inputs_sha256']):
+                and matches_profile_variant(record, variant)):
             return variant
     except (OSError, ValueError, KeyError, TypeError): pass
     return None
@@ -168,11 +207,10 @@ def configured_variant_id() -> str | None:
 def load_checked() -> dict:
     profile = json.loads(read_regular(PROFILE))
     variant = profile.get('variant', 'baseline')
-    selected = variant_settings(variant)
     if (profile.get('schema') != PROFILE_SCHEMA or profile.get('passed') is not True
             or profile.get('operator_confirmed_loaded_build') is not True
             or profile.get('hardware_configuration_not_independently_attested') is not True
-            or profile.get('hardware_inputs_sha256') != selected['inputs_sha256']):
+            or not matches_profile_variant(profile, variant)):
         raise ValueError('Missing or invalid local qualification profile. See README.md.')
     build = check_build(Path(profile['build_receipt_path']))
     if build['variant'] != variant:
@@ -181,7 +219,7 @@ def load_checked() -> dict:
         if build[key] != profile[key]: raise ValueError('Local build association changed: ' + key)
     if not build['timing_qualified'] and profile.get('operator_acknowledged_unqualified_timing') is not True:
         raise ValueError('This build still needs an explicit exploratory timing acknowledgement.')
-    expected_known_answer = (sampling_protocol.known_answer() if variant == 'seeded-sampling' else
+    expected_known_answer = (sampling_protocol.known_answer() if supports_sampling(variant) else
         {'prompt_tokens': [378], 'generated_tokens': EXPECTED_TOKENS,
          'initial_clear_acknowledged': True, 'final_clear_acknowledged': True})
     if profile.get('known_answer') != expected_known_answer:
@@ -190,7 +228,7 @@ def load_checked() -> dict:
     if sha(raw) != profile['qualification_log_sha256']:
         raise ValueError('The local qualification log changed.')
     rows = [json.loads(line) for line in raw.splitlines()]
-    if variant == 'seeded-sampling':
+    if supports_sampling(variant):
         commands = []
         for row in rows:
             if row.get('event') != 'qualification_result':
@@ -205,7 +243,7 @@ def load_checked() -> dict:
         expected = [('clear', 0, None), ('append', 378, None)] + [('step', 0, t) for t in EXPECTED_TOKENS] + [('clear', 0, None)]
     if commands != expected or not rows or rows[-1].get('event') != 'qualification_complete':
         raise ValueError('The recorded qualification sequence is incomplete or changed.')
-    if variant == 'seeded-sampling' and rows[-1].get('generated_tokens') != [row['token'] for row in expected if row['operation'] == 'step']:
+    if supports_sampling(variant) and rows[-1].get('generated_tokens') != [row['token'] for row in expected if row['operation'] == 'step']:
         raise ValueError('The seeded qualification completion record changed.')
     check_device(profile['device']['path'], profile['device'])
     return profile

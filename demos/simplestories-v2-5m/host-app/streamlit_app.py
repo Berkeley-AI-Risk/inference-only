@@ -7,14 +7,14 @@ import uuid
 import streamlit as st
 
 from fpga_backend import ACTIVE, Controller, limits_for_variant
-from runtime_profile import configured_port, configured_variant, configured_variant_id
+from runtime_profile import configured_port, configured_variant, configured_variant_id, supports_sampling
 
 st.set_page_config(page_title='FPGA story lab', page_icon=':material/memory:', layout='centered')
 st.title('FPGA story lab')
 st.caption('SimpleStories 5M · Tang Mega 138K · Real generation over USB')
 variant_label = configured_variant()
 variant_id = configured_variant_id()
-sampling_enabled = variant_id == 'seeded-sampling'
+sampling_enabled = supports_sampling(variant_id)
 limits = limits_for_variant(variant_id)
 st.caption('Locally selected build: ' + (variant_label or 'not yet checked')
            + '. Selection is not independent attestation of the loaded FPGA.')

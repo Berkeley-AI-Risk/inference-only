@@ -40,7 +40,7 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "Same model, **F-AWIC**, without K/V integrity",
+      "label": "Same model, **F-AWIC**, with unverified external K/V",
       "prompt_tokens": [
         378
       ],
@@ -84,7 +84,7 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC**",
+      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC with protected K/V**",
       "prompt_tokens": [
         378
       ],
@@ -92,7 +92,7 @@
       "status": "Runnable release"
     },
     {
-      "attention_cache": "Held in on-chip scratch RAM",
+      "attention_cache": "On-chip scratch RAM",
       "cases": [
         "one-token-128-trial1",
         "one-token-128-trial2"
@@ -140,7 +140,7 @@
       "status": "Buildable source and board records"
     },
     {
-      "attention_cache": "Held in on-chip scratch RAM",
+      "attention_cache": "On-chip scratch RAM",
       "cases": [
         "one-token-128-trial1",
         "one-token-128-trial2"
@@ -224,7 +224,7 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "Same model, **F-AWIC with K/V protection + encrypted memory**",
+      "label": "Same model, **F-AWIC with encrypted weights and authenticated, encrypted K/V**",
       "prompt_tokens": [
         378
       ],
@@ -244,7 +244,7 @@
         "core_clock_mhz": 25,
         "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
       },
-      "label": "Same model, **F-AWIC with seeded sampling at temperature 1**, without K/V integrity",
+      "label": "Same model, **F-AWIC with seeded sampling at temperature 1**, with unverified external K/V",
       "prompt_tokens": [
         378
       ],
@@ -254,6 +254,7 @@
       "temperature": 1
     },
     {
+      "artifact": "demos/simplestories-v2-5m/prebuilt/protected-seeded-sampling/project/impl/pnr/shared_product.fs",
       "attention_cache": "Authenticated in external DDR",
       "cases": [
         "trial_1",
@@ -274,7 +275,7 @@
       ],
       "reference_source": "demos/simplestories-v2-5m/reference/seeded-sampling/goldens/around128-t2-seed-a.json",
       "source": "evidence/simplestories-tang-protected-seeded-board/COMMON-SPEED.json",
-      "status": "[Board-tested evidence](evidence/simplestories-tang-protected-seeded-board/README.md#128-output-benchmark)",
+      "status": "[Runnable release](demos/simplestories-v2-5m/prebuilt/protected-seeded-sampling/README.md)",
       "temperature": 1
     },
     {
@@ -304,7 +305,7 @@
         "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
         "variant": "S-AWIC"
       },
-      "label": "Same model, **S-AWIC**, without K/V integrity",
+      "label": "Same model, **S-AWIC**, with unverified external K/V",
       "prompt_tokens": [
         378
       ],
@@ -333,7 +334,7 @@
         "timestamp_boundary": "generation_loop_validated_reply",
         "variant": "S-AWIC with renewable home authorization"
       },
-      "label": "Same model, **S-AWIC with periodic reauthorization**, without K/V integrity",
+      "label": "Same model, **S-AWIC with periodic reauthorization**, with unverified external K/V",
       "prompt_tokens": [
         378
       ],
@@ -342,7 +343,7 @@
       "status": "Runnable token-ID demonstration; public demonstration keys"
     },
     {
-      "attention_cache": "External memory, without K/V integrity checks",
+      "attention_cache": "Unverified external K/V",
       "cases": [
         "trial-1",
         "trial-2"
@@ -384,7 +385,7 @@
       "status": "Runnable release; public AWS FPGA image"
     },
     {
-      "attention_cache": "External memory, without K/V integrity checks",
+      "attention_cache": "Unverified external K/V",
       "cases": [
         "trial-1",
         "trial-2"
@@ -426,7 +427,7 @@
       "status": "Runnable prototype; speed optimization in progress; public AWS FPGA image"
     },
     {
-      "attention_cache": "Held in on-chip scratch RAM",
+      "attention_cache": "On-chip scratch RAM",
       "cases": [
         "one-token-128-trial1",
         "one-token-128-trial2"

@@ -36,7 +36,7 @@ jobs:
           python -I -S -B tools/check_encrypted_inherited_components_v1.py
       - name: Check recorded seeded evidence in its original host source context
         working-directory: demos/simplestories-v2-5m
-        run: python -I -S -B tools/check_current_seeded_recorded_v1.py --require-complete
+        run: python -I -S -B ../../tools/replay_simplestories_greedy.py --seeded
       - name: Check registered current RTL control proof completion (no solver replay)
         working-directory: demos/simplestories-v2-5m
         run: |
@@ -193,11 +193,11 @@ jobs:
       - name: Test the common SimpleStories host and seeded controls with fixture replies
         working-directory: demos/simplestories-v2-5m
         run: python -B -m unittest discover -s host-app -p 'test_*.py' -v
-      - name: Derive all three current greedy capsule results and exact shared host bindings
+      - name: Replay all three recorded greedy capsules with the exact qualified host
         # tokenizers0.23.2 is required to independently decode recorded browser
         # text. Keep site packages available; never add -S to this invocation.
         working-directory: demos/simplestories-v2-5m
-        run: python -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
+        run: python -I -B ../../tools/replay_simplestories_greedy.py
       - name: Confirm that the checks left the release unchanged
         run: python -I -S -B tools/verify_release.py --strict
 

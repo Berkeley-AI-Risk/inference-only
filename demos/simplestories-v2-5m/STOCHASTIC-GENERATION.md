@@ -14,6 +14,11 @@ Current package status is **Runnable release**. See the
 [timing details](CURRENT-QUALIFICATION.md#recorded-timing), then follow the
 installation and generation instructions below.
 
+To use the same settings and browser app with authenticated external K/V,
+follow the [protected seeded release guide](prebuilt/protected-seeded-sampling/README.md).
+The loading, existing qualification records and benchmark below describe the
+plain-K/V seeded image.
+
 ## Load and check the seeded image
 
 Use the same supported Tang Mega 138K non-Pro/device-C board and 16-MiB flash

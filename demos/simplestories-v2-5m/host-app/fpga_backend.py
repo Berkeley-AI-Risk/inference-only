@@ -43,7 +43,7 @@ def limits_for_variant(variant: str | None) -> InputLimits:
     """Local UI capability only; LiveUART still rechecks the full deployment."""
     if variant == 'seeded-sampling':
         return InputLimits(2048, 128, 2049, 32768, 3600)
-    if variant in ('baseline', 'kv-protected', 'encrypted-memory'):
+    if variant in ('baseline', 'kv-protected', 'encrypted-memory', 'protected-seeded-sampling'):
         return InputLimits(2048, 128, 2049, 32768, 14400)
     if variant is None:
         return InputLimits(MAX_PROMPT, MAX_NEW, DEMO_CAP, MAX_PROMPT_CHARS, STEP_TIMEOUT_SECONDS)
@@ -125,7 +125,7 @@ class LiveUART:
         try:
             runtime_profile.check_open_device(self.session.fd, profile['device'])
             decoder = (sampling_protocol.decoder_client(self.client)
-                       if profile.get('variant') == 'seeded-sampling' else self.client)
+                       if runtime_profile.supports_sampling(profile.get('variant')) else self.client)
             self.channel = self.reader.StrictChannel(self.session, decoder, self.observe)
             event = self.channel.next(1.0)
             if event is not None or self.channel.pending:
@@ -185,7 +185,7 @@ class LiveUART:
     def configure(self, temperature: str, seed: int = 0) -> bool:
         """Apply bounded settings only after the caller's acknowledged CLEAR."""
         code = sampling_protocol.temperature_code(temperature)
-        if self.profile.get('variant', 'baseline') != 'seeded-sampling':
+        if not runtime_profile.supports_sampling(self.profile.get('variant')):
             if code != 0:
                 raise BoardError('This loaded build supports only greedy temperature 0.')
             return False

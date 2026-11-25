@@ -74,6 +74,14 @@ class SeededUITests(unittest.TestCase):
             self.assertIn(SEED, '\n'.join(item.value for item in app.caption))
             self.assertEqual(app.text_input[0].value, SEED)
 
+    def test_protected_seeded_profile_shows_sampling_controls(self):
+        with patch('fpga_backend.Controller', return_value=self.controller), \
+             patch('runtime_profile.configured_variant_id', return_value='protected-seeded-sampling'):
+            app = self.render()
+            self.assertFalse(app.exception)
+            self.assertEqual(app.segmented_control[0].value, '0')
+            self.assertEqual(app.text_input[0].value, '')
+
     def test_bad_seed_is_reported_without_starting_a_worker(self):
         with patch('fpga_backend.Controller', return_value=self.controller), \
              patch('runtime_profile.configured_variant_id', return_value='seeded-sampling'):

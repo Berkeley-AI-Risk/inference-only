@@ -11,10 +11,10 @@ These records identify the supplied SimpleStories-V2-5M seeded image `d271626a7f
 
 [CURRENT-QUALIFICATION.md](../../CURRENT-QUALIFICATION.md) also describes full-array readback, the exact payload/source comparison and recipient reload/registration. [FORMAL-STATUS.md](../../FORMAL-STATUS.md) states the private-service boundaries and proof limits.
 
-From the repository root, recheck recorded evidence without hardware, solvers or numerical-model execution:
+From the SimpleStories demo directory, recheck the frozen recorded evidence without hardware, solvers or numerical-model execution:
 
 ```sh
-python3.12 -I -S -B tools/check_current_seeded_recorded_v1.py --require-complete
+python3.12 -I -S -B ../../tools/replay_simplestories_greedy.py --seeded
 python3.12 -I -S -B formal/current-seeded-sampling/check_recorded.py --require-complete
 ```
 

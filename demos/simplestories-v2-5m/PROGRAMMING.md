@@ -1,7 +1,7 @@
 # Run the demo on a Tang Mega 138K
 
 This guide installs the **plaintext** model for the baseline,
-K/V-protected and optional seeded-sampling configurations. For the
+K/V-protected and both seeded-sampling configurations. For the
 encrypted-memory image, follow the explicit
 [encrypted-memory substitutions](ENCRYPTED-MEMORY.md#install-or-restore);
 it requires different flash contents, not only a different SRAM image.
@@ -203,6 +203,11 @@ at all four temperatures, with separate source-bound
 [scoped control proofs](formal/seeded-sampling/README.md). See its
 [qualification record](variants/seeded-sampling/QUALIFICATION.md) for the
 completed evidence and remaining timing/security limits.
+
+To combine seeded sampling with **authenticated external K/V**, use
+`--fsFile "$FPGA_PACKAGE/prebuilt/protected-seeded-sampling/project/impl/pnr/shared_product.fs"`.
+Follow the [protected seeded release guide](prebuilt/protected-seeded-sampling/README.md)
+to register that image with its matching `RELEASE.json` and use the browser app.
 
 Require the expected target, successful **SRAM Program** and `Finished.`.
 Do not run another flash bridge/JTAG operation afterward: it may replace the

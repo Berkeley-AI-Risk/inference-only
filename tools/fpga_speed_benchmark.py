@@ -353,14 +353,14 @@ def inference_clock_mhz(row):
 
 
 def model_tables(result):
-    plain_ddr = 'External DDR, without K/V integrity checks'
+    plain_ddr = 'Unverified external DDR'
     # Older SimpleStories records describe K/V in their long display labels.
     # Supply that column here for them. Other rows carry attention_cache.
     groups = {
         'SimpleStories-V2-5M on Tang Mega 138K': [
             ('simplestories-baseline', 'F-AWIC, baseline', plain_ddr),
-            ('simplestories-kv-protected', 'F-AWIC, K/V integrity', None),
-            ('simplestories-encrypted', 'F-AWIC, encrypted weights and protected K/V', 'Encrypted in external DDR with integrity and replay checks'),
+            ('simplestories-kv-protected', 'F-AWIC, protected K/V', None),
+            ('simplestories-encrypted', 'F-AWIC, encrypted weights and protected K/V', 'Authenticated and encrypted in external DDR'),
             ('simplestories-seeded-sampling', 'F-AWIC, seeded sampling (temperature 1)', plain_ddr),
             ('simplestories-protected-seeded-sampling', 'F-AWIC, protected K/V and seeded sampling (temperature 1)', None),
             ('simplestories-signed-update', 'S-AWIC, signed updates', plain_ddr),
@@ -382,8 +382,7 @@ def model_tables(result):
             row = rows[row_id]
             cache = row.get('attention_cache', older_cache)
             need(cache, 'Missing K/V description for ' + row_id)
-            decimals = 5 if row_id == 'simplestories-protected-seeded-sampling' else 1
-            speed = f"{row['rate']['cached_tokens_per_second']:.{decimals}f}" if row['complete'] else '—'
+            speed = f"{row['rate']['cached_tokens_per_second']:.1f}" if row['complete'] else '—'
             clock = inference_clock_mhz(row)
             status = row['package_status'].replace('; ', ' · ')
             lines.append(f'| {label} | {cache} | {clock:g} | {speed} | {status} |')

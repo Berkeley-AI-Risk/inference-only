@@ -111,7 +111,7 @@ python3.12 -I -S -B ../../tools/verify_release.py --strict
 FPGA_EVIDENCE_ENV="/absolute/path/outside-the-checkout/fpga-evidence-env"
 python3.12 -m venv "$FPGA_EVIDENCE_ENV"
 "$FPGA_EVIDENCE_ENV/bin/python" -m pip install -r reference/requirements.txt -r host-app/requirements.txt
-"$FPGA_EVIDENCE_ENV/bin/python" -I -B tools/check_current_three_greedy_v15_v4.py --package . --stage current --index evidence/current-greedy/INDEX.json
+"$FPGA_EVIDENCE_ENV/bin/python" -I -B ../../tools/replay_simplestories_greedy.py
 python3.12 -I -S -B ../../tools/fpga_speed_benchmark.py --check
 ```
 

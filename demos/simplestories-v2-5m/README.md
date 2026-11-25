@@ -12,7 +12,7 @@ next-token selection. The host computer tokenizes prompts and displays outputs;
 the FPGA owns model evaluation and attention state. The implemented numerical
 contract is W10/A16/KV16 BFP-v5.
 
-Four **Fixed-Commitment AWICs (F-AWICs)** pin the accepted model commitment.
+Five **Fixed-Commitment AWICs (F-AWICs)** pin the accepted model commitment.
 Two **Signed-Update AWICs (S-AWICs)** admit compatible signed model packages;
 one also requires periodic permission to keep running the admitted weights.
 The model hardware, host tools, proofs and evidence are in this directory.
@@ -20,17 +20,18 @@ Shared release and cross-model benchmark checks are at the repository root.
 
 ## Supplied configurations
 
-| Configuration | Common cached generation | External K/V protection | Package status |
+| Configuration | Common cached generation | K/V cache | Package status |
 | --- | ---: | --- | --- |
-| F-AWIC baseline | ~**10.0 tokens/s** | None | Runnable release |
-| F-AWIC with K/V protection | ~**7.0 tokens/s** | Private expected SHA-256 digests and CLEAR epoch | Runnable release |
-| F-AWIC with K/V protection + encrypted memory | ~**6.0 tokens/s** | AES-SIV plus private expected digests | Runnable release; public demonstration keys |
-| F-AWIC with seeded sampling at temperature 1 | ~**9.9 tokens/s** | None | Runnable release |
-| [S-AWIC](variants/signed-update/tang/README.md) | ~**10.1 tokens/s** | None | Runnable release; public demonstration keys |
-| [S-AWIC with periodic reauthorization](variants/home-authorization/README.md) | ~**7.6 tokens/s** | None | Runnable token-ID demonstration; public demonstration keys |
+| F-AWIC baseline | ~**10.0 tokens/s** | Unverified external DDR | Runnable release |
+| F-AWIC, protected K/V | ~**7.0 tokens/s** | Authenticated in external DDR using private digests and a CLEAR epoch | Runnable release |
+| F-AWIC, encrypted weights and protected K/V | ~**6.0 tokens/s** | Authenticated and encrypted in external DDR | Runnable release; public demonstration keys |
+| F-AWIC with seeded sampling at temperature 1 | ~**9.9 tokens/s** | Unverified external DDR | Runnable release |
+| F-AWIC, protected K/V and seeded sampling at temperature 1 | ~**7.0 tokens/s** | Authenticated in external DDR using private digests and a CLEAR epoch | [Runnable release](prebuilt/protected-seeded-sampling/README.md) |
+| [S-AWIC](variants/signed-update/tang/README.md) | ~**10.1 tokens/s** | Unverified external DDR | Runnable release; public demonstration keys |
+| [S-AWIC with periodic reauthorization](variants/home-authorization/README.md) | ~**7.6 tokens/s** | Unverified external DDR | Runnable token-ID demonstration; public demonstration keys |
 
 Every row uses one input token and two 128-output trials. Selection is greedy
-except for the seeded row, which uses temperature 1 and its recorded public
+except for the two seeded rows, which use temperature 1 and a recorded public
 seed. The rate pools 254 cached outputs between validated replies, including
 host control and inter-command gaps; periodic authorization includes renewal
 and handover gaps. Command-only timings are separate. See the
@@ -41,7 +42,7 @@ demonstration authorities. The [build and evidence map](REPRODUCE.md#configurati
 identifies each configuration's sources, image and reproduction route. Their
 memory protections, settings and evidence scopes are separate.
 
-The browser workflow covers the four F-AWIC configurations. The three greedy
+The browser workflow covers the five F-AWIC configurations. The three greedy
 F-AWIC images support 2,048 input positions plus one final output slot, with
 browser limits of 2,048 prompt tokens, 128 new tokens and 2,049 combined.
 Long prompts take minutes before the first output; Stop drains an active STEP
