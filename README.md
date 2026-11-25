@@ -93,7 +93,7 @@ the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENC
 | F-AWIC, protected K/V | Authenticated in external DDR | 25 | 7.0 | Runnable release |
 | F-AWIC, encrypted weights and protected K/V | Authenticated and encrypted in external DDR | 25 | 6.0 | Runnable release · public demonstration keys |
 | F-AWIC, seeded sampling (temperature 1) | Unverified external DDR | 25 | 9.9 | Runnable release |
-| F-AWIC, protected K/V and seeded sampling (temperature 1) | Authenticated in external DDR | 25 | 7.0 | [Runnable release](demos/simplestories-v2-5m/prebuilt/protected-seeded-sampling/README.md) |
+| F-AWIC, protected K/V and seeded sampling (temperature 1) | Authenticated in external DDR | 25 | 7.03152 | [Runnable release](demos/simplestories-v2-5m/prebuilt/protected-seeded-sampling/README.md) |
 | S-AWIC, signed updates | Unverified external DDR | 25 | 10.1 | Runnable release · public demonstration keys |
 | S-AWIC, periodic reauthorization | Unverified external DDR | 25 | 7.6 | Runnable token-ID demonstration · public demonstration keys |
 <!-- COMMON-FPGA-SPEED:END -->

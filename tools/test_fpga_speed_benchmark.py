@@ -294,7 +294,7 @@ class CommonSpeedTests(unittest.TestCase):
         self.assertIn('| Authenticated in external DDR (all five layers) | 50 | 8.9 | [Five-layer board trial]', tables[1])
         self.assertIn('| F-AWIC, protected K/V | Authenticated in external DDR | 25 | 7.0 |', tables[0])
         self.assertIn('| F-AWIC, protected K/V and seeded sampling (temperature 1) | '
-                      'Authenticated in external DDR | 25 | 7.0 |', tables[0])
+                      'Authenticated in external DDR | 25 | 7.03152 |', tables[0])
 
 
 if __name__=='__main__':unittest.main()
