@@ -97,7 +97,7 @@ the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENC
 
 A separate [11-case simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) combines S-AWIC signed reauthorization with protected K/V.
 
-The seeded image authenticates weights and uses a plain external K/V cache.
+The seeded image in the table authenticates weights and uses a plain external K/V cache. A separate [25 MHz protected seeded board trial](evidence/simplestories-tang-protected-seeded-board/README.md) used verified external K/V. At temperature 1 and the public seed, all three sampled tokens repeated after CLEAR. This functional comparison retained open vendor DDR timing endpoints.
 
 <!-- COMMON-FPGA-SPEED:START -->
 ### TLM26 (top-2-of-8 MoE) on Tang Mega 138K
@@ -108,6 +108,15 @@ The seeded image authenticates weights and uses a plain external K/V cache.
 <!-- COMMON-FPGA-SPEED:END -->
 
 The [50 MHz overlapped schedule](demos/tlm26-moe/variants/overlap-r2-50mhz/README.md) fetches the next operands while the current product accumulates. The [TLM26 guide](demos/tlm26-moe/README.md) covers the earlier same-clock comparison, reproduction and timing limits.
+
+Two 128-output board trials per configuration measured the protected external-K/V variants at 50 MHz.
+
+| TLM26 K/V cache | Recorded cached tokens/s | Evidence |
+| --- | ---: | --- |
+| Authenticated in external DDR for layers 0 and 1 | 9.0 | [Two-layer board trial](evidence/tlm26-tang-protected-kv-board/README.md) |
+| Authenticated in external DDR for all five layers | 8.9 | [Five-layer board trial](evidence/tlm26-tang-five-layer-kv-board/README.md) |
+
+The five-layer recorder timestamps complete UART frame receipt before validating each reply. The headline benchmark uses validated generation-loop timestamps. The five-layer image matched 255 full-context outputs and five after CLEAR. The reported application clocks met timing. Vendor DDR timing remained open.
 
 <!-- COMMON-FPGA-SPEED:START -->
 ### Qwen3-1.7B on AWS F2

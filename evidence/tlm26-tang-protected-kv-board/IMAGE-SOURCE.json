@@ -1,0 +1,237 @@
+{
+  "authenticated_external_kv_layers": [
+    0,
+    1
+  ],
+  "board": "Tang Mega 138K Basic",
+  "boot_and_restore": {
+    "SRAM_only": true,
+    "flash_programming_operations": 0,
+    "load": {
+      "acknowledged_pages": 768,
+      "bytes": 3145728,
+      "elapsed_s": 282.68710900004953,
+      "sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1"
+    },
+    "program_log": {
+      "bytes": 6348,
+      "sha256": "eafe75568152e6b0285e8c1df60a895e1a6e4fd342b156a7640dfeb9d62d6104"
+    },
+    "restore_log": {
+      "bytes": 6348,
+      "sha256": "931b24d9ee5b445be8657eb80d9c150991897adf2c6f411d9952aa0507521c9b"
+    }
+  },
+  "flow": {
+    "input_count": 28,
+    "inputs": {
+      "authenticated_weight_page.sv": {
+        "bytes": 3546,
+        "sha256": "d1bcf48b9f8366db2b3274c61d92b929c962222041813fcaa5ceebd8ff5d0596"
+      },
+      "board1_gowin_ddr3_raw_controller_shell.sv": {
+        "bytes": 10099,
+        "sha256": "ceffbf483bddb0ecd325c4367581a81ad71bbbb44f06733b2464597153f0a739"
+      },
+      "build.tcl": {
+        "bytes": 410,
+        "sha256": "238bdcb0e8a87d0f2f3994a59052dd75b36578c362d3aabd83c4019ac08ef0d9"
+      },
+      "cos.hex": {
+        "bytes": 9216,
+        "sha256": "1241145ece5f8fbcfbb8188a1ef70078cf9adef5ba14a93305fadd60173ae4a2"
+      },
+      "ddr3_memory_interface.v": {
+        "bytes": 2238123,
+        "sha256": "d7cae5a16467ca35ee3f95411537344ae3702e1dba86a06571530e3dd0180c57"
+      },
+      "defines.v": {
+        "bytes": 55,
+        "sha256": "76cbe1576dbf6c7c6151072d6c1f8125eecc360140ba29784024d3f99b0f6f58"
+      },
+      "exp.hex": {
+        "bytes": 36873,
+        "sha256": "72c6faed16b428793805e7aa11e689c22f8f5b13fe2a8623650b6e0bd67ba350"
+      },
+      "fifo.sv": {
+        "bytes": 14373,
+        "sha256": "25b9578703f1c44b67867fea92f1a6749fd692c209fecf36b1de0652cd37df81"
+      },
+      "fixed_uart_rx.sv": {
+        "bytes": 3071,
+        "sha256": "488a0393998a5403b51761ba1b48f54a106d2d775bee49fe9e006fd8fb66a69f"
+      },
+      "fixed_uart_tx.sv": {
+        "bytes": 1502,
+        "sha256": "4a559f7cbedd78fae146fa7d3098ccdeea1c9fdcd76f86163543825142337c7e"
+      },
+      "gowin_pll.v": {
+        "bytes": 992,
+        "sha256": "982ca6387f42086e88b4c858490eb00954a80a3284e0f07d959311d0975d7536"
+      },
+      "gowin_pll_mod.v": {
+        "bytes": 6081,
+        "sha256": "07398632b56749dbe52f6e5d739a526c7ca5e71c4060c7d062a64dada6e1a953"
+      },
+      "moe_sha256_core.sv": {
+        "bytes": 4680,
+        "sha256": "b7070c0af3958009df57e1070a0d61eb198a1864b0832b3e7a0b1022637f2ce1"
+      },
+      "page_digest.hex": {
+        "bytes": 49920,
+        "sha256": "8435176609fccf03eaed8d83cc56d3eaacfd386dfee2fa7b1bb9174599509cb6"
+      },
+      "pll_init.v": {
+        "bytes": 6458,
+        "sha256": "502436115e507453e2c139a073f5b56484421311ef57088ce1a16140347957f5"
+      },
+      "product.cst": {
+        "bytes": 7549,
+        "sha256": "6468806f15afd0ceb230876eb2da311423c31427450e188fed4004c9897789ec"
+      },
+      "product.gprj": {
+        "bytes": 1535,
+        "sha256": "3494301fa6116fa1d6883829e861082d46739266e73691f38ca415de10f6f984"
+      },
+      "product.sdc": {
+        "bytes": 21908,
+        "sha256": "3946da8b8522248fc907124d9fea00afedca3cc449b0d9189592e75eef93cfe5"
+      },
+      "reset.sv": {
+        "bytes": 930,
+        "sha256": "8b7d02cbcc49fad8e017a71051afb61ec923aa6aaa37031866e00a44da3bc7a6"
+      },
+      "sin.hex": {
+        "bytes": 9216,
+        "sha256": "ba230e4bad04e9de5b1be49555e6448d9695cc49cb8ef68a7173a99ebf2ade60"
+      },
+      "spi.sv": {
+        "bytes": 8909,
+        "sha256": "9f97efb834fc2622a10d0a3dc1ded0e17bd8a4ca579a20ceda80f10150552686"
+      },
+      "thin_transport.sv": {
+        "bytes": 8284,
+        "sha256": "b85e08fa0dfe0aefdc37aa0343175f8ea614025392bce0e112d11f12172eb84e"
+      },
+      "tlm_decoder.sv": {
+        "bytes": 28812,
+        "sha256": "c11a2cd4401747d70d7d21e584244a3c9b45486d46b07bb2e250202e026bf1a9"
+      },
+      "tlm_first_return.sv": {
+        "bytes": 1107,
+        "sha256": "b8f1728e3854a03d458417de82ccbd0fb7a8ab05de8896ec44d570fc1da28392"
+      },
+      "tlm_product.sv": {
+        "bytes": 12086,
+        "sha256": "7c6069fd900b8dc3428ebcae59ae99df65637af1c6793c0f9eeaecee42b1eee0"
+      },
+      "tlm_token_uart.sv": {
+        "bytes": 2525,
+        "sha256": "cc1f64ac61afeff426addb389b616251a49b77631911bdc6e764032a649866c3"
+      },
+      "top.sv": {
+        "bytes": 6607,
+        "sha256": "2d4f9a4ebf0491f8f50d67934ff28b17d23b25050dc01a64bd630159bb4baece"
+      },
+      "volatile_model_loader.sv": {
+        "bytes": 1953,
+        "sha256": "f08642de69093569c59a813104e38b875fe28c5c323200ceab588c45495dccef"
+      }
+    },
+    "native_comparison": {
+      "bytes": 66549,
+      "sha256": "e1f15f28588f4534ed071ae025e89713a8a189ce6e0a6756473eb4953f7e7cac"
+    },
+    "native_exit_receipt": {
+      "bytes": 2577,
+      "sha256": "dbabb9aa1ec5b8ff66b0bca7acd55573483101b1e247ac0933e5b9c8f847313e"
+    },
+    "native_plan": {
+      "bytes": 5211,
+      "sha256": "72eceeb20da5ef6ca8de2dfa967ca9bcbcb17fb6a217a3e65a8c85ddd691ba35"
+    },
+    "tool_sha256": "76b24d18ec9785be73de6e9e98866bbd7bec330aff67d1fa8462f71f79b5f72c",
+    "tool_version": "V1.9.12.04-1"
+  },
+  "host_protocol": {
+    "BOS_token": 1,
+    "clean_trials_per_arm": 2,
+    "codec_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c",
+    "first_return_hold_cycles_in_both_arms": 1000000,
+    "output_positions_per_trial": 128,
+    "public_golden": "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/golden.json",
+    "time_boundary": "host validated first generated reply through host validated last generated reply"
+  },
+  "model": {
+    "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+    "image": {
+      "bytes": 3145728,
+      "sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1"
+    },
+    "tokenizer_sha256": "d7f2c1b4c964f0b4a5e136557059e2e4071a3738441d1d104f70d0a36b999cf8"
+  },
+  "model_layer_count": 5,
+  "on_chip_control": {
+    "physical_image_sha256": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b",
+    "public_records": {
+      "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/golden.json": {
+        "bytes": 2893,
+        "sha256": "c462aa3b16c179b512c73e45bc98f3d7d8e93c6a763d460a677b93113b14dd71"
+      },
+      "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/trial-1.json": {
+        "bytes": 31788,
+        "sha256": "e20d17666d008bb3b592e9f00cd821c0b4c3115ede928b20cbfafa6a99167c3b"
+      },
+      "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/trial-2.json": {
+        "bytes": 31792,
+        "sha256": "6ad53d82563ef647c035cf13f64e53ea834b0e35260ff7c04dfed7e7d2dd7c9c"
+      },
+      "demos/tlm26-moe/variants/overlap-r2-50mhz/evidence/route-50mhz.json": {
+        "bytes": 1696,
+        "sha256": "67a27e3687dca6a2dd91ee3cc956617571c03303b21e3f96b37fa78e9afdd393"
+      }
+    },
+    "public_trials_in_order": [
+      "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/trial-1.json",
+      "benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/trial-2.json"
+    ],
+    "same_recorded_physical_board": true
+  },
+  "protected_image": {
+    "bytes": 41710934,
+    "sha256": "126703c3bad359027855de27bfc303ec9eedcf63ebb8755aafd0eb44fdb356ad"
+  },
+  "restored_signed_update_image": {
+    "bytes": 42197772,
+    "sha256": "4545bd0b0c4076eaea8358d547b19ff0176952417daa0e0f07d1c346aee5fee2"
+  },
+  "schema": "tlm26-two-layer-external-kv-board-image-source-v1",
+  "security_observation": {
+    "direct_simulation_manifest": {
+      "bytes": 1827,
+      "sha256": "ef4810f1fe20ea1dc86daf94bea98391056f0ec7a660eceb047939a605651910"
+    },
+    "stale_kv_board_stimulated": false,
+    "stale_kv_refusal_observed_in": "RTL simulation"
+  },
+  "source_history_parent": "73210020922501fa1391691aaf80cc95ba6fd9e9",
+  "timing": {
+    "application_clock_mhz": 100,
+    "application_setup_slack_ns": 0.004,
+    "inference_clock_mhz": 50,
+    "inference_hold_slack_ns": 0.199,
+    "inference_setup_slack_ns": 0.564,
+    "parsed_report": {
+      "bytes": 243591,
+      "sha256": "bf2dbfb735ee122810320b457d485f25a7d862d75466c8ce7b4f00d15b742c55"
+    },
+    "raw_native_timing_report": {
+      "bytes": 4594681,
+      "sha256": "f367e3503347ed655c1de450d0f036f2b20dce59d732de2e8b610022b7f4c3b8"
+    },
+    "reported_hold_side_failing_endpoints": 34,
+    "reported_setup_side_failing_endpoints": 200,
+    "whole_design_timing_closed": false
+  },
+  "trial_date_utc": "2026-11-23"
+}
