@@ -1,0 +1,123 @@
+{
+  "host_binary": "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/host/qwen_host.bin",
+  "host_source": "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/host/qwen_host.cpp",
+  "host_protocol": "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/host/qwen_host_protocol.h",
+  "host_build": "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/host/BUILD.json",
+  "reference": "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/reference.json",
+  "reference_stdout": "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/reference.stdout.jsonl",
+  "reference_exit": "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/reference.exit.json",
+  "schema": "qwen-common-speed-source-review-v1",
+  "protected_binding": "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/image-binding.json",
+  "scope": "Offline verification of the recorded F2 benchmark and CPU numerical source.",
+  "native_archive_sha256": "f725006381c5fb1d5dbe4163328397e727788af2d0467b65f3de8c2a4a2cbf20",
+  "loaded_image": "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/loaded-image.log",
+  "model_ready": "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/model-load.log",
+  "clock_observation": "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/clock-observation.log",
+  "after_image": "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/after-image.log",
+  "files": {
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/loaded-image.log": {
+      "bytes": 166,
+      "sha256": "be9bf005d32ed98b8b9c464099f17393e886088d383e269c89d4192851370b00"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/loaded-image.exit.json": {
+      "bytes": 263,
+      "sha256": "4152af876f8274b0851101bcaa92ec33fddcb7f77ba087b6d7ac105450ea6c4d"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/after-image.log": {
+      "bytes": 166,
+      "sha256": "be9bf005d32ed98b8b9c464099f17393e886088d383e269c89d4192851370b00"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/after-image.exit.json": {
+      "bytes": 264,
+      "sha256": "17ded48d339d661b6be20212c159ae653cb07d4550816c79490215a48b35789f"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/clock-observation.log": {
+      "bytes": 32,
+      "sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/clock-observation.exit.json": {
+      "bytes": 266,
+      "sha256": "f5c1c987a346e4b54fb31bb82a40489381db538a73d002c694037007eccfe02c"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/model-load.log": {
+      "bytes": 1422,
+      "sha256": "b259edddbfe541b2395005e5082aa6add4b47452e3cb2548088e59fa9986c11f"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/model-load.exit.json": {
+      "bytes": 259,
+      "sha256": "206a546060e8ea0747fe8df05ff48c6c2c10be6e5695511b3f08ba6067802580"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/trial-1.log": {
+      "bytes": 14438,
+      "sha256": "21f3cf47b13344e134748bc74c985d57bde4035fa68e66a0050ee68c02eb42e2"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/trial-1.exit.json": {
+      "bytes": 257,
+      "sha256": "99d8e2a2940e6ff4bf2e18a02c48e5b82bd66deeae4bfdeb399f41d172f5bb70"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/trial-2.log": {
+      "bytes": 14440,
+      "sha256": "86fb16339fd7ea5ad2bb316afc84c5f95b1a0139ef2e3a8d21834df83355ca24"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/trial-2.exit.json": {
+      "bytes": 264,
+      "sha256": "dd93dde3f5b510798d90174587cf0b2b841b4f946d7c2d53930bce700ebd8b78"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/final-clear.log": {
+      "bytes": 51,
+      "sha256": "7d17f33b8aa03e8ac3e1a831f7e7fef709620d5cd6c737767806a21140ad9625"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/final-clear.exit.json": {
+      "bytes": 265,
+      "sha256": "7c40810027a6d9d50025f765a89fdeb4950c3c302003d271234880129024ba3b"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/image-binding.json": {
+      "bytes": 820,
+      "sha256": "cbbc86b78cd2a802a843525504fa8f9c19d13920eb3a81407cbd518eeda3c249"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/capture.json": {
+      "bytes": 69661,
+      "sha256": "082a5bd3377212627fc9004df40c7b0fee6ef6261a4651553a50a52bd12953c7"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/host/qwen_host.bin": {
+      "bytes": 518400,
+      "sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/host/qwen_host.cpp": {
+      "bytes": 9805,
+      "sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/host/qwen_host_protocol.h": {
+      "bytes": 8011,
+      "sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/host/BUILD.json": {
+      "bytes": 1172,
+      "sha256": "dea20283f3b1b4dac7d3ff0e1293ee25323c49b39204e3510a9b8d2b890f5431"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/reference.json": {
+      "bytes": 6068,
+      "sha256": "12512990ef179df64494aa3381ea0f9aff764df9bf5975377eac9fdeed211516"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/reference.stdout.jsonl": {
+      "bytes": 7738,
+      "sha256": "80635f43c148fc33530f79d0be4099a2ced5a353bedde49c4e8cb34dc3a0142b"
+    },
+    "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/raw/reference.exit.json": {
+      "bytes": 705,
+      "sha256": "e5a88826f3c7e385b72b7e7d18b90ab3e02c1fd02d5c5d7ff35002e4762709f4"
+    }
+  },
+  "trials": [
+    {
+      "name": "trial-1",
+      "stdout": "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/trial-1.log",
+      "exit": "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/trial-1.exit.json"
+    },
+    {
+      "name": "trial-2",
+      "stdout": "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/trial-2.log",
+      "exit": "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/raw/trial-2.exit.json"
+    }
+  ]
+}

@@ -385,6 +385,50 @@
       "status": "Runnable release; public AWS FPGA image"
     },
     {
+      "id": "qwen3-1.7b-protected",
+      "label": "**Qwen3-1.7B \u2014 AWS F2**, **F-AWIC, protected K/V**",
+      "status": "Board measured \u00b7 private AWS FPGA image",
+      "attention_cache": "Authenticated external K/V",
+      "format": "canonical",
+      "cases": [
+        "trial-1",
+        "trial-2"
+      ],
+      "prompt_tokens": [
+        9707
+      ],
+      "source": "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/capture.json",
+      "evidence_review": "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/source-review.json",
+      "identity": {
+        "model": "qwen3-1.7b",
+        "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
+        "checkpoint_sha256": "df94e833c06fc71c06fedbe1c39fda1a3552e6f3652e7b89fd42f0a56572661e",
+        "source_manifest_sha256": "c55ab9b5f29beecd2fc7f27324cd3b5ff2afc881603ec6f52ac78723d1280488",
+        "fpga_image_global_id": "agfi-0ece678a652e7a332",
+        "fpga_image_regional_id": "afi-0396dd81d974b34df",
+        "clocks_mhz": {
+          "core": 100,
+          "memory_axi": 125,
+          "shell": 250
+        },
+        "clock_scope": "Routed A0/B0/C2/H1 configuration. The SDK clock probe returned 29 (unsupported).",
+        "runtime_clock_probe_supported": false,
+        "host_platform": {
+          "kernel": "6.8.0-1021-aws",
+          "machine": "x86_64"
+        },
+        "collection_conditions": "Exclusive original F2 slot, same-boot model upload, successful CLEAR before each trial. The Linux host timestamps validated STEP replies.",
+        "loaded_image_record_sha256": "be9bf005d32ed98b8b9c464099f17393e886088d383e269c89d4192851370b00",
+        "model_ready_record_sha256": "b259edddbfe541b2395005e5082aa6add4b47452e3cb2548088e59fa9986c11f",
+        "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+        "kv_protected": true,
+        "public_image": false,
+        "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+        "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
+        "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9"
+      }
+    },
+    {
       "attention_cache": "Unverified external K/V",
       "cases": [
         "trial-1",
@@ -770,6 +814,14 @@
     "evidence/tlm26-tang-five-layer-kv-board/REFERENCE.json": {
       "bytes": 2768,
       "sha256": "2e11aa1441e62118861d1bcaae8f50fdfadfaa411829f5f1d64c068325a67190"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/capture.json": {
+      "bytes": 69661,
+      "sha256": "082a5bd3377212627fc9004df40c7b0fee6ef6261a4651553a50a52bd12953c7"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/source-review.json": {
+      "bytes": 6452,
+      "sha256": "6a106b0bacdc65bb2827ad986eeb3b3d9f44a559d35313632bd5406260f87b04"
     }
   },
   "timestamp_boundary": "generation_loop_validated_reply"

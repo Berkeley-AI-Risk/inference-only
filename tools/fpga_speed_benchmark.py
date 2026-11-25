@@ -413,7 +413,10 @@ def model_tables(result):
             ('tlm26-moe-overlap-r2-50mhz', 'F-AWIC, overlapped schedule', None),
             (TLM26_FIVE_LAYER, 'F-AWIC, protected K/V', None),
         ],
-        'Qwen3-1.7B on AWS F2': [('qwen3-1.7b', 'F-AWIC', None)],
+        'Qwen3-1.7B on AWS F2': [
+            ('qwen3-1.7b', 'F-AWIC', None),
+            ('qwen3-1.7b-protected', 'F-AWIC, protected K/V', None),
+        ],
         'Qwen3-8B on AWS F2': [('qwen3-8b', 'F-AWIC', None)],
     }
     rows = {row['id']: row for row in result['rows']}

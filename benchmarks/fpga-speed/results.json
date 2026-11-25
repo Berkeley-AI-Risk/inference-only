@@ -1,5 +1,5 @@
 {
-  "complete_rows": 13,
+  "complete_rows": 14,
   "protocol": "one-token-128-host-v2",
   "rows": [
     {
@@ -1159,6 +1159,141 @@
       ]
     },
     {
+      "attention_cache": "Authenticated external K/V",
+      "complete": true,
+      "eligible_trials": 2,
+      "id": "qwen3-1.7b-protected",
+      "identity": {
+        "checkpoint_sha256": "df94e833c06fc71c06fedbe1c39fda1a3552e6f3652e7b89fd42f0a56572661e",
+        "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+        "clock_scope": "Routed A0/B0/C2/H1 configuration. The SDK clock probe returned 29 (unsupported).",
+        "clocks_mhz": {
+          "core": 100,
+          "memory_axi": 125,
+          "shell": 250
+        },
+        "collection_conditions": "Exclusive original F2 slot, same-boot model upload, successful CLEAR before each trial. The Linux host timestamps validated STEP replies.",
+        "fpga_image_global_id": "agfi-0ece678a652e7a332",
+        "fpga_image_regional_id": "afi-0396dd81d974b34df",
+        "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+        "host_platform": {
+          "kernel": "6.8.0-1021-aws",
+          "machine": "x86_64"
+        },
+        "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9",
+        "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
+        "kv_protected": true,
+        "loaded_image_record_sha256": "be9bf005d32ed98b8b9c464099f17393e886088d383e269c89d4192851370b00",
+        "model": "qwen3-1.7b",
+        "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
+        "model_ready_record_sha256": "b259edddbfe541b2395005e5082aa6add4b47452e3cb2548088e59fa9986c11f",
+        "public_image": false,
+        "runtime_clock_probe_supported": false,
+        "source_manifest_sha256": "c55ab9b5f29beecd2fc7f27324cd3b5ff2afc881603ec6f52ac78723d1280488"
+      },
+      "label": "**Qwen3-1.7B \u2014 AWS F2**, **F-AWIC, protected K/V**",
+      "missing": null,
+      "package_status": "Board measured \u00b7 private AWS FPGA image",
+      "rate": {
+        "cached_host_seconds": 35.325165032,
+        "cached_tokens_per_second": 7.190341496491498,
+        "command_only_diagnostic_tokens_per_second": 7.191518536247056,
+        "counted_cached_outputs": 254,
+        "first_step_seconds": [
+          0.134916752,
+          0.134887245
+        ]
+      },
+      "trials": [
+        {
+          "cached_command_seconds": 17.660044755,
+          "cached_host_seconds": 17.662956108000003,
+          "cached_outputs": 127,
+          "capture_sha256": "21f3cf47b13344e134748bc74c985d57bde4035fa68e66a0050ee68c02eb42e2",
+          "clear_before": true,
+          "first_step_seconds": 0.134916752,
+          "generated_outputs": 128,
+          "greedy": true,
+          "identity": {
+            "checkpoint_sha256": "df94e833c06fc71c06fedbe1c39fda1a3552e6f3652e7b89fd42f0a56572661e",
+            "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+            "clock_scope": "Routed A0/B0/C2/H1 configuration. The SDK clock probe returned 29 (unsupported).",
+            "clocks_mhz": {
+              "core": 100,
+              "memory_axi": 125,
+              "shell": 250
+            },
+            "collection_conditions": "Exclusive original F2 slot, same-boot model upload, successful CLEAR before each trial. The Linux host timestamps validated STEP replies.",
+            "fpga_image_global_id": "agfi-0ece678a652e7a332",
+            "fpga_image_regional_id": "afi-0396dd81d974b34df",
+            "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+            "host_platform": {
+              "kernel": "6.8.0-1021-aws",
+              "machine": "x86_64"
+            },
+            "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9",
+            "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
+            "kv_protected": true,
+            "loaded_image_record_sha256": "be9bf005d32ed98b8b9c464099f17393e886088d383e269c89d4192851370b00",
+            "model": "qwen3-1.7b",
+            "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
+            "model_ready_record_sha256": "b259edddbfe541b2395005e5082aa6add4b47452e3cb2548088e59fa9986c11f",
+            "public_image": false,
+            "runtime_clock_probe_supported": false,
+            "source_manifest_sha256": "c55ab9b5f29beecd2fc7f27324cd3b5ff2afc881603ec6f52ac78723d1280488"
+          },
+          "prompt_tokens": [
+            9707
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
+        },
+        {
+          "cached_command_seconds": 17.659338588,
+          "cached_host_seconds": 17.662208924,
+          "cached_outputs": 127,
+          "capture_sha256": "86fb16339fd7ea5ad2bb316afc84c5f95b1a0139ef2e3a8d21834df83355ca24",
+          "clear_before": true,
+          "first_step_seconds": 0.134887245,
+          "generated_outputs": 128,
+          "greedy": true,
+          "identity": {
+            "checkpoint_sha256": "df94e833c06fc71c06fedbe1c39fda1a3552e6f3652e7b89fd42f0a56572661e",
+            "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+            "clock_scope": "Routed A0/B0/C2/H1 configuration. The SDK clock probe returned 29 (unsupported).",
+            "clocks_mhz": {
+              "core": 100,
+              "memory_axi": 125,
+              "shell": 250
+            },
+            "collection_conditions": "Exclusive original F2 slot, same-boot model upload, successful CLEAR before each trial. The Linux host timestamps validated STEP replies.",
+            "fpga_image_global_id": "agfi-0ece678a652e7a332",
+            "fpga_image_regional_id": "afi-0396dd81d974b34df",
+            "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+            "host_platform": {
+              "kernel": "6.8.0-1021-aws",
+              "machine": "x86_64"
+            },
+            "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9",
+            "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
+            "kv_protected": true,
+            "loaded_image_record_sha256": "be9bf005d32ed98b8b9c464099f17393e886088d383e269c89d4192851370b00",
+            "model": "qwen3-1.7b",
+            "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
+            "model_ready_record_sha256": "b259edddbfe541b2395005e5082aa6add4b47452e3cb2548088e59fa9986c11f",
+            "public_image": false,
+            "runtime_clock_probe_supported": false,
+            "source_manifest_sha256": "c55ab9b5f29beecd2fc7f27324cd3b5ff2afc881603ec6f52ac78723d1280488"
+          },
+          "prompt_tokens": [
+            9707
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "generation_loop_validated_reply"
+        }
+      ]
+    },
+    {
       "attention_cache": "Unverified external K/V",
       "complete": true,
       "eligible_trials": 2,
@@ -1632,6 +1767,14 @@
       "bytes": 5802,
       "sha256": "d8911fd9119ff8fcdf0b08138bde93f0412e15f753417357fb138c2e9f35109b"
     },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/capture.json": {
+      "bytes": 69661,
+      "sha256": "082a5bd3377212627fc9004df40c7b0fee6ef6261a4651553a50a52bd12953c7"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/source-review.json": {
+      "bytes": 6452,
+      "sha256": "6a106b0bacdc65bb2827ad986eeb3b3d9f44a559d35313632bd5406260f87b04"
+    },
     "demos/qwen3-1.7b/measurements.json": {
       "bytes": 146173,
       "sha256": "8266c1a3e9057302af4cc1cdf5085ca496d688541d04feffe07d041ab3b7140b"
@@ -1786,5 +1929,5 @@
     }
   },
   "timestamp_boundary": "generation_loop_validated_reply",
-  "total_rows": 13
+  "total_rows": 14
 }

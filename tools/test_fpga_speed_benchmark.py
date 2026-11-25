@@ -284,7 +284,7 @@ class CommonSpeedTests(unittest.TestCase):
             '### Qwen3-1.7B on AWS F2',
             '### Qwen3-8B on AWS F2',
         ])
-        self.assertEqual([len(t.splitlines()[4:]) for t in tables], [7, 2, 1, 1])
+        self.assertEqual([len(t.splitlines()[4:]) for t in tables], [7, 2, 2, 1])
         self.assertEqual(text.count(bench.START), len(tables))
         self.assertEqual(text.count(bench.END), len(tables))
         actual = [part.split(bench.END, 1)[0].strip() for part in text.split(bench.START)[1:]]

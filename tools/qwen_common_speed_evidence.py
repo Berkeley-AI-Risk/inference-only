@@ -104,7 +104,24 @@ def verify(root, row, capture, review):
     for before, after in reversed(edits):
         need(source.count(after) == 1, 'Qwen host instrumentation changed')
         source = source.replace(after, before)
-    parent = 'demos/' + row['id'] + '/host/'
+    model_directory = row['id']
+    if row['id'] == 'qwen3-1.7b-protected':
+        binding = obj(review['protected_binding'])
+        need(binding['kv_protected'] is True and identity['kv_protected'] is True
+             and binding['public'] is False and identity['public_image'] is False
+             and binding['state'] == 'available'
+             and binding['afi'] == identity['fpga_image_regional_id'] == 'afi-0396dd81d974b34df'
+             and binding['agfi'] == identity['fpga_image_global_id'] == 'agfi-0ece678a652e7a332'
+             and binding['checkpoint_sha256'] == identity['checkpoint_sha256']
+             == 'df94e833c06fc71c06fedbe1c39fda1a3552e6f3652e7b89fd42f0a56572661e'
+             and binding['source_manifest_sha256'] == identity['source_manifest_sha256']
+             == 'c55ab9b5f29beecd2fc7f27324cd3b5ff2afc881603ec6f52ac78723d1280488'
+             and binding['model_image_sha256'] == identity['model_image_sha256']
+             and binding['clocks_mhz'] == dict(identity['clocks_mhz'], hbm_reference=100)
+             and binding['clock_recipes'] == {'a': 'A0', 'b': 'B0', 'c': 'C2', 'hbm': 'H1'},
+             'Wrong protected Qwen3-1.7B image, source, model or clocks')
+        model_directory = 'qwen3-1.7b'
+    parent = 'demos/' + model_directory + '/host/'
     need(source.encode() == read(root, parent + 'qwen_host.cpp')
          and raw(review['host_protocol']) == read(root, parent + 'qwen_host_protocol.h'),
          'Qwen benchmark host differs beyond the declared timestamp/CLEAR instrumentation')

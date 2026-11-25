@@ -85,6 +85,7 @@ local control host. “Inference core” is the configured decoder clock of
 the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) · [Full results](benchmarks/fpga-speed/results.json)
 
 <!-- COMMON-FPGA-SPEED:START -->
+
 ### SimpleStories-V2-5M on Tang Mega 138K
 
 | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
@@ -96,6 +97,7 @@ the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENC
 | F-AWIC, protected K/V and seeded sampling (temperature 1) | Authenticated in external DDR | 25 | 7.03152 | [Runnable release](demos/simplestories-v2-5m/prebuilt/protected-seeded-sampling/README.md) |
 | S-AWIC, signed updates | Unverified external DDR | 25 | 10.1 | Runnable release · public demonstration keys |
 | S-AWIC, periodic reauthorization | Unverified external DDR | 25 | 7.6 | Runnable token-ID demonstration · public demonstration keys |
+
 <!-- COMMON-FPGA-SPEED:END -->
 
 A separate [11-case simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) combines S-AWIC signed reauthorization with protected K/V.
@@ -103,12 +105,14 @@ A separate [11-case simulation](demos/simplestories-v2-5m/variants/combined-secu
 The [protected seeded benchmark](evidence/simplestories-tang-protected-seeded-board/README.md#128-output-benchmark) uses image `490a5852`. Both 128-output trials matched the scalar reference. The unverified external-K/V seeded row uses image `d271626a` and its own paired benchmark.
 
 <!-- COMMON-FPGA-SPEED:START -->
+
 ### TLM26 (top-2-of-8 MoE) on Tang Mega 138K
 
 | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release or evidence |
 | --- | --- | ---: | ---: | --- |
 | F-AWIC, overlapped schedule | On-chip scratch RAM | 50 | 9.1 | [Runnable release](demos/tlm26-moe/prebuilt/overlap-r2-50mhz/README.md) |
 | F-AWIC, protected K/V | Authenticated in external DDR (all five layers) | 50 | 10.7 | [Runnable release](demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md) · [Held control](demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md#older-held-control) |
+
 <!-- COMMON-FPGA-SPEED:END -->
 
 The [50 MHz overlapped schedule](demos/tlm26-moe/variants/overlap-r2-50mhz/README.md) fetches the next operands while the current product accumulates. The [TLM26 guide](demos/tlm26-moe/README.md) covers the earlier same-clock comparison, reproduction and timing limits.
@@ -116,22 +120,27 @@ The [50 MHz overlapped schedule](demos/tlm26-moe/variants/overlap-r2-50mhz/READM
 Both TLM26 rows use validated generation-loop replies. The five-layer release omits the diagnostic first-weight-return hold. Its [matched held control and complete-frame results](demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md#older-held-control) are recorded separately.
 
 <!-- COMMON-FPGA-SPEED:START -->
+
 ### Qwen3-1.7B on AWS F2
 
 | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
 | --- | --- | ---: | ---: | --- |
 | F-AWIC | Unverified external K/V | 100 | 9.0 | Runnable release · public AWS FPGA image |
+| F-AWIC, protected K/V | Authenticated external K/V | 100 | 7.2 | Board measured · private AWS FPGA image |
+
 <!-- COMMON-FPGA-SPEED:END -->
 
 A separate [full-model simulation](demos/qwen3-1.7b/variants/protected-kv-simulation/README.md)
 checks authenticated retained K/V and the operands used by the model.
 
 <!-- COMMON-FPGA-SPEED:START -->
+
 ### Qwen3-8B on AWS F2
 
 | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
 | --- | --- | ---: | ---: | --- |
 | F-AWIC | Unverified external K/V | 100 | 1.1 | Runnable prototype · speed optimization in progress · public AWS FPGA image |
+
 <!-- COMMON-FPGA-SPEED:END -->
 
 The image returns a cached token in 0.89 seconds on average. Its fixed schedule streams 7.57 GB of 8-bit projection weights per token through a bank that accepts up to 256 bytes per core clock. Even with every needed weight ready on time, accepting those weights takes at least 0.30 seconds at the configured 100 MHz. The measured interval also covers fetching and checking weights, attention, other model operations, and returning the token. A matched timing comparison is needed to isolate the cost of weight authentication. [8B arithmetic inventory](demos/qwen3-8b/TRAINING-CAPACITY.md) · [Board timings](demos/qwen3-8b/README.md#additional-validation-workloads)
