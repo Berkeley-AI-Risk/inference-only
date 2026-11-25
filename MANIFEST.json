@@ -2694,8 +2694,8 @@
       "sha256": "8f970891a4033a19e30617408f8150d2ab4d9a0af83f3b901783a408232035b4"
     },
     "demos/simplestories-v2-5m/FORMAL-STATUS.md": {
-      "bytes": 24282,
-      "sha256": "ab372b7db7deee875318daa54d813182a5f596917e6c7f14424ebe1ec3b5f242"
+      "bytes": 24663,
+      "sha256": "e7de4381877f24bc474274f62b19ecdf7cf938063fdcc1e0703311cd39772287"
     },
     "demos/simplestories-v2-5m/GREEDY-QUALIFICATION.md": {
       "bytes": 6452,
@@ -2715,7 +2715,7 @@
     },
     "demos/simplestories-v2-5m/MANIFEST.json": {
       "bytes": 3977567,
-      "sha256": "7beeb0cfbb27b90ded5c42cf3dd98b042a1317bfb932476f518a25554cf3ac40"
+      "sha256": "bfba54c9d62697f4966f7940f78fe89e00ddc8629f5d7f4621214260a453b9fe"
     },
     "demos/simplestories-v2-5m/PROGRAMMING.md": {
       "bytes": 15930,
@@ -75602,8 +75602,8 @@
       "sha256": "9d54a5cdaf6e970930c1a43e130b7833413c6c8e43625c8940af60860cd2f8f8"
     },
     "docs/FORMAL-ARGUMENT.md": {
-      "bytes": 12356,
-      "sha256": "6410461fdb156edf503bd8c37bb8392de1b9134f260386d91a3d594898f4b631"
+      "bytes": 12746,
+      "sha256": "f0bd7a4a8f9cba4cf258c712064e064d36b5b76a9026b034d7837355fa7622a2"
     },
     "docs/MODEL-SIZE-REUSE.md": {
       "bytes": 3429,
@@ -76304,6 +76304,118 @@
     "evidence/simplestories-first-v-witnesses/prepare_checkout.py": {
       "bytes": 10059,
       "sha256": "f9ca3076249882ce32379434119914c230c9a7d04280a221db857ca420dfcf60"
+    },
+    "evidence/simplestories-four-bank-boot/README.md": {
+      "bytes": 3491,
+      "sha256": "d3a2aa247d0b0b03710c6acce217982ad37134ba3bc2998d637a16486ab13842"
+    },
+    "evidence/simplestories-four-bank-boot/boot_loader_order_tb.sv": {
+      "bytes": 4804,
+      "sha256": "b29ede1683017126c53207be4c59704915f036d4b665d1820c85f0cc48d05d52"
+    },
+    "evidence/simplestories-four-bank-boot/cert.acl2": {
+      "bytes": 249,
+      "sha256": "456fb03738dd447c259d32b9bc8b4f05da679bcaa7c72e429abbec4917bc1395"
+    },
+    "evidence/simplestories-four-bank-boot/extent.lisp": {
+      "bytes": 8104,
+      "sha256": "0e423cd8d0a9413dd6f06879265a14f3683ffbc7b486b9a1b6d196f2092e156b"
+    },
+    "evidence/simplestories-four-bank-boot/fifo-write.lisp": {
+      "bytes": 6580,
+      "sha256": "c345eaa4529b228c7cf521b54dd3b985d2dafdbb0e31641a770ddf1a931d9093"
+    },
+    "evidence/simplestories-four-bank-boot/opcode.lisp": {
+      "bytes": 9399,
+      "sha256": "26f7e4798e405340801932faed0ea561988a86cad7afa91d29afa1ee001b1368"
+    },
+    "evidence/simplestories-four-bank-boot/order-app.lisp": {
+      "bytes": 6864,
+      "sha256": "edefc93c6f1663b6b051ffe97b5b15a21e203b8566cb3dc516ba75a666e99b0b"
+    },
+    "evidence/simplestories-four-bank-boot/order-cycle.lisp": {
+      "bytes": 5650,
+      "sha256": "feea29bc5471b7fcea84193a90bb167d52c93133de30ae08e8663d1711b1059a"
+    },
+    "evidence/simplestories-four-bank-boot/order-fifo-history.lisp": {
+      "bytes": 11172,
+      "sha256": "ac19745bd994300542bf6add8d6d205cbf381f58a866cddec223d4cacfadbbdb"
+    },
+    "evidence/simplestories-four-bank-boot/order-history.lisp": {
+      "bytes": 6372,
+      "sha256": "85dc63990b6ecf65a07e2b73145177ed97d731fee62bc6196f73d98869af3017"
+    },
+    "evidence/simplestories-four-bank-boot/order-model.lisp": {
+      "bytes": 4056,
+      "sha256": "753f7394968773baf1fc8cc20602cfa02069f8c243378d2abd1ec002336b98c6"
+    },
+    "evidence/simplestories-four-bank-boot/order-queue.lisp": {
+      "bytes": 2053,
+      "sha256": "cd63eba914b57cf90f14ede169f5e728eff9df96199a5c0738e419b9d873e609"
+    },
+    "evidence/simplestories-four-bank-boot/order-readback.lsp": {
+      "bytes": 5458,
+      "sha256": "c59f4502683a8078359836f5f421493fec0f74cf702d503066d4745791756caa"
+    },
+    "evidence/simplestories-four-bank-boot/order-reset.lisp": {
+      "bytes": 7944,
+      "sha256": "100f135efa73bc3d85b6bb1bc99b9d4402aadc7c15b5060bff1fc60109286b6b"
+    },
+    "evidence/simplestories-four-bank-boot/order-source-model.lisp": {
+      "bytes": 4431,
+      "sha256": "b8ef81e43df882ef7fc686e32577c8f9de6261b1ef27fd6bfba490286db6257d"
+    },
+    "evidence/simplestories-four-bank-boot/order-source.lisp": {
+      "bytes": 4018,
+      "sha256": "2aeb81b4c383667b68046ad26ca2dd80eb0dabd7238bc54a754868959d985f51"
+    },
+    "evidence/simplestories-four-bank-boot/packing.lisp": {
+      "bytes": 18725,
+      "sha256": "91e1fa5da3a05d67236e33cdc06662549ffcc8c438ee070c4db8618b264e81ad"
+    },
+    "evidence/simplestories-four-bank-boot/pin-history.lisp": {
+      "bytes": 18496,
+      "sha256": "3ff0b239617a6e9023ada51ddf85921af4fd5513b96680fe9228aeda431f63fe"
+    },
+    "evidence/simplestories-four-bank-boot/pin-readback.lsp": {
+      "bytes": 10302,
+      "sha256": "3c54d7083f60927a6d4e4cbeb77fd9be6844145816d3ef85375364ff9f9390f8"
+    },
+    "evidence/simplestories-four-bank-boot/pin-reader.lisp": {
+      "bytes": 10892,
+      "sha256": "bba1df146dea21670e2a9d20b0da136b1c389cd211c5660405865e621592e4b0"
+    },
+    "evidence/simplestories-four-bank-boot/pin-reset-history.lisp": {
+      "bytes": 2672,
+      "sha256": "0bcd5c42218d97aedacae063602407f6ed6b449cd1087a68b3f658b1056c8455"
+    },
+    "evidence/simplestories-four-bank-boot/pin-wiring.lisp": {
+      "bytes": 16999,
+      "sha256": "952747cad2e47a8b5645aebb49a448289b7f806b0207b0828eae4c4554fa1bd9"
+    },
+    "evidence/simplestories-four-bank-boot/pin_fifo_tb.sv": {
+      "bytes": 5669,
+      "sha256": "caec47398ccb2b947a98b0636b1e75a03937f6e49fe5f2b948877d000184277e"
+    },
+    "evidence/simplestories-four-bank-boot/reader-binding.lisp": {
+      "bytes": 14405,
+      "sha256": "7ebf7ba30dba021dce19e85b4bfc33ef8771f093a61f88f8eb91ec3c65dba8c5"
+    },
+    "evidence/simplestories-four-bank-boot/replay.py": {
+      "bytes": 5598,
+      "sha256": "3617eb6a49e57a540a1c4384e8893af06bafea45ebe27bc1b91ccfeee734eac3"
+    },
+    "evidence/simplestories-four-bank-boot/serial.lisp": {
+      "bytes": 5771,
+      "sha256": "f647d8ccb117a4be5ab1f8ed87ed83db45b10fd685a685bfd7452c6be11d5949"
+    },
+    "evidence/simplestories-four-bank-boot/stream-packing.lisp": {
+      "bytes": 9782,
+      "sha256": "36bd80692109df0e221e4e19957027dac6175e74805f89b5dc2ea7b42eaf5981"
+    },
+    "evidence/simplestories-four-bank-boot/stream-source.lisp": {
+      "bytes": 7771,
+      "sha256": "494499f14b527da816b94bca4d2cd649e504dcae07899c08310420f13bbc2d90"
     },
     "evidence/simplestories-kv-record/MANIFEST.json": {
       "bytes": 9133,
@@ -77282,8 +77394,8 @@
       "sha256": "1dd88cb09483da8cd53c9d3959ae90b7b276aa2127d9282a34712dbb96d82640"
     },
     "tools/release-contract.json": {
-      "bytes": 4652673,
-      "sha256": "374d9eef8c51cf3de384d310399020108469a8a29229cbdeb3fd5ce7b05b00ea"
+      "bytes": 4657572,
+      "sha256": "e9127419e0ee8e7acb615269d48b3e5582ce563ee23bad9fa0c9b3b01f68121e"
     },
     "tools/replay_simplestories_greedy.py": {
       "bytes": 3164,
@@ -77367,7 +77479,7 @@
     },
     "tools/verify_release.py": {
       "bytes": 10317,
-      "sha256": "a3253528d71996bf215f747954d26f0cf4502ac5f64dde507a91c77669b9e682"
+      "sha256": "325ed4f0b02682a676750fd6ecd97dee7137290a0ed835f886c84323dcc1af04"
     }
   },
   "full_context_evidence_scope": "Each selected greedy image passed 2,047/2,048-token CLI and browser contexts, boundary refusals, CLEAR races, pending-STEP Stop and resumed generation. The seeded image has a separate 16-case context matrix and browser record. Exact workload timestamps remain distinct from cached generation rates.",

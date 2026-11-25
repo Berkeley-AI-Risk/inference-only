@@ -49,6 +49,7 @@ ACL2 8.7 checks the following published results. The RTL books use Centaur's
 SystemVerilog semantics. The numerical reference uses the SimpleStories model
 image and the chip's specified fixed-point arithmetic.
 
+- **How boot data reaches the four-bank loader.** ACL2 identifies the 256 flash-pin samples in each FIFO store and proves the loader accepts an in-order prefix of stored words after common reset. This connects the flash reader to the loader under the digital clock and sampling assumptions. [Theorems, assumptions and replay](../../evidence/simplestories-four-bank-boot/README.md)
 - **What a K/V store writes.** On the reconstructed behavioral RTL, a reported
   completion entails nine accepted key writes followed by nine value writes
   at the internal memory interface. Their addresses and data match the layer,
