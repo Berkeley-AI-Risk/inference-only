@@ -430,8 +430,7 @@ def model_tables(result):
             row = rows[row_id]
             cache = row.get('attention_cache', older_cache)
             need(cache, 'Missing K/V description for ' + row_id)
-            decimals = 5 if row_id == 'simplestories-protected-seeded-sampling' else 1
-            speed = f"{row['rate']['cached_tokens_per_second']:.{decimals}f}" if row['complete'] else '—'
+            speed = f"{row['rate']['cached_tokens_per_second']:.1f}" if row['complete'] else '—'
             clock = inference_clock_mhz(row)
             status = row['package_status'].replace('; ', ' · ')
             lines.append(f'| {label} | {cache} | {clock:g} | {speed} | {status} |')
