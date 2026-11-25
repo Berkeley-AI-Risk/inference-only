@@ -91,13 +91,14 @@ the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENC
 | F-AWIC, K/V integrity | Authenticated in external DDR | 25 | 7.0 | Runnable release |
 | F-AWIC, encrypted weights and protected K/V | Encrypted in external DDR with integrity and replay checks | 25 | 6.0 | Runnable release · public demonstration keys |
 | F-AWIC, seeded sampling (temperature 1) | External DDR, without K/V integrity checks | 25 | 9.9 | Runnable release |
+| F-AWIC, protected K/V and seeded sampling (temperature 1) | Authenticated in external DDR | 25 | 7.03152 | [Board-tested evidence](evidence/simplestories-tang-protected-seeded-board/README.md#128-output-benchmark) |
 | S-AWIC, signed updates | External DDR, without K/V integrity checks | 25 | 10.1 | Runnable release · public demonstration keys |
 | S-AWIC, periodic reauthorization | External DDR, without K/V integrity checks | 25 | 7.6 | Runnable token-ID demonstration · public demonstration keys |
 <!-- COMMON-FPGA-SPEED:END -->
 
 A separate [11-case simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) combines S-AWIC signed reauthorization with protected K/V.
 
-The seeded image in the table authenticates weights and uses a plain external K/V cache. A separate [25 MHz protected seeded board trial](evidence/simplestories-tang-protected-seeded-board/README.md) used verified external K/V. At temperature 1 and the public seed, all three sampled tokens repeated after CLEAR. This functional comparison retained open vendor DDR timing endpoints.
+The [protected seeded benchmark](evidence/simplestories-tang-protected-seeded-board/README.md#128-output-benchmark) uses image `490a5852`. Both 128-output trials matched the scalar reference. The plain-K/V seeded row uses image `d271626a` and its own paired benchmark.
 
 <!-- COMMON-FPGA-SPEED:START -->
 ### TLM26 (top-2-of-8 MoE) on Tang Mega 138K
@@ -151,7 +152,7 @@ Availability does not guarantee every workload or independently attest a
 loaded device. No Tang version has complete vendor-DDR timing or
 physical-security certification.
 
-- **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** six hardware
+- **[SimpleStories-V2-5M / Tang Mega guide](demos/simplestories-v2-5m/README.md):** hardware
   configurations, board selection, browser and token-client workflows, measured
   prompt/decode speeds, source, proofs and reproduction instructions.
 - **[TLM26 MoE / Tang Mega guide](demos/tlm26-moe/README.md):** the pretrained

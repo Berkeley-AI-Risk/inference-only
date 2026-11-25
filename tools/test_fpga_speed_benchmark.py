@@ -224,6 +224,21 @@ class CommonSpeedTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'reference IDs'):
             verifier.verify_case(case,raw,reference)
 
+    def test_protected_seeded_rate_and_wire_are_checked_separately(self):
+        selection = json.loads((ROOT / bench.SELECTION).read_text())
+        row = next(r for r in selection['rows'] if r['id'] == 'simplestories-protected-seeded-sampling')
+        sources = bench.read_sources(ROOT, selection)
+        rate = bench.pool(bench.seeded_uart_trials(ROOT, row, sources))
+        self.assertEqual(rate['counted_cached_outputs'], 254)
+        self.assertEqual(f"{rate['cached_tokens_per_second']:.5f}", '7.03152')
+        capture = copy.deepcopy(sources[row['source']])
+        previous, current = capture['trials']['trial_2'][2:4]
+        current['rx'] = previous['rx']
+        sources[row['source']] = capture
+        with self.assertRaisesRegex(ValueError, 'Changed seeded UART reply'):
+            bench.seeded_uart_trials(ROOT, row, sources)
+
+
     def test_saved_results_and_overview_use_same_accounting(self):
         result=bench.calculate(ROOT)
         self.assertEqual(result,json.loads((ROOT/bench.RESULTS).read_text()))
@@ -235,7 +250,7 @@ class CommonSpeedTests(unittest.TestCase):
             '### Qwen3-1.7B on AWS F2',
             '### Qwen3-8B on AWS F2',
         ])
-        self.assertEqual([len(t.splitlines()[4:]) for t in tables], [6, 1, 1, 1])
+        self.assertEqual([len(t.splitlines()[4:]) for t in tables], [7, 1, 1, 1])
         self.assertEqual(text.count(bench.START), len(tables))
         self.assertEqual(text.count(bench.END), len(tables))
         actual = [part.split(bench.END, 1)[0].strip() for part in text.split(bench.START)[1:]]

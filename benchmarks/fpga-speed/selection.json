@@ -254,6 +254,30 @@
       "temperature": 1
     },
     {
+      "attention_cache": "Authenticated in external DDR",
+      "cases": [
+        "trial_1",
+        "trial_2"
+      ],
+      "decoding": "seeded-sampling",
+      "format": "seeded_uart",
+      "id": "simplestories-protected-seeded-sampling",
+      "identity": {
+        "collector_sha256": "c6988d957b9864c6a79ad22c285ccd0ffffc73f573537ec322b2bd0d4ba8541c",
+        "core_clock_mhz": 25,
+        "fpga_image_sha256": "490a58526e6a9593a07e5744779ab6f55d25a8fd4c192df86b34be55c9aee23f",
+        "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0"
+      },
+      "label": "F-AWIC with protected K/V and seeded sampling at temperature 1",
+      "prompt_tokens": [
+        378
+      ],
+      "reference_source": "demos/simplestories-v2-5m/reference/seeded-sampling/goldens/around128-t2-seed-a.json",
+      "source": "evidence/simplestories-tang-protected-seeded-board/COMMON-SPEED.json",
+      "status": "[Board-tested evidence](evidence/simplestories-tang-protected-seeded-board/README.md#128-output-benchmark)",
+      "temperature": 1
+    },
+    {
       "artifact": "demos/simplestories-v2-5m/variants/signed-update/tang/prebuilt/swic_product.fs",
       "cases": [
         "one-token-128-trial1",
@@ -704,6 +728,10 @@
     "demos/tlm26-moe/variants/overlap-r2/evidence/route-12p5.json": {
       "bytes": 1502,
       "sha256": "28b81d2482d1884c54bdf952e45aae3da337ccbb4811b3bdeb1736a6b225da95"
+    },
+    "evidence/simplestories-tang-protected-seeded-board/COMMON-SPEED.json": {
+      "bytes": 35644,
+      "sha256": "47a71115df263867f12cd038ff063f6012fb67d5e5e41f85d207179d91c60748"
     }
   },
   "timestamp_boundary": "generation_loop_validated_reply"

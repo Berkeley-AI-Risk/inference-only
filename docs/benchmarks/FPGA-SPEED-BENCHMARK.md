@@ -1,12 +1,12 @@
 # Common FPGA generation speed benchmark
 
-To enter the headline speed comparison, a design must use one input token, 128 generated outputs and two repetitions. The seeded-sampling row uses temperature 1 with a fixed public seed; the other measured rows use greedy decoding. Its cached rate includes the host control loop and gaps between token replies. The [model tables](../../README.md#the-demonstrated-designs-and-measurements) report a rate only when both complete trials satisfy this protocol.
+To enter the headline speed comparison, a design must use one input token, 128 generated outputs and two repetitions. The two SimpleStories seeded-sampling rows use temperature 1 with a fixed public seed; the other measured rows use greedy decoding. Its cached rate includes the host control loop and gaps between token replies. The [model tables](../../README.md#the-demonstrated-designs-and-measurements) report a rate only when both complete trials satisfy this protocol.
 
 ## Workload and execution
 
 Run one sequence at a time on the FPGA's local control host, with no competing workload on that FPGA. Use the qualified image and model identified in the record. Record their hashes, clock, host client/source identity and collection conditions. A different image or clock requires its own measurements.
 
-Use input token `[378]` for SimpleStories, BOS `[1]` for TLM26, and `[9707]` for Qwen. These are model-native token IDs; the common workload fixes token counts, not text across different tokenizers. Before each measured trial, issue CLEAR, verify success and append the single input token. Produce exactly 128 outputs with true feedback. Continue through end markers. Use the decoding mode declared by the selected row. The seeded-sampling row uses temperature 1 and public seed `0x99aabbccddeeff001122334455667788`; validate its outputs against the corresponding seeded numerical reference. Other rows use greedy decoding.
+Use input token `[378]` for SimpleStories, BOS `[1]` for TLM26, and `[9707]` for Qwen. These are model-native token IDs; the common workload fixes token counts, not text across different tokenizers. Before each measured trial, issue CLEAR, verify success and append the single input token. Produce exactly 128 outputs with true feedback. Continue through end markers. Use the decoding mode declared by the selected row. The two SimpleStories seeded-sampling rows use temperature 1 and public seed `0x99aabbccddeeff001122334455667788`; validate its outputs against the corresponding seeded numerical reference. Other rows use greedy decoding.
 
 Run two complete repetitions with the same image, model, clock, host software, prompt and decoding mode. Repeated sampled trials also use the same declared seed. Check all 128 returned IDs against the applicable numerical reference and retain the raw capture. A short CLEAR/replay smoke test cannot replace a full repetition. Preserve failures; never replace a failed trial with a successful retry without a separate record.
 
@@ -46,7 +46,7 @@ This excludes inter-command gaps and must be labeled separately. Browser streami
 
 [Selection](../../benchmarks/fpga-speed/selection.json) pins the input records and selected image identities. [Computed results](../../benchmarks/fpga-speed/results.json) record trial counts, wall durations, primary rates and command-only diagnostics. A dash in the overview means that a complete paired record is unavailable; individual model guides can report other explicitly labeled validation workloads.
 
-The overview shows all six SimpleStories configurations, the 50 MHz TLM26
+The overview includes the separately measured plain-K/V and protected-K/V seeded SimpleStories images, the 50 MHz TLM26
 overlapped image at 9.077744452657 tokens/s, and the two Qwen board images.
 The full results retain separate TLM26 records for the
 [original image](../../benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json)

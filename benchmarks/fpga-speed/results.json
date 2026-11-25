@@ -2,8 +2,8 @@
   "schema": "fpga-common-speed-results-v1",
   "protocol": "one-token-128-host-v2",
   "timestamp_boundary": "generation_loop_validated_reply",
-  "complete_rows": 11,
-  "total_rows": 11,
+  "complete_rows": 12,
+  "total_rows": 12,
   "rows": [
     {
       "id": "simplestories-baseline",
@@ -766,6 +766,81 @@
           "seed": "0x99aabbccddeeff001122334455667788"
         }
       ]
+    },
+    {
+      "id": "simplestories-protected-seeded-sampling",
+      "label": "F-AWIC with protected K/V and seeded sampling at temperature 1",
+      "package_status": "[Board-tested evidence](evidence/simplestories-tang-protected-seeded-board/README.md#128-output-benchmark)",
+      "identity": {
+        "collector_sha256": "c6988d957b9864c6a79ad22c285ccd0ffffc73f573537ec322b2bd0d4ba8541c",
+        "core_clock_mhz": 25,
+        "fpga_image_sha256": "490a58526e6a9593a07e5744779ab6f55d25a8fd4c192df86b34be55c9aee23f",
+        "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0"
+      },
+      "eligible_trials": 2,
+      "complete": true,
+      "rate": {
+        "counted_cached_outputs": 254,
+        "cached_host_seconds": 36.123035209,
+        "cached_tokens_per_second": 7.031524303824732,
+        "command_only_diagnostic_tokens_per_second": 7.031994173652633,
+        "first_step_seconds": [
+          0.102004208,
+          0.102039958
+        ]
+      },
+      "missing": null,
+      "trials": [
+        {
+          "capture_sha256": "73c02d0ba80760414f939d8ea6f56fe8284d2565ef3bcc3d36416629a2546597",
+          "prompt_tokens": [
+            378
+          ],
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 18.070052542,
+          "cached_command_seconds": 18.068825084,
+          "first_step_seconds": 0.102004208,
+          "identity": {
+            "collector_sha256": "c6988d957b9864c6a79ad22c285ccd0ffffc73f573537ec322b2bd0d4ba8541c",
+            "core_clock_mhz": 25,
+            "fpga_image_sha256": "490a58526e6a9593a07e5744779ab6f55d25a8fd4c192df86b34be55c9aee23f",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": false,
+          "clear_before": true,
+          "stop_at_eos": false,
+          "decoding": "seeded-sampling",
+          "temperature": 1,
+          "seed": "0x99aabbccddeeff001122334455667788"
+        },
+        {
+          "capture_sha256": "4f09dfbf3ba6e9f945de719b00e2b190246bd1d5f1048a06acb12876f0022801",
+          "prompt_tokens": [
+            378
+          ],
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 18.052982667000002,
+          "cached_command_seconds": 18.051796425,
+          "first_step_seconds": 0.102039958,
+          "identity": {
+            "collector_sha256": "c6988d957b9864c6a79ad22c285ccd0ffffc73f573537ec322b2bd0d4ba8541c",
+            "core_clock_mhz": 25,
+            "fpga_image_sha256": "490a58526e6a9593a07e5744779ab6f55d25a8fd4c192df86b34be55c9aee23f",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": false,
+          "clear_before": true,
+          "stop_at_eos": false,
+          "decoding": "seeded-sampling",
+          "temperature": 1,
+          "seed": "0x99aabbccddeeff001122334455667788"
+        }
+      ],
+      "attention_cache": "Authenticated in external DDR"
     },
     {
       "id": "simplestories-signed-update",
@@ -1615,6 +1690,10 @@
     "demos/tlm26-moe/variants/overlap-r2/evidence/route-12p5.json": {
       "bytes": 1502,
       "sha256": "28b81d2482d1884c54bdf952e45aae3da337ccbb4811b3bdeb1736a6b225da95"
+    },
+    "evidence/simplestories-tang-protected-seeded-board/COMMON-SPEED.json": {
+      "bytes": 35644,
+      "sha256": "47a71115df263867f12cd038ff063f6012fb67d5e5e41f85d207179d91c60748"
     }
   },
   "scope": "Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay."

@@ -9,6 +9,7 @@ import hashlib
 import importlib.util
 import json
 import math
+import runpy
 from pathlib import Path, PurePosixPath
 
 SELECTION = 'benchmarks/fpga-speed/selection.json'
@@ -226,6 +227,54 @@ def verify_sampled_wire(root, row, sources):
     need(len(campaigns) == 1, 'Sampled settings cannot be inherited across different campaigns')
 
 
+def seeded_uart_trials(root, row, sources):
+    """Compute a seeded pair directly from ordered UART frames and host timestamps."""
+    capture, golden = sources[row['source']], sources[row['reference_source']]
+    identity = row['identity']
+    need(capture['schema'] == 'seeded-tang-common-speed-uart-v1'
+         and capture['timestamp_boundary'] == BOUNDARY and capture['identity'] == identity,
+         'Changed seeded UART capture contract')
+    expected = golden['generated_tokens']
+    need(golden['schema'] == 'seeded-exact-model-golden-v1'
+         and golden['output_count'] == len(expected) == 128 and golden['stop_at_eos'] is False
+         and golden['temperature'] == '1' and golden['prompt_tokens'] == row['prompt_tokens']
+         and golden['model_image_sha256'] == identity['model_image_sha256'],
+         'Wrong seeded UART numerical reference')
+    need(row['cases'] == ['trial_1', 'trial_2'] and set(capture['trials']) == set(row['cases']),
+         'Expected two separate seeded UART trials')
+    codec = runpy.run_path(str(root / MODEL / 'host-app/sampling_protocol.py'))['codec']
+    clear = (codec.encode_legacy(2), 0x82, 0)
+    prompt = (codec.encode_legacy(0, row['prompt_tokens'][0]), 0x80, 0)
+    settings = (codec.encode_settings(2, int(golden['seed'], 16)), 0x83, 2)
+    step = codec.encode_legacy(1)
+    trials = []
+    for index, name in enumerate(row['cases']):
+        rows = capture['trials'][name]
+        actions = [clear] + ([] if index else [settings]) + [prompt]
+        actions.extend((step, 0x81, token) for token in expected)
+        actions.append(clear)
+        need(len(rows) == len(actions) and rows[0]['tx_ns'] == 0, 'Incomplete seeded UART command tape')
+        replies, arrivals, durations = [], [], []
+        previous = 0
+        for event, (tx, kind, operand) in zip(rows, actions):
+            start, end = event['tx_ns'], event['reply_ns']
+            need(type(start) is int and type(end) is int and previous <= start < end,
+                 'Invalid seeded UART host timestamps')
+            previous = end
+            need(bytes.fromhex(event['tx']) == tx, 'Changed seeded UART request')
+            response = codec.decode_response(bytes.fromhex(event['rx']))
+            need((response.kind, response.operand) == (kind, operand), 'Changed seeded UART reply')
+            if kind == 0x81:
+                replies.append(response.operand)
+                arrivals.append(end / 1e9)
+                durations.append((end - start) / 1e9)
+        digest = hashlib.sha256(json.dumps(rows, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        trials.append(trial(row['prompt_tokens'], replies, expected, arrivals, durations[1:], durations[0],
+                            identity, profile='seeded-temperature1', decoding='seeded-sampling',
+                            temperature=1, seed=golden['seed'], capture_sha256=digest))
+    return trials
+
+
 def calculate(root):
     root = Path(root)
     selection = json.loads((root / SELECTION).read_text())
@@ -240,9 +289,10 @@ def calculate(root):
     rows = []
     for row in selection['rows']:
         if row.get('decoding') == 'seeded-sampling':
-            need(row['format'] == 'seeded_timing' and row['temperature'] == 1,
+            need(row['format'] in ('seeded_timing', 'seeded_uart') and row['temperature'] == 1,
                  'Unsupported sampled row')
-            verify_sampled_wire(root, row, sources)
+            if row['format'] == 'seeded_timing':
+                verify_sampled_wire(root, row, sources)
         if row['id'].startswith('qwen') and row['format'] == 'canonical':
             need(row.get('evidence_review') in sources, 'Missing Qwen raw evidence review')
             spec = importlib.util.spec_from_file_location('qwen_common_speed_evidence',
@@ -275,7 +325,10 @@ def calculate(root):
                  and physical['source_checkpoint_sha256'] == row['identity']['checkpoint_sha256']
                  and route['requested_clock_mhz']['semantic'] == row['identity']['core_clock_mhz'],
                  'TLM26 board image or configured clock differs')
-        trials = selected_trials(row, sources, reference['generated_tokens'])
+        if row['format'] == 'seeded_uart':
+            trials = seeded_uart_trials(root, row, sources)
+        else:
+            trials = selected_trials(row, sources, reference['generated_tokens'])
         need(len(trials) <= 2, 'Unexpected repetition count')
         complete = len(trials) == 2
         need(complete or bool(row.get('missing')), 'Incomplete benchmark must identify missing evidence')
@@ -309,6 +362,7 @@ def model_tables(result):
             ('simplestories-kv-protected', 'F-AWIC, K/V integrity', None),
             ('simplestories-encrypted', 'F-AWIC, encrypted weights and protected K/V', 'Encrypted in external DDR with integrity and replay checks'),
             ('simplestories-seeded-sampling', 'F-AWIC, seeded sampling (temperature 1)', plain_ddr),
+            ('simplestories-protected-seeded-sampling', 'F-AWIC, protected K/V and seeded sampling (temperature 1)', None),
             ('simplestories-signed-update', 'S-AWIC, signed updates', plain_ddr),
             ('simplestories-home-authorization', 'S-AWIC, periodic reauthorization', plain_ddr),
         ],
@@ -328,7 +382,8 @@ def model_tables(result):
             row = rows[row_id]
             cache = row.get('attention_cache', older_cache)
             need(cache, 'Missing K/V description for ' + row_id)
-            speed = f"{row['rate']['cached_tokens_per_second']:.1f}" if row['complete'] else '—'
+            decimals = 5 if row_id == 'simplestories-protected-seeded-sampling' else 1
+            speed = f"{row['rate']['cached_tokens_per_second']:.{decimals}f}" if row['complete'] else '—'
             clock = inference_clock_mhz(row)
             status = row['package_status'].replace('; ', ' · ')
             lines.append(f'| {label} | {cache} | {clock:g} | {speed} | {status} |')
