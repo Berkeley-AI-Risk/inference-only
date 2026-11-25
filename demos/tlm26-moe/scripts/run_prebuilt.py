@@ -15,20 +15,28 @@ from uart_replay import request_frame, response_frame, write_bytes
 
 
 DEMO = Path(__file__).resolve().parents[1]
-PREBUILT = DEMO / "prebuilt/overlap-r2-50mhz"
-MANIFEST = PREBUILT / "IMAGE.json"
+DEFAULT_VARIANT = "overlap-r2-50mhz"
+PROTECTED_VARIANT = "five-external-kv-zero-hold-50mhz"
+VARIANTS = (DEFAULT_VARIANT, PROTECTED_VARIANT)
+BENCHMARK_REFERENCE = (DEMO.parents[1] / "benchmarks/fpga-speed"
+                       / "tlm26-overlap-r2-50mhz-v1/golden.json")
 MODEL_BYTES = 768 * 4096
 VOCABULARY = 512
 CONTEXT = 256
 
 
-def check_assets():
-    record = json.loads(MANIFEST.read_bytes())
+def asset_path(variant, name):
+    directory = variant if name == "tlm26.fs" else DEFAULT_VARIANT
+    return DEMO / "prebuilt" / directory / name
+
+
+def check_assets(variant=DEFAULT_VARIANT):
+    record = json.loads((DEMO / "prebuilt" / variant / "IMAGE.json").read_bytes())
     assets = record["files"]
     if set(assets) != {"tlm26.fs", "model.bin", "tok512.model"}:
         raise ValueError("Wrong TLM26 image inventory")
     for name, expected in assets.items():
-        path = PREBUILT / name
+        path = asset_path(variant, name)
         with path.open("rb") as stream:
             observed = {"bytes": os.fstat(stream.fileno()).st_size,
                         "sha256": file_digest(stream, "sha256").hexdigest()}
@@ -37,8 +45,8 @@ def check_assets():
     return assets
 
 
-def exact_input(name, assets):
-    content = (PREBUILT / name).read_bytes()
+def exact_input(name, assets, variant):
+    content = asset_path(variant, name).read_bytes()
     if {"bytes": len(content), "sha256": sha256(content).hexdigest()} != assets[name]:
         raise ValueError(f"{name} changed after verification")
     return content
@@ -81,30 +89,52 @@ def upload(fd, model, result):
     time.sleep(0.02)
 
 
-def transact(fd, result, operation, token=0):
+def transact(fd, result, operation, token=0, *, expected_token=None):
     raw = request_frame(operation, token)
     record = {"operation": operation, "input_id": token, "tx": raw.hex()}
     result["frames"].append(record)
     launched = time.monotonic_ns()
     write_bytes(fd, raw)
     reply = read_bytes(fd, 5, 10)
-    record.update(rx=reply.hex(), elapsed_ns=time.monotonic_ns() - launched)
+    complete_frame = time.monotonic_ns()
+    record.update(rx=reply.hex(), start_ns=launched, complete_frame_ns=complete_frame,
+                  elapsed_ns=complete_frame - launched)
     reply_token = int.from_bytes(reply[2:4], "little")
     expected_kind = {"clear": 0x82, "append": 0x80, "step": 0x81}[operation]
     if reply_token >= VOCABULARY or reply != response_frame(expected_kind, reply_token):
         raise RuntimeError(f"{operation} returned {reply.hex()}, expected opcode {expected_kind:02x} and a valid CRC")
     if operation != "step" and reply_token:
         raise RuntimeError(f"{operation} acknowledged unexpected value {reply_token}")
+    if expected_token is not None and reply_token != expected_token:
+        raise RuntimeError(f"Reference mismatch at STEP {len(result['generated_ids']) + 1}: "
+                           f"received {reply_token}, expected {expected_token}")
+    record["validated_ns"] = time.monotonic_ns()
     return reply_token
 
 
 def prompt_options(args, assets):
+    if args.capacity:
+        if args.new_tokens is not None:
+            raise ValueError("The capacity test requires exactly 255 outputs.")
+        reference = json.loads((DEMO.parents[1] / "evidence/tlm26-tang-five-layer-kv-board/REFERENCE.json").read_bytes())
+        if reference["prompt_tokens"] != [1] or len(reference["expected_step_ids"]) != 255:
+            raise ValueError("The capacity reference must cover BOS and 255 outputs.")
+        return [1], 255, reference["expected_step_ids"], None
+    if args.benchmark:
+        if args.new_tokens is not None:
+            raise ValueError("The benchmark requires exactly 128 outputs.")
+        reference = json.loads(BENCHMARK_REFERENCE.read_bytes())
+        if (reference["input_ids"] != [1] or reference["output_count"] != 128
+                or reference["stop_at_eos"] is not False
+                or len(reference["integer_reference_ids"]) != 128):
+            raise ValueError("The saved BOS benchmark reference has the wrong workload.")
+        return [1], 128, reference["integer_reference_ids"], None
     if args.prompt is not None:
         try:
             import sentencepiece
         except ModuleNotFoundError as error:
             raise ValueError("Install SentencePiece before using --prompt. The default smoke check needs only Python.") from error
-        tokenizer = sentencepiece.SentencePieceProcessor(model_proto=exact_input("tok512.model", assets))
+        tokenizer = sentencepiece.SentencePieceProcessor(model_proto=exact_input("tok512.model", assets, args.variant))
         if tokenizer.bos_id() != 1 or tokenizer.vocab_size() != VOCABULARY:
             raise ValueError("Wrong tokenizer vocabulary")
         ids = [1, *tokenizer.encode(args.prompt, out_type=int)]
@@ -121,9 +151,10 @@ def generate(args, assets):
     prompt, count, reference, tokenizer = prompt_options(args, assets)
     if count < 1 or len(prompt) + count > CONTEXT or any(not 0 <= value < VOCABULARY for value in prompt):
         raise ValueError(f"Use IDs in 0–511 and keep the prefix plus new tokens within {CONTEXT} positions")
-    model = None if args.already_provisioned else exact_input("model.bin", assets)
+    model = None if args.already_provisioned else exact_input("model.bin", assets, args.variant)
     args.out.mkdir()
-    result = {"asset_identity_checked_at_host": assets, "loader_ready": False, "acknowledged_pages": 0,
+    result = {"variant": args.variant, "benchmark": args.benchmark,
+              "capacity": args.capacity, "asset_identity_checked_at_host": assets, "loader_ready": False, "acknowledged_pages": 0,
               "already_provisioned": args.already_provisioned, "prompt_ids": prompt, "generated_ids": [],
               "reference_ids": reference, "frames": [], "complete": False}
     try:
@@ -134,10 +165,9 @@ def generate(args, assets):
             for token in prompt:
                 transact(fd, result, "append", token)
             for index in range(count):
-                token = transact(fd, result, "step")
+                expected = None if reference is None else reference[index]
+                token = transact(fd, result, "step", expected_token=expected)
                 result["generated_ids"].append(token)
-                if reference is not None and token != reference[index]:
-                    raise RuntimeError(f"Reference mismatch at STEP {index + 1}: received {token}, expected {reference[index]}")
             transact(fd, result, "clear")
         if tokenizer is not None:
             result["continuation"] = tokenizer.decode(result["generated_ids"])
@@ -156,18 +186,22 @@ def generate(args, assets):
 def main():
     cli = argparse.ArgumentParser(description=__doc__)
     modes = cli.add_subparsers(dest="mode", required=True)
-    modes.add_parser("verify", help="verify the ready-to-load assets without opening a UART")
+    verify = modes.add_parser("verify", help="verify the ready-to-load assets without opening a UART")
     run = modes.add_parser("run", help="load the DDR model and check the reference prompt by default")
+    for mode in (verify, run):
+        mode.add_argument("--variant", choices=VARIANTS, default=DEFAULT_VARIANT)
     run.add_argument("--uart", required=True)
     run.add_argument("--out", type=Path, required=True, help="new directory for the session receipt")
     run.add_argument("--already-provisioned", action="store_true")
     options = run.add_mutually_exclusive_group()
     options.add_argument("--prompt", help="text to tokenize with the shipped tokenizer")
     options.add_argument("--ids", type=int, nargs="+", help="exact input IDs, including any BOS")
+    options.add_argument("--benchmark", action="store_true", help="check the fixed BOS plus 128-output reference")
+    options.add_argument("--capacity", action="store_true", help="check all 255 saved capacity IDs")
     run.add_argument("--new-tokens", type=int)
     args = cli.parse_args()
     try:
-        assets = check_assets()
+        assets = check_assets(args.variant)
         if args.mode == "verify":
             print(json.dumps({"verified": assets}, indent=2, sort_keys=True))
         else:

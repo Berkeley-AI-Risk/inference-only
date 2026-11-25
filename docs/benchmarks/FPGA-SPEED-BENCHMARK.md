@@ -48,9 +48,10 @@ This excludes inter-command gaps and must be labeled separately. Browser streami
 
 The overview includes the separately measured plain-K/V and protected-K/V seeded SimpleStories images, the 50 MHz TLM26
 overlapped on-chip image at 9.077744452657 tokens/s, the
-[five-layer protected external K/V trial](../../evidence/tlm26-tang-five-layer-kv-board/README.md)
-at 8.883470 tokens/s, and the two Qwen board images. The five-layer row uses complete
-UART frame receipt. The other overview rows use validated generation-loop replies.
+[five-layer protected external K/V release](../../demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md)
+at 10.711110 tokens/s, and the two Qwen board images. The overview rates use
+validated generation-loop replies. The TLM26 release separately records complete
+UART frame receipt and the held control.
 The full results retain separate TLM26 records for the
 [original image](../../benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json)
 at 1.612038176875 tokens/s and the

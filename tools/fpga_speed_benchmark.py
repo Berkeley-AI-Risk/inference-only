@@ -15,9 +15,8 @@ from pathlib import Path, PurePosixPath
 SELECTION = 'benchmarks/fpga-speed/selection.json'
 RESULTS = 'benchmarks/fpga-speed/results.json'
 BOUNDARY = 'generation_loop_validated_reply'
-UART_RECEIPT = 'complete_uart_frame_receipt'
 TLM26_FIVE_LAYER = 'tlm26-moe-five-layer-external-kv'
-TLM26_BOARD = 'evidence/tlm26-tang-five-layer-kv-board'
+TLM26_RELEASE = 'demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz'
 PROTOCOL = 'one-token-128-host-v2'
 MODEL = 'demos/simplestories-v2-5m'
 START, END = '<!-- COMMON-FPGA-SPEED:START -->', '<!-- COMMON-FPGA-SPEED:END -->'
@@ -279,52 +278,43 @@ def seeded_uart_trials(root, row, sources):
 
 
 def tlm26_uart_trials(root, row, sources):
-    """Validate the selected board replies before pooling frame-receipt times."""
-    capture = sources[TLM26_BOARD + '/UART-TRACE.json']
-    image = sources[TLM26_BOARD + '/IMAGE-SOURCE.json']
-    reference = sources[TLM26_BOARD + '/REFERENCE.json']
-    golden_path = 'benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/golden.json'
-    golden = sources[golden_path]
+    """Check the five-layer release capture, then use the common validated boundary."""
+    capture = sources[TLM26_RELEASE + '/READER-CAPTURE.json']
+    image = sources[TLM26_RELEASE + '/IMAGE.json']
     identity = row['identity']
-    need(row['id'] == TLM26_FIVE_LAYER and row['source'] == TLM26_BOARD + '/UART-TRACE.json'
-         and row['cases'] == ['trial_1', 'trial_2']
-         and identity['timestamp_boundary'] == UART_RECEIPT, 'Wrong TLM26 board benchmark selection')
-    need(capture['schema'] == 'tlm26-tang-five-layer-board-uart-v1'
-         and image['measured_layers_with_authenticated_external_kv'] == [0, 1, 2, 3, 4]
-         and image['native_route']['core_MHz'] == identity['core_clock_mhz'] == 50
-         and image['images']['five_layer']['image_sha256'] == identity['fpga_image_sha256']
-         and image['model']['checkpoint_sha256'] == golden['checkpoint_sha256'] == identity['checkpoint_sha256']
-         and image['model']['image']['sha256'] == golden['staged_int16_image_sha256']
-         == reference['model_sha256'] == identity['model_sha256'], 'TLM26 board image, model or clock changed')
-    need(reference['prompt_tokens'] == golden['input_ids'] == row['prompt_tokens'] == [1]
-         and reference['expected_step_ids'][:128] == golden['integer_reference_ids'] == golden['fp32_checkpoint_ids']
-         and len(golden['integer_reference_ids']) == 128 and golden['stop_at_eos'] is False,
-         'Changed TLM26 board numerical reference')
-    codec = 'demos/tlm26-moe/scripts/uart_replay.py'
-    need(hashlib.sha256((root / codec).read_bytes()).hexdigest() == image['codec_sha256'],
-         'Changed TLM26 UART codec')
-    prior = runpy.run_path(str(root / 'evidence/tlm26-tang-protected-kv-board/check_capture.py'))
-    checker = runpy.run_path(str(root / TLM26_BOARD / 'check_capture.py'))
-    runs = capture['five_layer_standard']
-    checks = checker['standard'](runs, golden['integer_reference_ids'], runpy.run_path(str(root / codec)),
-                                 prior, 'TLM26 five-layer frame receipt')
-    checked_trials = checks['trials']
-    need(len(runs) == len(checked_trials), 'TLM26 board trial counts do not match')
+    assets = image['files']
+    golden = sources['benchmarks/fpga-speed/tlm26-overlap-r2-50mhz-v1/golden.json']
+    need(row['id'] == TLM26_FIVE_LAYER and row['source'] == TLM26_RELEASE + '/READER-CAPTURE.json'
+         and row['cases'] == ['trial_1', 'trial_2'] and row['prompt_tokens'] == [1]
+         and identity['timestamp_boundary'] == BOUNDARY, 'Wrong selected TLM26 benchmark')
+    need(image['hardware']['kv_cache'] == 'authenticated external DDR on layers 0 through 4'
+         and image['hardware']['core_clock_hz'] == identity['core_clock_mhz'] * 1_000_000 == 50_000_000
+         and image['hardware']['first_return_hold_cycles'] == identity['first_return_hold_cycles'] == 0
+         and assets['tlm26.fs']['sha256'] == identity['fpga_image_sha256']
+         and assets['model.bin']['sha256'] == golden['staged_int16_image_sha256'] == identity['model_sha256']
+         and image['model']['checkpoint_sha256'] == golden['checkpoint_sha256'] == identity['checkpoint_sha256'],
+         'TLM26 image, model, clock or hold changed')
+    reader = root / 'demos/tlm26-moe/scripts/run_prebuilt.py'
+    need(hashlib.sha256(reader.read_bytes()).hexdigest() == capture['reader_sha256'],
+         'TLM26 capture uses a different reader')
+    check = runpy.run_path(str(root / 'demos/tlm26-moe/scripts/check_prebuilt_benchmark.py'))
+    short, expected = check['expected_workloads']()
+    summary = check['check_capture'](capture, assets, short, expected,
+                                     capacity=check['capacity_workload'](expected))
+    observation = image['observation']
+    need(summary['validated_ns']['pooled_cached_tokens_per_second'] == observation['generation_loop_validated_reply_tps']
+         and summary['complete_frame_ns']['pooled_cached_tokens_per_second'] == observation['complete_uart_frame_receipt_tps'],
+         'TLM26 checked times differ from the release receipt')
     trials = []
-    for events, checked in zip(runs, checked_trials):
+    for events in capture['trials']:
         steps = events[2:-1]
-        need(events[0]['start_ns'] == 0 and checked['matched_ids'] == 128
-             and checked['cached_intervals'] == 127, 'Incomplete TLM26 board trial')
-        cached_commands_ns = sum(event['validated_ns'] - event['start_ns'] for event in steps[1:])
-        trials.append({'capture_sha256': hashlib.sha256(json.dumps(events, sort_keys=True).encode()).hexdigest(),
-                       'prompt_tokens': [1], 'generated_outputs': 128, 'cached_outputs': 127,
-                       'cached_host_seconds': checked['cached_span_ns'] / 1e9,
-                       'cached_command_seconds': cached_commands_ns / 1e9,
-                       'first_step_seconds': checked['first_step_ns'] / 1e9, 'identity': identity,
-                       'timestamp_boundary': UART_RECEIPT, 'greedy': True, 'clear_before': True,
-                       'stop_at_eos': False})
+        tokens = [int.from_bytes(bytes.fromhex(event['rx'])[2:4], 'little') for event in steps]
+        arrivals = [event['validated_ns'] / 1e9 for event in steps]
+        elapsed = [(event['validated_ns'] - event['start_ns']) / 1e9 for event in steps]
+        digest = hashlib.sha256(json.dumps(events, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        trials.append(trial([1], tokens, expected, arrivals, elapsed[1:], elapsed[0],
+                            identity, capture_sha256=digest))
     return trials
-
 
 def calculate(root):
     root = Path(root)
@@ -376,10 +366,8 @@ def calculate(root):
                  and physical['source_checkpoint_sha256'] == row['identity']['checkpoint_sha256']
                  and route['requested_clock_mhz']['semantic'] == row['identity']['core_clock_mhz'],
                  'TLM26 board image or configured clock differs')
-        boundary = BOUNDARY
         if row['format'] == 'tlm26_uart':
             trials = tlm26_uart_trials(root, row, sources)
-            boundary = UART_RECEIPT
         elif row['format'] == 'seeded_uart':
             trials = seeded_uart_trials(root, row, sources)
         else:
@@ -389,7 +377,7 @@ def calculate(root):
         need(complete or bool(row.get('missing')), 'Incomplete benchmark must identify missing evidence')
         rows.append({'id': row['id'], 'label': row['label'], 'package_status': row['status'],
                      'identity': row['identity'], 'eligible_trials': len(trials), 'complete': complete,
-                     'rate': pool(trials, boundary=boundary) if complete else None, 'missing': None if complete else row['missing'],
+                     'rate': pool(trials) if complete else None, 'missing': None if complete else row['missing'],
                      'trials': trials,
                      **({'attention_cache': row['attention_cache']} if 'attention_cache' in row else {})})
     return {'schema': 'fpga-common-speed-results-v1', 'protocol': selection['protocol'],

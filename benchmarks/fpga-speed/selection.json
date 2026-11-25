@@ -476,6 +476,7 @@
       "status": "[Runnable release](demos/tlm26-moe/prebuilt/overlap-r2-50mhz/README.md)"
     },
     {
+      "artifact": "demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/tlm26.fs",
       "attention_cache": "Authenticated in external DDR (all five layers)",
       "cases": [
         "trial_1",
@@ -487,17 +488,17 @@
         "board_label": "Tang Mega 138K Basic revision C",
         "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
         "core_clock_mhz": 50,
-        "first_return_hold_cycles": 1000000,
-        "fpga_image_sha256": "7bb2e98804089773a805dd8b5dfe49154cfa81bfa485542ebcb5ca6304e3dc6f",
+        "first_return_hold_cycles": 0,
+        "fpga_image_sha256": "08734ca67fd9da85a011229770ec1f5a5932ac389f43d0826a5abfcd9d3df541",
         "model_sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1",
-        "timestamp_boundary": "complete_uart_frame_receipt"
+        "timestamp_boundary": "generation_loop_validated_reply"
       },
       "label": "TLM26 with protected K/V in external DDR for all five layers",
       "prompt_tokens": [
         1
       ],
-      "source": "evidence/tlm26-tang-five-layer-kv-board/UART-TRACE.json",
-      "status": "[Five-layer board trial](evidence/tlm26-tang-five-layer-kv-board/README.md)"
+      "source": "demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/READER-CAPTURE.json",
+      "status": "[Runnable release](demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md) \u00b7 [Held control](demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md#older-held-control)"
     }
   ],
   "schema": "fpga-common-speed-selection-v1",
@@ -726,6 +727,14 @@
       "bytes": 3537,
       "sha256": "38b652442a35dfb3f2698c93fe5d30f38e35dea4f7ce98ff0ac2c4a3292208b8"
     },
+    "demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/IMAGE.json": {
+      "bytes": 3024,
+      "sha256": "383b1780c0b3f7852c5fbcad5142d5e014bd3c13b6fe8bf059c14e29fc5f0f33"
+    },
+    "demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/READER-CAPTURE.json": {
+      "bytes": 123641,
+      "sha256": "63ce68c85e9ede8e8a5439f465d4089ce73ef97b5f47a618054ef7e92f4e5259"
+    },
     "demos/tlm26-moe/variants/overlap-r2-50mhz/PROVENANCE.json": {
       "bytes": 2592,
       "sha256": "6f313ad8977ec521063f221659a9928854aa2180e59eac576f36a0f9572a657c"
@@ -758,17 +767,9 @@
       "bytes": 35644,
       "sha256": "47a71115df263867f12cd038ff063f6012fb67d5e5e41f85d207179d91c60748"
     },
-    "evidence/tlm26-tang-five-layer-kv-board/IMAGE-SOURCE.json": {
-      "bytes": 11920,
-      "sha256": "5f52b0f9481a79fa0b558be45866da69d4d9f7bb3b545fa8fc8f196afdd2d0f6"
-    },
     "evidence/tlm26-tang-five-layer-kv-board/REFERENCE.json": {
       "bytes": 2768,
       "sha256": "2e11aa1441e62118861d1bcaae8f50fdfadfaa411829f5f1d64c068325a67190"
-    },
-    "evidence/tlm26-tang-five-layer-kv-board/UART-TRACE.json": {
-      "bytes": 106999,
-      "sha256": "a04b0d72116dc5625b9730343c64d7eb9fd614fb094d8962eadbdf0438a925cf"
     }
   },
   "timestamp_boundary": "generation_loop_validated_reply"

@@ -108,12 +108,12 @@ The [protected seeded benchmark](evidence/simplestories-tang-protected-seeded-bo
 | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release or evidence |
 | --- | --- | ---: | ---: | --- |
 | F-AWIC, overlapped schedule | On-chip scratch RAM | 50 | 9.1 | [Runnable release](demos/tlm26-moe/prebuilt/overlap-r2-50mhz/README.md) |
-| F-AWIC, protected K/V | Authenticated in external DDR (all five layers) | 50 | 8.9 | [Five-layer board trial](evidence/tlm26-tang-five-layer-kv-board/README.md) |
+| F-AWIC, protected K/V | Authenticated in external DDR (all five layers) | 50 | 10.7 | [Runnable release](demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md) · [Held control](demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md#older-held-control) |
 <!-- COMMON-FPGA-SPEED:END -->
 
 The [50 MHz overlapped schedule](demos/tlm26-moe/variants/overlap-r2-50mhz/README.md) fetches the next operands while the current product accumulates. The [TLM26 guide](demos/tlm26-moe/README.md) covers the earlier same-clock comparison, reproduction and timing limits.
 
-The five-layer rate uses complete UART frame receipt. The on-chip rate uses validated generation-loop replies. The [two-layer control and DDR timing limits](evidence/tlm26-tang-five-layer-kv-board/README.md) are in the board evidence.
+Both TLM26 rows use validated generation-loop replies. The five-layer release omits the diagnostic first-weight-return hold. Its [matched held control and complete-frame results](demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md#older-held-control) are recorded separately.
 
 <!-- COMMON-FPGA-SPEED:START -->
 ### Qwen3-1.7B on AWS F2

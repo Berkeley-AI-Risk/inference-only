@@ -2,7 +2,7 @@
 
 This **F-AWIC** runs the released eight-expert TLM26 TinyStories checkpoint. Its model architecture and weight-page digests are fixed in the FPGA configuration. Each of its five transformer layers has a 64-wide residual stream, eight attention heads, four KV heads and eight 192-wide SwiGLU experts. The trained router selects two experts per layer per token. Vocabulary size is 512 and the hardware supports 256 positions per history. The host tokenizes text and sends token IDs. Attention, expert selection, both experts, their mixture and greedy output selection run in the circuit. [Author model card](https://huggingface.co/h1matthew/tlm26/tree/804c2137003ede3820fc57608221deb620c2d6d7)
 
-[Run the measured image](prebuilt/overlap-r2-50mhz/README.md) · [Validation](VALIDATION.md) · [Reproduction](REPRODUCE.md) · [Formal scope](FORMAL-STATUS.md) · [Dependency notices](NOTICES.md)
+[Run the on-chip K/V image](prebuilt/overlap-r2-50mhz/README.md) · [Run the five-layer protected K/V image](prebuilt/five-external-kv-zero-hold-50mhz/README.md) · [Validation](VALIDATION.md) · [Reproduction](REPRODUCE.md) · [Formal scope](FORMAL-STATUS.md) · [Dependency notices](NOTICES.md)
 
 The weights-only checkpoint has **1,572,032 unique parameters**, with tied input and output weights. Its 6,340,671-byte file has SHA-256 `c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0`. The matching SentencePiece model is `tinylm/data/tok512.model`, SHA-256 `d7f2c1b4c964f0b4a5e136557059e2e4071a3738441d1d104f70d0a36b999cf8`. Evaluation starts with one BOS token. The author's MoE evaluation selects the custom vocabulary dataset, and the data utility selects `tok512.model` for that vocabulary size. The model card declares MIT. The training and inference source carries the included upstream MIT notice. [Pinned evaluation code](https://github.com/ANRGUSC/tlm26/blob/967a9270ff81220421e062393ae56babe6152888/tinylm/eval_moe.py) · [Tokenizer selection](https://github.com/ANRGUSC/tlm26/blob/967a9270ff81220421e062393ae56babe6152888/tinylm/tinystories.py) · [Upstream license](https://github.com/ANRGUSC/tlm26/blob/967a9270ff81220421e062393ae56babe6152888/tinylm/LICENSE)
 
@@ -37,7 +37,7 @@ external K/V cache.
 
 ## Protected external K/V
 
-The [five-layer Tang board study](../../evidence/tlm26-tang-five-layer-kv-board/README.md) authenticated external K/V for all five layers at 50 MHz. Two 128-output UART trials measured about 8.9 cached tokens/s. The [two-layer control](../../evidence/tlm26-tang-protected-kv-board/README.md) used authenticated external K/V in layers 0 and 1 and kept the remaining three layers on chip. The application clocks met reported timing. Vendor DDR timing remained open.
+The [five-layer protected release](prebuilt/five-external-kv-zero-hold-50mhz/README.md) authenticates external K/V in all five layers at 50 MHz and measured **10.711110 cached tokens/s** over two 128-output trials. The [matched held control](prebuilt/five-external-kv-zero-hold-50mhz/README.md#older-held-control) measured 8.904667 cached tokens/s. The [two-layer control](../../evidence/tlm26-tang-protected-kv-board/README.md) used authenticated external K/V in layers 0 and 1 and kept the remaining three layers on chip. The application clocks met reported timing. Vendor DDR timing remained open.
 
 ## Measured on the Tang
 
