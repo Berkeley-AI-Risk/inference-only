@@ -289,6 +289,12 @@ class CommonSpeedTests(unittest.TestCase):
         self.assertEqual(text.count(bench.END), len(tables))
         actual = [part.split(bench.END, 1)[0].strip() for part in text.split(bench.START)[1:]]
         self.assertEqual(actual, tables)
+        for table in tables:
+            for row in table.splitlines()[4:]:
+                release_cell = row.split('|')[-2].strip()
+                self.assertRegex(release_cell, r'^\[(Runnable (?:release|prototype|token-ID demonstration)|Board measured)\]\(')
+                destination = release_cell.split('](', 1)[1].split(')', 1)[0]
+                self.assertTrue((ROOT / destination.split('#', 1)[0]).is_file(), destination)
         self.assertIn('Release or evidence', tables[1])
         self.assertIn('| On-chip scratch RAM | 50 | 9.1 | [Runnable release]', tables[1])
         self.assertIn('| Authenticated in external DDR (all five layers) | 50 | 10.7 | [Runnable release]', tables[1])

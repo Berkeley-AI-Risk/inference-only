@@ -90,13 +90,13 @@ the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENC
 
 | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
 | --- | --- | ---: | ---: | --- |
-| F-AWIC, baseline | Unverified external DDR | 25 | 10.0 | Runnable release |
-| F-AWIC, protected K/V | Authenticated in external DDR | 25 | 7.0 | Runnable release |
-| F-AWIC, encrypted weights and protected K/V | Authenticated and encrypted in external DDR | 25 | 6.0 | Runnable release · public demonstration keys |
-| F-AWIC, seeded sampling (temperature 1) | Unverified external DDR | 25 | 9.9 | Runnable release |
+| F-AWIC, baseline | Unverified external DDR | 25 | 10.0 | [Runnable release](demos/simplestories-v2-5m/PROGRAMMING.md) |
+| F-AWIC, protected K/V | Authenticated in external DDR | 25 | 7.0 | [Runnable release](demos/simplestories-v2-5m/KV-PROTECTION.md#run-or-rebuild) |
+| F-AWIC, encrypted weights and protected K/V | Authenticated and encrypted in external DDR | 25 | 6.0 | [Runnable release](demos/simplestories-v2-5m/ENCRYPTED-MEMORY.md#install-or-restore) · public demonstration keys |
+| F-AWIC, seeded sampling (temperature 1) | Unverified external DDR | 25 | 9.9 | [Runnable release](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md#load-and-check-the-seeded-image) |
 | F-AWIC, protected K/V and seeded sampling (temperature 1) | Authenticated in external DDR | 25 | 7.0 | [Runnable release](demos/simplestories-v2-5m/prebuilt/protected-seeded-sampling/README.md) |
-| S-AWIC, signed updates | Unverified external DDR | 25 | 10.1 | Runnable release · public demonstration keys |
-| S-AWIC, periodic reauthorization | Unverified external DDR | 25 | 7.6 | Runnable token-ID demonstration · public demonstration keys |
+| S-AWIC, signed updates | Unverified external DDR | 25 | 10.1 | [Runnable release](demos/simplestories-v2-5m/variants/signed-update/tang/README.md) · public demonstration keys |
+| S-AWIC, periodic reauthorization | Unverified external DDR | 25 | 7.6 | [Runnable token-ID demonstration](demos/simplestories-v2-5m/variants/home-authorization/INSTALL.md) · public demonstration keys |
 
 <!-- COMMON-FPGA-SPEED:END -->
 
@@ -125,8 +125,8 @@ Both TLM26 rows use validated generation-loop replies. The five-layer release om
 
 | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
 | --- | --- | ---: | ---: | --- |
-| F-AWIC | Unverified external K/V | 100 | 9.0 | Runnable release · public AWS FPGA image |
-| F-AWIC, protected K/V | Authenticated external K/V | 100 | 7.2 | Board measured · private AWS FPGA image |
+| F-AWIC | Unverified external K/V | 100 | 9.0 | [Runnable release](demos/qwen3-1.7b/INSTALL.md) · public AWS FPGA image |
+| F-AWIC, protected K/V | Authenticated external K/V | 100 | 7.2 | [Board measured](demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/capture.json) · private AWS FPGA image |
 
 <!-- COMMON-FPGA-SPEED:END -->
 
@@ -139,7 +139,7 @@ checks authenticated retained K/V and the operands used by the model.
 
 | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
 | --- | --- | ---: | ---: | --- |
-| F-AWIC | Unverified external K/V | 100 | 1.1 | Runnable prototype · speed optimization in progress · public AWS FPGA image |
+| F-AWIC | Unverified external K/V | 100 | 1.1 | [Runnable prototype](demos/qwen3-8b/INSTALL.md) · speed optimization in progress · public AWS FPGA image |
 
 <!-- COMMON-FPGA-SPEED:END -->
 

@@ -45,7 +45,7 @@
         378
       ],
       "source": "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/baseline-common-speed-20261026-r1/FINISHED.json",
-      "status": "Runnable release"
+      "status": "[Runnable release](demos/simplestories-v2-5m/PROGRAMMING.md)"
     },
     {
       "artifact": "demos/simplestories-v2-5m/prebuilt/kv-protected/project/impl/pnr/shared_product.fs",
@@ -89,7 +89,7 @@
         378
       ],
       "source": "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/FINISHED.json",
-      "status": "Runnable release"
+      "status": "[Runnable release](demos/simplestories-v2-5m/KV-PROTECTION.md#run-or-rebuild)"
     },
     {
       "attention_cache": "On-chip scratch RAM",
@@ -229,7 +229,7 @@
         378
       ],
       "source": "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/encrypted-common-speed-20261026-r1/FINISHED.json",
-      "status": "Runnable release; public demonstration keys"
+      "status": "[Runnable release](demos/simplestories-v2-5m/ENCRYPTED-MEMORY.md#install-or-restore); public demonstration keys"
     },
     {
       "artifact": "demos/simplestories-v2-5m/prebuilt/seeded-sampling/project/impl/pnr/shared_product.fs",
@@ -250,7 +250,7 @@
       ],
       "reference_source": "demos/simplestories-v2-5m/reference/seeded-sampling/goldens/around128-t2-seed-a.json",
       "source": "demos/simplestories-v2-5m/evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json",
-      "status": "Runnable release",
+      "status": "[Runnable release](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md#load-and-check-the-seeded-image)",
       "temperature": 1
     },
     {
@@ -311,7 +311,7 @@
       ],
       "reference_source": "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/reference.json",
       "source": "demos/simplestories-v2-5m/variants/signed-update/tang/evidence/repair-board-2026-11-05/FINISHED.json",
-      "status": "Runnable release; public demonstration keys"
+      "status": "[Runnable release](demos/simplestories-v2-5m/variants/signed-update/tang/README.md); public demonstration keys"
     },
     {
       "artifact": "demos/simplestories-v2-5m/variants/home-authorization/prebuilt/home_product.fs",
@@ -340,7 +340,7 @@
       ],
       "reference_source": "demos/simplestories-v2-5m/variants/home-authorization/evidence/repair-board-2026-11-05/common-reference.json",
       "source": "demos/simplestories-v2-5m/variants/home-authorization/evidence/repair-board-2026-11-05/COMMON-SPEED.json",
-      "status": "Runnable token-ID demonstration; public demonstration keys"
+      "status": "[Runnable token-ID demonstration](demos/simplestories-v2-5m/variants/home-authorization/INSTALL.md); public demonstration keys"
     },
     {
       "attention_cache": "Unverified external K/V",
@@ -382,12 +382,12 @@
         9707
       ],
       "source": "demos/qwen3-1.7b/evidence/common-speed-2026-10-26/capture.json",
-      "status": "Runnable release; public AWS FPGA image"
+      "status": "[Runnable release](demos/qwen3-1.7b/INSTALL.md); public AWS FPGA image"
     },
     {
       "id": "qwen3-1.7b-protected",
       "label": "**Qwen3-1.7B \u2014 AWS F2**, **F-AWIC, protected K/V**",
-      "status": "Board measured \u00b7 private AWS FPGA image",
+      "status": "[Board measured](demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/capture.json) \u00b7 private AWS FPGA image",
       "attention_cache": "Authenticated external K/V",
       "format": "canonical",
       "cases": [
@@ -468,7 +468,7 @@
         9707
       ],
       "source": "demos/qwen3-8b/evidence/common-speed-2026-10-26/capture.json",
-      "status": "Runnable prototype; speed optimization in progress; public AWS FPGA image"
+      "status": "[Runnable prototype](demos/qwen3-8b/INSTALL.md); speed optimization in progress; public AWS FPGA image"
     },
     {
       "attention_cache": "On-chip scratch RAM",
