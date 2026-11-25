@@ -94,7 +94,7 @@ def main():
     assert abs(checked[1]['rate']-3.097428714761486)<1e-12
     assert abs(checked[2]['rate']-9.077744452657152)<1e-12
     parser=R/'tools/fpga_speed_benchmark.py'
-    assert sha(parser)=='996b4a645572cffee7c320768a266628885c13b728c1c726e4d15a8886f82c73'
+    assert sha(parser)=='8b9ba4a4fb09532564db5a10d6ca2691fb7f2e9a02798bb43a070e947ff6948b'
     spec=importlib.util.spec_from_file_location('common_reader',parser)
     m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
     for row,review in zip(rows,checked):

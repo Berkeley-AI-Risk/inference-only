@@ -80,8 +80,8 @@ the same prompt with the same temperature and seed reproduces the same tokens.
 
 Protected K/V means the chip verifies external cached keys and values before attention uses them.
 
-Cached tokens/s measures single-stream generation between validated token replies
-on the local control host. “Inference core” is the configured decoder clock of
+Cached tokens/s measures single-stream generation between token replies on the
+local control host. “Inference core” is the configured decoder clock of
 the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) · [Full results](benchmarks/fpga-speed/results.json)
 
 <!-- COMMON-FPGA-SPEED:START -->
@@ -105,22 +105,15 @@ The [protected seeded benchmark](evidence/simplestories-tang-protected-seeded-bo
 <!-- COMMON-FPGA-SPEED:START -->
 ### TLM26 (top-2-of-8 MoE) on Tang Mega 138K
 
-| Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
+| Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release or evidence |
 | --- | --- | ---: | ---: | --- |
 | F-AWIC, overlapped schedule | On-chip scratch RAM | 50 | 9.1 | [Runnable release](demos/tlm26-moe/prebuilt/overlap-r2-50mhz/README.md) |
+| F-AWIC, protected K/V | Authenticated in external DDR (all five layers) | 50 | 8.9 | [Five-layer board trial](evidence/tlm26-tang-five-layer-kv-board/README.md) |
 <!-- COMMON-FPGA-SPEED:END -->
 
 The [50 MHz overlapped schedule](demos/tlm26-moe/variants/overlap-r2-50mhz/README.md) fetches the next operands while the current product accumulates. The [TLM26 guide](demos/tlm26-moe/README.md) covers the earlier same-clock comparison, reproduction and timing limits.
 
-Two 128-output board trials measured protected K/V in external DDR across all five TLM26 layers at 50 MHz.
-
-| TLM26 K/V cache | Recorded cached tokens/s | Evidence |
-| --- | ---: | --- |
-| Authenticated in external DDR for all five layers | 8.9 | [Five-layer board trial](evidence/tlm26-tang-five-layer-kv-board/README.md) |
-
-The [two-layer control](evidence/tlm26-tang-protected-kv-board/README.md) authenticated external K/V in layers 0 and 1 and kept the remaining three layers on chip.
-
-The five-layer recorder timestamps complete UART frame receipt before validating each reply. The headline benchmark uses validated generation-loop timestamps. The five-layer image matched 255 full-context outputs and five after CLEAR. The reported application clocks met timing. Vendor DDR timing remained open.
+The five-layer rate uses complete UART frame receipt. The on-chip rate uses validated generation-loop replies. The [two-layer control and DDR timing limits](evidence/tlm26-tang-five-layer-kv-board/README.md) are in the board evidence.
 
 <!-- COMMON-FPGA-SPEED:START -->
 ### Qwen3-1.7B on AWS F2

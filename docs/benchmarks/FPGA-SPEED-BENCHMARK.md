@@ -47,7 +47,10 @@ This excludes inter-command gaps and must be labeled separately. Browser streami
 [Selection](../../benchmarks/fpga-speed/selection.json) pins the input records and selected image identities. [Computed results](../../benchmarks/fpga-speed/results.json) record trial counts, wall durations, primary rates and command-only diagnostics. A dash in the overview means that a complete paired record is unavailable; individual model guides can report other explicitly labeled validation workloads.
 
 The overview includes the separately measured plain-K/V and protected-K/V seeded SimpleStories images, the 50 MHz TLM26
-overlapped image at 9.077744452657 tokens/s, and the two Qwen board images.
+overlapped on-chip image at 9.077744452657 tokens/s, the
+[five-layer protected external K/V trial](../../evidence/tlm26-tang-five-layer-kv-board/README.md)
+at 8.883470 tokens/s, and the two Qwen board images. The five-layer row uses complete
+UART frame receipt. The other overview rows use validated generation-loop replies.
 The full results retain separate TLM26 records for the
 [original image](../../benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json)
 at 1.612038176875 tokens/s and the

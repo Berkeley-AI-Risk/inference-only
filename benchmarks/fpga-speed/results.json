@@ -1,5 +1,5 @@
 {
-  "complete_rows": 12,
+  "complete_rows": 13,
   "protocol": "one-token-128-host-v2",
   "rows": [
     {
@@ -1433,6 +1433,84 @@
           "timestamp_boundary": "generation_loop_validated_reply"
         }
       ]
+    },
+    {
+      "attention_cache": "Authenticated in external DDR (all five layers)",
+      "complete": true,
+      "eligible_trials": 2,
+      "id": "tlm26-moe-five-layer-external-kv",
+      "identity": {
+        "board_label": "Tang Mega 138K Basic revision C",
+        "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+        "core_clock_mhz": 50,
+        "first_return_hold_cycles": 1000000,
+        "fpga_image_sha256": "7bb2e98804089773a805dd8b5dfe49154cfa81bfa485542ebcb5ca6304e3dc6f",
+        "model_sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1",
+        "timestamp_boundary": "complete_uart_frame_receipt"
+      },
+      "label": "TLM26 with protected K/V in external DDR for all five layers",
+      "missing": null,
+      "package_status": "[Five-layer board trial](evidence/tlm26-tang-five-layer-kv-board/README.md)",
+      "rate": {
+        "cached_host_seconds": 28.592429709,
+        "cached_tokens_per_second": 8.883470295637336,
+        "command_only_diagnostic_tokens_per_second": 8.905436822311119,
+        "counted_cached_outputs": 254,
+        "first_step_seconds": [
+          0.101932166,
+          0.101902125
+        ]
+      },
+      "trials": [
+        {
+          "cached_command_seconds": 14.273474618,
+          "cached_host_seconds": 14.313245834,
+          "cached_outputs": 127,
+          "capture_sha256": "bc8073146b0bff922ffa82ba3ff08df6b5cb42facc7d17474ade39cb41ab1745",
+          "clear_before": true,
+          "first_step_seconds": 0.101932166,
+          "generated_outputs": 128,
+          "greedy": true,
+          "identity": {
+            "board_label": "Tang Mega 138K Basic revision C",
+            "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+            "core_clock_mhz": 50,
+            "first_return_hold_cycles": 1000000,
+            "fpga_image_sha256": "7bb2e98804089773a805dd8b5dfe49154cfa81bfa485542ebcb5ca6304e3dc6f",
+            "model_sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1",
+            "timestamp_boundary": "complete_uart_frame_receipt"
+          },
+          "prompt_tokens": [
+            1
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "complete_uart_frame_receipt"
+        },
+        {
+          "cached_command_seconds": 14.248427796,
+          "cached_host_seconds": 14.279183875,
+          "cached_outputs": 127,
+          "capture_sha256": "0b6b4926a1306aac627c4f8bdc280b9e136f588ea47ffd5f70a9af81687b3deb",
+          "clear_before": true,
+          "first_step_seconds": 0.101902125,
+          "generated_outputs": 128,
+          "greedy": true,
+          "identity": {
+            "board_label": "Tang Mega 138K Basic revision C",
+            "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
+            "core_clock_mhz": 50,
+            "first_return_hold_cycles": 1000000,
+            "fpga_image_sha256": "7bb2e98804089773a805dd8b5dfe49154cfa81bfa485542ebcb5ca6304e3dc6f",
+            "model_sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1",
+            "timestamp_boundary": "complete_uart_frame_receipt"
+          },
+          "prompt_tokens": [
+            1
+          ],
+          "stop_at_eos": false,
+          "timestamp_boundary": "complete_uart_frame_receipt"
+        }
+      ]
     }
   ],
   "schema": "fpga-common-speed-results-v1",
@@ -1693,8 +1771,20 @@
     "evidence/simplestories-tang-protected-seeded-board/COMMON-SPEED.json": {
       "bytes": 35644,
       "sha256": "47a71115df263867f12cd038ff063f6012fb67d5e5e41f85d207179d91c60748"
+    },
+    "evidence/tlm26-tang-five-layer-kv-board/IMAGE-SOURCE.json": {
+      "bytes": 11920,
+      "sha256": "5f52b0f9481a79fa0b558be45866da69d4d9f7bb3b545fa8fc8f196afdd2d0f6"
+    },
+    "evidence/tlm26-tang-five-layer-kv-board/REFERENCE.json": {
+      "bytes": 2768,
+      "sha256": "2e11aa1441e62118861d1bcaae8f50fdfadfaa411829f5f1d64c068325a67190"
+    },
+    "evidence/tlm26-tang-five-layer-kv-board/UART-TRACE.json": {
+      "bytes": 106999,
+      "sha256": "a04b0d72116dc5625b9730343c64d7eb9fd614fb094d8962eadbdf0438a925cf"
     }
   },
   "timestamp_boundary": "generation_loop_validated_reply",
-  "total_rows": 12
+  "total_rows": 13
 }

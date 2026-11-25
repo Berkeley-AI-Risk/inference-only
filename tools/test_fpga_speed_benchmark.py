@@ -4,6 +4,7 @@ import importlib.util
 import json
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('common_speed', Path(__file__).with_name('fpga_speed_benchmark.py'))
@@ -239,6 +240,39 @@ class CommonSpeedTests(unittest.TestCase):
             bench.seeded_uart_trials(ROOT, row, sources)
 
 
+    def test_five_layer_display_retains_its_frame_receipt_boundary(self):
+        selection = json.loads((ROOT / bench.SELECTION).read_text())
+        row = next(row for row in selection['rows'] if row['id'] == bench.TLM26_FIVE_LAYER)
+        sources = bench.read_sources(ROOT, selection)
+        trials = bench.tlm26_uart_trials(ROOT, row, sources)
+        self.assertEqual({trial['timestamp_boundary'] for trial in trials}, {bench.UART_RECEIPT})
+        rate = bench.pool(trials, boundary=bench.UART_RECEIPT)
+        self.assertEqual(rate['counted_cached_outputs'], 254)
+        self.assertAlmostEqual(rate['cached_tokens_per_second'], 8.8834702956, places=9)
+        with self.assertRaisesRegex(ValueError, 'Mixed boundaries'):
+            bench.pool(trials)
+        changed = copy.deepcopy(sources[row['source']])
+        changed['five_layer_standard'][0][2]['rx'] = changed['five_layer_standard'][0][3]['rx']
+        sources[row['source']] = changed
+        with self.assertRaisesRegex(ValueError, 'UART exchange'):
+            bench.tlm26_uart_trials(ROOT, row, sources)
+
+    def test_five_layer_rejects_missing_checked_trial(self):
+        selection = json.loads((ROOT / bench.SELECTION).read_text())
+        row = next(row for row in selection['rows'] if row['id'] == bench.TLM26_FIVE_LAYER)
+        sources = bench.read_sources(ROOT, selection)
+        load_script = bench.runpy.run_path
+        checker_path = ROOT / bench.TLM26_BOARD / 'check_capture.py'
+
+        def load_with_missing_trial(path):
+            if Path(path) == checker_path:
+                return {'standard': lambda *args: {'trials': [{}]}}
+            return load_script(path)
+
+        with patch.object(bench.runpy, 'run_path', side_effect=load_with_missing_trial):
+            with self.assertRaisesRegex(ValueError, 'TLM26 board trial counts do not match'):
+                bench.tlm26_uart_trials(ROOT, row, sources)
+
     def test_saved_results_and_overview_use_same_accounting(self):
         result=bench.calculate(ROOT)
         self.assertEqual(result,json.loads((ROOT/bench.RESULTS).read_text()))
@@ -250,11 +284,14 @@ class CommonSpeedTests(unittest.TestCase):
             '### Qwen3-1.7B on AWS F2',
             '### Qwen3-8B on AWS F2',
         ])
-        self.assertEqual([len(t.splitlines()[4:]) for t in tables], [7, 1, 1, 1])
+        self.assertEqual([len(t.splitlines()[4:]) for t in tables], [7, 2, 1, 1])
         self.assertEqual(text.count(bench.START), len(tables))
         self.assertEqual(text.count(bench.END), len(tables))
         actual = [part.split(bench.END, 1)[0].strip() for part in text.split(bench.START)[1:]]
         self.assertEqual(actual, tables)
+        self.assertIn('Release or evidence', tables[1])
+        self.assertIn('| On-chip scratch RAM | 50 | 9.1 | [Runnable release]', tables[1])
+        self.assertIn('| Authenticated in external DDR (all five layers) | 50 | 8.9 | [Five-layer board trial]', tables[1])
         self.assertIn('| F-AWIC, protected K/V | Authenticated in external DDR | 25 | 7.0 |', tables[0])
         self.assertIn('| F-AWIC, protected K/V and seeded sampling (temperature 1) | '
                       'Authenticated in external DDR | 25 | 7.0 |', tables[0])
