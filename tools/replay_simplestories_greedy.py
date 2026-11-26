@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MODEL = ROOT / 'demos/simplestories-v2-5m'
 ARCHIVE = (ROOT / 'evidence/simplestories-tang-protected-seeded-board'
            / 'recorded-greedy-release-inputs.tar.gz')
-ARCHIVE_SHA256 = '63f4aada873db96b980c5e11534ff255fa0275a14434dfbba1d76ef649748150'
+ARCHIVE_SHA256 = 'dd400df7df460f8ea2c01f9a2b501b413020b17bd65568c85471b46a7af19ce3'
 
 
 def replay(seeded):
