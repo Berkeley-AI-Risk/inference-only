@@ -1,6 +1,6 @@
 # Common FPGA generation speed benchmark
 
-To enter the headline speed comparison, a design must use one input token, 128 generated outputs and two repetitions. The two SimpleStories seeded-sampling rows use temperature 1 with a fixed public seed; the other measured rows use greedy decoding. Its cached rate includes the host control loop and gaps between token replies. The [model tables](../../README.md#the-demonstrated-designs-and-measurements) report a rate only when both complete trials satisfy this protocol.
+The common speed comparison uses one input token, 128 generated outputs and two repetitions. The two SimpleStories seeded-sampling rows use temperature 1 with a fixed public seed; the other measured rows use greedy decoding. The cached rate includes the host control loop and gaps between token replies. The [model tables](../../README.md#the-demonstrated-designs-and-measurements) also identify a supplemental F2 measurement that uses the same token counts and a different reply timestamp.
 
 ## Workload and execution
 
@@ -49,7 +49,7 @@ This excludes inter-command gaps and must be labeled separately. Browser streami
 The overview includes the separately measured plain-K/V and protected-K/V seeded SimpleStories images, the 50 MHz TLM26
 overlapped on-chip image at 9.077744452657 tokens/s, the
 [five-layer protected external K/V release](../../demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md)
-at 10.711110 tokens/s, and the two Qwen board images. The overview rates use
+at 10.711110 tokens/s, and the two Qwen board images. The common-protocol rates use
 validated generation-loop replies. The TLM26 release separately records complete
 UART frame receipt and the held control.
 The full results retain separate TLM26 records for the

@@ -10,6 +10,7 @@ import importlib.util
 import json
 import math
 import runpy
+from datetime import datetime, timedelta
 from pathlib import Path, PurePosixPath
 
 SELECTION = 'benchmarks/fpga-speed/selection.json'
@@ -19,6 +20,8 @@ TLM26_FIVE_LAYER = 'tlm26-moe-five-layer-external-kv'
 TLM26_RELEASE = 'demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz'
 PROTOCOL = 'one-token-128-host-v2'
 MODEL = 'demos/simplestories-v2-5m'
+COMBINED_F2 = 'simplestories-combined-sawic-f2'
+F2_EVIDENCE = 'evidence/' + COMBINED_F2
 START, END = '<!-- COMMON-FPGA-SPEED:START -->', '<!-- COMMON-FPGA-SPEED:END -->'
 
 
@@ -316,6 +319,47 @@ def tlm26_uart_trials(root, row, sources):
                             identity, capture_sha256=digest))
     return trials
 
+def combined_f2_utc_row(sources, reference):
+    timing = sources[F2_EVIDENCE + '/around128-reply-times.json']
+    board = sources[F2_EVIDENCE + '/two-pass-wire-summary.json']
+    trials = timing['trials']
+    cases = [c for c in board['cases'] if c['name'] == 'around128']
+    need(timing['clock'] == 'host_utc' and timing['case'] == 'around128'
+         and timing['timestamp_boundary'] == 'packed_result_logged_before_reference_comparison',
+         'Unexpected F2 timestamp boundary')
+    need(all(timing[k] == board[k] for k in ('routed_checkpoint_sha256', 'model_A_container_sha256'))
+         and board['routed_clock_MHz']['core'] == 75, 'F2 image, model or clock differs')
+    need([t['pass_number'] for t in trials] == [1, 2] == [c['pass_number'] for c in cases],
+         'Expected two distinct around128 passes')
+    durations = []
+    previous_id = 0
+    previous_time = None
+    for t, case in zip(trials, cases):
+        replies = t['replies']
+        need(case['clear_acks'] == 1 and case['appended_tokens'] == reference['prompt_tokens'] == [378]
+             and len(replies) == 128 and all(r['status'] == 0 for r in replies)
+             and [r['token'] for r in replies] == case['generated_tokens'] == reference['generated_tokens'],
+             'F2 prompt, CLEAR, status or output tokens differ')
+        clear_id = t['clear_command_id']
+        need(clear_id > previous_id and [r['command_id'] for r in replies] == list(range(clear_id + 2, clear_id + 130)),
+             'F2 commands repeat or are out of sequence')
+        times = [datetime.fromisoformat(r['utc']) for r in replies]
+        need(all(v.utcoffset() == timedelta(0) for v in times)
+             and all(b > a for a, b in zip(times, times[1:]))
+             and (previous_time is None or times[0] > previous_time), 'F2 UTC reply times are out of order')
+        durations.append((times[-1] - times[0]).total_seconds())
+        previous_id, previous_time = replies[-1]['command_id'], times[-1]
+    elapsed = math.fsum(durations)
+    return {'id': COMBINED_F2, 'identity': {'core_clock_mhz': board['routed_clock_MHz']['core'],
+            'routed_checkpoint_sha256': board['routed_checkpoint_sha256']},
+            'attention_cache': 'Protected K/V', 'complete': True,
+            'package_status': '[Board measured](' + F2_EVIDENCE + '/README.md#cached-generation-on-aws-f2) · private FPGA image',
+            'timestamp_boundary': timing['timestamp_boundary'], 'clock': timing['clock'],
+            'trial_cached_seconds': durations,
+            'rate': {'counted_cached_outputs': 254, 'cached_host_seconds': elapsed,
+                     'cached_tokens_per_second': 254 / elapsed}}
+
+
 def calculate(root):
     root = Path(root)
     selection = json.loads((root / SELECTION).read_text())
@@ -383,6 +427,7 @@ def calculate(root):
     return {'schema': 'fpga-common-speed-results-v1', 'protocol': selection['protocol'],
             'timestamp_boundary': BOUNDARY, 'complete_rows': sum(x['complete'] for x in rows),
             'total_rows': len(rows), 'rows': rows, 'source_sha256': selection['sources'],
+            'supplemental_rows': [combined_f2_utc_row(sources, reference)],
             'scope': 'Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay.'}
 
 
@@ -400,7 +445,7 @@ def model_tables(result):
     # Older SimpleStories records describe K/V in their long display labels.
     # Supply that column here for them. Other rows carry attention_cache.
     groups = {
-        'SimpleStories-V2-5M on Tang Mega 138K': [
+        'SimpleStories-V2-5M': [
             ('simplestories-baseline', 'F-AWIC, baseline', plain_ddr),
             ('simplestories-kv-protected', 'F-AWIC, protected K/V', None),
             ('simplestories-encrypted', 'F-AWIC, encrypted weights and protected K/V', 'Authenticated and encrypted in external DDR'),
@@ -408,6 +453,7 @@ def model_tables(result):
             ('simplestories-protected-seeded-sampling', 'F-AWIC, protected K/V and seeded sampling (temperature 1)', None),
             ('simplestories-signed-update', 'S-AWIC, signed updates', plain_ddr),
             ('simplestories-home-authorization', 'S-AWIC, periodic reauthorization', plain_ddr),
+            (COMBINED_F2, 'Combined S-AWIC, signed updates and periodic reauthorization', None),
         ],
         'TLM26 (top-2-of-8 MoE) on Tang Mega 138K': [
             ('tlm26-moe-overlap-r2-50mhz', 'F-AWIC, overlapped schedule', None),
@@ -419,13 +465,16 @@ def model_tables(result):
         ],
         'Qwen3-8B on AWS F2': [('qwen3-8b', 'F-AWIC', None)],
     }
-    rows = {row['id']: row for row in result['rows']}
+    rows = {row['id']: row for row in result['rows'] + result['supplemental_rows']}
     tables = []
     for heading, group in groups.items():
-        links = 'Release or evidence' if heading.startswith('TLM26 ') else 'Release'
+        multiple_platforms = heading == 'SimpleStories-V2-5M'
+        links = 'Release or evidence' if multiple_platforms or heading.startswith('TLM26 ') else 'Release'
+        board_header = ' Platform |' if multiple_platforms else ''
+        board_rule = ' --- |' if multiple_platforms else ''
         lines = [f'### {heading}', '',
-                 f'| Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | {links} |',
-                 '| --- | --- | ---: | ---: | --- |']
+                 f'|{board_header} Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | {links} |',
+                 f'|{board_rule} --- | --- | ---: | ---: | --- |']
         for row_id, label, older_cache in group:
             row = rows[row_id]
             cache = row.get('attention_cache', older_cache)
@@ -433,7 +482,11 @@ def model_tables(result):
             speed = f"{row['rate']['cached_tokens_per_second']:.1f}" if row['complete'] else '—'
             clock = inference_clock_mhz(row)
             status = row['package_status'].replace('; ', ' · ')
-            lines.append(f'| {label} | {cache} | {clock:g} | {speed} | {status} |')
+            board_cell = ''
+            if multiple_platforms:
+                platform = 'AWS F2' if row_id == COMBINED_F2 else 'Tang Mega 138K'
+                board_cell = f' {platform} |'
+            lines.append(f'|{board_cell} {label} | {cache} | {clock:g} | {speed} | {status} |')
         tables.append('\n'.join(lines))
     return tables
 

@@ -279,12 +279,12 @@ class CommonSpeedTests(unittest.TestCase):
         text=(ROOT/'README.md').read_text()
         tables = bench.model_tables(result)
         self.assertEqual([t.splitlines()[0] for t in tables], [
-            '### SimpleStories-V2-5M on Tang Mega 138K',
+            '### SimpleStories-V2-5M',
             '### TLM26 (top-2-of-8 MoE) on Tang Mega 138K',
             '### Qwen3-1.7B on AWS F2',
             '### Qwen3-8B on AWS F2',
         ])
-        self.assertEqual([len(t.splitlines()[4:]) for t in tables], [7, 2, 2, 1])
+        self.assertEqual([len(t.splitlines()[4:]) for t in tables], [8, 2, 2, 1])
         self.assertEqual(text.count(bench.START), len(tables))
         self.assertEqual(text.count(bench.END), len(tables))
         actual = [part.split(bench.END, 1)[0].strip() for part in text.split(bench.START)[1:]]
@@ -302,6 +302,25 @@ class CommonSpeedTests(unittest.TestCase):
         self.assertIn('| F-AWIC, protected K/V | Authenticated in external DDR | 25 | 7.0 |', tables[0])
         self.assertIn('| F-AWIC, protected K/V and seeded sampling (temperature 1) | '
                       'Authenticated in external DDR | 25 | 7.0 |', tables[0])
+        self.assertIn('| AWS F2 | Combined S-AWIC, signed updates and periodic reauthorization | '
+                      'Protected K/V | 75 | 10.8 | [Board measured]', tables[0])
+
+    def test_f2_utc_rate_and_invalid_reply_evidence(self):
+        selection = json.loads((ROOT / bench.SELECTION).read_text())
+        sources = bench.read_sources(ROOT, selection)
+        reference = sources[bench.MODEL + '/tests/reference-cases.json']['around128']
+        row = bench.combined_f2_utc_row(sources, reference)
+        self.assertEqual(row['trial_cached_seconds'], [11.726785, 11.719233])
+        self.assertAlmostEqual(row['rate']['cached_tokens_per_second'], 254 / 23.446018)
+        self.assertEqual(row['clock'], 'host_utc')
+        path = bench.F2_EVIDENCE + '/around128-reply-times.json'
+        for field in ('utc', 'command_id', 'token'):
+            with self.subTest(field=field):
+                changed = copy.deepcopy(sources[path])
+                replies = changed['trials'][1]['replies']
+                replies[1][field] = replies[0][field]
+                with self.assertRaises(ValueError):
+                    bench.combined_f2_utc_row({**sources, path: changed}, reference)
 
 
 if __name__=='__main__':unittest.main()

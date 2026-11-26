@@ -178,8 +178,8 @@
       "sha256": "f3d2be475cea886b4dac5d8b7b118810b333f9499145bbfcdac8e3305b1ee6ec"
     },
     "README.md": {
-      "bytes": 27041,
-      "sha256": "ac94d215c05868e64644e6489f9d800d1b23c863b53b20994a363cc0a8ca951b"
+      "bytes": 27393,
+      "sha256": "2b92e1b5dd2062962f18aa994909a0671b27737c6b32ba488eb2de308adeb61e"
     },
     "REFERENCES.md": {
       "bytes": 613,
@@ -194,12 +194,12 @@
       "sha256": "56b48251f2553631290a620d376c1b007681b06b0238c3582b0aca9b897bb23f"
     },
     "benchmarks/fpga-speed/results.json": {
-      "bytes": 98831,
-      "sha256": "c3780cfa20b6456807c5b15c0da2faef630419376fd1d8219bf4e9a12483fb4e"
+      "bytes": 100020,
+      "sha256": "e84755b3148b1e9e68ead97cb626b7fc7dafbde7a0cadb787cf67d1d7fa8d776"
     },
     "benchmarks/fpga-speed/selection.json": {
-      "bytes": 42579,
-      "sha256": "fdc55aaf5612bf4c3b6ef385c67ab55e90f37d652117a9d34e21d58da65d630c"
+      "bytes": 42957,
+      "sha256": "da92a65a04fc889a0ba516375e7ee394cc145687aba6df3d49a7087afa2b0b39"
     },
     "benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json": {
       "bytes": 32908,
@@ -75630,8 +75630,8 @@
       "sha256": "79365e8930766b7ea2cc62da148973d1b3e421504ce9c80f3c5d3d7655879440"
     },
     "docs/benchmarks/FPGA-SPEED-BENCHMARK.md": {
-      "bytes": 10253,
-      "sha256": "40ef1dda598d85c7363d121a30f511fc55b01c20abd33c3f800fda16e519304b"
+      "bytes": 10276,
+      "sha256": "60bc5967ee7835ed73d08da2afb729fc334ae3b6c9994600db1c4c3d1daa8983"
     },
     "docs/benchmarks/H100-BENCHMARK.md": {
       "bytes": 23689,
@@ -75782,8 +75782,12 @@
       "sha256": "1693f9d44e40d13cfd142223f6522ce0e4e47d4a64125d08f8f4f6cd4c9deb0c"
     },
     "evidence/simplestories-combined-sawic-f2/README.md": {
-      "bytes": 2378,
-      "sha256": "b93aa118d5a21d293afa9a7d0f60261dca17a45878b47ad4f7421bf865f6dc86"
+      "bytes": 3339,
+      "sha256": "850f91f80b0d2a4c37c7d6d91095f55bb62c5385aedd2db09592b0b44a2ab8e3"
+    },
+    "evidence/simplestories-combined-sawic-f2/around128-reply-times.json": {
+      "bytes": 38737,
+      "sha256": "52dcdd1fc23eee461719785c9b4562ded1b1b2c8bf1ecc20c5b84af1773e73a4"
     },
     "evidence/simplestories-combined-sawic-f2/check.py": {
       "bytes": 3620,
@@ -77354,8 +77358,8 @@
       "sha256": "22dc8a322fec4379f38b83c591b7aa47cd3619343f50fff41c467888ddf8ef59"
     },
     "tools/fpga_speed_benchmark.py": {
-      "bytes": 28393,
-      "sha256": "00195354836ca031e7511937520a31bb9c5c1c79b7308138cd8eab8934692d96"
+      "bytes": 31819,
+      "sha256": "1a203cef0fee4417e111459c2ee97efa87e1063db87f871b36a7d70046c9714a"
     },
     "tools/hardware_ci/clock.h": {
       "bytes": 504,
@@ -77410,8 +77414,8 @@
       "sha256": "1dd88cb09483da8cd53c9d3959ae90b7b276aa2127d9282a34712dbb96d82640"
     },
     "tools/release-contract.json": {
-      "bytes": 4658282,
-      "sha256": "1b8515d9a6cca9853ed4961a946517d24fd0ad82ad0ea4464b4c8f75ba5a4576"
+      "bytes": 4658472,
+      "sha256": "9b4983a305c630cb5139ee545b165a5385e15a475996f484be10bc0710d901a0"
     },
     "tools/replay_simplestories_greedy.py": {
       "bytes": 3164,
@@ -77430,8 +77434,8 @@
       "sha256": "ed69dbcb8bc87423846d1b6239779e01310431b0f9ccd4240d6c4297d09d9e06"
     },
     "tools/test_fpga_speed_benchmark.py": {
-      "bytes": 17335,
-      "sha256": "6d6a48d7cb6467f06d4d398b5770cea374af0aeee7974fea3edc8b4453850842"
+      "bytes": 18510,
+      "sha256": "1c259255e0162d0784277ef9c2eb4c59f936eae25d1a53c79d48cfa8c01ad806"
     },
     "tools/test_home_authorization_evidence.py": {
       "bytes": 3605,
@@ -77495,7 +77499,7 @@
     },
     "tools/verify_release.py": {
       "bytes": 10317,
-      "sha256": "2ba91af797f3ef451d0a6045e065475d4b46e6a0b865cd3d708ab03f453a1ccd"
+      "sha256": "fba75159cca962779b5eb87a51260473d853b6cbf74b283274eea15e93f9f951"
     }
   },
   "full_context_evidence_scope": "Each selected greedy image passed 2,047/2,048-token CLI and browser contexts, boundary refusals, CLEAR races, pending-STEP Stop and resumed generation. The seeded image has a separate 16-case context matrix and browser record. Exact workload timestamps remain distinct from cached generation rates.",

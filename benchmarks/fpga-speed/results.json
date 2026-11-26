@@ -1919,6 +1919,14 @@
       "bytes": 1502,
       "sha256": "28b81d2482d1884c54bdf952e45aae3da337ccbb4811b3bdeb1736a6b225da95"
     },
+    "evidence/simplestories-combined-sawic-f2/around128-reply-times.json": {
+      "bytes": 38737,
+      "sha256": "52dcdd1fc23eee461719785c9b4562ded1b1b2c8bf1ecc20c5b84af1773e73a4"
+    },
+    "evidence/simplestories-combined-sawic-f2/two-pass-wire-summary.json": {
+      "bytes": 32972,
+      "sha256": "01c87aeadc503c9abf662300b3fb5e779702a8529f181b2891d5b35f4fff9b9c"
+    },
     "evidence/simplestories-tang-protected-seeded-board/COMMON-SPEED.json": {
       "bytes": 35644,
       "sha256": "47a71115df263867f12cd038ff063f6012fb67d5e5e41f85d207179d91c60748"
@@ -1928,6 +1936,29 @@
       "sha256": "2e11aa1441e62118861d1bcaae8f50fdfadfaa411829f5f1d64c068325a67190"
     }
   },
+  "supplemental_rows": [
+    {
+      "attention_cache": "Protected K/V",
+      "clock": "host_utc",
+      "complete": true,
+      "id": "simplestories-combined-sawic-f2",
+      "identity": {
+        "core_clock_mhz": 75,
+        "routed_checkpoint_sha256": "ef264b3fa11958d57caf7746fd53a9184df4650d9c86c85b7cdaf2e56ccec87f"
+      },
+      "package_status": "[Board measured](evidence/simplestories-combined-sawic-f2/README.md#cached-generation-on-aws-f2) \u00b7 private FPGA image",
+      "rate": {
+        "cached_host_seconds": 23.446018,
+        "cached_tokens_per_second": 10.83339610163227,
+        "counted_cached_outputs": 254
+      },
+      "timestamp_boundary": "packed_result_logged_before_reference_comparison",
+      "trial_cached_seconds": [
+        11.726785,
+        11.719233
+      ]
+    }
+  ],
   "timestamp_boundary": "generation_loop_validated_reply",
   "total_rows": 14
 }

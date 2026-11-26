@@ -28,6 +28,23 @@ All 201,385 routable nets routed. Four critical clock crossings matched the
 static shell reference and zero unresolved critical crossings remained in
 project logic. The guest SDK did not provide a physical clock readback.
 
+### Cached generation on AWS F2
+
+The combined S-AWIC measured **10.8 cached tokens/s** on the two `around128`
+trials above. Each started with CLEAR and prompt token 378 and returned all
+128 expected tokens. From the first reply to the last, 127 cached intervals
+took 11.726785 seconds in pass 1 and 11.719233 seconds in pass 2. Pooling them
+gives 254 / 23.446018 seconds. This excludes the first token and includes
+host work between replies. [Timestamps and token IDs](around128-reply-times.json)
+
+The F2 host recorded UTC wall-clock timestamps after checking the command ID
+and packed reply format, immediately before comparing the returned token with
+the reference. The common benchmark uses a monotonic clock after validation.
+The F2 rate therefore appears as a supplemental measurement in the
+[benchmark results](../../benchmarks/fpga-speed/results.json).
+Run `python3 -I -B tools/fpga_speed_benchmark.py --check` from the repository
+root to reproduce it.
+
 ### First board image
 
 An earlier private image completed five prompts on one boot and matched 512

@@ -84,31 +84,32 @@ Cached tokens/s measures single-stream generation between token replies on the
 local control host. “Inference core” is the configured decoder clock of
 the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENCHMARK.md) · [Full results](benchmarks/fpga-speed/results.json)
 
+<a id="simplestories-v2-5m-on-tang-mega-138k"></a>
+<a id="simplestories-v2-5m-on-aws-f2"></a>
+
 <!-- COMMON-FPGA-SPEED:START -->
 
-### SimpleStories-V2-5M on Tang Mega 138K
+### SimpleStories-V2-5M
 
-| Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release |
-| --- | --- | ---: | ---: | --- |
-| F-AWIC, baseline | Unverified external DDR | 25 | 10.0 | [Runnable release](demos/simplestories-v2-5m/PROGRAMMING.md) |
-| F-AWIC, protected K/V | Authenticated in external DDR | 25 | 7.0 | [Runnable release](demos/simplestories-v2-5m/KV-PROTECTION.md#run-or-rebuild) |
-| F-AWIC, encrypted weights and protected K/V | Authenticated and encrypted in external DDR | 25 | 6.0 | [Runnable release](demos/simplestories-v2-5m/ENCRYPTED-MEMORY.md#install-or-restore) · public demonstration keys |
-| F-AWIC, seeded sampling (temperature 1) | Unverified external DDR | 25 | 9.9 | [Runnable release](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md#load-and-check-the-seeded-image) |
-| F-AWIC, protected K/V and seeded sampling (temperature 1) | Authenticated in external DDR | 25 | 7.0 | [Runnable release](demos/simplestories-v2-5m/prebuilt/protected-seeded-sampling/README.md) |
-| S-AWIC, signed updates | Unverified external DDR | 25 | 10.1 | [Runnable release](demos/simplestories-v2-5m/variants/signed-update/tang/README.md) · public demonstration keys |
-| S-AWIC, periodic reauthorization | Unverified external DDR | 25 | 7.6 | [Runnable token-ID demonstration](demos/simplestories-v2-5m/variants/home-authorization/INSTALL.md) · public demonstration keys |
+| Platform | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release or evidence |
+| --- | --- | --- | ---: | ---: | --- |
+| Tang Mega 138K | F-AWIC, baseline | Unverified external DDR | 25 | 10.0 | [Runnable release](demos/simplestories-v2-5m/PROGRAMMING.md) |
+| Tang Mega 138K | F-AWIC, protected K/V | Authenticated in external DDR | 25 | 7.0 | [Runnable release](demos/simplestories-v2-5m/KV-PROTECTION.md#run-or-rebuild) |
+| Tang Mega 138K | F-AWIC, encrypted weights and protected K/V | Authenticated and encrypted in external DDR | 25 | 6.0 | [Runnable release](demos/simplestories-v2-5m/ENCRYPTED-MEMORY.md#install-or-restore) · public demonstration keys |
+| Tang Mega 138K | F-AWIC, seeded sampling (temperature 1) | Unverified external DDR | 25 | 9.9 | [Runnable release](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md#load-and-check-the-seeded-image) |
+| Tang Mega 138K | F-AWIC, protected K/V and seeded sampling (temperature 1) | Authenticated in external DDR | 25 | 7.0 | [Runnable release](demos/simplestories-v2-5m/prebuilt/protected-seeded-sampling/README.md) |
+| Tang Mega 138K | S-AWIC, signed updates | Unverified external DDR | 25 | 10.1 | [Runnable release](demos/simplestories-v2-5m/variants/signed-update/tang/README.md) · public demonstration keys |
+| Tang Mega 138K | S-AWIC, periodic reauthorization | Unverified external DDR | 25 | 7.6 | [Runnable token-ID demonstration](demos/simplestories-v2-5m/variants/home-authorization/INSTALL.md) · public demonstration keys |
+| AWS F2 | Combined S-AWIC, signed updates and periodic reauthorization | Protected K/V | 75 | 10.8 | [Board measured](evidence/simplestories-combined-sawic-f2/README.md#cached-generation-on-aws-f2) · private FPGA image |
 
 <!-- COMMON-FPGA-SPEED:END -->
 
 The [protected seeded benchmark](evidence/simplestories-tang-protected-seeded-board/README.md#128-output-benchmark) uses image `490a5852`. Both 128-output trials matched the scalar reference. The unverified external-K/V seeded row uses image `d271626a` and its own paired benchmark.
 
-### SimpleStories-V2-5M on AWS F2
-
-On one FPGA boot, the S-AWIC with signed model updates, periodic reauthorization
-and protected K/V admitted signed model A and matched **all 1,026 reference
-tokens** across two passes of six prompts. Each pass included a correct next
-token after a 512-token prompt. The board verified 51 authorization grants.
-[Board evidence and offline token check](evidence/simplestories-combined-sawic-f2/README.md)
+The combined S-AWIC on AWS F2 matched all 1,026 outputs across two passes of six
+prompts. Its cached rate uses UTC reply timestamps for the two
+one-token, 128-output trials. The other rows use monotonic generation-loop
+timestamps. [F2 timing and board evidence](evidence/simplestories-combined-sawic-f2/README.md#cached-generation-on-aws-f2)
 
 <!-- COMMON-FPGA-SPEED:START -->
 
