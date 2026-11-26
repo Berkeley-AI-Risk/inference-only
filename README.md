@@ -15,8 +15,8 @@ signing authorities.
 
 The FPGA demonstrations implement AWICs and run four pretrained models.
 SimpleStories-V2-5M and the TLM26 mixture-of-experts model run on a Sipeed
-Tang Mega 138K board. Qwen3-1.7B and Qwen3-8B run on Amazon EC2 F2 FPGA
-instances. The host supplies tokens and requests the next one. The circuit
+Tang Mega 138K board. SimpleStories-V2-5M also runs on Amazon EC2 F2 FPGA
+instances, as do Qwen3-1.7B and Qwen3-8B. The host supplies tokens and requests the next one. The circuit
 chooses tensor addresses, schedules the arithmetic and checks weights fetched
 from external memory. The [preliminary HWIC research](#experimental-hwic-research)
 implements SimpleStories with fixed weights in RTL.
@@ -100,9 +100,14 @@ the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENC
 
 <!-- COMMON-FPGA-SPEED:END -->
 
-A separate [11-case simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) combines S-AWIC signed reauthorization with protected K/V.
-
 The [protected seeded benchmark](evidence/simplestories-tang-protected-seeded-board/README.md#128-output-benchmark) uses image `490a5852`. Both 128-output trials matched the scalar reference. The unverified external-K/V seeded row uses image `d271626a` and its own paired benchmark.
+
+### SimpleStories-V2-5M on AWS F2
+
+On one FPGA boot, the S-AWIC with signed model updates, periodic reauthorization
+and protected K/V admitted signed model A and matched all 512 reference tokens
+across five completed prompts. It verified 24 renewals after the initial grant.
+This is a functional test on a private FPGA image. [Board evidence and offline token check](evidence/simplestories-combined-sawic-f2/README.md)
 
 <!-- COMMON-FPGA-SPEED:START -->
 
@@ -262,7 +267,7 @@ and rental; the 1.7B browser app can run on your Mac and connect to the F2 host
 over SSH. Hardware sources, build instructions and numerical-reference tools
 are also included.
 
-A separate [combined SimpleStories simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) joins signed model updates, periodic reauthorization and encrypted authenticated weights/K/V. It supplies model-replacement, replay and expiry checks with modeled private services; the board measurements have separate evidence.
+The [combined SimpleStories F2 trial](evidence/simplestories-combined-sawic-f2/README.md) exercised signed admission, renewal and inference on the card. The [11-case simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) checks model replacement, replay and expiry with modeled private services.
 
 ## Experimental HWIC research
 
