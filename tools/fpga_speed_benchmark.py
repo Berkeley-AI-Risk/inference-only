@@ -453,7 +453,7 @@ def model_tables(result):
             ('simplestories-protected-seeded-sampling', 'F-AWIC, protected K/V and seeded sampling (temperature 1)', None),
             ('simplestories-signed-update', 'S-AWIC, signed updates', plain_ddr),
             ('simplestories-home-authorization', 'S-AWIC, periodic reauthorization', plain_ddr),
-            (COMBINED_F2, 'Combined S-AWIC, signed updates and periodic reauthorization', None),
+            (COMBINED_F2, 'S-AWIC, signed updates and periodic reauthorization', None),
         ],
         'TLM26 (top-2-of-8 MoE) on Tang Mega 138K': [
             ('tlm26-moe-overlap-r2-50mhz', 'F-AWIC, overlapped schedule', None),

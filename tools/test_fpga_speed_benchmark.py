@@ -302,7 +302,7 @@ class CommonSpeedTests(unittest.TestCase):
         self.assertIn('| F-AWIC, protected K/V | Authenticated in external DDR | 25 | 7.0 |', tables[0])
         self.assertIn('| F-AWIC, protected K/V and seeded sampling (temperature 1) | '
                       'Authenticated in external DDR | 25 | 7.0 |', tables[0])
-        self.assertIn('| AWS F2 | Combined S-AWIC, signed updates and periodic reauthorization | '
+        self.assertIn('| AWS F2 | S-AWIC, signed updates and periodic reauthorization | '
                       'Protected K/V | 75 | 10.8 | [Board measured]', tables[0])
 
     def test_f2_utc_rate_and_invalid_reply_evidence(self):

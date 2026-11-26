@@ -1,7 +1,8 @@
 # SimpleStories S-AWIC inference on AWS F2
 
 On one physical F2 boot, the chip admitted signed SimpleStories-V2-5M model A
-and returned token 108 after the host appended token 1. The host then ran six
+and returned token 108 after the host appended token 1. This image uses greedy
+decoding. Each STEP returns the highest-scoring token. The host then ran six
 prompts twice. **All 1,026 generated tokens matched the reference**, excluding
 the initial 108. Both passes returned token 15 after the full 512-token prefix.
 [Recorded inputs and outputs](two-pass-wire-summary.json)
@@ -30,7 +31,7 @@ project logic. The guest SDK did not provide a physical clock readback.
 
 ### Cached generation on AWS F2
 
-The combined S-AWIC measured **10.8 cached tokens/s** on the two `around128`
+The F2 board measured **10.8 cached tokens/s** on the two `around128`
 trials above. Each started with CLEAR and prompt token 378 and returned all
 128 expected tokens. From the first reply to the last, 127 cached intervals
 took 11.726785 seconds in pass 1 and 11.719233 seconds in pass 2. Pooling them

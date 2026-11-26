@@ -100,14 +100,14 @@ the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENC
 | Tang Mega 138K | F-AWIC, protected K/V and seeded sampling (temperature 1) | Authenticated in external DDR | 25 | 7.0 | [Runnable release](demos/simplestories-v2-5m/prebuilt/protected-seeded-sampling/README.md) |
 | Tang Mega 138K | S-AWIC, signed updates | Unverified external DDR | 25 | 10.1 | [Runnable release](demos/simplestories-v2-5m/variants/signed-update/tang/README.md) · public demonstration keys |
 | Tang Mega 138K | S-AWIC, periodic reauthorization | Unverified external DDR | 25 | 7.6 | [Runnable token-ID demonstration](demos/simplestories-v2-5m/variants/home-authorization/INSTALL.md) · public demonstration keys |
-| AWS F2 | Combined S-AWIC, signed updates and periodic reauthorization | Protected K/V | 75 | 10.8 | [Board measured](evidence/simplestories-combined-sawic-f2/README.md#cached-generation-on-aws-f2) · private FPGA image |
+| AWS F2 | S-AWIC, signed updates and periodic reauthorization | Protected K/V | 75 | 10.8 | [Board measured](evidence/simplestories-combined-sawic-f2/README.md#cached-generation-on-aws-f2) · private FPGA image |
 
 <!-- COMMON-FPGA-SPEED:END -->
 
 The [protected seeded benchmark](evidence/simplestories-tang-protected-seeded-board/README.md#128-output-benchmark) uses image `490a5852`. Both 128-output trials matched the scalar reference. The unverified external-K/V seeded row uses image `d271626a` and its own paired benchmark.
 
-The combined S-AWIC on AWS F2 matched all 1,026 outputs across two passes of six
-prompts. Its cached rate uses UTC reply timestamps for the two
+The S-AWIC on AWS F2 used greedy decoding and matched all 1,026 reference
+tokens across two passes of six prompts. Its cached rate uses UTC reply timestamps for the two
 one-token, 128-output trials. The other rows use monotonic generation-loop
 timestamps. [F2 timing and board evidence](evidence/simplestories-combined-sawic-f2/README.md#cached-generation-on-aws-f2)
 
@@ -269,7 +269,7 @@ and rental; the 1.7B browser app can run on your Mac and connect to the F2 host
 over SSH. Hardware sources, build instructions and numerical-reference tools
 are also included.
 
-The [combined SimpleStories F2 trial](evidence/simplestories-combined-sawic-f2/README.md) exercised signed admission, renewal and inference on the card. The [11-case simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) checks model replacement, replay and expiry with modeled private services.
+The [SimpleStories S-AWIC board trial on F2](evidence/simplestories-combined-sawic-f2/README.md) exercised signed admission, renewal and inference on the card. The [11-case simulation](demos/simplestories-v2-5m/variants/combined-security-simulation/README.md) checks model replacement, replay and expiry with modeled private services.
 
 ## Experimental HWIC research
 
@@ -353,7 +353,7 @@ reconstruct its RTL inputs and regenerate its proof sources.
 
 The [protected SimpleStories prompt-378 replay](evidence/simplestories-protected-prompt378-uart/README.md) compares four generated positions and two repeated after CLEAR against an independent fixed-point reference. It includes the sampled digital UART replies from the four-bank simulation.
 
-The [combined SimpleStories shared-cipher simulation](evidence/simplestories-combined-shared-kv/README.md) replays eight signed-command cases with one AES-SIV engine serving two model domains. The recorded results cover signed model replacement, cross-model K/V rejection and CLEAR recovery.
+The [SimpleStories shared-cipher simulation](evidence/simplestories-combined-shared-kv/README.md) replays eight signed-command cases with one AES-SIV engine serving two model domains. The recorded results cover signed model replacement, cross-model K/V rejection and CLEAR recovery.
 
 The [SimpleStories first-value witnesses](evidence/simplestories-first-v-witnesses/README.md) check the first typed V record for four ordinary STEP executions of the held-input behavioral probe. The separate [numerical range theorem](evidence/simplestories-first-v-profile/README.md) covers the reference prerequisites for all 4,019 legal token IDs. The general RTL value equation remains open.
 
