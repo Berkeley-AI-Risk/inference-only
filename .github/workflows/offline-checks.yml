@@ -29,6 +29,8 @@ jobs:
           python-version: '3.12'
       - name: Check the clean selected release inventory
         run: python -I -S -B tools/verify_release.py --strict
+      - name: Compare the combined S-AWIC F2 board captures with the SimpleStories reference
+        run: python -I -S -B evidence/simplestories-combined-sawic-f2/check.py
       - name: Reproduce the unchanged public-key ciphertext
         working-directory: demos/simplestories-v2-5m
         run: |

@@ -130,8 +130,8 @@
       "sha256": "130a5aaa8efa2c8dbed770cd7b9448473c59f17a516c618336b9a53dc4d493b8"
     },
     ".github/workflows/offline-checks.yml": {
-      "bytes": 13224,
-      "sha256": "8db7375762cfcbf62ddbeae2791929393a53f6d90eb98be0384930d44217aaa6"
+      "bytes": 13396,
+      "sha256": "fa00f78ba5061099b0364354f2af2751dc48dcb440bc657fcedd350571ce8c8c"
     },
     ".github/workflows/rtl-checks.yml": {
       "bytes": 6530,
@@ -178,8 +178,8 @@
       "sha256": "f3d2be475cea886b4dac5d8b7b118810b333f9499145bbfcdac8e3305b1ee6ec"
     },
     "README.md": {
-      "bytes": 27022,
-      "sha256": "4f90e244305918e3279745a02ac2b40646bbb02d654c1fdc165921d0b7f80aaa"
+      "bytes": 27041,
+      "sha256": "ac94d215c05868e64644e6489f9d800d1b23c863b53b20994a363cc0a8ca951b"
     },
     "REFERENCES.md": {
       "bytes": 613,
@@ -75782,12 +75782,16 @@
       "sha256": "1693f9d44e40d13cfd142223f6522ce0e4e47d4a64125d08f8f4f6cd4c9deb0c"
     },
     "evidence/simplestories-combined-sawic-f2/README.md": {
-      "bytes": 1980,
-      "sha256": "17b53d9e1a309b3e718f5eda5cd28c9dc2647bbc98998246d7860fd70d60622b"
+      "bytes": 2378,
+      "sha256": "b93aa118d5a21d293afa9a7d0f60261dca17a45878b47ad4f7421bf865f6dc86"
     },
     "evidence/simplestories-combined-sawic-f2/check.py": {
-      "bytes": 2017,
-      "sha256": "b435bac18170d33dfa4b47d5366cef64c72448a0a929ab9d1492f19d45b74967"
+      "bytes": 3620,
+      "sha256": "121273b5914d32e141b69926590ae69647ae4ab34a4e7eb6b5cfb2bf5d26c145"
+    },
+    "evidence/simplestories-combined-sawic-f2/two-pass-wire-summary.json": {
+      "bytes": 32972,
+      "sha256": "01c87aeadc503c9abf662300b3fb5e779702a8529f181b2891d5b35f4fff9b9c"
     },
     "evidence/simplestories-combined-sawic-f2/wire-summary.json": {
       "bytes": 17362,
@@ -77406,8 +77410,8 @@
       "sha256": "1dd88cb09483da8cd53c9d3959ae90b7b276aa2127d9282a34712dbb96d82640"
     },
     "tools/release-contract.json": {
-      "bytes": 4658093,
-      "sha256": "53b1a8ef997f93eb1056032708160147f7b9c6895e036231e8ace78133117366"
+      "bytes": 4658282,
+      "sha256": "1b8515d9a6cca9853ed4961a946517d24fd0ad82ad0ea4464b4c8f75ba5a4576"
     },
     "tools/replay_simplestories_greedy.py": {
       "bytes": 3164,
@@ -77491,7 +77495,7 @@
     },
     "tools/verify_release.py": {
       "bytes": 10317,
-      "sha256": "0e2c52280ea2d90095ec79e63ef475b7e12e0a410133c3228cbe7a93962ed728"
+      "sha256": "2ba91af797f3ef451d0a6045e065475d4b46e6a0b865cd3d708ab03f453a1ccd"
     }
   },
   "full_context_evidence_scope": "Each selected greedy image passed 2,047/2,048-token CLI and browser contexts, boundary refusals, CLEAR races, pending-STEP Stop and resumed generation. The seeded image has a separate 16-case context matrix and browser record. Exact workload timestamps remain distinct from cached generation rates.",

@@ -105,9 +105,10 @@ The [protected seeded benchmark](evidence/simplestories-tang-protected-seeded-bo
 ### SimpleStories-V2-5M on AWS F2
 
 On one FPGA boot, the S-AWIC with signed model updates, periodic reauthorization
-and protected K/V admitted signed model A and matched all 512 reference tokens
-across five completed prompts. It verified 24 renewals after the initial grant.
-This is a functional test on a private FPGA image. [Board evidence and offline token check](evidence/simplestories-combined-sawic-f2/README.md)
+and protected K/V admitted signed model A and matched **all 1,026 reference
+tokens** across two passes of six prompts. Each pass included a correct next
+token after a 512-token prompt. The board verified 51 authorization grants.
+[Board evidence and offline token check](evidence/simplestories-combined-sawic-f2/README.md)
 
 <!-- COMMON-FPGA-SPEED:START -->
 
