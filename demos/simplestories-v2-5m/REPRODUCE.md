@@ -96,7 +96,8 @@ for the top module, language standards and implementation options.
 | Configuration | Selected input inventory | Native entry | Selected image SHA-256 prefix |
 | --- | --- | --- | --- |
 | F-AWIC baseline | [90 inputs](host-app/hardware-inputs.json) | [Project](hardware/project/product.gprj), [Tcl](hardware/run.tcl) | `01b040cb830c` |
-| F-AWIC + K/V protection | [93 inputs](host-app/hardware-inputs-kv-protected.json) | [Project](variants/kv-protected/hardware/project/product.gprj), [Tcl](variants/kv-protected/hardware/run.tcl) | `90ac68150d0c` |
+| F-AWIC + K/V protection, reset-guarded greedy | [93 inputs with the two changed hashes](prebuilt/kv-protected-reset-guarded/RELEASE.json) | [Stage and build the guarded sources](../../evidence/simplestories-tang-reset-guard/README.md#image-and-timing) | `0e9a17722a3e` |
+| F-AWIC + K/V protection, original greedy | [93 inputs](host-app/hardware-inputs-kv-protected.json) | [Original project and Tcl](https://github.com/Berkeley-AI-Risk/inference-only/blob/5f4d209a4452fb40a78dde5d3f845dfbec15e773/demos/simplestories-v2-5m/REPRODUCE.md#configuration-and-build-authority) | `90ac68150d0c` |
 | F-AWIC + encrypted memory | [100 inputs](host-app/hardware-inputs-encrypted-memory.json) | [Project](variants/encrypted-memory/hardware/project/product.gprj), [Tcl](variants/encrypted-memory/hardware/run.tcl) | `cfc8a3d8832b` |
 | F-AWIC + seeded sampling | [91 inputs](host-app/hardware-inputs-seeded-sampling.json) | [Project](variants/seeded-sampling/hardware/project/product.gprj), [Tcl](variants/seeded-sampling/hardware/run.tcl) | `d271626a7fb9` |
 | S-AWIC | [105 inputs](variants/signed-update/tang/SOURCE-IDENTITY.json) | [Project](variants/signed-update/tang/hardware/project/product.gprj), [Tcl](variants/signed-update/tang/hardware/run.tcl) | `8472e592c68a` |

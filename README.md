@@ -24,8 +24,12 @@ implements SimpleStories with fixed weights in RTL.
 The [FPGA measurements](#the-demonstrated-designs-and-measurements) give
 host-observed generation rates. The [architecture and evidence map](docs/ARCHITECTURE.md)
 connects each implementation to its source, tests and proof obligations.
+For new work on the four-bank greedy SimpleStories F-AWIC, use the
+**reset-guarded design**. The 25 MHz Tang Mega image matched all 256 outputs
+in the common speed benchmark. Its source, bitstream and UART frames are
+available. [Run the guarded image](demos/simplestories-v2-5m/prebuilt/kv-protected-reset-guarded/README.md) · [Reset guard and board evidence](evidence/simplestories-tang-reset-guard/README.md)
 The [SimpleStories residual training analysis](demos/simplestories-v2-5m/TRAINING-CAPACITY.md#kv-protected-greedy-design)
-focuses on the board-tested F-AWIC that authenticates its model weights and
+focuses on the original board-tested F-AWIC that authenticates its model weights and
 its external cache of attention keys and values (K/V). It asks what useful
 training computation someone could obtain through ordinary tokens, access to
 external memory, or access to internal arithmetic. The physical-owner bound
@@ -94,7 +98,7 @@ the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENC
 | Platform | Configuration | K/V cache | Inference core (MHz) | Cached tokens/s | Release or evidence |
 | --- | --- | --- | ---: | ---: | --- |
 | Tang Mega 138K | F-AWIC, baseline | Unverified external DDR | 25 | 10.0 | [Runnable release](demos/simplestories-v2-5m/PROGRAMMING.md) |
-| Tang Mega 138K | F-AWIC, protected K/V | Authenticated in external DDR | 25 | 7.0 | [Runnable release](demos/simplestories-v2-5m/KV-PROTECTION.md#run-or-rebuild) |
+| Tang Mega 138K | F-AWIC, protected K/V (reset-guarded greedy) | Authenticated in external DDR | 25 | 7.0 | [Runnable release](demos/simplestories-v2-5m/prebuilt/kv-protected-reset-guarded/README.md) |
 | Tang Mega 138K | F-AWIC, encrypted weights and protected K/V | Authenticated and encrypted in external DDR | 25 | 6.0 | [Runnable release](demos/simplestories-v2-5m/ENCRYPTED-MEMORY.md#install-or-restore) · public demonstration keys |
 | Tang Mega 138K | F-AWIC, seeded sampling (temperature 1) | Unverified external DDR | 25 | 9.9 | [Runnable release](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md#load-and-check-the-seeded-image) |
 | Tang Mega 138K | F-AWIC, protected K/V and seeded sampling (temperature 1) | Authenticated in external DDR | 25 | 7.0 | [Runnable release](demos/simplestories-v2-5m/prebuilt/protected-seeded-sampling/README.md) |
@@ -103,6 +107,10 @@ the benchmarked FPGA image. [Benchmark protocol](docs/benchmarks/FPGA-SPEED-BENC
 | AWS F2 | S-AWIC, signed updates and periodic reauthorization | Protected K/V | 75 | 10.8 | [Board measured](evidence/simplestories-combined-sawic-f2/README.md#cached-generation-on-aws-f2) · private FPGA image |
 
 <!-- COMMON-FPGA-SPEED:END -->
+
+The protected greedy row uses reset-guarded image `0e9a1772`. Two trials
+started from CLEAR and prompt token 378, then generated 128 tokens each.
+[Guarded benchmark](evidence/simplestories-tang-reset-guard/README.md#cached-generation) · [Original greedy image and timing](https://github.com/Berkeley-AI-Risk/inference-only/blob/5f4d209a4452fb40a78dde5d3f845dfbec15e773/demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/FINISHED.json)
 
 The [protected seeded benchmark](evidence/simplestories-tang-protected-seeded-board/README.md#128-output-benchmark) uses image `490a5852`. Both 128-output trials matched the scalar reference. The unverified external-K/V seeded row uses image `d271626a` and its own paired benchmark.
 

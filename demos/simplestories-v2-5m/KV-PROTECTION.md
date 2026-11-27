@@ -1,5 +1,10 @@
 # K/V integrity protection
 
+The [reset-guarded four-bank greedy release](prebuilt/kv-protected-reset-guarded/README.md)
+is the current protected greedy design. It adds a reset gate at the paired
+K/V scratch read. The comparisons below retain the original unguarded
+protected image's qualification, simulation and proof evidence.
+
 This comparison covers two plaintext-memory FPGA configurations. **Baseline** is
 the design without K/V integrity checks. **K/V-protected** is
 the integrity-checking prototype. Both run the same integer approximation of
@@ -176,7 +181,10 @@ pre-use refusal; it does not measure useful training throughput.
 
 ## Measured performance
 
-The baseline measured **10.04 tokens/s** and the K/V-protected design
+The guarded protected image measured **7.04812 cached tokens/s** at 25 MHz.
+[Guarded benchmark, raw frames and clock boundary](../../evidence/simplestories-tang-reset-guard/README.md#cached-generation)
+
+The baseline measured **10.04 tokens/s** and the original K/V-protected design
 **7.03 tokens/s** on the common one-token prompt, two 128-output greedy trials.
 All 256 outputs per design matched the fixed numerical reference. The pooled
 rate is 254 divided by the two summed intervals from validated output 1 to
@@ -217,7 +225,9 @@ proof is silently assigned to this image.
 
 ## Run or rebuild
 
-The two prebuilt images are:
+Use the [guarded image, source and install instructions](prebuilt/kv-protected-reset-guarded/README.md)
+for new work on the protected greedy F-AWIC. The two prebuilt images in the
+original comparison are:
 
 - Baseline: `prebuilt/inference/project/impl/pnr/shared_product.fs`.
 - Protected: `prebuilt/kv-protected/project/impl/pnr/shared_product.fs`.

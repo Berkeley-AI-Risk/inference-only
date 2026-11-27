@@ -12,18 +12,35 @@ next-token selection. The host computer tokenizes prompts and displays outputs;
 the FPGA owns model evaluation and attention state. The implemented numerical
 contract is W10/A16/KV16 BFP-v5.
 
-Five **Fixed-Commitment AWICs (F-AWICs)** pin the accepted model commitment.
+The five **Fixed-Commitment AWIC (F-AWIC)** configurations in the speed table pin the accepted model commitment.
 Two **Signed-Update AWICs (S-AWICs)** admit compatible signed model packages;
 one also requires periodic permission to keep running the admitted weights.
 The model hardware, host tools, proofs and evidence are in this directory.
 Shared release and cross-model benchmark checks are at the repository root.
+
+## Four-bank greedy proof target
+
+Use the **reset-guarded protected K/V design** for new work on the four-bank
+greedy F-AWIC. In the original RTL, a pending staging request could read
+an unwritten V scratch row on the first reset edge. The successor disables
+the paired K/V read during datapath reset. Its 25 MHz inference core and
+100 MHz DDR application interface ran on Tang Mega. Across three trials,
+the board returned all 18 expected dependent tokens after idle CLEARs.
+The guard's internal behavior can be checked separately with the supplied
+RAM-port simulation. [Guarded RTL patch, replay and board capture](../../evidence/simplestories-tang-reset-guard/README.md)
+
+The guarded bitstream uses the existing plaintext model and UART token
+client. Each other Tang or AWS F2 configuration needs its own reset-guard
+qualification. The original `90ac6815` bitstream, its 7.0 cached tokens/s
+result and its source-bound proofs remain available for historical work.
+[Run the guarded image](prebuilt/kv-protected-reset-guarded/README.md) · [Original release and proof scope](https://github.com/Berkeley-AI-Risk/inference-only/tree/5f4d209a4452fb40a78dde5d3f845dfbec15e773/demos/simplestories-v2-5m)
 
 ## Supplied configurations
 
 | Configuration | Common cached generation | K/V cache | Package status |
 | --- | ---: | --- | --- |
 | F-AWIC baseline | ~**10.0 tokens/s** | Unverified external DDR | Runnable release |
-| F-AWIC, protected K/V | ~**7.0 tokens/s** | Authenticated in external DDR using private digests and a CLEAR epoch | Runnable release |
+| F-AWIC, protected K/V (reset-guarded greedy) | ~**7.0 tokens/s** | Authenticated in external DDR using private digests and a CLEAR epoch | [Runnable release](prebuilt/kv-protected-reset-guarded/README.md) |
 | F-AWIC, encrypted weights and protected K/V | ~**6.0 tokens/s** | Authenticated and encrypted in external DDR | Runnable release; public demonstration keys |
 | F-AWIC with seeded sampling at temperature 1 | ~**9.9 tokens/s** | Unverified external DDR | Runnable release |
 | F-AWIC, protected K/V and seeded sampling at temperature 1 | ~**7.0 tokens/s** | Authenticated in external DDR using private digests and a CLEAR epoch | [Runnable release](prebuilt/protected-seeded-sampling/README.md) |
@@ -55,6 +72,9 @@ checks. Its supplied keys are public demonstration values, so they do not
 provide deployed confidentiality.
 
 ## Run the web demonstration
+
+For the reset-guarded protected greedy configuration, follow the
+[SRAM installation and browser qualification](prebuilt/kv-protected-reset-guarded/README.md).
 
 Read [PROGRAMMING.md](PROGRAMMING.md) completely for the supported board,
 matching model/image installation and guarded backup/restoration. Then follow

@@ -1,11 +1,14 @@
 {
-  "complete_rows": 14,
+  "schema": "fpga-common-speed-results-v1",
   "protocol": "one-token-128-host-v2",
+  "timestamp_boundary": "generation_loop_validated_reply",
+  "complete_rows": 14,
+  "total_rows": 14,
   "rows": [
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-baseline",
+      "label": "Same model, **F-AWIC**, with unverified external K/V",
+      "package_status": "[Runnable release](demos/simplestories-v2-5m/PROGRAMMING.md)",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -34,29 +37,30 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "Same model, **F-AWIC**, with unverified external K/V",
-      "missing": null,
-      "package_status": "[Runnable release](demos/simplestories-v2-5m/PROGRAMMING.md)",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 25.294664333,
         "cached_tokens_per_second": 10.041643433418713,
         "command_only_diagnostic_tokens_per_second": 10.053202978986162,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.085237208,
           0.085324375
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 12.649614709,
-          "cached_host_seconds": 12.664356833000001,
-          "cached_outputs": 127,
           "capture_sha256": "922c19ff323eb70128da97568974f639fa85c6de0ea2e0444d1309b4c0811acc",
-          "clear_before": true,
-          "first_step_seconds": 0.085237208,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.664356833000001,
+          "cached_command_seconds": 12.649614709,
+          "first_step_seconds": 0.085237208,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -85,21 +89,21 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 12.615964881,
-          "cached_host_seconds": 12.630307499999999,
-          "cached_outputs": 127,
           "capture_sha256": "475b42f806e3c7d3fa139d97e2aca50064e1e9f46e87b4dd959e04a827f0c9c6",
-          "clear_before": true,
-          "first_step_seconds": 0.085324375,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.630307499999999,
+          "cached_command_seconds": 12.615964881,
+          "first_step_seconds": 0.085324375,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -128,154 +132,83 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "attention_cache": "Authenticated in external DDR",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-kv-protected",
+      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC with protected K/V (reset-guarded greedy)**",
+      "package_status": "[Runnable release](demos/simplestories-v2-5m/prebuilt/kv-protected-reset-guarded/README.md)",
       "identity": {
-        "clock_hz": 25000000,
-        "collector": {
-          "bytes": 12527,
-          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v1.py",
-          "sha256": "0e0e0260b441a5e354da11793bc4120cd59b0fdc36f9228dd13902e6d958c08f"
-        },
-        "fpga_image_sha256": "90ac68150d0c297b666bc1963d05e32d1d2d0d7d69706593e58d48d5ab2e79e2",
-        "greedy_link": {
-          "bytes": 11486,
-          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
-          "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
-        },
-        "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+        "fpga_image_sha256": "0e9a17722a3e9ab1336e27bbe25b576bddbc4a2ca3c507286665a8aa9a76468f",
         "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-        "python_executable": "/opt/homebrew/bin/python3.12",
-        "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
-        "token_machine_uart": {
-          "bytes": 25318,
-          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
-          "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
-        },
-        "uart_channel": {
-          "bytes": 1939,
-          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
-          "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
-        }
+        "clock_hz": 25000000
       },
-      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC with protected K/V**",
-      "missing": null,
-      "package_status": "[Runnable release](demos/simplestories-v2-5m/KV-PROTECTION.md#run-or-rebuild)",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
-        "cached_host_seconds": 36.140183707000006,
-        "cached_tokens_per_second": 7.028187849272129,
-        "command_only_diagnostic_tokens_per_second": 7.033278184561002,
         "counted_cached_outputs": 254,
+        "cached_host_seconds": 36.037985125000006,
+        "cached_tokens_per_second": 7.0481187868573985,
+        "command_only_diagnostic_tokens_per_second": 7.048931020895262,
         "first_step_seconds": [
-          0.101918959,
-          0.102195292
+          0.101962042,
+          0.101975958
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 18.025437961,
-          "cached_host_seconds": 18.036201666,
-          "cached_outputs": 127,
-          "capture_sha256": "875662916438ea136d7b9e1319cd8917ec8252feb7dba0e95ae65b859c51d4d2",
-          "clear_before": true,
-          "first_step_seconds": 0.101918959,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "clock_hz": 25000000,
-            "collector": {
-              "bytes": 12527,
-              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v1.py",
-              "sha256": "0e0e0260b441a5e354da11793bc4120cd59b0fdc36f9228dd13902e6d958c08f"
-            },
-            "fpga_image_sha256": "90ac68150d0c297b666bc1963d05e32d1d2d0d7d69706593e58d48d5ab2e79e2",
-            "greedy_link": {
-              "bytes": 11486,
-              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
-              "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
-            },
-            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "python_executable": "/opt/homebrew/bin/python3.12",
-            "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
-            "token_machine_uart": {
-              "bytes": 25318,
-              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
-              "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
-            },
-            "uart_channel": {
-              "bytes": 1939,
-              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
-              "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
-            }
-          },
+          "capture_sha256": "f5970f49b3ba46c42fdde441ec654bb0e129dfbefe6d66d1ce40f924b2bcaae7",
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 18.018997417,
+          "cached_command_seconds": 18.017107006,
+          "first_step_seconds": 0.101962042,
+          "identity": {
+            "fpga_image_sha256": "0e9a17722a3e9ab1336e27bbe25b576bddbc4a2ca3c507286665a8aa9a76468f",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "clock_hz": 25000000
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 18.088589287,
-          "cached_host_seconds": 18.103982041000002,
-          "cached_outputs": 127,
-          "capture_sha256": "2923ed8d27536ad03ffa3f99ca2a4ce8fb020c34a0de1d569217a31762dab2c3",
-          "clear_before": true,
-          "first_step_seconds": 0.102195292,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "clock_hz": 25000000,
-            "collector": {
-              "bytes": 12527,
-              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v1.py",
-              "sha256": "0e0e0260b441a5e354da11793bc4120cd59b0fdc36f9228dd13902e6d958c08f"
-            },
-            "fpga_image_sha256": "90ac68150d0c297b666bc1963d05e32d1d2d0d7d69706593e58d48d5ab2e79e2",
-            "greedy_link": {
-              "bytes": 11486,
-              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
-              "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
-            },
-            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "python_executable": "/opt/homebrew/bin/python3.12",
-            "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
-            "token_machine_uart": {
-              "bytes": 25318,
-              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
-              "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
-            },
-            "uart_channel": {
-              "bytes": 1939,
-              "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
-              "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
-            }
-          },
+          "capture_sha256": "0dce803ccb289bdea9d91e91c741e3bb4b9e1113b5e5b2ad6a6ec9cb4050c28a",
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 18.018987708,
+          "cached_command_seconds": 18.016725535,
+          "first_step_seconds": 0.101975958,
+          "identity": {
+            "fpga_image_sha256": "0e9a17722a3e9ab1336e27bbe25b576bddbc4a2ca3c507286665a8aa9a76468f",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "clock_hz": 25000000
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "Authenticated in external DDR"
     },
     {
-      "attention_cache": "On-chip scratch RAM",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "tlm26-moe",
+      "label": "**TLM26, top-2-of-8 MoE \u2014 Tang Mega**, **F-AWIC**",
+      "package_status": "Buildable source and board records",
       "identity": {
         "bitstream_sha256": "87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42",
         "board_label": "Tang Mega device C",
@@ -307,29 +240,30 @@
         "timing_boundary": "generation_loop_validated_reply",
         "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
       },
-      "label": "**TLM26, top-2-of-8 MoE \u2014 Tang Mega**, **F-AWIC**",
-      "missing": null,
-      "package_status": "Buildable source and board records",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 157.564506625,
         "cached_tokens_per_second": 1.612038176875166,
         "command_only_diagnostic_tokens_per_second": 1.6120669485005965,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.57789675,
           0.577987208
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 78.772386629,
-          "cached_host_seconds": 78.773800667,
-          "cached_outputs": 127,
           "capture_sha256": "1b32854c68771c15b6dcf46358eec4a1b0ac2ddd405e90983d2dab1fbf543ef7",
-          "clear_before": true,
-          "first_step_seconds": 0.57789675,
+          "prompt_tokens": [
+            1
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 78.773800667,
+          "cached_command_seconds": 78.772386629,
+          "first_step_seconds": 0.57789675,
           "identity": {
             "bitstream_sha256": "87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42",
             "board_label": "Tang Mega device C",
@@ -361,21 +295,21 @@
             "timing_boundary": "generation_loop_validated_reply",
             "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
           },
-          "prompt_tokens": [
-            1
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 78.789307838,
-          "cached_host_seconds": 78.790705958,
-          "cached_outputs": 127,
           "capture_sha256": "48bba08036a0cdfa13808231ea6fe87b8c8ace68d57ca3e504a0d9edddf085f3",
-          "clear_before": true,
-          "first_step_seconds": 0.577987208,
+          "prompt_tokens": [
+            1
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 78.790705958,
+          "cached_command_seconds": 78.789307838,
+          "first_step_seconds": 0.577987208,
           "identity": {
             "bitstream_sha256": "87af5148584729fe3ea1a0d97d247fce773ef533e8ad1408acde7f5cc6af6a42",
             "board_label": "Tang Mega device C",
@@ -407,19 +341,18 @@
             "timing_boundary": "generation_loop_validated_reply",
             "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
           },
-          "prompt_tokens": [
-            1
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "On-chip scratch RAM"
     },
     {
-      "attention_cache": "On-chip scratch RAM",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "tlm26-moe-overlap-r2",
+      "label": "**TLM26, overlapped schedule \u2014 Tang Mega**, **F-AWIC**",
+      "package_status": "Source delta and board records",
       "identity": {
         "bitstream_sha256": "aeccf667a14cbc31cf88a223b643ec37e6dd82df87a4613c4191078972e82e64",
         "board_label": "Tang Mega device C",
@@ -452,29 +385,30 @@
         "timing_boundary": "generation_loop_validated_reply",
         "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
       },
-      "label": "**TLM26, overlapped schedule \u2014 Tang Mega**, **F-AWIC**",
-      "missing": null,
-      "package_status": "Source delta and board records",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 82.003501417,
         "cached_tokens_per_second": 3.0974287147614863,
         "command_only_diagnostic_tokens_per_second": 3.0975035381861287,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.271964625,
           0.271942375
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 41.000676998,
-          "cached_host_seconds": 41.001694625,
-          "cached_outputs": 127,
           "capture_sha256": "01ecddf22b3e1ed027d30a85b456379bf73698cc192d472af9c7cdff6af26e6a",
-          "clear_before": true,
-          "first_step_seconds": 0.271964625,
+          "prompt_tokens": [
+            1
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 41.001694625,
+          "cached_command_seconds": 41.000676998,
+          "first_step_seconds": 0.271964625,
           "identity": {
             "bitstream_sha256": "aeccf667a14cbc31cf88a223b643ec37e6dd82df87a4613c4191078972e82e64",
             "board_label": "Tang Mega device C",
@@ -507,21 +441,21 @@
             "timing_boundary": "generation_loop_validated_reply",
             "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
           },
-          "prompt_tokens": [
-            1
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 41.000843539,
-          "cached_host_seconds": 41.001806792000004,
-          "cached_outputs": 127,
           "capture_sha256": "c02d72187189d6975faa7b64232d61e5cff9e24ab9bca88205600ffc27569e9a",
-          "clear_before": true,
-          "first_step_seconds": 0.271942375,
+          "prompt_tokens": [
+            1
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 41.001806792000004,
+          "cached_command_seconds": 41.000843539,
+          "first_step_seconds": 0.271942375,
           "identity": {
             "bitstream_sha256": "aeccf667a14cbc31cf88a223b643ec37e6dd82df87a4613c4191078972e82e64",
             "board_label": "Tang Mega device C",
@@ -554,18 +488,18 @@
             "timing_boundary": "generation_loop_validated_reply",
             "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
           },
-          "prompt_tokens": [
-            1
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "On-chip scratch RAM"
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-encrypted",
+      "label": "Same model, **F-AWIC with encrypted weights and authenticated, encrypted K/V**",
+      "package_status": "[Runnable release](demos/simplestories-v2-5m/ENCRYPTED-MEMORY.md#install-or-restore); public demonstration keys",
       "identity": {
         "clock_hz": 25000000,
         "collector": {
@@ -594,29 +528,30 @@
           "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
         }
       },
-      "label": "Same model, **F-AWIC with encrypted weights and authenticated, encrypted K/V**",
-      "missing": null,
-      "package_status": "[Runnable release](demos/simplestories-v2-5m/ENCRYPTED-MEMORY.md#install-or-restore); public demonstration keys",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 42.072727,
         "cached_tokens_per_second": 6.037165121243508,
         "command_only_diagnostic_tokens_per_second": 6.040046735366696,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.118967125,
           0.118865833
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 21.017759372,
-          "cached_host_seconds": 21.027909959,
-          "cached_outputs": 127,
           "capture_sha256": "c22e576b455bf99c7cfa7bfb514bb0c3f99898cd46b8a3c0e9a6b8fc27914793",
-          "clear_before": true,
-          "first_step_seconds": 0.118967125,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 21.027909959,
+          "cached_command_seconds": 21.017759372,
+          "first_step_seconds": 0.118967125,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -645,21 +580,21 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 21.034895372,
-          "cached_host_seconds": 21.044817041,
-          "cached_outputs": 127,
           "capture_sha256": "e2e7371ff51b536c7e199567f37c05915dcb8eaaaae659be0fad1995213cf267",
-          "clear_before": true,
-          "first_step_seconds": 0.118865833,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 21.044817041,
+          "cached_command_seconds": 21.034895372,
+          "first_step_seconds": 0.118865833,
           "identity": {
             "clock_hz": 25000000,
             "collector": {
@@ -688,161 +623,160 @@
               "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
             }
           },
-          "prompt_tokens": [
-            378
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-seeded-sampling",
+      "label": "Same model, **F-AWIC with seeded sampling at temperature 1**, with unverified external K/V",
+      "package_status": "[Runnable release](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md#load-and-check-the-seeded-image)",
       "identity": {
         "core_clock_mhz": 25,
         "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
       },
-      "label": "Same model, **F-AWIC with seeded sampling at temperature 1**, with unverified external K/V",
-      "missing": null,
-      "package_status": "[Runnable release](demos/simplestories-v2-5m/STOCHASTIC-GENERATION.md#load-and-check-the-seeded-image)",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 25.583678042021347,
         "cached_tokens_per_second": 9.928204990025415,
         "command_only_diagnostic_tokens_per_second": 9.942238076431886,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.08490541600622237,
           0.08474962500622496
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 12.782095956092235,
-          "cached_host_seconds": 12.80031154199969,
-          "cached_outputs": 127,
           "capture_sha256": "97b6e5b160688153d37b749a6ee44976676cf731f88089487065c025607acfca",
-          "clear_before": true,
-          "decoding": "seeded-sampling",
-          "first_step_seconds": 0.08490541600622237,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": false,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.80031154199969,
+          "cached_command_seconds": 12.782095956092235,
+          "first_step_seconds": 0.08490541600622237,
           "identity": {
             "core_clock_mhz": 25,
             "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
           },
-          "prompt_tokens": [
-            378
-          ],
-          "seed": "0x99aabbccddeeff001122334455667788",
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": false,
+          "clear_before": true,
           "stop_at_eos": false,
+          "decoding": "seeded-sampling",
           "temperature": 1,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "seed": "0x99aabbccddeeff001122334455667788"
         },
         {
-          "cached_command_seconds": 12.765471708989935,
-          "cached_host_seconds": 12.783366500021657,
-          "cached_outputs": 127,
           "capture_sha256": "5a9e3375af68d4436566e895855be579c4c99fcfcd9d38e388159c45ebe1b018",
-          "clear_before": true,
-          "decoding": "seeded-sampling",
-          "first_step_seconds": 0.08474962500622496,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": false,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.783366500021657,
+          "cached_command_seconds": 12.765471708989935,
+          "first_step_seconds": 0.08474962500622496,
           "identity": {
             "core_clock_mhz": 25,
             "fpga_image_sha256": "d271626a7fb9ce1debdf7a9cd847125ec7eb4c907fa9d06af9d5f8146cecc725"
           },
-          "prompt_tokens": [
-            378
-          ],
-          "seed": "0x99aabbccddeeff001122334455667788",
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": false,
+          "clear_before": true,
           "stop_at_eos": false,
+          "decoding": "seeded-sampling",
           "temperature": 1,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "seed": "0x99aabbccddeeff001122334455667788"
         }
       ]
     },
     {
-      "attention_cache": "Authenticated in external DDR",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-protected-seeded-sampling",
+      "label": "F-AWIC with protected K/V and seeded sampling at temperature 1",
+      "package_status": "[Runnable release](demos/simplestories-v2-5m/prebuilt/protected-seeded-sampling/README.md)",
       "identity": {
         "collector_sha256": "c6988d957b9864c6a79ad22c285ccd0ffffc73f573537ec322b2bd0d4ba8541c",
         "core_clock_mhz": 25,
         "fpga_image_sha256": "490a58526e6a9593a07e5744779ab6f55d25a8fd4c192df86b34be55c9aee23f",
         "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0"
       },
-      "label": "F-AWIC with protected K/V and seeded sampling at temperature 1",
-      "missing": null,
-      "package_status": "[Runnable release](demos/simplestories-v2-5m/prebuilt/protected-seeded-sampling/README.md)",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 36.123035209,
         "cached_tokens_per_second": 7.031524303824732,
         "command_only_diagnostic_tokens_per_second": 7.031994173652633,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.102004208,
           0.102039958
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 18.068825084,
-          "cached_host_seconds": 18.070052542,
-          "cached_outputs": 127,
           "capture_sha256": "73c02d0ba80760414f939d8ea6f56fe8284d2565ef3bcc3d36416629a2546597",
-          "clear_before": true,
-          "decoding": "seeded-sampling",
-          "first_step_seconds": 0.102004208,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": false,
+          "cached_outputs": 127,
+          "cached_host_seconds": 18.070052542,
+          "cached_command_seconds": 18.068825084,
+          "first_step_seconds": 0.102004208,
           "identity": {
             "collector_sha256": "c6988d957b9864c6a79ad22c285ccd0ffffc73f573537ec322b2bd0d4ba8541c",
             "core_clock_mhz": 25,
             "fpga_image_sha256": "490a58526e6a9593a07e5744779ab6f55d25a8fd4c192df86b34be55c9aee23f",
             "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0"
           },
-          "prompt_tokens": [
-            378
-          ],
-          "seed": "0x99aabbccddeeff001122334455667788",
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": false,
+          "clear_before": true,
           "stop_at_eos": false,
+          "decoding": "seeded-sampling",
           "temperature": 1,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "seed": "0x99aabbccddeeff001122334455667788"
         },
         {
-          "cached_command_seconds": 18.051796425,
-          "cached_host_seconds": 18.052982667000002,
-          "cached_outputs": 127,
           "capture_sha256": "4f09dfbf3ba6e9f945de719b00e2b190246bd1d5f1048a06acb12876f0022801",
-          "clear_before": true,
-          "decoding": "seeded-sampling",
-          "first_step_seconds": 0.102039958,
+          "prompt_tokens": [
+            378
+          ],
           "generated_outputs": 128,
-          "greedy": false,
+          "cached_outputs": 127,
+          "cached_host_seconds": 18.052982667000002,
+          "cached_command_seconds": 18.051796425,
+          "first_step_seconds": 0.102039958,
           "identity": {
             "collector_sha256": "c6988d957b9864c6a79ad22c285ccd0ffffc73f573537ec322b2bd0d4ba8541c",
             "core_clock_mhz": 25,
             "fpga_image_sha256": "490a58526e6a9593a07e5744779ab6f55d25a8fd4c192df86b34be55c9aee23f",
             "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0"
           },
-          "prompt_tokens": [
-            378
-          ],
-          "seed": "0x99aabbccddeeff001122334455667788",
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": false,
+          "clear_before": true,
           "stop_at_eos": false,
+          "decoding": "seeded-sampling",
           "temperature": 1,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "seed": "0x99aabbccddeeff001122334455667788"
         }
-      ]
+      ],
+      "attention_cache": "Authenticated in external DDR"
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-signed-update",
+      "label": "Same model, **S-AWIC**, with unverified external K/V",
+      "package_status": "[Runnable release](demos/simplestories-v2-5m/variants/signed-update/tang/README.md); public demonstration keys",
       "identity": {
         "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
         "baud_rate": 115200,
@@ -861,92 +795,92 @@
         "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
         "variant": "S-AWIC"
       },
-      "label": "Same model, **S-AWIC**, with unverified external K/V",
-      "missing": null,
-      "package_status": "[Runnable release](demos/simplestories-v2-5m/variants/signed-update/tang/README.md); public demonstration keys",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 25.141651874,
         "cached_tokens_per_second": 10.102757021414002,
         "command_only_diagnostic_tokens_per_second": 10.103711396920017,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.084973875,
           0.084978625
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 12.578119296,
-          "cached_host_seconds": 12.579301666000001,
-          "cached_outputs": 127,
           "capture_sha256": "3a5859694f8fa13a315e006a2eba94f4d11cb9faef9dff930aa06a9f372cc44f",
-          "clear_before": true,
-          "first_step_seconds": 0.084973875,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
-            "baud_rate": 115200,
-            "board_result_sha256": "2546a893646f1435c4337a7271a64b366f51e144d37511f6acdf634567506ad9",
-            "clock": "time.monotonic_ns",
-            "clock_hz": 25000000,
-            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
-            "fpga_image_sha256": "8472e592c68a4b2425be4ecb8f57bde855d3be5df140f96bbe417226d1dca370",
-            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
-            "model": "SimpleStories-V2-5M",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
-            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
-            "signed_manifest_version": 1,
-            "timestamp_boundary": "generation_loop_validated_reply",
-            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
-            "variant": "S-AWIC"
-          },
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.579301666000001,
+          "cached_command_seconds": 12.578119296,
+          "first_step_seconds": 0.084973875,
+          "identity": {
+            "model": "SimpleStories-V2-5M",
+            "variant": "S-AWIC",
+            "clock_hz": 25000000,
+            "fpga_image_sha256": "8472e592c68a4b2425be4ecb8f57bde855d3be5df140f96bbe417226d1dca370",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
+            "signed_manifest_version": 1,
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
+            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
+            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
+            "board_result_sha256": "2546a893646f1435c4337a7271a64b366f51e144d37511f6acdf634567506ad9",
+            "baud_rate": 115200,
+            "clock": "time.monotonic_ns",
+            "timestamp_boundary": "generation_loop_validated_reply"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 12.56115775,
-          "cached_host_seconds": 12.562350208,
-          "cached_outputs": 127,
           "capture_sha256": "4c4a8d7f07f944b4f70b95b989c41e243a20768c19d037ac8d681fc180eed14d",
-          "clear_before": true,
-          "first_step_seconds": 0.084978625,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
-            "baud_rate": 115200,
-            "board_result_sha256": "2546a893646f1435c4337a7271a64b366f51e144d37511f6acdf634567506ad9",
-            "clock": "time.monotonic_ns",
-            "clock_hz": 25000000,
-            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
-            "fpga_image_sha256": "8472e592c68a4b2425be4ecb8f57bde855d3be5df140f96bbe417226d1dca370",
-            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
-            "model": "SimpleStories-V2-5M",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
-            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
-            "signed_manifest_version": 1,
-            "timestamp_boundary": "generation_loop_validated_reply",
-            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
-            "variant": "S-AWIC"
-          },
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 12.562350208,
+          "cached_command_seconds": 12.56115775,
+          "first_step_seconds": 0.084978625,
+          "identity": {
+            "model": "SimpleStories-V2-5M",
+            "variant": "S-AWIC",
+            "clock_hz": 25000000,
+            "fpga_image_sha256": "8472e592c68a4b2425be4ecb8f57bde855d3be5df140f96bbe417226d1dca370",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "admission_slot_sha256": "16f77107fc975b49dee3a4bc36b93ab02cdec8492eacac75b6301e026f3cdb38",
+            "signed_manifest_version": 1,
+            "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+            "python_version": "3.8.10 (v3.8.10:3d8993a744, May  3 2021, 09:09:08) \n[Clang 12.0.5 (clang-1205.0.22.9)]",
+            "collector_sha256": "9afbcd4318754c5c2c2e7dab1b3b84ccbee171783cc25f1f238d3e202ee7cab6",
+            "uart_client_sha256": "425f30ae33bebaa8e3c8c0321911687aace4e0c2258ce3822bdd593fa50216ac",
+            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
+            "board_result_sha256": "2546a893646f1435c4337a7271a64b366f51e144d37511f6acdf634567506ad9",
+            "baud_rate": 115200,
+            "clock": "time.monotonic_ns",
+            "timestamp_boundary": "generation_loop_validated_reply"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "complete": true,
-      "eligible_trials": 2,
       "id": "simplestories-home-authorization",
+      "label": "Same model, **S-AWIC with periodic reauthorization**, with unverified external K/V",
+      "package_status": "[Runnable token-ID demonstration](demos/simplestories-v2-5m/variants/home-authorization/INSTALL.md); public demonstration keys",
       "identity": {
         "clock": "time.monotonic_ns",
         "clock_hz": 25000000,
@@ -959,81 +893,80 @@
         "timestamp_boundary": "generation_loop_validated_reply",
         "variant": "S-AWIC with renewable home authorization"
       },
-      "label": "Same model, **S-AWIC with periodic reauthorization**, with unverified external K/V",
-      "missing": null,
-      "package_status": "[Runnable token-ID demonstration](demos/simplestories-v2-5m/variants/home-authorization/INSTALL.md); public demonstration keys",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 33.250101332999996,
         "cached_tokens_per_second": 7.639074463448645,
         "command_only_diagnostic_tokens_per_second": 10.105826168589543,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.0850015,
           0.085008417
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 12.554044252,
-          "cached_host_seconds": 16.642126875,
-          "cached_outputs": 127,
           "capture_sha256": "03f7186d3ce027188f1cb77ed2bbb5bc77517544b85271b6935381c4d9109593",
-          "clear_before": true,
-          "first_step_seconds": 0.0850015,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "clock": "time.monotonic_ns",
-            "clock_hz": 25000000,
-            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
-            "fpga_image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
-            "model": "SimpleStories-V2-5M",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
-            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
-            "timestamp_boundary": "generation_loop_validated_reply",
-            "variant": "S-AWIC with renewable home authorization"
-          },
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 16.642126875,
+          "cached_command_seconds": 12.554044252,
+          "first_step_seconds": 0.0850015,
+          "identity": {
+            "model": "SimpleStories-V2-5M",
+            "variant": "S-AWIC with renewable home authorization",
+            "clock_hz": 25000000,
+            "fpga_image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
+            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
+            "clock": "time.monotonic_ns",
+            "timestamp_boundary": "generation_loop_validated_reply"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 12.579972083,
-          "cached_host_seconds": 16.607974457999997,
-          "cached_outputs": 127,
           "capture_sha256": "1c674f0cfcfa44eedfb1194b1121ba110ed4a290315aa5b99ae9bb4d398edd71",
-          "clear_before": true,
-          "first_step_seconds": 0.085008417,
-          "generated_outputs": 128,
-          "greedy": true,
-          "identity": {
-            "clock": "time.monotonic_ns",
-            "clock_hz": 25000000,
-            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
-            "fpga_image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
-            "model": "SimpleStories-V2-5M",
-            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
-            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
-            "timestamp_boundary": "generation_loop_validated_reply",
-            "variant": "S-AWIC with renewable home authorization"
-          },
           "prompt_tokens": [
             378
           ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "generated_outputs": 128,
+          "cached_outputs": 127,
+          "cached_host_seconds": 16.607974457999997,
+          "cached_command_seconds": 12.579972083,
+          "first_step_seconds": 0.085008417,
+          "identity": {
+            "model": "SimpleStories-V2-5M",
+            "variant": "S-AWIC with renewable home authorization",
+            "clock_hz": 25000000,
+            "fpga_image_sha256": "92b334d6f160511542b1889df5f88ac1770c2fd0289e6ff707cf88d6a84f2323",
+            "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
+            "model_root": "5c3db7c87d70bca2aa1249edebaa8b797c9519606f865a6b0544374b2c0946dc",
+            "collector_sha256": "f6007c55b5a414dd3bcfce515cdf2c928bbb035fe2ce39d2ffc043535f9b6337",
+            "reference_sha256": "a9ae58eb00f0d89ad63c1cf0ea6531a32db2c90daec289de9654f50999e630f9",
+            "clock": "time.monotonic_ns",
+            "timestamp_boundary": "generation_loop_validated_reply"
+          },
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
       ]
     },
     {
-      "attention_cache": "Unverified external K/V",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "qwen3-1.7b",
+      "label": "**Qwen3-1.7B \u2014 AWS F2**, **F-AWIC**",
+      "package_status": "[Runnable release](demos/qwen3-1.7b/INSTALL.md); public AWS FPGA image",
       "identity": {
         "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
         "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -1060,29 +993,30 @@
         "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
         "runtime_clock_probe_supported": false
       },
-      "label": "**Qwen3-1.7B \u2014 AWS F2**, **F-AWIC**",
-      "missing": null,
-      "package_status": "[Runnable release](demos/qwen3-1.7b/INSTALL.md); public AWS FPGA image",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 28.191061175999998,
         "cached_tokens_per_second": 9.009948168117871,
         "command_only_diagnostic_tokens_per_second": 9.010895087085421,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.108920611,
           0.108772231
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 14.094837916,
-          "cached_host_seconds": 14.096516237,
-          "cached_outputs": 127,
           "capture_sha256": "5b3cda2ed08eb8ff2e469f3c949d2ab58835136bbb919f6ecb4feaeaaffc4ad5",
-          "clear_before": true,
-          "first_step_seconds": 0.108920611,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 14.096516237,
+          "cached_command_seconds": 14.094837916,
+          "first_step_seconds": 0.108920611,
           "identity": {
             "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -1109,21 +1043,21 @@
             "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
             "runtime_clock_probe_supported": false
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 14.093260774,
-          "cached_host_seconds": 14.094544939,
-          "cached_outputs": 127,
           "capture_sha256": "77bf0cf3ec008c0adf62b366a45340a2157949a694a84566a242592b5cf54211",
-          "clear_before": true,
-          "first_step_seconds": 0.108772231,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 14.094544939,
+          "cached_command_seconds": 14.093260774,
+          "first_step_seconds": 0.108772231,
           "identity": {
             "checkpoint_sha256": "e8a1143e44bdc65fd1da76d7faeac236e59c49ccd4d5ce004a3b962ce6b5c98d",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -1150,154 +1084,153 @@
             "model_ready_record_sha256": "d250f8dd0436256651ccabab652dd6dab6c418834189a9b3f0c14517d2d0a089",
             "runtime_clock_probe_supported": false
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "Unverified external K/V"
     },
     {
-      "attention_cache": "Authenticated external K/V",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "qwen3-1.7b-protected",
+      "label": "**Qwen3-1.7B \u2014 AWS F2**, **F-AWIC, protected K/V**",
+      "package_status": "[Board measured](demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/capture.json) \u00b7 private AWS FPGA image",
       "identity": {
+        "model": "qwen3-1.7b",
+        "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
         "checkpoint_sha256": "df94e833c06fc71c06fedbe1c39fda1a3552e6f3652e7b89fd42f0a56572661e",
-        "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
-        "clock_scope": "Routed A0/B0/C2/H1 configuration. The SDK clock probe returned 29 (unsupported).",
+        "source_manifest_sha256": "c55ab9b5f29beecd2fc7f27324cd3b5ff2afc881603ec6f52ac78723d1280488",
+        "fpga_image_global_id": "agfi-0ece678a652e7a332",
+        "fpga_image_regional_id": "afi-0396dd81d974b34df",
         "clocks_mhz": {
           "core": 100,
           "memory_axi": 125,
           "shell": 250
         },
-        "collection_conditions": "Exclusive original F2 slot, same-boot model upload, successful CLEAR before each trial. The Linux host timestamps validated STEP replies.",
-        "fpga_image_global_id": "agfi-0ece678a652e7a332",
-        "fpga_image_regional_id": "afi-0396dd81d974b34df",
-        "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+        "clock_scope": "Routed A0/B0/C2/H1 configuration. The SDK clock probe returned 29 (unsupported).",
+        "runtime_clock_probe_supported": false,
         "host_platform": {
           "kernel": "6.8.0-1021-aws",
           "machine": "x86_64"
         },
-        "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9",
-        "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
-        "kv_protected": true,
+        "collection_conditions": "Exclusive original F2 slot, same-boot model upload, successful CLEAR before each trial. The Linux host timestamps validated STEP replies.",
         "loaded_image_record_sha256": "be9bf005d32ed98b8b9c464099f17393e886088d383e269c89d4192851370b00",
-        "model": "qwen3-1.7b",
-        "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
         "model_ready_record_sha256": "b259edddbfe541b2395005e5082aa6add4b47452e3cb2548088e59fa9986c11f",
+        "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+        "kv_protected": true,
         "public_image": false,
-        "runtime_clock_probe_supported": false,
-        "source_manifest_sha256": "c55ab9b5f29beecd2fc7f27324cd3b5ff2afc881603ec6f52ac78723d1280488"
+        "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+        "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
+        "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9"
       },
-      "label": "**Qwen3-1.7B \u2014 AWS F2**, **F-AWIC, protected K/V**",
-      "missing": null,
-      "package_status": "[Board measured](demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/capture.json) \u00b7 private AWS FPGA image",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 35.325165032,
         "cached_tokens_per_second": 7.190341496491498,
         "command_only_diagnostic_tokens_per_second": 7.191518536247056,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.134916752,
           0.134887245
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 17.660044755,
-          "cached_host_seconds": 17.662956108000003,
-          "cached_outputs": 127,
           "capture_sha256": "21f3cf47b13344e134748bc74c985d57bde4035fa68e66a0050ee68c02eb42e2",
-          "clear_before": true,
-          "first_step_seconds": 0.134916752,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 17.662956108000003,
+          "cached_command_seconds": 17.660044755,
+          "first_step_seconds": 0.134916752,
           "identity": {
+            "model": "qwen3-1.7b",
+            "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
             "checkpoint_sha256": "df94e833c06fc71c06fedbe1c39fda1a3552e6f3652e7b89fd42f0a56572661e",
-            "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
-            "clock_scope": "Routed A0/B0/C2/H1 configuration. The SDK clock probe returned 29 (unsupported).",
+            "source_manifest_sha256": "c55ab9b5f29beecd2fc7f27324cd3b5ff2afc881603ec6f52ac78723d1280488",
+            "fpga_image_global_id": "agfi-0ece678a652e7a332",
+            "fpga_image_regional_id": "afi-0396dd81d974b34df",
             "clocks_mhz": {
               "core": 100,
               "memory_axi": 125,
               "shell": 250
             },
-            "collection_conditions": "Exclusive original F2 slot, same-boot model upload, successful CLEAR before each trial. The Linux host timestamps validated STEP replies.",
-            "fpga_image_global_id": "agfi-0ece678a652e7a332",
-            "fpga_image_regional_id": "afi-0396dd81d974b34df",
-            "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+            "clock_scope": "Routed A0/B0/C2/H1 configuration. The SDK clock probe returned 29 (unsupported).",
+            "runtime_clock_probe_supported": false,
             "host_platform": {
               "kernel": "6.8.0-1021-aws",
               "machine": "x86_64"
             },
-            "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9",
-            "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
-            "kv_protected": true,
+            "collection_conditions": "Exclusive original F2 slot, same-boot model upload, successful CLEAR before each trial. The Linux host timestamps validated STEP replies.",
             "loaded_image_record_sha256": "be9bf005d32ed98b8b9c464099f17393e886088d383e269c89d4192851370b00",
-            "model": "qwen3-1.7b",
-            "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
             "model_ready_record_sha256": "b259edddbfe541b2395005e5082aa6add4b47452e3cb2548088e59fa9986c11f",
+            "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+            "kv_protected": true,
             "public_image": false,
-            "runtime_clock_probe_supported": false,
-            "source_manifest_sha256": "c55ab9b5f29beecd2fc7f27324cd3b5ff2afc881603ec6f52ac78723d1280488"
+            "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+            "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
+            "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9"
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 17.659338588,
-          "cached_host_seconds": 17.662208924,
-          "cached_outputs": 127,
           "capture_sha256": "86fb16339fd7ea5ad2bb316afc84c5f95b1a0139ef2e3a8d21834df83355ca24",
-          "clear_before": true,
-          "first_step_seconds": 0.134887245,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 17.662208924,
+          "cached_command_seconds": 17.659338588,
+          "first_step_seconds": 0.134887245,
           "identity": {
+            "model": "qwen3-1.7b",
+            "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
             "checkpoint_sha256": "df94e833c06fc71c06fedbe1c39fda1a3552e6f3652e7b89fd42f0a56572661e",
-            "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
-            "clock_scope": "Routed A0/B0/C2/H1 configuration. The SDK clock probe returned 29 (unsupported).",
+            "source_manifest_sha256": "c55ab9b5f29beecd2fc7f27324cd3b5ff2afc881603ec6f52ac78723d1280488",
+            "fpga_image_global_id": "agfi-0ece678a652e7a332",
+            "fpga_image_regional_id": "afi-0396dd81d974b34df",
             "clocks_mhz": {
               "core": 100,
               "memory_axi": 125,
               "shell": 250
             },
-            "collection_conditions": "Exclusive original F2 slot, same-boot model upload, successful CLEAR before each trial. The Linux host timestamps validated STEP replies.",
-            "fpga_image_global_id": "agfi-0ece678a652e7a332",
-            "fpga_image_regional_id": "afi-0396dd81d974b34df",
-            "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+            "clock_scope": "Routed A0/B0/C2/H1 configuration. The SDK clock probe returned 29 (unsupported).",
+            "runtime_clock_probe_supported": false,
             "host_platform": {
               "kernel": "6.8.0-1021-aws",
               "machine": "x86_64"
             },
-            "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9",
-            "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
-            "kv_protected": true,
+            "collection_conditions": "Exclusive original F2 slot, same-boot model upload, successful CLEAR before each trial. The Linux host timestamps validated STEP replies.",
             "loaded_image_record_sha256": "be9bf005d32ed98b8b9c464099f17393e886088d383e269c89d4192851370b00",
-            "model": "qwen3-1.7b",
-            "model_image_sha256": "90d82ed9b90c58607f924190be0c15f18b70d849c536a2ccbddd259858979cd1",
             "model_ready_record_sha256": "b259edddbfe541b2395005e5082aa6add4b47452e3cb2548088e59fa9986c11f",
+            "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
+            "kv_protected": true,
             "public_image": false,
-            "runtime_clock_probe_supported": false,
-            "source_manifest_sha256": "c55ab9b5f29beecd2fc7f27324cd3b5ff2afc881603ec6f52ac78723d1280488"
+            "host_binary_sha256": "5331d4109c9a1a450080cb3b84a9746ee7f554dac9bde14ab2251bff70e05bcb",
+            "host_source_sha256": "409158fa229338fdc76a2646bd943b1af4ff63cde97a3b68c1f91efad9fc9136",
+            "host_protocol_sha256": "d582a51ceb968b570fd602cd60682ee07b6b709f1a841c1ffa239d103e6bfde9"
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "Authenticated external K/V"
     },
     {
-      "attention_cache": "Unverified external K/V",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "qwen3-8b",
+      "label": "**Qwen3-8B \u2014 AWS F2**, **F-AWIC**",
+      "package_status": "[Runnable prototype](demos/qwen3-8b/INSTALL.md); speed optimization in progress; public AWS FPGA image",
       "identity": {
         "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
         "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -1324,29 +1257,30 @@
         "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
         "runtime_clock_probe_supported": false
       },
-      "label": "**Qwen3-8B \u2014 AWS F2**, **F-AWIC**",
-      "missing": null,
-      "package_status": "[Runnable prototype](demos/qwen3-8b/INSTALL.md); speed optimization in progress; public AWS FPGA image",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 226.426331573,
         "cached_tokens_per_second": 1.1217776582584003,
         "command_only_diagnostic_tokens_per_second": 1.1218040674095815,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.885920814,
           0.885697971
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 113.218455156,
-          "cached_host_seconds": 113.221083501,
-          "cached_outputs": 127,
           "capture_sha256": "f60df41712e946521af2ea7e553dc81618b8c01d7dafdc3b9acc8aa9cec533b1",
-          "clear_before": true,
-          "first_step_seconds": 0.885920814,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 113.221083501,
+          "cached_command_seconds": 113.218455156,
+          "first_step_seconds": 0.885920814,
           "identity": {
             "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -1373,21 +1307,21 @@
             "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
             "runtime_clock_probe_supported": false
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 113.202545961,
-          "cached_host_seconds": 113.205248072,
-          "cached_outputs": 127,
           "capture_sha256": "c654b27574c54b4ba106ad0ca2938081b81f787e3893db65cad7220e655006dd",
-          "clear_before": true,
-          "first_step_seconds": 0.885697971,
+          "prompt_tokens": [
+            9707
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 113.205248072,
+          "cached_command_seconds": 113.202545961,
+          "first_step_seconds": 0.885697971,
           "identity": {
             "checkpoint_sha256": "c16119f03177c4975be4bcc54e93cf54c290bb98079f2f8ddb2cc10bb4d07a9c",
             "clock_observation_sha256": "4ddf893222d6c9f0d910d81e5f9ff612141fcb6fa58474d67cc07f626370086c",
@@ -1414,19 +1348,18 @@
             "model_ready_record_sha256": "59faf2fb00f3aebdce663557c6b50a5ed5bc318b3ff79b4e984193d96fa80bf3",
             "runtime_clock_probe_supported": false
           },
-          "prompt_tokens": [
-            9707
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "Unverified external K/V"
     },
     {
-      "attention_cache": "On-chip scratch RAM",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "tlm26-moe-overlap-r2-50mhz",
+      "label": "**TLM26, overlapped schedule at 50 MHz \u2014 Tang Mega**, **F-AWIC**",
+      "package_status": "[Runnable release](demos/tlm26-moe/prebuilt/overlap-r2-50mhz/README.md)",
       "identity": {
         "bitstream_sha256": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b",
         "board_label": "Tang Mega device C",
@@ -1459,29 +1392,30 @@
         "timing_boundary": "generation_loop_validated_reply",
         "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
       },
-      "label": "**TLM26, overlapped schedule at 50 MHz \u2014 Tang Mega**, **F-AWIC**",
-      "missing": null,
-      "package_status": "[Runnable release](demos/tlm26-moe/prebuilt/overlap-r2-50mhz/README.md)",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 27.980518875,
         "cached_tokens_per_second": 9.077744452657152,
         "command_only_diagnostic_tokens_per_second": 9.078629262558886,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.102083292,
           0.101986541
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 13.988939956,
-          "cached_host_seconds": 13.990248916,
-          "cached_outputs": 127,
           "capture_sha256": "e20d17666d008bb3b592e9f00cd821c0b4c3115ede928b20cbfafa6a99167c3b",
-          "clear_before": true,
-          "first_step_seconds": 0.102083292,
+          "prompt_tokens": [
+            1
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 13.990248916,
+          "cached_command_seconds": 13.988939956,
+          "first_step_seconds": 0.102083292,
           "identity": {
             "bitstream_sha256": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b",
             "board_label": "Tang Mega device C",
@@ -1514,21 +1448,21 @@
             "timing_boundary": "generation_loop_validated_reply",
             "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
           },
-          "prompt_tokens": [
-            1
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 13.988851917,
-          "cached_host_seconds": 13.990269959,
-          "cached_outputs": 127,
           "capture_sha256": "6ad53d82563ef647c035cf13f64e53ea834b0e35260ff7c04dfed7e7d2dd7c9c",
-          "clear_before": true,
-          "first_step_seconds": 0.101986541,
+          "prompt_tokens": [
+            1
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 13.990269959,
+          "cached_command_seconds": 13.988851917,
+          "first_step_seconds": 0.101986541,
           "identity": {
             "bitstream_sha256": "4da8188c7c27af20c4a759085d7cf0ecd8a12078e6ff9518f661db69d1a4a93b",
             "board_label": "Tang Mega device C",
@@ -1561,19 +1495,18 @@
             "timing_boundary": "generation_loop_validated_reply",
             "uart_library_sha256": "8b5ab06de194d358387f29ee66ac1da79b36e2f7eed0db904414d7228cba305c"
           },
-          "prompt_tokens": [
-            1
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "On-chip scratch RAM"
     },
     {
-      "attention_cache": "Authenticated in external DDR (all five layers)",
-      "complete": true,
-      "eligible_trials": 2,
       "id": "tlm26-moe-five-layer-external-kv",
+      "label": "TLM26 with protected K/V in external DDR for all five layers",
+      "package_status": "[Runnable release](demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md) \u00b7 [Held control](demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md#older-held-control)",
       "identity": {
         "board_label": "Tang Mega 138K Basic revision C",
         "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
@@ -1583,29 +1516,30 @@
         "model_sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1",
         "timestamp_boundary": "generation_loop_validated_reply"
       },
-      "label": "TLM26 with protected K/V in external DDR for all five layers",
-      "missing": null,
-      "package_status": "[Runnable release](demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md) \u00b7 [Held control](demos/tlm26-moe/prebuilt/five-external-kv-zero-hold-50mhz/README.md#older-held-control)",
+      "eligible_trials": 2,
+      "complete": true,
       "rate": {
+        "counted_cached_outputs": 254,
         "cached_host_seconds": 23.713694541,
         "cached_tokens_per_second": 10.711110390700382,
         "command_only_diagnostic_tokens_per_second": 10.711862440074283,
-        "counted_cached_outputs": 254,
         "first_step_seconds": [
           0.085018125,
           0.084941
         ]
       },
+      "missing": null,
       "trials": [
         {
-          "cached_command_seconds": 11.881413542,
-          "cached_host_seconds": 11.882297041,
-          "cached_outputs": 127,
           "capture_sha256": "39431e44143e15e522e4a9a62f2a2c76ae42bfb1d775112550179ba51213506d",
-          "clear_before": true,
-          "first_step_seconds": 0.085018125,
+          "prompt_tokens": [
+            1
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 11.882297041,
+          "cached_command_seconds": 11.881413542,
+          "first_step_seconds": 0.085018125,
           "identity": {
             "board_label": "Tang Mega 138K Basic revision C",
             "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
@@ -1615,21 +1549,21 @@
             "model_sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1",
             "timestamp_boundary": "generation_loop_validated_reply"
           },
-          "prompt_tokens": [
-            1
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         },
         {
-          "cached_command_seconds": 11.830616128,
-          "cached_host_seconds": 11.8313975,
-          "cached_outputs": 127,
           "capture_sha256": "656a60b18baed2d18e756f2cc054b190d53c2ce2fa37326a2241f6c02f8e874b",
-          "clear_before": true,
-          "first_step_seconds": 0.084941,
+          "prompt_tokens": [
+            1
+          ],
           "generated_outputs": 128,
-          "greedy": true,
+          "cached_outputs": 127,
+          "cached_host_seconds": 11.8313975,
+          "cached_command_seconds": 11.830616128,
+          "first_step_seconds": 0.084941,
           "identity": {
             "board_label": "Tang Mega 138K Basic revision C",
             "checkpoint_sha256": "c12f73ec224a8ee9de02ff81402eb5777c1658e7151ff31998cb0accc358e2a0",
@@ -1639,17 +1573,15 @@
             "model_sha256": "221d412a48f1809d6b9cc46ab9f8d572c37af226d07ec710c82bd0d530b49ce1",
             "timestamp_boundary": "generation_loop_validated_reply"
           },
-          "prompt_tokens": [
-            1
-          ],
-          "stop_at_eos": false,
-          "timestamp_boundary": "generation_loop_validated_reply"
+          "timestamp_boundary": "generation_loop_validated_reply",
+          "greedy": true,
+          "clear_before": true,
+          "stop_at_eos": false
         }
-      ]
+      ],
+      "attention_cache": "Authenticated in external DDR (all five layers)"
     }
   ],
-  "schema": "fpga-common-speed-results-v1",
-  "scope": "Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay.",
   "source_sha256": {
     "benchmarks/fpga-speed/tlm26-common-v1/CAPTURE.json": {
       "bytes": 32908,
@@ -1799,10 +1731,6 @@
       "bytes": 33722,
       "sha256": "d811ba7de040ad0357a02247b0a8e8cfdb4d7aaa2f4754316f9096b766dd922a"
     },
-    "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/FINISHED.json": {
-      "bytes": 33659,
-      "sha256": "8a1837ff09941377d3554116eadc482713d5236c2865d1fb54f37f6ade48b562"
-    },
     "demos/simplestories-v2-5m/evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json": {
       "bytes": 206176,
       "sha256": "ae81f740b937068d4dd111010871c557dfa28b62b44a6f95de5a155607bc1bdf"
@@ -1931,6 +1859,18 @@
       "bytes": 35644,
       "sha256": "47a71115df263867f12cd038ff063f6012fb67d5e5e41f85d207179d91c60748"
     },
+    "evidence/simplestories-tang-reset-guard/COMMON.json": {
+      "bytes": 18824,
+      "sha256": "a13a4773363b57006452615ef36abfeaf9a3636e70623944b6e833274330fbff"
+    },
+    "evidence/simplestories-tang-reset-guard/wire/around1.json": {
+      "bytes": 24295,
+      "sha256": "f5970f49b3ba46c42fdde441ec654bb0e129dfbefe6d66d1ce40f924b2bcaae7"
+    },
+    "evidence/simplestories-tang-reset-guard/wire/around2.json": {
+      "bytes": 24295,
+      "sha256": "0dce803ccb289bdea9d91e91c741e3bb4b9e1113b5e5b2ad6a6ec9cb4050c28a"
+    },
     "evidence/tlm26-tang-five-layer-kv-board/REFERENCE.json": {
       "bytes": 2768,
       "sha256": "2e11aa1441e62118861d1bcaae8f50fdfadfaa411829f5f1d64c068325a67190"
@@ -1938,27 +1878,26 @@
   },
   "supplemental_rows": [
     {
-      "attention_cache": "Protected K/V",
-      "clock": "host_utc",
-      "complete": true,
       "id": "simplestories-combined-sawic-f2",
       "identity": {
         "core_clock_mhz": 75,
         "routed_checkpoint_sha256": "ef264b3fa11958d57caf7746fd53a9184df4650d9c86c85b7cdaf2e56ccec87f"
       },
+      "attention_cache": "Protected K/V",
+      "complete": true,
       "package_status": "[Board measured](evidence/simplestories-combined-sawic-f2/README.md#cached-generation-on-aws-f2) \u00b7 private FPGA image",
-      "rate": {
-        "cached_host_seconds": 23.446018,
-        "cached_tokens_per_second": 10.83339610163227,
-        "counted_cached_outputs": 254
-      },
       "timestamp_boundary": "packed_result_logged_before_reference_comparison",
+      "clock": "host_utc",
       "trial_cached_seconds": [
         11.726785,
         11.719233
-      ]
+      ],
+      "rate": {
+        "counted_cached_outputs": 254,
+        "cached_host_seconds": 23.446018,
+        "cached_tokens_per_second": 10.83339610163227
+      }
     }
   ],
-  "timestamp_boundary": "generation_loop_validated_reply",
-  "total_rows": 14
+  "scope": "Recomputed recorded output/timing evidence; no fresh hardware or numerical-model replay."
 }

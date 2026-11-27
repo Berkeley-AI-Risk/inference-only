@@ -43,7 +43,8 @@ def limits_for_variant(variant: str | None) -> InputLimits:
     """Local UI capability only; LiveUART still rechecks the full deployment."""
     if variant == 'seeded-sampling':
         return InputLimits(2048, 128, 2049, 32768, 3600)
-    if variant in ('baseline', 'kv-protected', 'encrypted-memory', 'protected-seeded-sampling'):
+    if variant in ('baseline', 'kv-protected', 'kv-protected-reset-guarded',
+                   'encrypted-memory', 'protected-seeded-sampling'):
         return InputLimits(2048, 128, 2049, 32768, 14400)
     if variant is None:
         return InputLimits(MAX_PROMPT, MAX_NEW, DEMO_CAP, MAX_PROMPT_CHARS, STEP_TIMEOUT_SECONDS)

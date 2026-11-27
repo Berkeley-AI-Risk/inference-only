@@ -73,6 +73,18 @@ class ProfileTests(unittest.TestCase):
         self.assertEqual(len(profile.hardware_inputs()), 90)
         self.assertEqual(len([n for n in profile.hardware_inputs() if n.startswith('project/official/')]), 4)
 
+    def test_guarded_prebuilt_registers_the_greedy_browser_profile(self):
+        variant = 'kv-protected-reset-guarded'
+        self.receipt = profile.APP.parent / 'prebuilt' / variant / 'RELEASE.json'
+        record = self.qualify()
+        self.assertEqual(profile.load_checked(), record)
+        self.assertEqual(profile.configured_variant_id(), variant)
+        self.assertFalse(profile.supports_sampling(variant))
+        self.assertEqual(fpga_backend.limits_for_variant(variant).max_new, 128)
+        self.assertEqual(record['known_answer']['generated_tokens'], [200, 15, 103, 157])
+        wrong = dict(record, image_sha256='90ac68150d0c297b666bc1963d05e32d1d2d0d7d69706593e58d48d5ab2e79e2')
+        self.assertFalse(profile.matches_profile_variant(wrong, variant))
+
     def test_protected_hardware_inventory_identity(self):
         selected = profile.hardware_inputs('kv-protected')
         self.assertEqual(len(selected), 93)

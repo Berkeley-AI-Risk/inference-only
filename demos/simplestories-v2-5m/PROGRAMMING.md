@@ -187,8 +187,8 @@ After the readback passes, load only the selected inference image into SRAM:
 ```
 
 The command above loads the **baseline without K/V integrity checks**. To
-load the **K/V-protected prototype**, use the same SRAM operation
-with `--fsFile "$FPGA_PACKAGE/prebuilt/kv-protected/project/impl/pnr/shared_product.fs"`.
+load the **reset-guarded K/V-protected greedy image**, use the same SRAM operation
+with `--fsFile "$FPGA_PACKAGE/prebuilt/kv-protected-reset-guarded/project/impl/pnr/shared_product.fs"`.
 Load only one configuration, then use its matching build receipt for the
 known-answer check below. Both remain timing-unqualified exploratory images;
 see [the comparison and limitations](KV-PROTECTION.md).
@@ -217,7 +217,10 @@ startup. Waiting alone does not establish a successful boot.
 For the baseline or protected browser workflow, follow
 [the host guide](host-app/README.md) to run the seven-command known-answer
 test with `prebuilt/inference/BUILD.json` for the baseline or
-`prebuilt/kv-protected/BUILD.json` for the protected image, then start the browser app. The
+`prebuilt/kv-protected-reset-guarded/RELEASE.json` for the guarded protected image, then start the browser app.
+The [guarded guide](prebuilt/kv-protected-reset-guarded/README.md) gives its exact steps.
+The [original protected image instructions](https://github.com/Berkeley-AI-Risk/inference-only/blob/5f4d209a4452fb40a78dde5d3f845dfbec15e773/demos/simplestories-v2-5m/PROGRAMMING.md#5-load-inference-and-start-the-app)
+remain available for reproducing the earlier release. The
 test deliberately clears any current conversation. Requalify after every
 power cycle, SRAM reload, board replacement or unexplained fault.
 Subsequent power-on sessions repeat this section and qualification; they do

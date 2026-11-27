@@ -44,6 +44,11 @@ VARIANTS = {
     },
 }
 PREBUILT_VARIANTS = {
+    'kv-protected-reset-guarded': {
+        'label': 'K/V integrity protection, reset-guarded greedy',
+        'receipt_sha256': '148eb1a9d3c488cdf9c683ccbccd4c9a6665cd00f64c5710653f2dce9698ddd8',
+        'image_sha256': '0e9a17722a3e9ab1336e27bbe25b576bddbc4a2ca3c507286665a8aa9a76468f',
+    },
     'protected-seeded-sampling': {
         'label': 'K/V integrity protection + seeded temperature sampling',
         'receipt_sha256': '88c664709c8ac7c6c3b435c0368c773bee3838ed121df816be5659cb2eb85f51',

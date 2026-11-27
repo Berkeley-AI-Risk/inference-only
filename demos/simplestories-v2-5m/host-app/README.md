@@ -14,7 +14,7 @@ registration guard checks the selected image against its source-build receipt
 or pinned prebuilt release receipt;
 matching replies do not independently attest the FPGA configuration.
 
-The three greedy designs each passed seven ordinary Chrome cases and 26 exact
+The three original greedy images each passed seven ordinary Chrome cases and 26 exact
 outputs with this common host implementation, including full contexts,
 pending-STEP Stop and generation on a new connection. The shared host passed
 79 offline fixture tests. Fixture tests do not count as a physical browser or
@@ -82,9 +82,10 @@ Then run, replacing the example device path:
 ```
 
 That command registers the **baseline without K/V checks**. If you loaded
-the K/V-protected image instead, use
-`--build-receipt ../prebuilt/kv-protected/BUILD.json`. The receipt selects a
-separately pinned source inventory; a baseline/protected mismatch is rejected.
+the **reset-guarded protected greedy image** instead, use
+`--image-receipt ../prebuilt/kv-protected-reset-guarded/RELEASE.json`.
+The package checks the exact image and receipt before the board test.
+[Guarded installation and profile](../prebuilt/kv-protected-reset-guarded/README.md) · [Original protected image and profile](https://github.com/Berkeley-AI-Risk/inference-only/blob/5f4d209a4452fb40a78dde5d3f845dfbec15e773/demos/simplestories-v2-5m/host-app/README.md)
 The app displays the locally selected variant, not an independently measured
 identity of the circuit. See [the comparison](../KV-PROTECTION.md).
 

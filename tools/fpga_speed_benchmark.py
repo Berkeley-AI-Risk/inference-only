@@ -384,6 +384,12 @@ def calculate(root):
                 root / 'tools/qwen_common_speed_evidence.py')
             verifier = importlib.util.module_from_spec(spec); spec.loader.exec_module(verifier)
             verifier.verify(root, row, sources[row['source']], sources[row['evidence_review']])
+        if row['id'] == 'simplestories-kv-protected':
+            path = root / 'evidence/simplestories-tang-reset-guard/check_speed.py'
+            spec = importlib.util.spec_from_file_location('guarded_greedy_speed', path)
+            verifier = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(verifier)
+            verifier.verify(root, sources[row['source']], reference)
         if row['id'] == 'simplestories-signed-update':
             target = root / MODEL / 'variants/signed-update/tang'
             spec = importlib.util.spec_from_file_location('signed_update_speed_evidence',
@@ -447,7 +453,7 @@ def model_tables(result):
     groups = {
         'SimpleStories-V2-5M': [
             ('simplestories-baseline', 'F-AWIC, baseline', plain_ddr),
-            ('simplestories-kv-protected', 'F-AWIC, protected K/V', None),
+            ('simplestories-kv-protected', 'F-AWIC, protected K/V (reset-guarded greedy)', None),
             ('simplestories-encrypted', 'F-AWIC, encrypted weights and protected K/V', 'Authenticated and encrypted in external DDR'),
             ('simplestories-seeded-sampling', 'F-AWIC, seeded sampling (temperature 1)', plain_ddr),
             ('simplestories-protected-seeded-sampling', 'F-AWIC, protected K/V and seeded sampling (temperature 1)', None),

@@ -48,48 +48,25 @@
       "status": "[Runnable release](demos/simplestories-v2-5m/PROGRAMMING.md)"
     },
     {
-      "artifact": "demos/simplestories-v2-5m/prebuilt/kv-protected/project/impl/pnr/shared_product.fs",
+      "artifact": "demos/simplestories-v2-5m/prebuilt/kv-protected-reset-guarded/project/impl/pnr/shared_product.fs",
       "attention_cache": "Authenticated in external DDR",
       "cases": [
-        "one-token-128-trial1",
-        "one-token-128-trial2"
+        "around1",
+        "around2"
       ],
       "format": "canonical",
       "id": "simplestories-kv-protected",
       "identity": {
-        "clock_hz": 25000000,
-        "collector": {
-          "bytes": 12527,
-          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/collect_common_greedy_speed_v1.py",
-          "sha256": "0e0e0260b441a5e354da11793bc4120cd59b0fdc36f9228dd13902e6d958c08f"
-        },
-        "fpga_image_sha256": "90ac68150d0c297b666bc1963d05e32d1d2d0d7d69706593e58d48d5ab2e79e2",
-        "greedy_link": {
-          "bytes": 11486,
-          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/tang-greedy-speed/tools/greedy_board_campaign.py",
-          "sha256": "9d7a8dc5fbed495b73e6b85f99acc94c7fbbc9fc74177046a0f8925d792c9dcb"
-        },
-        "host_platform": "macOS-27.0.1-arm64-arm-64bit",
+        "fpga_image_sha256": "0e9a17722a3e9ab1336e27bbe25b576bddbc4a2ca3c507286665a8aa9a76468f",
         "model_image_sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0",
-        "python_executable": "/opt/homebrew/bin/python3.12",
-        "python_version": "3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.4.4.1)]",
-        "token_machine_uart": {
-          "bytes": 25318,
-          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/token_machine_uart.py",
-          "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
-        },
-        "uart_channel": {
-          "bytes": 1939,
-          "path": "/Users/halcrow/Holliday Team Dropbox/Wes Holliday/Mac/Documents/GitHub/pause/inference-only/fpga-demo/public-release/host-app/uart_channel.py",
-          "sha256": "b56f591d546bbc55ad0b8de3d6a5aa179206a3b5c813a6da1ce86aca4a2e3c0e"
-        }
+        "clock_hz": 25000000
       },
-      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC with protected K/V**",
+      "label": "**SimpleStories-V2-5M \u2014 Tang Mega**, **F-AWIC with protected K/V (reset-guarded greedy)**",
       "prompt_tokens": [
         378
       ],
-      "source": "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/FINISHED.json",
-      "status": "[Runnable release](demos/simplestories-v2-5m/KV-PROTECTION.md#run-or-rebuild)"
+      "source": "evidence/simplestories-tang-reset-guard/COMMON.json",
+      "status": "[Runnable release](demos/simplestories-v2-5m/prebuilt/kv-protected-reset-guarded/README.md)"
     },
     {
       "attention_cache": "On-chip scratch RAM",
@@ -663,6 +640,14 @@
       "bytes": 5802,
       "sha256": "d8911fd9119ff8fcdf0b08138bde93f0412e15f753417357fb138c2e9f35109b"
     },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/capture.json": {
+      "bytes": 69661,
+      "sha256": "082a5bd3377212627fc9004df40c7b0fee6ef6261a4651553a50a52bd12953c7"
+    },
+    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/source-review.json": {
+      "bytes": 6452,
+      "sha256": "6a106b0bacdc65bb2827ad986eeb3b3d9f44a559d35313632bd5406260f87b04"
+    },
     "demos/qwen3-1.7b/measurements.json": {
       "bytes": 146173,
       "sha256": "8266c1a3e9057302af4cc1cdf5085ca496d688541d04feffe07d041ab3b7140b"
@@ -686,10 +671,6 @@
     "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/encrypted-common-speed-20261026-r1/FINISHED.json": {
       "bytes": 33722,
       "sha256": "d811ba7de040ad0357a02247b0a8e8cfdb4d7aaa2f4754316f9096b766dd922a"
-    },
-    "demos/simplestories-v2-5m/benchmarks/fpga-speed/captures/protected-common-speed-20261026-r1/FINISHED.json": {
-      "bytes": 33659,
-      "sha256": "8a1837ff09941377d3554116eadc482713d5236c2865d1fb54f37f6ade48b562"
     },
     "demos/simplestories-v2-5m/evidence/seeded-sampling/current-timing-v8-baseline-selected-native.json": {
       "bytes": 206176,
@@ -819,17 +800,21 @@
       "bytes": 35644,
       "sha256": "47a71115df263867f12cd038ff063f6012fb67d5e5e41f85d207179d91c60748"
     },
+    "evidence/simplestories-tang-reset-guard/COMMON.json": {
+      "bytes": 18824,
+      "sha256": "a13a4773363b57006452615ef36abfeaf9a3636e70623944b6e833274330fbff"
+    },
+    "evidence/simplestories-tang-reset-guard/wire/around1.json": {
+      "bytes": 24295,
+      "sha256": "f5970f49b3ba46c42fdde441ec654bb0e129dfbefe6d66d1ce40f924b2bcaae7"
+    },
+    "evidence/simplestories-tang-reset-guard/wire/around2.json": {
+      "bytes": 24295,
+      "sha256": "0dce803ccb289bdea9d91e91c741e3bb4b9e1113b5e5b2ad6a6ec9cb4050c28a"
+    },
     "evidence/tlm26-tang-five-layer-kv-board/REFERENCE.json": {
       "bytes": 2768,
       "sha256": "2e11aa1441e62118861d1bcaae8f50fdfadfaa411829f5f1d64c068325a67190"
-    },
-    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/capture.json": {
-      "bytes": 69661,
-      "sha256": "082a5bd3377212627fc9004df40c7b0fee6ef6261a4651553a50a52bd12953c7"
-    },
-    "demos/qwen3-1.7b/evidence/protected-common-speed-2026-11-25/source-review.json": {
-      "bytes": 6452,
-      "sha256": "6a106b0bacdc65bb2827ad986eeb3b3d9f44a559d35313632bd5406260f87b04"
     }
   },
   "timestamp_boundary": "generation_loop_validated_reply"

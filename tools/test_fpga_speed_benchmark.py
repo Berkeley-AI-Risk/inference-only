@@ -299,7 +299,7 @@ class CommonSpeedTests(unittest.TestCase):
         self.assertIn('| On-chip scratch RAM | 50 | 9.1 | [Runnable release]', tables[1])
         self.assertIn('| Authenticated in external DDR (all five layers) | 50 | 10.7 | [Runnable release]', tables[1])
         self.assertIn('[Held control]', tables[1])
-        self.assertIn('| F-AWIC, protected K/V | Authenticated in external DDR | 25 | 7.0 |', tables[0])
+        self.assertIn('| F-AWIC, protected K/V (reset-guarded greedy) | Authenticated in external DDR | 25 | 7.0 |', tables[0])
         self.assertIn('| F-AWIC, protected K/V and seeded sampling (temperature 1) | '
                       'Authenticated in external DDR | 25 | 7.0 |', tables[0])
         self.assertIn('| AWS F2 | S-AWIC, signed updates and periodic reauthorization | '

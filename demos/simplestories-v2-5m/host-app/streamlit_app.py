@@ -144,7 +144,7 @@ def console():
 
 
 console()
-if sampling_enabled or variant_id in ('baseline', 'kv-protected', 'encrypted-memory'):
+if sampling_enabled or variant_id in ('baseline', 'kv-protected', 'kv-protected-reset-guarded', 'encrypted-memory'):
     st.caption(f'Up to {limits.max_prompt:,} prompt tokens and {limits.max_new} new tokens; '
                f'{limits.total:,} tokens combined. Longer prompts leave fewer output slots. '
                'The first token can take several minutes for a long prompt.')
@@ -154,7 +154,7 @@ else:
                'see the repository validation report for each build.')
 with st.expander('What this demo does—and does not do'):
     st.write('This computer only converts between text and token IDs, sends APPEND / STEP / CLEAR, and measures the replies. All inference runs on the FPGA. Each Generate starts with CLEAR; successful completion or Stop clears the tape again. A successful run retains the exclusive USB connection for the next run. Stop or Disconnect USB releases it. No weights, tensors or arithmetic commands are sent.')
-    st.write('Four SimpleStories images are supported: the greedy baseline without K/V integrity checks; the greedy K/V-protected image, which checks cached attention data before use; the greedy encrypted-memory image, which retains K/V integrity and replay protection and adds encryption for external weights and K/V; and the seeded image, which adds temperature sampling with a public seed and has no K/V integrity or encryption. All four authenticate model weights. Encryption uses public demonstration keys and requires its matching encrypted flash image. Published board results apply to the exact image tested. K/V corruption and replay rejection were tested in simulation, not by physically altering DDR. Vendor-DDR timing remains unresolved. The short local check does not reproduce the larger campaigns or attest the loaded circuit. The app stops on errors and cannot reset, reflash or reconfigure the board.')
+    st.write('Supported SimpleStories images include the greedy baseline without K/V integrity checks; the original and reset-guarded greedy K/V-protected images, which check cached attention data before use; the greedy encrypted-memory image, which retains K/V integrity and replay protection and adds encryption for external weights and K/V; and the seeded image, which adds temperature sampling with a public seed and has no K/V integrity or encryption. All of these images authenticate model weights. Encryption uses public demonstration keys and requires its matching encrypted flash image. Published board results apply to the exact image tested. K/V corruption and replay rejection were tested in simulation, not by physically altering DDR. Vendor-DDR timing remains unresolved. The short local check does not reproduce the larger campaigns or attest the loaded circuit. The app stops on errors and cannot reset, reflash or reconfigure the board.')
     st.write('An optional seeded-sampling build adds the temperature and seed controls above. '
              'It uses the same SimpleStories model and plaintext flash as the baseline. '
              'Each Generate starts a new story, and a blank seed chooses and displays a fresh seed for that run. '

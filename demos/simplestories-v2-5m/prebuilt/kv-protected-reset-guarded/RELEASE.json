@@ -1,0 +1,50 @@
+{
+  "schema": "fixed-fpga-board-tested-prebuilt-v1",
+  "variant": "kv-protected-reset-guarded",
+  "image_relative_path": "project/impl/pnr/shared_product.fs",
+  "public_base_commit": "b12eadcffd05a6052d648ec23869bc369c4cd16a",
+  "original_image_sha256": "90ac68150d0c297b666bc1963d05e32d1d2d0d7d69706593e58d48d5ab2e79e2",
+  "image": {
+    "bytes": 42303596,
+    "sha256": "0e9a17722a3e9ab1336e27bbe25b576bddbc4a2ca3c507286665a8aa9a76468f"
+  },
+  "model": {
+    "path": "assets/board1-real-semantic-image2048.bin",
+    "bytes": 7265984,
+    "sha256": "cad8d015db37a3603e340edfc0009f36d6b12de2bc789d60687011fc700cc3b0"
+  },
+  "token_client": {
+    "path": "host-app/token_machine_uart.py",
+    "sha256": "00d18e9411d52f7d7414b96cbf28d29db38d1c5008705dfb4194f268cbb11cbf"
+  },
+  "original_inputs": {
+    "path": "host-app/hardware-inputs-kv-protected.json",
+    "sha256": "dd439540f3933d511d23665196430b9d4ad31b28f0906af47ef445fc2d458463"
+  },
+  "native_input_count": 93,
+  "changed_inputs": {
+    "project/fpga/token_only_model0_ddr_board1/context2048_token_machine0/rtl/board1_context2048_semantic_datapath.sv": "1aa05c713d12dc767885dfa99c3c2d56a35874dded5ab398946e3f57962b794b",
+    "run.tcl": "fa7262d40e8456c11d35ebadbb7290d9b64b043ddc22bd280e729117a24b30f5"
+  },
+  "gowin_ide": "V1.9.11.03 Education (81398)",
+  "placement_option": 4,
+  "timing_report_sha256": "68b1d5505082c33e18a64a93cbe228009f5b227607d783b79265bb89a5fdfa66",
+  "clock_domains": {
+    "inference_clk25": {
+      "MHz": 25.0,
+      "setup_slack_ns": 0.008,
+      "hold_slack_ns": 0.143
+    },
+    "app_clk100": {
+      "MHz": 100.0,
+      "setup_slack_ns": 0.006,
+      "hold_slack_ns": 0.133
+    }
+  },
+  "open_vendor_ddr_endpoints": {
+    "setup_or_recovery": 145,
+    "hold_or_removal": 10
+  },
+  "board_test": "2026-11-26",
+  "trial_scope": "SRAM configuration, idle CLEAR, 3 prompts, 18 dependent STEP outputs"
+}

@@ -1,0 +1,11 @@
+--- a/board1_context2048_semantic_datapath.sv
++++ b/board1_context2048_semantic_datapath.sv
+@@ -1019,7 +1019,7 @@
+                         kv_stage_begin_valid = 1'b1;
+                     else if (!input_done_q) begin
+                         kv_stage_payload_valid = kv_read_valid_q;
+-                        if (!kv_read_valid_q) begin
++                        if (rst_n && !kv_read_valid_q) begin
+                             key_ram_read_enable = 1'b1;
+                             key_ram_read_address = input_index_q[6:0];
+                             value_ram_read_enable = 1'b1;
